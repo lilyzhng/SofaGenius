@@ -42,6 +42,7 @@ export default function App() {
         <div className="w-1/2 border-r border-stone-200 bg-white flex flex-col">
           <ChatPanel
             messages={messages}
+            cards={cards}
             isLoading={isLoading}
             activeToolCall={activeToolCall}
             onSend={sendMessage}

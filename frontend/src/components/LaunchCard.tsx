@@ -14,6 +14,7 @@ import {
   Clock,
   XCircle,
 } from "lucide-react";
+// Rocket kept for header icon
 import type { LaunchCard as LaunchCardType, LaunchStatus } from "../types";
 
 interface Props {
@@ -69,10 +70,11 @@ function Stepper({ currentStatus }: { currentStatus: LaunchStatus }) {
       {STEP_ORDER.map((step, i) => {
         const isActive = i === currentIdx;
         const isCompleted = i < currentIdx && !isFailed;
-        const isBefore = i < currentIdx;
+        const isAllDone = currentStatus === "completed";
         let bg = "bg-stone-200";
-        if (isCompleted || (isBefore && !isFailed)) bg = "bg-emerald-400";
-        if (isActive && !isFailed) bg = "bg-nobel-gold";
+        if (isCompleted) bg = "bg-emerald-400";
+        if (isActive && !isFailed && !isAllDone) bg = "bg-nobel-gold";
+        if (isActive && isAllDone) bg = "bg-emerald-400";
         if (isFailed && i === currentIdx - 1) bg = "bg-red-400";
 
         return (
@@ -126,9 +128,6 @@ function ConfigGrid({ config }: { config: Record<string, unknown> }) {
 
 export default function LaunchCard({ card }: Props) {
   const [expanded, setExpanded] = useState(false);
-  const [launchStatus, setLaunchStatus] = useState<
-    "idle" | "launching" | "launched" | "error"
-  >("idle");
   const [jobStatus, setJobStatus] = useState<
     "pending" | "running" | "completed" | "failed"
   >("pending");
@@ -139,28 +138,51 @@ export default function LaunchCard({ card }: Props) {
   const [functionCallId, setFunctionCallId] = useState<string | null>(
     card.modal_function_call_id || null,
   );
+  const [actualCost, setActualCost] = useState<{
+    runtime_minutes: number;
+    cost_usd: number;
+    gpu_type: string;
+  } | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const GPU_RATE: Record<string, number> = { A100: 3.5, H100: 4.5 };
 
   const pollStatus = useCallback(async (fcId: string) => {
     try {
-      const res = await fetch(`/api/launch/status/${fcId}`);
+      // Pass run_key so backend can look up W&B URL from modal.Dict
+      const runKey = (card.config.experiment_name || card.config.run_name || "") as string;
+      const params = runKey ? `?run_key=${encodeURIComponent(runKey)}` : "";
+      const res = await fetch(`/api/launch/status/${fcId}${params}`);
       const data = await res.json();
       if (data.status === "completed") {
         setJobStatus("completed");
         if (data.result?.wandb_url) {
           setWandbUrl(data.result.wandb_url);
         }
+        // Compute actual cost from Modal's execution time
+        if (data.execution_seconds != null) {
+          const gpuType = (card.config.gpu_type as string) || "A100";
+          const rate = GPU_RATE[gpuType] ?? 3.5;
+          const seconds = data.execution_seconds;
+          setActualCost({
+            runtime_minutes: seconds / 60,
+            cost_usd: (seconds / 3600) * rate,
+            gpu_type: gpuType,
+          });
+        }
         if (pollRef.current) clearInterval(pollRef.current);
       } else if (data.status === "failed") {
         setJobStatus("failed");
         setErrorMsg(data.error || "Modal job failed");
         if (pollRef.current) clearInterval(pollRef.current);
+      } else if (data.status === "running" && data.wandb_url) {
+        // Got the real W&B run URL from modal.Dict while job is still running
+        setWandbUrl(data.wandb_url);
       }
-      // "running" — keep polling
     } catch {
       // Network error, keep polling
     }
-  }, []);
+  }, [card.config]);
 
   useEffect(() => {
     return () => {
@@ -168,56 +190,27 @@ export default function LaunchCard({ card }: Props) {
     };
   }, []);
 
-  const startPolling = (fcId: string) => {
+  const startPolling = useCallback((fcId: string) => {
     setFunctionCallId(fcId);
     setJobStatus("running");
-    // Poll every 10 seconds
-    pollRef.current = setInterval(() => pollStatus(fcId), 10_000);
-  };
+    // Fire immediately, then every 5 seconds
+    pollStatus(fcId);
+    pollRef.current = setInterval(() => pollStatus(fcId), 5_000);
+  }, [pollStatus]);
 
   // If card already has a function_call_id (chat path), start polling
   useEffect(() => {
     if (card.modal_function_call_id && card.status === "running" && !pollRef.current) {
       startPolling(card.modal_function_call_id);
     }
-  }, [card.modal_function_call_id, card.status]);
+  }, [card.modal_function_call_id, card.status, startPolling]);
 
-  const effectiveStatus = launchStatus === "launched"
-    ? (jobStatus === "completed" ? "completed" : jobStatus === "failed" ? "failed" : "running")
+  const effectiveStatus = jobStatus === "completed" ? "completed"
+    : jobStatus === "failed" ? "failed"
     : card.status;
   const statusConfig = STATUS_CONFIG[effectiveStatus] || STATUS_CONFIG[card.status];
-  const isProposed = card.status === "proposed";
   const isRunningOrDone =
     effectiveStatus === "running" || effectiveStatus === "completed";
-
-  const handleApprove = async () => {
-    setLaunchStatus("launching");
-    setErrorMsg(null);
-    try {
-      const res = await fetch("/api/launch", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          launch_type: card.launch_type,
-          config: card.config,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setLaunchStatus("error");
-        setErrorMsg(data.error || "Failed to launch job");
-        return;
-      }
-      setLaunchStatus("launched");
-      // Start polling for the real W&B run URL and job status
-      if (data.function_call_id) {
-        startPolling(data.function_call_id);
-      }
-    } catch (e) {
-      setLaunchStatus("error");
-      setErrorMsg(e instanceof Error ? e.message : "Network error");
-    }
-  };
 
   return (
     <motion.div
@@ -261,41 +254,30 @@ export default function LaunchCard({ card }: Props) {
           {card.summary}
         </p>
 
-        {/* Cost estimate */}
-        {card.cost_estimate && (
+        {/* Cost — only show once we have actual data from Modal */}
+        {actualCost && (
           <div className="flex items-center gap-4 px-3 py-2 bg-[#F9F8F4] rounded-lg border border-stone-200 mb-3">
             <div className="flex items-center gap-1.5">
               <Cpu size={12} className="text-stone-400" />
               <span className="text-xs text-stone-600">
-                {card.cost_estimate.gpu_type}
+                {actualCost.gpu_type}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
               <Clock size={12} className="text-stone-400" />
               <span className="text-xs text-stone-600">
-                ~{card.cost_estimate.estimated_hours}h
+                {actualCost.runtime_minutes < 1
+                  ? `${Math.round(actualCost.runtime_minutes * 60)}s`
+                  : `${actualCost.runtime_minutes.toFixed(1)}min`}
               </span>
             </div>
             <div className="flex items-center gap-1.5">
               <DollarSign size={12} className="text-stone-400" />
-              <span className="text-xs text-stone-600 font-bold">
-                ~${card.cost_estimate.estimated_cost_usd.toFixed(2)}
+              <span className="text-xs text-stone-900 font-bold">
+                ${actualCost.cost_usd.toFixed(4)}
               </span>
             </div>
           </div>
-        )}
-
-        {/* W&B link */}
-        {wandbUrl && isRunningOrDone && (
-          <a
-            href={wandbUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-nobel-gold hover:text-stone-700 transition-colors mb-3"
-          >
-            <ExternalLink size={12} />
-            {wandbUrl.includes("/runs/") ? "View run on W&B" : "Monitor on W&B"}
-          </a>
         )}
 
         {/* Job failure message */}
@@ -306,74 +288,26 @@ export default function LaunchCard({ card }: Props) {
           </div>
         )}
 
-        {/* Job completed message */}
-        {jobStatus === "completed" && (
-          <div className="flex items-start gap-2 px-3 py-2 bg-emerald-50 rounded-lg border border-emerald-200 mb-3">
-            <CheckCircle2 size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-            <span className="text-xs text-emerald-700">Job completed successfully.</span>
-          </div>
-        )}
-
-        {/* Approval buttons */}
-        {isProposed && (
-          <div className="flex items-center gap-2 mt-2">
-            {launchStatus === "idle" && (
-              <button
-                onClick={handleApprove}
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-amber-400 text-amber-700 bg-amber-50 hover:bg-amber-100 transition-colors"
-              >
-                <Rocket size={12} />
-                Approve & Launch
-              </button>
-            )}
-            {launchStatus === "launching" && (
-              <button
-                disabled
-                className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-stone-300 text-stone-400 bg-stone-50 cursor-not-allowed"
-              >
-                <Loader2 size={12} className="animate-spin" />
-                Launching...
-              </button>
-            )}
-            {launchStatus === "launched" && (
-              <span className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-emerald-400 text-emerald-700 bg-emerald-50">
-                <CheckCircle2 size={12} />
-                Launched!
-                {wandbUrl && (
-                  <a
-                    href={wandbUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-0.5 ml-1 underline hover:text-emerald-900 transition-colors"
-                  >
-                    W&B <ExternalLink size={10} />
-                  </a>
-                )}
-              </span>
-            )}
-            {launchStatus === "error" && (
-              <>
-                <button
-                  onClick={handleApprove}
-                  className="px-4 py-1.5 text-xs font-bold rounded-full border-2 border-red-400 text-red-700 bg-red-50 hover:bg-red-100 transition-colors"
-                >
-                  Retry
-                </button>
-                {errorMsg && (
-                  <span className="text-xs text-red-600">{errorMsg}</span>
-                )}
-              </>
-            )}
-          </div>
-        )}
-
-        {/* Polling indicator */}
-        {launchStatus === "launched" && jobStatus === "running" && (
-          <div className="flex items-center gap-1.5 mt-2 text-xs text-stone-400">
-            <Loader2 size={10} className="animate-spin" />
-            Waiting for job result...
-          </div>
-        )}
+        {/* Status row */}
+        <div className="flex items-center gap-2 mt-2">
+          {isRunningOrDone && jobStatus === "running" && (
+            <span className="inline-flex items-center gap-1.5 text-xs text-stone-500">
+              <Loader2 size={12} className="animate-spin text-nobel-gold" />
+              Running on Modal...
+            </span>
+          )}
+          {wandbUrl && (
+            <a
+              href={wandbUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-xs text-nobel-gold hover:text-stone-700 transition-colors"
+            >
+              {wandbUrl.includes("/runs/") ? "View run" : "W&B project"}
+              <ExternalLink size={11} />
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Expand toggle */}

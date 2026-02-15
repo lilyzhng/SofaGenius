@@ -2,10 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Loader2, Square, Activity, Database, Search, Compass, PenLine, Rocket } from "lucide-react";
 import MessageBubble from "./MessageBubble";
-import type { Message } from "../types";
+import type { Message, CardData, LaunchCard } from "../types";
 
 interface Props {
   messages: Message[];
+  cards: CardData[];
   isLoading: boolean;
   activeToolCall: string | null;
   onSend: (message: string) => void;
@@ -21,8 +22,41 @@ const EXAMPLES = [
   { icon: Rocket, text: "Fine-tune a model on Modal", query: "Fine-tune Qwen2.5-Coder-14B on lilyzhng/uigen-ui-code-gen" },
 ];
 
+function LaunchApprovalButton({
+  onSend,
+}: {
+  onSend: (msg: string) => void;
+}) {
+  const [approved, setApproved] = useState(false);
+
+  const handleApprove = () => {
+    setApproved(true);
+    // Send a natural approval message — the agent will call launch_finetune/launch_eval
+    onSend("Approved. Go ahead and launch it.");
+  };
+
+  if (approved) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 4 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="ml-11"
+    >
+      <button
+        onClick={handleApprove}
+        className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-nobel-gold text-stone-700 bg-nobel-gold/10 hover:bg-nobel-gold/20 transition-colors"
+      >
+        <Rocket size={12} />
+        Approve & Launch
+      </button>
+    </motion.div>
+  );
+}
+
 export default function ChatPanel({
   messages,
+  cards,
   isLoading,
   activeToolCall,
   onSend,
@@ -56,6 +90,12 @@ export default function ChatPanel({
     el.style.height = "auto";
     el.style.height = Math.min(el.scrollHeight, 120) + "px";
   };
+
+  // Show approval button only if the latest launch card is "proposed"
+  // (once a running/completed card appears, the proposal has been acted on)
+  const launchCards = cards.filter((c): c is LaunchCard => c.card_type === "launch_card");
+  const latestLaunchCard = launchCards.length > 0 ? launchCards[launchCards.length - 1] : null;
+  const pendingLaunchCard = latestLaunchCard?.status === "proposed" ? latestLaunchCard : null;
 
   const isEmpty = messages.length === 0;
 
@@ -94,6 +134,11 @@ export default function ChatPanel({
             {messages.map((msg) => (
               <MessageBubble key={msg.id} message={msg} />
             ))}
+
+            {/* Inline approval button for pending launch cards */}
+            {pendingLaunchCard && !isLoading && (
+              <LaunchApprovalButton onSend={onSend} />
+            )}
           </>
         )}
 

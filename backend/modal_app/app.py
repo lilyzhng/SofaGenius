@@ -60,6 +60,9 @@ model_cache_vol = modal.Volume.from_name("sofa-genius-model-cache", create_if_mi
 checkpoint_vol = modal.Volume.from_name("sofa-genius-checkpoints", create_if_missing=True)
 results_vol = modal.Volume.from_name("sofa-genius-eval-results", create_if_missing=True)
 
+# Shared key-value store for passing W&B run URLs from Modal to the backend
+run_urls = modal.Dict.from_name("sofa-genius-run-urls", create_if_missing=True)
+
 # ---------------------------------------------------------------------------
 # Fine-tuning function
 # ---------------------------------------------------------------------------
@@ -125,6 +128,9 @@ def run_finetune(config_dict: dict) -> dict:
     wandb.init(project=wandb_project, name=experiment_name, config=config_dict)
     wandb_url = wandb.run.url
     print(f"W&B run: {wandb_url}\n")
+
+    # Publish URL immediately so the frontend can show it while training
+    run_urls[experiment_name] = wandb_url
 
     # -- Load model --
     print(f"Loading BASE model: {model_name}")
@@ -449,6 +455,9 @@ def run_evaluation(config_dict: dict) -> dict:
 
     run = wandb.init(project=wandb_project, name=run_name, config=config_dict)
     wandb_url = run.url
+
+    # Publish URL immediately so the frontend can show it while running
+    run_urls[run_name] = wandb_url
 
     pw = sync_playwright().start()
     browser = pw.chromium.launch(headless=True)

@@ -144,7 +144,22 @@ export function useChat() {
               }),
             );
           } else if (event.type === "card" && event.data) {
-            setCards((prev) => [...prev, event.data!]);
+            setCards((prev) => {
+              const newCard = event.data!;
+              // For launch cards: update the last proposed card instead of adding a duplicate
+              if (newCard.card_type === "launch_card") {
+                // Find the last launch_card with status "proposed" and replace it
+                for (let i = prev.length - 1; i >= 0; i--) {
+                  const c = prev[i];
+                  if (c.card_type === "launch_card" && c.status === "proposed") {
+                    const updated = [...prev];
+                    updated[i] = newCard;
+                    return updated;
+                  }
+                }
+              }
+              return [...prev, newCard];
+            });
           } else if (event.type === "done") {
             setActiveToolCall(null);
           }

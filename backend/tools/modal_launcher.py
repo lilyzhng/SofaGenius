@@ -257,9 +257,9 @@ def launch_finetune(config_json: str) -> str:
                 config.get("num_epochs", 1),
                 config.get("max_steps", -1),
             ),
-            "summary": f"Fine-tuning job launched on Modal. Monitor on W&B project '{wandb_project}'.",
+            "summary": f"Fine-tuning job launched on Modal. W&B run link will appear shortly.",
             "modal_function_call_id": function_call_id,
-            "wandb_url": _wandb_url(wandb_project),
+            "wandb_url": None,
             "requires_approval": False,
         }
         return json.dumps(card)
@@ -313,9 +313,9 @@ def launch_eval(config_json: str) -> str:
                 config.get("limit", 20),
                 config.get("use_judge", True),
             ),
-            "summary": f"Evaluation job launched on Modal. Monitor on W&B project '{wandb_project}'.",
+            "summary": f"Evaluation job launched on Modal. W&B run link will appear shortly.",
             "modal_function_call_id": function_call_id,
-            "wandb_url": _wandb_url(wandb_project),
+            "wandb_url": None,
             "requires_approval": False,
         }
         return json.dumps(card)

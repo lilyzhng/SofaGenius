@@ -85,12 +85,22 @@ async def launch_job(req: LaunchRequest):
 
 
 @app.get("/api/launch/status/{function_call_id}")
-async def launch_status(function_call_id: str):
+async def launch_status(function_call_id: str, run_key: str | None = None):
     """Poll a Modal function call for its status and result.
+
+    Checks Modal directly — the source of truth for job status.
+    While running, checks modal.Dict for the W&B run URL (published by the job
+    right after wandb.init()).
+
+    Args:
+        function_call_id: Modal function call ID
+        run_key: Key to look up in modal.Dict (experiment_name for finetune,
+                 run_name for eval)
 
     Returns:
     - status: "running" | "completed" | "failed"
-    - result: the function's return dict (includes wandb_url) if completed
+    - wandb_url: specific run URL (available while running via modal.Dict)
+    - result: the function's return dict if completed
     - error: error message if failed
     """
     try:
@@ -100,15 +110,41 @@ async def launch_status(function_call_id: str):
 
     try:
         call = modal.functions.FunctionCall.from_id(function_call_id)
+
+        # Get execution timing from Modal's call graph
+        execution_time = None
+        try:
+            graph = call.get_call_graph()
+            if graph:
+                item = graph[0]
+                if item.started_at and item.finished_at:
+                    execution_time = (item.finished_at - item.started_at).total_seconds()
+        except Exception:
+            pass
+
         try:
             result = call.get(timeout=0)
-            # Job completed — result contains wandb_url, experiment_name, etc.
-            return {"status": "completed", "result": result}
+            return {
+                "status": "completed",
+                "result": result,
+                "execution_seconds": execution_time,
+            }
         except TimeoutError:
-            # Still running
-            return {"status": "running"}
+            # Job still running — check modal.Dict for the W&B URL
+            wandb_url = None
+            if run_key:
+                try:
+                    run_urls = modal.Dict.from_name("sofa-genius-run-urls")
+                    wandb_url = run_urls.get(run_key)
+                except Exception:
+                    pass
+            return {
+                "status": "running",
+                "wandb_url": wandb_url,
+                "execution_seconds": execution_time,
+            }
         except modal.exception.ExecutionError as e:
-            return {"status": "failed", "error": str(e)}
+            return {"status": "failed", "error": str(e), "execution_seconds": execution_time}
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": f"Failed to check status: {str(e)}"})
 
