@@ -139,13 +139,18 @@ export default function LaunchCard({ card }: Props) {
     card.modal_function_call_id || null,
   );
   const [actualCost, setActualCost] = useState<{
-    runtime_minutes: number;
+    execution_seconds: number;
     cost_usd: number;
     gpu_type: string;
   } | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const GPU_RATE: Record<string, number> = { A100: 3.5, H100: 4.5 };
+  // Exact per-second rates from https://modal.com/pricing
+  const GPU_RATE_PER_SEC: Record<string, number> = {
+    B200: 0.001736, H200: 0.001261, H100: 0.001097,
+    A100: 0.000694, "A100-40GB": 0.000583, L40S: 0.000542,
+    A10: 0.000306, L4: 0.000222, T4: 0.000164,
+  };
 
   const pollStatus = useCallback(async (fcId: string) => {
     try {
@@ -162,11 +167,11 @@ export default function LaunchCard({ card }: Props) {
         // Compute actual cost from Modal's execution time
         if (data.execution_seconds != null) {
           const gpuType = (card.config.gpu_type as string) || "A100";
-          const rate = GPU_RATE[gpuType] ?? 3.5;
+          const rate = GPU_RATE_PER_SEC[gpuType] ?? GPU_RATE_PER_SEC.A100;
           const seconds = data.execution_seconds;
           setActualCost({
-            runtime_minutes: seconds / 60,
-            cost_usd: (seconds / 3600) * rate,
+            execution_seconds: seconds,
+            cost_usd: seconds * rate,
             gpu_type: gpuType,
           });
         }
@@ -266,9 +271,9 @@ export default function LaunchCard({ card }: Props) {
             <div className="flex items-center gap-1.5">
               <Clock size={12} className="text-stone-400" />
               <span className="text-xs text-stone-600">
-                {actualCost.runtime_minutes < 1
-                  ? `${Math.round(actualCost.runtime_minutes * 60)}s`
-                  : `${actualCost.runtime_minutes.toFixed(1)}min`}
+                {actualCost.execution_seconds < 60
+                  ? `${Math.round(actualCost.execution_seconds)}s`
+                  : `${(actualCost.execution_seconds / 60).toFixed(1)}min`}
               </span>
             </div>
             <div className="flex items-center gap-1.5">

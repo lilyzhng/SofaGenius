@@ -43,6 +43,9 @@ def _summarize_tool_result(name: str, result: str) -> str:
         status = data.get("status", "unknown")
         anomalies = data.get("anomalies", [])
         return f"Status: {status}, {len(anomalies)} anomal{'ies' if len(anomalies) != 1 else 'y'}"
+    if name == "compare_runs":
+        runs = data.get("runs", [])
+        return f"Comparison card with {len(runs)} runs"
     if name == "search_hf_datasets":
         count = data.get("count", 0)
         return f"Found {count} dataset{'s' if count != 1 else ''}"
@@ -73,6 +76,8 @@ def _summarize_tool_result(name: str, result: str) -> str:
         return f"Draft created ({chars} chars)"
     if name == "propose_finetune":
         return "Fine-tuning job proposed"
+    if name == "modify_and_propose":
+        return "Config updated, new proposal created"
     if name == "propose_eval":
         return "Evaluation job proposed"
     if name == "launch_finetune":

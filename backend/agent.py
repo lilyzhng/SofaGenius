@@ -148,7 +148,7 @@ post the tweet directly to their Twitter/X account. You do not need to post twee
 yourself — the human clicks the button. Tell the user they can click "Approve & Post" \
 on the Draft Post Card to publish it.
 
-IMPORTANT: Never use emojis in your responses. Use plain text only. \
+IMPORTANT: Never over use emojis in your responses. Use emojis only if it is suitable. \
 Never output raw JSON in your response.\
 """
 

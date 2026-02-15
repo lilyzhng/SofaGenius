@@ -6,6 +6,7 @@ from typing import Any
 
 from backend.tools.wandb_monitor import (
     analyze_run_health,
+    compare_runs,
     get_run_metrics,
     get_wandb_info,
     list_wandb_runs,
@@ -15,7 +16,7 @@ SYSTEM_PROMPT = """\
 You are Sofa Genius, an AI research assistant specializing in monitoring \
 training runs on Weights & Biases.
 
-You have access to W&B tools: list runs, fetch metrics, analyze run health.
+You have access to W&B tools: list runs, fetch metrics, analyze run health, and compare runs.
 
 W&B BEHAVIOR:
 - When the user asks to list runs, check runs, or anything W&B-related WITHOUT \
@@ -120,6 +121,29 @@ TOOLS: list[dict[str, Any]] = [
             "required": ["entity_project", "run_id"],
         },
     },
+    {
+        "name": "compare_runs",
+        "description": "Compare metrics across multiple W&B runs. Overlays loss curves, learning rates, etc. on the same chart for visual comparison.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "entity_project": {
+                    "type": "string",
+                    "description": "W&B entity/project path",
+                },
+                "run_ids_json": {
+                    "type": "string",
+                    "description": "JSON array of run IDs to compare",
+                },
+                "metric_keys": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "Specific metrics to compare (default: auto-discover common metrics)",
+                },
+            },
+            "required": ["entity_project", "run_ids_json"],
+        },
+    },
 ]
 
 TOOL_DISPATCH: dict[str, Any] = {
@@ -127,8 +151,10 @@ TOOL_DISPATCH: dict[str, Any] = {
     "list_wandb_runs": list_wandb_runs,
     "get_run_metrics": get_run_metrics,
     "analyze_run_health": analyze_run_health,
+    "compare_runs": compare_runs,
 }
 
 CARD_TOOL_MAPPING: dict[str, str] = {
     "analyze_run_health": "wandb_health",
+    "compare_runs": "comparison_card",
 }

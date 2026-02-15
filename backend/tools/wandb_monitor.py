@@ -12,10 +12,13 @@ import wandb
 from backend.models import (
     Action,
     Anomaly,
+    ComparisonCard,
+    ComparisonSeries,
     HealthStatus,
     MetricPoint,
     MetricSeries,
     RiskLevel,
+    RunInfo,
     RunSummary,
     Severity,
     WandBHealthCard,
@@ -537,5 +540,89 @@ def analyze_run_health(entity_project: str, run_id: str) -> str:
         metrics=list(series_map.values()),
         anomalies=anomalies,
         actions=actions,
+    )
+    return card.model_dump_json(indent=2)
+
+
+def compare_runs(
+    entity_project: str,
+    run_ids_json: str,
+    metric_keys: list[str] | None = None,
+    max_samples: int = 500,
+) -> str:
+    """Compare metrics across multiple W&B runs.
+
+    Args:
+        entity_project: W&B entity/project path (or just project name)
+        run_ids_json: JSON array of run IDs to compare
+        metric_keys: Specific metrics to compare. If None, auto-discovers common metrics.
+        max_samples: Maximum number of sample points per run
+    """
+    api = wandb.Api()
+    entity_project = _resolve_entity_project(api, entity_project)
+
+    try:
+        run_ids = json.loads(run_ids_json)
+    except json.JSONDecodeError:
+        return json.dumps({"error": "run_ids_json must be a valid JSON array of run IDs"})
+
+    if not isinstance(run_ids, list) or len(run_ids) < 2:
+        return json.dumps({"error": "Need at least 2 run IDs to compare"})
+
+    runs_info: list[RunInfo] = []
+    all_series: list[ComparisonSeries] = []
+
+    # Discover common metric keys across all runs if not specified
+    if metric_keys is None:
+        keys_per_run: list[set[str]] = []
+        run_objects = []
+        for rid in run_ids:
+            run = api.run(f"{entity_project}/{rid}")
+            run_objects.append(run)
+            discovered = _discover_metric_keys(run)
+            keys_per_run.append(set(discovered))
+        # Use the intersection so we only compare metrics all runs share
+        common_keys = keys_per_run[0]
+        for ks in keys_per_run[1:]:
+            common_keys = common_keys & ks
+        metric_keys = sorted(common_keys) if common_keys else []
+    else:
+        run_objects = [api.run(f"{entity_project}/{rid}") for rid in run_ids]
+
+    if not metric_keys:
+        return json.dumps({"error": "No common metrics found across the selected runs"})
+
+    for run, rid in zip(run_objects, run_ids):
+        runs_info.append(RunInfo(
+            run_id=rid,
+            run_name=run.name,
+            url=run.url,
+        ))
+
+        history = run.history(samples=max_samples, keys=metric_keys)
+        for key in metric_keys:
+            if key not in history.columns:
+                continue
+            col = history[["_step", key]].dropna()
+            points = [
+                MetricPoint(step=int(row["_step"]), value=float(row[key]))
+                for _, row in col.iterrows()
+                if isinstance(row[key], (int, float)) and not (math.isnan(row[key]) or math.isinf(row[key]))
+            ]
+            if points:
+                all_series.append(ComparisonSeries(
+                    key=key,
+                    run_name=run.name,
+                    run_id=rid,
+                    values=points,
+                ))
+
+    run_names = ", ".join(r.run_name for r in runs_info)
+    card = ComparisonCard(
+        title=f"Comparison: {len(runs_info)} Runs",
+        project=entity_project,
+        runs=runs_info,
+        series=all_series,
+        summary=f"Comparing {len(metric_keys)} metric(s) across runs: {run_names}",
     )
     return card.model_dump_json(indent=2)

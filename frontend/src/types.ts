@@ -141,7 +141,7 @@ export type LaunchType = "finetune" | "eval";
 
 export interface CostEstimate {
   gpu_type: string;
-  estimated_hours: number;
+  estimated_seconds: number;
   estimated_cost_usd: number;
   note: string;
 }
@@ -159,7 +159,31 @@ export interface LaunchCard {
   requires_approval: boolean;
 }
 
-export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard;
+// --- Compare Runs types ---
+
+export interface ComparisonSeries {
+  key: string;
+  run_name: string;
+  run_id: string;
+  values: MetricPoint[];
+}
+
+export interface RunInfo {
+  run_id: string;
+  run_name: string;
+  url?: string;
+}
+
+export interface ComparisonCard {
+  card_type: "comparison_card";
+  title: string;
+  project: string;
+  runs: RunInfo[];
+  series: ComparisonSeries[];
+  summary: string;
+}
+
+export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard | ComparisonCard;
 
 export interface ToolCall {
   name: string;

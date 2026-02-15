@@ -7,6 +7,7 @@ from typing import Any
 from backend.tools.modal_launcher import (
     launch_eval,
     launch_finetune,
+    modify_and_propose,
     propose_eval,
     propose_finetune,
 )
@@ -18,8 +19,16 @@ fine-tuning and evaluation jobs on Modal GPUs.
 You have access to launch tools:
 1) propose_finetune — Create a Launch Card proposing a fine-tuning job with config and cost estimate.
 2) propose_eval — Create a Launch Card proposing an evaluation job.
-3) launch_finetune — Actually launch a proposed fine-tuning job on Modal (after user approval).
-4) launch_eval — Actually launch a proposed evaluation job on Modal (after user approval).
+3) modify_and_propose — Modify an existing config and create a new proposal. Use this when the user \
+wants to change parameters (e.g. "change epochs to 2", "use H100", "set learning rate to 1e-4").
+4) launch_finetune — Actually launch a proposed fine-tuning job on Modal (after user approval).
+5) launch_eval — Actually launch a proposed evaluation job on Modal (after user approval).
+
+CONFIG MODIFICATION:
+When the user asks to change training parameters, call modify_and_propose with:
+- config_json: the full config JSON from the most recent Launch Card
+- changes_json: a JSON object with only the fields to change (e.g. {"num_epochs": 2})
+This creates a new proposal card with the updated config and recalculated cost.
 
 FINE-TUNING RUN MODES — MANDATORY WORKFLOW:
 propose_finetune has a run_mode parameter with three modes:
@@ -168,6 +177,24 @@ TOOLS: list[dict[str, Any]] = [
         },
     },
     {
+        "name": "modify_and_propose",
+        "description": "Modify an existing launch config and create a new proposal card. Use this when the user wants to tweak parameters like epochs, learning rate, GPU type, etc. Pass the current config and only the fields to change.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "config_json": {
+                    "type": "string",
+                    "description": "The full config JSON from the most recent Launch Card's config field",
+                },
+                "changes_json": {
+                    "type": "string",
+                    "description": "JSON object with only the fields to change, e.g. {\"num_epochs\": 2} or {\"gpu_type\": \"H100\", \"learning_rate\": 1e-4}",
+                },
+            },
+            "required": ["config_json", "changes_json"],
+        },
+    },
+    {
         "name": "launch_finetune",
         "description": "Launch an approved fine-tuning job on Modal. Only call this AFTER the user has approved the proposal. Pass the config JSON from the proposal card.",
         "input_schema": {
@@ -200,6 +227,7 @@ TOOLS: list[dict[str, Any]] = [
 TOOL_DISPATCH: dict[str, Any] = {
     "propose_finetune": propose_finetune,
     "propose_eval": propose_eval,
+    "modify_and_propose": modify_and_propose,
     "launch_finetune": launch_finetune,
     "launch_eval": launch_eval,
 }
@@ -207,6 +235,7 @@ TOOL_DISPATCH: dict[str, Any] = {
 CARD_TOOL_MAPPING: dict[str, str] = {
     "propose_finetune": "launch_card",
     "propose_eval": "launch_card",
+    "modify_and_propose": "launch_card",
     "launch_finetune": "launch_card",
     "launch_eval": "launch_card",
 }

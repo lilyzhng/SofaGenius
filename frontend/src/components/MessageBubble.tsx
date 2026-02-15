@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Bot, Check, Loader2, AlertCircle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import type { Message, ToolCall, MessageSegment } from "../types";
 
 interface Props {
@@ -23,8 +24,10 @@ const TOOL_LABELS: Record<string, string> = {
   create_draft_post_card: "Creating draft post",
   propose_finetune: "Proposing fine-tuning job",
   propose_eval: "Proposing evaluation job",
+  modify_and_propose: "Updating config",
   launch_finetune: "Launching fine-tuning job",
   launch_eval: "Launching evaluation job",
+  compare_runs: "Comparing runs",
 };
 
 function ToolStep({ tool }: { tool: ToolCall }) {
@@ -104,7 +107,7 @@ const markdownComponents = {
 function TextSegment({ content }: { content: string }) {
   return (
     <div className="prose prose-sm prose-stone max-w-none [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
-      <ReactMarkdown components={markdownComponents}>{content}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{content}</ReactMarkdown>
     </div>
   );
 }

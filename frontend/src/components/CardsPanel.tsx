@@ -5,6 +5,7 @@ import DataCard from "./DataCard";
 import ScoutCard from "./ScoutCard";
 import DraftPostCard from "./DraftPostCard";
 import LaunchCard from "./LaunchCard";
+import ComparisonCard from "./ComparisonCard";
 import type { CardData } from "../types";
 
 interface Props {
@@ -51,6 +52,9 @@ export default function CardsPanel({ cards }: Props) {
             )}
             {card.card_type === "launch_card" && (
               <LaunchCard card={card} />
+            )}
+            {card.card_type === "comparison_card" && (
+              <ComparisonCard card={card} />
             )}
           </motion.div>
         ))}

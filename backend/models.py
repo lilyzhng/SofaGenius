@@ -224,7 +224,7 @@ class EvalConfig(BaseModel):
 
 class CostEstimate(BaseModel):
     gpu_type: str
-    estimated_hours: float
+    estimated_seconds: float
     estimated_cost_usd: float
     note: str = ""
 
@@ -240,3 +240,28 @@ class LaunchCard(BaseModel):
     modal_function_call_id: Optional[str] = None
     wandb_url: Optional[str] = None
     requires_approval: bool = True
+
+
+# --- Compare Runs models ---
+
+
+class ComparisonSeries(BaseModel):
+    key: str              # metric name (e.g., "train/loss")
+    run_name: str         # which run this belongs to
+    run_id: str
+    values: list[MetricPoint]
+
+
+class RunInfo(BaseModel):
+    run_id: str
+    run_name: str
+    url: Optional[str] = None
+
+
+class ComparisonCard(BaseModel):
+    card_type: str = "comparison_card"
+    title: str
+    project: str
+    runs: list[RunInfo]
+    series: list[ComparisonSeries]
+    summary: str
