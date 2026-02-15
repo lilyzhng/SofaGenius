@@ -22,17 +22,24 @@ from backend.tools.sql_analyst import (
     run_sql_query,
     search_hf_datasets,
 )
+from backend.tools.scout_draft import (
+    create_draft_post_card,
+    create_scout_card,
+    search_hf_models,
+)
 
 SYSTEM_PROMPT = """\
 You are Sofa Genius, an AI research assistant that helps ML researchers monitor \
 training runs on Weights & Biases and analyze HuggingFace datasets via SQL.
 
-You have access to three sets of tools:
+You have access to five sets of tools:
 
 1) W&B TOOLS: list runs, fetch metrics, analyze run health.
 2) DATASET SEARCH: search HuggingFace Hub for datasets matching a query.
 3) DATA/SQL TOOLS: discover dataset schemas, run SQL queries, compute stats, \
 generate plots, and create data cards for HuggingFace datasets.
+4) SCOUT TOOLS: search HF Hub for models, assemble scout recommendation cards.
+5) DRAFT TOOLS: compose draft Twitter/X posts with evidence references.
 
 W&B BEHAVIOR:
 - When the user asks to list runs, check runs, or anything W&B-related WITHOUT \
@@ -98,6 +105,48 @@ and key metrics.
 
 Be concise and actionable. Focus on what matters: anomalies, their likely causes, \
 and suggested next steps.
+
+SCOUT WORKFLOW:
+When the user asks to scout or find models and/or datasets for a task (e.g. \
+"scout datasets and models for fine-tuning Qwen2.5-Coder-14B"):
+1. Call search_hf_datasets with relevant keywords to find datasets.
+2. Call search_hf_models with relevant keywords to find models.
+3. Analyze the results — pick the top 3-5 best options across datasets and models.
+4. Call create_scout_card with:
+   - title: descriptive title for the scouting session
+   - query: the original user query
+   - summary: 1-2 sentence overview of what you found
+   - recommendations_json: a JSON array of recommendations, each with:
+     name, resource_type ("dataset" or "model"), url, description, downloads, \
+     likes, tags, reasoning (why this is a good pick), tradeoffs (any downsides)
+   - resource_type_filter: "dataset", "model", or omit for both
+The Scout Card UI is rendered automatically by the frontend. Write a brief \
+natural-language summary after calling create_scout_card.
+
+DRAFT POST WORKFLOW:
+When the user asks to draft a tweet, post, or announcement:
+1. Gather evidence from the current session — reference specific cards, metrics, \
+or findings that support the claims.
+2. Compose a concise draft (aim for under 280 characters for single tweets).
+3. Call create_draft_post_card with:
+   - title: descriptive title
+   - draft_text: the tweet/post text
+   - evidence_json: a JSON array of evidence references, each with:
+     source (e.g. "ScoutCard", "WandBHealthCard"), snippet (key fact), \
+     link (optional URL), confidence ("finding" if backed by session data, \
+     "hypothesis" if not)
+   - tone: "professional", "casual", "technical", etc.
+   - thread_json: optional JSON array of follow-up tweet strings for threads
+CRITICAL GUARDRAIL: Claims without session evidence MUST be labeled as \
+"hypothesis", not "finding". Every draft post requires human approval — \
+requires_approval is always true. The Draft Post Card UI is rendered \
+automatically by the frontend.
+
+When you create a DraftPostCard, the frontend renders an "Approve & Post" button. \
+If the user has configured their Twitter API credentials, clicking Approve will \
+post the tweet directly to their Twitter/X account. You do not need to post tweets \
+yourself — the human clicks the button. Tell the user they can click "Approve & Post" \
+on the Draft Post Card to publish it.
 
 IMPORTANT: Never use emojis in your responses. Use plain text only. \
 Never output raw JSON in your response.\
@@ -306,6 +355,87 @@ TOOLS: list[dict[str, Any]] = [
             "required": ["title", "dataset_path", "sql_query", "summary"],
         },
     },
+    # --- Phase 3: Scout + Draft tools ---
+    {
+        "name": "search_hf_models",
+        "description": "Search HuggingFace Hub for models matching a query. Returns a ranked list with name, description, download count, likes, tags, and pipeline_tag.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Search query, e.g. 'code generation' or 'Qwen2.5-Coder'",
+                },
+                "limit": {
+                    "type": "integer",
+                    "description": "Max results to return (default 10, max 20)",
+                    "default": 10,
+                },
+            },
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "create_scout_card",
+        "description": "Assemble scout recommendations (datasets and/or models) into a ScoutCard for frontend rendering. Call this after searching HF Hub and analyzing results.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Card title summarizing the scouting session",
+                },
+                "query": {
+                    "type": "string",
+                    "description": "The original search query",
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "1-2 sentence overview of findings",
+                },
+                "recommendations_json": {
+                    "type": "string",
+                    "description": "JSON array of recommendations. Each object: {name, resource_type ('dataset'|'model'), url, description, downloads, likes, tags, reasoning, tradeoffs}",
+                },
+                "resource_type_filter": {
+                    "type": "string",
+                    "description": "Filter: 'dataset', 'model', or omit for both",
+                },
+            },
+            "required": ["title", "query", "summary", "recommendations_json"],
+        },
+    },
+    {
+        "name": "create_draft_post_card",
+        "description": "Compose a draft Twitter/X post with evidence references. Always requires human approval before posting. Call this when the user wants to draft a tweet or post.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string",
+                    "description": "Card title",
+                },
+                "draft_text": {
+                    "type": "string",
+                    "description": "The tweet/post text",
+                },
+                "evidence_json": {
+                    "type": "string",
+                    "description": "JSON array of evidence refs. Each object: {source, snippet, link (optional), confidence ('finding'|'hypothesis')}",
+                },
+                "tone": {
+                    "type": "string",
+                    "description": "Tone: 'professional', 'casual', 'technical', etc. Default 'professional'.",
+                    "default": "professional",
+                },
+                "thread_json": {
+                    "type": "string",
+                    "description": "Optional JSON array of follow-up tweet strings for a thread",
+                },
+            },
+            "required": ["title", "draft_text"],
+        },
+    },
 ]
 
 TOOL_DISPATCH: dict[str, Any] = {
@@ -319,6 +449,9 @@ TOOL_DISPATCH: dict[str, Any] = {
     "compute_stats": compute_stats,
     "generate_plot_data": generate_plot_data,
     "create_data_card": create_data_card,
+    "search_hf_models": search_hf_models,
+    "create_scout_card": create_scout_card,
+    "create_draft_post_card": create_draft_post_card,
 }
 
 
@@ -371,6 +504,15 @@ def _summarize_tool_result(name: str, result: str) -> str:
         return f"Generated {pt} chart"
     if name == "create_data_card":
         return "Data card created"
+    if name == "search_hf_models":
+        count = data.get("count", 0)
+        return f"Found {count} model{'s' if count != 1 else ''}"
+    if name == "create_scout_card":
+        recs = data.get("recommendations", [])
+        return f"Scout card created with {len(recs)} recommendation{'s' if len(recs) != 1 else ''}"
+    if name == "create_draft_post_card":
+        chars = data.get("char_count", 0)
+        return f"Draft created ({chars} chars)"
     return "Completed"
 
 
@@ -464,6 +606,22 @@ async def run_agent(
                 try:
                     card_data = json.loads(result)
                     yield f"data: {json.dumps({'type': 'card', 'card_type': 'data_card', 'data': card_data})}\n\n"
+                except json.JSONDecodeError:
+                    pass
+
+            # If this is create_scout_card, emit scout card
+            if tool_use["name"] == "create_scout_card":
+                try:
+                    card_data = json.loads(result)
+                    yield f"data: {json.dumps({'type': 'card', 'card_type': 'scout_card', 'data': card_data})}\n\n"
+                except json.JSONDecodeError:
+                    pass
+
+            # If this is create_draft_post_card, emit draft post card
+            if tool_use["name"] == "create_draft_post_card":
+                try:
+                    card_data = json.loads(result)
+                    yield f"data: {json.dumps({'type': 'card', 'card_type': 'draft_post_card', 'data': card_data})}\n\n"
                 except json.JSONDecodeError:
                     pass
 

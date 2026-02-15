@@ -91,7 +91,50 @@ export interface DataCard {
   next_suggestions?: string[];
 }
 
-export type CardData = WandBHealthCard | DataCard;
+// --- Phase 3: Scout + Draft types ---
+
+export type ConfidenceLevel = "finding" | "hypothesis";
+
+export interface ScoutRecommendation {
+  name: string;
+  resource_type: "dataset" | "model";
+  url: string;
+  description: string;
+  downloads: number;
+  likes: number;
+  tags: string[];
+  reasoning: string;
+  tradeoffs: string;
+}
+
+export interface ScoutCard {
+  card_type: "scout_card";
+  title: string;
+  query: string;
+  summary: string;
+  recommendations: ScoutRecommendation[];
+  resource_type_filter?: string;
+}
+
+export interface EvidenceRef {
+  source: string;
+  snippet: string;
+  link?: string;
+  confidence: ConfidenceLevel;
+}
+
+export interface DraftPostCard {
+  card_type: "draft_post_card";
+  title: string;
+  draft_text: string;
+  thread: string[];
+  evidence: EvidenceRef[];
+  tone: string;
+  char_count: number;
+  requires_approval: boolean;
+}
+
+export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard;
 
 export interface ToolCall {
   name: string;

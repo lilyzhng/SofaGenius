@@ -2,6 +2,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BarChart2 } from "lucide-react";
 import WandBHealthCard from "./WandBHealthCard";
 import DataCard from "./DataCard";
+import ScoutCard from "./ScoutCard";
+import DraftPostCard from "./DraftPostCard";
 import type { CardData } from "../types";
 
 interface Props {
@@ -39,6 +41,12 @@ export default function CardsPanel({ cards }: Props) {
             )}
             {card.card_type === "data_card" && (
               <DataCard card={card} />
+            )}
+            {card.card_type === "scout_card" && (
+              <ScoutCard card={card} />
+            )}
+            {card.card_type === "draft_post_card" && (
+              <DraftPostCard card={card} />
             )}
           </motion.div>
         ))}

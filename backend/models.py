@@ -129,3 +129,50 @@ class DataCard(BaseModel):
     stats: Optional[list[StatsSummary]] = None
     plot: Optional[PlotData] = None
     next_suggestions: Optional[list[str]] = None
+
+
+# --- Phase 3: Scout + Draft models ---
+
+
+class ConfidenceLevel(str, Enum):
+    finding = "finding"
+    hypothesis = "hypothesis"
+
+
+class ScoutRecommendation(BaseModel):
+    name: str
+    resource_type: str  # "dataset" or "model"
+    url: str
+    description: str
+    downloads: int = 0
+    likes: int = 0
+    tags: list[str] = []
+    reasoning: str = ""
+    tradeoffs: str = ""
+
+
+class ScoutCard(BaseModel):
+    card_type: str = "scout_card"
+    title: str
+    query: str
+    summary: str
+    recommendations: list[ScoutRecommendation]
+    resource_type_filter: Optional[str] = None  # "dataset", "model", or None for both
+
+
+class EvidenceRef(BaseModel):
+    source: str
+    snippet: str
+    link: Optional[str] = None
+    confidence: ConfidenceLevel = ConfidenceLevel.hypothesis
+
+
+class DraftPostCard(BaseModel):
+    card_type: str = "draft_post_card"
+    title: str
+    draft_text: str
+    thread: list[str] = []
+    evidence: list[EvidenceRef] = []
+    tone: str = "professional"
+    char_count: int = 0
+    requires_approval: bool = True

@@ -18,6 +18,9 @@ const TOOL_LABELS: Record<string, string> = {
   compute_stats: "Computing statistics",
   generate_plot_data: "Generating visualization",
   create_data_card: "Creating data card",
+  search_hf_models: "Searching HF models",
+  create_scout_card: "Creating scout card",
+  create_draft_post_card: "Creating draft post",
 };
 
 function ToolStep({ tool }: { tool: ToolCall }) {
