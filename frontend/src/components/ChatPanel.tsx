@@ -11,6 +11,7 @@ interface Props {
   activeToolCall: string | null;
   onSend: (message: string) => void;
   onStop: () => void;
+  onLaunch: (card: LaunchCard) => Promise<{ success: boolean; error?: string }>;
 }
 
 const EXAMPLES = [
@@ -23,19 +24,27 @@ const EXAMPLES = [
 ];
 
 function LaunchApprovalButton({
-  onSend,
+  card,
+  onLaunch,
 }: {
-  onSend: (msg: string) => void;
+  card: LaunchCard;
+  onLaunch: (card: LaunchCard) => Promise<{ success: boolean; error?: string }>;
 }) {
-  const [approved, setApproved] = useState(false);
+  const [status, setStatus] = useState<"idle" | "launching" | "launched" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleApprove = () => {
-    setApproved(true);
-    // Send a natural approval message — the agent will call launch_finetune/launch_eval
-    onSend("Approved. Go ahead and launch it.");
+  const handleApprove = async () => {
+    setStatus("launching");
+    const result = await onLaunch(card);
+    if (result.success) {
+      setStatus("launched");
+    } else {
+      setStatus("error");
+      setErrorMsg(result.error || "Failed to launch");
+    }
   };
 
-  if (approved) return null;
+  if (status === "launched") return null;
 
   return (
     <motion.div
@@ -43,13 +52,32 @@ function LaunchApprovalButton({
       animate={{ opacity: 1, y: 0 }}
       className="ml-11"
     >
-      <button
-        onClick={handleApprove}
-        className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-nobel-gold text-stone-700 bg-nobel-gold/10 hover:bg-nobel-gold/20 transition-colors"
-      >
-        <Rocket size={12} />
-        Approve & Launch
-      </button>
+      {status === "idle" && (
+        <button
+          onClick={handleApprove}
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold rounded-full border-2 border-nobel-gold text-stone-700 bg-nobel-gold/10 hover:bg-nobel-gold/20 transition-colors"
+        >
+          <Rocket size={12} />
+          Approve & Launch
+        </button>
+      )}
+      {status === "launching" && (
+        <span className="inline-flex items-center gap-1.5 ml-1 text-xs text-stone-400">
+          <Loader2 size={12} className="animate-spin" />
+          Launching on Modal...
+        </span>
+      )}
+      {status === "error" && (
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleApprove}
+            className="px-4 py-1.5 text-xs font-bold rounded-full border-2 border-red-400 text-red-700 bg-red-50 hover:bg-red-100 transition-colors"
+          >
+            Retry
+          </button>
+          {errorMsg && <span className="text-xs text-red-600">{errorMsg}</span>}
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -61,6 +89,7 @@ export default function ChatPanel({
   activeToolCall,
   onSend,
   onStop,
+  onLaunch,
 }: Props) {
   const [input, setInput] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
@@ -137,7 +166,7 @@ export default function ChatPanel({
 
             {/* Inline approval button for pending launch cards */}
             {pendingLaunchCard && !isLoading && (
-              <LaunchApprovalButton onSend={onSend} />
+              <LaunchApprovalButton card={pendingLaunchCard} onLaunch={onLaunch} />
             )}
           </>
         )}

@@ -4,7 +4,7 @@ import CardsPanel from "./components/CardsPanel";
 import { useChat } from "./hooks/useChat";
 
 export default function App() {
-  const { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat } =
+  const { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob } =
     useChat();
 
   return (
@@ -47,6 +47,7 @@ export default function App() {
             activeToolCall={activeToolCall}
             onSend={sendMessage}
             onStop={stop}
+            onLaunch={launchJob}
           />
         </div>
 

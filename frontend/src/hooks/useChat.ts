@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from "react";
-import type { Message, CardData, SSEEvent, ToolCall, MessageSegment } from "../types";
+import type { Message, CardData, SSEEvent, ToolCall, MessageSegment, LaunchCard } from "../types";
 
 let messageId = 0;
 function nextId() {
@@ -146,14 +146,21 @@ export function useChat() {
           } else if (event.type === "card" && event.data) {
             setCards((prev) => {
               const newCard = event.data!;
-              // For launch cards: update the last proposed card instead of adding a duplicate
-              if (newCard.card_type === "launch_card") {
-                // Find the last launch_card with status "proposed" and replace it
+              // For launch cards: update the existing proposed card in-place
+              // instead of adding a duplicate — keep title, summary, cost from proposal
+              if (newCard.card_type === "launch_card" && newCard.status !== "proposed") {
                 for (let i = prev.length - 1; i >= 0; i--) {
                   const c = prev[i];
                   if (c.card_type === "launch_card" && c.status === "proposed") {
                     const updated = [...prev];
-                    updated[i] = newCard;
+                    // Merge: keep the proposal's rich info, update only status fields
+                    updated[i] = {
+                      ...c,
+                      status: newCard.status,
+                      modal_function_call_id: newCard.modal_function_call_id,
+                      wandb_url: newCard.wandb_url || c.wandb_url,
+                      requires_approval: false,
+                    };
                     return updated;
                   }
                 }
@@ -193,6 +200,31 @@ export function useChat() {
     setActiveToolCall(null);
   }, []);
 
+  const launchJob = useCallback(async (card: LaunchCard): Promise<{ success: boolean; error?: string }> => {
+    try {
+      const res = await fetch("/api/launch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ launch_type: card.launch_type, config: card.config }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        return { success: false, error: data.error || "Failed to launch" };
+      }
+      // Update the proposed card in-place → running with function_call_id
+      setCards((prev) =>
+        prev.map((c) =>
+          c === card || (c.card_type === "launch_card" && c.status === "proposed")
+            ? { ...c, status: "running" as const, modal_function_call_id: data.function_call_id, requires_approval: false }
+            : c,
+        ),
+      );
+      return { success: true };
+    } catch (e) {
+      return { success: false, error: e instanceof Error ? e.message : "Network error" };
+    }
+  }, []);
+
   const clearChat = useCallback(() => {
     setMessages([]);
     setCards([]);
@@ -201,5 +233,5 @@ export function useChat() {
     abortRef.current?.abort();
   }, []);
 
-  return { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat };
+  return { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob };
 }
