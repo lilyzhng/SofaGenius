@@ -43,20 +43,80 @@ export interface WandBHealthCard {
   actions: Action[];
 }
 
-export type CardData = WandBHealthCard;
+// --- Phase 2: Data / SQL Analyst types ---
+
+export interface ColumnInfo {
+  name: string;
+  type: string;
+  sample_values: string[];
+}
+
+export interface QueryResult {
+  columns: string[];
+  rows: unknown[][];
+  row_count: number;
+  execution_time_ms: number;
+  truncated: boolean;
+}
+
+export interface StatsSummary {
+  column: string;
+  kind: "numeric" | "categorical";
+  mean?: number;
+  std?: number;
+  min?: number;
+  max?: number;
+  unique_count?: number;
+  top_values?: Record<string, number>[];
+}
+
+export interface PlotData {
+  plot_type: "bar" | "line" | "scatter" | "histogram";
+  title: string;
+  x_label: string;
+  y_label: string;
+  x_values: unknown[];
+  y_values: unknown[];
+}
+
+export interface DataCard {
+  card_type: "data_card";
+  title: string;
+  dataset_path: string;
+  sql_query: string;
+  summary: string;
+  query_result?: QueryResult;
+  stats?: StatsSummary[];
+  plot?: PlotData;
+  next_suggestions?: string[];
+}
+
+export type CardData = WandBHealthCard | DataCard;
+
+export interface ToolCall {
+  name: string;
+  input: Record<string, unknown>;
+  status: "running" | "done" | "error";
+  result?: string;
+}
+
+export type MessageSegment =
+  | { type: "text"; content: string }
+  | { type: "tool"; tool: ToolCall };
 
 export interface Message {
   id: string;
   role: "user" | "assistant";
-  content: string;
-  toolCalls?: { name: string; input: Record<string, unknown> }[];
+  content: string; // full text for conversation history
+  segments?: MessageSegment[]; // ordered text + tool steps for rendering
 }
 
 export interface SSEEvent {
-  type: "text" | "tool_call" | "card" | "done";
+  type: "text" | "tool_call" | "tool_result" | "card" | "done";
   content?: string;
   name?: string;
   input?: Record<string, unknown>;
+  summary?: string;
   card_type?: string;
   data?: CardData;
 }

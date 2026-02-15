@@ -18,9 +18,6 @@ export default function App() {
           <span className="font-serif font-bold text-lg tracking-wide text-stone-900">
             SOFA GENIUS
           </span>
-          <span className="px-3 py-1 border border-nobel-gold text-nobel-gold text-xs tracking-[0.2em] uppercase font-bold rounded-full hidden sm:inline-block">
-            Phase 1
-          </span>
         </div>
         <div className="flex items-center gap-4">
           {messages.length > 0 && (

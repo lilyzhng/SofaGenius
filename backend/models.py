@@ -78,3 +78,54 @@ class WandBHealthCard(BaseModel):
     metrics: list[MetricSeries]
     anomalies: list[Anomaly]
     actions: list[Action]
+
+
+# --- Phase 2: Data / SQL Analyst models ---
+
+
+class ColumnInfo(BaseModel):
+    name: str
+    type: str
+    sample_values: list[str]
+
+
+class QueryResult(BaseModel):
+    columns: list[str]
+    rows: list[list]
+    row_count: int
+    execution_time_ms: float
+    truncated: bool = False
+
+
+class StatsSummary(BaseModel):
+    column: str
+    kind: str  # "numeric" or "categorical"
+    # numeric stats
+    mean: Optional[float] = None
+    std: Optional[float] = None
+    min: Optional[float] = None
+    max: Optional[float] = None
+    # categorical stats
+    unique_count: Optional[int] = None
+    top_values: Optional[list[dict[str, int]]] = None
+
+
+class PlotData(BaseModel):
+    plot_type: str  # "bar", "line", "scatter", "histogram"
+    title: str
+    x_label: str
+    y_label: str
+    x_values: list
+    y_values: list
+
+
+class DataCard(BaseModel):
+    card_type: str = "data_card"
+    title: str
+    dataset_path: str
+    sql_query: str
+    summary: str
+    query_result: Optional[QueryResult] = None
+    stats: Optional[list[StatsSummary]] = None
+    plot: Optional[PlotData] = None
+    next_suggestions: Optional[list[str]] = None

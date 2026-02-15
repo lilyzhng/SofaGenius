@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { BarChart2 } from "lucide-react";
 import WandBHealthCard from "./WandBHealthCard";
+import DataCard from "./DataCard";
 import type { CardData } from "../types";
 
 interface Props {
@@ -15,7 +16,7 @@ export default function CardsPanel({ cards }: Props) {
           <BarChart2 size={24} className="text-stone-400" />
         </div>
         <p className="text-sm text-stone-400 max-w-xs">
-          Cards will appear here when you ask me to analyze a W&B run.
+          Cards will appear here when you ask me to analyze a W&B run or explore a dataset.
         </p>
       </div>
     );
@@ -35,6 +36,9 @@ export default function CardsPanel({ cards }: Props) {
           >
             {card.card_type === "wandb_health" && (
               <WandBHealthCard card={card} />
+            )}
+            {card.card_type === "data_card" && (
+              <DataCard card={card} />
             )}
           </motion.div>
         ))}

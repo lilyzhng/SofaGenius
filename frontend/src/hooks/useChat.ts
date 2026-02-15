@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from "react";
-import type { Message, CardData, SSEEvent } from "../types";
+import type { Message, CardData, SSEEvent, ToolCall, MessageSegment } from "../types";
 
 let messageId = 0;
 function nextId() {
@@ -21,7 +21,7 @@ export function useChat() {
       id: nextId(),
       role: "assistant",
       content: "",
-      toolCalls: [],
+      segments: [],
     };
 
     // Build history from previous messages for multi-turn context
@@ -36,6 +36,8 @@ export function useChat() {
 
     const controller = new AbortController();
     abortRef.current = controller;
+
+    const assistantId = assistantMsg.id;
 
     try {
       const res = await fetch("/api/chat", {
@@ -75,27 +77,71 @@ export function useChat() {
 
           if (event.type === "text" && event.content) {
             setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantMsg.id
-                  ? { ...m, content: m.content + event.content }
-                  : m,
-              ),
+              prev.map((m) => {
+                if (m.id !== assistantId) return m;
+                const segs = [...(m.segments || [])];
+                const last = segs[segs.length - 1];
+                // Append to last text segment, or create a new one
+                if (last && last.type === "text") {
+                  segs[segs.length - 1] = {
+                    type: "text",
+                    content: last.content + event.content,
+                  };
+                } else {
+                  segs.push({ type: "text", content: event.content! });
+                }
+                return {
+                  ...m,
+                  content: m.content + event.content,
+                  segments: segs,
+                };
+              }),
             );
             setActiveToolCall(null);
           } else if (event.type === "tool_call" && event.name) {
             setActiveToolCall(event.name);
+            const newTool: ToolCall = {
+              name: event.name,
+              input: event.input || {},
+              status: "running",
+            };
             setMessages((prev) =>
-              prev.map((m) =>
-                m.id === assistantMsg.id
-                  ? {
-                      ...m,
-                      toolCalls: [
-                        ...(m.toolCalls || []),
-                        { name: event.name!, input: event.input || {} },
-                      ],
-                    }
-                  : m,
-              ),
+              prev.map((m) => {
+                if (m.id !== assistantId) return m;
+                const segs = [...(m.segments || [])];
+                segs.push({ type: "tool", tool: newTool });
+                return { ...m, segments: segs };
+              }),
+            );
+          } else if (event.type === "tool_result" && event.name) {
+            setActiveToolCall(null);
+            setMessages((prev) =>
+              prev.map((m) => {
+                if (m.id !== assistantId) return m;
+                const segs = [...(m.segments || [])];
+                // Find last tool segment with this name that's still running
+                for (let i = segs.length - 1; i >= 0; i--) {
+                  const seg = segs[i];
+                  if (
+                    seg.type === "tool" &&
+                    seg.tool.name === event.name &&
+                    seg.tool.status === "running"
+                  ) {
+                    segs[i] = {
+                      type: "tool",
+                      tool: {
+                        ...seg.tool,
+                        status: event.summary?.startsWith("Error")
+                          ? "error"
+                          : "done",
+                        result: event.summary,
+                      },
+                    };
+                    break;
+                  }
+                }
+                return { ...m, segments: segs };
+              }),
             );
           } else if (event.type === "card" && event.data) {
             setCards((prev) => [...prev, event.data!]);
@@ -108,7 +154,7 @@ export function useChat() {
       if ((err as Error).name !== "AbortError") {
         setMessages((prev) =>
           prev.map((m) =>
-            m.id === assistantMsg.id
+            m.id === assistantId
               ? {
                   ...m,
                   content:
