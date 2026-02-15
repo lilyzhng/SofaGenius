@@ -21,6 +21,10 @@ const TOOL_LABELS: Record<string, string> = {
   search_hf_models: "Searching HF models",
   create_scout_card: "Creating scout card",
   create_draft_post_card: "Creating draft post",
+  propose_finetune: "Proposing fine-tuning job",
+  propose_eval: "Proposing evaluation job",
+  launch_finetune: "Launching fine-tuning job",
+  launch_eval: "Launching evaluation job",
 };
 
 function ToolStep({ tool }: { tool: ToolCall }) {

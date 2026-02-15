@@ -134,7 +134,32 @@ export interface DraftPostCard {
   requires_approval: boolean;
 }
 
-export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard;
+// --- Phase 4: Launch types ---
+
+export type LaunchStatus = "proposed" | "launching" | "running" | "completed" | "failed";
+export type LaunchType = "finetune" | "eval";
+
+export interface CostEstimate {
+  gpu_type: string;
+  estimated_hours: number;
+  estimated_cost_usd: number;
+  note: string;
+}
+
+export interface LaunchCard {
+  card_type: "launch_card";
+  title: string;
+  launch_type: LaunchType;
+  status: LaunchStatus;
+  config: Record<string, unknown>;
+  cost_estimate?: CostEstimate;
+  summary: string;
+  modal_function_call_id?: string;
+  wandb_url?: string;
+  requires_approval: boolean;
+}
+
+export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard;
 
 export interface ToolCall {
   name: string;

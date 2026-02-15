@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
-from backend.agent import run_agent
+from backend.orchestrator import run_orchestrator
 
 app = FastAPI(title="Sofa Genius API")
 
@@ -34,10 +34,83 @@ class ChatRequest(BaseModel):
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
     async def event_stream():
-        async for event in run_agent(req.message, req.history):
+        async for event in run_orchestrator(req.message, req.history):
             yield event
 
     return StreamingResponse(event_stream(), media_type="text/event-stream")
+
+
+class LaunchRequest(BaseModel):
+    launch_type: str  # "finetune" or "eval"
+    config: dict
+
+
+@app.post("/api/launch")
+async def launch_job(req: LaunchRequest):
+    """Launch a fine-tuning or evaluation job on Modal (button path)."""
+    try:
+        import modal
+    except ImportError:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Modal is not installed. Run: pip install modal"},
+        )
+
+    try:
+        if req.launch_type == "finetune":
+            fn = modal.Function.from_name("sofa-genius-launcher", "run_finetune")
+            call = fn.spawn(req.config)
+            wandb_project = req.config.get("wandb_project", "qwen-coder-code-gen")
+        elif req.launch_type == "eval":
+            fn = modal.Function.from_name("sofa-genius-launcher", "run_evaluation")
+            call = fn.spawn(req.config)
+            wandb_project = req.config.get("wandb_project", "uiux-eval")
+        else:
+            return JSONResponse(
+                status_code=400,
+                content={"error": f"Unknown launch_type: {req.launch_type}. Use 'finetune' or 'eval'."},
+            )
+
+        return {
+            "success": True,
+            "function_call_id": call.object_id,
+            "wandb_project": wandb_project,
+        }
+
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Failed to launch Modal job: {str(e)}"},
+        )
+
+
+@app.get("/api/launch/status/{function_call_id}")
+async def launch_status(function_call_id: str):
+    """Poll a Modal function call for its status and result.
+
+    Returns:
+    - status: "running" | "completed" | "failed"
+    - result: the function's return dict (includes wandb_url) if completed
+    - error: error message if failed
+    """
+    try:
+        import modal
+    except ImportError:
+        return JSONResponse(status_code=500, content={"error": "Modal not installed"})
+
+    try:
+        call = modal.functions.FunctionCall.from_id(function_call_id)
+        try:
+            result = call.get(timeout=0)
+            # Job completed — result contains wandb_url, experiment_name, etc.
+            return {"status": "completed", "result": result}
+        except TimeoutError:
+            # Still running
+            return {"status": "running"}
+        except modal.exception.ExecutionError as e:
+            return {"status": "failed", "error": str(e)}
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": f"Failed to check status: {str(e)}"})
 
 
 class TweetRequest(BaseModel):

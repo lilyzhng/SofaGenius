@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Loader2, Square, Activity, Database, Search, Compass, PenLine } from "lucide-react";
+import { Send, Loader2, Square, Activity, Database, Search, Compass, PenLine, Rocket } from "lucide-react";
 import MessageBubble from "./MessageBubble";
 import type { Message } from "../types";
 
@@ -18,6 +18,7 @@ const EXAMPLES = [
   { icon: Search, text: "Find loss anomalies", query: "Check for any loss spikes or anomalies in my training run" },
   { icon: Compass, text: "Scout models & datasets", query: "Scout datasets and models for fine-tuning Qwen2.5-Coder-14B" },
   { icon: PenLine, text: "Draft a tweet about findings", query: "Draft a tweet about what we found" },
+  { icon: Rocket, text: "Fine-tune a model on Modal", query: "Fine-tune Qwen2.5-Coder-14B on lilyzhng/uigen-ui-code-gen" },
 ];
 
 export default function ChatPanel({

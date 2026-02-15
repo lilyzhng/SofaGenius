@@ -6,3 +6,4 @@ python-dotenv>=1.0.0
 numpy>=1.26.0
 duckdb>=1.0.0
 tweepy>=4.14.0
+modal>=0.67.0

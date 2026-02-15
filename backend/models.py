@@ -176,3 +176,67 @@ class DraftPostCard(BaseModel):
     tone: str = "professional"
     char_count: int = 0
     requires_approval: bool = True
+
+
+# --- Phase 4: Launch models ---
+
+
+class LaunchStatus(str, Enum):
+    proposed = "proposed"
+    launching = "launching"
+    running = "running"
+    completed = "completed"
+    failed = "failed"
+
+
+class LaunchType(str, Enum):
+    finetune = "finetune"
+    eval = "eval"
+
+
+class FinetuneConfig(BaseModel):
+    model_name: str = "Qwen/Qwen2.5-Coder-14B"
+    dataset_name: str = ""
+    max_seq_length: int = 4096
+    load_in_4bit: bool = True
+    lora_r: int = 32
+    lora_alpha: int = 32
+    learning_rate: float = 2e-4
+    num_epochs: int = 1
+    max_steps: int = -1
+    batch_size: int = 1
+    gradient_accumulation_steps: int = 8
+    gpu_type: str = "A100"
+    push_to_hub: bool = True
+    hf_repo_name: Optional[str] = None
+    wandb_project: str = "qwen-coder-code-gen"
+
+
+class EvalConfig(BaseModel):
+    base_model: str = "Qwen/Qwen2.5-Coder-14B"
+    lora_model: str = ""
+    hf_dataset: str = "lilyzhng/uigen-ui-code-gen"
+    limit: int = 20
+    use_judge: bool = True
+    judge_model: str = "google/gemini-3-pro-preview"
+    wandb_project: str = "uiux-eval"
+
+
+class CostEstimate(BaseModel):
+    gpu_type: str
+    estimated_hours: float
+    estimated_cost_usd: float
+    note: str = ""
+
+
+class LaunchCard(BaseModel):
+    card_type: str = "launch_card"
+    title: str
+    launch_type: LaunchType
+    status: LaunchStatus = LaunchStatus.proposed
+    config: dict = {}
+    cost_estimate: Optional[CostEstimate] = None
+    summary: str = ""
+    modal_function_call_id: Optional[str] = None
+    wandb_url: Optional[str] = None
+    requires_approval: bool = True

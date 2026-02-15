@@ -4,6 +4,7 @@ import WandBHealthCard from "./WandBHealthCard";
 import DataCard from "./DataCard";
 import ScoutCard from "./ScoutCard";
 import DraftPostCard from "./DraftPostCard";
+import LaunchCard from "./LaunchCard";
 import type { CardData } from "../types";
 
 interface Props {
@@ -47,6 +48,9 @@ export default function CardsPanel({ cards }: Props) {
             )}
             {card.card_type === "draft_post_card" && (
               <DraftPostCard card={card} />
+            )}
+            {card.card_type === "launch_card" && (
+              <LaunchCard card={card} />
             )}
           </motion.div>
         ))}
