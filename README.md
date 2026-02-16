@@ -12,7 +12,7 @@
 ## What Is This?
 For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.
 
-Or you could lean back on the sofa and tell your AI assistant to do all of that for you. Sofa Genius turns the boring, procedural parts of ML research — monitoring, data inspection, scouting, launching jobs — into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
+Or you could lean back on the sofa and tell your AI assistant to do all of that for you. Sofa Genius turns the boring, procedural parts of ML research, monitoring, data inspection, scouting, launching jobs, into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
 
 ---
 
@@ -120,9 +120,9 @@ frontend/src/
 
 ### Why Subagents?
 
-Started with a single agent with all tools. At 15+ tools, tool selection degraded badly. The fix: an **orchestrator (Haiku, ~300ms)** classifies intent and delegates to **4 specialized subagents**, each with only 4-8 tools. Like a hospital — a triage nurse routes you to the right specialist.
+Started with a single agent with all tools. At 15+ tools, tool selection degraded badly. The fix: an **orchestrator (Haiku, ~300ms)** classifies intent and delegates to **4 specialized subagents**, each with only 4-8 tools. Like a hospital, a triage nurse routes you to the right specialist.
 
-**How the loop works:** Each subagent runs an Anthropic tool_use loop (up to 10 turns). On every tool execution, the backend emits SSE events — `text` for agent prose, `tool_call`/`tool_result` for progress indicators, and `card` for structured visual cards that render in the right panel. The agent never outputs card JSON as text; cards are emitted as a side effect of tool execution.
+**How the loop works:** Each subagent runs an Anthropic tool_use loop (up to 10 turns). On every tool execution, the backend emits SSE events, `text` for agent prose, `tool_call`/`tool_result` for progress indicators, and `card` for structured visual cards that render in the right panel. The agent never outputs card JSON as text; cards are emitted as a side effect of tool execution.
 
 | Subagent | Tools | Capabilities |
 |----------|-------|-------------|
@@ -142,7 +142,7 @@ Type "fine-tune Qwen2.5-Coder on my UI dataset" → Launch Card appears with exa
 Ask "check my W&B run" and the agent runs **7 anomaly detectors** (loss spikes, divergence, oscillation, gradient explosion, overfitting, plateaus, NaN detection) and tells you *what's wrong and what to do about it*.
 
 ### 3. SQL on HuggingFace Without Downloading Anything
-"Show me the distribution of code lengths in my dataset." The agent writes SQL, runs it against HuggingFace parquet files via DuckDB — no download, no local storage — and packages it into a Data Card with stats and plots.
+"Show me the distribution of code lengths in my dataset." The agent writes SQL, runs it against HuggingFace parquet files via DuckDB, no download, no local storage, and packages it into a Data Card with stats and plots.
 
 ### 4. On-the-Fly Config Changes
 "Change to 20 epochs instead of 10." The agent modifies the config and re-proposes. No YAML editing. The agent is the typo-proof layer between your intent and the machine.
@@ -157,7 +157,7 @@ Every Launch Card shows a real cost estimate computed from your actual dataset s
 
 Preview HuggingFace dataset format conversions directly from chat. Useful when a dataset is in the wrong format for your training task (e.g., QA format when you need completion format for base model fine-tuning).
 
-The tool streams a handful of sample rows to detect the format and show a before/after preview — it does **not** download the full dataset or push anything to Hub. The actual conversion happens on-the-fly at training time.
+The tool streams a handful of sample rows to detect the format and show a before/after preview, it does **not** download the full dataset or push anything to Hub. The actual conversion happens on-the-fly at training time.
 
 **Supported source formats:** chatml, instruction, qa, completion, preference (auto-detected).
 **Supported target formats:** `base` (completion with role markers) or `chatml` (messages list).
@@ -191,14 +191,14 @@ The tool streams a handful of sample rows to detect the format and show a before
 
 ### The Numbers
 
-- **6 card types** — W&B Health, Comparison, Data, Scout, Draft Post, Launch
+- **6 card types**, W&B Health, Comparison, Data, Scout, Draft Post, Launch
 - **22 tools** across 4 subagents
-- **7 anomaly detectors** — spike, divergence, oscillation, gradient explosion, overfitting, plateau, NaN
-- **3 run modes** — overfit ($0.08), exp ($0.09), prod (varies)
+- **7 anomaly detectors**, spike, divergence, oscillation, gradient explosion, overfitting, plateau, NaN
+- **3 run modes**, overfit ($0.08), exp ($0.09), prod (varies)
 - **~3,500 lines** of Python backend
 - **~2,000 lines** of TypeScript frontend
-- **5 external APIs** — Anthropic, W&B, HuggingFace, Modal, Twitter/X
-- **2 Claude models** — Sonnet (subagents), Haiku (orchestrator)
+- **5 external APIs**, Anthropic, W&B, HuggingFace, Modal, Twitter/X
+- **2 Claude models**, Sonnet (subagents), Haiku (orchestrator)
 
 ---
 
@@ -268,7 +268,7 @@ Open http://localhost:5173 and start chatting.
 ## Lessons Learned
 
 ### Let the LLM Decide, Let Code Execute
-We routed the "Approve & Launch" button through the agent — asking it to call the launch tool. Worked once, then failed silently. The fix: the button calls the API directly. **Use agents for decisions, use code for actions.** Never route deterministic actions through a language model.
+We routed the "Approve & Launch" button through the agent, asking it to call the launch tool. Worked once, then failed silently. The fix: the button calls the API directly. **Use agents for decisions, use code for actions.** Never route deterministic actions through a language model.
 
 ### A $0.08 Sanity Check Saves a $10 Failed Run
 The overfit → exp → prod progression came from painful experience. Each early failure cost $3-5 in wasted GPU time.
@@ -277,10 +277,10 @@ The overfit → exp → prod progression came from painful experience. Each earl
 |------|---------|------|----------------|
 | overfit | 1 | $0.08 | Import errors, data format, credentials, pipeline bugs |
 | exp | 100 | $0.09 | Learning dynamics, divergence, data quality |
-| prod | full | varies | Nothing new — just scales what's already validated |
+| prod | full | varies | Nothing new, just scales what's already validated |
 
 ### Never Let an LLM Estimate Costs
-It will hallucinate numbers. Cost calculations should be deterministic functions of real inputs — actual dataset size, actual GPU rates, actual step counts.
+It will hallucinate numbers. Cost calculations should be deterministic functions of real inputs, actual dataset size, actual GPU rates, actual step counts.
 
 ### Start Monolithic, Split When It Hurts
 We didn't design the subagent architecture upfront. We built a single agent with all tools, and only split when tool selection degraded at 15+ tools.
@@ -289,8 +289,8 @@ We didn't design the subagent architecture upfront. We built a single agent with
 
 ## Building with Opus 4.6
 
-**What surprised me:** Opus has deep ML infrastructure knowledge — Modal, multi-GPU training, Unsloth, W&B integration, resource allocation — it worked out of the box in one shot. And even at the 1 million token context window, it didn't hallucinate on long-horizon tasks.
+**What surprised me:** Opus has deep ML infrastructure knowledge, Modal, multi-GPU training, Unsloth, W&B integration, resource allocation, it worked out of the box in one shot. And even at the 1 million token context window, it didn't hallucinate on long-horizon tasks.
 
-**How I built with it:** Designed in 4 phases upfront. For each phase, Opus produced a detailed implementation plan, I reviewed and corrected, then let it build. Human-in-the-loop the entire time. Every mistake got documented in a lessons learned file. CLAUDE.md reminded the model to check it at the start of every new session — persistent memory across context resets.
+**How I built with it:** Designed in 4 phases upfront. For each phase, Opus produced a detailed implementation plan, I reviewed and corrected, then let it build. Human-in-the-loop the entire time. Every mistake got documented in a lessons learned file. CLAUDE.md reminded the model to check it at the start of every new session, persistent memory across context resets.
 
 ---
