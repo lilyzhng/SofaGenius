@@ -4,6 +4,7 @@ dist/
 __pycache__/
 *.pyc
 .venv/
+*.tsbuildinfo
 
 # Local-only notes and drafts
 Hackathon - Sofa Genius.md
