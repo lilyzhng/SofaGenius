@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Loader2, Square, Activity, Database, Search, Compass, PenLine, Rocket } from "lucide-react";
+import { Send, Loader2, Square, Rocket } from "lucide-react";
 import MessageBubble from "./MessageBubble";
 import type { Message, CardData, LaunchCard } from "../types";
 
@@ -13,15 +13,6 @@ interface Props {
   onStop: () => void;
   onLaunch: (card: LaunchCard) => Promise<{ success: boolean; error?: string }>;
 }
-
-const EXAMPLES = [
-  { icon: Activity, text: "Check my latest W&B run health", query: "Analyze the health of my latest W&B run" },
-  { icon: Database, text: "List my recent runs", query: "List my W&B runs" },
-  { icon: Search, text: "Find loss anomalies", query: "Check for any loss spikes or anomalies in my training run" },
-  { icon: Compass, text: "Scout models & datasets", query: "Scout datasets and models for fine-tuning Qwen2.5-Coder-14B" },
-  { icon: PenLine, text: "Draft a tweet about findings", query: "Draft a tweet about what we found" },
-  { icon: Rocket, text: "Fine-tune a model on Modal", query: "Fine-tune Qwen2.5-Coder-14B on lilyzhng/uigen-ui-code-gen" },
-];
 
 function LaunchApprovalButton({
   card,
@@ -134,27 +125,9 @@ export default function ChatPanel({
       <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
         {isEmpty ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-6">
-            <img src="/logo.png" alt="Sofa Genius" className="w-16 h-16 rounded-full object-cover mb-4 shadow-sm" />
-            <h2 className="font-serif text-2xl text-stone-900 mb-2">
-              Sofa Genius
-            </h2>
-            <div className="w-12 h-0.5 bg-nobel-gold mb-4" />
-            <p className="text-sm text-stone-500 max-w-sm mb-8">
-              Your AI research assistant. Ask me to monitor your W&B training
-              runs, detect anomalies, and suggest fixes.
+            <p className="text-sm text-stone-400">
+              Type a message to get started.
             </p>
-            <div className="grid gap-3 w-full max-w-sm">
-              {EXAMPLES.map((ex) => (
-                <button
-                  key={ex.text}
-                  onClick={() => onSend(ex.query)}
-                  className="flex items-center gap-3 px-4 py-3 bg-white border border-stone-200 rounded-xl text-left text-sm text-stone-600 hover:border-nobel-gold/50 hover:shadow-sm transition-all duration-200"
-                >
-                  <ex.icon size={16} className="text-nobel-gold flex-shrink-0" />
-                  <span>{ex.text}</span>
-                </button>
-              ))}
-            </div>
           </div>
         ) : (
           <>
