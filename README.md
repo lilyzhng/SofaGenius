@@ -7,13 +7,9 @@
 </p>
 
 ---
+> Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode. [Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details) | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment
 
 ## What Is This?
-
-Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode.
-
-[Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details) | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment
-
 For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.
 
 Or you could lean back on the sofa and tell your AI assistant to do all of that for you. Sofa Genius turns the boring, procedural parts of ML research — monitoring, data inspection, scouting, launching jobs — into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
