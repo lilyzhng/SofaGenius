@@ -1,8 +1,14 @@
-"""Orchestrator — classify intent and route to the right subagent."""
+"""Orchestrator — classify intent and route to the right subagent.
+
+Resolves W&B identity once at startup and maintains session context so
+agents always know the user's entity, projects, and last-launched run
+without wasting tool calls to rediscover them.
+"""
 
 from __future__ import annotations
 
 import json
+import logging
 from typing import Any, AsyncGenerator
 
 import anthropic
@@ -10,12 +16,14 @@ import anthropic
 from backend.agents.base import run_subagent
 from backend.agents import training, data, scout, launch
 
+log = logging.getLogger(__name__)
+
 _ROUTING_PROMPT = """\
 Classify the user message into exactly one category. Reply with ONLY the category name, nothing else.
 
 Categories:
 - training: W&B monitoring, listing runs, checking run health, fetching metrics, training anomalies
-- data: SQL queries, dataset exploration, dataset search for analysis, data statistics, plotting data
+- data: SQL queries, dataset exploration, dataset search for analysis, data statistics, plotting data, dataset conversion, format conversion, inspect dataset format
 - scout: scouting/finding models or datasets for a task, creating scout cards, drafting tweets/posts
 - launch: fine-tuning jobs, launching training, evaluation jobs, Modal GPU jobs, proposing/approving launches
 - general: greetings, general questions, help, anything that doesn't need tools
@@ -29,6 +37,285 @@ _AGENT_MAP = {
     "scout": scout,
     "launch": launch,
 }
+
+# ---------------------------------------------------------------------------
+# HF identity cache — resolved once, shared across all requests
+# ---------------------------------------------------------------------------
+_hf_info: dict[str, Any] | None = None
+
+
+def _resolve_hf_info() -> dict[str, Any]:
+    """Resolve HuggingFace username from HF_TOKEN. Cached after first call."""
+    global _hf_info
+    if _hf_info is not None:
+        return _hf_info
+    import os, urllib.request, urllib.error
+    token = os.environ.get("HF_TOKEN")
+    if not token:
+        _hf_info = {"username": None}
+        return _hf_info
+    try:
+        req = urllib.request.Request(
+            "https://huggingface.co/api/whoami-v2",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            data = json.loads(resp.read().decode())
+        username = data.get("name") or data.get("user", "")
+        _hf_info = {"username": username}
+        log.info("HF identity resolved: username=%s", username)
+    except Exception as e:
+        log.warning("Could not resolve HF info: %s", e)
+        _hf_info = {"username": None}
+    return _hf_info
+
+
+def _build_hf_context() -> str:
+    """Build the HF identity block for system prompts."""
+    info = _resolve_hf_info()
+    username = info.get("username")
+    if not username:
+        return ""
+    return (
+        f"\n\nHF IDENTITY (pre-resolved, do not ask the user):\n"
+        f"- HuggingFace username: {username}\n"
+        f"When scouting for datasets or models, ALWAYS search the user's own "
+        f"HF space first by passing author=\"{username}\" to the search tools. "
+        f"If that returns 0 results, then do a broader public search without the author filter."
+    )
+
+
+# ---------------------------------------------------------------------------
+# W&B identity cache — resolved once, shared across all requests
+# ---------------------------------------------------------------------------
+_wandb_info: dict[str, Any] | None = None
+
+
+def _resolve_wandb_info() -> dict[str, Any]:
+    """Resolve W&B entity and projects once. Cached after first call."""
+    global _wandb_info
+    if _wandb_info is not None:
+        return _wandb_info
+    try:
+        import wandb
+        api = wandb.Api()
+        entity = api.default_entity
+        projects = [
+            {"name": p.name, "entity": p.entity}
+            for p in api.projects(entity)
+        ]
+        _wandb_info = {"entity": entity, "projects": projects[:20]}
+        log.info("W&B identity resolved: entity=%s, %d projects", entity, len(projects))
+    except Exception as e:
+        log.warning("Could not resolve W&B info: %s", e)
+        _wandb_info = {"entity": None, "projects": []}
+    return _wandb_info
+
+
+def _build_wandb_context() -> str:
+    """Build the W&B identity block for system prompts."""
+    info = _resolve_wandb_info()
+    if not info.get("entity"):
+        return ""
+    project_names = [p["name"] for p in info["projects"]]
+    return (
+        f"\n\nW&B IDENTITY (pre-resolved, do not call get_wandb_info):\n"
+        f"- Entity: {info['entity']}\n"
+        f"- Projects: {', '.join(project_names)}\n"
+        f"Use entity_project=\"{info['entity']}/<project>\" for all W&B tool calls. "
+        f"The most recent project is \"{project_names[0]}\" if the user doesn't specify one."
+        if project_names else ""
+    )
+
+
+# ---------------------------------------------------------------------------
+# Session context — tracks the most recently launched run so cross-agent
+# references work (no database required).
+# ---------------------------------------------------------------------------
+_session_context: dict[str, Any] = {}
+
+
+def _run_id_from_wandb_url(url: str) -> str | None:
+    """Extract the short run ID from a W&B URL like .../runs/5p5rsbyn."""
+    if "/runs/" in url:
+        return url.rstrip("/").split("/runs/")[-1].split("?")[0]
+    return None
+
+
+def _project_from_wandb_url(url: str) -> str | None:
+    """Extract entity/project from a W&B URL like .../entity/project/runs/..."""
+    # URL format: https://wandb.ai/entity/project/runs/run_id
+    try:
+        parts = url.rstrip("/").split("/")
+        runs_idx = parts.index("runs")
+        if runs_idx >= 2:
+            return f"{parts[runs_idx - 2]}/{parts[runs_idx - 1]}"
+    except (ValueError, IndexError):
+        pass
+    return None
+
+
+def update_run_context(wandb_url: str) -> None:
+    """Called by the API layer when the frontend sends an active_run with a W&B URL.
+
+    This is the most authoritative source of run info — it comes directly
+    from the LaunchCard's polling of Modal, which gets the real URL.
+    """
+    run_id = _run_id_from_wandb_url(wandb_url)
+    entity_project = _project_from_wandb_url(wandb_url)
+    if not run_id:
+        return
+
+    launch = _session_context.get("last_launch")
+    if launch:
+        launch["run_id"] = run_id
+        launch["wandb_url"] = wandb_url
+        if entity_project:
+            # Update project from URL in case it's more accurate
+            project = entity_project.split("/")[-1] if "/" in entity_project else entity_project
+            launch["wandb_project"] = project
+    else:
+        # No launch context yet — create one from the URL
+        project = entity_project.split("/")[-1] if entity_project and "/" in entity_project else ""
+        _session_context["last_launch"] = {
+            "experiment_name": "",
+            "wandb_project": project,
+            "wandb_url": wandb_url,
+            "launch_type": "finetune",
+            "dataset": "",
+            "function_call_id": "",
+            "run_id": run_id,
+        }
+    log.info("Run context updated from frontend: run_id=%s, url=%s", run_id, wandb_url)
+
+
+def _resolve_run_id_from_modal(function_call_id: str, run_key: str) -> str | None:
+    """Poll Modal once to get the W&B run URL, extract the run ID."""
+    try:
+        import modal
+        call = modal.functions.FunctionCall.from_id(function_call_id)
+        # Check if completed — result may contain wandb_url
+        try:
+            result = call.get(timeout=0)
+            url = result.get("wandb_url", "") if isinstance(result, dict) else ""
+            if url:
+                return _run_id_from_wandb_url(url)
+        except TimeoutError:
+            pass
+        # Still running — check modal.Dict
+        if run_key:
+            try:
+                run_urls = modal.Dict.from_name("sofa-genius-run-urls")
+                url = run_urls.get(run_key)
+                if url:
+                    return _run_id_from_wandb_url(url)
+            except Exception:
+                pass
+    except Exception as e:
+        log.debug("Could not resolve run ID from Modal: %s", e)
+    return None
+
+
+def _extract_event_context(event_json: str) -> None:
+    """Extract and cache useful context from SSE events.
+
+    Launch cards: capture experiment_name, wandb_project, function_call_id.
+    Health cards: capture the resolved run_id.
+    """
+    try:
+        payload = json.loads(event_json.removeprefix("data: ").strip())
+    except (json.JSONDecodeError, AttributeError):
+        return
+
+    event_type = payload.get("type")
+
+    # --- Launch card: capture experiment name + project + function_call_id ---
+    if event_type == "card" and payload.get("card_type") == "launch_card":
+        card = payload.get("data", {})
+        config = card.get("config", {})
+        experiment_name = config.get("experiment_name", "")
+        wandb_project = config.get("wandb_project", "")
+        function_call_id = card.get("modal_function_call_id", "")
+        if experiment_name or wandb_project:
+            _session_context["last_launch"] = {
+                "experiment_name": experiment_name,
+                "wandb_project": wandb_project,
+                "wandb_url": card.get("wandb_url", ""),
+                "launch_type": card.get("launch_type", ""),
+                "dataset": config.get("dataset_name", ""),
+                "function_call_id": function_call_id,
+                "run_id": None,
+            }
+            # Try to resolve run ID immediately if we have a function_call_id
+            if function_call_id and experiment_name:
+                rid = _resolve_run_id_from_modal(function_call_id, experiment_name)
+                if rid:
+                    _session_context["last_launch"]["run_id"] = rid
+
+    # --- Health card: capture the resolved run_id ---
+    if event_type == "card" and payload.get("card_type") == "wandb_health":
+        card = payload.get("data", {})
+        run_id = card.get("run_id")
+        launch = _session_context.get("last_launch")
+        if run_id and launch and not launch.get("run_id"):
+            launch["run_id"] = run_id
+            launch["wandb_url"] = card.get("url") or launch.get("wandb_url", "")
+
+
+def _ensure_run_id_resolved() -> None:
+    """If we have a launch without a run_id, try resolving via Modal."""
+    launch = _session_context.get("last_launch")
+    if not launch or launch.get("run_id"):
+        return
+    fcid = launch.get("function_call_id")
+    exp_name = launch.get("experiment_name")
+    if fcid and exp_name:
+        rid = _resolve_run_id_from_modal(fcid, exp_name)
+        if rid:
+            launch["run_id"] = rid
+            log.info("Resolved W&B run ID from Modal: %s", rid)
+
+
+def _build_launch_context() -> str:
+    """Build a system prompt suffix from the last launched run."""
+    launch = _session_context.get("last_launch")
+    if not launch:
+        return ""
+
+    # Try to resolve the run ID if we don't have it yet
+    _ensure_run_id_resolved()
+
+    parts = []
+    run_id = launch.get("run_id")
+    wandb_info = _resolve_wandb_info()
+    entity = wandb_info.get("entity", "")
+    project = launch.get("wandb_project", "")
+
+    if run_id:
+        parts.append(f"W&B run ID: {run_id}")
+        if entity and project:
+            parts.append(f"entity_project: {entity}/{project}")
+        parts.append("Use this run ID directly with analyze_run_health — no need to list runs first.")
+    else:
+        if launch.get("experiment_name"):
+            parts.append(f"run display name: {launch['experiment_name']}")
+        if entity and project:
+            parts.append(f"entity_project: {entity}/{project}")
+        parts.append(
+            "The W&B run ID is not yet available (job may still be starting). "
+            "Call list_wandb_runs to find the run matching this display name."
+        )
+    if launch.get("dataset"):
+        parts.append(f"dataset: {launch['dataset']}")
+    if not parts:
+        return ""
+    return (
+        "\n\nSESSION CONTEXT — The user recently launched a "
+        f"{launch.get('launch_type', 'training')} job:\n"
+        + "\n".join(f"- {p}" for p in parts)
+        + "\nWhen the user refers to 'the run', 'my run', 'the training', etc., "
+        "they mean this run."
+    )
 
 
 async def _classify_intent(message: str) -> str:
@@ -78,12 +365,24 @@ async def run_orchestrator(
         return
 
     agent_module = _AGENT_MAP[category]
+
+    # Build system prompt with injected context
+    system_prompt = agent_module.SYSTEM_PROMPT
+    if category in ("training", "launch"):
+        system_prompt += _build_wandb_context()
+    if category in ("training", "data"):
+        system_prompt += _build_launch_context()
+    if category in ("data", "scout"):
+        system_prompt += _build_hf_context()
+
     async for event in run_subagent(
         message,
         history,
-        system_prompt=agent_module.SYSTEM_PROMPT,
+        system_prompt=system_prompt,
         tools=agent_module.TOOLS,
         tool_dispatch=agent_module.TOOL_DISPATCH,
         card_tool_mapping=agent_module.CARD_TOOL_MAPPING,
     ):
+        # Capture launch context from SSE events for cross-agent memory
+        _extract_event_context(event)
         yield event

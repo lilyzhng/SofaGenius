@@ -29,9 +29,9 @@ const MODES = [
   },
   {
     icon: MessageSquare,
-    badge: "FREE CHAT",
+    badge: "Bounce Ideas",
     title: "Just Chat",
-    description: "Open-ended conversation about runs, data, workflow",
+    description: "Open Discussions about runs, data, workflow",
     query: undefined as string | undefined,
   },
 ];

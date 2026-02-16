@@ -9,7 +9,7 @@ import { useChat } from "./hooks/useChat";
 const spring = { type: "spring" as const, stiffness: 80, damping: 15 };
 
 export default function App() {
-  const { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob } =
+  const { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob, updateCardWandbUrl } =
     useChat();
 
   const [showLanding, setShowLanding] = useState(true);
@@ -98,7 +98,7 @@ export default function App() {
 
             {/* Right: Cards */}
             <div className="w-1/2 bg-nobel-cream flex flex-col">
-              <CardsPanel cards={cards} />
+              <CardsPanel cards={cards} onWandbUrl={updateCardWandbUrl} />
             </div>
           </motion.div>
         )}

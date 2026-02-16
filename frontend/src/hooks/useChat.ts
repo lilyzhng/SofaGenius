@@ -12,6 +12,8 @@ export function useChat() {
   const [isLoading, setIsLoading] = useState(false);
   const [activeToolCall, setActiveToolCall] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const cardsRef = useRef<CardData[]>(cards);
+  cardsRef.current = cards;
 
   const sendMessage = useCallback(async (content: string) => {
     if (!content.trim() || isLoading) return;
@@ -30,6 +32,16 @@ export function useChat() {
       .filter((m) => m.content)
       .map((m) => ({ role: m.role, content: m.content }));
 
+    // Extract active run context from launch cards (wandb_url → run ID + project)
+    // Use cardsRef to always read the latest cards, avoiding stale closure
+    const currentCards = cardsRef.current;
+    const launchCard = [...currentCards].reverse().find(
+      (c) => c.card_type === "launch_card" && "config" in c,
+    );
+    const activeRun = launchCard && "wandb_url" in launchCard && launchCard.wandb_url
+      ? { wandb_url: launchCard.wandb_url }
+      : undefined;
+
     setMessages((prev) => [...prev, userMsg, assistantMsg]);
     setIsLoading(true);
     setActiveToolCall(null);
@@ -43,7 +55,7 @@ export function useChat() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: content, history }),
+        body: JSON.stringify({ message: content, history, active_run: activeRun }),
         signal: controller.signal,
       });
 
@@ -225,6 +237,26 @@ export function useChat() {
     }
   }, []);
 
+  const updateCardWandbUrl = useCallback((wandbUrl: string) => {
+    setCards((prev) => {
+      // Find the most recent launch card without a wandb_url and update it
+      const updated = [...prev];
+      for (let i = updated.length - 1; i >= 0; i--) {
+        const c = updated[i];
+        if (c.card_type === "launch_card" && !c.wandb_url) {
+          updated[i] = { ...c, wandb_url: wandbUrl };
+          return updated;
+        }
+        // Also update if the card already has a wandb_url but it's a project URL (not a run URL)
+        if (c.card_type === "launch_card" && c.wandb_url && !c.wandb_url.includes("/runs/") && wandbUrl.includes("/runs/")) {
+          updated[i] = { ...c, wandb_url: wandbUrl };
+          return updated;
+        }
+      }
+      return prev;
+    });
+  }, []);
+
   const clearChat = useCallback(() => {
     setMessages([]);
     setCards([]);
@@ -233,5 +265,5 @@ export function useChat() {
     abortRef.current?.abort();
   }, []);
 
-  return { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob };
+  return { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob, updateCardWandbUrl };
 }

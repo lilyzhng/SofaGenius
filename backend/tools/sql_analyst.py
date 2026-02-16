@@ -90,27 +90,60 @@ def _inject_limit(sql: str, limit: int = 1000) -> str:
 # ---------------------------------------------------------------------------
 
 
-def search_hf_datasets(query: str, limit: int = 10) -> str:
-    """Search HuggingFace Hub for datasets matching a query."""
-    params = urllib.parse.urlencode({
-        "search": query,
-        "sort": "downloads",
-        "direction": "-1",
-        "limit": min(limit, 20),
-    })
-    url = f"https://huggingface.co/api/datasets?{params}"
+def search_hf_datasets(query: str, limit: int = 10, author: str | None = None) -> str:
+    """Search HuggingFace Hub for datasets matching a query.
 
-    headers = {"Accept": "application/json"}
+    If *author* is provided, lists datasets by that author and filters
+    client-side by keyword (the HF API doesn't support author+search together).
+    """
+    headers: dict[str, str] = {"Accept": "application/json"}
     token = os.environ.get("HF_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
 
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            raw = json.loads(resp.read().decode())
-    except Exception as e:
-        return json.dumps({"error": str(e), "query": query})
+    if author:
+        # Phase 1: list all datasets by this author, filter client-side
+        params = urllib.parse.urlencode({
+            "author": author,
+            "sort": "downloads",
+            "direction": "-1",
+            "limit": 100,  # fetch more so client-side filter has material
+        })
+        url = f"https://huggingface.co/api/datasets?{params}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                raw = json.loads(resp.read().decode())
+        except Exception as e:
+            return json.dumps({"error": str(e), "query": query, "author": author})
+
+        # Client-side keyword match on id, description, and tags
+        keywords = [kw.lower() for kw in query.split() if len(kw) > 1]
+        filtered = []
+        for ds in raw:
+            text = " ".join([
+                ds.get("id", ""),
+                ds.get("description") or "",
+                " ".join(ds.get("tags", [])),
+            ]).lower()
+            if not keywords or any(kw in text for kw in keywords):
+                filtered.append(ds)
+        raw = filtered[:min(limit, 20)]
+    else:
+        # Phase 2: broad public search
+        params = urllib.parse.urlencode({
+            "search": query,
+            "sort": "downloads",
+            "direction": "-1",
+            "limit": min(limit, 20),
+        })
+        url = f"https://huggingface.co/api/datasets?{params}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                raw = json.loads(resp.read().decode())
+        except Exception as e:
+            return json.dumps({"error": str(e), "query": query})
 
     results = []
     for ds in raw:
@@ -124,7 +157,12 @@ def search_hf_datasets(query: str, limit: int = 10) -> str:
             "url": f"https://huggingface.co/datasets/{ds.get('id', '')}",
         })
 
-    return json.dumps({"query": query, "count": len(results), "datasets": results})
+    return json.dumps({
+        "query": query,
+        "author": author,
+        "count": len(results),
+        "datasets": results,
+    })
 
 
 # ---------------------------------------------------------------------------
@@ -189,26 +227,29 @@ def run_sql_query(dataset_path: str, sql_query: str) -> str:
     # The agent may reference the table as 'dataset', 'data', or the dataset name.
     # We replace it with the actual hf:// path.
     query = sql_query
-    # Replace common table references with the actual path
-    for placeholder in ["FROM dataset", "FROM data", "FROM tbl"]:
-        if placeholder.upper() in query.upper():
-            idx = query.upper().index(placeholder.upper())
-            after = query[idx + len(placeholder):]
-            query = query[:idx] + f"FROM '{path}'" + after
-            break
-    else:
-        # If the query doesn't reference any of our placeholders,
-        # check if it already has the hf:// path; if not, it likely
-        # references the dataset by its HF name — try to replace that too.
-        if "hf://" not in query:
-            # Try to replace the dataset name itself
-            ds_name = dataset_path.strip().strip("/")
-            short_name = ds_name.split("/")[-1] if "/" in ds_name else ds_name
-            for name in [ds_name, short_name]:
-                pattern = re.compile(rf"FROM\s+['\"]?{re.escape(name)}['\"]?", re.IGNORECASE)
-                if pattern.search(query):
-                    query = pattern.sub(f"FROM '{path}'", query)
-                    break
+
+    # Robust regex replacement — handles extra whitespace, quoting, aliases.
+    # Matches: FROM dataset, FROM 'dataset', FROM "dataset", JOIN dataset, etc.
+    # Word boundary (\b) prevents matching 'dataset_name' or 'datasets'.
+    _placeholder_re = re.compile(
+        r'\b(FROM|JOIN)\s+[\'"]?(dataset|data|tbl)[\'"]?(?=\s|$|;|\)|,)',
+        re.IGNORECASE,
+    )
+
+    if _placeholder_re.search(query):
+        query = _placeholder_re.sub(rf"\1 '{path}'", query)
+    elif "hf://" not in query:
+        # No placeholder found — try to replace the actual HF dataset name
+        ds_name = dataset_path.strip().strip("/")
+        short_name = ds_name.split("/")[-1] if "/" in ds_name else ds_name
+        for name in [ds_name, short_name]:
+            name_re = re.compile(
+                rf'\b(FROM|JOIN)\s+[\'"]?{re.escape(name)}[\'"]?(?=\s|$|;|\)|,)',
+                re.IGNORECASE,
+            )
+            if name_re.search(query):
+                query = name_re.sub(rf"\1 '{path}'", query)
+                break
 
     query = _inject_limit(query)
 

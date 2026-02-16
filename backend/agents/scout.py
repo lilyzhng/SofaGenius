@@ -20,12 +20,26 @@ You have access to:
 2) DRAFT TOOLS: compose draft Twitter/X posts with evidence references.
 
 SCOUT WORKFLOW:
-When the user asks to scout or find models and/or datasets for a task (e.g. \
-"scout datasets and models for fine-tuning Qwen2.5-Coder-14B"):
-1. Call search_hf_datasets with relevant keywords to find datasets.
-2. Call search_hf_models with relevant keywords to find models.
-3. Analyze the results — pick the top 3-5 best options across datasets and models.
-4. Call create_scout_card with:
+When the user asks to scout or find models and/or datasets for a task, follow \
+this TWO-PHASE strategy:
+
+PHASE 1 — Search the user's own HF space first. If the system prompt includes \
+the user's HF username, call search_hf_datasets and/or search_hf_models with \
+author=<username> and a broad query. This checks their personal/org resources first.
+
+PHASE 2 — If Phase 1 returns 0 results (or no HF username is available), call \
+the search tools WITHOUT the author parameter to search all of HuggingFace.
+
+IMPORTANT SEARCH TIPS:
+- Use SHORT, BROAD keywords (2-3 words max). The HF search API does substring \
+matching, so overly specific queries return nothing. Use "code instruction" not \
+"advanced coding agent instruction tuning dataset for UI/UX improvement".
+- If a search returns 0 results, simplify the query — try root nouns only.
+- Try at most 2-3 different public queries before moving on.
+
+After searching:
+1. Analyze the results — pick the top 3-5 best options across datasets and models.
+2. Call create_scout_card with:
    - title: descriptive title for the scouting session
    - query: the original user query
    - summary: 1-2 sentence overview of what you found
@@ -68,18 +82,22 @@ Never output raw JSON in your response.\
 TOOLS: list[dict[str, Any]] = [
     {
         "name": "search_hf_datasets",
-        "description": "Search HuggingFace Hub for datasets matching a query. Returns a ranked list with name, description, download count, and tags. Call this when the user wants to find datasets for a task.",
+        "description": "Search HuggingFace Hub for datasets matching a query. When author is provided, lists that user's datasets and filters by keyword client-side. Call this when the user wants to find datasets for a task.",
         "input_schema": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Search query, e.g. 'code generation python' or 'instruction tuning'",
+                    "description": "Search keywords — keep short and broad (e.g. 'code instruction', 'chat'). Overly specific queries return 0 results.",
                 },
                 "limit": {
                     "type": "integer",
                     "description": "Max results to return (default 10, max 20)",
                     "default": 10,
+                },
+                "author": {
+                    "type": "string",
+                    "description": "HuggingFace username or org to filter by. When set, lists datasets owned by this author and filters client-side by query keywords.",
                 },
             },
             "required": ["query"],
@@ -87,18 +105,22 @@ TOOLS: list[dict[str, Any]] = [
     },
     {
         "name": "search_hf_models",
-        "description": "Search HuggingFace Hub for models matching a query. Returns a ranked list with name, description, download count, likes, tags, and pipeline_tag.",
+        "description": "Search HuggingFace Hub for models matching a query. When author is provided, lists that user's models and filters by keyword client-side.",
         "input_schema": {
             "type": "object",
             "properties": {
                 "query": {
                     "type": "string",
-                    "description": "Search query, e.g. 'code generation' or 'Qwen2.5-Coder'",
+                    "description": "Search keywords — keep short and broad (e.g. 'code generation', 'Qwen'). Overly specific queries return 0 results.",
                 },
                 "limit": {
                     "type": "integer",
                     "description": "Max results to return (default 10, max 20)",
                     "default": 10,
+                },
+                "author": {
+                    "type": "string",
+                    "description": "HuggingFace username or org to filter by. When set, lists models owned by this author and filters client-side by query keywords.",
                 },
             },
             "required": ["query"],

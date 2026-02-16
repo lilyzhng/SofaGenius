@@ -57,9 +57,9 @@ Sofa Genius is a research agent for an Anthropic hackathon. It lets researchers 
 
 Each detector outputs: symptom -> likely cause -> suggested action.
 
-## Visual Design System (Reference: `research-visualization/`)
+## Visual Design System
 
-The `research-visualization/` folder is the style reference for the app. All new UI must follow these conventions.
+All new UI must follow these conventions.
 
 ### Color Palette
 - **Background:** `#F9F8F4` (warm cream) as primary, `#F5F4F0` for secondary surfaces, white for content sections

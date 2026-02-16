@@ -48,7 +48,9 @@ def _summarize_tool_result(name: str, result: str) -> str:
         return f"Comparison card with {len(runs)} runs"
     if name == "search_hf_datasets":
         count = data.get("count", 0)
-        return f"Found {count} dataset{'s' if count != 1 else ''}"
+        author = data.get("author")
+        suffix = f" by {author}" if author else ""
+        return f"Found {count} dataset{'s' if count != 1 else ''}{suffix}"
     if name == "discover_dataset_schema":
         cols = data.get("columns", [])
         rows = data.get("row_count", 0)
@@ -65,9 +67,19 @@ def _summarize_tool_result(name: str, result: str) -> str:
         return f"Generated {pt} chart"
     if name == "create_data_card":
         return "Data card created"
+    if name == "inspect_dataset_format":
+        fmt = data.get("format", "unknown")
+        cols = data.get("columns", [])
+        return f"Detected format: {fmt} ({len(cols)} columns)"
+    if name == "convert_dataset":
+        count = data.get("preview_count", 0)
+        target = data.get("target_format", "?")
+        return f"Previewed {count} rows as {target}"
     if name == "search_hf_models":
         count = data.get("count", 0)
-        return f"Found {count} model{'s' if count != 1 else ''}"
+        author = data.get("author")
+        suffix = f" by {author}" if author else ""
+        return f"Found {count} model{'s' if count != 1 else ''}{suffix}"
     if name == "create_scout_card":
         recs = data.get("recommendations", [])
         return f"Scout card created with {len(recs)} recommendation{'s' if len(recs) != 1 else ''}"

@@ -265,3 +265,18 @@ class ComparisonCard(BaseModel):
     runs: list[RunInfo]
     series: list[ComparisonSeries]
     summary: str
+
+
+# --- Dataset Conversion models ---
+
+
+class ConversionCard(BaseModel):
+    card_type: str = "conversion_card"
+    title: str
+    source_dataset: str
+    source_format: str
+    target_format: str
+    preview_count: int
+    source_columns: list[str]
+    before_samples: list[dict]
+    after_samples: list[dict]

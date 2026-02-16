@@ -353,7 +353,7 @@ def get_run_metrics(entity_project: str, run_id: str, keys: list[str] | None = N
     """
     api = wandb.Api()
     entity_project = _resolve_entity_project(api, entity_project)
-    run = api.run(f"{entity_project}/{run_id}")
+    run = _resolve_run(api, entity_project, run_id)
     if keys is None:
         keys = _discover_metric_keys(run)
 
@@ -375,16 +375,49 @@ def get_run_metrics(entity_project: str, run_id: str, keys: list[str] | None = N
     return json.dumps(series, indent=2)
 
 
+def _resolve_run(api, entity_project: str, run_id: str):
+    """Resolve a run by ID or display name.
+
+    W&B run IDs are short alphanumeric (e.g. 'pov3aw3j'). If the given
+    run_id looks like a display name (long, contains hyphens), fall back
+    to searching by name.
+    """
+    # Try direct ID lookup first
+    try:
+        return api.run(f"{entity_project}/{run_id}")
+    except Exception:
+        pass
+
+    # Fallback: search by display name
+    try:
+        runs = api.runs(entity_project, filters={"display_name": run_id}, per_page=1)
+        for run in runs:
+            return run
+    except Exception:
+        pass
+
+    # Final fallback: partial name match
+    try:
+        runs = api.runs(entity_project, per_page=50)
+        for run in runs:
+            if run.name == run_id or run_id in run.name:
+                return run
+    except Exception:
+        pass
+
+    raise ValueError(f"Could not find run '{run_id}' in {entity_project}")
+
+
 def analyze_run_health(entity_project: str, run_id: str) -> str:
     """Analyze a W&B run's health: fetch metrics, detect anomalies, return a Health Card.
 
     Args:
         entity_project: W&B entity/project path (or just project name)
-        run_id: The run ID to analyze
+        run_id: The run ID or display name of the run to analyze
     """
     api = wandb.Api()
     entity_project = _resolve_entity_project(api, entity_project)
-    run = api.run(f"{entity_project}/{run_id}")
+    run = _resolve_run(api, entity_project, run_id)
 
     # Auto-discover all numeric metric keys from actual history
     metric_keys = _discover_metric_keys(run)
@@ -577,7 +610,7 @@ def compare_runs(
         keys_per_run: list[set[str]] = []
         run_objects = []
         for rid in run_ids:
-            run = api.run(f"{entity_project}/{rid}")
+            run = _resolve_run(api, entity_project, rid)
             run_objects.append(run)
             discovered = _discover_metric_keys(run)
             keys_per_run.append(set(discovered))
@@ -587,7 +620,7 @@ def compare_runs(
             common_keys = common_keys & ks
         metric_keys = sorted(common_keys) if common_keys else []
     else:
-        run_objects = [api.run(f"{entity_project}/{rid}") for rid in run_ids]
+        run_objects = [_resolve_run(api, entity_project, rid) for rid in run_ids]
 
     if not metric_keys:
         return json.dumps({"error": "No common metrics found across the selected runs"})

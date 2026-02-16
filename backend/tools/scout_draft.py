@@ -21,27 +21,59 @@ from backend.models import (
 # ---------------------------------------------------------------------------
 
 
-def search_hf_models(query: str, limit: int = 10) -> str:
-    """Search HuggingFace Hub for models matching a query."""
-    params = urllib.parse.urlencode({
-        "search": query,
-        "sort": "downloads",
-        "direction": "-1",
-        "limit": min(limit, 20),
-    })
-    url = f"https://huggingface.co/api/models?{params}"
+def search_hf_models(query: str, limit: int = 10, author: str | None = None) -> str:
+    """Search HuggingFace Hub for models matching a query.
 
+    If *author* is provided, lists models by that author and filters
+    client-side by keyword (the HF API doesn't support author+search together).
+    """
     headers: dict[str, str] = {"Accept": "application/json"}
     token = os.environ.get("HF_TOKEN")
     if token:
         headers["Authorization"] = f"Bearer {token}"
 
-    req = urllib.request.Request(url, headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=15) as resp:
-            raw: list[dict[str, Any]] = json.loads(resp.read().decode())
-    except Exception as e:
-        return json.dumps({"error": str(e), "query": query})
+    if author:
+        # List all models by this author, filter client-side
+        params = urllib.parse.urlencode({
+            "author": author,
+            "sort": "downloads",
+            "direction": "-1",
+            "limit": 100,
+        })
+        url = f"https://huggingface.co/api/models?{params}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                raw: list[dict[str, Any]] = json.loads(resp.read().decode())
+        except Exception as e:
+            return json.dumps({"error": str(e), "query": query, "author": author})
+
+        keywords = [kw.lower() for kw in query.split() if len(kw) > 1]
+        filtered = []
+        for m in raw:
+            text = " ".join([
+                m.get("id", ""),
+                m.get("description") or "",
+                " ".join(m.get("tags", [])),
+                m.get("pipeline_tag") or "",
+            ]).lower()
+            if not keywords or any(kw in text for kw in keywords):
+                filtered.append(m)
+        raw = filtered[:min(limit, 20)]
+    else:
+        params = urllib.parse.urlencode({
+            "search": query,
+            "sort": "downloads",
+            "direction": "-1",
+            "limit": min(limit, 20),
+        })
+        url = f"https://huggingface.co/api/models?{params}"
+        req = urllib.request.Request(url, headers=headers)
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                raw = json.loads(resp.read().decode())
+        except Exception as e:
+            return json.dumps({"error": str(e), "query": query})
 
     results = []
     for model in raw:
@@ -56,7 +88,12 @@ def search_hf_models(query: str, limit: int = 10) -> str:
             "url": f"https://huggingface.co/{model.get('id', '')}",
         })
 
-    return json.dumps({"query": query, "count": len(results), "models": results})
+    return json.dumps({
+        "query": query,
+        "author": author,
+        "count": len(results),
+        "models": results,
+    })
 
 
 # ---------------------------------------------------------------------------

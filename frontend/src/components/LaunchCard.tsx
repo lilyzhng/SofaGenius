@@ -19,6 +19,7 @@ import type { LaunchCard as LaunchCardType, LaunchStatus } from "../types";
 
 interface Props {
   card: LaunchCardType;
+  onWandbUrl?: (url: string) => void;
 }
 
 const STATUS_CONFIG: Record<
@@ -126,7 +127,7 @@ function ConfigGrid({ config }: { config: Record<string, unknown> }) {
   );
 }
 
-export default function LaunchCard({ card }: Props) {
+export default function LaunchCard({ card, onWandbUrl }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [jobStatus, setJobStatus] = useState<
     "pending" | "running" | "completed" | "failed"
@@ -163,6 +164,7 @@ export default function LaunchCard({ card }: Props) {
         setJobStatus("completed");
         if (data.result?.wandb_url) {
           setWandbUrl(data.result.wandb_url);
+          onWandbUrl?.(data.result.wandb_url);
         }
         // Compute actual cost from Modal's execution time
         if (data.execution_seconds != null) {
@@ -183,6 +185,7 @@ export default function LaunchCard({ card }: Props) {
       } else if (data.status === "running" && data.wandb_url) {
         // Got the real W&B run URL from modal.Dict while job is still running
         setWandbUrl(data.wandb_url);
+        onWandbUrl?.(data.wandb_url);
       }
     } catch {
       // Network error, keep polling
@@ -308,7 +311,9 @@ export default function LaunchCard({ card }: Props) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-xs text-nobel-gold hover:text-stone-700 transition-colors"
             >
-              {wandbUrl.includes("/runs/") ? "View run" : "W&B project"}
+              {wandbUrl.includes("/runs/")
+                ? `View run ${wandbUrl.split("/runs/").pop()?.split("?")[0] ?? ""}`
+                : "W&B project"}
               <ExternalLink size={11} />
             </a>
           )}

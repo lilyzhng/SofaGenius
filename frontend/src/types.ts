@@ -183,7 +183,21 @@ export interface ComparisonCard {
   summary: string;
 }
 
-export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard | ComparisonCard;
+// --- Dataset Conversion types ---
+
+export interface ConversionCard {
+  card_type: "conversion_card";
+  title: string;
+  source_dataset: string;
+  source_format: string;
+  target_format: string;
+  preview_count: number;
+  source_columns: string[];
+  before_samples: Record<string, string>[];
+  after_samples: Record<string, string>[];
+}
+
+export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard | ComparisonCard | ConversionCard;
 
 export interface ToolCall {
   name: string;

@@ -26,13 +26,23 @@ app.add_middleware(
 )
 
 
+class ActiveRun(BaseModel):
+    wandb_url: str
+
+
 class ChatRequest(BaseModel):
     message: str
     history: list[dict] | None = None
+    active_run: ActiveRun | None = None
 
 
 @app.post("/api/chat")
 async def chat(req: ChatRequest):
+    # Pass active run context from frontend cards to orchestrator
+    if req.active_run:
+        from backend.orchestrator import update_run_context
+        update_run_context(req.active_run.wandb_url)
+
     async def event_stream():
         async for event in run_orchestrator(req.message, req.history):
             yield event
