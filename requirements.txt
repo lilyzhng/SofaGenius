@@ -1,0 +1,9 @@
+anthropic>=0.40.0
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+wandb>=0.19.0
+python-dotenv>=1.0.0
+numpy>=1.26.0
+duckdb>=1.0.0
+tweepy>=4.14.0
+modal>=0.67.0

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 // Rocket kept for header icon
 import type { LaunchCard as LaunchCardType, LaunchStatus } from "../types";
+import { API_BASE } from "../config";
 
 interface Props {
   card: LaunchCardType;
@@ -158,7 +159,7 @@ export default function LaunchCard({ card, onWandbUrl }: Props) {
       // Pass run_key so backend can look up W&B URL from modal.Dict
       const runKey = (card.config.experiment_name || card.config.run_name || "") as string;
       const params = runKey ? `?run_key=${encodeURIComponent(runKey)}` : "";
-      const res = await fetch(`/api/launch/status/${fcId}${params}`);
+      const res = await fetch(`${API_BASE}/api/launch/status/${fcId}${params}`);
       const data = await res.json();
       if (data.status === "completed") {
         setJobStatus("completed");

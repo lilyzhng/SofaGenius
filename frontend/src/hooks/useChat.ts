@@ -1,5 +1,6 @@
 import { useState, useCallback, useRef } from "react";
 import type { Message, CardData, SSEEvent, ToolCall, MessageSegment, LaunchCard } from "../types";
+import { API_BASE } from "../config";
 
 let messageId = 0;
 function nextId() {
@@ -52,7 +53,7 @@ export function useChat() {
     const assistantId = assistantMsg.id;
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: content, history, active_run: activeRun }),
@@ -214,7 +215,7 @@ export function useChat() {
 
   const launchJob = useCallback(async (card: LaunchCard): Promise<{ success: boolean; error?: string }> => {
     try {
-      const res = await fetch("/api/launch", {
+      const res = await fetch(`${API_BASE}/api/launch`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ launch_type: card.launch_type, config: card.config }),

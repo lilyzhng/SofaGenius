@@ -12,6 +12,7 @@ import {
   Loader2,
 } from "lucide-react";
 import type { DraftPostCard as DraftPostCardType, EvidenceRef } from "../types";
+import { API_BASE } from "../config";
 
 interface Props {
   card: DraftPostCardType;
@@ -93,7 +94,7 @@ export default function DraftPostCard({ card }: Props) {
     setPostStatus("posting");
     setErrorMsg(null);
     try {
-      const res = await fetch("/api/tweet", {
+      const res = await fetch(`${API_BASE}/api/tweet`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

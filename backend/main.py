@@ -17,9 +17,14 @@ from backend.orchestrator import run_orchestrator
 
 app = FastAPI(title="Sofa Genius API")
 
+_origins = ["http://localhost:5173", "http://localhost:3000"]
+_frontend_url = os.environ.get("FRONTEND_URL", "")
+if _frontend_url:
+    _origins.append(_frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
