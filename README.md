@@ -22,6 +22,48 @@ Sofa Genius turns the boring, procedural parts of ML research — monitoring, da
 
 ---
 
+## Project Structure
+
+```
+backend/
+├── orchestrator.py          # Intent classifier + router (Haiku)
+├── agents/
+│   ├── base.py              # Parameterized agent loop (shared)
+│   ├── training.py          # W&B Monitor (4 tools)
+│   ├── data.py              # Data/SQL Analyst (8 tools)
+│   ├── scout.py             # Scout + Draft (4 tools)
+│   └── launch.py            # Modal Launch (6 tools)
+├── tools/
+│   ├── wandb_monitor.py     # W&B API + 7 anomaly detectors
+│   ├── sql_analyst.py       # DuckDB + HF parquet queries + dataset search
+│   ├── scout_draft.py       # HF Hub search + tweet drafting
+│   ├── dataset_converter.py # Format detection + on-the-fly conversion
+│   └── modal_launcher.py    # Propose/modify/launch with real cost estimates
+├── modal_app/
+│   ├── app.py               # Deployable Modal app (finetune + eval)
+│   ├── finetune.py          # Unsloth QLoRA training
+│   └── eval.py              # Side-by-side model comparison
+├── models.py                # Pydantic models for all card types
+└── main.py                  # FastAPI server + SSE streaming
+
+frontend/src/
+├── hooks/useChat.ts         # SSE streaming + state management
+├── components/
+│   ├── ChatPanel.tsx         # Left panel: chat + input
+│   ├── CardsPanel.tsx        # Right panel: card router
+│   ├── WandBHealthCard.tsx   # Training health visualization
+│   ├── DataCard.tsx          # SQL results + stats + plots
+│   ├── ScoutCard.tsx         # HF recommendations
+│   ├── DraftPostCard.tsx     # Tweet preview + post button
+│   ├── LaunchCard.tsx        # Job stepper + polling + cost
+│   ├── ConversionCard.tsx    # Before/after format preview
+│   └── LandingPage.tsx       # Mode selection landing
+├── types.ts                  # TypeScript interfaces
+└── App.tsx                   # Two-panel layout
+```
+
+---
+
 ## Architecture
 
 ```
@@ -226,48 +268,6 @@ modal deploy backend/modal_app/app.py
 ```
 
 Open http://localhost:5173 and start chatting.
-
----
-
-## Project Structure
-
-```
-backend/
-├── orchestrator.py          # Intent classifier + router (Haiku)
-├── agents/
-│   ├── base.py              # Parameterized agent loop (shared)
-│   ├── training.py          # W&B Monitor (4 tools)
-│   ├── data.py              # Data/SQL Analyst (8 tools)
-│   ├── scout.py             # Scout + Draft (4 tools)
-│   └── launch.py            # Modal Launch (6 tools)
-├── tools/
-│   ├── wandb_monitor.py     # W&B API + 7 anomaly detectors
-│   ├── sql_analyst.py       # DuckDB + HF parquet queries + dataset search
-│   ├── scout_draft.py       # HF Hub search + tweet drafting
-│   ├── dataset_converter.py # Format detection + on-the-fly conversion
-│   └── modal_launcher.py    # Propose/modify/launch with real cost estimates
-├── modal_app/
-│   ├── app.py               # Deployable Modal app (finetune + eval)
-│   ├── finetune.py          # Unsloth QLoRA training
-│   └── eval.py              # Side-by-side model comparison
-├── models.py                # Pydantic models for all card types
-└── main.py                  # FastAPI server + SSE streaming
-
-frontend/src/
-├── hooks/useChat.ts         # SSE streaming + state management
-├── components/
-│   ├── ChatPanel.tsx         # Left panel: chat + input
-│   ├── CardsPanel.tsx        # Right panel: card router
-│   ├── WandBHealthCard.tsx   # Training health visualization
-│   ├── DataCard.tsx          # SQL results + stats + plots
-│   ├── ScoutCard.tsx         # HF recommendations
-│   ├── DraftPostCard.tsx     # Tweet preview + post button
-│   ├── LaunchCard.tsx        # Job stepper + polling + cost
-│   ├── ConversionCard.tsx    # Before/after format preview
-│   └── LandingPage.tsx       # Mode selection landing
-├── types.ts                  # TypeScript interfaces
-└── App.tsx                   # Two-panel layout
-```
 
 ---
 
