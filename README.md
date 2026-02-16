@@ -1,24 +1,22 @@
 <p align="center">
   <img src="frontend/public/SofaGenius_v5.png" alt="Sofa Genius" width="200" />
+  <br><br>
+  <strong style="font-size:1.5em;">Sofa Genius</strong>
+  <br>
+  <em>The research assistant that lets you stay on the sofa.</em>
 </p>
-
-<h1 align="center">Sofa Genius</h1>
-
-<p align="center"><em>The research assistant that lets you stay on the sofa.</em></p>
-
-<p align="center"><strong>Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode.</strong></p>
-
-<p align="center"><a href="https://cerebralvalley.ai/e/claude-code-hackathon/details">Built with Opus 4.6 Hackathon</a> | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment</p>
 
 ---
 
 ## What Is This?
 
+Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode.
+
+[Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details) | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment
+
 For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.
 
-Or you could lean back on the sofa and tell your AI assistant to do all of that for you.
-
-Sofa Genius turns the boring, procedural parts of ML research — monitoring, data inspection, scouting, launching jobs — into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
+Or you could lean back on the sofa and tell your AI assistant to do all of that for you. Sofa Genius turns the boring, procedural parts of ML research — monitoring, data inspection, scouting, launching jobs — into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
 
 ---
 
@@ -300,5 +298,3 @@ We didn't design the subagent architecture upfront. We built a single agent with
 **How I built with it:** Designed in 4 phases upfront. For each phase, Opus produced a detailed implementation plan, I reviewed and corrected, then let it build. Human-in-the-loop the entire time. Every mistake got documented in a lessons learned file. CLAUDE.md reminded the model to check it at the start of every new session — persistent memory across context resets.
 
 ---
-
-*Built in 48 hours for the Anthropic hackathon. The best ideas really do come from the sofa.*
