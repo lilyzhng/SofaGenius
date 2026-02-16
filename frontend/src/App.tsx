@@ -12,9 +12,7 @@ export default function App() {
       {/* Top nav */}
       <nav className="flex items-center justify-between px-6 py-3 bg-white border-b border-stone-200 flex-shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-nobel-gold rounded-full flex items-center justify-center text-white font-serif font-bold text-lg shadow-sm">
-            S
-          </div>
+          <img src="/logo.png" alt="Sofa Genius" className="w-8 h-8 rounded-full object-cover shadow-sm" />
           <span className="font-serif font-bold text-lg tracking-wide text-stone-900">
             SOFA GENIUS
           </span>

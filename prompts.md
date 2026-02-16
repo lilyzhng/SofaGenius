@@ -36,4 +36,12 @@ Explain the technical architecture, the structure of the codebase and how the va
 
 It should be very engaging to read; don't make it sound like boring technical documentation/textbook. Where appropriate, use analogies and anecdotes to make it more understandable and memorable.
 
-Also think from the Product perspective: what are the aha moments? Why would the user find this tool super useful? Did we democratize, you know, everyone to be a researcher?
+Also think from the Product perspective: what are the aha moments? Why would the user find this tool super useful? Did we democratize, you know, everyone to be a researcher? 
+
+- 8. The other feature I love is on-the-fly dynamic config. I can simply say, "Change it to use 20 epochs instead of 10. Change to use 10,000 frames instead of 5,000." The agent understands how to modify the config, and we can launch a new job without any friction. Traditionally, we have to keep our eyes very big and play with the parameter. Hopefully there is no human error, but always we make some stupid mistake, and then we have to relaunch the training. By doing this kind of modification while talking with the agent, it really makes the mode of training and research much easier to handle!
+
+- 9. The other feature is when you do independent research, you only be careful about your bank. You don't want to break your bank while doing different jobs. By talking with the agent, you can do clear budget control and understand how much it's going to cost before committing.
+
+- 10. Another thing is that Wannabe can be overwhelming if you have over 10,000 experiments launched throughout the year. Sometimes it's just hard to find and manually manage those training runs from one to another and try to overlay them on top of each other. Right now, this chatting interface makes everything so much easier. All you need to do is know the Wannabe around name, or you can just say, "Hey, compare these jobs with my previous jobs, overlay them on top of each other, and show me what's the difference." This just makes the entire Wannabe visualization inspection much easier.
+
+- [] We need to figure out a way to document the trace, basically the interaction between the agent and the user. If the user gives us some style, it means that the agent must have done something wrong. Then we need to fix it. On top of that, I think it would be helpful to use this trace data, the long trajectory data, to train an ML agent that understands the context very well.Gradually, we will use this agent to do scouting, research, and everything. Your agent can also be developed with your own research tastes. That can be tailored and fine-tuned reinforcement learning to assist you much better.

@@ -134,9 +134,7 @@ export default function ChatPanel({
       <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
         {isEmpty ? (
           <div className="flex flex-col items-center justify-center h-full text-center px-6">
-            <div className="w-12 h-12 bg-nobel-gold rounded-full flex items-center justify-center text-white font-serif font-bold text-2xl mb-4 shadow-sm">
-              S
-            </div>
+            <img src="/logo.png" alt="Sofa Genius" className="w-16 h-16 rounded-full object-cover mb-4 shadow-sm" />
             <h2 className="font-serif text-2xl text-stone-900 mb-2">
               Sofa Genius
             </h2>
