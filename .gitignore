@@ -4,3 +4,16 @@ dist/
 __pycache__/
 *.pyc
 .venv/
+
+# Local-only notes and drafts
+Hackathon - Sofa Genius.md
+SofaGenius.md
+phrase_4.md
+prompts.md
+sofa_genius.png
+state.md
+project_description.md
+Qwen3-Coder/
+SofaGenius_v2.png
+SofaGenius_v3.png
+SofaGenius_v4.png

@@ -14,11 +14,86 @@
 
 ## What Is This?
 
-For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.  
+For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.
 
 Or you could lean back on the sofa and tell your AI assistant to do all of that for you.
 
 Sofa Genius turns the boring, procedural parts of ML research — monitoring, data inspection, scouting, launching jobs — into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
+
+---
+
+## Architecture
+
+```
+                            User message
+                                 │
+                                 ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                        Frontend (React + Vite)                       │
+│                                                                      │
+│   ┌──────────────────────┐         ┌───────────────────────────┐     │
+│   │     Chat Panel       │         │       Cards Panel         │     │
+│   │                      │         │                           │     │
+│   │  User messages       │         │  WandBHealthCard          │     │
+│   │  Agent responses     │         │  DataCard (SQL + plots)   │     │
+│   │  Tool call indicators│         │  ScoutCard (HF picks)     │     │
+│   │                      │         │  LaunchCard (GPU jobs)    │     │
+│   │                      │         │  ComparisonCard           │     │
+│   │                      │         │  DraftPostCard            │     │
+│   │                      │         │  ConversionCard           │     │
+│   └──────────────────────┘         └───────────────────────────┘     │
+│              │  SSE stream (text, tool_call, tool_result, card)      │
+└──────────────┼────────────────────────────────────────────────────── ┘
+               │
+               ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                      Backend (FastAPI + SSE)                         │
+│                                                                      │
+│   ┌─────────────────────────────────────────────────────────┐        │
+│   │              Orchestrator (Claude Haiku, ~300ms)        │        │
+│   │                                                         │        │
+│   │   Classifies intent → routes to the right subagent      │        │
+│   └─────┬──────────┬──────────────┬──────────────┬──────────┘        │
+│         │          │              │              │                   │
+│         ▼          ▼              ▼              ▼                   │
+│   ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐                │
+│   │ Training │ │   Data   │ │  Scout   │ │  Launch  │                │
+│   │  Agent   │ │  Agent   │ │  Agent   │ │  Agent   │                │
+│   │          │ │          │ │          │ │          │                │
+│   │ 4 tools  │ │ 8 tools  │ │ 4 tools  │ │ 6 tools  │                │
+│   │          │ │          │ │          │ │          │                │
+│   │ W&B mon. │ │ SQL/Duck │ │ HF scout │ │ Propose  │                │
+│   │ Anomaly  │ │ Stats    │ │ Personal │ │ Modify   │                │
+│   │ Compare  │ │ Plots    │ │ + public │ │ Launch   │                │
+│   │ Health   │ │ Convert  │ │ Draft    │ │ Cost est │                │
+│   └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘                │
+│        │            │            │            │                      │
+└────────┼────────────┼────────────┼────────────┼──────────────────────┘
+         │            │            │            │
+         ▼            ▼            ▼            ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│                        External Services                             │
+│                                                                      │
+│   Anthropic API ─── Claude Sonnet (subagents) + Haiku (routing)      │
+│   W&B API ───────── Training metrics, run history, anomaly data      │
+│   HuggingFace ───── Dataset search, parquet SQL (via DuckDB)         │
+│   Modal ─────────── Serverless A100 GPU jobs (finetune + eval)       │
+│   Twitter/X ─────── Post drafts with human approval gate             │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+### Why Subagents?
+
+Started with a single agent with all tools. At 15+ tools, tool selection degraded badly. The fix: an **orchestrator (Haiku, ~300ms)** classifies intent and delegates to **4 specialized subagents**, each with only 4-8 tools. Like a hospital — a triage nurse routes you to the right specialist.
+
+**How the loop works:** Each subagent runs an Anthropic tool_use loop (up to 10 turns). On every tool execution, the backend emits SSE events — `text` for agent prose, `tool_call`/`tool_result` for progress indicators, and `card` for structured visual cards that render in the right panel. The agent never outputs card JSON as text; cards are emitted as a side effect of tool execution.
+
+| Subagent | Tools | Capabilities |
+|----------|-------|-------------|
+| **Training** | 4 | W&B monitoring, 7 anomaly detectors, multi-run comparison |
+| **Data** | 8 | HF dataset search, DuckDB SQL, stats, plots, format detection + conversion |
+| **Scout** | 4 | HF search (personal space first, then public), scout cards, draft tweets |
+| **Launch** | 6 | Propose/modify/launch fine-tuning and eval jobs on Modal with cost estimates |
 
 ---
 
@@ -57,81 +132,6 @@ The tool streams a handful of sample rows to detect the format and show a before
 
 ---
 
-## Architecture
-
-```
-                            User message
-                                 │
-                                 ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                        Frontend (React + Vite)                       │
-│                                                                      │
-│   ┌──────────────────────┐         ┌───────────────────────────┐    │
-│   │     Chat Panel        │         │       Cards Panel          │    │
-│   │                      │         │                           │    │
-│   │  User messages       │         │  WandBHealthCard          │    │
-│   │  Agent responses     │         │  DataCard (SQL + plots)   │    │
-│   │  Tool call indicators│         │  ScoutCard (HF picks)     │    │
-│   │                      │         │  LaunchCard (GPU jobs)    │    │
-│   │                      │         │  ComparisonCard           │    │
-│   │                      │         │  DraftPostCard            │    │
-│   │                      │         │  ConversionCard           │    │
-│   └──────────────────────┘         └───────────────────────────┘    │
-│              │  SSE stream (text, tool_call, tool_result, card)      │
-└──────────────┼──────────────────────────────────────────────────────┘
-               │
-               ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                      Backend (FastAPI + SSE)                         │
-│                                                                      │
-│   ┌─────────────────────────────────────────────────────────┐       │
-│   │              Orchestrator (Claude Haiku, ~300ms)          │       │
-│   │                                                           │       │
-│   │   Classifies intent → routes to the right subagent        │       │
-│   └─────┬──────────┬──────────────┬──────────────┬──────────┘       │
-│         │          │              │              │                    │
-│         ▼          ▼              ▼              ▼                    │
-│   ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐              │
-│   │ Training │ │   Data   │ │  Scout   │ │  Launch  │              │
-│   │  Agent   │ │  Agent   │ │  Agent   │ │  Agent   │              │
-│   │          │ │          │ │          │ │          │              │
-│   │ 4 tools  │ │ 8 tools  │ │ 4 tools  │ │ 6 tools  │              │
-│   │          │ │          │ │          │ │          │              │
-│   │ W&B mon. │ │ SQL/Duck │ │ HF scout │ │ Propose  │              │
-│   │ Anomaly  │ │ Stats    │ │ Personal │ │ Modify   │              │
-│   │ Compare  │ │ Plots    │ │ + public │ │ Launch   │              │
-│   │ Health   │ │ Convert  │ │ Draft    │ │ Cost est │              │
-│   └────┬─────┘ └────┬─────┘ └────┬─────┘ └────┬─────┘              │
-│        │            │            │            │                      │
-└────────┼────────────┼────────────┼────────────┼──────────────────────┘
-         │            │            │            │
-         ▼            ▼            ▼            ▼
-┌──────────────────────────────────────────────────────────────────────┐
-│                        External Services                             │
-│                                                                      │
-│   Anthropic API ─── Claude Sonnet (subagents) + Haiku (routing)     │
-│   W&B API ───────── Training metrics, run history, anomaly data     │
-│   HuggingFace ───── Dataset search, parquet SQL (via DuckDB)        │
-│   Modal ─────────── Serverless A100 GPU jobs (finetune + eval)      │
-│   Twitter/X ─────── Post drafts with human approval gate            │
-└──────────────────────────────────────────────────────────────────────┘
-```
-
-### Why Subagents?
-
-Started with a single agent with all tools. At 15+ tools, tool selection degraded badly. The fix: an **orchestrator (Haiku, ~300ms)** classifies intent and delegates to **4 specialized subagents**, each with only 4-8 tools. Like a hospital — a triage nurse routes you to the right specialist.
-
-**How the loop works:** Each subagent runs an Anthropic tool_use loop (up to 10 turns). On every tool execution, the backend emits SSE events — `text` for agent prose, `tool_call`/`tool_result` for progress indicators, and `card` for structured visual cards that render in the right panel. The agent never outputs card JSON as text; cards are emitted as a side effect of tool execution.
-
-| Subagent | Tools | Capabilities |
-|----------|-------|-------------|
-| **Training** | 4 | W&B monitoring, 7 anomaly detectors, multi-run comparison |
-| **Data** | 8 | HF dataset search, DuckDB SQL, stats, plots, format detection + conversion |
-| **Scout** | 4 | HF search (personal space first, then public), scout cards, draft tweets |
-| **Launch** | 6 | Propose/modify/launch fine-tuning and eval jobs on Modal with cost estimates |
-
----
-
 ## Tech Stack
 
 ### Backend
@@ -152,6 +152,17 @@ Started with a single agent with all tools. At 15+ tools, tool selection degrade
 | **Framer Motion** | Spring physics animations for card transitions. |
 | **Tailwind CSS** | Utility-first styling with warm cream/gold design system. |
 | **Recharts** | Interactive metric charts for Health Cards and Data Cards. |
+
+### The Numbers
+
+- **6 card types** — W&B Health, Comparison, Data, Scout, Draft Post, Launch
+- **22 tools** across 4 subagents
+- **7 anomaly detectors** — spike, divergence, oscillation, gradient explosion, overfitting, plateau, NaN
+- **3 run modes** — overfit ($0.08), exp ($0.09), prod (varies)
+- **~3,500 lines** of Python backend
+- **~2,000 lines** of TypeScript frontend
+- **5 external APIs** — Anthropic, W&B, HuggingFace, Modal, Twitter/X
+- **2 Claude models** — Sonnet (subagents), Haiku (orchestrator)
 
 ---
 
@@ -282,19 +293,6 @@ We didn't design the subagent architecture upfront. We built a single agent with
 
 ---
 
-## The Numbers
-
-- **6 card types** — W&B Health, Comparison, Data, Scout, Draft Post, Launch
-- **22 tools** across 4 subagents
-- **7 anomaly detectors** — spike, divergence, oscillation, gradient explosion, overfitting, plateau, NaN
-- **3 run modes** — overfit ($0.08), exp ($0.09), prod (varies)
-- **~3,500 lines** of Python backend
-- **~2,000 lines** of TypeScript frontend
-- **5 external APIs** — Anthropic, W&B, HuggingFace, Modal, Twitter/X
-- **2 Claude models** — Sonnet (subagents), Haiku (orchestrator)
-
----
-
 ## Building with Opus 4.6
 
 **What surprised me:** Opus has deep ML infrastructure knowledge — Modal, multi-GPU training, Unsloth, W&B integration, resource allocation — it worked out of the box in one shot. And even at the 1 million token context window, it didn't hallucinate on long-horizon tasks.
@@ -302,3 +300,5 @@ We didn't design the subagent architecture upfront. We built a single agent with
 **How I built with it:** Designed in 4 phases upfront. For each phase, Opus produced a detailed implementation plan, I reviewed and corrected, then let it build. Human-in-the-loop the entire time. Every mistake got documented in a lessons learned file. CLAUDE.md reminded the model to check it at the start of every new session — persistent memory across context resets.
 
 ---
+
+*Built in 48 hours for the Anthropic hackathon. The best ideas really do come from the sofa.*
