@@ -7,6 +7,7 @@ __pycache__/
 *.tsbuildinfo
 
 # Local-only notes and drafts
+CLAUDE.md
 LESSON.md
 Hackathon - Sofa Genius.md
 SofaGenius.md
