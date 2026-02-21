@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="frontend/public/SofaGenius_v5.png" alt="Sofa Genius" width="200" />
-  <br><br>
+  <img src="frontend/public/SofaGenius_v3.png" alt="SofaGenius" width="500" />
+  <!-- <br><br>
   <strong style="font-size:1.5em;">Sofa Genius</strong>
   <br>
-  <em>The research assistant that lets you stay on the sofa.</em>
+  <em>The research assistant that lets you stay on the sofa.</em> -->
 </p>
 
 ---
