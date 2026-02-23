@@ -1,5 +1,5 @@
 import { useState, useCallback, useRef } from "react";
-import type { Message, CardData, SSEEvent, ToolCall, MessageSegment, LaunchCard } from "../types";
+import type { Message, CardData, SSEEvent, ToolCall, LaunchCard, SessionDetail } from "../types";
 import { API_BASE } from "../config";
 
 let messageId = 0;
@@ -7,11 +7,12 @@ function nextId() {
   return `msg-${++messageId}`;
 }
 
-export function useChat() {
+export function useChat(getAccessToken: () => Promise<string | null>) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [cards, setCards] = useState<CardData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeToolCall, setActiveToolCall] = useState<string | null>(null);
+  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const cardsRef = useRef<CardData[]>(cards);
   cardsRef.current = cards;
@@ -34,7 +35,6 @@ export function useChat() {
       .map((m) => ({ role: m.role, content: m.content }));
 
     // Extract active run context from launch cards (wandb_url → run ID + project)
-    // Use cardsRef to always read the latest cards, avoiding stale closure
     const currentCards = cardsRef.current;
     const launchCard = [...currentCards].reverse().find(
       (c) => c.card_type === "launch_card" && "config" in c,
@@ -53,15 +53,30 @@ export function useChat() {
     const assistantId = assistantMsg.id;
 
     try {
+      const token = await getAccessToken();
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
+
       const res = await fetch(`${API_BASE}/api/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: content, history, active_run: activeRun }),
+        headers,
+        body: JSON.stringify({
+          message: content,
+          history,
+          active_run: activeRun,
+          session_id: currentSessionId,
+        }),
         signal: controller.signal,
       });
 
       if (!res.ok || !res.body) {
         throw new Error(`HTTP ${res.status}`);
+      }
+
+      // Read session ID from response header (new sessions)
+      const sessionHeader = res.headers.get("X-Session-Id");
+      if (sessionHeader && !currentSessionId) {
+        setCurrentSessionId(sessionHeader);
       }
 
       const reader = res.body.getReader();
@@ -94,7 +109,6 @@ export function useChat() {
                 if (m.id !== assistantId) return m;
                 const segs = [...(m.segments || [])];
                 const last = segs[segs.length - 1];
-                // Append to last text segment, or create a new one
                 if (last && last.type === "text") {
                   segs[segs.length - 1] = {
                     type: "text",
@@ -132,7 +146,6 @@ export function useChat() {
               prev.map((m) => {
                 if (m.id !== assistantId) return m;
                 const segs = [...(m.segments || [])];
-                // Find last tool segment with this name that's still running
                 for (let i = segs.length - 1; i >= 0; i--) {
                   const seg = segs[i];
                   if (
@@ -159,14 +172,11 @@ export function useChat() {
           } else if (event.type === "card" && event.data) {
             setCards((prev) => {
               const newCard = event.data!;
-              // For launch cards: update the existing proposed card in-place
-              // instead of adding a duplicate — keep title, summary, cost from proposal
               if (newCard.card_type === "launch_card" && newCard.status !== "proposed") {
                 for (let i = prev.length - 1; i >= 0; i--) {
                   const c = prev[i];
                   if (c.card_type === "launch_card" && c.status === "proposed") {
                     const updated = [...prev];
-                    // Merge: keep the proposal's rich info, update only status fields
                     updated[i] = {
                       ...c,
                       status: newCard.status,
@@ -205,7 +215,7 @@ export function useChat() {
       setActiveToolCall(null);
       abortRef.current = null;
     }
-  }, [isLoading, messages]);
+  }, [isLoading, messages, currentSessionId, getAccessToken]);
 
   const stop = useCallback(() => {
     abortRef.current?.abort();
@@ -215,16 +225,19 @@ export function useChat() {
 
   const launchJob = useCallback(async (card: LaunchCard): Promise<{ success: boolean; error?: string }> => {
     try {
+      const token = await getAccessToken();
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (token) headers["Authorization"] = `Bearer ${token}`;
+
       const res = await fetch(`${API_BASE}/api/launch`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify({ launch_type: card.launch_type, config: card.config }),
       });
       const data = await res.json();
       if (!res.ok) {
         return { success: false, error: data.error || "Failed to launch" };
       }
-      // Update the proposed card in-place → running with function_call_id
       setCards((prev) =>
         prev.map((c) =>
           c === card || (c.card_type === "launch_card" && c.status === "proposed")
@@ -236,11 +249,10 @@ export function useChat() {
     } catch (e) {
       return { success: false, error: e instanceof Error ? e.message : "Network error" };
     }
-  }, []);
+  }, [getAccessToken]);
 
   const updateCardWandbUrl = useCallback((wandbUrl: string) => {
     setCards((prev) => {
-      // Find the most recent launch card without a wandb_url and update it
       const updated = [...prev];
       for (let i = updated.length - 1; i >= 0; i--) {
         const c = updated[i];
@@ -248,7 +260,6 @@ export function useChat() {
           updated[i] = { ...c, wandb_url: wandbUrl };
           return updated;
         }
-        // Also update if the card already has a wandb_url but it's a project URL (not a run URL)
         if (c.card_type === "launch_card" && c.wandb_url && !c.wandb_url.includes("/runs/") && wandbUrl.includes("/runs/")) {
           updated[i] = { ...c, wandb_url: wandbUrl };
           return updated;
@@ -258,13 +269,54 @@ export function useChat() {
     });
   }, []);
 
+  const restoreSession = useCallback(async (sessionId: string) => {
+    const token = await getAccessToken();
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_BASE}/api/sessions/${sessionId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) return;
+      const detail: SessionDetail = await res.json();
+
+      // Convert DB messages to frontend Message format
+      const restoredMessages: Message[] = detail.messages.map((m) => ({
+        id: nextId(),
+        role: m.role,
+        content: m.content,
+        segments: m.segments || undefined,
+      }));
+
+      setMessages(restoredMessages);
+      setCards(detail.cards || []);
+      setCurrentSessionId(sessionId);
+      setIsLoading(false);
+      setActiveToolCall(null);
+    } catch {
+      // Silently fail
+    }
+  }, [getAccessToken]);
+
   const clearChat = useCallback(() => {
     setMessages([]);
     setCards([]);
+    setCurrentSessionId(null);
     setIsLoading(false);
     setActiveToolCall(null);
     abortRef.current?.abort();
   }, []);
 
-  return { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob, updateCardWandbUrl };
+  return {
+    messages,
+    cards,
+    isLoading,
+    activeToolCall,
+    currentSessionId,
+    sendMessage,
+    stop,
+    clearChat,
+    launchJob,
+    updateCardWandbUrl,
+    restoreSession,
+  };
 }

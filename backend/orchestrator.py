@@ -1,14 +1,16 @@
 """Orchestrator — classify intent and route to the right subagent.
 
-Resolves W&B identity once at startup and maintains session context so
-agents always know the user's entity, projects, and last-launched run
-without wasting tool calls to rediscover them.
+Resolves W&B identity per-request (using user's credentials) and maintains
+per-session context so agents always know the user's entity, projects, and
+last-launched run without wasting tool calls to rediscover them.
 """
 
 from __future__ import annotations
 
+import contextlib
 import json
 import logging
+import os
 from typing import Any, AsyncGenerator
 
 import anthropic
@@ -39,40 +41,39 @@ _AGENT_MAP = {
 }
 
 # ---------------------------------------------------------------------------
-# HF identity cache — resolved once, shared across all requests
+# HF identity cache — keyed by token so per-user resolution works
 # ---------------------------------------------------------------------------
-_hf_info: dict[str, Any] | None = None
+_hf_cache: dict[str, dict[str, Any]] = {}
 
 
-def _resolve_hf_info() -> dict[str, Any]:
-    """Resolve HuggingFace username from HF_TOKEN. Cached after first call."""
-    global _hf_info
-    if _hf_info is not None:
-        return _hf_info
-    import os, urllib.request, urllib.error
-    token = os.environ.get("HF_TOKEN")
+def _resolve_hf_info(token: str | None = None) -> dict[str, Any]:
+    """Resolve HuggingFace username. Uses per-user token if provided, else env."""
+    import urllib.request, urllib.error
+    token = token or os.environ.get("HF_TOKEN")
     if not token:
-        _hf_info = {"username": None}
-        return _hf_info
+        return {"username": None}
+    if token in _hf_cache:
+        return _hf_cache[token]
     try:
         req = urllib.request.Request(
             "https://huggingface.co/api/whoami-v2",
             headers={"Authorization": f"Bearer {token}"},
         )
         with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode())
-        username = data.get("name") or data.get("user", "")
-        _hf_info = {"username": username}
+            resp_data = json.loads(resp.read().decode())
+        username = resp_data.get("name") or resp_data.get("user", "")
+        info = {"username": username}
         log.info("HF identity resolved: username=%s", username)
     except Exception as e:
         log.warning("Could not resolve HF info: %s", e)
-        _hf_info = {"username": None}
-    return _hf_info
+        info = {"username": None}
+    _hf_cache[token] = info
+    return info
 
 
-def _build_hf_context() -> str:
+def _build_hf_context(hf_token: str | None = None) -> str:
     """Build the HF identity block for system prompts."""
-    info = _resolve_hf_info()
+    info = _resolve_hf_info(hf_token)
     username = info.get("username")
     if not username:
         return ""
@@ -86,35 +87,37 @@ def _build_hf_context() -> str:
 
 
 # ---------------------------------------------------------------------------
-# W&B identity cache — resolved once, shared across all requests
+# W&B identity cache — keyed by api_key so per-user resolution works
 # ---------------------------------------------------------------------------
-_wandb_info: dict[str, Any] | None = None
+_wandb_cache: dict[str, dict[str, Any]] = {}
 
 
-def _resolve_wandb_info() -> dict[str, Any]:
-    """Resolve W&B entity and projects once. Cached after first call."""
-    global _wandb_info
-    if _wandb_info is not None:
-        return _wandb_info
+def _resolve_wandb_info(api_key: str | None = None) -> dict[str, Any]:
+    """Resolve W&B entity and projects. Uses per-user key if provided, else env."""
+    key = api_key or os.environ.get("WANDB_API_KEY", "")
+    cache_key = key or "__env__"
+    if cache_key in _wandb_cache:
+        return _wandb_cache[cache_key]
     try:
         import wandb
-        api = wandb.Api()
+        api = wandb.Api(api_key=key) if key else wandb.Api()
         entity = api.default_entity
         projects = [
             {"name": p.name, "entity": p.entity}
             for p in api.projects(entity)
         ]
-        _wandb_info = {"entity": entity, "projects": projects[:20]}
+        info = {"entity": entity, "projects": projects[:20]}
         log.info("W&B identity resolved: entity=%s, %d projects", entity, len(projects))
     except Exception as e:
         log.warning("Could not resolve W&B info: %s", e)
-        _wandb_info = {"entity": None, "projects": []}
-    return _wandb_info
+        info = {"entity": None, "projects": []}
+    _wandb_cache[cache_key] = info
+    return info
 
 
-def _build_wandb_context() -> str:
+def _build_wandb_context(wandb_api_key: str | None = None) -> str:
     """Build the W&B identity block for system prompts."""
-    info = _resolve_wandb_info()
+    info = _resolve_wandb_info(wandb_api_key)
     if not info.get("entity"):
         return ""
     project_names = [p["name"] for p in info["projects"]]
@@ -129,10 +132,22 @@ def _build_wandb_context() -> str:
 
 
 # ---------------------------------------------------------------------------
-# Session context — tracks the most recently launched run so cross-agent
-# references work (no database required).
+# Session context — tracks the most recently launched run per session so
+# cross-agent references work.
 # ---------------------------------------------------------------------------
-_session_context: dict[str, Any] = {}
+_session_contexts: dict[str, dict[str, Any]] = {}
+
+
+def _get_session_context(session_id: str | None = None) -> dict[str, Any]:
+    """Get the context dict for a session. Falls back to a global default."""
+    key = session_id or "__default__"
+    if key not in _session_contexts:
+        _session_contexts[key] = {}
+    return _session_contexts[key]
+
+
+# Keep module-level alias for backwards compatibility with update_run_context
+_session_context: dict[str, Any] = _get_session_context()
 
 
 def _run_id_from_wandb_url(url: str) -> str | None:
@@ -155,29 +170,28 @@ def _project_from_wandb_url(url: str) -> str | None:
     return None
 
 
-def update_run_context(wandb_url: str) -> None:
+def update_run_context(wandb_url: str, session_id: str | None = None) -> None:
     """Called by the API layer when the frontend sends an active_run with a W&B URL.
 
     This is the most authoritative source of run info — it comes directly
     from the LaunchCard's polling of Modal, which gets the real URL.
     """
+    ctx = _get_session_context(session_id)
     run_id = _run_id_from_wandb_url(wandb_url)
     entity_project = _project_from_wandb_url(wandb_url)
     if not run_id:
         return
 
-    launch = _session_context.get("last_launch")
-    if launch:
-        launch["run_id"] = run_id
-        launch["wandb_url"] = wandb_url
+    launch_ctx = ctx.get("last_launch")
+    if launch_ctx:
+        launch_ctx["run_id"] = run_id
+        launch_ctx["wandb_url"] = wandb_url
         if entity_project:
-            # Update project from URL in case it's more accurate
             project = entity_project.split("/")[-1] if "/" in entity_project else entity_project
-            launch["wandb_project"] = project
+            launch_ctx["wandb_project"] = project
     else:
-        # No launch context yet — create one from the URL
         project = entity_project.split("/")[-1] if entity_project and "/" in entity_project else ""
-        _session_context["last_launch"] = {
+        ctx["last_launch"] = {
             "experiment_name": "",
             "wandb_project": project,
             "wandb_url": wandb_url,
@@ -216,12 +230,13 @@ def _resolve_run_id_from_modal(function_call_id: str, run_key: str) -> str | Non
     return None
 
 
-def _extract_event_context(event_json: str) -> None:
+def _extract_event_context(event_json: str, session_id: str | None = None) -> None:
     """Extract and cache useful context from SSE events.
 
     Launch cards: capture experiment_name, wandb_project, function_call_id.
     Health cards: capture the resolved run_id.
     """
+    ctx = _get_session_context(session_id)
     try:
         payload = json.loads(event_json.removeprefix("data: ").strip())
     except (json.JSONDecodeError, AttributeError):
@@ -237,7 +252,7 @@ def _extract_event_context(event_json: str) -> None:
         wandb_project = config.get("wandb_project", "")
         function_call_id = card.get("modal_function_call_id", "")
         if experiment_name or wandb_project:
-            _session_context["last_launch"] = {
+            ctx["last_launch"] = {
                 "experiment_name": experiment_name,
                 "wandb_project": wandb_project,
                 "wandb_url": card.get("wandb_url", ""),
@@ -246,50 +261,54 @@ def _extract_event_context(event_json: str) -> None:
                 "function_call_id": function_call_id,
                 "run_id": None,
             }
-            # Try to resolve run ID immediately if we have a function_call_id
             if function_call_id and experiment_name:
                 rid = _resolve_run_id_from_modal(function_call_id, experiment_name)
                 if rid:
-                    _session_context["last_launch"]["run_id"] = rid
+                    ctx["last_launch"]["run_id"] = rid
 
     # --- Health card: capture the resolved run_id ---
     if event_type == "card" and payload.get("card_type") == "wandb_health":
         card = payload.get("data", {})
         run_id = card.get("run_id")
-        launch = _session_context.get("last_launch")
-        if run_id and launch and not launch.get("run_id"):
-            launch["run_id"] = run_id
-            launch["wandb_url"] = card.get("url") or launch.get("wandb_url", "")
+        launch_ctx = ctx.get("last_launch")
+        if run_id and launch_ctx and not launch_ctx.get("run_id"):
+            launch_ctx["run_id"] = run_id
+            launch_ctx["wandb_url"] = card.get("url") or launch_ctx.get("wandb_url", "")
 
 
-def _ensure_run_id_resolved() -> None:
+def _ensure_run_id_resolved(session_id: str | None = None) -> None:
     """If we have a launch without a run_id, try resolving via Modal."""
-    launch = _session_context.get("last_launch")
-    if not launch or launch.get("run_id"):
+    ctx = _get_session_context(session_id)
+    launch_ctx = ctx.get("last_launch")
+    if not launch_ctx or launch_ctx.get("run_id"):
         return
-    fcid = launch.get("function_call_id")
-    exp_name = launch.get("experiment_name")
+    fcid = launch_ctx.get("function_call_id")
+    exp_name = launch_ctx.get("experiment_name")
     if fcid and exp_name:
         rid = _resolve_run_id_from_modal(fcid, exp_name)
         if rid:
-            launch["run_id"] = rid
+            launch_ctx["run_id"] = rid
             log.info("Resolved W&B run ID from Modal: %s", rid)
 
 
-def _build_launch_context() -> str:
+def _build_launch_context(
+    wandb_api_key: str | None = None,
+    session_id: str | None = None,
+) -> str:
     """Build a system prompt suffix from the last launched run."""
-    launch = _session_context.get("last_launch")
-    if not launch:
+    ctx = _get_session_context(session_id)
+    launch_ctx = ctx.get("last_launch")
+    if not launch_ctx:
         return ""
 
     # Try to resolve the run ID if we don't have it yet
-    _ensure_run_id_resolved()
+    _ensure_run_id_resolved(session_id)
 
     parts = []
-    run_id = launch.get("run_id")
-    wandb_info = _resolve_wandb_info()
+    run_id = launch_ctx.get("run_id")
+    wandb_info = _resolve_wandb_info(wandb_api_key)
     entity = wandb_info.get("entity", "")
-    project = launch.get("wandb_project", "")
+    project = launch_ctx.get("wandb_project", "")
 
     if run_id:
         parts.append(f"W&B run ID: {run_id}")
@@ -297,21 +316,21 @@ def _build_launch_context() -> str:
             parts.append(f"entity_project: {entity}/{project}")
         parts.append("Use this run ID directly with analyze_run_health — no need to list runs first.")
     else:
-        if launch.get("experiment_name"):
-            parts.append(f"run display name: {launch['experiment_name']}")
+        if launch_ctx.get("experiment_name"):
+            parts.append(f"run display name: {launch_ctx['experiment_name']}")
         if entity and project:
             parts.append(f"entity_project: {entity}/{project}")
         parts.append(
             "The W&B run ID is not yet available (job may still be starting). "
             "Call list_wandb_runs to find the run matching this display name."
         )
-    if launch.get("dataset"):
-        parts.append(f"dataset: {launch['dataset']}")
+    if launch_ctx.get("dataset"):
+        parts.append(f"dataset: {launch_ctx['dataset']}")
     if not parts:
         return ""
     return (
         "\n\nSESSION CONTEXT — The user recently launched a "
-        f"{launch.get('launch_type', 'training')} job:\n"
+        f"{launch_ctx.get('launch_type', 'training')} job:\n"
         + "\n".join(f"- {p}" for p in parts)
         + "\nWhen the user refers to 'the run', 'my run', 'the training', etc., "
         "they mean this run."
@@ -338,9 +357,36 @@ async def _classify_intent(message: str) -> str:
     return category
 
 
+@contextlib.contextmanager
+def _inject_credentials(wandb_api_key: str | None, hf_token: str | None):
+    """Temporarily set env vars for per-user credentials during tool execution."""
+    old_wandb = os.environ.get("WANDB_API_KEY")
+    old_hf = os.environ.get("HF_TOKEN")
+    try:
+        if wandb_api_key:
+            os.environ["WANDB_API_KEY"] = wandb_api_key
+        if hf_token:
+            os.environ["HF_TOKEN"] = hf_token
+        yield
+    finally:
+        # Restore originals
+        if old_wandb is not None:
+            os.environ["WANDB_API_KEY"] = old_wandb
+        elif wandb_api_key and "WANDB_API_KEY" in os.environ:
+            del os.environ["WANDB_API_KEY"]
+        if old_hf is not None:
+            os.environ["HF_TOKEN"] = old_hf
+        elif hf_token and "HF_TOKEN" in os.environ:
+            del os.environ["HF_TOKEN"]
+
+
 async def run_orchestrator(
     message: str,
     history: list[dict[str, Any]] | None = None,
+    *,
+    wandb_api_key: str | None = None,
+    hf_token: str | None = None,
+    session_id: str | None = None,
 ) -> AsyncGenerator[str, None]:
     """Route the user message to the appropriate subagent."""
     category = await _classify_intent(message)
@@ -366,23 +412,24 @@ async def run_orchestrator(
 
     agent_module = _AGENT_MAP[category]
 
-    # Build system prompt with injected context
+    # Build system prompt with injected context (per-user credentials)
     system_prompt = agent_module.SYSTEM_PROMPT
     if category in ("training", "launch"):
-        system_prompt += _build_wandb_context()
+        system_prompt += _build_wandb_context(wandb_api_key)
     if category in ("training", "data"):
-        system_prompt += _build_launch_context()
+        system_prompt += _build_launch_context(wandb_api_key, session_id)
     if category in ("data", "scout"):
-        system_prompt += _build_hf_context()
+        system_prompt += _build_hf_context(hf_token)
 
-    async for event in run_subagent(
-        message,
-        history,
-        system_prompt=system_prompt,
-        tools=agent_module.TOOLS,
-        tool_dispatch=agent_module.TOOL_DISPATCH,
-        card_tool_mapping=agent_module.CARD_TOOL_MAPPING,
-    ):
-        # Capture launch context from SSE events for cross-agent memory
-        _extract_event_context(event)
-        yield event
+    with _inject_credentials(wandb_api_key, hf_token):
+        async for event in run_subagent(
+            message,
+            history,
+            system_prompt=system_prompt,
+            tools=agent_module.TOOLS,
+            tool_dispatch=agent_module.TOOL_DISPATCH,
+            card_tool_mapping=agent_module.CARD_TOOL_MAPPING,
+        ):
+            # Capture launch context from SSE events for cross-agent memory
+            _extract_event_context(event, session_id)
+            yield event

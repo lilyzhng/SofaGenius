@@ -226,3 +226,35 @@ export interface SSEEvent {
   card_type?: string;
   data?: CardData;
 }
+
+// --- Auth & Profile types ---
+
+export interface UserProfile {
+  id: string;
+  display_name: string;
+  email: string;
+  avatar_url: string;
+  has_wandb_key: boolean;
+  wandb_entity: string;
+  has_hf_token: boolean;
+  hf_username: string;
+}
+
+export interface SessionSummary {
+  id: string;
+  title: string;
+  preview: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SessionDetail {
+  messages: {
+    id: string;
+    role: "user" | "assistant";
+    content: string;
+    segments: MessageSegment[] | null;
+    created_at: string;
+  }[];
+  cards: CardData[];
+}

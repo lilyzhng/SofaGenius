@@ -1,18 +1,64 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RotateCcw } from "lucide-react";
+import { RotateCcw, PanelLeftOpen, PanelLeftClose, Loader2 } from "lucide-react";
 import ChatPanel from "./components/ChatPanel";
 import CardsPanel from "./components/CardsPanel";
 import LandingPage from "./components/LandingPage";
+import AuthPage from "./components/AuthPage";
+import SessionSidebar from "./components/SessionSidebar";
+import SettingsModal from "./components/SettingsModal";
+import { useAuthContext } from "./contexts/AuthContext";
 import { useChat } from "./hooks/useChat";
+import { useSessions } from "./hooks/useSessions";
+import { useProfile } from "./hooks/useProfile";
 
 const spring = { type: "spring" as const, stiffness: 80, damping: 15 };
 
 export default function App() {
-  const { messages, cards, isLoading, activeToolCall, sendMessage, stop, clearChat, launchJob, updateCardWandbUrl } =
-    useChat();
+  const { user, loading: authLoading, signOut, getAccessToken } = useAuthContext();
+
+  const {
+    messages,
+    cards,
+    isLoading,
+    activeToolCall,
+    currentSessionId,
+    sendMessage,
+    stop,
+    clearChat,
+    launchJob,
+    updateCardWandbUrl,
+    restoreSession,
+  } = useChat(getAccessToken);
+
+  const { sessions, refreshSessions, deleteSession, renameSession } = useSessions(getAccessToken);
+  const { profile, fetchProfile, updateCredentials } = useProfile(getAccessToken);
 
   const [showLanding, setShowLanding] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  // Fetch sessions and profile when user signs in
+  useEffect(() => {
+    if (user) {
+      refreshSessions();
+      fetchProfile();
+    }
+  }, [user, refreshSessions, fetchProfile]);
+
+  // Auto-open settings on first login if no credentials configured
+  useEffect(() => {
+    if (profile && !profile.has_wandb_key && !profile.has_hf_token) {
+      setSettingsOpen(true);
+    }
+  }, [profile]);
+
+  // Refresh session list when a new session is created
+  useEffect(() => {
+    if (currentSessionId && user) {
+      refreshSessions();
+    }
+  }, [currentSessionId, user, refreshSessions]);
 
   const handleModeSelect = useCallback(
     (query?: string) => {
@@ -29,19 +75,62 @@ export default function App() {
     setShowLanding(true);
   }, [clearChat]);
 
+  const handleSelectSession = useCallback(
+    async (id: string) => {
+      setShowLanding(false);
+      await restoreSession(id);
+    },
+    [restoreSession],
+  );
+
+  const handleDeleteSession = useCallback(
+    async (id: string) => {
+      await deleteSession(id);
+      // If we deleted the current session, go back to landing
+      if (id === currentSessionId) {
+        handleClearChat();
+      }
+    },
+    [deleteSession, currentSessionId, handleClearChat],
+  );
+
+  // Auth loading spinner
+  if (authLoading) {
+    return (
+      <div className="h-screen bg-nobel-cream flex items-center justify-center">
+        <Loader2 size={32} className="animate-spin text-stone-400" />
+      </div>
+    );
+  }
+
+  // Auth gate
+  if (!user) {
+    return <AuthPage />;
+  }
+
   return (
     <div className="h-screen flex flex-col bg-nobel-cream">
       {/* Top nav */}
       <nav className="flex items-center justify-between px-6 py-3 bg-white border-b border-stone-200 flex-shrink-0">
-        <button
-          onClick={handleClearChat}
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity"
-        >
-          <img src="/logo.png" alt="SofaGenius" className="w-8 h-8 rounded-full object-cover shadow-sm" />
-          <span className="font-serif font-bold text-lg tracking-wide text-stone-900">
-            SOFAGENIUS
-          </span>
-        </button>
+        <div className="flex items-center gap-3">
+          {/* Sidebar toggle */}
+          <button
+            onClick={() => setSidebarOpen((v) => !v)}
+            className="p-1.5 text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-50 transition-colors"
+          >
+            {sidebarOpen ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
+          </button>
+
+          <button
+            onClick={handleClearChat}
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
+          >
+            <img src="/logo.png" alt="SofaGenius" className="w-8 h-8 rounded-full object-cover shadow-sm" />
+            <span className="font-serif font-bold text-lg tracking-wide text-stone-900">
+              SOFAGENIUS
+            </span>
+          </button>
+        </div>
         <div className="flex items-center gap-4">
           {messages.length > 0 && (
             <button
@@ -61,48 +150,75 @@ export default function App() {
         </div>
       </nav>
 
-      {/* Content area */}
-      <AnimatePresence mode="wait">
-        {showLanding ? (
-          <motion.div
-            key="landing"
-            className="flex-1 min-h-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <LandingPage onModeSelect={handleModeSelect} />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="panels"
-            className="flex flex-1 min-h-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={spring}
-          >
-            {/* Left: Chat */}
-            <div className="w-1/2 border-r border-stone-200 bg-white flex flex-col">
-              <ChatPanel
-                messages={messages}
-                cards={cards}
-                isLoading={isLoading}
-                activeToolCall={activeToolCall}
-                onSend={sendMessage}
-                onStop={stop}
-                onLaunch={launchJob}
-              />
-            </div>
+      {/* Content area with sidebar */}
+      <div className="flex flex-1 min-h-0">
+        {/* Sidebar */}
+        <SessionSidebar
+          open={sidebarOpen}
+          sessions={sessions}
+          currentSessionId={currentSessionId}
+          user={user}
+          onSelectSession={handleSelectSession}
+          onDeleteSession={handleDeleteSession}
+          onRenameSession={renameSession}
+          onNewChat={handleClearChat}
+          onOpenSettings={() => setSettingsOpen(true)}
+          onSignOut={signOut}
+        />
 
-            {/* Right: Cards */}
-            <div className="w-1/2 bg-nobel-cream flex flex-col">
-              <CardsPanel cards={cards} onWandbUrl={updateCardWandbUrl} />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        {/* Main content */}
+        <div className="flex-1 flex flex-col min-w-0">
+          <AnimatePresence mode="wait">
+            {showLanding ? (
+              <motion.div
+                key="landing"
+                className="flex-1 min-h-0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+              >
+                <LandingPage onModeSelect={handleModeSelect} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="panels"
+                className="flex flex-1 min-h-0"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={spring}
+              >
+                {/* Left: Chat */}
+                <div className="w-1/2 border-r border-stone-200 bg-white flex flex-col">
+                  <ChatPanel
+                    messages={messages}
+                    cards={cards}
+                    isLoading={isLoading}
+                    activeToolCall={activeToolCall}
+                    onSend={sendMessage}
+                    onStop={stop}
+                    onLaunch={launchJob}
+                  />
+                </div>
+
+                {/* Right: Cards */}
+                <div className="w-1/2 bg-nobel-cream flex flex-col">
+                  <CardsPanel cards={cards} onWandbUrl={updateCardWandbUrl} />
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Settings modal */}
+      <SettingsModal
+        open={settingsOpen}
+        onClose={() => setSettingsOpen(false)}
+        profile={profile}
+        onSaveCredential={updateCredentials}
+      />
     </div>
   );
 }
