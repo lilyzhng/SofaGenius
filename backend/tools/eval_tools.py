@@ -365,7 +365,8 @@ def modify_eval_config(config_json: str, changes_json: str) -> str:
 
     # Regenerate experiment name
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
-    model_short = config.get("model_name", "model").split("/")[-1]
+    model_name = config.get("model_name") or config.get("lora_model") or "model"
+    model_short = model_name.split("/")[-1]
     eval_suite = config.get("eval_suite", "")
     framework = config.get("framework", "")
 
@@ -408,7 +409,7 @@ def modify_eval_config(config_json: str, changes_json: str) -> str:
         "title": f"Eval — {model_short} (updated)",
         "eval_tier": eval_tier,
         "status": "proposed",
-        "model_name": config.get("model_name", ""),
+        "model_name": model_name,
         "config": config,
         "cost_estimate": cost,
         "summary": summary,
@@ -458,14 +459,15 @@ def launch_eval(config_json: str) -> str:
         call = fn.spawn(config)
         function_call_id = call.object_id
 
-        model_short = config.get("model_name", "model").split("/")[-1]
+        model_name = config.get("model_name") or config.get("lora_model") or "model"
+        model_short = model_name.split("/")[-1]
 
         card = {
             "card_type": "eval_results_card",
             "title": f"Eval — {model_short}",
             "eval_tier": eval_tier,
             "status": "running",
-            "model_name": config.get("model_name", ""),
+            "model_name": model_name,
             "config": config,
             "cost_estimate": None,
             "summary": f"Evaluation job launched on Modal ({function_name}). Results will appear shortly.",
@@ -488,7 +490,7 @@ def launch_eval(config_json: str) -> str:
             "title": "Eval — Launch Failed",
             "eval_tier": eval_tier,
             "status": "failed",
-            "model_name": config.get("model_name", ""),
+            "model_name": config.get("model_name") or config.get("lora_model") or "",
             "config": config,
             "cost_estimate": None,
             "summary": f"Failed to launch: {error_msg}",

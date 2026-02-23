@@ -306,6 +306,7 @@ export default function EvalResultsCard({ card, onWandbUrl }: Props) {
   const [wandbUrl, setWandbUrl] = useState<string | null>(
     card.wandb_url || null,
   );
+  const [completedResult, setCompletedResult] = useState<Record<string, unknown> | null>(null);
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const pollStatus = useCallback(
@@ -321,9 +322,12 @@ export default function EvalResultsCard({ card, onWandbUrl }: Props) {
         const data = await res.json();
         if (data.status === "completed") {
           setJobStatus("completed");
-          if (data.result?.wandb_url) {
-            setWandbUrl(data.result.wandb_url);
-            onWandbUrl?.(data.result.wandb_url);
+          if (data.result) {
+            setCompletedResult(data.result as Record<string, unknown>);
+            if (data.result.wandb_url) {
+              setWandbUrl(data.result.wandb_url as string);
+              onWandbUrl?.(data.result.wandb_url as string);
+            }
           }
           if (pollRef.current) clearInterval(pollRef.current);
         } else if (data.status === "failed") {
@@ -376,6 +380,27 @@ export default function EvalResultsCard({ card, onWandbUrl }: Props) {
     STATUS_CONFIG[effectiveStatus] || STATUS_CONFIG[card.status];
   const tierConfig = TIER_CONFIG[card.eval_tier];
 
+  // Merge polled results with card props so completed data displays
+  const effectiveAvgScore = (completedResult?.avg_score as number | undefined) ?? card.avg_score;
+  const effectiveTaskScores = (completedResult?.task_results
+    ? Object.entries(completedResult.task_results as Record<string, { score: number; metric: string }>).map(
+        ([task, v]) => ({ task, score: v.score, metric: v.metric }),
+      )
+    : null) ?? card.task_scores;
+  const effectiveBenchmarkScores = (completedResult?.benchmark_scores as TaskScore[] | undefined) ?? card.benchmark_scores;
+  const effectiveTotalTasks = (completedResult?.total_tasks as number | undefined) ?? card.total_tasks;
+  const effectiveCustomScores = completedResult
+    ? {
+        base_avg_score: completedResult.base_avg_score as number | undefined,
+        lora_avg_score: completedResult.lora_avg_score as number | undefined,
+        score_improvement:
+          completedResult.base_avg_score != null && completedResult.lora_avg_score != null
+            ? (completedResult.lora_avg_score as number) - (completedResult.base_avg_score as number)
+            : (completedResult.score_improvement as number | undefined),
+        num_samples: (completedResult.num_samples as number) ?? card.custom_scores?.num_samples ?? 0,
+      }
+    : card.custom_scores;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -423,14 +448,14 @@ export default function EvalResultsCard({ card, onWandbUrl }: Props) {
         </p>
 
         {/* Average Score Badge */}
-        {card.avg_score != null && effectiveStatus === "completed" && (
+        {effectiveAvgScore != null && effectiveStatus === "completed" && (
           <div className="flex items-center gap-3 px-3 py-2 bg-[#F9F8F4] rounded-lg border border-stone-200 mb-3">
             <BarChart3 size={14} className="text-nobel-gold" />
             <span className="text-xs text-stone-500 font-medium">
               Average Score
             </span>
             <span className="text-sm text-stone-900 font-bold">
-              {card.avg_score.toFixed(1)}
+              {effectiveAvgScore.toFixed(1)}
               {card.eval_tier !== "custom" ? "%" : "/10"}
             </span>
           </div>
@@ -469,15 +494,15 @@ export default function EvalResultsCard({ card, onWandbUrl }: Props) {
           <>
             {card.eval_tier === "agent" && (
               <AgentResults
-                scores={card.task_scores}
-                totalTasks={card.total_tasks}
+                scores={effectiveTaskScores}
+                totalTasks={effectiveTotalTasks}
               />
             )}
             {card.eval_tier === "benchmark" && (
-              <BenchmarkScores scores={card.benchmark_scores || []} />
+              <BenchmarkScores scores={effectiveBenchmarkScores || []} />
             )}
             {card.eval_tier === "custom" && (
-              <CustomResults scores={card.custom_scores} />
+              <CustomResults scores={effectiveCustomScores} />
             )}
           </>
         )}

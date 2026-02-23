@@ -26,6 +26,7 @@ def agent_eval_impl(config_dict: dict) -> dict:
     model_name = config_dict["model_name"]
     eval_suite = config_dict.get("eval_suite", "swe_bench_verified")
     agent_type = config_dict.get("agent_type", "model")
+    sandbox = config_dict.get("sandbox", "docker")
     limit = config_dict.get("limit")
     wandb_project = config_dict.get("wandb_project", "sofa-genius-eval")
     experiment_name = config_dict.get("experiment_name", f"agent-{eval_suite}")
@@ -52,14 +53,26 @@ def agent_eval_impl(config_dict: dict) -> dict:
     wandb_url = run.url
     print(f"W&B run: {wandb_url}")
 
+    # Configure sandbox environment
+    sandbox_config = {"type": sandbox} if sandbox != "docker" else {}
+
+    # Configure model — for external agents, use the agent endpoint directly
+    if agent_type == "external":
+        model_arg = model_name  # Treat as an API endpoint or agent URL
+    else:
+        model_arg = f"hf/{model_name}"
+
     # Run evaluation
-    print(f"Running {eval_suite} evaluation on {model_name} (limit={limit})")
-    logs = inspect_eval(
-        task,
-        model=f"hf/{model_name}",
-        limit=limit,
-        log_dir="/results/inspect_logs",
-    )
+    print(f"Running {eval_suite} evaluation on {model_name} (limit={limit}, agent_type={agent_type}, sandbox={sandbox})")
+    eval_kwargs = {
+        "model": model_arg,
+        "limit": limit,
+        "log_dir": "/results/inspect_logs",
+    }
+    if sandbox_config:
+        eval_kwargs["sandbox"] = sandbox_config
+
+    logs = inspect_eval(task, **eval_kwargs)
 
     # Parse results from Inspect logs
     log = read_eval_log(logs[0])

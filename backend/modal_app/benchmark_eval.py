@@ -86,7 +86,7 @@ def lm_eval_impl(config_dict: dict) -> dict:
             benchmark_scores.append({
                 "task": task_name,
                 "score": score_pct,
-                "stderr": round(stderr * 100, 2) if stderr else None,
+                "stderr": round(stderr * 100, 2) if stderr is not None else None,
                 "metric": metric_name,
             })
             total_score += score_pct
