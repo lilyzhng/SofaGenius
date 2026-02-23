@@ -16,7 +16,7 @@ from typing import Any, AsyncGenerator
 import anthropic
 
 from backend.agents.base import run_subagent
-from backend.agents import training, data, scout, launch
+from backend.agents import training, data, scout, launch, evaluation
 
 log = logging.getLogger(__name__)
 
@@ -27,7 +27,8 @@ Categories:
 - training: W&B monitoring, listing runs, checking run health, fetching metrics, training anomalies
 - data: SQL queries, dataset exploration, dataset search for analysis, data statistics, plotting data, dataset conversion, format conversion, inspect dataset format
 - scout: scouting/finding models or datasets for a task, creating scout cards, drafting tweets/posts
-- launch: fine-tuning jobs, launching training, evaluation jobs, Modal GPU jobs, proposing/approving launches
+- launch: fine-tuning jobs, launching training, Modal GPU jobs for fine-tuning, proposing/approving fine-tune launches
+- evaluation: evaluating models or agents, benchmarks, MMLU, HumanEval, SWE-bench, agent testing, model quality, eval results, comparing scores, running evaluations, coding agent evaluation
 - general: greetings, general questions, help, anything that doesn't need tools
 
 User message: {message}\
@@ -38,6 +39,7 @@ _AGENT_MAP = {
     "data": data,
     "scout": scout,
     "launch": launch,
+    "evaluation": evaluation,
 }
 
 # ---------------------------------------------------------------------------
@@ -414,11 +416,11 @@ async def run_orchestrator(
 
     # Build system prompt with injected context (per-user credentials)
     system_prompt = agent_module.SYSTEM_PROMPT
-    if category in ("training", "launch"):
+    if category in ("training", "launch", "evaluation"):
         system_prompt += _build_wandb_context(wandb_api_key)
-    if category in ("training", "data"):
+    if category in ("training", "data", "evaluation"):
         system_prompt += _build_launch_context(wandb_api_key, session_id)
-    if category in ("data", "scout"):
+    if category in ("data", "scout", "evaluation"):
         system_prompt += _build_hf_context(hf_token)
 
     with _inject_credentials(wandb_api_key, hf_token):

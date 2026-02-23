@@ -159,6 +159,62 @@ export interface LaunchCard {
   requires_approval: boolean;
 }
 
+// --- Evaluation types ---
+
+export type EvalStatus = "proposed" | "launching" | "running" | "completed" | "failed";
+export type EvalTier = "agent" | "benchmark" | "custom";
+
+export interface TaskScore {
+  task: string;
+  score: number;
+  stderr?: number;
+  metric: string;
+}
+
+export interface AgentSampleResult {
+  id: string;
+  score: number;
+  turns: number;
+  tool_calls: number;
+}
+
+export interface CustomEvalScore {
+  base_avg_score?: number;
+  lora_avg_score?: number;
+  score_improvement?: number;
+  num_samples: number;
+}
+
+export interface EvalResultsCard {
+  card_type: "eval_results_card";
+  title: string;
+  eval_tier: EvalTier;
+  status: EvalStatus;
+  model_name: string;
+  config: Record<string, unknown>;
+  cost_estimate?: CostEstimate;
+  summary: string;
+
+  // Agent eval results (eval_tier === "agent")
+  eval_suite?: string;
+  task_scores?: TaskScore[];
+  sample_results?: AgentSampleResult[];
+  total_tasks?: number;
+
+  // Benchmark results (eval_tier === "benchmark")
+  benchmark_scores?: TaskScore[];
+  framework?: string;
+
+  // Custom eval results (eval_tier === "custom")
+  custom_scores?: CustomEvalScore;
+
+  // Shared
+  avg_score?: number;
+  modal_function_call_id?: string;
+  wandb_url?: string;
+  requires_approval: boolean;
+}
+
 // --- Compare Runs types ---
 
 export interface ComparisonSeries {
@@ -197,7 +253,7 @@ export interface ConversionCard {
   after_samples: Record<string, string>[];
 }
 
-export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard | ComparisonCard | ConversionCard;
+export type CardData = WandBHealthCard | DataCard | ScoutCard | DraftPostCard | LaunchCard | EvalResultsCard | ComparisonCard | ConversionCard;
 
 export interface ToolCall {
   name: string;

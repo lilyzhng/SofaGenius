@@ -1,15 +1,60 @@
-"""Evaluation implementation for Sofa Genius Modal app.
+"""Custom visual evaluation implementation for Sofa Genius.
 
-Adapted from Qwen3-Coder/unsloth/modal_eval.py — same side-by-side comparison,
-Playwright screenshots, OpenRouter judge logic, but accepts a plain dict config
-and returns a result dict.
+Supports side-by-side model comparison with Playwright screenshots and
+VLM-as-judge scoring with configurable domain-aware rubrics.
 """
 
 from __future__ import annotations
 
+# ---------------------------------------------------------------------------
+# Domain-aware rubrics for Tier 3 product sense evaluation
+# ---------------------------------------------------------------------------
+PRODUCT_SENSE_DIMENSIONS = {
+    "intent_alignment":       "Does the output match what the user actually wanted?",
+    "domain_appropriateness": "Does the visual design fit domain conventions?",
+    "color_harmony":          "Are color choices appropriate for the domain?",
+    "design_aesthetics":      "Typography, spacing, visual hierarchy, polish",
+    "layout_quality":         "Element positioning, responsive design, structure",
+}
+
+DOMAIN_RUBRICS = {
+    "medical": "Expect calm clinical colors (whites, greens, light blues), professional typography, trust signals, accessibility focus, HIPAA-aware messaging",
+    "legal": "Expect authoritative feel (dark neutrals, navy, serif fonts), formal structure, credibility indicators, conservative color palette",
+    "ecommerce": "Expect engagement-focused design, clear CTAs, product-focused layout, trust badges, warm inviting colors",
+    "restaurant": "Expect appetizing imagery placeholders, warm tones (reds, oranges, browns), menu-friendly layout, reservation CTA",
+    "education": "Expect clean readable layout, friendly approachable colors, clear navigation, content hierarchy for courses/materials",
+    "finance": "Expect trustworthy feel (blues, greens), data visualization areas, clean grid layout, security indicators",
+}
+
+# Default rubric when no domain is specified
+DEFAULT_RUBRIC = """\
+SCORING RUBRIC (start at 10, subtract for issues):
+- broken-code (-4): syntax errors, blank page, no output
+- broken-layout (-3): elements overlap, misaligned, unusable
+- wrong-framework (-2): doesn't use Tailwind CSS
+- generic-colors (-2): boring default palette
+- no-design-thinking (-2): looks like developer prototype
+- missing-states (-1): no hover/transition polish"""
+
+
+def _build_judge_rubric(domain: str | None = None) -> str:
+    """Build a scoring rubric, optionally domain-aware."""
+    if domain and domain in DOMAIN_RUBRICS:
+        dimensions = "\n".join(f"- {k}: {v}" for k, v in PRODUCT_SENSE_DIMENSIONS.items())
+        return (
+            f"SCORING RUBRIC — Evaluate on these dimensions (1-10 each):\n"
+            f"{dimensions}\n\n"
+            f"DOMAIN CONTEXT ({domain}):\n"
+            f"{DOMAIN_RUBRICS[domain]}\n\n"
+            f"Give an overall score (1-10) considering all dimensions. "
+            f"Weight domain_appropriateness heavily — a technically perfect output "
+            f"that looks wrong for the domain should score lower."
+        )
+    return DEFAULT_RUBRIC
+
 
 def eval_impl(config_dict: dict) -> dict:
-    """Run side-by-side evaluation. Returns result dict."""
+    """Run side-by-side evaluation with configurable rubrics. Returns result dict."""
     import os
     import json
     import time
@@ -34,7 +79,8 @@ def eval_impl(config_dict: dict) -> dict:
     limit = config_dict.get("limit", 20)
     use_judge = config_dict.get("use_judge", True)
     judge_model = config_dict.get("judge_model", "google/gemini-3-pro-preview")
-    wandb_project = config_dict.get("wandb_project", "uiux-eval")
+    wandb_project = config_dict.get("wandb_project", "sofa-genius-eval")
+    domain = config_dict.get("domain")
 
     if not lora_model_name:
         raise ValueError("lora_model is required")
@@ -57,6 +103,9 @@ def eval_impl(config_dict: dict) -> dict:
 """
 
     PROMPT_TEMPLATE = "# Task: Generate HTML/CSS code using Tailwind CSS\n# Requirements: {requirements}\n\n"
+
+    # Build domain-aware rubric
+    scoring_rubric = _build_judge_rubric(domain)
 
     # ---------------------------------------------------------------------------
     # Helpers
@@ -123,17 +172,13 @@ def eval_impl(config_dict: dict) -> dict:
         model_output_text = model_output
         reference_text = reference
 
+        domain_context = f"\nDOMAIN: {domain}\n" if domain else ""
+
         part_before = f"""\
 You are a UI code quality judge. Rate the generation from 1-10.
 
-SCORING RUBRIC (start at 10, subtract for issues):
-- broken-code (-4): syntax errors, blank page, no output
-- broken-layout (-3): elements overlap, misaligned, unusable
-- wrong-framework (-2): doesn't use Tailwind CSS
-- generic-colors (-2): boring default palette
-- no-design-thinking (-2): looks like developer prototype
-- missing-states (-1): no hover/transition polish
-
+{scoring_rubric}
+{domain_context}
 TASK: {prompt}
 
 GENERATION:
@@ -145,7 +190,17 @@ GROUND TRUTH:
 GENERATION_IMAGE:
 """
         part_between = "\n\nGROUND_TRUTH_IMAGE:\n"
-        part_after = """
+
+        if domain:
+            part_after = """
+
+IMPORTANT: Respond with ONLY a valid JSON object.
+```json
+{"score": <1-10>, "failure_modes": ["<mode1>"], "reasoning": "<brief explanation>", "dimension_scores": {"intent_alignment": <1-10>, "domain_appropriateness": <1-10>, "color_harmony": <1-10>, "design_aesthetics": <1-10>, "layout_quality": <1-10>}}
+```
+"""
+        else:
+            part_after = """
 
 IMPORTANT: Respond with ONLY a valid JSON object.
 ```json
@@ -179,7 +234,7 @@ IMPORTANT: Respond with ONLY a valid JSON object.
                 if content.startswith("```"):
                     content = re.sub(r"^```(?:json)?\s*\n?", "", content)
                     content = re.sub(r"\n?```\s*$", "", content)
-                json_match = re.search(r"\{[^{}]*(?:\[[^\[\]]*\][^{}]*)*\}", content, re.DOTALL)
+                json_match = re.search(r"\{[^{}]*(?:\{[^{}]*\}[^{}]*)*\}", content, re.DOTALL)
                 if json_match:
                     json_str = json_match.group()
                     json_str = re.sub(r'(?<=: ")(.*?)(?=")', lambda m: m.group(1).replace('\n', ' '), json_str, flags=re.DOTALL)

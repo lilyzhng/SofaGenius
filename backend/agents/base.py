@@ -90,14 +90,38 @@ def _summarize_tool_result(name: str, result: str) -> str:
         return "Fine-tuning job proposed"
     if name == "modify_and_propose":
         return "Config updated, new proposal created"
-    if name == "propose_eval":
-        return "Evaluation job proposed"
     if name == "launch_finetune":
         status = data.get("status", "unknown")
         return f"Fine-tuning job {status}"
+    # Evaluation agent tools
+    if name == "list_evaluations":
+        tiers = []
+        if data.get("agent_evals"):
+            tiers.append("agent")
+        if data.get("benchmark_evals"):
+            tiers.append("benchmark")
+        if data.get("custom_evals"):
+            tiers.append("custom")
+        return f"Listed {len(tiers)} evaluation tiers"
+    if name == "propose_agent_eval":
+        suite = data.get("eval_suite", "")
+        return f"Agent eval proposed: {suite}"
+    if name == "propose_benchmark_eval":
+        framework = data.get("framework", "")
+        return f"Benchmark eval proposed ({framework})"
+    if name == "propose_custom_eval":
+        return "Custom visual eval proposed"
+    if name == "modify_eval_config":
+        return "Eval config updated, new proposal created"
     if name == "launch_eval":
         status = data.get("status", "unknown")
         return f"Evaluation job {status}"
+    if name == "get_eval_results":
+        avg = data.get("avg_score")
+        tier = data.get("eval_tier", "")
+        if avg is not None:
+            return f"Results fetched: {tier} eval, avg score {avg}"
+        return "Eval results fetched"
     return "Completed"
 
 
