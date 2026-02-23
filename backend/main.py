@@ -25,7 +25,7 @@ app = FastAPI(title="Sofa Genius API")
 _origins = ["http://localhost:5173", "http://localhost:3000"]
 _frontend_url = os.environ.get("FRONTEND_URL", "")
 if _frontend_url:
-    _origins.append(_frontend_url)
+    _origins.extend(u.strip() for u in _frontend_url.split(",") if u.strip())
 
 app.add_middleware(
     CORSMiddleware,
