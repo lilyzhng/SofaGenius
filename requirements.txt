@@ -8,3 +8,5 @@ duckdb>=1.0.0
 tweepy>=4.14.0
 modal>=0.67.0
 datasets>=3.0.0
+supabase>=2.0.0
+python-jose[cryptography]>=3.3.0
