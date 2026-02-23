@@ -192,16 +192,105 @@ The agent decides which framework to recommend:
 - `backend`: `"hf"` (default), `"vllm"`, or `"sglang"` — inference engine
 - `num_fewshot`, `limit`, `gpu_type`
 
-#### Tier 3: Custom Visual Evaluation (Domain-specific)
+#### Tier 3: Product Sense & Visual Quality Evaluation (HIGH PRIORITY)
 
-Evaluates models that produce **visual output** requiring rendering and VLM-as-judge scoring.
+**This is the most important and most unsolved evaluation tier.** Functional correctness is nearly solved — SWE-bench, HumanEval, etc. measure whether code works. But in production, the deciding factor for coding agent quality is **product sense**: does the output align with user intent, domain conventions, and aesthetic standards?
 
-This is the only tier that uses Playwright to render HTML and take screenshots. Neither Inspect AI, lm-eval-harness, nor lighteval support visual rendering pipelines.
+##### The Problem: Style Collapse & Missing Product Sense
 
-The existing `eval.py` is refactored to:
-- Accept a configurable rubric (not hardcoded to Tailwind CSS)
-- Support any code-generation model (not just UI models)
-- Keep the Playwright + VLM judge pipeline as the unique value-add
+Current coding agents have a critical failure mode: **style collapse**. Because training data is dominated by tech/SaaS websites with blue/purple palettes, agents generate the same visual style regardless of domain context:
+
+```
+Input: "Build a medical clinic website"
+Bad output:  ✅ Code works  ❌ Purple gradient hero, gaming aesthetic
+             ❌ Looks like every other SaaS template
+             ❌ No trust signals, no medical feel
+
+Input: "Build a law firm website"
+Bad output:  ✅ Code works  ❌ Same purple gradient hero
+             ❌ Indistinguishable from the medical site
+             ❌ No authority, no formality
+```
+
+##### What We Measure (Beyond Functional Correctness)
+
+| Dimension | Description | Measurement Approach |
+|-----------|-------------|---------------------|
+| **User intent alignment** | Output matches what user *meant*, not just literal words | VLM judge scores intent match with domain context |
+| **Domain appropriateness** | Visual design fits domain conventions (medical ≠ gaming ≠ law) | Domain-specific rubrics |
+| **Style diversity** | Agent doesn't collapse to same style for every domain | Cross-domain diversity metric |
+| **Aesthetic quality** | Typography, spacing, color harmony, visual hierarchy | VLM aesthetic scoring |
+| **Consistency** | Maintains coherent style across pages/components in same project | Multi-output consistency check |
+| **Product sense** | Makes good autonomous design decisions without explicit instruction | The hardest — requires taste |
+
+##### Evaluation Approach (Practical Starting Point)
+
+> **STATUS: HIGH PRIORITY, OPEN PROBLEM.** No battle-tested open-source solution exists for measuring product sense and user intent alignment in AI-generated UI/code. The approaches below are a practical starting point — we expect to iterate significantly as we learn what works.
+
+**Layer 1: VLM-as-a-Judge with Domain-Aware Rubrics** (MVP — build this first)
+
+Extend the existing VLM judge (already in `eval.py`) with configurable, domain-specific rubrics. Score on multiple dimensions instead of a single score:
+
+```python
+PRODUCT_SENSE_DIMENSIONS = {
+    "intent_alignment":       "Does the output match what the user actually wanted?",
+    "domain_appropriateness": "Does the visual design fit domain conventions?",
+    "color_harmony":          "Are color choices appropriate for the domain?",
+    "design_aesthetics":      "Typography, spacing, visual hierarchy, polish",
+    "layout_quality":         "Element positioning, responsive design, structure",
+}
+
+# Domain-specific rubric overrides
+DOMAIN_RUBRICS = {
+    "medical": "Expect calm clinical colors (whites, greens), professional typography, trust signals",
+    "legal":   "Expect authoritative feel (dark neutrals, serif fonts), formal structure",
+    "ecommerce": "Expect engagement-focused design, clear CTAs, product-focused layout",
+}
+```
+
+This is achievable today — it's a direct extension of the existing Playwright + VLM pipeline with better prompts.
+
+**Layer 2: Style Collapse Detection** (build alongside Layer 1)
+
+Run the agent on N different domains with the same prompt pattern, compare outputs:
+
+```python
+def detect_style_collapse(screenshots_by_domain: dict) -> float:
+    """Score 0-1 where 0 = all outputs identical, 1 = fully differentiated.
+    Uses VLM pairwise comparison + color histogram analysis."""
+```
+
+This is the cheapest, most actionable test — if your agent generates the same blue/purple site for every domain, it immediately reveals the problem.
+
+**Layer 3: Human-in-the-Loop Feedback** (future — when we need ground truth)
+
+- Collect human ratings (20-50 per domain) to calibrate the VLM judge
+- Pairwise preference ("which output better matches the user's intent?")
+- Use human ratings as few-shot examples in VLM prompts
+- This is the gold standard but requires effort — defer until we have a working automated pipeline
+
+**Open questions for later:**
+- Can we fine-tune a VLM specifically for design evaluation? (Need data first)
+- Can we use the human feedback loop to generate RLHF training data for the coding model itself?
+- What's the right set of reference domains for style collapse testing?
+- How do we handle brand-specific design systems (not just generic domains)?
+
+##### Integration with Existing Visual Eval Pipeline
+
+The existing `eval.py` Playwright + VLM pipeline is the foundation. Refactored to support:
+- Configurable domain rubrics (not hardcoded Tailwind CSS)
+- Style collapse detection across multi-domain test sets
+- Human rating collection and storage (W&B tables or Supabase)
+- Per-dimension scoring (intent alignment, domain fit, aesthetics, consistency)
+
+##### Why This Is the Deciding Factor
+
+Standard benchmarks are converging — top models score similarly on MMLU, HumanEval, etc. The **last mile differentiation** for coding agents is product sense:
+- Can it make good design choices without being told every detail?
+- Does it adapt to context (domain, brand, audience)?
+- Is the output something a user would actually ship, or just "technically correct"?
+
+This is where fine-tuned models can win against frontier models — a model fine-tuned on high-quality domain-appropriate outputs can have better product sense than a generic frontier model.
 
 ### 5.4 Framework Decision Guide (in system prompt)
 
@@ -213,7 +302,10 @@ User says "how does my model score on MMLU?"
   → Tier 2: Model benchmark (lm-eval-harness)
 
 User says "compare my model's UI output quality"
-  → Tier 3: Custom visual eval (Playwright + VLM judge)
+  → Tier 3: Product sense eval (VLM judge + domain rubrics)
+
+User says "does my agent have style collapse?"
+  → Tier 3: Style collapse detection (multi-domain VLM comparison)
 
 User says "evaluate my model on standard benchmarks and push to HF"
   → Tier 2: Model benchmark (lighteval, with HF push)
@@ -221,6 +313,10 @@ User says "evaluate my model on standard benchmarks and push to HF"
 User says "test if my fine-tuned model is better at coding"
   → Tier 1 if testing agent capability (SWE-bench)
   → Tier 2 if testing code generation (HumanEval, MBPP)
+  → Tier 3 if testing design quality (product sense eval)
+
+User says "does my model match user intent better after fine-tuning?"
+  → Tier 3: Intent alignment scoring (VLM + domain rubrics)
 ```
 
 ---
@@ -659,6 +755,10 @@ BENCHMARK_SIZES = {
 - [Anthropic — Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
 - [Anthropic — Code Execution with MCP](https://www.anthropic.com/engineering/code-execution-with-mcp)
 - [Agent Harness Principles (Vanishing Gradients)](https://hugobowne.substack.com/p/ai-agent-harness-3-principles-for)
+
+### Product Sense & Visual Quality Evaluation (Tier 3 — Future Research)
+- [Design2Code](https://salt-nlp.github.io/Design2Code/) — Real-world front-end code generation benchmark (worth watching, not adopting yet)
+- This is an open problem area. No battle-tested framework exists. Our approach: start with VLM judge + domain rubrics + style collapse detection, iterate based on what works.
 
 ### Model Evaluation Frameworks
 - [lm-eval-harness — GitHub](https://github.com/EleutherAI/lm-evaluation-harness)
