@@ -92,21 +92,6 @@ def _estimate_finetune_cost(
     }
 
 
-def _estimate_eval_cost(limit: int, use_judge: bool) -> dict:
-    # Eval with judge: ~2 min per sample (generation + screenshot + judging)
-    # Eval without judge: ~1 min per sample
-    per_sample_sec = 120.0 if use_judge else 60.0
-    estimated_seconds = round(limit * per_sample_sec + _OVERHEAD_SECONDS)
-    rate_per_sec = _GPU_COST_PER_SEC["A100"]
-    estimated_cost = round(estimated_seconds * rate_per_sec, 4)
-    return {
-        "gpu_type": "A100",
-        "estimated_seconds": estimated_seconds,
-        "estimated_cost_usd": estimated_cost,
-        "note": f"{limit} samples, ~{per_sample_sec:.0f}s/sample {'with' if use_judge else 'without'} LLM judge",
-    }
-
-
 # ---------------------------------------------------------------------------
 # Proposal tools — create LaunchCard JSON, don't actually launch
 # ---------------------------------------------------------------------------
@@ -335,51 +320,6 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
     return json.dumps(card)
 
 
-def propose_eval(
-    lora_model: str,
-    base_model: str = "Qwen/Qwen2.5-Coder-14B",
-    hf_dataset: str = "lilyzhng/uigen-ui-code-gen",
-    limit: int = 20,
-    use_judge: bool = True,
-    wandb_project: str = "uiux-eval",
-) -> str:
-    """Propose an evaluation job — returns a LaunchCard JSON (status=proposed)."""
-    config = {
-        "base_model": base_model,
-        "lora_model": lora_model,
-        "hf_dataset": hf_dataset,
-        "limit": limit,
-        "use_judge": use_judge,
-        "judge_model": "google/gemini-3-pro-preview",
-        "wandb_project": wandb_project,
-    }
-
-    cost = _estimate_eval_cost(limit, use_judge)
-
-    lora_short = lora_model.split("/")[-1]
-    base_short = base_model.split("/")[-1]
-    summary = (
-        f"Evaluate {lora_short} vs {base_short} on {limit} test samples from {hf_dataset}. "
-        f"{'LLM judge enabled' if use_judge else 'No LLM judge'}. "
-        f"Estimated cost: ${cost['estimated_cost_usd']:.2f} "
-        f"({cost['estimated_hours']}h on A100)."
-    )
-
-    card = {
-        "card_type": "launch_card",
-        "title": f"Evaluate {lora_short}",
-        "launch_type": "eval",
-        "status": "proposed",
-        "config": config,
-        "cost_estimate": cost,
-        "summary": summary,
-        "modal_function_call_id": None,
-        "wandb_url": None,
-        "requires_approval": True,
-    }
-    return json.dumps(card)
-
-
 # ---------------------------------------------------------------------------
 # Launch tools — actually spawn Modal jobs
 # ---------------------------------------------------------------------------
@@ -441,57 +381,3 @@ def launch_finetune(config_json: str) -> str:
         return json.dumps(card)
 
 
-def launch_eval(config_json: str) -> str:
-    """Launch an evaluation job on Modal. Call after user approves the proposal."""
-    try:
-        config = json.loads(config_json)
-    except json.JSONDecodeError as e:
-        return json.dumps({"error": f"Invalid config JSON: {e}"})
-
-    try:
-        import modal
-        fn = modal.Function.from_name("sofa-genius-launcher", "run_evaluation")
-        call = fn.spawn(config)
-        function_call_id = call.object_id
-
-        lora_short = config.get("lora_model", "model").split("/")[-1]
-        wandb_project = config.get("wandb_project", "uiux-eval")
-
-        card = {
-            "card_type": "launch_card",
-            "title": f"Evaluate {lora_short}",
-            "launch_type": "eval",
-            "status": "running",
-            "config": config,
-            "cost_estimate": _estimate_eval_cost(
-                config.get("limit", 20),
-                config.get("use_judge", True),
-            ),
-            "summary": f"Evaluation job launched on Modal. W&B run link will appear shortly.",
-            "modal_function_call_id": function_call_id,
-            "wandb_url": None,
-            "requires_approval": False,
-        }
-        return json.dumps(card)
-
-    except Exception as e:
-        error_msg = str(e)
-        if "modal" in error_msg.lower() or "not found" in error_msg.lower():
-            error_msg = (
-                f"Modal app not deployed or not accessible. "
-                f"Deploy with: modal deploy backend/modal_app/app.py. "
-                f"Original error: {error_msg}"
-            )
-        card = {
-            "card_type": "launch_card",
-            "title": "Evaluation — Launch Failed",
-            "launch_type": "eval",
-            "status": "failed",
-            "config": config,
-            "cost_estimate": None,
-            "summary": f"Failed to launch: {error_msg}",
-            "modal_function_call_id": None,
-            "wandb_url": None,
-            "requires_approval": False,
-        }
-        return json.dumps(card)

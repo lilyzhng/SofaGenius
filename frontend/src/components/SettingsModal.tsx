@@ -171,7 +171,7 @@ export default function SettingsModal({ open, onClose, profile, onSaveCredential
               <p className="text-sm text-stone-500 mb-6">
                 {isFirstTime
                   ? "Connect your API keys to get started. SofaGenius needs these to access your W&B runs and HuggingFace datasets."
-                  : "Connect your API keys so SofaGenius can access your W&B runs and HuggingFace datasets. Keys are stored securely per-account. The Anthropic API key and Modal credentials stay server-side."}
+                  : "Connect your API keys so SofaGenius can access your W&B runs and HuggingFace datasets. Keys are stored securely per-account."}
               </p>
 
               <div className="space-y-6">

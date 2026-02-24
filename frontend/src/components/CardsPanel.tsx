@@ -11,12 +11,14 @@ import {
   Rocket,
   GitCompareArrows,
   RefreshCw,
+  ClipboardCheck,
 } from "lucide-react";
 import WandBHealthCard from "./WandBHealthCard";
 import DataCard from "./DataCard";
 import ScoutCard from "./ScoutCard";
 import DraftPostCard from "./DraftPostCard";
 import LaunchCard from "./LaunchCard";
+import EvalResultsCard from "./EvalResultsCard";
 import ComparisonCard from "./ComparisonCard";
 import ConversionCard from "./ConversionCard";
 import type { CardData } from "../types";
@@ -32,6 +34,7 @@ const CARD_META: Record<string, { label: string; icon: React.ReactNode }> = {
   scout_card: { label: "Scout", icon: <Compass size={12} /> },
   draft_post_card: { label: "Draft", icon: <FileText size={12} /> },
   launch_card: { label: "Launch", icon: <Rocket size={12} /> },
+  eval_results_card: { label: "Eval", icon: <ClipboardCheck size={12} /> },
   comparison_card: { label: "Comparison", icon: <GitCompareArrows size={12} /> },
   conversion_card: { label: "Conversion", icon: <RefreshCw size={12} /> },
 };
@@ -143,6 +146,9 @@ export default function CardsPanel({ cards, onWandbUrl }: Props) {
               )}
               {card.card_type === "launch_card" && (
                 <LaunchCard card={card} onWandbUrl={onWandbUrl} />
+              )}
+              {card.card_type === "eval_results_card" && (
+                <EvalResultsCard card={card} onWandbUrl={onWandbUrl} />
               )}
               {card.card_type === "comparison_card" && (
                 <ComparisonCard card={card} />

@@ -242,6 +242,74 @@ class LaunchCard(BaseModel):
     requires_approval: bool = True
 
 
+# --- Evaluation models ---
+
+
+class EvalStatus(str, Enum):
+    proposed = "proposed"
+    launching = "launching"
+    running = "running"
+    completed = "completed"
+    failed = "failed"
+
+
+class EvalTier(str, Enum):
+    agent = "agent"
+    benchmark = "benchmark"
+    custom = "custom"
+
+
+class TaskScore(BaseModel):
+    task: str
+    score: float
+    stderr: Optional[float] = None
+    metric: str
+
+
+class AgentSampleResult(BaseModel):
+    id: str
+    score: float
+    turns: int
+    tool_calls: int
+
+
+class CustomEvalScore(BaseModel):
+    base_avg_score: Optional[float] = None
+    lora_avg_score: Optional[float] = None
+    score_improvement: Optional[float] = None
+    num_samples: int = 0
+
+
+class EvalResultsCard(BaseModel):
+    card_type: str = "eval_results_card"
+    title: str
+    eval_tier: EvalTier
+    status: EvalStatus = EvalStatus.proposed
+    model_name: str
+    config: dict = {}
+    cost_estimate: Optional[CostEstimate] = None
+    summary: str = ""
+
+    # Agent eval results
+    eval_suite: Optional[str] = None
+    task_scores: Optional[list[TaskScore]] = None
+    sample_results: Optional[list[AgentSampleResult]] = None
+    total_tasks: Optional[int] = None
+
+    # Benchmark results
+    benchmark_scores: Optional[list[TaskScore]] = None
+    framework: Optional[str] = None
+
+    # Custom eval results
+    custom_scores: Optional[CustomEvalScore] = None
+
+    # Shared
+    avg_score: Optional[float] = None
+    modal_function_call_id: Optional[str] = None
+    wandb_url: Optional[str] = None
+    requires_approval: bool = True
+
+
 # --- Compare Runs models ---
 
 
