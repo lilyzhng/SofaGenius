@@ -141,12 +141,6 @@ def _estimate_grpo_cost(
     }
 
 
-def _estimate_cost(method: str, **kwargs) -> dict:
-    """Dispatch cost estimation to the correct method-specific function."""
-    if method == "grpo":
-        return _estimate_grpo_cost(**kwargs)
-    return _estimate_finetune_cost(**kwargs)
-
 
 # ---------------------------------------------------------------------------
 # Defaults — structured by method, run mode, and GRPO task type
@@ -368,6 +362,7 @@ def propose_training(
             train_samples=_cost_samples,
             batch_size=_batch_size,
             gradient_accumulation_steps=_grad_accum,
+            num_epochs=_num_epochs,
         )
 
     # Build summary
@@ -468,6 +463,7 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
             train_samples=_dataset_total,
             batch_size=config.get("batch_size", 4),
             gradient_accumulation_steps=config.get("gradient_accumulation_steps", 1),
+            num_epochs=config.get("num_epochs", 1),
         )
     else:
         cost = _estimate_finetune_cost(
@@ -564,6 +560,7 @@ def launch_training(config_json: str) -> str:
                 config.get("gpu_type", "A100"),
                 config.get("max_steps", -1),
                 num_generations=config.get("num_generations", 4),
+                num_epochs=config.get("num_epochs", 1),
             )
         else:
             cost = _estimate_finetune_cost(
