@@ -15,7 +15,6 @@ from typing import Any
 DEFAULT_EVAL_FRACTION = 0.1
 EVAL_SEED = 42
 MAX_EVAL = 200
-MIN_EVAL = 20
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +49,7 @@ def load_train_eval_split(
     Logic:
     1. If the dataset has a "test" split, use it as eval.
     2. Otherwise, create one via train_test_split(test_size=0.1, seed=42).
-    3. Cap eval at MAX_EVAL samples, floor at MIN_EVAL.
+    3. Cap eval at MAX_EVAL samples.
     4. If skip_eval is True, return (train, None).
 
     Parameters

@@ -17,7 +17,6 @@ from backend.modal_app.dataset_utils import (
     DEFAULT_EVAL_FRACTION,
     EVAL_SEED,
     MAX_EVAL,
-    MIN_EVAL,
     load_train_eval_split,
     should_skip_eval,
 )

@@ -379,7 +379,7 @@ def run_grpo_ui_training(config_dict: dict) -> dict:
     trainer = GRPOTrainer(
         model=model,
         processing_class=tokenizer,
-        config=grpo_config,
+        args=grpo_config,
         train_dataset=dataset,
         reward_funcs=[
             completeness_reward,
