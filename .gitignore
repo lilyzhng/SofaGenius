@@ -7,8 +7,10 @@ __pycache__/
 .venv/
 *.tsbuildinfo
 
-# Local-only notes and drafts
+# Local-only notes, drafts, and design docs
 CLAUDE.md
+DESIGN_DOC_*.md
+design_doc/
 LESSON.md
 Hackathon - Sofa Genius.md
 SofaGenius.md
