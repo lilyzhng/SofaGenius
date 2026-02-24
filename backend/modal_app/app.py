@@ -28,6 +28,7 @@ train_image = (
         "datasets",
         "hf-transfer",
         "wandb",
+        "trl>=0.22.0",
     )
     .env({
         "HF_HOME": "/model_cache",
@@ -90,7 +91,7 @@ def run_finetune(config_dict: dict) -> dict:
     import unsloth  # noqa: F401 — must be first for patches
     import torch  # noqa: F401
     import wandb
-    from datasets import load_dataset
+    from datasets import get_dataset_split_names, load_dataset
     from trl import SFTConfig, SFTTrainer
     from unsloth import FastLanguageModel
 
@@ -159,40 +160,74 @@ def run_finetune(config_dict: dict) -> dict:
     trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
     print(f"Params: {total_params:,} total, {trainable_params:,} trainable ({100*trainable_params/total_params:.2f}%)")
 
-    # -- Load data --
+    # -- Load data with train/eval split --
     if not dataset_name:
         raise ValueError("dataset_name is required")
     print(f"Loading dataset: {dataset_name}")
     train_size = config_dict.get("train_size")
-    if train_size:
-        dataset = load_dataset(dataset_name, split=f"train[:{train_size}]")
+
+    # Determine if we should skip eval (overfit mode)
+    skip_eval = (max_steps == 1) or (train_size is not None and train_size <= 4)
+
+    full_dataset = load_dataset(dataset_name, split="train")
+
+    eval_dataset = None
+    if skip_eval:
+        if train_size and train_size < len(full_dataset):
+            full_dataset = full_dataset.select(range(train_size))
+        dataset = full_dataset
     else:
-        dataset = load_dataset(dataset_name, split="train")
-    print(f"Loaded {len(dataset)} samples")
+        try:
+            split_names = get_dataset_split_names(dataset_name)
+            if "test" in split_names:
+                eval_dataset = load_dataset(dataset_name, split="test")
+        except Exception:
+            pass
+        if eval_dataset is not None:
+            dataset = full_dataset
+            if train_size and train_size < len(dataset):
+                dataset = dataset.select(range(train_size))
+        else:
+            splits = full_dataset.train_test_split(test_size=0.1, seed=42)
+            dataset = splits["train"]
+            eval_dataset = splits["test"]
+            if train_size and train_size < len(dataset):
+                dataset = dataset.select(range(train_size))
+        # Scale eval to 10% of training size, capped at 200
+        desired_eval = max(1, int(len(dataset) * 0.1))
+        eval_cap = min(desired_eval, 200)
+        if len(eval_dataset) > eval_cap:
+            eval_dataset = eval_dataset.select(range(eval_cap))
+
+    print(f"Loaded {len(dataset)} train samples"
+          + (f", {len(eval_dataset)} eval samples" if eval_dataset else " (eval skipped)"))
+
+    def formatting_prompts_func(examples):
+        texts = []
+        if "conversations" in examples:
+            for conversation in examples["conversations"]:
+                text = ""
+                for msg in conversation:
+                    text += f"{msg.get('content', msg.get('value', ''))}\n\n"
+                texts.append(text)
+        elif "messages" in examples:
+            for msgs in examples["messages"]:
+                text = ""
+                for msg in msgs:
+                    if msg["role"] == "user":
+                        text += f"# Task: {msg['content']}\n\n"
+                    elif msg["role"] == "assistant":
+                        text += msg["content"]
+                texts.append(text)
+        else:
+            first_key = list(examples.keys())[0]
+            texts = [str(item) for item in examples[first_key]]
+        return {"text": texts}
 
     if "text" not in dataset.column_names:
-        def formatting_prompts_func(examples):
-            texts = []
-            if "conversations" in examples:
-                for conversation in examples["conversations"]:
-                    text = ""
-                    for msg in conversation:
-                        text += f"{msg.get('content', msg.get('value', ''))}\n\n"
-                    texts.append(text)
-            elif "messages" in examples:
-                for msgs in examples["messages"]:
-                    text = ""
-                    for msg in msgs:
-                        if msg["role"] == "user":
-                            text += f"# Task: {msg['content']}\n\n"
-                        elif msg["role"] == "assistant":
-                            text += msg["content"]
-                    texts.append(text)
-            else:
-                first_key = list(examples.keys())[0]
-                texts = [str(item) for item in examples[first_key]]
-            return {"text": texts}
         dataset = dataset.map(formatting_prompts_func, batched=True)
+    if eval_dataset is not None and "text" not in eval_dataset.column_names:
+        eval_dataset = eval_dataset.map(formatting_prompts_func, batched=True)
 
     # -- Training --
     checkpoint_path = f"/checkpoints/{experiment_name}"
@@ -215,11 +250,13 @@ def run_finetune(config_dict: dict) -> dict:
         report_to="wandb",
         save_steps=50,
         save_strategy="steps",
+        **({"eval_strategy": "steps", "eval_steps": 50} if eval_dataset else {}),
     )
     trainer = SFTTrainer(
         model=model,
         tokenizer=tokenizer,
         train_dataset=dataset,
+        eval_dataset=eval_dataset,
         dataset_text_field="text",
         max_seq_length=max_seq_length,
         packing=False,
@@ -530,3 +567,851 @@ def run_evaluation(config_dict: dict) -> dict:
         "wandb_url": wandb_url,
         "run_name": run_name,
     }
+
+
+# ---------------------------------------------------------------------------
+# GRPO training — shared imports and helpers
+# ---------------------------------------------------------------------------
+GRPO_TIMEOUT_HOURS = 8
+
+with train_image.imports():
+    import json as _json
+    import re as _re
+    from datetime import datetime as _datetime
+
+    from datasets import concatenate_datasets as _concatenate_datasets
+    from datasets import get_dataset_split_names as _get_dataset_split_names
+    from datasets import load_dataset as _load_dataset
+    from trl import GRPOConfig, GRPOTrainer
+    from unsloth import FastLanguageModel
+
+
+# ---------------------------------------------------------------------------
+# Dataset splitting utilities (inline — Modal can't import local modules)
+# ---------------------------------------------------------------------------
+_DEFAULT_EVAL_FRACTION = 0.1
+_EVAL_SEED = 42
+_MAX_EVAL = 200
+_MIN_EVAL = 20
+
+
+def _should_skip_eval(config_dict: dict) -> bool:
+    """True for overfit/sanity-check runs (max_steps=1 or train_size<=4)."""
+    if config_dict.get("max_steps", -1) == 1:
+        return True
+    train_size = config_dict.get("train_size")
+    if train_size is not None and train_size <= 4:
+        return True
+    return False
+
+
+def _load_train_eval_split(dataset_name, split_config=None, max_train_samples=None, skip_eval=False):
+    """Load HF dataset and return (train, eval | None). Mirrors dataset_utils.py."""
+    kwargs = {"path": dataset_name}
+    if split_config:
+        kwargs["name"] = split_config
+    full_ds = _load_dataset(**kwargs, split="train")
+    if skip_eval:
+        if max_train_samples and max_train_samples < len(full_ds):
+            full_ds = full_ds.select(range(max_train_samples))
+        return full_ds, None
+    eval_ds = None
+    try:
+        split_names = _get_dataset_split_names(dataset_name, config_name=split_config)
+        if "test" in split_names:
+            eval_ds = _load_dataset(**kwargs, split="test")
+    except Exception:
+        pass
+    if eval_ds is not None:
+        train_ds = full_ds
+        if max_train_samples and max_train_samples < len(train_ds):
+            train_ds = train_ds.select(range(max_train_samples))
+    else:
+        splits = full_ds.train_test_split(test_size=_DEFAULT_EVAL_FRACTION, seed=_EVAL_SEED)
+        train_ds = splits["train"]
+        eval_ds = splits["test"]
+        if max_train_samples and max_train_samples < len(train_ds):
+            train_ds = train_ds.select(range(max_train_samples))
+    desired_eval = max(1, int(len(train_ds) * _DEFAULT_EVAL_FRACTION))
+    eval_cap = min(desired_eval, _MAX_EVAL)
+    if len(eval_ds) > eval_cap:
+        eval_ds = eval_ds.select(range(eval_cap))
+    return train_ds, eval_ds
+
+
+# -- Tool-call extraction utility --
+
+def _extract_tool_call(text: str):
+    """Extract the first <tool_call>...</tool_call> block and parse JSON."""
+    match = _re.search(r"<tool_call>\s*(.*?)\s*</tool_call>", text, _re.DOTALL)
+    if not match:
+        return None
+    try:
+        parsed = _json.loads(match.group(1))
+        if "name" in parsed and "arguments" in parsed:
+            return parsed
+    except (_json.JSONDecodeError, TypeError):
+        pass
+    return None
+
+
+# -- Hermes dataset preparation --
+
+def _prepare_hermes_for_grpo(dataset_name, configs, max_samples, skip_eval=False):
+    """Load Hermes function-calling dataset and prepare for GRPO.
+
+    Returns (train_dataset, eval_dataset | None).
+    """
+    all_datasets = []
+    for config in configs:
+        try:
+            ds = _load_dataset(dataset_name, config, split="train")
+            all_datasets.append(ds)
+        except Exception:
+            continue
+    if not all_datasets:
+        raise ValueError(f"Could not load any config from {dataset_name}")
+    full_dataset = _concatenate_datasets(all_datasets) if len(all_datasets) > 1 else all_datasets[0]
+
+    if skip_eval:
+        if max_samples and max_samples < len(full_dataset):
+            full_dataset = full_dataset.select(range(max_samples))
+        dataset = full_dataset
+        eval_raw = None
+    else:
+        # Split from full data first, then cap training
+        splits = full_dataset.train_test_split(test_size=_DEFAULT_EVAL_FRACTION, seed=_EVAL_SEED)
+        dataset = splits["train"]
+        eval_raw = splits["test"]
+        if max_samples and max_samples < len(dataset):
+            dataset = dataset.select(range(max_samples))
+        desired_eval = max(1, int(len(dataset) * _DEFAULT_EVAL_FRACTION))
+        eval_cap = min(desired_eval, _MAX_EVAL)
+        if len(eval_raw) > eval_cap:
+            eval_raw = eval_raw.select(range(eval_cap))
+
+    def process_row(example):
+        conversations = example.get("conversations", [])
+        tools_raw = example.get("tools", "")
+        prompt_parts = []
+        ground_truth = None
+        for turn in conversations:
+            role = turn.get("from", turn.get("role", ""))
+            content = turn.get("value", turn.get("content", ""))
+            if role in ("system", "human", "user"):
+                prompt_parts.append(content)
+            elif role in ("gpt", "assistant"):
+                tc = _extract_tool_call(content)
+                if tc and ground_truth is None:
+                    ground_truth = _json.dumps(tc)
+        available_tools = []
+        if tools_raw:
+            try:
+                tools_list = _json.loads(tools_raw) if isinstance(tools_raw, str) else tools_raw
+                if isinstance(tools_list, list):
+                    for tool in tools_list:
+                        if isinstance(tool, dict):
+                            name = tool.get("function", {}).get("name") or tool.get("name", "")
+                            if name:
+                                available_tools.append(name)
+            except (_json.JSONDecodeError, TypeError):
+                pass
+        return {
+            "prompt": "\n\n".join(prompt_parts),
+            "ground_truth": ground_truth or "",
+            "available_tools": _json.dumps(available_tools),
+        }
+
+    def _process_and_clean(ds):
+        ds = ds.map(process_row)
+        ds = ds.filter(lambda x: x["ground_truth"] != "")
+        keep_cols = {"prompt", "ground_truth", "available_tools"}
+        remove_cols = [c for c in ds.column_names if c not in keep_cols]
+        if remove_cols:
+            ds = ds.remove_columns(remove_cols)
+        return ds
+
+    train_dataset = _process_and_clean(dataset)
+    eval_dataset = _process_and_clean(eval_raw) if eval_raw is not None else None
+    return train_dataset, eval_dataset
+
+
+# -- Completion text extraction --
+# TRL passes completions as list[str] for standard-format datasets,
+# or list[list[dict]] for conversational format. This helper normalises both.
+
+def _get_completion_text(completion):
+    """Extract text from a completion (str or list[dict] or list[list[dict]])."""
+    if isinstance(completion, str):
+        return completion
+    if isinstance(completion, list):
+        if not completion:
+            return ""
+        first = completion[0]
+        if isinstance(first, dict):
+            return first.get("content", "")
+        if isinstance(first, list) and first:
+            return first[0].get("content", "") if isinstance(first[0], dict) else str(first[0])
+    return str(completion)
+
+
+# -- Tool-calling reward functions --
+
+def _valid_json_reward(completions, **kwargs):
+    """Is <tool_call> present with parseable JSON containing 'name' + 'arguments'?"""
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg)
+        rewards.append(1.0 if _extract_tool_call(text) is not None else 0.0)
+    return rewards
+
+
+def _correct_tool_reward(completions, ground_truth=None, **kwargs):
+    """Does function name match ground truth?"""
+    if not ground_truth:
+        return [0.0] * len(completions)
+    rewards = []
+    for cg, gt_json in zip(completions, ground_truth):
+        text = _get_completion_text(cg)
+        tc = _extract_tool_call(text)
+        if tc is None:
+            rewards.append(0.0)
+            continue
+        try:
+            gt = _json.loads(gt_json)
+            rewards.append(1.0 if tc["name"] == gt["name"] else 0.0)
+        except (_json.JSONDecodeError, KeyError):
+            rewards.append(0.0)
+    return rewards
+
+
+def _correct_params_reward(completions, ground_truth=None, **kwargs):
+    """Per-parameter overlap with ground truth arguments (0.0-1.0 graduated)."""
+    if not ground_truth:
+        return [0.0] * len(completions)
+    rewards = []
+    for cg, gt_json in zip(completions, ground_truth):
+        text = _get_completion_text(cg)
+        tc = _extract_tool_call(text)
+        if tc is None:
+            rewards.append(0.0)
+            continue
+        try:
+            gt = _json.loads(gt_json)
+            gt_args = gt.get("arguments", {})
+            pred_args = tc.get("arguments", {})
+            if not gt_args:
+                rewards.append(1.0 if not pred_args else 0.5)
+                continue
+            correct = sum(
+                1 for k, v in gt_args.items()
+                if k in pred_args and str(pred_args[k]) == str(v)
+            )
+            rewards.append(correct / len(gt_args))
+        except (_json.JSONDecodeError, KeyError):
+            rewards.append(0.0)
+    return rewards
+
+
+def _no_hallucination_reward(completions, available_tools=None, **kwargs):
+    """Tool exists in available set? -2.0 for hallucinated, 1.0 for valid."""
+    if not available_tools:
+        return [0.0] * len(completions)
+    rewards = []
+    for cg, tools_json in zip(completions, available_tools):
+        text = _get_completion_text(cg)
+        tc = _extract_tool_call(text)
+        if tc is None:
+            rewards.append(0.0)
+            continue
+        try:
+            tool_list = _json.loads(tools_json) if isinstance(tools_json, str) else tools_json
+            rewards.append(1.0 if tc["name"] in tool_list else -2.0)
+        except (_json.JSONDecodeError, TypeError):
+            rewards.append(0.0)
+    return rewards
+
+
+# -- Shared model loading + saving --
+
+def _load_model_with_lora(config_dict):
+    """Load base model and apply LoRA. Returns (model, tokenizer)."""
+    model_name = config_dict.get("model_name", "Qwen/Qwen2.5-Coder-14B")
+    max_seq_length = config_dict.get("max_seq_length", 4096)
+    load_in_4bit = config_dict.get("load_in_4bit", True)
+    lora_r = config_dict.get("lora_r", 32)
+    lora_alpha = config_dict.get("lora_alpha", lora_r)
+    seed = config_dict.get("seed", 3407)
+
+    print(f"Loading model: {model_name}")
+    model, tokenizer = FastLanguageModel.from_pretrained(
+        model_name=model_name,
+        max_seq_length=max_seq_length,
+        dtype=None,
+        load_in_4bit=load_in_4bit,
+    )
+    model_cache_vol.commit()
+
+    target_modules = [
+        "q_proj", "k_proj", "v_proj", "o_proj",
+        "gate_proj", "up_proj", "down_proj",
+    ]
+    model = FastLanguageModel.get_peft_model(
+        model,
+        r=lora_r,
+        target_modules=target_modules,
+        lora_alpha=lora_alpha,
+        lora_dropout=0.0,
+        bias="none",
+        use_gradient_checkpointing="unsloth",
+        random_state=seed,
+        use_rslora=False,
+        loftq_config=None,
+    )
+
+    total_params = sum(p.numel() for p in model.parameters())
+    trainable_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
+    print(f"Params: {total_params:,} total, {trainable_params:,} trainable "
+          f"({100 * trainable_params / total_params:.2f}%)")
+    return model, tokenizer
+
+
+def _save_model(model, tokenizer, config_dict, checkpoint_path):
+    """Push to HF or save to checkpoint volume. Returns hf_repo_url or None."""
+    import os
+
+    push_to_hub = config_dict.get("push_to_hub", False)
+    hf_repo_name = config_dict.get("hf_repo_name", "")
+    hf_repo_url = None
+
+    if push_to_hub:
+        hf_token = os.environ.get("HF_TOKEN")
+        if hf_token:
+            try:
+                model.push_to_hub(hf_repo_name, token=hf_token, private=False)
+                tokenizer.push_to_hub(hf_repo_name, token=hf_token, private=False)
+                hf_repo_url = f"https://huggingface.co/{hf_repo_name}"
+                print(f"Pushed to HF: {hf_repo_url}")
+            except Exception as e:
+                print(f"Warning: HF push failed: {e}")
+                model.save_pretrained(f"{checkpoint_path}/final_model")
+                tokenizer.save_pretrained(f"{checkpoint_path}/final_model")
+        else:
+            model.save_pretrained(f"{checkpoint_path}/final_model")
+            tokenizer.save_pretrained(f"{checkpoint_path}/final_model")
+    else:
+        model.save_pretrained(f"{checkpoint_path}/final_model")
+        tokenizer.save_pretrained(f"{checkpoint_path}/final_model")
+
+    checkpoint_vol.commit()
+    return hf_repo_url
+
+
+# -- UI dataset preparation --
+
+def _prepare_ui_dataset(dataset_name, max_samples, skip_eval=False):
+    """Load UI code generation dataset and prepare for GRPO.
+
+    Returns (train_dataset, eval_dataset | None).
+    """
+    train_ds, eval_ds = _load_train_eval_split(
+        dataset_name, max_train_samples=max_samples, skip_eval=skip_eval,
+    )
+
+    def process_row(example):
+        text = example.get("text", "")
+        prompt = ""
+        for line in text.split("\n"):
+            if line.startswith("# Task:") or line.startswith("# Requirements:"):
+                prompt = line.replace("# Task:", "").replace("# Requirements:", "").strip()
+                break
+        if not prompt:
+            for line in text.split("\n"):
+                if line.strip():
+                    prompt = line.strip()
+                    break
+        return {"prompt": f"Generate a React component with Tailwind CSS for: {prompt}"}
+
+    def _process_and_clean(ds):
+        ds = ds.map(process_row)
+        keep_cols = {"prompt"}
+        remove_cols = [c for c in ds.column_names if c not in keep_cols]
+        if remove_cols:
+            ds = ds.remove_columns(remove_cols)
+        return ds
+
+    train_dataset = _process_and_clean(train_ds)
+    eval_dataset = _process_and_clean(eval_ds) if eval_ds is not None else None
+    return train_dataset, eval_dataset
+
+
+# -- UI reward functions (adapted from Tinker blog) --
+
+def _completeness_reward(completions, **kwargs):
+    """Reward complete code (+7.5), heavily penalize truncated (-15.0)."""
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg).strip()
+        has_closing = any([
+            text.endswith("/>"), text.endswith(");"), text.endswith("</div>"),
+            text.endswith("</main>"), text.endswith("</section>"),
+            text.endswith("}"), "export default" in text,
+            text.rstrip().endswith("```"),
+        ])
+        rewards.append(7.5 if has_closing else -15.0)
+    return rewards
+
+
+def _validity_reward(completions, **kwargs):
+    """Balanced braces, brackets, parentheses (0-3 points)."""
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg)
+        score = 0.0
+        if text.count("{") == text.count("}"):
+            score += 1.0
+        if text.count("[") == text.count("]"):
+            score += 1.0
+        if text.count("(") == text.count(")"):
+            score += 1.0
+        rewards.append(score)
+    return rewards
+
+
+def _interactivity_reward(completions, **kwargs):
+    """Reward React hooks and event handlers (0-5 points)."""
+    patterns = [
+        r"useState", r"useEffect", r"onClick",
+        r"onChange", r"onSubmit|onKeyDown|onKeyPress|onFocus|onBlur",
+    ]
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg)
+        score = sum(1.0 for p in patterns if _re.search(p, text))
+        rewards.append(score)
+    return rewards
+
+
+def _quote_balance_reward(completions, **kwargs):
+    """Balanced quotes (0-2 points)."""
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg)
+        score = 0.0
+        if len(_re.findall(r'(?<!\\)"', text)) % 2 == 0:
+            score += 1.0
+        if len(_re.findall(r"(?<!\\)'", text)) % 2 == 0 and text.count("`") % 2 == 0:
+            score += 1.0
+        rewards.append(score)
+    return rewards
+
+
+def _length_penalty(completions, **kwargs):
+    """Penalize extremely short (<50) or long (>8000) outputs."""
+    rewards = []
+    for cg in completions:
+        text = _get_completion_text(cg)
+        length = len(text)
+        if length < 50:
+            rewards.append(-5.0)
+        elif length > 8000:
+            rewards.append(-2.0)
+        else:
+            rewards.append(0.0)
+    return rewards
+
+
+# -- Quick eval functions --
+
+def _run_grpo_quick_eval(model, tokenizer, eval_dataset, wandb_module):
+    """Generate on held-out eval prompts and score with reward functions."""
+    print(f"\nRunning quick GRPO eval on {len(eval_dataset)} held-out examples...")
+    try:
+        if len(eval_dataset) == 0:
+            print("No eval samples available, skipping eval")
+            return
+
+        FastLanguageModel.for_inference(model)
+
+        valid_json_count = 0
+        correct_tool_count = 0
+        correct_params_total = 0.0
+        no_hallucination_count = 0
+        overall_pass_count = 0
+        total = len(eval_dataset)
+
+        for i, sample in enumerate(eval_dataset):
+            prompt = sample["prompt"]
+            gt_json = sample["ground_truth"]
+            tools_json = sample["available_tools"]
+
+            inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=1024).to("cuda")
+            outputs = model.generate(**inputs, max_new_tokens=512, temperature=0.7, do_sample=True)
+            response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+
+            tc = _extract_tool_call(response)
+            is_valid = tc is not None
+            if is_valid:
+                valid_json_count += 1
+
+            is_correct_tool = False
+            is_correct_params = False
+            is_no_hallucination = False
+
+            if tc:
+                try:
+                    gt = _json.loads(gt_json)
+                    is_correct_tool = tc["name"] == gt["name"]
+                except (_json.JSONDecodeError, KeyError):
+                    pass
+                try:
+                    gt = _json.loads(gt_json)
+                    gt_args = gt.get("arguments", {})
+                    pred_args = tc.get("arguments", {})
+                    if not gt_args:
+                        is_correct_params = not pred_args
+                    else:
+                        correct = sum(1 for k, v in gt_args.items() if k in pred_args and str(pred_args[k]) == str(v))
+                        is_correct_params = correct == len(gt_args)
+                except (_json.JSONDecodeError, KeyError):
+                    pass
+                try:
+                    tool_list = _json.loads(tools_json)
+                    is_no_hallucination = tc["name"] in tool_list
+                except (_json.JSONDecodeError, TypeError):
+                    pass
+
+            if is_correct_tool:
+                correct_tool_count += 1
+            if is_correct_params:
+                correct_params_total += 1
+            if is_no_hallucination:
+                no_hallucination_count += 1
+            if is_valid and is_correct_tool and is_correct_params and is_no_hallucination:
+                overall_pass_count += 1
+
+        wandb_module.log({
+            "eval/valid_json_rate": valid_json_count / total,
+            "eval/correct_tool_rate": correct_tool_count / total,
+            "eval/correct_params_rate": correct_params_total / total,
+            "eval/no_hallucination_rate": no_hallucination_count / total,
+            "eval/overall_pass_rate": overall_pass_count / total,
+        })
+        print(f"Eval results: valid_json={valid_json_count}/{total}, "
+              f"correct_tool={correct_tool_count}/{total}, "
+              f"correct_params={correct_params_total:.0f}/{total}, "
+              f"no_hallucination={no_hallucination_count}/{total}, "
+              f"overall_pass={overall_pass_count}/{total}")
+
+    except Exception as e:
+        print(f"Quick GRPO eval failed (non-fatal): {e}")
+
+
+def _run_ui_quick_eval(model, tokenizer, eval_dataset, wandb_module):
+    """Generate on held-out UI prompts and score with 5 reward functions."""
+    print(f"\nRunning quick UI eval on {len(eval_dataset)} held-out examples...")
+    try:
+        if len(eval_dataset) == 0:
+            print("No eval samples available, skipping eval")
+            return
+
+        FastLanguageModel.for_inference(model)
+
+        completeness_scores = []
+        validity_scores = []
+        interactivity_scores = []
+        quote_scores = []
+        length_scores = []
+        total = len(eval_dataset)
+
+        for i, sample in enumerate(eval_dataset):
+            prompt = sample["prompt"]
+            inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=1024).to("cuda")
+            outputs = model.generate(**inputs, max_new_tokens=2048, temperature=0.7, do_sample=True)
+            response = tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+
+            # Score using inline reward functions
+            comp = [response]
+            completeness_scores.append(1.0 if _completeness_reward(comp)[0] == 7.5 else 0.0)
+            validity_scores.append(_validity_reward(comp)[0] / 3.0)
+            interactivity_scores.append(_interactivity_reward(comp)[0] / 5.0)
+            quote_scores.append(_quote_balance_reward(comp)[0] / 2.0)
+            length_scores.append(0.0 if _length_penalty(comp)[0] == 0.0 else 1.0)
+
+        wandb_module.log({
+            "eval/completeness_rate": sum(completeness_scores) / total,
+            "eval/validity_avg": sum(validity_scores) / total,
+            "eval/interactivity_avg": sum(interactivity_scores) / total,
+            "eval/quote_balance_avg": sum(quote_scores) / total,
+            "eval/length_penalty_rate": sum(length_scores) / total,
+        })
+        print(f"UI Eval results: completeness={sum(completeness_scores)/total:.2f}, "
+              f"validity={sum(validity_scores)/total:.2f}, "
+              f"interactivity={sum(interactivity_scores)/total:.2f}")
+
+    except Exception as e:
+        print(f"Quick UI eval failed (non-fatal): {e}")
+
+
+# ---------------------------------------------------------------------------
+# GRPO Modal functions
+# ---------------------------------------------------------------------------
+
+@app.function(
+    image=train_image,
+    gpu="A100-80GB",
+    volumes={
+        "/model_cache": model_cache_vol,
+        "/checkpoints": checkpoint_vol,
+    },
+    secrets=[modal.Secret.from_name("wandb-secret"), modal.Secret.from_name("hf-secret")],
+    timeout=GRPO_TIMEOUT_HOURS * 60 * 60,
+)
+def run_grpo(config_dict: dict) -> dict:
+    """Run GRPO training for tool calling with Hermes function-calling dataset."""
+    import wandb
+
+    # Parse config
+    model_name = config_dict.get("model_name", "Qwen/Qwen2.5-Coder-14B")
+    dataset_name = config_dict.get("dataset_name", "NousResearch/hermes-function-calling-v1")
+    lora_r = config_dict.get("lora_r", 32)
+    max_steps = config_dict.get("max_steps", -1)
+    num_epochs = config_dict.get("num_epochs", 1)
+    train_size = config_dict.get("train_size")
+    wandb_project = config_dict.get("wandb_project", "grpo-tool-calling")
+
+    timestamp = _datetime.now().strftime("%Y%m%d-%H%M%S")
+    model_short = model_name.split("/")[-1]
+    experiment_name = config_dict.get(
+        "experiment_name", f"{model_short}-grpo-r{lora_r}-{timestamp}"
+    )
+    if not config_dict.get("hf_repo_name"):
+        config_dict["hf_repo_name"] = experiment_name
+
+    # W&B
+    wandb.init(project=wandb_project, name=experiment_name, config=config_dict)
+    wandb_url = wandb.run.url
+    print(f"W&B run: {wandb_url}\n")
+    run_urls[experiment_name] = wandb_url
+
+    # Model
+    model, tokenizer = _load_model_with_lora(config_dict)
+
+    # Dataset
+    skip_eval = _should_skip_eval(config_dict)
+    print(f"Loading dataset: {dataset_name}")
+    dataset, eval_dataset = _prepare_hermes_for_grpo(
+        dataset_name, ("func_calling_singleturn", "func_calling"), train_size,
+        skip_eval=skip_eval,
+    )
+    print(f"Prepared {len(dataset)} GRPO train samples"
+          + (f", {len(eval_dataset)} eval samples" if eval_dataset else " (eval skipped)"))
+
+    # Train
+    checkpoint_path = f"/checkpoints/{experiment_name}"
+    _num_epochs = 1 if max_steps > 0 else num_epochs
+    _max_steps = max_steps if max_steps > 0 else -1
+
+    num_generations = config_dict.get("num_generations", 4)
+    training_args = GRPOConfig(
+        output_dir=checkpoint_path,
+        learning_rate=config_dict.get("learning_rate", 5e-6),
+        per_device_train_batch_size=num_generations,
+        gradient_accumulation_steps=config_dict.get("gradient_accumulation_steps", 1),
+        num_generations=num_generations,
+        temperature=config_dict.get("temperature", 1.0),
+        max_prompt_length=config_dict.get("max_prompt_length", 1024),
+        max_completion_length=config_dict.get("max_completion_length", 512),
+        num_train_epochs=_num_epochs,
+        max_steps=_max_steps,
+        optim="adamw_8bit",
+        lr_scheduler_type="linear",
+        warmup_ratio=0.1,
+        logging_steps=1,
+        report_to="wandb",
+        save_steps=50,
+        save_strategy="steps",
+        seed=config_dict.get("seed", 3407),
+    )
+    trainer = GRPOTrainer(
+        model=model,
+        processing_class=tokenizer,
+        args=training_args,
+        train_dataset=dataset,
+        reward_funcs=[
+            _valid_json_reward, _correct_tool_reward,
+            _correct_params_reward, _no_hallucination_reward,
+        ],
+    )
+    print("Starting GRPO training...\n")
+    trainer_stats = trainer.train()
+
+    # Results
+    runtime_seconds = trainer_stats.metrics.get("train_runtime", 0)
+    runtime_minutes = round(runtime_seconds / 60, 2)
+    final_reward = None
+    if trainer.state.log_history:
+        for entry in reversed(trainer.state.log_history):
+            if "reward" in entry:
+                final_reward = round(entry["reward"], 4)
+                break
+    print(f"Training complete! {runtime_minutes} min, final_reward={final_reward}")
+
+    # Quick eval on held-out samples
+    if eval_dataset is not None:
+        _run_grpo_quick_eval(model, tokenizer, eval_dataset, wandb)
+
+    hf_repo_url = _save_model(model, tokenizer, config_dict, checkpoint_path)
+    wandb.finish()
+
+    return {
+        "experiment_name": experiment_name,
+        "wandb_url": wandb_url,
+        "final_reward": final_reward,
+        "runtime_minutes": runtime_minutes,
+        "hf_repo_url": hf_repo_url,
+    }
+
+
+@app.function(
+    image=train_image,
+    gpu="A100-80GB",
+    volumes={
+        "/model_cache": model_cache_vol,
+        "/checkpoints": checkpoint_vol,
+    },
+    secrets=[modal.Secret.from_name("wandb-secret"), modal.Secret.from_name("hf-secret")],
+    timeout=GRPO_TIMEOUT_HOURS * 60 * 60,
+)
+def run_grpo_ui(config_dict: dict) -> dict:
+    """Run GRPO training for generative UI (React code generation)."""
+    import wandb
+
+    # Parse config
+    model_name = config_dict.get("model_name", "Qwen/Qwen2.5-Coder-14B")
+    dataset_name = config_dict.get("dataset_name", "lilyzhng/uigen-ui-code-gen")
+    lora_r = config_dict.get("lora_r", 32)
+    max_steps = config_dict.get("max_steps", -1)
+    num_epochs = config_dict.get("num_epochs", 1)
+    train_size = config_dict.get("train_size")
+    wandb_project = config_dict.get("wandb_project", "grpo-ui-gen")
+
+    timestamp = _datetime.now().strftime("%Y%m%d-%H%M%S")
+    model_short = model_name.split("/")[-1]
+    experiment_name = config_dict.get(
+        "experiment_name", f"{model_short}-grpo-ui-r{lora_r}-{timestamp}"
+    )
+    if not config_dict.get("hf_repo_name"):
+        config_dict["hf_repo_name"] = experiment_name
+
+    # W&B
+    wandb.init(project=wandb_project, name=experiment_name, config=config_dict)
+    wandb_url = wandb.run.url
+    print(f"W&B run: {wandb_url}\n")
+    run_urls[experiment_name] = wandb_url
+
+    # Model
+    model, tokenizer = _load_model_with_lora(config_dict)
+
+    # Dataset
+    skip_eval = _should_skip_eval(config_dict)
+    print(f"Loading dataset: {dataset_name}")
+    dataset, eval_dataset = _prepare_ui_dataset(dataset_name, train_size, skip_eval=skip_eval)
+    print(f"Prepared {len(dataset)} UI GRPO train samples"
+          + (f", {len(eval_dataset)} eval samples" if eval_dataset else " (eval skipped)"))
+
+    # Train
+    checkpoint_path = f"/checkpoints/{experiment_name}"
+    _num_epochs = 1 if max_steps > 0 else num_epochs
+    _max_steps = max_steps if max_steps > 0 else -1
+
+    num_generations = config_dict.get("num_generations", 4)
+    training_args = GRPOConfig(
+        output_dir=checkpoint_path,
+        learning_rate=config_dict.get("learning_rate", 5e-6),
+        per_device_train_batch_size=num_generations,
+        gradient_accumulation_steps=config_dict.get("gradient_accumulation_steps", 1),
+        num_generations=num_generations,
+        temperature=config_dict.get("temperature", 1.0),
+        max_prompt_length=config_dict.get("max_prompt_length", 1024),
+        max_completion_length=config_dict.get("max_completion_length", 2048),
+        num_train_epochs=_num_epochs,
+        max_steps=_max_steps,
+        optim="adamw_8bit",
+        lr_scheduler_type="linear",
+        warmup_ratio=0.1,
+        logging_steps=1,
+        report_to="wandb",
+        save_steps=50,
+        save_strategy="steps",
+        seed=config_dict.get("seed", 3407),
+    )
+    trainer = GRPOTrainer(
+        model=model,
+        processing_class=tokenizer,
+        args=training_args,
+        train_dataset=dataset,
+        reward_funcs=[
+            _completeness_reward, _validity_reward,
+            _interactivity_reward, _quote_balance_reward, _length_penalty,
+        ],
+    )
+    print("Starting GRPO UI training...\n")
+    trainer_stats = trainer.train()
+
+    # Results
+    runtime_seconds = trainer_stats.metrics.get("train_runtime", 0)
+    runtime_minutes = round(runtime_seconds / 60, 2)
+    final_reward = None
+    if trainer.state.log_history:
+        for entry in reversed(trainer.state.log_history):
+            if "reward" in entry:
+                final_reward = round(entry["reward"], 4)
+                break
+    print(f"Training complete! {runtime_minutes} min, final_reward={final_reward}")
+
+    # Quick eval on held-out samples
+    if eval_dataset is not None:
+        _run_ui_quick_eval(model, tokenizer, eval_dataset, wandb)
+
+    hf_repo_url = _save_model(model, tokenizer, config_dict, checkpoint_path)
+    wandb.finish()
+
+    return {
+        "experiment_name": experiment_name,
+        "wandb_url": wandb_url,
+        "final_reward": final_reward,
+        "runtime_minutes": runtime_minutes,
+        "hf_repo_url": hf_repo_url,
+    }
+
+
+# ---------------------------------------------------------------------------
+# CLI entrypoints — use these with `modal run` since bare `dict` params
+# can't be parsed by Modal CLI. Pass config as a JSON string instead.
+#
+#   modal run --detach backend/modal_app/app.py::cli_grpo --config-json '{...}'
+# ---------------------------------------------------------------------------
+
+@app.local_entrypoint()
+def cli_grpo(config_json: str):
+    """Launch GRPO tool-calling training from CLI."""
+    import json as _j
+    result = run_grpo.remote(_j.loads(config_json))
+    print(_j.dumps(result, indent=2))
+
+
+@app.local_entrypoint()
+def cli_grpo_ui(config_json: str):
+    """Launch GRPO UI training from CLI."""
+    import json as _j
+    result = run_grpo_ui.remote(_j.loads(config_json))
+    print(_j.dumps(result, indent=2))
+
+
+@app.local_entrypoint()
+def cli_finetune(config_json: str):
+    """Launch SFT fine-tuning from CLI."""
+    import json as _j
+    result = run_finetune.remote(_j.loads(config_json))
+    print(_j.dumps(result, indent=2))
