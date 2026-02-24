@@ -22,10 +22,10 @@ const TOOL_LABELS: Record<string, string> = {
   search_hf_models: "Searching HF models",
   create_scout_card: "Creating scout card",
   create_draft_post_card: "Creating draft post",
-  propose_finetune: "Proposing fine-tuning job",
+  propose_training: "Proposing training job",
   propose_eval: "Proposing evaluation job",
   modify_and_propose: "Updating config",
-  launch_finetune: "Launching fine-tuning job",
+  launch_training: "Launching training job",
   launch_eval: "Launching evaluation job",
   compare_runs: "Comparing runs",
 };

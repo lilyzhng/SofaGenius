@@ -6,6 +6,7 @@ Deploy once:
 
 Then Sofa Genius can launch jobs via:
     modal.Function.from_name("sofa-genius-launcher", "run_finetune").spawn(config)
+    modal.Function.from_name("sofa-genius-launcher", "run_grpo").spawn(config)
     modal.Function.from_name("sofa-genius-launcher", "run_evaluation").spawn(config)
 """
 
@@ -1153,6 +1154,41 @@ def _run_ui_quick_eval(model, tokenizer, eval_dataset, wandb_module):
         print(f"Quick UI eval failed (non-fatal): {e}")
 
 
+# -- GRPO task registry --
+# Maps task_type to the 5 things that differ between GRPO applications.
+# run_grpo reads task_type from config_dict and dispatches accordingly.
+
+_GRPO_TASKS = {
+    "tool_calling": {
+        "prepare_fn": lambda dataset_name, max_samples, skip_eval=False: (
+            _prepare_hermes_for_grpo(
+                dataset_name,
+                ("func_calling_singleturn", "func_calling"),
+                max_samples,
+                skip_eval=skip_eval,
+            )
+        ),
+        "reward_funcs": [
+            _valid_json_reward, _correct_tool_reward,
+            _correct_params_reward, _no_hallucination_reward,
+        ],
+        "eval_fn": _run_grpo_quick_eval,
+        "max_completion_length": 512,
+        "default_wandb_project": "grpo-tool-calling",
+    },
+    "ui_generation": {
+        "prepare_fn": _prepare_ui_dataset,
+        "reward_funcs": [
+            _completeness_reward, _validity_reward,
+            _interactivity_reward, _quote_balance_reward, _length_penalty,
+        ],
+        "eval_fn": _run_ui_quick_eval,
+        "max_completion_length": 2048,
+        "default_wandb_project": "grpo-ui-gen",
+    },
+}
+
+
 # ---------------------------------------------------------------------------
 # GRPO Modal functions
 # ---------------------------------------------------------------------------
@@ -1168,8 +1204,20 @@ def _run_ui_quick_eval(model, tokenizer, eval_dataset, wandb_module):
     timeout=GRPO_TIMEOUT_HOURS * 60 * 60,
 )
 def run_grpo(config_dict: dict) -> dict:
-    """Run GRPO training for tool calling with Hermes function-calling dataset."""
+    """Run GRPO training. Dispatches by task_type (default: tool_calling).
+
+    Supported task types:
+    - "tool_calling": Hermes function-calling dataset, JSON/tool rewards
+    - "ui_generation": React/Tailwind code gen, completeness/validity rewards
+    """
     import wandb
+
+    # Resolve task type
+    task_type = config_dict.get("task_type", "tool_calling")
+    task = _GRPO_TASKS.get(task_type)
+    if task is None:
+        raise ValueError(f"Unknown GRPO task_type: {task_type!r}. "
+                         f"Valid: {list(_GRPO_TASKS)}")
 
     # Parse config
     model_name = config_dict.get("model_name", "Qwen/Qwen2.5-Coder-14B")
@@ -1178,7 +1226,7 @@ def run_grpo(config_dict: dict) -> dict:
     max_steps = config_dict.get("max_steps", -1)
     num_epochs = config_dict.get("num_epochs", 1)
     train_size = config_dict.get("train_size")
-    wandb_project = config_dict.get("wandb_project", "grpo-tool-calling")
+    wandb_project = config_dict.get("wandb_project", task["default_wandb_project"])
 
     timestamp = _datetime.now().strftime("%Y%m%d-%H%M%S")
     model_short = model_name.split("/")[-1]
@@ -1197,13 +1245,10 @@ def run_grpo(config_dict: dict) -> dict:
     # Model
     model, tokenizer = _load_model_with_lora(config_dict)
 
-    # Dataset
+    # Dataset — dispatched via task registry
     skip_eval = _should_skip_eval(config_dict)
-    print(f"Loading dataset: {dataset_name}")
-    dataset, eval_dataset = _prepare_hermes_for_grpo(
-        dataset_name, ("func_calling_singleturn", "func_calling"), train_size,
-        skip_eval=skip_eval,
-    )
+    print(f"Loading dataset: {dataset_name} (task_type={task_type})")
+    dataset, eval_dataset = task["prepare_fn"](dataset_name, train_size, skip_eval=skip_eval)
     print(f"Prepared {len(dataset)} GRPO train samples"
           + (f", {len(eval_dataset)} eval samples" if eval_dataset else " (eval skipped)"))
 
@@ -1212,6 +1257,9 @@ def run_grpo(config_dict: dict) -> dict:
     _num_epochs = 1 if max_steps > 0 else num_epochs
     _max_steps = max_steps if max_steps > 0 else -1
 
+    max_completion_length = config_dict.get(
+        "max_completion_length", task["max_completion_length"],
+    )
     num_generations = config_dict.get("num_generations", 4)
     training_args = GRPOConfig(
         output_dir=checkpoint_path,
@@ -1221,7 +1269,7 @@ def run_grpo(config_dict: dict) -> dict:
         num_generations=num_generations,
         temperature=config_dict.get("temperature", 1.0),
         max_prompt_length=config_dict.get("max_prompt_length", 1024),
-        max_completion_length=config_dict.get("max_completion_length", 512),
+        max_completion_length=max_completion_length,
         num_train_epochs=_num_epochs,
         max_steps=_max_steps,
         optim="adamw_8bit",
@@ -1238,12 +1286,9 @@ def run_grpo(config_dict: dict) -> dict:
         processing_class=tokenizer,
         args=training_args,
         train_dataset=dataset,
-        reward_funcs=[
-            _valid_json_reward, _correct_tool_reward,
-            _correct_params_reward, _no_hallucination_reward,
-        ],
+        reward_funcs=task["reward_funcs"],
     )
-    print("Starting GRPO training...\n")
+    print(f"Starting GRPO training (task_type={task_type})...\n")
     trainer_stats = trainer.train()
 
     # Results
@@ -1257,122 +1302,9 @@ def run_grpo(config_dict: dict) -> dict:
                 break
     print(f"Training complete! {runtime_minutes} min, final_reward={final_reward}")
 
-    # Quick eval on held-out samples
+    # Quick eval on held-out samples — dispatched via task registry
     if eval_dataset is not None:
-        _run_grpo_quick_eval(model, tokenizer, eval_dataset, wandb)
-
-    hf_repo_url = _save_model(model, tokenizer, config_dict, checkpoint_path)
-    wandb.finish()
-
-    return {
-        "experiment_name": experiment_name,
-        "wandb_url": wandb_url,
-        "final_reward": final_reward,
-        "runtime_minutes": runtime_minutes,
-        "hf_repo_url": hf_repo_url,
-    }
-
-
-@app.function(
-    image=train_image,
-    gpu="A100-80GB",
-    volumes={
-        "/model_cache": model_cache_vol,
-        "/checkpoints": checkpoint_vol,
-    },
-    secrets=[modal.Secret.from_name("wandb-secret"), modal.Secret.from_name("hf-secret")],
-    timeout=GRPO_TIMEOUT_HOURS * 60 * 60,
-)
-def run_grpo_ui(config_dict: dict) -> dict:
-    """Run GRPO training for generative UI (React code generation)."""
-    import wandb
-
-    # Parse config
-    model_name = config_dict.get("model_name", "Qwen/Qwen2.5-Coder-14B")
-    dataset_name = config_dict.get("dataset_name", "lilyzhng/uigen-ui-code-gen")
-    lora_r = config_dict.get("lora_r", 32)
-    max_steps = config_dict.get("max_steps", -1)
-    num_epochs = config_dict.get("num_epochs", 1)
-    train_size = config_dict.get("train_size")
-    wandb_project = config_dict.get("wandb_project", "grpo-ui-gen")
-
-    timestamp = _datetime.now().strftime("%Y%m%d-%H%M%S")
-    model_short = model_name.split("/")[-1]
-    experiment_name = config_dict.get(
-        "experiment_name", f"{model_short}-grpo-ui-r{lora_r}-{timestamp}"
-    )
-    if not config_dict.get("hf_repo_name"):
-        config_dict["hf_repo_name"] = experiment_name
-
-    # W&B
-    wandb.init(project=wandb_project, name=experiment_name, config=config_dict)
-    wandb_url = wandb.run.url
-    print(f"W&B run: {wandb_url}\n")
-    run_urls[experiment_name] = wandb_url
-
-    # Model
-    model, tokenizer = _load_model_with_lora(config_dict)
-
-    # Dataset
-    skip_eval = _should_skip_eval(config_dict)
-    print(f"Loading dataset: {dataset_name}")
-    dataset, eval_dataset = _prepare_ui_dataset(dataset_name, train_size, skip_eval=skip_eval)
-    print(f"Prepared {len(dataset)} UI GRPO train samples"
-          + (f", {len(eval_dataset)} eval samples" if eval_dataset else " (eval skipped)"))
-
-    # Train
-    checkpoint_path = f"/checkpoints/{experiment_name}"
-    _num_epochs = 1 if max_steps > 0 else num_epochs
-    _max_steps = max_steps if max_steps > 0 else -1
-
-    num_generations = config_dict.get("num_generations", 4)
-    training_args = GRPOConfig(
-        output_dir=checkpoint_path,
-        learning_rate=config_dict.get("learning_rate", 5e-6),
-        per_device_train_batch_size=num_generations,
-        gradient_accumulation_steps=config_dict.get("gradient_accumulation_steps", 1),
-        num_generations=num_generations,
-        temperature=config_dict.get("temperature", 1.0),
-        max_prompt_length=config_dict.get("max_prompt_length", 1024),
-        max_completion_length=config_dict.get("max_completion_length", 2048),
-        num_train_epochs=_num_epochs,
-        max_steps=_max_steps,
-        optim="adamw_8bit",
-        lr_scheduler_type="linear",
-        warmup_ratio=0.1,
-        logging_steps=1,
-        report_to="wandb",
-        save_steps=50,
-        save_strategy="steps",
-        seed=config_dict.get("seed", 3407),
-    )
-    trainer = GRPOTrainer(
-        model=model,
-        processing_class=tokenizer,
-        args=training_args,
-        train_dataset=dataset,
-        reward_funcs=[
-            _completeness_reward, _validity_reward,
-            _interactivity_reward, _quote_balance_reward, _length_penalty,
-        ],
-    )
-    print("Starting GRPO UI training...\n")
-    trainer_stats = trainer.train()
-
-    # Results
-    runtime_seconds = trainer_stats.metrics.get("train_runtime", 0)
-    runtime_minutes = round(runtime_seconds / 60, 2)
-    final_reward = None
-    if trainer.state.log_history:
-        for entry in reversed(trainer.state.log_history):
-            if "reward" in entry:
-                final_reward = round(entry["reward"], 4)
-                break
-    print(f"Training complete! {runtime_minutes} min, final_reward={final_reward}")
-
-    # Quick eval on held-out samples
-    if eval_dataset is not None:
-        _run_ui_quick_eval(model, tokenizer, eval_dataset, wandb)
+        task["eval_fn"](model, tokenizer, eval_dataset, wandb)
 
     hf_repo_url = _save_model(model, tokenizer, config_dict, checkpoint_path)
     wandb.finish()
@@ -1395,17 +1327,9 @@ def run_grpo_ui(config_dict: dict) -> dict:
 
 @app.local_entrypoint()
 def cli_grpo(config_json: str):
-    """Launch GRPO tool-calling training from CLI."""
+    """Launch GRPO training from CLI. Pass task_type in config for UI gen."""
     import json as _j
     result = run_grpo.remote(_j.loads(config_json))
-    print(_j.dumps(result, indent=2))
-
-
-@app.local_entrypoint()
-def cli_grpo_ui(config_json: str):
-    """Launch GRPO UI training from CLI."""
-    import json as _j
-    result = run_grpo_ui.remote(_j.loads(config_json))
     print(_j.dumps(result, indent=2))
 
 

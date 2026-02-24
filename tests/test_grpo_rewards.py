@@ -5,7 +5,7 @@ Tests cover:
 - 4 tool-calling reward functions (grpo_train.py)
 - 5 generative UI reward functions (grpo_ui_train.py)
 - dataset splitting utilities (dataset_utils.py)
-- propose_grpo / launch card structure (modal_launcher.py)
+- propose_training / launch_training card structure (modal_launcher.py)
 """
 
 import json
@@ -479,53 +479,60 @@ class TestPrepareUiReturnsTuple:
 
 
 # ===================================================================
-# propose_grpo card structure
+# propose_training card structure
 # ===================================================================
 
-class TestProposeGrpo:
-    def test_overfit_card_structure(self):
-        from backend.tools.modal_launcher import propose_grpo
+class TestProposeTraining:
+    """Tests for the unified propose_training tool."""
 
-        result = json.loads(propose_grpo(
+    def test_grpo_overfit_card_structure(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
             dataset_name="NousResearch/hermes-function-calling-v1",
+            method="grpo",
             run_mode="overfit",
         ))
         assert result["card_type"] == "launch_card"
         assert result["launch_type"] == "grpo"
         assert result["status"] == "proposed"
         assert result["requires_approval"] is True
+        assert result["config"]["method"] == "grpo"
         assert result["config"]["max_steps"] == 1
         assert result["config"]["num_generations"] == 4
         assert result["config"]["launch_type"] == "grpo"
         assert result["cost_estimate"]["gpu_type"] == "A100"
         assert result["cost_estimate"]["estimated_cost_usd"] >= 0
 
-    def test_exp_card(self):
-        from backend.tools.modal_launcher import propose_grpo
+    def test_grpo_exp_card(self):
+        from backend.tools.modal_launcher import propose_training
 
-        result = json.loads(propose_grpo(
+        result = json.loads(propose_training(
             dataset_name="NousResearch/hermes-function-calling-v1",
+            method="grpo",
             run_mode="exp",
         ))
         assert result["config"]["max_steps"] == 50
         assert result["config"]["num_generations"] == 4
         assert result["config"]["train_size"] == 100
 
-    def test_prod_card(self):
-        from backend.tools.modal_launcher import propose_grpo
+    def test_grpo_prod_card(self):
+        from backend.tools.modal_launcher import propose_training
 
-        result = json.loads(propose_grpo(
+        result = json.loads(propose_training(
             dataset_name="NousResearch/hermes-function-calling-v1",
+            method="grpo",
             run_mode="prod",
         ))
         assert result["config"]["max_steps"] == 300
         assert result["config"]["push_to_hub"] is True
 
-    def test_custom_overrides(self):
-        from backend.tools.modal_launcher import propose_grpo
+    def test_grpo_custom_overrides(self):
+        from backend.tools.modal_launcher import propose_training
 
-        result = json.loads(propose_grpo(
+        result = json.loads(propose_training(
             dataset_name="test/dataset",
+            method="grpo",
             run_mode="overfit",
             learning_rate=1e-5,
             lora_r=16,
@@ -535,17 +542,154 @@ class TestProposeGrpo:
         assert result["config"]["lora_r"] == 16
         assert result["config"]["num_generations"] == 8
 
+    def test_sft_overfit_card_structure(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
+            dataset_name="lilyzhng/uigen-ui-code-gen",
+            method="sft",
+            run_mode="overfit",
+        ))
+        assert result["card_type"] == "launch_card"
+        assert result["launch_type"] == "finetune"
+        assert result["status"] == "proposed"
+        assert result["config"]["method"] == "sft"
+        assert result["config"]["max_steps"] == 1
+        assert result["config"]["batch_size"] == 1
+        assert result["config"]["gradient_accumulation_steps"] == 8
+        assert result["config"]["learning_rate"] == 2e-4
+
+    def test_sft_prod_card(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
+            dataset_name="lilyzhng/uigen-ui-code-gen",
+            method="sft",
+            run_mode="prod",
+        ))
+        assert result["config"]["push_to_hub"] is True
+        assert result["config"]["max_steps"] == -1
+
+    def test_grpo_ui_generation_task_defaults(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
+            dataset_name="lilyzhng/uigen-ui-code-gen",
+            method="grpo",
+            run_mode="overfit",
+            task_type="ui_generation",
+        ))
+        assert result["config"]["task_type"] == "ui_generation"
+        assert result["config"]["max_completion_length"] == 2048
+        assert result["config"]["wandb_project"] == "grpo-ui-gen"
+
+    def test_grpo_tool_calling_defaults(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
+            dataset_name="NousResearch/hermes-function-calling-v1",
+            method="grpo",
+            run_mode="overfit",
+            task_type="tool_calling",
+        ))
+        assert result["config"]["task_type"] == "tool_calling"
+        assert result["config"]["max_completion_length"] == 512
+        assert result["config"]["wandb_project"] == "grpo-tool-calling"
+
+    def test_invalid_method_defaults_to_sft(self):
+        from backend.tools.modal_launcher import propose_training
+
+        result = json.loads(propose_training(
+            dataset_name="test/ds",
+            method="invalid",
+            run_mode="overfit",
+        ))
+        assert result["config"]["method"] == "sft"
+
+
+# ===================================================================
+# launch_training dispatch logic
+# ===================================================================
+
+class TestLaunchTrainingDispatch:
+    """Verify launch_training dispatches to the correct Modal function."""
+
+    @patch("modal.Function")
+    def test_sft_dispatches_to_run_finetune(self, mock_fn_cls):
+        from backend.tools.modal_launcher import launch_training
+
+        mock_fn = MagicMock()
+        mock_call = MagicMock()
+        mock_call.object_id = "call-123"
+        mock_fn.spawn.return_value = mock_call
+        mock_fn_cls.from_name.return_value = mock_fn
+
+        config = {"method": "sft", "model_name": "Qwen/Qwen2.5-Coder-14B", "launch_type": "finetune"}
+        result = json.loads(launch_training(json.dumps(config)))
+
+        mock_fn_cls.from_name.assert_called_with("sofa-genius-launcher", "run_finetune")
+        assert result["status"] == "running"
+
+    @patch("modal.Function")
+    def test_grpo_dispatches_to_run_grpo(self, mock_fn_cls):
+        from backend.tools.modal_launcher import launch_training
+
+        mock_fn = MagicMock()
+        mock_call = MagicMock()
+        mock_call.object_id = "call-456"
+        mock_fn.spawn.return_value = mock_call
+        mock_fn_cls.from_name.return_value = mock_fn
+
+        config = {"method": "grpo", "model_name": "Qwen/Qwen2.5-Coder-14B", "launch_type": "grpo"}
+        result = json.loads(launch_training(json.dumps(config)))
+
+        mock_fn_cls.from_name.assert_called_with("sofa-genius-launcher", "run_grpo")
+        assert result["status"] == "running"
+
+    @patch("modal.Function")
+    def test_backward_compat_infers_from_launch_type(self, mock_fn_cls):
+        from backend.tools.modal_launcher import launch_training
+
+        mock_fn = MagicMock()
+        mock_call = MagicMock()
+        mock_call.object_id = "call-789"
+        mock_fn.spawn.return_value = mock_call
+        mock_fn_cls.from_name.return_value = mock_fn
+
+        # Old-style config without "method" key
+        config = {"model_name": "Qwen/Qwen2.5-Coder-14B", "launch_type": "grpo"}
+        result = json.loads(launch_training(json.dumps(config)))
+
+        mock_fn_cls.from_name.assert_called_with("sofa-genius-launcher", "run_grpo")
+        assert result["status"] == "running"
+
 
 # ===================================================================
 # Integration: tool summaries
 # ===================================================================
 
 class TestToolSummaries:
-    def test_propose_grpo_summary(self):
+    def test_propose_training_sft_summary(self):
         from backend.agents.base import _summarize_tool_result
-        assert _summarize_tool_result("propose_grpo", json.dumps({"status": "proposed"})) == "GRPO training job proposed"
+        card = {"config": {"method": "sft"}, "status": "proposed"}
+        assert _summarize_tool_result("propose_training", json.dumps(card)) == "Fine-tuning job proposed"
 
-    def test_launch_grpo_summary(self):
+    def test_propose_training_grpo_summary(self):
         from backend.agents.base import _summarize_tool_result
-        assert _summarize_tool_result("launch_grpo", json.dumps({"status": "running"})) == "GRPO training job running"
-        assert _summarize_tool_result("launch_grpo", json.dumps({"status": "failed"})) == "GRPO training job failed"
+        card = {"config": {"method": "grpo"}, "status": "proposed"}
+        assert _summarize_tool_result("propose_training", json.dumps(card)) == "GRPO job proposed"
+
+    def test_launch_training_running_summary(self):
+        from backend.agents.base import _summarize_tool_result
+        card = {"config": {"method": "sft"}, "status": "running"}
+        assert _summarize_tool_result("launch_training", json.dumps(card)) == "Fine-tuning job running"
+
+    def test_launch_training_grpo_failed_summary(self):
+        from backend.agents.base import _summarize_tool_result
+        card = {"config": {"method": "grpo"}, "status": "failed"}
+        assert _summarize_tool_result("launch_training", json.dumps(card)) == "GRPO job failed"
+
+    def test_modify_and_propose_summary(self):
+        from backend.agents.base import _summarize_tool_result
+        card = {"config": {"method": "sft"}, "status": "proposed"}
+        assert _summarize_tool_result("modify_and_propose", json.dumps(card)) == "Config updated, new proposal created"

@@ -86,13 +86,17 @@ def _summarize_tool_result(name: str, result: str) -> str:
     if name == "create_draft_post_card":
         chars = data.get("char_count", 0)
         return f"Draft created ({chars} chars)"
-    if name == "propose_finetune":
-        return "Fine-tuning job proposed"
+    if name == "propose_training":
+        method = data.get("config", {}).get("method", "")
+        method_label = "GRPO" if method == "grpo" else "Fine-tuning"
+        return f"{method_label} job proposed"
     if name == "modify_and_propose":
         return "Config updated, new proposal created"
-    if name == "launch_finetune":
+    if name == "launch_training":
         status = data.get("status", "unknown")
-        return f"Fine-tuning job {status}"
+        method = data.get("config", {}).get("method", "")
+        method_label = "GRPO" if method == "grpo" else "Fine-tuning"
+        return f"{method_label} job {status}"
     # Evaluation agent tools
     if name == "list_evaluations":
         tiers = []
