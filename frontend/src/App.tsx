@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { RotateCcw, PanelLeftOpen, PanelLeftClose, Loader2 } from "lucide-react";
+import { RotateCcw, PanelLeftOpen, PanelLeftClose, Loader2, Bug } from "lucide-react";
 import ChatPanel from "./components/ChatPanel";
 import CardsPanel from "./components/CardsPanel";
 import LandingPage from "./components/LandingPage";
@@ -141,12 +141,15 @@ export default function App() {
               New Chat
             </button>
           )}
-          {!showLanding && (
-            <div className="flex items-center gap-2 text-xs text-stone-400">
-              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-              Agent Active
-            </div>
-          )}
+          <a
+            href="https://github.com/lilyzhng/SofaGenius/issues/new?title=%5BBug%5D+&body=%23%23+What+happened%3F%0A%0A%0A%23%23+Steps+to+reproduce%0A1.+%0A2.+%0A3.+%0A%0A%23%23+Expected+behavior%0A%0A"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Report issue"
+            className="p-1.5 text-stone-400 hover:text-nobel-gold rounded-lg hover:bg-stone-50 transition-colors"
+          >
+            <Bug size={16} />
+          </a>
         </div>
       </nav>
 
