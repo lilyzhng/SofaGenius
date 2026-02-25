@@ -190,7 +190,8 @@ class LaunchStatus(str, Enum):
 
 
 class LaunchType(str, Enum):
-    finetune = "finetune"
+    sft = "sft"
+    grpo = "grpo"
     eval = "eval"
 
 

@@ -335,7 +335,7 @@ def propose_training(
         config["batch_size"] = _batch_size
         config["gradient_accumulation_steps"] = _grad_accum
         # launch_type for frontend card compatibility
-        config["launch_type"] = "finetune"
+        config["launch_type"] = "sft"
 
         cost = _estimate_finetune_cost(
             gpu_type, _num_epochs, _max_steps,
@@ -431,7 +431,7 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
     # Infer method from config (backward compat: old cards may lack "method")
     method = config.get("method")
     if not method:
-        launch_type = config.get("launch_type", "finetune")
+        launch_type = config.get("launch_type", "sft")
         method = "grpo" if launch_type == "grpo" else "sft"
         config["method"] = method
 
@@ -503,7 +503,7 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
     card = {
         "card_type": "launch_card",
         "title": f"{mode_label} — {model_short}",
-        "launch_type": config.get("launch_type", "finetune"),
+        "launch_type": config.get("launch_type", "sft"),
         "status": "proposed",
         "config": config,
         "cost_estimate": cost,
@@ -535,7 +535,7 @@ def launch_training(config_json: str) -> str:
     # Determine method
     method = config.get("method")
     if not method:
-        launch_type = config.get("launch_type", "finetune")
+        launch_type = config.get("launch_type", "sft")
         method = "grpo" if launch_type == "grpo" else "sft"
 
     # Determine Modal function name
@@ -572,7 +572,7 @@ def launch_training(config_json: str) -> str:
         card = {
             "card_type": "launch_card",
             "title": f"{method_label} {model_short}",
-            "launch_type": config.get("launch_type", "finetune"),
+            "launch_type": config.get("launch_type", "sft"),
             "status": "running",
             "config": config,
             "cost_estimate": cost,
@@ -594,7 +594,7 @@ def launch_training(config_json: str) -> str:
         card = {
             "card_type": "launch_card",
             "title": f"{method_label} — Launch Failed",
-            "launch_type": config.get("launch_type", "finetune"),
+            "launch_type": config.get("launch_type", "sft"),
             "status": "failed",
             "config": config,
             "cost_estimate": None,

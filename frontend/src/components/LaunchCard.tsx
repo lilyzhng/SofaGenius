@@ -235,8 +235,10 @@ export default function LaunchCard({ card, onWandbUrl }: Props) {
             <div className="flex items-center gap-2 mb-1">
               <Rocket size={14} className="text-nobel-gold" />
               <span className="text-xs font-bold tracking-widest text-stone-400 uppercase">
-                {card.launch_type === "finetune"
-                  ? "Fine-tuning Job"
+                {card.launch_type === "sft"
+                  ? "SFT Training Job"
+                  : card.launch_type === "grpo"
+                  ? "GRPO Training Job"
                   : "Evaluation Job"}
               </span>
             </div>

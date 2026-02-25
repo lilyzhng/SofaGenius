@@ -137,7 +137,7 @@ export interface DraftPostCard {
 // --- Phase 4: Launch types ---
 
 export type LaunchStatus = "proposed" | "launching" | "running" | "completed" | "failed";
-export type LaunchType = "finetune" | "eval";
+export type LaunchType = "sft" | "grpo" | "eval";
 
 export interface CostEstimate {
   gpu_type: string;

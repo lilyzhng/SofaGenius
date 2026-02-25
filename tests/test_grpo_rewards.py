@@ -551,7 +551,7 @@ class TestProposeTraining:
             run_mode="overfit",
         ))
         assert result["card_type"] == "launch_card"
-        assert result["launch_type"] == "finetune"
+        assert result["launch_type"] == "sft"
         assert result["status"] == "proposed"
         assert result["config"]["method"] == "sft"
         assert result["config"]["max_steps"] == 1

@@ -6,9 +6,10 @@ import json
 import os
 import logging
 
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env", override=True)
 
 from fastapi import FastAPI, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -142,7 +143,7 @@ async def chat(req: ChatRequest, user_id: str = Depends(get_current_user)):
 
 
 class LaunchRequest(BaseModel):
-    launch_type: str  # "finetune" or "eval"
+    launch_type: str  # "sft", "grpo", or "eval"
     config: dict
 
 
@@ -158,8 +159,12 @@ async def launch_job(req: LaunchRequest, user_id: str = Depends(get_current_user
         )
 
     try:
-        if req.launch_type == "finetune":
+        if req.launch_type == "sft":
             fn = modal.Function.from_name("sofa-genius-launcher", "run_finetune")
+            call = fn.spawn(req.config)
+            wandb_project = req.config.get("wandb_project", "qwen-coder-code-gen")
+        elif req.launch_type == "grpo":
+            fn = modal.Function.from_name("sofa-genius-launcher", "run_grpo")
             call = fn.spawn(req.config)
             wandb_project = req.config.get("wandb_project", "qwen-coder-code-gen")
         elif req.launch_type == "eval":
@@ -169,7 +174,7 @@ async def launch_job(req: LaunchRequest, user_id: str = Depends(get_current_user
         else:
             return JSONResponse(
                 status_code=400,
-                content={"error": f"Unknown launch_type: {req.launch_type}. Use 'finetune' or 'eval'."},
+                content={"error": f"Unknown launch_type: {req.launch_type}. Use 'sft', 'grpo', or 'eval'."},
             )
 
         return {
