@@ -17,6 +17,7 @@ import anthropic
 
 from backend.agents.base import run_subagent
 from backend.agents import training, data, scout, launch, evaluation
+from backend.tools.run_aliases import pick_session_theme, generate_alias
 
 log = logging.getLogger(__name__)
 
@@ -152,6 +153,68 @@ def _get_session_context(session_id: str | None = None) -> dict[str, Any]:
 _session_context: dict[str, Any] = _get_session_context()
 
 
+# ---------------------------------------------------------------------------
+# Run alias management — per-session friendly names for W&B runs
+# ---------------------------------------------------------------------------
+
+def assign_run_alias(
+    session_id: str | None,
+    run_id: str,
+    run_name: str,
+    entity_project: str,
+) -> str:
+    """Assign a friendly alias to a run. Returns existing alias if already assigned."""
+    ctx = _get_session_context(session_id)
+    aliases: dict[str, dict] = ctx.setdefault("run_aliases", {})
+
+    # Check if this run already has an alias
+    for alias, info in aliases.items():
+        if info["run_id"] == run_id:
+            return alias
+
+    # Initialize theme and counter for this session
+    if "alias_theme" not in ctx:
+        ctx["alias_theme"] = pick_session_theme()
+    ctx.setdefault("alias_counter", 0)
+    ctx["alias_counter"] += 1
+
+    alias = generate_alias(ctx["alias_theme"], ctx["alias_counter"])
+    aliases[alias] = {
+        "run_id": run_id,
+        "run_name": run_name,
+        "entity_project": entity_project,
+    }
+    return alias
+
+
+def resolve_alias(session_id: str | None, user_text: str) -> dict | None:
+    """Try to resolve a friendly alias from user text. Returns alias info or None."""
+    ctx = _get_session_context(session_id)
+    aliases: dict[str, dict] = ctx.get("run_aliases", {})
+    text_lower = user_text.lower()
+    for alias, info in aliases.items():
+        if alias.lower() in text_lower:
+            return {"alias": alias, **info}
+    return None
+
+
+def _build_alias_context(session_id: str | None) -> str:
+    """Build alias mapping block for system prompt injection."""
+    ctx = _get_session_context(session_id)
+    aliases: dict[str, dict] = ctx.get("run_aliases", {})
+    if not aliases:
+        return ""
+    lines = []
+    for alias, info in aliases.items():
+        lines.append(f"- {alias} = run '{info['run_name']}' (ID: {info['run_id']}, project: {info['entity_project']})")
+    return (
+        "\n\nRUN ALIASES (voice-friendly names for W&B runs):\n"
+        + "\n".join(lines)
+        + "\nWhen the user refers to a run by its alias (e.g. 'check Strawberry-1'), "
+        "use the corresponding run_id and entity_project for tool calls."
+    )
+
+
 def _run_id_from_wandb_url(url: str) -> str | None:
     """Extract the short run ID from a W&B URL like .../runs/5p5rsbyn."""
     if "/runs/" in url:
@@ -268,14 +331,20 @@ def _extract_event_context(event_json: str, session_id: str | None = None) -> No
                 if rid:
                     ctx["last_launch"]["run_id"] = rid
 
-    # --- Health card: capture the resolved run_id ---
+    # --- Health card: capture the resolved run_id + assign alias ---
     if event_type == "card" and payload.get("card_type") == "wandb_health":
         card = payload.get("data", {})
         run_id = card.get("run_id")
+        run_name = card.get("run_name", "")
+        project = card.get("project", "")
         launch_ctx = ctx.get("last_launch")
         if run_id and launch_ctx and not launch_ctx.get("run_id"):
             launch_ctx["run_id"] = run_id
             launch_ctx["wandb_url"] = card.get("url") or launch_ctx.get("wandb_url", "")
+        # Auto-assign alias
+        if run_id and run_name and project:
+            alias = assign_run_alias(session_id, run_id, run_name, project)
+            card["alias"] = alias
 
 
 def _ensure_run_id_resolved(session_id: str | None = None) -> None:
@@ -426,6 +495,8 @@ async def run_orchestrator(
         system_prompt += _build_launch_context(wandb_api_key, session_id)
     if category in ("data", "scout", "evaluation"):
         system_prompt += _build_hf_context(hf_token)
+    if category == "training":
+        system_prompt += _build_alias_context(session_id)
 
     with _inject_credentials(wandb_api_key, hf_token):
         async for event in run_subagent(

@@ -29,6 +29,38 @@ export interface Action {
   requires_approval?: boolean;
 }
 
+export interface MetricStats {
+  key: string;
+  initial_value: number;
+  final_value: number;
+  best_value: number;
+  improvement_pct: number;
+  total_points: number;
+}
+
+export interface TrainingPhase {
+  name: string;
+  start_step: number;
+  end_step: number;
+  description: string;
+}
+
+export interface ConvergenceInfo {
+  metric: string;
+  steps_to_90pct?: number;
+  total_steps: number;
+  efficiency_ratio?: number;
+  description: string;
+}
+
+export interface RunInsights {
+  trend_summary: string;
+  metric_stats: MetricStats[];
+  phases: TrainingPhase[];
+  convergence?: ConvergenceInfo;
+  lr_analysis?: string;
+}
+
 export interface WandBHealthCard {
   card_type: "wandb_health";
   title: string;
@@ -41,6 +73,8 @@ export interface WandBHealthCard {
   metrics: MetricSeries[];
   anomalies: Anomaly[];
   actions: Action[];
+  insights?: RunInsights;
+  alias?: string;
 }
 
 // --- Phase 2: Data / SQL Analyst types ---

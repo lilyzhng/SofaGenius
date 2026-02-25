@@ -47,7 +47,14 @@ response. Instead, write a brief natural-language summary of the findings: \
 overall status, key metrics, any anomalies found, and recommended actions.
 
 When listing runs, present them in a clean readable format with run name, state, \
-and key metrics.
+and key metrics. Include the friendly alias when listing runs (e.g. "Strawberry-1 (lively-wave-42)"). \
+When a user refers to a run by its alias, look up the actual run_id from the RUN ALIASES \
+section in context.
+
+The Health Card now includes rich insights — trend summary, training phases, key metric \
+stats, and convergence speed. In your text response, highlight 1-2 key findings from \
+the insights (e.g. "Loss dropped 85% and converged quickly — 90% of improvement in \
+the first 40% of training").
 
 Be concise and actionable. Focus on what matters: anomalies, their likely causes, \
 and suggested next steps.

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw, PanelLeftOpen, PanelLeftClose, Loader2, Bug } from "lucide-react";
 import ChatPanel from "./components/ChatPanel";
 import CardsPanel from "./components/CardsPanel";
+import CredentialBanner from "./components/CredentialBanner";
 import LandingPage from "./components/LandingPage";
 import AuthPage from "./components/AuthPage";
 import SessionSidebar from "./components/SessionSidebar";
@@ -46,12 +47,7 @@ export default function App() {
     }
   }, [user, refreshSessions, fetchProfile]);
 
-  // Auto-open settings on first login if no credentials configured
-  useEffect(() => {
-    if (profile && !profile.has_wandb_key && !profile.has_hf_token) {
-      setSettingsOpen(true);
-    }
-  }, [profile]);
+  // Credential banner handles the reminder — no auto-popup needed
 
   // Refresh session list when a new session is created
   useEffect(() => {
@@ -171,6 +167,15 @@ export default function App() {
 
         {/* Main content */}
         <div className="flex-1 flex flex-col min-w-0">
+          {/* Credential banner */}
+          {profile && (
+            <CredentialBanner
+              hasWandbKey={profile.has_wandb_key}
+              hasHfToken={profile.has_hf_token}
+              onOpenSettings={() => setSettingsOpen(true)}
+            />
+          )}
+
           <AnimatePresence mode="wait">
             {showLanding ? (
               <motion.div
@@ -207,7 +212,11 @@ export default function App() {
 
                 {/* Right: Cards */}
                 <div className="w-1/2 bg-nobel-cream flex flex-col">
-                  <CardsPanel cards={cards} onWandbUrl={updateCardWandbUrl} />
+                  <CardsPanel
+                    cards={cards}
+                    onWandbUrl={updateCardWandbUrl}
+                    hasWandbKey={profile?.has_wandb_key ?? false}
+                  />
                 </div>
               </motion.div>
             )}

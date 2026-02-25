@@ -66,6 +66,38 @@ class RunSummary(BaseModel):
     url: Optional[str] = None
 
 
+class MetricStats(BaseModel):
+    key: str
+    initial_value: float
+    final_value: float
+    best_value: float
+    improvement_pct: float
+    total_points: int
+
+
+class TrainingPhase(BaseModel):
+    name: str  # "warmup" | "active_learning" | "convergence" | "plateau" | "overfitting"
+    start_step: int
+    end_step: int
+    description: str
+
+
+class ConvergenceInfo(BaseModel):
+    metric: str
+    steps_to_90pct: Optional[int] = None
+    total_steps: int
+    efficiency_ratio: Optional[float] = None
+    description: str
+
+
+class RunInsights(BaseModel):
+    trend_summary: str
+    metric_stats: list[MetricStats]
+    phases: list[TrainingPhase]
+    convergence: Optional[ConvergenceInfo] = None
+    lr_analysis: Optional[str] = None
+
+
 class WandBHealthCard(BaseModel):
     card_type: str = "wandb_health"
     title: str
@@ -78,6 +110,8 @@ class WandBHealthCard(BaseModel):
     metrics: list[MetricSeries]
     anomalies: list[Anomaly]
     actions: list[Action]
+    insights: Optional[RunInsights] = None
+    alias: Optional[str] = None
 
 
 # --- Phase 2: Data / SQL Analyst models ---
