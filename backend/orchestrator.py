@@ -197,7 +197,7 @@ def update_run_context(wandb_url: str, session_id: str | None = None) -> None:
             "experiment_name": "",
             "wandb_project": project,
             "wandb_url": wandb_url,
-            "launch_type": "finetune",
+            "launch_type": "sft",
             "dataset": "",
             "function_call_id": "",
             "run_id": run_id,
@@ -403,7 +403,11 @@ async def run_orchestrator(
                 "You are Sofa Genius, an AI research assistant. "
                 "Answer the user's question helpfully and concisely. "
                 "Never use emojis. You help with W&B monitoring, data analysis, "
-                "ML resource scouting, drafting posts, and launching fine-tuning/eval jobs on Modal."
+                "ML resource scouting, drafting posts, and launching fine-tuning/eval jobs on Modal.\n\n"
+                "IMPORTANT — Correct obvious typos and use standard ML terminology. "
+                "For example, 'SFD' is not a real method — the user likely means "
+                "'SFT' (Supervised Fine-Tuning). Never invent definitions for "
+                "misspelled acronyms. Silently correct to the standard term and proceed."
             ),
             messages=(history or []) + [{"role": "user", "content": message}],
         )
