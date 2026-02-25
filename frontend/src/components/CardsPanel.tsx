@@ -26,6 +26,7 @@ import type { CardData } from "../types";
 interface Props {
   cards: CardData[];
   onWandbUrl?: (url: string) => void;
+  hasWandbKey?: boolean;
 }
 
 const CARD_META: Record<string, { label: string; icon: React.ReactNode }> = {
@@ -87,7 +88,7 @@ function CollapsibleCard({
   );
 }
 
-export default function CardsPanel({ cards, onWandbUrl }: Props) {
+export default function CardsPanel({ cards, onWandbUrl, hasWandbKey }: Props) {
   const [collapsedSet, setCollapsedSet] = useState<Set<number>>(new Set());
 
   const toggle = (index: number) => {
@@ -133,7 +134,7 @@ export default function CardsPanel({ cards, onWandbUrl }: Props) {
               onToggle={() => toggle(i)}
             >
               {card.card_type === "wandb_health" && (
-                <WandBHealthCard card={card} />
+                <WandBHealthCard card={card} hasWandbKey={hasWandbKey} />
               )}
               {card.card_type === "data_card" && (
                 <DataCard card={card} />

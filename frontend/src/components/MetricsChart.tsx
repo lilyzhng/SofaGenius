@@ -8,8 +8,9 @@ import {
   Tooltip,
   ResponsiveContainer,
   ReferenceDot,
+  ReferenceArea,
 } from "recharts";
-import type { MetricSeries, Anomaly } from "../types";
+import type { MetricSeries, Anomaly, TrainingPhase } from "../types";
 
 const KNOWN_COLORS: Record<string, string> = {
   loss: "#C5A059",
@@ -45,12 +46,21 @@ const ANOMALY_COLORS: Record<string, string> = {
   info: "#3b82f6",
 };
 
+const PHASE_FILL: Record<string, string> = {
+  warmup: "#3b82f6",
+  active_learning: "#10b981",
+  convergence: "#C5A059",
+  plateau: "#a8a29e",
+  overfitting: "#ef4444",
+};
+
 interface Props {
   metrics: MetricSeries[];
   anomalies: Anomaly[];
+  phases?: TrainingPhase[];
 }
 
-export default function MetricsChart({ metrics, anomalies }: Props) {
+export default function MetricsChart({ metrics, anomalies, phases }: Props) {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(
     new Set(metrics.map((m) => m.key)),
   );
@@ -143,6 +153,17 @@ export default function MetricsChart({ metrics, anomalies }: Props) {
                 boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
               }}
             />
+            {/* Phase overlay areas */}
+            {phases?.map((phase, i) => (
+              <ReferenceArea
+                key={`phase-${i}`}
+                x1={phase.start_step}
+                x2={phase.end_step}
+                fill={PHASE_FILL[phase.name] || "#a8a29e"}
+                fillOpacity={0.06}
+                strokeOpacity={0}
+              />
+            ))}
             {metrics
               .filter((m) => activeKeys.has(m.key))
               .map((m) => (

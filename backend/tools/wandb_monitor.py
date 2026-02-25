@@ -14,13 +14,17 @@ from backend.models import (
     Anomaly,
     ComparisonCard,
     ComparisonSeries,
+    ConvergenceInfo,
     HealthStatus,
     MetricPoint,
     MetricSeries,
+    MetricStats,
     RiskLevel,
     RunInfo,
+    RunInsights,
     RunSummary,
     Severity,
+    TrainingPhase,
     WandBHealthCard,
 )
 
@@ -205,6 +209,259 @@ def _deduplicate(anomalies: list[Anomaly], step_gap: int = 50) -> list[Anomaly]:
         seen[key] = a.step
         result.append(a)
     return result
+
+
+# ---------------------------------------------------------------------------
+# Insight analysis functions
+# ---------------------------------------------------------------------------
+
+def _compute_summary_stats(
+    key: str, steps: list[int], vals: list[float],
+) -> MetricStats:
+    """Compute initial/final/best value, improvement %, total points."""
+    vals = _clean(vals)
+    category = _classify_key(key)
+    initial = vals[0]
+    final = vals[-1]
+    # "Best" = min for loss metrics, max otherwise
+    if category in ("loss", "eval_loss"):
+        best = min(vals)
+    else:
+        best = max(vals)
+    if initial != 0:
+        improvement_pct = ((initial - final) / abs(initial)) * 100
+    else:
+        improvement_pct = 0.0
+    return MetricStats(
+        key=key,
+        initial_value=round(initial, 6),
+        final_value=round(final, 6),
+        best_value=round(best, 6),
+        improvement_pct=round(improvement_pct, 1),
+        total_points=len(vals),
+    )
+
+
+def _detect_phases(
+    key: str, steps: list[int], vals: list[float],
+) -> list[TrainingPhase]:
+    """Segment training into phases using smoothed slope analysis.
+
+    Uses np.gradient + np.convolve for rolling slope, then classifies:
+    - steep negative slope → warmup (rapid initial drop)
+    - moderate negative slope → active_learning
+    - near-zero slope → convergence or plateau
+    - positive slope → overfitting
+    """
+    vals = _clean(vals)
+    arr = np.array(vals, dtype=float)
+    if len(arr) < 10:
+        return []
+
+    # Compute gradient and smooth it
+    grad = np.gradient(arr)
+    window_size = max(5, len(arr) // 20)
+    kernel = np.ones(window_size) / window_size
+    smoothed = np.convolve(grad, kernel, mode="same")
+
+    # Determine thresholds based on data range
+    val_range = float(np.ptp(arr))
+    if val_range == 0:
+        return []
+    steep_threshold = -val_range / (len(arr) * 0.3)
+    moderate_threshold = steep_threshold * 0.2
+    near_zero = abs(steep_threshold) * 0.1
+
+    phases: list[TrainingPhase] = []
+    current_phase = None
+    phase_start = 0
+
+    for i in range(len(smoothed)):
+        slope = smoothed[i]
+        if slope < steep_threshold:
+            label = "warmup"
+        elif slope < moderate_threshold:
+            label = "active_learning"
+        elif abs(slope) < near_zero:
+            label = "convergence"
+        elif slope > abs(moderate_threshold):
+            label = "overfitting"
+        else:
+            label = "convergence"
+
+        if label != current_phase:
+            if current_phase is not None and i > phase_start:
+                phases.append(TrainingPhase(
+                    name=current_phase,
+                    start_step=steps[phase_start],
+                    end_step=steps[i - 1],
+                    description=_phase_description(current_phase),
+                ))
+            current_phase = label
+            phase_start = i
+
+    # Close the last phase
+    if current_phase is not None and phase_start < len(steps):
+        phases.append(TrainingPhase(
+            name=current_phase,
+            start_step=steps[phase_start],
+            end_step=steps[-1],
+            description=_phase_description(current_phase),
+        ))
+
+    # Merge consecutive phases with the same name
+    merged: list[TrainingPhase] = []
+    for phase in phases:
+        if merged and merged[-1].name == phase.name:
+            merged[-1] = TrainingPhase(
+                name=phase.name,
+                start_step=merged[-1].start_step,
+                end_step=phase.end_step,
+                description=phase.description,
+            )
+        else:
+            merged.append(phase)
+
+    # Filter out very short phases (< 3% of total steps)
+    total_steps = steps[-1] - steps[0] if len(steps) > 1 else 1
+    min_duration = total_steps * 0.03
+    return [p for p in merged if (p.end_step - p.start_step) >= min_duration]
+
+
+def _phase_description(name: str) -> str:
+    descriptions = {
+        "warmup": "Rapid initial loss drop — model learning basic patterns",
+        "active_learning": "Steady improvement — model refining learned representations",
+        "convergence": "Loss stabilizing — approaching optimal performance",
+        "plateau": "Minimal improvement — consider adjusting learning rate or stopping",
+        "overfitting": "Loss increasing — model may be memorizing training data",
+    }
+    return descriptions.get(name, "")
+
+
+def _compute_convergence_speed(
+    key: str, steps: list[int], vals: list[float],
+) -> ConvergenceInfo | None:
+    """Find step where 90% of total improvement is reached."""
+    vals = _clean(vals)
+    if len(vals) < 5:
+        return None
+
+    initial = vals[0]
+    final = vals[-1]
+    total_improvement = initial - final
+    if total_improvement <= 0:
+        return ConvergenceInfo(
+            metric=key,
+            total_steps=steps[-1] - steps[0],
+            description=f"No net improvement in {key} — loss did not decrease overall",
+        )
+
+    target = initial - (total_improvement * 0.9)
+    steps_to_90 = None
+    for i, v in enumerate(vals):
+        if v <= target:
+            steps_to_90 = steps[i] - steps[0]
+            break
+
+    total = steps[-1] - steps[0]
+    efficiency = round(steps_to_90 / total, 2) if steps_to_90 and total > 0 else None
+
+    if steps_to_90 is not None:
+        description = (
+            f"Reached 90% of total improvement in {steps_to_90} steps "
+            f"({efficiency:.0%} of training)" if efficiency else
+            f"Reached 90% of total improvement in {steps_to_90} steps"
+        )
+    else:
+        description = f"{key} did not reach 90% of its total improvement range"
+
+    return ConvergenceInfo(
+        metric=key,
+        steps_to_90pct=steps_to_90,
+        total_steps=total,
+        efficiency_ratio=efficiency,
+        description=description,
+    )
+
+
+def _detect_lr_schedule(steps: list[int], vals: list[float]) -> str | None:
+    """Classify learning rate schedule shape: constant, linear, cosine, step, warmup+decay."""
+    vals = _clean(vals)
+    arr = np.array(vals, dtype=float)
+    if len(arr) < 5:
+        return None
+
+    # Check for constant before ptp guard
+    if np.ptp(arr) == 0 or np.std(arr) / (np.mean(arr) + 1e-12) < 0.01:
+        return "Constant learning rate"
+
+    # Detect warmup phase (initial increase)
+    peak_idx = int(np.argmax(arr))
+    has_warmup = peak_idx > len(arr) * 0.02 and arr[peak_idx] > arr[0] * 1.1
+
+    # Analyze decay portion (after peak)
+    decay = arr[peak_idx:] if peak_idx < len(arr) - 5 else arr
+    if len(decay) < 5:
+        return "Warmup only" if has_warmup else None
+
+    # Fit linear to decay portion
+    x = np.arange(len(decay))
+    coeffs = np.polyfit(x, decay, 1)
+    linear_pred = np.polyval(coeffs, x)
+    linear_residual = np.mean((decay - linear_pred) ** 2)
+
+    # Check for step schedule (large discrete jumps)
+    diffs = np.diff(decay)
+    large_drops = np.sum(np.abs(diffs) > np.ptp(decay) * 0.1)
+    if large_drops > 0 and large_drops <= 5:
+        prefix = "Warmup + " if has_warmup else ""
+        return f"{prefix}Step decay schedule ({large_drops} step(s))"
+
+    # Check for cosine (compare with cosine fit)
+    cosine_curve = 0.5 * (1 + np.cos(np.pi * x / max(len(x) - 1, 1)))
+    cosine_scaled = cosine_curve * np.ptp(decay) + decay.min()
+    cosine_residual = np.mean((decay - cosine_scaled) ** 2)
+
+    prefix = "Warmup + " if has_warmup else ""
+    if cosine_residual < linear_residual * 0.5:
+        return f"{prefix}Cosine decay schedule"
+    elif abs(coeffs[0]) > 1e-10:
+        return f"{prefix}Linear decay schedule"
+    else:
+        return f"{prefix}Decay schedule"
+
+
+def _generate_trend_summary(
+    classified: dict[str, list[str]],
+    raw_map: dict[str, tuple[list[int], list[Any]]],
+    stats: list[MetricStats],
+    phases: list[TrainingPhase],
+    convergence: ConvergenceInfo | None,
+) -> str:
+    """Generate a 1-2 sentence narrative from computed data."""
+    parts: list[str] = []
+
+    # Primary loss stat
+    loss_stats = [s for s in stats if _classify_key(s.key) == "loss"]
+    if loss_stats:
+        ls = loss_stats[0]
+        direction = "decreased" if ls.improvement_pct > 0 else "increased"
+        parts.append(
+            f"{ls.key} {direction} from {ls.initial_value:.4f} to {ls.final_value:.4f} "
+            f"({abs(ls.improvement_pct):.1f}% {'improvement' if ls.improvement_pct > 0 else 'regression'})"
+        )
+
+    # Phase summary
+    if phases:
+        phase_names = [p.name.replace("_", " ") for p in phases]
+        parts.append(f"Training progressed through: {' -> '.join(phase_names)}")
+
+    # Convergence
+    if convergence and convergence.steps_to_90pct is not None:
+        parts.append(convergence.description)
+
+    return ". ".join(parts) + "." if parts else "Insufficient data for trend analysis."
 
 
 # ---------------------------------------------------------------------------
@@ -504,6 +761,48 @@ def analyze_run_health(entity_project: str, run_id: str) -> str:
 
     anomalies = _deduplicate(all_anomalies)
 
+    # --- Compute insights ---
+    all_stats: list[MetricStats] = []
+    for key in raw_map:
+        steps, vals = raw_map[key]
+        floats = [float(v) if isinstance(v, (int, float)) else 0.0 for v in vals]
+        if len(floats) >= 2:
+            all_stats.append(_compute_summary_stats(key, steps, floats))
+
+    # Detect phases on primary loss key
+    phases: list[TrainingPhase] = []
+    primary_loss_key = classified["loss"][0] if classified["loss"] else None
+    if primary_loss_key and primary_loss_key in raw_map:
+        steps, vals = raw_map[primary_loss_key]
+        floats = [float(v) if isinstance(v, (int, float)) else 0.0 for v in vals]
+        phases = _detect_phases(primary_loss_key, steps, floats)
+
+    # Convergence speed on primary loss
+    convergence: ConvergenceInfo | None = None
+    if primary_loss_key and primary_loss_key in raw_map:
+        steps, vals = raw_map[primary_loss_key]
+        floats = [float(v) if isinstance(v, (int, float)) else 0.0 for v in vals]
+        convergence = _compute_convergence_speed(primary_loss_key, steps, floats)
+
+    # LR schedule detection
+    lr_analysis: str | None = None
+    if classified["lr"]:
+        lr_key = classified["lr"][0]
+        if lr_key in raw_map:
+            steps, vals = raw_map[lr_key]
+            floats = [float(v) if isinstance(v, (int, float)) else 0.0 for v in vals]
+            lr_analysis = _detect_lr_schedule(steps, floats)
+
+    trend_summary = _generate_trend_summary(classified, raw_map, all_stats, phases, convergence)
+
+    insights = RunInsights(
+        trend_summary=trend_summary,
+        metric_stats=all_stats,
+        phases=phases,
+        convergence=convergence,
+        lr_analysis=lr_analysis,
+    )
+
     # Determine health status
     has_critical = any(a.severity == Severity.critical for a in anomalies)
     has_warning = any(a.severity == Severity.warning for a in anomalies)
@@ -573,6 +872,7 @@ def analyze_run_health(entity_project: str, run_id: str) -> str:
         metrics=list(series_map.values()),
         anomalies=anomalies,
         actions=actions,
+        insights=insights,
     )
     return card.model_dump_json(indent=2)
 
