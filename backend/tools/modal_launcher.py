@@ -1,4 +1,4 @@
-"""Modal launch tools — propose and launch fine-tuning / evaluation jobs."""
+"""Modal launch tools — propose and launch training jobs (SFT, GRPO)."""
 
 from __future__ import annotations
 
@@ -124,28 +124,95 @@ _RUN_MODE_DEFAULTS = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Method-specific defaults — applied when user doesn't override
+# ---------------------------------------------------------------------------
+_METHOD_DEFAULTS = {
+    "sft": {
+        "learning_rate": 2e-4,
+        "wandb_project": "qwen-coder-code-gen",
+        "gradient_accumulation_steps": 8,
+        "batch_size": 1,
+        "label_prefix": "SFT",
+        # GRPO-specific cost multiplier (SFT = 1x baseline)
+        "cost_multiplier": 1.0,
+    },
+    "grpo": {
+        "learning_rate": 5e-6,
+        "wandb_project": "grpo-training",
+        "gradient_accumulation_steps": 1,
+        "batch_size": 4,  # per_device_train_batch_size = num_generations
+        "label_prefix": "GRPO",
+        # GRPO generates multiple completions per sample → ~2.5x cost
+        "cost_multiplier": 2.5,
+    },
+}
+
+_GRPO_TASK_DEFAULTS = {
+    "tool_calling": {
+        "dataset_name": "NousResearch/hermes-function-calling-v1",
+        "wandb_project": "grpo-tool-calling",
+    },
+    "ui_generation": {
+        "dataset_name": "lilyzhng/uigen-ui-code-gen",
+        "wandb_project": "grpo-ui-gen",
+    },
+}
+
+
 def propose_finetune(
-    dataset_name: str,
+    training_method: str = "sft",
+    dataset_name: str | None = None,
     run_mode: str = "overfit",
     model_name: str = "Qwen/Qwen2.5-Coder-14B",
+    grpo_task: str | None = None,
     max_steps: int | None = None,
     num_epochs: int | None = None,
     train_size: int | None = None,
     lora_r: int = 32,
-    learning_rate: float = 2e-4,
+    learning_rate: float | None = None,
     gpu_type: str = "A100",
-    wandb_project: str = "qwen-coder-code-gen",
+    wandb_project: str | None = None,
     push_to_hub: bool | None = None,
     hf_repo_name: str | None = None,
 ) -> str:
-    """Propose a fine-tuning job — returns a LaunchCard JSON (status=proposed).
+    """Propose a training job — returns a LaunchCard JSON (status=proposed).
 
+    training_method: "sft" or "grpo".
+    grpo_task: required when training_method="grpo" — "tool_calling" or "ui_generation".
     run_mode sets sensible defaults:
     - "overfit": 1 step, 1 sample — sanity check that the pipeline works
-    - "experiment": 100 samples, 1 epoch — validate learning
-    - "production": full dataset, 1 epoch — real training, push to HuggingFace
-    Explicit parameters override run_mode defaults.
+    - "exp": 100 samples, 1 epoch — validate learning
+    - "prod": full dataset, 1 epoch — real training, push to HuggingFace
+    Explicit parameters override defaults.
     """
+    # Validate training method
+    if training_method not in _METHOD_DEFAULTS:
+        training_method = "sft"
+    method = _METHOD_DEFAULTS[training_method]
+
+    # Validate grpo_task for GRPO
+    if training_method == "grpo":
+        if grpo_task not in _GRPO_TASK_DEFAULTS:
+            grpo_task = "tool_calling"  # safe default
+        grpo_defaults = _GRPO_TASK_DEFAULTS[grpo_task]
+    else:
+        grpo_task = None
+        grpo_defaults = {}
+
+    # Apply method-specific defaults (user overrides take priority)
+    _learning_rate = learning_rate if learning_rate is not None else method["learning_rate"]
+    _wandb_project = wandb_project or grpo_defaults.get("wandb_project", method["wandb_project"])
+    _batch_size = method["batch_size"]
+    _grad_accum = method["gradient_accumulation_steps"]
+
+    # Apply dataset default for GRPO if not provided
+    if not dataset_name:
+        if grpo_defaults:
+            dataset_name = grpo_defaults["dataset_name"]
+        else:
+            return json.dumps({"error": "dataset_name is required for SFT training."})
+
     if run_mode not in _RUN_MODE_DEFAULTS:
         run_mode = "overfit"
 
@@ -160,7 +227,6 @@ def propose_finetune(
     # Look up the actual dataset size from HuggingFace for accurate cost estimate
     _dataset_total = _get_dataset_train_size(dataset_name)
     if _train_size is None and _dataset_total:
-        # prod mode: use full dataset — now we know the real size
         _cost_samples = _dataset_total
     elif _train_size:
         _cost_samples = _train_size
@@ -169,19 +235,18 @@ def propose_finetune(
 
     timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     model_short = model_name.split("/")[-1]
-    experiment_name = f"{model_short}-r{lora_r}-{run_mode}-{timestamp}"
-
-    _batch_size = 1
-    _grad_accum = 8
+    method_tag = training_method if not grpo_task else f"{training_method}-{grpo_task}"
+    experiment_name = f"{model_short}-{method_tag}-r{lora_r}-{run_mode}-{timestamp}"
 
     config = {
+        "training_method": training_method,
         "model_name": model_name,
         "dataset_name": dataset_name,
         "max_seq_length": 4096,
         "load_in_4bit": True,
         "lora_r": lora_r,
         "lora_alpha": lora_r,
-        "learning_rate": learning_rate,
+        "learning_rate": _learning_rate,
         "num_epochs": _num_epochs,
         "max_steps": _max_steps,
         "batch_size": _batch_size,
@@ -189,10 +254,12 @@ def propose_finetune(
         "gpu_type": gpu_type,
         "push_to_hub": _push_to_hub,
         "hf_repo_name": hf_repo_name or experiment_name,
-        "wandb_project": wandb_project,
+        "wandb_project": _wandb_project,
         "experiment_name": experiment_name,
         "run_mode": run_mode,
     }
+    if grpo_task:
+        config["grpo_task"] = grpo_task
     if _train_size is not None:
         config["train_size"] = _train_size
 
@@ -202,8 +269,19 @@ def propose_finetune(
         batch_size=_batch_size,
         gradient_accumulation_steps=_grad_accum,
     )
+    # Apply GRPO cost multiplier for more accurate estimates
+    if method["cost_multiplier"] != 1.0:
+        cost["estimated_cost_usd"] = round(
+            cost["estimated_cost_usd"] * method["cost_multiplier"], 4
+        )
+        cost["note"] += f" (GRPO ~{method['cost_multiplier']}x cost)"
 
     # Build summary
+    method_label = method["label_prefix"]
+    if grpo_task:
+        task_label = grpo_task.replace("_", " ")
+        method_label = f"GRPO ({task_label})"
+
     if _max_steps > 0:
         steps_desc = f"{_max_steps} step(s)"
     else:
@@ -216,8 +294,8 @@ def propose_finetune(
         steps_desc += ", full dataset"
 
     summary = (
-        f"[{mode['label']}] Fine-tune {model_short} on {dataset_name} — "
-        f"{steps_desc}, LoRA r={lora_r}, lr={learning_rate}, {gpu_type}. "
+        f"[{mode['label']}] {method_label} — {model_short} on {dataset_name} — "
+        f"{steps_desc}, LoRA r={lora_r}, lr={_learning_rate}, {gpu_type}. "
         f"{mode['description']} "
         f"Estimated cost: ${cost['estimated_cost_usd']:.4f} "
         f"({cost['note']})."
@@ -225,7 +303,7 @@ def propose_finetune(
 
     card = {
         "card_type": "launch_card",
-        "title": f"{mode['label']} — {model_short}",
+        "title": f"{mode['label']} — {method_label} — {model_short}",
         "launch_type": "finetune",
         "status": "proposed",
         "config": config,
@@ -283,6 +361,15 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
 
     # Build summary
     mode_label = _RUN_MODE_DEFAULTS.get(run_mode, {}).get("label", run_mode)
+    training_method = config.get("training_method", "sft")
+    grpo_task = config.get("grpo_task")
+    method_label = "SFT"
+    if training_method == "grpo" and grpo_task:
+        task_label = grpo_task.replace("_", " ")
+        method_label = f"GRPO ({task_label})"
+    elif training_method == "grpo":
+        method_label = "GRPO"
+
     _max_steps = config.get("max_steps", -1)
     _num_epochs = config.get("num_epochs", 1)
     if _max_steps > 0:
@@ -298,7 +385,7 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
     changed_keys = ", ".join(f"{k}={v}" for k, v in changes.items())
 
     summary = (
-        f"[{mode_label}] Fine-tune {model_short} on {dataset_name} — "
+        f"[{mode_label}] {method_label} — {model_short} on {dataset_name} — "
         f"{steps_desc}, LoRA r={lora_r}, lr={config.get('learning_rate', 2e-4)}, "
         f"{config.get('gpu_type', 'A100')}. "
         f"Updated: {changed_keys}. "
@@ -324,8 +411,36 @@ def modify_and_propose(config_json: str, changes_json: str) -> str:
 # Launch tools — actually spawn Modal jobs
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Modal function routing — maps (training_method, grpo_task) to Modal function name
+# ---------------------------------------------------------------------------
+_MODAL_FUNCTION_MAP = {
+    "sft": "run_finetune",
+    "grpo:tool_calling": "run_grpo",
+    "grpo:ui_generation": "run_grpo_ui",
+}
+
+
+def _resolve_modal_function(config: dict) -> str:
+    """Determine which Modal function to call based on training_method and grpo_task."""
+    training_method = config.get("training_method", "sft")
+    grpo_task = config.get("grpo_task")
+
+    if training_method == "grpo" and grpo_task:
+        key = f"grpo:{grpo_task}"
+    else:
+        key = training_method
+
+    return _MODAL_FUNCTION_MAP.get(key, "run_finetune")
+
+
 def launch_finetune(config_json: str) -> str:
-    """Launch a fine-tuning job on Modal. Call after user approves the proposal."""
+    """Launch a training job on Modal. Call after user approves the proposal.
+
+    Dispatches to the correct Modal function based on training_method and grpo_task
+    in the config: run_finetune (SFT), run_grpo (GRPO tool calling),
+    or run_grpo_ui (GRPO UI generation).
+    """
     try:
         config = json.loads(config_json)
     except json.JSONDecodeError as e:
@@ -333,16 +448,26 @@ def launch_finetune(config_json: str) -> str:
 
     try:
         import modal
-        fn = modal.Function.from_name("sofa-genius-launcher", "run_finetune")
+
+        modal_fn_name = _resolve_modal_function(config)
+        fn = modal.Function.from_name("sofa-genius-launcher", modal_fn_name)
         call = fn.spawn(config)
         function_call_id = call.object_id
 
         model_short = config.get("model_name", "model").split("/")[-1]
-        wandb_project = config.get("wandb_project", "qwen-coder-code-gen")
+        training_method = config.get("training_method", "sft")
+        grpo_task = config.get("grpo_task")
+
+        method_label = "SFT"
+        if training_method == "grpo" and grpo_task:
+            task_label = grpo_task.replace("_", " ")
+            method_label = f"GRPO ({task_label})"
+        elif training_method == "grpo":
+            method_label = "GRPO"
 
         card = {
             "card_type": "launch_card",
-            "title": f"Fine-tune {model_short}",
+            "title": f"{method_label} — {model_short}",
             "launch_type": "finetune",
             "status": "running",
             "config": config,
@@ -351,7 +476,7 @@ def launch_finetune(config_json: str) -> str:
                 config.get("num_epochs", 1),
                 config.get("max_steps", -1),
             ),
-            "summary": f"Fine-tuning job launched on Modal. W&B run link will appear shortly.",
+            "summary": f"{method_label} training job launched on Modal ({modal_fn_name}). W&B run link will appear shortly.",
             "modal_function_call_id": function_call_id,
             "wandb_url": None,
             "requires_approval": False,
@@ -368,7 +493,7 @@ def launch_finetune(config_json: str) -> str:
             )
         card = {
             "card_type": "launch_card",
-            "title": "Fine-tune — Launch Failed",
+            "title": "Training — Launch Failed",
             "launch_type": "finetune",
             "status": "failed",
             "config": config,
