@@ -21,9 +21,9 @@ Run multiple AI coding agents as an organization — each with its own identity,
 
 ```
 agents/
-├── ceo/CLAUDE.md          # Coordinator — knows what everyone is doing
-├── builder/CLAUDE.md      # Ships code and tools
-└── data-agent/CLAUDE.md   # Research, data discovery, analysis
+├── ceo/CLAUDE.md          # Genius CEO — knows what everyone is doing
+├── builder/CLAUDE.md      # Genius Builder — ships code and tools
+└── data-agent/CLAUDE.md   # Genius Researcher — research, data, deep dives
 
 handoff/
 ├── ceo_status.md          # CEO's current state

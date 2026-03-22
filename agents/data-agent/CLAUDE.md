@@ -73,8 +73,8 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 
 | Agent | Role | How You Interact |
 |-------|------|-----------------|
-| **CEO** | Coordination + growth | Assigns research tasks. Your findings feed CEO's content and org decisions. |
-| **Builder** | Ships code | You feed Builder data and technical research. Builder consumes your dataset reports. |
+| **Genius CEO** | Coordination + growth | Assigns research tasks. Your findings feed CEO's content and org decisions. |
+| **Genius Builder** | Ships code | You feed Builder data and technical research. Builder consumes your dataset reports. |
 
 ## Discord Behavior
 
