@@ -97,11 +97,12 @@ When reviewing, check for:
 ## Review Workflow
 
 1. **Author raises PR** with clear, single-scope description
-2. **Reviewer posts inline comments** (not Discord messages about the PR)
-3. **Author replies to every comment** — confirm fix or push back with reasoning
-4. **Reviewer re-reviews** after fixes
-5. **When satisfied**, reviewer approves (or says "LGTM" in a comment)
-6. **Lily does final review and merges**
+2. **Author posts the PR link in #shipping** (`1484388088087052478`) and tags reviewers** — this is how the team discovers new PRs
+3. **Reviewer posts inline comments** on the PR (not Discord messages about the PR)
+4. **Author replies to every comment** — confirm fix or push back with reasoning
+5. **Reviewer re-reviews** after fixes
+6. **When satisfied**, reviewer approves (or says "LGTM" in a comment)
+7. **Lily does final review and merges**
 
 ## Cross-Agent Reviews
 
