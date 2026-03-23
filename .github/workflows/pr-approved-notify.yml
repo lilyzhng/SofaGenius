@@ -1,0 +1,43 @@
+name: PR Approval Notification
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  notify:
+    if: github.event.review.state == 'approved' && github.event.review.user.login == 'lilyzhng'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Send Discord notification
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          AUTHOR="${{ github.event.pull_request.user.login }}"
+          PR_NUM="${{ github.event.pull_request.number }}"
+          PR_URL="${{ github.event.pull_request.html_url }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+
+          # Map GitHub username to Discord bot ID
+          # Note: Jackie (1477895765698547844) is excluded — he runs on OpenClaw and doesn't raise PRs here
+          DISCORD_ID=$(jq -r ".\"${AUTHOR}\"" agents/github-to-discord.json)
+
+          if [ "$DISCORD_ID" != "null" ] && [ -n "$DISCORD_ID" ]; then
+            MENTION="<@${DISCORD_ID}>"
+          else
+            MENTION=""
+          fi
+
+          # Use jq to safely construct JSON (avoids injection from PR titles with quotes/special chars)
+          PAYLOAD=$(jq -n \
+            --arg mention "$MENTION" \
+            --arg title "$PR_TITLE" \
+            --arg url "$PR_URL" \
+            --arg num "$PR_NUM" \
+            '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
+
+          curl -sf -H "Content-Type: application/json" \
+            -d "$PAYLOAD" \
+            "${DISCORD_WEBHOOK_URL}"
