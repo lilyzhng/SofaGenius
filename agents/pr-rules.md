@@ -73,11 +73,12 @@ Tag each comment with severity so the author knows what's blocking:
 
 ### Inline replies are mandatory
 
-**Code owners MUST reply to every inline comment on the PR.** This is not optional — don't leave comments hanging.
+**Code owners MUST reply to every inline comment on the PR.** This is not optional — don't leave comments hanging. This includes comments from **automated reviewers** (e.g., Augment bot), not just humans and agents.
 
 - If you fixed it: reply on the inline comment with what you changed (e.g., "Fixed in `abc1234` — changed path to repo-relative")
 - If you disagree: reply with your reasoning. Don't silently ignore.
 - If it's a nit you're accepting: a simple "Done" or "Fixed" is fine.
+- For bot comments: acknowledge and explain whether the issue was addressed or why it's not applicable.
 - **Never address feedback only in code without replying** — reviewers need to see their comment was acknowledged.
 
 ### Push fixes, then comment
