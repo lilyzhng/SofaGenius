@@ -20,7 +20,10 @@ Follow these steps **in order**. Do not skip any step.
 
 - Stage only the relevant files. Never use `git add -A` or `git add .`.
 - Write a clear commit message: what changed and why.
-- Use your agent's git identity (check `git config user.name`).
+- Use your agent's git identity — verify both are set:
+  - `git config user.name` (e.g. `genius-builder`)
+  - `git config user.email` (e.g. `lilyzen.ml@gmail.com`)
+- Ensure `GH_TOKEN` is set to your agent's bot token (from `.env`), not another agent's or Lily's.
 
 ## Step 3: Push
 
@@ -41,6 +44,14 @@ Follow these steps **in order**. Do not skip any step.
 ```
 
 - The PR must have a **single, clear scope**. If you're mixing unrelated changes, split into separate PRs.
+
+**Good scope:**
+- "Add PR review rules for agent org" — one doc, one purpose
+- "Migrate agent CLAUDE.md configs to SofaGenius" — one migration step
+
+**Bad scope:**
+- "Migration spec + PR review rules + onboarding updates" — three unrelated things
+- "Various fixes" — vague, hard to review
 
 ## Step 5: Announce in #feature-release
 
@@ -67,31 +78,42 @@ Adds /raise-pr and /review-pr skills so agents follow the PR workflow automatica
 <@1413733041842421800> <@1484459231624302673> <@1485446312798457866> — requesting review.
 ```
 
-## Step 6: Monitor for bot comments
+## Step 6: Respond to ALL review comments
 
-After the PR is created, automated reviewers (Augment, Vercel, etc.) may post inline comments. Check for them:
+Check for inline comments from both **automated reviewers** (Augment, Vercel, etc.) and **human/agent reviewers**:
 
 ```bash
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments
 ```
 
-**You MUST reply inline to every bot comment.** Use:
+**You MUST reply inline to every comment.** This is not optional — don't leave comments hanging. Use:
 ```bash
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments \
   -f body="Your reply here" \
   -F in_reply_to={COMMENT_ID}
 ```
 
-Do NOT post a general PR comment as a substitute for inline replies.
+Do NOT post a general PR comment as a substitute for inline replies. Never address feedback only in code without replying — reviewers need to see their comment was acknowledged.
 
-For each bot comment:
-- If you'll fix it: say what you'll change
-- If it's not applicable: explain why
-- If it's already handled: reference the commit
+For each comment:
+- If you fixed it: reply with what you changed (e.g. "Fixed in `abc1234` — changed path to repo-relative")
+- If you disagree: reply with your reasoning. Don't silently ignore.
+- If it's a nit you're accepting: a simple "Done" or "Fixed" is fine.
+- For bot comments: acknowledge and explain whether the issue was addressed or why it's not applicable.
 
-## Step 7: After merge
+## Step 7: Push fixes, then notify
 
-Once Lily approves and you merge:
+When addressing review feedback:
+- Fix issues in a **new commit** (don't amend — keep the review trail)
+- Reply to each inline comment confirming the fix
+- Post a summary comment tagging reviewers when all feedback is addressed:
+```bash
+gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @reviewer1 @reviewer2 ready for re-review."
+```
+
+## Step 8: After merge
+
+Once Lily approves and you merge (at least one agent must also approve before Lily):
 1. Post a confirmation message in the #feature-release thread where you announced the PR
 2. React with 💜 on your original announcement message
 
@@ -101,5 +123,6 @@ Once Lily approves and you merge:
 - **Don't merge without Lily's explicit approval**
 - **Don't post PR announcements inside existing threads** — always a new channel message
 - **Don't tag Jackie as a reviewer**
-- **Don't ignore bot comments** — reply inline to every one
+- **Don't ignore any review comments** — reply inline to every one (bot and human)
 - **Don't use general PR comments instead of inline replies**
+- **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead

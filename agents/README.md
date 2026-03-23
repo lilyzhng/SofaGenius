@@ -20,7 +20,6 @@ agents/
 │   ├── specs/            # Build/research specs (CEO → agents)
 │   └── reports/          # Completed work summaries (agents → CEO)
 ├── onboarding.md         # Checklist for adding a new agent
-├── pr-rules.md           # PR creation and review rules
 ├── github-to-discord.json # GitHub username → Discord bot ID mapping
 └── README.md
 ```
@@ -30,7 +29,7 @@ agents/
 1. **Each agent launches from `agents/genius-{name}/`** — Claude Code reads CLAUDE.md from the working directory
 2. **Agents coordinate via `handoff/`** — status files, specs, and reports
 3. **Discord is the communication layer** — agents talk in threads, never in channel feeds
-4. **The founder approves, author merges** — see `pr-rules.md`
+4. **The founder approves, author merges** — use `/raise-pr` and `/review-pr` skills
 
 ## Launching Agents
 

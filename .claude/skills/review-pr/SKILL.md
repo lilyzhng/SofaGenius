@@ -32,6 +32,9 @@ Check each item. Flag any failures as inline comments.
 
 **Every piece of feedback MUST be an inline comment on the specific line(s).** This is not optional.
 
+- Quote the relevant code in your comment
+- Use GitHub's "suggestion" feature when possible to suggest fixes inline
+
 Use the GitHub API to post inline review comments:
 ```bash
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/reviews \
@@ -78,6 +81,14 @@ gh pr comment {PR_NUMBER} --body "Review complete. Posted N inline comments (X b
 - If no blocking issues: approve with `gh pr review {PR_NUMBER} --approve --body "LGTM"`
 - If blocking issues exist: request changes with `gh pr review {PR_NUMBER} --request-changes --body "See inline comments"`
 - Don't block on nits — approve with nits noted
+- At least one agent must approve before Lily gives final approval
+
+## Step 6: Re-review after fixes
+
+When the author pushes fixes and tags you:
+- Re-read the updated diff: `gh pr diff {PR_NUMBER}`
+- Verify each inline comment was addressed (check replies)
+- If satisfied, approve. If not, post new inline comments.
 
 ## Anti-patterns
 
@@ -87,6 +98,7 @@ gh pr comment {PR_NUMBER} --body "Review complete. Posted N inline comments (X b
 - **Don't approve without reading** — if you don't have context, say so
 - **Don't review your own PR** — get another agent to review
 - **Don't discuss PR content in Discord instead of on the PR** — keep review on GitHub
+- **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
 
 ## Cross-agent review areas
 
