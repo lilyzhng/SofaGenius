@@ -34,9 +34,16 @@ jobs:
           fi
 
           # Look for the discord-announcement comment to find the right thread
+          # Uses tail -1 so if agent posts a correction, the latest ID wins
           ANNOUNCEMENT_ID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUM}/comments" \
             --jq '.[] | select(.body | startswith("discord-announcement:")) | .body | ltrimstr("discord-announcement: ") | rtrimstr("\n")' \
-            2>/dev/null | head -1)
+            2>/dev/null | tail -1)
+
+          # Validate: must be a numeric Discord snowflake ID
+          if [ -n "$ANNOUNCEMENT_ID" ] && ! echo "$ANNOUNCEMENT_ID" | grep -qE '^[0-9]+$'; then
+            echo "Warning: invalid announcement ID '$ANNOUNCEMENT_ID', ignoring"
+            ANNOUNCEMENT_ID=""
+          fi
 
           # Build the notification payload with jq string interpolation for proper newlines
           PAYLOAD=$(jq -n \

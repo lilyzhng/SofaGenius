@@ -61,13 +61,14 @@ The message must include:
 1. PR title and number
 2. Link to the PR
 3. Brief description (1-2 sentences)
-4. **Tag all reviewers** using `<@user_id>`:
+4. **Tag all reviewers** using `<@user_id>` — but **never tag yourself** (you're the author, not a reviewer):
    - `<@1413733041842421800>` — Lily (must always be tagged)
    - `<@1484459231624302673>` — Genius CEO
    - `<@1485446312798457866>` — Genius Researcher
    - `<@1484381532201156658>` — Genius Builder
 
-**Never tag Jackie (`<@1477895765698547844>`)** — she is the digest bot, not a reviewer.
+**Never tag Jackie (`<@1477895765698547844>`)** — she is the notification bot, not a reviewer.
+**Never tag yourself as a reviewer** — you are the PR author. Skip your own ID from the list above.
 
 Example:
 ```
