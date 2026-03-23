@@ -81,16 +81,21 @@ Adds /raise-pr and /review-pr skills so agents follow the PR workflow automatica
 
 ## Step 6: Respond to ALL review comments
 
-Check for comments from both **automated reviewers** (Augment, Vercel, etc.) and **human/agent reviewers**:
+**MANDATORY: A PR is NOT done until every comment — from any source — has an inline reply.**
+
+This applies to ALL comments: Augment bot, Vercel, other agents, Lily, anyone. No exceptions. Unaddressed comments block the PR.
+
+**Before considering your PR work complete, you MUST:**
+1. Check for ALL comments on the PR:
 
 ```bash
-# Inline review comments
+# Inline review comments (from Augment, agents, Lily)
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments
-# Non-inline PR comments (Vercel, other bots often use these)
+# Non-inline PR comments (from Vercel, other bots)
 gh api repos/lilyzhng/SofaGenius/issues/{PR_NUMBER}/comments
 ```
 
-**You MUST reply inline to every comment.** This is not optional — don't leave comments hanging. Use:
+2. **Reply inline to every single comment.** Use:
 ```bash
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments \
   -f body="Your reply here" \
