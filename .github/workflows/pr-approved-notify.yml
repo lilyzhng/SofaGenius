@@ -37,29 +37,43 @@ jobs:
             --jq '.[] | select(.body | startswith("discord-announcement:")) | .body | ltrimstr("discord-announcement: ") | rtrimstr("\n")' \
             2>/dev/null | head -1)
 
-          # Build the notification message
-          MESSAGE="${MENTION} PR #${PR_NUM} approved by Lily — merge it!\n**${PR_TITLE}**\n${PR_URL}"
+          # Build the notification payload with jq string interpolation for proper newlines
+          PAYLOAD=$(jq -n \
+            --arg mention "$MENTION" \
+            --arg title "$PR_TITLE" \
+            --arg url "$PR_URL" \
+            --arg num "$PR_NUM" \
+            '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
 
           if [ -n "$ANNOUNCEMENT_ID" ]; then
             # Try posting in the existing thread (message ID = thread ID for threads on messages)
             RESPONSE=$(curl -s -w "\n%{http_code}" -H "Content-Type: application/json" \
               -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
-              -d "$(jq -n --arg msg "$MESSAGE" '{content: $msg}')" \
+              -d "$PAYLOAD" \
               "https://discord.com/api/v10/channels/${ANNOUNCEMENT_ID}/messages")
 
             HTTP_CODE=$(echo "$RESPONSE" | tail -1)
 
             if [ "$HTTP_CODE" != "200" ]; then
-              # Thread doesn't exist yet — create one on the announcement message
-              curl -sf -H "Content-Type: application/json" \
+              # Thread doesn't exist yet — create one, then post the message in it
+              THREAD=$(curl -sf -H "Content-Type: application/json" \
                 -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
-                -d "$(jq -n --arg msg "$MESSAGE" '{name: "PR Approved", auto_archive_duration: 1440, message: {content: $msg}}')" \
-                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/threads"
+                -d '{"name": "PR Approved", "auto_archive_duration": 1440}' \
+                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/threads")
+
+              THREAD_ID=$(echo "$THREAD" | jq -r '.id')
+
+              if [ "$THREAD_ID" != "null" ] && [ -n "$THREAD_ID" ]; then
+                curl -sf -H "Content-Type: application/json" \
+                  -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+                  -d "$PAYLOAD" \
+                  "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
+              fi
             fi
           else
             # Fallback: post in the channel if no announcement ID found
             curl -sf -H "Content-Type: application/json" \
               -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
-              -d "$(jq -n --arg msg "$MESSAGE" '{content: $msg}')" \
+              -d "$PAYLOAD" \
               "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
           fi
