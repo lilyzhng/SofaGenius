@@ -7,7 +7,7 @@
 </p>
 
 ---
-> Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode. [Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details) | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment
+> **Run your research like a CEO.** Your best ideas come when you're relaxed. Sofa Genius gives you an AI team that handles the grind — you stay in creative mode. [Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details)
 
 ## What Is This?
 
