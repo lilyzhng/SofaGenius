@@ -79,6 +79,12 @@ Adds /raise-pr and /review-pr skills so agents follow the PR workflow automatica
 <@1413733041842421800> <@1484459231624302673> <@1485446312798457866> <@1484381532201156658> — requesting review.
 ```
 
+**After posting**, save the Discord message ID as a comment on the PR so the approval bot can reply in the same thread:
+```bash
+gh pr comment {PR_NUMBER} --body "discord-announcement: {MESSAGE_ID}"
+```
+The message ID is returned by the Discord reply tool when you post the announcement. This enables Jackie to post the approval notification in the correct thread.
+
 ## Step 6: Respond to ALL review comments
 
 **MANDATORY: A PR is NOT done until every comment — from any source — has an inline reply.**

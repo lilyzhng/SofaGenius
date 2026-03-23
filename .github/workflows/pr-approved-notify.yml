@@ -15,6 +15,7 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           FEATURE_RELEASE_CHANNEL: "1484388088087052478"
+          GH_TOKEN: ${{ github.token }}
         run: |
           AUTHOR="${{ github.event.pull_request.user.login }}"
           PR_NUM="${{ github.event.pull_request.number }}"
@@ -31,16 +32,34 @@ jobs:
             MENTION=""
           fi
 
-          # Use jq to safely construct JSON (avoids injection from PR titles with quotes/special chars)
-          PAYLOAD=$(jq -n \
-            --arg mention "$MENTION" \
-            --arg title "$PR_TITLE" \
-            --arg url "$PR_URL" \
-            --arg num "$PR_NUM" \
-            '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
+          # Look for the discord-announcement comment to find the right thread
+          ANNOUNCEMENT_ID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUM}/comments" \
+            --jq '.[] | select(.body | startswith("discord-announcement:")) | .body | ltrimstr("discord-announcement: ") | rtrimstr("\n")' \
+            2>/dev/null | head -1)
 
-          # Post via Discord Bot API (not webhook) so mentions actually ping
-          curl -sf -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
-            -d "$PAYLOAD" \
-            "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
+          # Build the notification message
+          MESSAGE="${MENTION} PR #${PR_NUM} approved by Lily — merge it!\n**${PR_TITLE}**\n${PR_URL}"
+
+          if [ -n "$ANNOUNCEMENT_ID" ]; then
+            # Try posting in the existing thread (message ID = thread ID for threads on messages)
+            RESPONSE=$(curl -s -w "\n%{http_code}" -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+              -d "$(jq -n --arg msg "$MESSAGE" '{content: $msg}')" \
+              "https://discord.com/api/v10/channels/${ANNOUNCEMENT_ID}/messages")
+
+            HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+
+            if [ "$HTTP_CODE" != "200" ]; then
+              # Thread doesn't exist yet — create one on the announcement message
+              curl -sf -H "Content-Type: application/json" \
+                -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+                -d "$(jq -n --arg msg "$MESSAGE" '{name: "PR Approved", auto_archive_duration: 1440, message: {content: $msg}}')" \
+                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/threads"
+            fi
+          else
+            # Fallback: post in the channel if no announcement ID found
+            curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+              -d "$(jq -n --arg msg "$MESSAGE" '{content: $msg}')" \
+              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
+          fi
