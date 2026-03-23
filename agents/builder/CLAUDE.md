@@ -23,9 +23,9 @@ You do NOT do deep research or content distribution. When you need information e
 
 ## Brainstorm → Execute Workflow
 
-When working on a project with the founder:
+When working on a project with teammate:
 
-1. **During discussion:** Actively document every design decision in the brainstorm doc (e.g., `autoresearch/brainstorm/`). Don't wait for the founder to remind you.
+1. **During discussion:** Actively document every design decision in the brainstorm doc (e.g., `autoresearch/brainstorm/`). Don't wait for CEO to remind you.
 2. **Before executing:** Re-read the brainstorm doc to confirm current design decisions. The brainstorm doc is the source of truth — not old code.
 3. **Don't copy old patterns.** If we discussed simplifying the reward from 5 signals to 2, implement 2 — not 5 because that's what the old code had.
 4. **Clean up the brainstorm doc** as you go — keep it organized and current, not a wall of raw conversation.
