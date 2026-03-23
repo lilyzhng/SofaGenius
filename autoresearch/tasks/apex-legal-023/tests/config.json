@@ -1,0 +1,205 @@
+{
+  "task_id": "apex-legal-023",
+  "source_index": 23,
+  "domain": "Legal",
+  "keywords": [
+    "$1,470",
+    "0422001001",
+    "0424505001",
+    "0425501390",
+    "0425505030",
+    "10.0",
+    "12",
+    "17.1",
+    "17.4",
+    "17.50",
+    "2023",
+    "2024",
+    "2025",
+    "22001.001",
+    "24505.001",
+    "25501.390",
+    "25505.030",
+    "27",
+    "3.0",
+    "31062",
+    "31063",
+    "5.",
+    "5.00",
+    "5.06",
+    "5.08",
+    "60",
+    "According",
+    "Activities",
+    "Adult",
+    "Anemia",
+    "April",
+    "As",
+    "At",
+    "BMI",
+    "Because Ms",
+    "Clinically",
+    "Completing",
+    "Criterion",
+    "Crohn",
+    "DI",
+    "Determines",
+    "Digestive",
+    "Disease",
+    "Dr",
+    "Generally",
+    "However",
+    "IBD",
+    "Identifies",
+    "If",
+    "In",
+    "Inflammatory",
+    "Jenkins",
+    "Lily Strum Case File",
+    "Lily Strum Medical Opinion Statement",
+    "Listing",
+    "MDI",
+    "Maintaining",
+    "Michael Jenkins",
+    "Ms",
+    "NSF",
+    "Need",
+    "OR",
+    "Obstruction",
+    "October",
+    "POMS",
+    "Perianal",
+    "Program Operations Manual System",
+    "Repeated",
+    "SGA",
+    "September",
+    "Serum",
+    "Social Security",
+    "Social Security Administration",
+    "Social Security Disability Insurance Benefits",
+    "Specifically",
+    "Strum",
+    "Then",
+    "There",
+    "Therefore",
+    "Two",
+    "Uveitis",
+    "Weight",
+    "When",
+    "With",
+    "Work"
+  ],
+  "num_keywords": 85,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Identifies that the first step of the five-step sequential evaluation process is whether the claimant is engaging in substantial gainful activity.",
+      "sources": "",
+      "justification": "The first step of the five-step sequential evaluation process is described in Program Operations Manual System (POMS) DI 22001.001. The question at step one is whether 'the claimant [is] engaging in SGA…If yes, the claimant is not disabled…If no, the sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Determines that Ms. Strum has not engaged in substantial gainful activity since 2023.",
+      "sources": "Lily Strum Case File.pdf",
+      "justification": "POMS DI 25501.390 states that 'work is 'substantial' if it involves engaging in significant physical or mental activities, or a combination of both. Work is gainful if it is: • performed for pay or profit; or • the kind of work usually done for pay or profit, whether or not a profit is realized. Work performed on a part-time basis may be SGA. Generally, we use earnings guidelines to decide if work is SGA.' https://secure.ssa.gov/poms.NSF/lnx/0425501390 The source 'Lily Strum Case File.pdf' confirms that Ms. Strum last engaged in SGA in 2023, as she doesn't have any earnings in 2024 or 2025. In 2023, she earned far more each month than the 2023 SGA monthly amount of $1,470. https://www.ssa.gov/oact/cola/sga.html Therefore, the answer to step one is no, and the sequential evaluation must continue.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Identifies that the second step of the five-step sequential evaluation process is whether the claimant has a medically determinable impairment that is both of the following: severe and meets the duration requirement.",
+      "sources": "",
+      "justification": "The second step of the five-step sequential evaluation process is described in POMS DI 22001.001. The question at step two is whether the claimant has a 'medically determinable impairment (MDI) (or a combination of MDIs) that is both severe and meets the duration requirement…If no, the claimant is not disabled…If yes, sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Determines that Ms. Strum's medically determinable impairments are severe.",
+      "sources": "Lily Strum Medical Opinion Statement.pdf",
+      "justification": "POMS DI 24505.001 provides guidance on the definition of a not severe impairment. 'At the second step of sequential evaluation, it must be determined whether medical evidence establishes a physical or mental impairment or combination of impairments of sufficient severity as to be the basis of a finding of inability to engage in any substantial gainful activity (SGA). When medical evidence establishes only a slight abnormality or a combination of slight abnormalities which would have no more than a minimum effect on an individual's ability to work, such impairment(s) will be found 'not severe,' and a determination of 'not disabled' will be made without consideration of vocational factors. In such an instance, the person's impairment(s) would have no more than a minimal effect on his or her physical or mental ability(ies) to perform basic work activities, so a determination of 'not disabled' would result even if the individual's age, education, or work experience were specifically considered.' https://secure.ssa.gov/poms.nsf/lnx/0424505001 The source 'Lily Strum Medical Opinion Statement.pdf' is written by Ms. Strum's treating physician Dr. Michael Jenkins. With the help of detailed medical findings, this source describes Ms. Strum's medical impairments, which are Crohn's Disease and Uveitis. Dr. Jenkins specifically states that 'These impairments have a major effect on her physical ability to perform basic work activities during an 8-hour workday.' Based on this statement, Ms. Strum's impairment must be classified as 'severe.'",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Determines that Ms. Strum's medically determinable impairments meet the duration requirement.",
+      "sources": "Lily Strum Medical Opinion Statement.pdf",
+      "justification": "As for duration, POMS DI 25505.030 states that 'in most cases in which evidence supports a finding of disability, it will be clear whether the MDI(s) is expected to result in death or has lasted or is expected to last for a continuous period of not less than 12 months from the onset of disability.' https://secure.ssa.gov/poms.nsf/lnx/0425505030 In the source 'Lily Strum Medical Opinion Statement.pdf' Dr. Jenkins confirms that, since September 8, 2023, Ms. Strum has suffered from two MDIs: Crohn's Disease and Uveitis. Ms. Strum's MDIs meet the duration requirement for step 2, as it's currently October 27, 2025. Therefore, she has suffered from her MDIs for a continuous period of more than 2 years. Therefore, the answer to step two is yes, and the sequential evaluation must continue.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Identifies that the third step of the five-step sequential evaluation process is whether the claimant has an impairment that meets a listing (or is medically equal to a listing in appendix 1).",
+      "sources": "",
+      "justification": "The third step of the five-step sequential evaluation process is described in POMS DI 22001.001. The question at step three is whether the claimant has 'an impairment(s) that meets a listing (or is medically equal to a listing in appendix 1)…If yes, the claimant is disabled…If no, the sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Determines that Ms. Strum cannot meet the criteria for Listing 5.06.",
+      "sources": "Lily Strum Medical Opinion Statement.pdf",
+      "justification": "There are two listings that might apply to Ms. Strum's MDIs. The first is Listing 5.06 - Inflammatory bowel disease (IBD). Ms. Strum suffers from Crohn's Disease, which is one of the most common forms of IBD. Listing 5.06 first requires that the IBD be 'documented by endoscopy, biopsy, imaging, or operative findings.' Then, Listing 5.06 requires that the IBD be 'demonstrated by A, B, or C: A. Obstruction of stenotic areas (not adhesions) in the small intestine or colon with proximal dilatation, confirmed by imaging or in surgery, requiring two hospitalizations for intestinal decompression or for surgery, within a consecutive 12-month period and at least 60 days apart. OR B. Two of the following occurring within a consecutive 12-month period and at least 60 days apart: 1. Anemia with hemoglobin of less than 10.0 g/dL, present on at least two evaluations at least 60 days apart; or 2. Serum albumin of 3.0 g/dL or less, present on at least two evaluations at least 60 days apart; or 3. Clinically documented tender abdominal mass palpable on physical examination with abdominal pain or cramping; or 4. Perianal disease with a draining abscess or fistula; or 5. Need for supplemental daily enteral nutrition via a gastrostomy, duodenostomy, or jejunostomy, or daily parenteral nutrition via a central venous catheter. OR C. Repeated complications of IBD (see 5.00D5a), occurring an average of 3 times a year, or once every 4 months, each lasting 2 weeks or more, within a consecutive 12-month period, and marked limitation (see 5.00D5c) in one of the following: 1. Activities of daily living (see 5.00D5d); or 2. Maintaining social functioning (see 5.00D5e); or 3. Completing tasks in a timely manner due to deficiencies in concentration, persistence, or pace (see 5.00D5f). According to the source 'Lily Strum Medical Opinion Statement.pdf,' Ms. Strum's Crohn's Disease has been confirmed by biopsies. However, there is not evidence in this source that Ms. Strum meets the entirety of the criteria for A, B, or C in Listing 5.06.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Determines that Ms. Strum can meet the criteria for Listing 5.08",
+      "sources": "Lily Strum Medical Opinion Statement.pdf",
+      "justification": "The second listing that might apply to Ms. Strum's MDIs is Listing 5.08 - Weight loss due to any digestive disorder. Listing 5.08 can be met if 'despite adherence to prescribed medical treatment,' a claimant has a 'BMI of less than 17.50 calculated on at least two evaluations at least 60 days apart within a consecutive 12-month period.' https://www.ssa.gov/disability/professionals/bluebook/5.00-Digestive-Adult.htm The source 'Lily Strum Medical Opinion Statement.pdf' states that Ms. Strum had a BMI of less than 17.50 during two separate evaluations that were 6 months apart. The first evaluation was on April 1, 2024, when Ms. Strum's BMI was 17.4 during her 4 day hospitalization event. The second evaluation was on October 5, 2024, when Ms. Strum's BMI was 17.1 during her 5 day hospitalization event. Therefore, the answer to step three is yes.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "Determines that the Social Security Administration will find Ms. Strum is disabled.",
+      "sources": "Lily Strum Medical Opinion Statement.pdf",
+      "justification": "Criterion 5 (31062) provides the Social Security rule that, at step three of the five-step sequential evaluation process, a claimant will be found disabled if they meet a listing. Criterion 7 (31063) establishes that Ms. Strum meets the criteria for Listing 5.08 - Weight loss due to any digestive disorder. Specifically, she had a BMI of less than 17.50 during two separate evaluations at least 60 days apart within a consecutive 12-month period. The first evaluation was on April 1, 2024. The second evaluation was on October 5, 2024. Because Ms. Strum meets the criteria for Listing 5.08, the Social Security Administration will find her disabled at step-three of the five-step sequential evaluation process. The firm should accept Ms. Strum as a client, as her claim for Social Security Disability Insurance Benefits will be successful.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6,
+        8
+      ]
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+  "task_id": "apex-legal-016",
+  "source_index": 16,
+  "domain": "Legal",
+  "keywords": [
+    "$400",
+    "...",
+    ".85",
+    "0.1",
+    "10",
+    "11",
+    "1170",
+    "1170.12",
+    "1192",
+    "1192.7",
+    "12",
+    "12022.7",
+    "13",
+    "15",
+    "16",
+    "18",
+    "184",
+    "1994",
+    "21",
+    "242",
+    "243",
+    "245",
+    "25",
+    "2933",
+    "2933.1",
+    "29532",
+    "29533",
+    "29534",
+    "29535",
+    "29536",
+    "29537",
+    "29538",
+    "29539",
+    "29540",
+    "29541",
+    "29542",
+    "29543",
+    "29905",
+    "4.5",
+    "4019",
+    "451",
+    "459",
+    "460",
+    "461",
+    "5.1",
+    "594",
+    "667",
+    "667.5",
+    "85",
+    "Arson",
+    "As",
+    "Battery",
+    "Because",
+    "Being",
+    "Burglary",
+    "Calculates",
+    "California",
+    "California Code",
+    "Chapter",
+    "Concludes",
+    "Corrections",
+    "Director",
+    "District Attorney",
+    "Effective March",
+    "Enhancements",
+    "Even",
+    "Every",
+    "ISSUE",
+    "Identifies",
+    "If",
+    "In",
+    "It",
+    "LAW",
+    "Ms",
+    "Notwithstanding",
+    "Notwithstanding Section",
+    "November",
+    "Often",
+    "On November",
+    "Other",
+    "Out",
+    "PC",
+    "PEN",
+    "Part",
+    "Penal Code",
+    "Penal Code Section",
+    "Per",
+    "Proposition",
+    "Restrepo",
+    "Ricard",
+    "Section",
+    "See",
+    "Some",
+    "States",
+    "Strikes Law",
+    "Three Strikes",
+    "Three Strikes You",
+    "Thus",
+    "Title",
+    "Together",
+    "Vandalism",
+    "When",
+    "With"
+  ],
+  "num_keywords": 103,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Identifies all of the following as elements of first-degree burglary: (1) entry, (2) of an inhabited dwelling, and (3) with intent to commit a felony.",
+      "sources": "CA PEN § 459.pdf",
+      "justification": "California Code, Penal Code - PEN § 459: 'Every person who enters any...apartment...with intent to commit ...any felony is guilty of burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-459/ California Code, Penal Code - PEN § 460: '(a) Every burglary of an inhabited dwelling house...or the inhabited portion of any other building, is burglary of the first degree.' https://codes.findlaw.com/ca/penal-code/pen-sect-460/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Identifies that Ms. Restrepo entered the apartment.",
+      "sources": "CA PEN § 459.pdf",
+      "justification": "LAW California Code, Penal Code - PEN § 459: 'Every person who enters any...apartment...with intent to commit ...any felony is guilty of burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-459/ APPLICATION Per the prompt, using the key Ms. Ricard had given her, Ms. Restrepo opened the front door and walked quietly into the bedroom. Thus, Ms. Restrepo entered the apartment.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Identifies that Ms. Ricard's apartment is an inhabited dwelling.",
+      "sources": "Prompt.",
+      "justification": "LAW California Code, Penal Code - PEN § 460: '(a) Every burglary of an inhabited dwelling house...or the inhabited portion of any other building, is burglary of the first degree.' https://codes.findlaw.com/ca/penal-code/pen-sect-460/ APPLICATION Per the prompt, Ms. Ricard was 'living' at the apartment complex. The facts that Ms. Ricard (a) provided Ms. Restrepo with a working key, and (b) was bathing in the apartment during the burglary, both bolster the argument that the apartment was inhabited by Ms. Ricard at the time of the burglary. Thus, Ms. Ricard's apartment is an inhabited dwelling",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Identifies that Ms. Restrepo entered the apartment with the intent to commit arson of property.",
+      "sources": "CA PEN § 459.pdf",
+      "justification": "LAW California Code, Penal Code - PEN § 459: 'Every person who enters any...apartment...with intent to commit ...any felony is guilty of burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-459/ California Code, Penal Code - PEN § 451: 'A person is guilty of arson when he or she willfully and maliciously sets fire to or burns or causes to be burned or who aids, counsels, or procures the burning of, any structure, forest land, or property. ... (d) Arson of property is a felony punishable by imprisonment in the state prison for 16 months, two, or three years. For purposes of this paragraph, arson of property does not include one burning or causing to be burned his or her own personal property unless there is an intent to defraud or there is injury to another person or another person's structure, forest land, or property.' https://codes.findlaw.com/ca/penal-code/pen-sect-451/ APPLICATION Per the prompt, Ms. Ricard's intent was to enter the apartment and burn a photograph therein. The evidence includes: - Ms. Restrepo's journal entry where she stated her plan to burn the photo - Ms. Restrepo putting a cigarette lighter into her pocket prior to walking into the apartment - Ms. Restrepo proceeding directly to the bedroom where she lit the photograph on fire Together, this evidence establishes that Ms. Restrepo entered the apartment with the intent to commit arson of property. It's incorrect to state that she entered with intent to commit arson causing great bodily injury (PC 451(a)) or arson of an inhabited dwelling (PC 451(b)). The evidence indicates her intent was to merely burn the photograph; she did not intend to injure Ms. Ricard, nor did she intend to burn the apartment itself.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Identifies that arson of property is a felony.",
+      "sources": "CA PEN § 459.pdf",
+      "justification": "LAW California Code, Penal Code - PEN § 459: 'Every person who enters any...apartment...with intent to commit ...any felony is guilty of burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-459/ California Code, Penal Code - PEN § 451: 'A person is guilty of arson when he or she willfully and maliciously sets fire to or burns or causes to be burned or who aids, counsels, or procures the burning of, any structure, forest land, or property. ... (d) ***Arson of property is a felony*** punishable by imprisonment in the state prison for 16 months, two, or three years. For purposes of this paragraph, arson of property does not include one burning or causing to be burned his or her own personal property unless there is an intent to defraud or there is injury to another person or another person's structure, forest land, or property.' *** added for emphasis https://codes.findlaw.com/ca/penal-code/pen-sect-451/ APPLICATION As established in C4/29535, Ms. Restrepo entered the apartment with the intent to commit arson of property. Arson of property 'is a felony.' (See PC 451(d).)",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Concludes that the prosecution's case for first-degree burglary is very strong.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: '(1) what is the most serious charge she could bring against Ms. Restrepo, including any applicable enhancements or special allegations that could attach to the charge?' LAW As established in C1/29532, the elements of first-degree burglary are: (1) entry (2) of an inhabited dwelling (3) with intent to commit a felony. APPLICATION As established in C2/29533, Ms. Restrepo entered the apartment. As established in C3/29534, Ms. Ricard's apartment is an inhabited dwelling. As established in C4/29535, Ms. Restrepo entered the apartment with the intent to commit arson of property. As established in C5/29905, arson of property is a felony. CONCLUSION Thus, the prosecution can prove Ms. Restrepo guilty of first-degree burglary.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        3,
+        4,
+        1,
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "States that a special allegation under PC 667.5(c)(21) applies when another person, other than an accomplice, was present in the residence during the commission of a first-degree burglary.",
+      "sources": "",
+      "justification": "California Code, Penal Code - PEN § 667.5: '(c) For the purpose of this section, 'violent felony' means any of the following: ... (21) Any burglary of the first degree, as defined in subdivision (a) of Section 460, wherein it is charged and proved that another person, other than an accomplice, was present in the residence during the commission of the burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-667-5/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Concludes that the prosecution's case for a special allegation against Ms. Restrepo under PC 667.5(c)(21) is very strong.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: '(1) what is the most serious charge she could bring against Ms. Restrepo, including any applicable enhancements or special allegations that could attach to the charge?' LAW As established in C7/29537, a special allegation under PC 667.5(c)(21) applies when another person, other than an accomplice, was present in the residence during the commission of a first-degree burglary. APPLICATION Per the prompt, Ms. Ricard was bathing in the apartment during the commission of the burglary. As established in C6/29536, Ms. Restrepo's burglary of Ms. Ricard's apartment was a burglary of the first degree. CONCLUSION Because a non-accomplice (Ms. Ricard) was present during the commission of a first-degree burglary, the prosecution can prove a special allegation against Ms. Restrepo under PC 667.5(c)(21).",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6,
+        7
+      ]
+    },
+    "criterion 9": {
+      "description": "Identifies that first-degree burglary carries a maximum of six years in custody.",
+      "sources": "",
+      "justification": "California Code, Penal Code - PEN § 461: 'Burglary is punishable as follows: (a) Burglary in the first degree: by imprisonment in the state prison for two, four, or six years.' https://codes.findlaw.com/ca/penal-code/pen-sect-461/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "Identifies that first-degree burglary is a strike under California's 3 Strikes Law.",
+      "sources": "",
+      "justification": "California's 3 Strikes Law is codified redundantly in PC 667 and PC 1170.12. California's 3 Strikes Law imposes enhanced punishments when a defendant is convicted of a felony and the defendant has a prior felony that qualifies as 'serious.' A prior serious felony conviction is commonly referred to as a 'strike.' See, e.g., https://www.justice-firm.com/practice-areas/criminal-defense/three-strikes/: 'Effective March 7, 1994, Penal Code Section 667 was amended to provide for a 'Three Strikes You're Out' law. On November 8, 1994, the voters adopted Proposition 184, effective November 9, 1994, to add a seemingly identical version of a 'Three Strikes You're Out' law in a new Penal Code Section 1170.12 . It appears that both versions of 'Three Strikes' are currently in effect. A person who is convicted of a felony and has one qualifying 'strike' will be sentenced to a doubling of the term that otherwise would apply or, if a life sentence otherwise would apply, to a doubling of the minimum term of that life sentence, while a person who is convicted of a felony and has two or more qualifying 'strikes' will be sentenced to a life sentence with a minimum term of 25 years.' California Code, Penal Code - PEN § 667: '(a) ... (4) As used in this subdivision, 'serious felony' means a serious felony listed in subdivision (c) of Section 1192.7.' https://codes.findlaw.com/ca/penal-code/pen-sect-667/ California Code, Penal Code - PEN § 1192.7: '(c) As used in this section, 'serious felony' means any of the following: ... (18) any burglary of the first degree.' https://codes.findlaw.com/ca/penal-code/pen-sect-1192-7/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 11": {
+      "description": "Identifies that first-degree burglary is a violent felony when a special allegation under PC 667.5(c)(21) is pled and proven.",
+      "sources": "",
+      "justification": "California Code, Penal Code - PEN § 667.5: '(c) For the purpose of this section, 'violent felony' means any of the following: ... (21) Any burglary of the first degree, as defined in subdivision (a) of Section 460, wherein it is charged and proved that another person, other than an accomplice, was present in the residence during the commission of the burglary.' https://codes.findlaw.com/ca/penal-code/pen-sect-667-5/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 12": {
+      "description": "Concludes that the most serious charge the prosecution could bring against Ms. Restrepo is first-degree burglary with a special allegation under PC 667.5(c)(21).",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt asks: '(1) what is the most serious charge she [the District Attorney] could bring against Ms. Restrepo, including any applicable enhancements or special allegations that could attach to the charge?' LAW As established in C9/29539, first-degree burglary carries a maximum of six years in custody. As established in C10/29540, first-degree burglary is a strike under California's 3 Strikes Law. As established in C11/29541, first-degree burglary is a violent felony when a special allegation under PC 667.5(c)(21) is pled and proven. APPLICATION As established in C5/29536, the prosecution's case for first-degree burglary is very strong. As established in C8/29538, the prosecution's case for a special allegation against Ms. Restrepo under PC 667.5(c)(21) is very strong. Thus, one candidate for the most serious charge is first-degree burglary with a special allegation under PC 667.5(c)(21), as this charge: - carries six years in custody - is a strike prior - is a violent felony Some charges that clearly don't apply include: - arson of an inhabited dwelling under PC 451(b) (no indication the dwelling itself was burned, just personal property within the dwelling) - arson causing great bodily injury under PC 451(a) (the injury was 'minor,' not 'great') - assault under PC 242/245 (assault requires proof the defendant was aware of facts that would lead a reasonable person to realize that her act by its nature would directly and probably result in the application of force to someone, and here, Ms. Restrepo apparently didn't realize Ms. Ricard was in the bathtub when she threw the photograph) Enhancements/special allegations that clearly don't apply include: - great bodily injury enhancement under PC 12022.7 (this requires that the injury be more than 'minor,' and the prompt states the burn was minor, required no medical attention, and was healed completely within a day) Other charges that do apply are: - vandalism of the photograph - arson of property - battery Vandalism under PC 594 is a misdemeanor unless the property damaged was worth more than $400, which a polaroid surely isn't. Even as a felony, it carries at most 3 years in custody and is not a strike. See https://codes.findlaw.com/ca/penal-code/pen-sect-594/. Battery under PC 243 is a misdemeanor unless the injury caused was 'serious bodily injury.' Even if the injury here were serious (which it isn't), battery causing serious bodily injury under PC 243(d) carries a maximum of 4 years in custody and is not a strike. See https://codes.findlaw.com/ca/penal-code/pen-sect-243/. Arson of property under PC 451(d), while a strike, carries at most 3 years in custody, and is not a violent felony. See https://codes.findlaw.com/ca/penal-code/pen-sect-451/ Thus, first-degree burglary, even without any special allegation, is the most serious applicable charge, as it carries the highest sentence (6 years) and is a strike. With the special allegation added under PC 667.5(c)(21), the charge becomes even more serious. Often called a 'hot prowl' or 'person present' allegation, this allegation, if pled and proven, converts first-degree burglary from a serious felony to a violent felony. Being convicted of a violent felony has significant consequences. Not only does it increase the amount of custody time one must serve to satisfy the sentence (discussed in C13/29543), it also creates the potential for a special 3-year sentencing enhancement for any future violent felonies under PC 667.5(a). CONCLUSION Thus, the most serious charge the prosecution could bring against Ms. Restrepo is first-degree burglary with a special allegation under PC 667.5(c)(21).",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        9,
+        10,
+        11,
+        6,
+        8
+      ]
+    },
+    "criterion 13": {
+      "description": "States that when serving a sentence for a violent felony, custody credits are capped at 15%.",
+      "sources": "",
+      "justification": "California Code, Penal Code - PEN § 2933.1: '(a) Notwithstanding any other law, any person who is convicted of a felony offense listed in subdivision (c) of Section 667.5 shall accrue no more than 15 percent of worktime credit, as defined in Section 2933. (b) The 15-percent limitation provided in subdivision (a) shall apply whether the defendant is sentenced under Chapter 4.5 (commencing with Section 1170) of Title 7 of Part 2 or sentenced under some other law.... (c) Notwithstanding Section 4019 or any other provision of law, the maximum credit that may be earned against a period of confinement in, or commitment to, a county jail, industrial farm, or road camp, or a city jail, industrial farm, or road camp, following arrest and prior to placement in the custody of the Director of Corrections, shall not exceed 15 percent of the actual period of confinement for any person specified in subdivision (a).' https://codes.findlaw.com/ca/penal-code/pen-sect-2933-1/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 14": {
+      "description": "Calculates that the maximum actual custody time Ms. Restrepo must serve in this case is 5.1 years (+/- 0.1).",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: '(3) if convicted of the charge described in (1) (along with any applicable enhancements or special allegations), what is the maximum amount of actual custody time Ms. Restrepo may face? In the answer to question (3), assume the defendant will be awarded all applicable custody credits.' LAW As established in C11/29541, first-degree burglary is a violent felony when a special allegation under PC 667.5(c)(21) is pled and proven. As established in C13/29543, when serving a sentence for a violent felony, custody credits are capped at 15%. APPLICATION As established in C12/29542, the most serious charge the prosecution could bring against Ms. Restrepo is first-degree burglary with a special allegation under PC 667.5(c)(21). Because this is a violent felony, custody credits are capped at 15%. When custody credits are capped at 15%, the defendant must serve 85% of the imposed sentence. See, e.g., https://www.keglawyers.com/california-three-strikes-law: 'If convicted of a violent felony crime, you must serve 85% of the sentence.' As established in C9/29539, first-degree burglary carries a maximum of six years in custody. 6 years x .85 = 5.1. CONCLUSION Thus, the maximum actual custody time Ms. Restrepo must serve in this case is 5.1 years.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        9,
+        11,
+        13
+      ]
+    }
+  }
+}

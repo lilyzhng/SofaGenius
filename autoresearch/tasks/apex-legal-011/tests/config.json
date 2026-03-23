@@ -1,0 +1,212 @@
+{
+  "task_id": "apex-legal-011",
+  "source_index": 11,
+  "domain": "Legal",
+  "keywords": [
+    ".M",
+    "13",
+    "1301",
+    "15",
+    "172",
+    "172.204",
+    "173",
+    "173.185",
+    "18",
+    "1837",
+    "2.2",
+    "23.1",
+    "319",
+    "319.40",
+    "4819",
+    "49",
+    "50",
+    "734",
+    "734.15",
+    "758",
+    "758.1",
+    "758.3",
+    "772",
+    "772.1",
+    "Agreement",
+    "Attorney General",
+    "Authorizes Company",
+    "Best",
+    "Cargo",
+    "Code",
+    "Company",
+    "Conditioning",
+    "Conditions University",
+    "Crate",
+    "Designates University",
+    "Exporters",
+    "Fixed",
+    "Giving Company",
+    "III",
+    "ISPM",
+    "Including",
+    "Limiting Company",
+    "Linking",
+    "Office",
+    "Prototype",
+    "Requires",
+    "Requires University",
+    "Requiring University",
+    "States",
+    "The Prototype",
+    "Under",
+    "University",
+    "VII",
+    "Va",
+    "Virginia",
+    "Wood"
+  ],
+  "num_keywords": 56,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Conditions University's payment obligations on the availability of appropriated funds.",
+      "sources": "",
+      "justification": "Virginia law limits public universities to contracts funded by appropriations authorized by law (Va. Code § 23.1-1301). Conditioning payment on available appropriations preserves enforceability and prevents an ultra vires obligation, which is standard practice in public contracting, and ensures Company is not relying on funds University cannot legally spend. https://law.lis.virginia.gov/vacode/title23.1/chapter13/section23.1-1301/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Designates University as the exporter of record.",
+      "sources": "15 CFR 758.3.pdf",
+      "justification": "Under 15 C.F.R. § 758.3(a), the exporter of record bears responsibility for obtaining licenses and filing export documents, so because the Prototype is owned and controlled by University, assigning this role to it aligns compliance obligations with control over the shipment and reflects industry-standard export procedures that protect Company from regulatory exposure. https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-758/section-758.3",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Requires University to furnish all required export documentation to Company before shipment.",
+      "sources": "15 CFR 758.1.pdf",
+      "justification": "Exporters must furnish forwarding agents with all required licenses and supporting documents before shipment under 15 C.F.R. § 758.1(b)(2), so the Agreement should make document delivery a precondition to allow Company to pause performance until documentation is complete. This safeguard is a standard control in logistics agreements to prevent unlawful exports of sensitive or restricted equipment. https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-758/section-758.1",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Requires University to identify export-controlled technical data before disclosure to Company.",
+      "sources": "15 CFR 734.15.pdf, 15 CFR 772.1.pdf",
+      "justification": "Under 15 C.F.R. § 734.15, a 'release' of controlled technology includes allowing visual inspection of equipment, oral exchanges of technical information, or the application of technical knowledge abroad, and 15 C.F.R. § 772.1 defines 'technology' as information necessary for the design, development, production, manufacture, or use of controlled items. Requiring University to identify any export-controlled data before disclosure ensures Company doesn't access restricted information without authorization and keeps the Agreement consistent with the federal framework governing controlled technology. https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-734/section-734.15 https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-772",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Requires University, as shipper, to certify compliance with dangerous-goods regulations for the Prototype.",
+      "sources": "49 CFR 172.204.pdf, 49 CFR 173.185.pdf",
+      "justification": "The Prototype contains 'energy storage components' which could be lithium batteries and classified as hazardous materials under 49 C.F.R. §§ 172.204 and 173.185, so making University (which has full knowledge of the Prototype's contents) responsible for a hazardous materials declaration is consistent with standard export-packing practice and avoids misdeclaration penalties. https://www.ecfr.gov/current/title-49/subtitle-B/chapter-I/subchapter-C/part-172/subpart-C/section-172.204 https://www.ecfr.gov/current/title-49/subtitle-B/chapter-I/subchapter-C/part-173/subpart-E/section-173.185",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Requires the Crate to comply with ISPM-15 wood-packaging standards.",
+      "sources": "7 CFR 319.40-3.pdf",
+      "justification": "Wood packaging used for international transport must be heat-treated and marked to meet ISPM-15 standards under 7 C.F.R. § 319.40-3(b), so the Agreement must require that Company comply with ISPM-15 to ensure that the Crate will pass customs inspection and to prevent rejection or destruction at the destination port. https://www.ecfr.gov/current/title-7/subtitle-B/chapter-III/part-319/subpart-I/section-319.40-3",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "States that Company provides packaging services only.",
+      "sources": "Prompt",
+      "justification": "Limiting Company's role to packaging services confines its legal responsibilities to physical packing and excludes freight forwarding or export functions, which prevents Company from being treated as a regulated carrier or exporter and is consistent with industry-standard allocation of responsibilities in logistics service contracts.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "States that Company is liable for damage to the Prototype only to the extent caused by Company's negligence.",
+      "sources": "Prompt",
+      "justification": "A negligence-based standard of care ties liability to Company's own workmanship rather than to unknown defects or the actions of third parties, reflecting standard bailment principles and providing balanced risk allocation for high-value shipments.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "Requires University to provide Company with written notice of a claim within a defined period following delivery.",
+      "sources": "Prompt",
+      "justification": "Fixed notice periods for claims allow Company to investigate promptly and preserve recovery rights with carriers and insurers, which is consistent with industry-standard shipping and logistics contracts and provides predictability for the fragile, overseas-bound Prototype.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "States that University will obtain cargo insurance that includes at least 3 of the following protections: Company named as additional insured; coverage primary and non-contributory; waiver of subrogation in favor of Company; insurer rated A- or better by A.M. Best; or loss payable to University.",
+      "sources": "Prompt",
+      "justification": "Cargo insurance terms requiring additional insured status, primary coverage, and waiver of subrogation are standard protections in international logistics and limit an insurer's ability to recover against Company after paying a loss. Including these protections also aligns the risk transfer with ownership of the goods and is consistent with common commercial practice when the customer arranges insurance.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 11": {
+      "description": "Authorizes Company to suspend performance if shipment would violate applicable trade-compliance laws.",
+      "sources": "15 CFR 758.1.pdf",
+      "justification": "Giving Company the right to suspend performance when compliance concerns arise is a standard control in international logistics agreements, as it allows Company to halt work if continuing could breach trade-compliance laws such as export-control or sanctions regulations under 15 C.F.R. § 758.1(b)(2) and 50 U.S.C. § 4819(a)(1). Including this protection aligns with the prompt's instruction to shield Company from regulatory exposure while keeping the arrangement enforceable and commercially practical. https://www.ecfr.gov/current/title-15/subtitle-B/chapter-VII/subchapter-C/part-758/section-758.1 https://www.law.cornell.edu/uscode/text/50/4819",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 12": {
+      "description": "Requires University to reimburse Company, to the extent permitted by law, upon the occurrence of any one of the following: inaccurate or incomplete export information; failure to obtain required export authorizations; or concealed hazards in the Prototype.",
+      "sources": "Va._Code_2.2-1837.pdf",
+      "justification": "Virginia public institutions of higher education may enter an indemnification agreement only under the conditions in Va. Code § 2.2-1837, which require prior review by the Office of the Attorney General, a stated liability cap, and confirmation that state credit is not pledged. Linking reimbursement to specific triggers and limiting it 'to the extent permitted by law' keeps the clause within those statutory limits and follows standard public-sector contracting practice for managing risk. https://law.lis.virginia.gov/vacode/title2.2/chapter18/section2.2-1837/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

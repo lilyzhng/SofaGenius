@@ -1,0 +1,170 @@
+{
+  "task_id": "apex-consulting-058",
+  "source_index": 58,
+  "domain": "Consulting",
+  "keywords": [
+    "10",
+    "101",
+    "110",
+    "113",
+    "116",
+    "117",
+    "119",
+    "120",
+    "123",
+    "124",
+    "125",
+    "129",
+    "130",
+    "132",
+    "136",
+    "141",
+    "150",
+    "168",
+    "21",
+    "217",
+    "22",
+    "23",
+    "23.7",
+    "24",
+    "248",
+    "25",
+    "25.2",
+    "26",
+    "267",
+    "27",
+    "28",
+    "29",
+    "31",
+    "395",
+    "46.7",
+    "465",
+    "485",
+    "490",
+    "50",
+    "505",
+    "51",
+    "51.3",
+    "520",
+    "53",
+    "595",
+    "85",
+    "99",
+    "Boomer",
+    "Boomers",
+    "By",
+    "Calculates",
+    "Detractors",
+    "Fix",
+    "Gen",
+    "Generation",
+    "Grand Total",
+    "Improve",
+    "Midwest",
+    "Millennials",
+    "NPS",
+    "Northeast",
+    "Presents",
+    "Promoters",
+    "Provides",
+    "Recommend",
+    "Sort",
+    "Sort Boomer",
+    "Sort Gen",
+    "South",
+    "States",
+    "To",
+    "Train",
+    "West",
+    "Willingness"
+  ],
+  "num_keywords": 74,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates NPS for Gen Z as -28 (acceptable range is - 29 to - 27).",
+      "sources": "Survey.csv",
+      "justification": "To calculate NPS for Gen Z: - Sort customers by Generation to identify 485 Gen Z customers - Sort Gen Z customers by Willingness to Recommend to identify: 248 detractors (Willingness to Recommend = 0 to 6) and 113 promoters (Willingness to Recommend = 9 or 10) Promoters = 23% of total (113/485) Detractors = 51% of total (248/485) NPS calculation: 23 - 51 = - 28 (rounded to nearest whole number)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 2": {
+      "description": "Calculates NPS for Boomers as -28 (acceptable range is - 29 to - 27).",
+      "sources": "Survey.csv",
+      "justification": "To calculate NPS for boomers: - Sort customers by Generation to identify 520 Boomer customers - Sort Boomer customers by Willingness to Recommend to identify: 123 promoters (Willingness to Recommend = 9 or 10); and 267 detractors (Willingness to Recommend = 0 to 6). Promoters = 23.7% of total (123/520) Detractors = 51.3% of total (267/520) NPS calculation: 23.7 - 51.3 = - 28 (rounded to nearest whole number)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that the region Northeast has the highest NPS.",
+      "sources": "Survey.csv",
+      "justification": "By grouping all customers by region, and then by Willingness to Recommend, the following table shows customer counts in each group, % of promoters and detractors and the calculation of NPS: Willingness to Recommend ** Midwest ** Northeast **South ** West 3-4 110 132 168 130 5-6 99 125 136 116 7-8 101 119 150 124 9-10 85 129 141 120 Grand Total 395 505 595 490 Promoters 22% 26% 24% 24% Detractors 53% 51% 51% 50% NPS -31 -25 -27 -26 NPS in the Northeast region is the highest = - 25 (rounded to nearest whole number)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Provides at least one actionable strategy to improve NPS: -Fix customer pain points -Train staff to delight -Improve dining experiences",
+      "sources": "",
+      "justification": "A consultant would recognize some of the following potential strategies to improve NPS: -Fix customer pain points; this would improve customer experience and potentially NPS -Train staff to delight; allow servers to fix minor issues on the spot (free drinks, small discounts etc) without managerial approval. -Improve dining experiences; this would potentially improve NPS and customers leave happier",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "States there are 113 promoters for Gen Z (acceptable value is 113)",
+      "sources": "Survey.csv",
+      "justification": "To calculate number of promoters for Gen Z: - Sort customers by Generation to identify 485 Gen Z customers - Sort Gen Z customers by Willingness to Recommend to identify: 113 promoters (Willingness to Recommend = 9 or 10);",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Calculates NPS for Millennials as -22 (acceptable range is - 23 to - 21).",
+      "sources": "Survey.csv",
+      "justification": "To calculate NPS for millennials: - Sort customers by Generation to identify 465 millennial customers - Sort millennial customers by Willingness to Recommend to identify: 117 promoters (Willingness to Recommend = 9 or 10); and 217 detractors (Willingness to Recommend = 0 to 6). Promoters = 25.2% of total (117/465) Detractors = 46.7 % of total (217/465) NPS calculation: 25.2 - 46.7 = - 22 (rounded to nearest whole number)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Presents the answers as a memo.",
+      "sources": "Prompt",
+      "justification": "The prompt had explicitly asked for this to be presented as a memo so that it can be directly delivered to the client.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Style"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

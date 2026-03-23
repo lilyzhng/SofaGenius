@@ -1,0 +1,238 @@
+{
+  "task_id": "apex-medicine-046",
+  "source_index": 46,
+  "domain": "Medicine",
+  "keywords": [
+    "08",
+    "2024",
+    "2025",
+    "2025.",
+    "3725886",
+    "7726886",
+    "Cytalux",
+    "ER",
+    "FDA",
+    "FR",
+    "FRA",
+    "IV",
+    "In",
+    "Lumisight",
+    "PR",
+    "Pafolacianine",
+    "Pegulicianine",
+    "Recommended",
+    "States",
+    "Under",
+    "When"
+  ],
+  "num_keywords": 21,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that the patient has invasive ductal carcinoma of the right breast.",
+      "sources": "",
+      "justification": "This is directly stated in the prompt.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that the patient's breast cancer is ER-positive, luminal A receptor subtype.",
+      "sources": "1501 Patient Info.pdf",
+      "justification": "This is extracted from the biopsy results in the source document.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that the best adjunctive intraoperative imaging therapy for this patient is pegulicianine (Lumisight).",
+      "sources": "",
+      "justification": "This is the exact indication for this medication. 'LUMISIGHT is an optical imaging agent indicated for fluorescence imaging in adults with breast cancer as an adjunct for the intraoperative detection of cancerous tissue within the resection cavity following removal of the primary specimen during lumpectomy surgery.'https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        16
+      ]
+    },
+    "criterion 4": {
+      "description": "States that the correct dose of pegulicianine is 1 mg/kg.",
+      "sources": "",
+      "justification": "This is the dose recommended by the manufacturer. 'Recommended dose of LUMISIGHT is 1 mg/kg by intravenous injection over 3 minutes, administered 2 hours to 6 hours prior to imaging' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 5": {
+      "description": "States that the route of administration of pegulicianine is intravenous (IV).",
+      "sources": "",
+      "justification": "This is the route of administration required by the manufacturer. 'Recommended dose of LUMISIGHT is 1 mg/kg by intravenous injection over 3 minutes, administered 2 hours to 6 hours prior to imaging' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 6": {
+      "description": "States that pegulicianine is administered over three minutes.",
+      "sources": "",
+      "justification": "This is the duration recommended by the manufacturer. 'Recommended dose of LUMISIGHT is 1 mg/kg by intravenous injection over 3 minutes, administered 2 hours to 6 hours prior to imaging' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 7": {
+      "description": "States that pegulicianine is administered 2 to 6 hours before surgery.",
+      "sources": "",
+      "justification": "This is the timing recommended by the manufacturer. 'Recommended dose of LUMISIGHT is 1 mg/kg by intravenous injection over 3 minutes, administered 2 hours to 6 hours prior to imaging' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 8": {
+      "description": "States that pegulicianine is FDA-approved to identify tumor cells during breast cancer surgery.",
+      "sources": "",
+      "justification": "This is what pegulicianine does, according to the manufacturer. 'LUMISIGHT is an optical imaging agent indicated for fluorescence imaging in adults with breast cancer as an adjunct for the intraoperative detection of cancerous tissue within the resection cavity following removal of the primary specimen during lumpectomy surgery.' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 9": {
+      "description": "States that pegulicianine fluoresces in the presence of cathepsins.",
+      "sources": "",
+      "justification": "This is the mechanism indicated by the manufacturer. 'Pegulicianine is a prodrug that is optically inactive when intact and produces a fluorescent signal after its peptide chain is cleaved by cathepsins.' https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/214511s000lbl.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 10": {
+      "description": "States that cathepsins are present in ER-positive luminal breast cancer tumors.",
+      "sources": "",
+      "justification": "This is supported by clinical research. 'In this study, we have identified that cysteine protease cathepsin V can suppress GATA3 expression in ER-positive breast cancers.' https://pmc.ncbi.nlm.nih.gov/articles/PMC7726886/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 11": {
+      "description": "States that pafolacianine (Cytalux) is not the right imaging tool.",
+      "sources": "",
+      "justification": "Cytalux binds to folate receptor alpha, but this is unlikely to be present in the patient's breast cancer. 'Pafolacianine binds to alpha and beta folate receptors (FR) on cells.' https://cytalux.com/wp-content/uploads/2025/08/cytalux-uspi-july-2025.pdf 'FRA expression was shown to associate with ER/PR negative tumors.' https://pmc.ncbi.nlm.nih.gov/articles/PMC3725886/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 12": {
+      "description": "States that pafolacianine (Cytalux) binds to folate receptor alpha.",
+      "sources": "",
+      "justification": "This is the mechanism indicated by the manufacturer. 'Pafolacianine binds to alpha and beta folate receptors (FR) on cells.' https://cytalux.com/wp-content/uploads/2025/08/cytalux-uspi-july-2025.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        11
+      ]
+    },
+    "criterion 13": {
+      "description": "States that ER-positive luminal breast cancer tumors do not have folate receptor alpha expression.",
+      "sources": "",
+      "justification": "This has been supported by clinical studies. 'FRA expression was shown to associate with ER/PR negative tumors.' https://pmc.ncbi.nlm.nih.gov/articles/PMC3725886/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        12
+      ]
+    },
+    "criterion 14": {
+      "description": "States that pegulicianine is intended to be used intraoperatively.",
+      "sources": "",
+      "justification": "The goal is for the tumor cells to light up in the operating room to lead to more complete excision. 'LUMISIGHT is an optical imaging agent indicated for fluorescence imaging in adults with breast cancer as an adjunct for the intraoperative detection of cancerous tissue within the resection cavity following removal of the primary specimen during lumpectomy surgery.' https://cytalux.com/wp-content/uploads/2025/08/cytalux-uspi-july-2025.pdf",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 15": {
+      "description": "States that pegulicianine allows surgeons to visualize microscopic remnants in the operating room.",
+      "sources": "",
+      "justification": "When tumor cells light up in the operating room, surgeons can see the remnants of the tumor, if any are present, that need to be removed. 'LUMISIGHT is an optical imaging agent indicated for fluorescence imaging in adults with breast cancer as an adjunct for the intraoperative detection of cancerous tissue within the resection cavity following removal of the primary specimen during lumpectomy surgery.' https://cytalux.com/wp-content/uploads/2025/08/cytalux-uspi-july-2025.pdf",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 16": {
+      "description": "States that luminal A tumors often blend into healthy parenchyma.",
+      "sources": "",
+      "justification": "This is supported by clinical studies. 'Under a microscope, luminal A breast cancer cells look more like normal cells.' https://www.cancer.gov/publications/dictionaries/cancer-terms/def/luminal-a-breast-cancer",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "task_id": "apex-medicine-030",
+  "source_index": 30,
+  "domain": "Medicine",
+  "keywords": [
+    "...",
+    "617062",
+    "ALA",
+    "Additionally",
+    "After",
+    "Among",
+    "Concludes",
+    "Cool",
+    "Excess",
+    "He",
+    "His",
+    "IX",
+    "If",
+    "In",
+    "Lists",
+    "MAL",
+    "PDF",
+    "PDT",
+    "Pain",
+    "States"
+  ],
+  "num_keywords": 20,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that the patient's description of the treatment being produced by bacteria is consistent with porphyrins.",
+      "sources": "Patient info.pdf",
+      "justification": "The PDF states the following: He can't remember the name of the topical treatment he received but remembers the dermatologist telling him that it can be produced by bacteria and can also be used for acne treatment. 'The bacteria in acne release porphyrins.' https://dermnetnz.org/topics/blue-light-acne-treatment",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that aminolevulinic acid (ALA) is an early porphyrin precursor.",
+      "sources": "",
+      "justification": "States that aminolevulinic acid or methyl aminolevulinate are early porphyrin precursors. https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 3": {
+      "description": "States that ALA is a photosensitizer.",
+      "sources": "",
+      "justification": "'Excess porphyrin in the skin results in photosensitivity.' https://dermnetnz.org/topics/porphyria-cutanea-tarda",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 4": {
+      "description": "States that ALA is used in the context of photodynamic therapy (PDT).",
+      "sources": "",
+      "justification": "'Among the most commonly used photosensitizers in dermatologic applications are 5-ALA and MAL, both of which are precursors to protoporphyrin IX, a potent endogenous photosensitizer.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 5": {
+      "description": "States the patient has pre-cancerous skin lesions.",
+      "sources": "Patient info.pdf",
+      "justification": "The PDF states the following: He had seen a dermatologist to treat 'pre-cancerous lesions' on his scalp and arms",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "States that PDT is used to treat pre-cancerous skin lesions.",
+      "sources": "",
+      "justification": "'For patients presenting with multiple lesions across broad, photodamaged areas, PDT has emerged as a particularly suitable modality.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "States that the patient's description of the treatment also being used for acne is consistent with PDT.",
+      "sources": "Patient info.pdf",
+      "justification": "The PDF states the following: He can't remember the name of the topical treatment he received but remembers the dermatologist telling him that it can be produced by bacteria and can also be used for acne treatment. 'Additionally, PDT has also been used due to its antimicrobial and anti-inflammatory properties in the treatment of acne vulgaris.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "Concludes that ALA is one of the topical treatment the patient is likely using.",
+      "sources": "",
+      "justification": "'Among the most commonly used photosensitizers in dermatologic applications are 5-ALA and MAL, both of which are precursors to protoporphyrin IX, a potent endogenous photosensitizer.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4,
+        2,
+        6
+      ]
+    },
+    "criterion 9": {
+      "description": "Lists erythema as a common side effect of PDT.",
+      "sources": "Patient info.pdf",
+      "justification": "The PDF states the following: His skin initially became painful and red and it is now 'peeling off' and very pruritic 'In addition to temporary pain (see 'Pain control measures' below), a localized, erythematous reaction can typically be expected for four to seven days and may be accompanied by a tingling or burning sensation, edema, minute vesicles, or crusting. After the erythematous reaction, the patient may experience exfoliation and pruritus of the skin for up to a week' https://www.uptodate.com/contents/photodynamic-therapy",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 10": {
+      "description": "Lists desquamation as a common side effect of PDT.",
+      "sources": "Patient info.pdf",
+      "justification": "The PDF states the following: His skin initially became painful and red and it is now 'peeling off' and very pruritic 'In addition to temporary pain (see 'Pain control measures' below), a localized, erythematous reaction can typically be expected for four to seven days and may be accompanied by a tingling or burning sensation, edema, minute vesicles, or crusting. After the erythematous reaction, the patient may experience exfoliation and pruritus of the skin for up to a week' https://www.uptodate.com/contents/photodynamic-therapy",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 11": {
+      "description": "Lists two of the following as appropriate PDT aftercare treatments: cool compresses, corticosteroids, or bland emollients.",
+      "sources": "",
+      "justification": "'...should be treated with soothing, bland emollients.' 'If the skin is irritated or pruritic, a topical corticosteroid ointment can be used once or twice daily for a few days.' 'Cool compresses can be applied for comfort as needed.' https://www.uptodate.com/contents/photodynamic-therapy",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        9,
+        10
+      ]
+    },
+    "criterion 12": {
+      "description": "States that methyl aminolevulinate (MAL) is an early porphyrin precursor.",
+      "sources": "",
+      "justification": "States that aminolevulinic acid or methyl aminolevulinate are early porphyrin precursors. https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 13": {
+      "description": "States that MAL is a photosensitizer.",
+      "sources": "",
+      "justification": "'Excess porphyrin in the skin results in photosensitivity.' https://dermnetnz.org/topics/porphyria-cutanea-tarda",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        12
+      ]
+    },
+    "criterion 14": {
+      "description": "States that MAL is used in the context of photodynamic therapy (PDT).",
+      "sources": "",
+      "justification": "'Among the most commonly used photosensitizers in dermatologic applications are 5-ALA and MAL, both of which are precursors to protoporphyrin IX, a potent endogenous photosensitizer.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        13
+      ]
+    },
+    "criterion 15": {
+      "description": "Concludes that MAL is one of the topical treatment the patient is likely using.",
+      "sources": "",
+      "justification": "'Among the most commonly used photosensitizers in dermatologic applications are 5-ALA and MAL, both of which are precursors to protoporphyrin IX, a potent endogenous photosensitizer.' https://www.ncbi.nlm.nih.gov/books/NBK617062/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        14,
+        12,
+        6
+      ]
+    }
+  }
+}

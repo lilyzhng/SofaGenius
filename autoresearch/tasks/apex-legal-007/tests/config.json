@@ -1,0 +1,202 @@
+{
+  "task_id": "apex-legal-007",
+  "source_index": 7,
+  "domain": "Legal",
+  "keywords": [
+    "$1,180",
+    ".16",
+    "01",
+    "014",
+    "02",
+    "02.",
+    "0422001001",
+    "0424505001",
+    "0425001001",
+    "0425010001",
+    "0425501390",
+    "0425505030",
+    "0967.",
+    "1.",
+    "1.00",
+    "1.18",
+    "100",
+    "12",
+    "18",
+    "1964",
+    "20",
+    "2018",
+    "2024",
+    "22001.001",
+    "24",
+    "24505.001",
+    "25",
+    "25001.",
+    "25010.001",
+    "25501.390",
+    "25505.030",
+    "27274",
+    "27275",
+    "28420",
+    "28421",
+    "30",
+    "33",
+    "416",
+    "416.967",
+    "50",
+    "60",
+    "61",
+    "86",
+    "869.664",
+    "869664014.",
+    "AND",
+    "Abnormal",
+    "Abnormality",
+    "According",
+    "Adult",
+    "An",
+    "Anatomical",
+    "As",
+    "At",
+    "Bader",
+    "Because Mr",
+    "CFR",
+    "Chronic",
+    "Construction",
+    "Construction Worker",
+    "Criterion",
+    "DI",
+    "DOT",
+    "Determines",
+    "Directory",
+    "Dr",
+    "Frank Bader Case File",
+    "Frank Bader Work History",
+    "Generally",
+    "Hauler",
+    "His",
+    "Identifies",
+    "If",
+    "Imaging",
+    "Impairment",
+    "In",
+    "Listing",
+    "MDI",
+    "Mr",
+    "Musculoskeletal",
+    "NSF",
+    "Occupational Titles",
+    "Osteoarthritis",
+    "POMS",
+    "PRW",
+    "Physical",
+    "Program Operations Manual System",
+    "RFC",
+    "SGA",
+    "SSR",
+    "Samantha Hauler",
+    "Social Security Administration",
+    "Therefore",
+    "Unfortunately",
+    "We",
+    "When",
+    "With",
+    "Work"
+  ],
+  "num_keywords": 98,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Determines that the Social Security Administration should not direct a decision that Mr. Bader is disabled at step one of the five-step sequential evaluation process.",
+      "sources": "Frank Bader Work History.pdf",
+      "justification": "The first step of the five-step sequential evaluation process is described in Program Operations Manual System (POMS) DI 22001.001. The question at step one is whether 'the claimant [is] engaging in SGA…If yes, the claimant is not disabled…If no, the sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001 POMS DI 25501.390 states that 'work is 'substantial' if it involves engaging in significant physical or mental activities, or a combination of both. Work is gainful if it is: • performed for pay or profit; or • the kind of work usually done for pay or profit, whether or not a profit is realized. Work performed on a part-time basis may be SGA. Generally, we use earnings guidelines to decide if work is SGA.' https://secure.ssa.gov/poms.NSF/lnx/0425501390 The source 'Frank Bader Work History.pdf' confirms that, since 2018, Mr. Bader has not engaged in SGA, as he hasn't worked and made any earnings. In 2018, he was engaging in SGA, as he earned far more each month than the 2018 SGA monthly amount of $1,180. https://www.ssa.gov/oact/cola/sga.html Therefore, the Social Security Administration should not direct a decision that Mr. Bader is disabled at step one of the five-step sequential evaluation process. This is because the answer to step one is no, and the sequential evaluation must continue.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Determines that the Social Security Administration should not direct a decision that Mr. Bader is disabled at step two of the five-step sequential evaluation process.",
+      "sources": "Frank Bader Case File.pdf",
+      "justification": "The second step of the five-step sequential evaluation process is described in POMS DI 22001.001. The question at step two is whether the claimant has a 'medically determinable impairment (MDI) (or combination of MDIs) that is both severe and meets the duration requirement…If no, the claimant is not disabled…If yes, sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001 POMS DI 24505.001 provides guidance on the definition of a not severe impairment. 'At the second step of sequential evaluation, it must be determined whether medical evidence establishes a physical or mental impairment or combination of impairments of sufficient severity as to be the basis of a finding of inability to engage in any substantial gainful activity (SGA). When medical evidence establishes only a slight abnormality or a combination of slight abnormalities which would have no more than a minimum effect on an individual's ability to work, such impairment(s) will be found 'not severe,' and a determination of 'not disabled' will be made without consideration of vocational factors. In such an instance, the person's impairment(s) would have no more than a minimal effect on his or her physical or mental ability(ies) to perform basic work activities, so a determination of 'not disabled' would result even if the individual's age, education, or work experience were specifically considered.' https://secure.ssa.gov/poms.nsf/lnx/0424505001 The source 'Frank Bader Case File.pdf' is written by Mr. Bader's treating physician Dr. Samantha Hauler. With the help of detailed medical findings, this source describes Mr. Bader's medical impairment, which is Osteoarthritis in both of his knees. Dr. Hauler specifically states that 'Mr. Bader suffers from Osteoarthritis that affects both of his knees, and as such, both of his lower extremities. This impairment has a major effect on his physical ability to perform basic work activities during an 8-hour workday.' Based on this statement, Mr. Bader's impairment must be classified as 'severe.' As for duration, POMS DI 25505.030 states that 'in most cases in which evidence supports a finding of disability, it will be clear whether the MDI(s) is expected to result in death or has lasted or is expected to last for a continuous period of not less than 12 months from the onset of disability.' https://secure.ssa.gov/poms.nsf/lnx/0425505030 In the source 'Frank Bader Case File.pdf' Dr. Hauler confirms that, since 2018, Mr. Bader has suffered from an MDI: Osteoarthritis in both of his knees. Mr. Bader's MDI meets the duration requirement for step 2, as he's suffered for a continuous period of far longer than 12 months. Therefore, the Social Security Administration should not direct a decision that Mr. Bader is disabled at step two of the five-step sequential evaluation process. This is because the answer to step two is yes, and the sequential evaluation must continue.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Determines that the Social Security Administration should not direct a decision that Mr. Bader is disabled at step three of the five-step sequential evaluation process.",
+      "sources": "Frank Bader Case File.pdf",
+      "justification": "The third step of the five-step sequential evaluation process is described in POMS DI 22001.001. The question at step three is whether the claimant has 'an impairment(s) that meets a listing, or is medically equal to a listing in appendix 1, and meets the duration requirement…If yes, the claimant is disabled…If no, the sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001 Criterion 2 (27275) previously discussed the duration of Mr. Bader's MDI. In the source 'Frank Bader Case File.pdf,' Dr. Hauler confirms that Mr. Bader has suffered from Osteoarthritis in both knees since 2018. Therefore, Mr. Bader has suffered from his MDI for longer than the 12 months that is necessary for the duration requirement. The appropriate listing for Osteoarthritis is Listing 1.18 – Abnormality of a major joint(s) in any extremity. This listing can only be met if 'documented by A, B, C and D: A. Chronic joint pain or stiffness. AND B. Abnormal motion, instability, or immobility of the affected joint(s). AND C. Anatomical abnormality of the affected joint(s) noted on: 1. Physical examination (for example, subluxation, contracture, or bony or fibrous ankylosis); or 2. Imaging (for example, joint space narrowing, bony destruction, or ankylosis or arthrodesis of the affected joint). AND D. Impairment-related physical limitation of musculoskeletal functioning that has lasted, or is expected to last, for a continuous period of at least 12 months, and medical documentation of at least one of the following: 1. A documented medical need (see 1.00C6a) for a walker, bilateral canes, or bilateral crutches (see 1.00C6d) or a wheeled and seated mobility device involving the use of both hands (see 1.00C6e(i)); or 2. An inability to use one upper extremity to independently initiate, sustain, and complete work-related activities involving fine and gross movements (see 1.00E4), and a documented medical need (see 1.00C6a) for a one-handed hand-held assistive device (see 1.00C6d) that requires the use of the other upper extremity or a wheeled and seated mobility device involving the use of one hand (see 1.00C6e(ii)); or 3. An inability to use both upper extremities to the extent that neither can be used to independently initiate, sustain, and complete work-related activities involving fine and gross movements (see 1.00E4).' https://www.ssa.gov/disability/professionals/bluebook/1.00-Musculoskeletal-Adult.htm#1_18 The source 'Frank Bader Case File.pdf' provides medical evidence for elements A, B, and C that are required to meet Listing 1.18. Unfortunately, element D cannot be met in this case, as Mr. Bader does not use any assistive devices or have any issues with his upper extremities. Therefore, the Social Security Administration should not direct a decision that Mr. Bader is disabled at step three of the five-step sequential evaluation process. This is because the answer to step three is no, and the sequential evaluation must continue.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 4": {
+      "description": "Determines that the Social Security Administration should not direct a decision that Mr. Bader is disabled at step four of the five-step sequential evaluation process.",
+      "sources": "Frank Bader Work History.pdf",
+      "justification": "The fourth step of the five-step sequential evaluation process is described in POMS DI 22001.001. The questions at step four are about past relevant work (PRW). The questions are whether 'the claimant retain[s] the capacity to perform any PRW as they actually performed it' and whether 'the claimant retains the capacity to perform any PRW as generally performed in the national economy…If the answer to either question is yes, the claimant is not disabled…If the answer to both questions is no, the sequential evaluation continues.' https://secure.ssa.gov/poms.nsf/lnx/0422001001 Criterion 5 (28420) establishes that Mr. Bader does not have any PRW, as he has not worked in the past 5 years. Therefore, the Social Security Administration should not direct a decision that Mr. Bader is disabled at step four of the five-step sequential evaluation process. This is because both answers to step four are no, and the sequential evaluation must continue.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 5": {
+      "description": "Identifies that Mr. Bader does not have any past relevant work.",
+      "sources": "Frank Bader Work History.pdf",
+      "justification": "SSR 24-2p reflects the 2024 changes to the law and defines the term PRW. SSR 24-2p states that 'PRW is work that an individual has done within the past 5 years, that was SGA, and that lasted long enough for the individual to learn to do it. Work that the individual started and stopped in fewer than 30 calendar days is not PRW.' https://www.ssa.gov/OP_Home/rulings/di/02/SSR2024-02-di-02.html The source 'Frank Bader Work History.pdf' confirms that Mr. Bader does not have any PRW. His last job was as a Construction worker in 2018, which was more than 5 years ago.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Determines that the Social Security Administration should direct a decision that Mr. Bader is disabled at step five of the five-step sequential evaluation process.",
+      "sources": "Frank Bader Work History.pdf and Frank Bader Case File.pdf",
+      "justification": "The fifth step of the five-step sequential evaluation process is described in POMS DI 22001.001. The question at step five is whether 'the claimant [has] the ability to make an adjustment to any other work, considering the claimant's RFC, age, education, and work experience…If yes, the claimant is not disabled…If no, the claimant is disabled.' https://secure.ssa.gov/poms.nsf/lnx/0422001001 SSR 24-1p explains that 'if we find at the fourth step of [the sequential evaluation] process that an individual cannot perform any PRW given their RFC, or that the individual has no PRW, we will decide whether the individual can adjust to other work at step five of the process. We have three medical-vocational profiles that show an inability to adjust to other work. At step five, our adjudicators must consider these medical-vocational profiles before referring to the medical-vocational guidelines. The three medical-vocational profiles are: (1) arduous unskilled work, (2) no work, and (3) lifetime commitment. If an individual's medical and vocational factors match the criteria of a medical-vocational profile, we find the individual disabled.' https://www.ssa.gov/OP_Home/rulings/di/02/SSR2024-01-di-02.html Criterion 7 (28421) establishes that Mr. Bader meets the five requirements of the lifetime commitment profile: 1. Mr. Bader is not working at SGA level. 2. Mr. Bader has a lifetime commitment of 33 years to construction work, a semi-skilled job with no transferable skills. 3. Mr. Bader can no longer perform this past work, as it was performed at the heavy exertional level and his severe MDI prevents him from meeting the lifting requirements of heavy work. 4. Mr. Bader is closely approaching retirement age, as he is 61 years old. 5. Mr. Bader has no more than a limited education, as he only completed seventh grade. Therefore, the Social Security Administration should direct a decision that Mr. Bader is disabled at step five of the five-step sequential evaluation process.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 7": {
+      "description": "Identifies that Mr. Bader meets the requirements of the lifetime commitment profile.",
+      "sources": "Frank Bader Work History.pdf and Frank Bader Case File.pdf",
+      "justification": "The lifetime commitment profile is described in detail in POMS DI 25010.001 states that 'The lifetime commitment profile demonstrates the inability to make an adjustment to other work for an individual who: • is not working at SGA level, and • has a lifetime commitment (30 years or more) to a field of work that is unskilled, or that is skilled or semi-skilled but provided no transferable skills, and • can no longer perform this past work because of a severe MDI(s), and • is closely approaching retirement age (age 60 or older), and • has no more than a limited education.' https://secure.ssa.gov/poms.NSF/lnx/0425010001 Criterion 1 (27274) discussed Mr. Bader's lack of engaging in SGA since 2018. This was based on the source 'Frank Bader Work History.pdf,' which confirms that Mr. Bader has not had a job that was at SGA level since 2018. The source 'Frank Bader Work History.pdf' also confirms that Mr. Bader worked for 33 years as a Construction Worker with no transferable skills. Directory of Occupational Titles (DOT) 869.664-014 defines a Construction Worker as a semi-skilled job performed at the heavy exertional level. Therefore, Mr. Bader has met the second requirement for the lifetime commitment profile. https://occupationalinfo.org/86/869664014.html Mr. Bader can no longer perform his past work at the heavy exertional level due to the physical limitations from his severe medically determinable impairment of Osteoarthritis in both knees. In the source 'Frank Bader Case File.pdf,' Dr. Hauler limits Mr. Bader to lifting 25 to 50 pounds during an 8-hour workday. According to CFR § 416.967, work at the heavy exertional level requires 'lifting no more than 100 pounds at a time with frequent lifting or carrying of objects weighing up to 50 pounds.' https://www.ssa.gov/OP_Home/cfr20/416/416-0967.htm The source 'Frank Bader Work History.pdf' states that Mr. Bader was born on May 6, 1964. This date of birth makes Mr. Bader a person closely approaching retirement age, as he is more than 60 years old. POMS DI 25001.001A.16. defines limited education as 'formal schooling completed at the seventh through 11th grade level.' Because Mr. Bader only completed the seventh grade, he meets the definition of having a limited education. https://secure.ssa.gov/poms.NSF/lnx/0425001001#a3",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    }
+  }
+}

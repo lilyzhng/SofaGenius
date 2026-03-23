@@ -1,0 +1,160 @@
+{
+  "task_id": "apex-medicine-047",
+  "source_index": 47,
+  "domain": "Medicine",
+  "keywords": [
+    ".001",
+    ".2002.35069",
+    "0.22",
+    "0.23",
+    "0.59",
+    "0.68",
+    "1.18",
+    "1.2",
+    "10.1053",
+    "12198658",
+    "2.12",
+    "2.65",
+    "2002",
+    "36",
+    "48",
+    "659",
+    "665",
+    "72",
+    "96",
+    "98",
+    "Concludes",
+    "Dalhoff",
+    "Elevated",
+    "Hepatology",
+    "In",
+    "LE",
+    "Phosphate",
+    "Recognizes",
+    "References",
+    "Schmidt",
+    "Serum",
+    "States"
+  ],
+  "num_keywords": 32,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that the patient presents with an acetaminophen overdose.",
+      "sources": "1508 Chart.pdf",
+      "justification": "This is from the attachment.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Recognizes that a serum phosphate level should be checked.",
+      "sources": "",
+      "justification": "Elevated phosphate seen in nonsurvivors therefore should be checked for prognosis. 'In conclusion, hyperphosphatemia after acetaminophen overdose is seen exclusively in nonsurvivors,' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        5,
+        3
+      ]
+    },
+    "criterion 3": {
+      "description": "States that hyperphosphatemia can occur in acetaminophen overdose.",
+      "sources": "",
+      "justification": "Phosphate can be elevated and be a marker for non-survival. 'In conclusion, hyperphosphatemia after acetaminophen overdose is seen exclusively in nonsurvivors,' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Recognizes that in a study on acetaminophen overdose, hyperphosphatemia was seen almost exclusively in nonsurvivors.",
+      "sources": "",
+      "justification": "This is a finding from a study. 'In conclusion, hyperphosphatemia after acetaminophen overdose is seen exclusively in nonsurvivors,' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6,
+        7,
+        8
+      ]
+    },
+    "criterion 5": {
+      "description": "Concludes that in acetaminophen overdose, hyperphosphatemia is a highly accurate predictor of death.",
+      "sources": "",
+      "justification": "'A prospective study looking at serum phosphate levels in patients with acetaminophen toxicity found that hyperphosphatemia was seen only in non-survivors, suggesting that it is a highly accurate predictor of death following acetaminophen overdose.' https://www.acepnow.com/article/8-pitfalls-in-recognition-and-management-of-acetaminophen-toxicity/?singlepage=1",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4,
+        3
+      ]
+    },
+    "criterion 6": {
+      "description": "States that in acetaminophen overdose, a phosphate concentration threshold of 1.2 mmol/L was used for hyperphosphatemia.",
+      "sources": "",
+      "justification": "'Phosphate concentrations were significantly higher in nonsurvivors than in survivors at 48 to 72 hours after overdose (mean 2.65 +/- 1.18 mmol/L vs. 0.68 +/- 0.22 mmol/L, P <.001) as well as 72 to 96 hours after overdose (2.12 +/- 0.22 mmol/L vs. 0.59 +/- 0.23 mmol/L, P <.001). A threshold phosphate concentration of 1.2 mmol/L at 48 to 96 hours ' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        9
+      ]
+    },
+    "criterion 7": {
+      "description": "Recognizes that in acetaminophen overdose, the phosphate threshold applies 48 to 96 hours after ingestion.",
+      "sources": "",
+      "justification": "'Phosphate concentrations were significantly higher in nonsurvivors than in survivors at 48 to 72 hours after overdose (mean 2.65 +/- 1.18 mmol/L vs. 0.68 +/- 0.22 mmol/L, P <.001) as well as 72 to 96 hours after overdose (2.12 +/- 0.22 mmol/L vs. 0.59 +/- 0.23 mmol/L, P <.001). A threshold phosphate concentration of 1.2 mmol/L at 48 to 96 hours ' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 8": {
+      "description": "States that in acetaminophen overdose, a phosphate concentration threshold of 1.2 mmol/L has a high accuracy for predicting survival.",
+      "sources": "",
+      "justification": "'' A threshold phosphate concentration of 1.2 mmol/L at 48 to 96 hours after overdose' accuracy 98%' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 9": {
+      "description": "References the study 'Serum phosphate is an early predictor of outcome in severe acetaminophen-induced hepatotoxicity.'",
+      "sources": "",
+      "justification": "'Schmidt LE, Dalhoff K. Serum phosphate is an early predictor of outcome in severe acetaminophen-induced hepatotoxicity. Hepatology. 2002;36(3):659-665. doi:10.1053/jhep.2002.35069' https://pubmed.ncbi.nlm.nih.gov/12198658/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

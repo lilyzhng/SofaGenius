@@ -1,0 +1,154 @@
+{
+  "task_id": "apex-finance-077",
+  "source_index": 77,
+  "domain": "Finance",
+  "keywords": [
+    "$1,867M",
+    "$101,951M",
+    "$102,981M",
+    "$103,799M",
+    "$104,010M",
+    "$104,848M",
+    "$105,896M",
+    "$116,320M",
+    "$3,452M",
+    "$3,630M",
+    "$3,778M",
+    "$3,818M",
+    "$4,553M",
+    "$46,309M",
+    "$60.59",
+    "$68.53",
+    "$69.23",
+    "$69.92",
+    "$775M",
+    "$9,151M",
+    "1,487.6M",
+    "1.9",
+    "10",
+    "15.84",
+    "2.",
+    "2.23",
+    "2.26",
+    "2.29",
+    "2025",
+    "22.80",
+    "23.03",
+    "23.26",
+    "31",
+    "Acceptable",
+    "Calculate Nike",
+    "Cash",
+    "Comment",
+    "Current Portion",
+    "EBIT",
+    "EBITDA",
+    "EV",
+    "Enterprise Value",
+    "Equity",
+    "Equity Value",
+    "Long Term Debt",
+    "Net Debt",
+    "Nike",
+    "Non Current",
+    "Notes Payable",
+    "Operating",
+    "Operating Lease Liabilities",
+    "PV",
+    "Revenue",
+    "Share",
+    "Short",
+    "TV",
+    "Total Debt",
+    "Total Diluted Shares Outstanding",
+    "WACC"
+  ],
+  "num_keywords": 59,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculate Nike's Enterprise Value as $104,848M (Acceptable range is $103,799M to $105,896M)",
+      "sources": "Nike-Inc-2025 Form-10K.pdf",
+      "justification": "EV = PV of Y1_FCF + PV of Y2_FCF + PV of Y3_FCF + PV of TV = rounds to $104,848M where PV is calculated as YT_FCF / (1 + WACC)^T Y1_FCF = $3,818M Y2_FCF = $3,630M Y3_FCF = $3,452M TV = $116,320M",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculate Nike's Enterprise Value / Revenue as 2.26x (Acceptable range is 2.23 to 2.29)",
+      "sources": "Nike-Inc-2025 Form-10K.pdf",
+      "justification": "EV / Revenue = rounds to 2.26 EV = $104,848M 2025 Revenue = $46,309M",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 3": {
+      "description": "Calculate Nike's Enterprise Value / EBITDA as 23.03 (Acceptable range is 22.80 to 23.26)",
+      "sources": "Nike-Inc-2025 Form-10K.pdf",
+      "justification": "EV / EBITDA = rounds to 23.03 EV = $104,848M 2025 EBITDA = EBIT + D&A = $3,778M + $775M = $4,553M",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 4": {
+      "description": "Calculate Nike's Equity Value as $102,981M (Acceptable range is $101,951M to $104,010M)",
+      "sources": "Nike-Inc-2025 Form-10K.pdf",
+      "justification": "Equity Value = EV - 2025 Net Debt = $102,981M EV = $104,848M 2025 Net Debt = 2025 Total Debt - (2025 Cash and equivalents (Cash and equivalents = $9,151M as of May 31, 2025) + 2025 Short-term investments) = $1,867M where Total Debt = Current Portion of Long Term Debt + Notes Payable + Current Portion of Operating lease liabilities + Long Term Debt + Operating Lease Liabilities (Non Current)",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 5": {
+      "description": "Calculate Nike's Equity per Share as $69.23 (Acceptable range is $68.53 to $69.92)",
+      "sources": "Nike-Inc-2025 Form-10K.pdf",
+      "justification": "Equity per Share = Equity Value / 2025 Total Diluted Shares Outstanding = rounds to $69.23 Equity Value = $102,981M 2025 Total Diluted Shares Outstanding = 1,487.6M",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "Comment that 'Nike appears undervalued by the market'",
+      "sources": "",
+      "justification": "Comment that 'Nike appears undervalued by the market' as: -calculated EV / Revenue (2.26) is greater by 10% or more when compared to the yahoo market data for EV / Revenue (1.9); and -calculated EV / EBITDA (23.03) is greater by 10% or more when compared to the yahoo market data for EV / EBITDA (15.84); and -calculated Equity per Share ($69.23) is greater by 10% or more when compared to Nike's closing price as of 30th May 2025 ($60.59)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        3,
+        5
+      ]
+    }
+  }
+}

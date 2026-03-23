@@ -1,0 +1,272 @@
+{
+  "task_id": "apex-consulting-051",
+  "source_index": 51,
+  "domain": "Consulting",
+  "keywords": [
+    "$24.9M",
+    "$37.6M",
+    "$38.5M",
+    ",0,",
+    ",2",
+    ",3",
+    "10",
+    "100,0",
+    "1000000,1",
+    "13072",
+    "13073",
+    "13074",
+    "20",
+    "22",
+    "24.7",
+    "24.8M",
+    "24.9",
+    "25.0M",
+    "37.4",
+    "37.5M",
+    "37.6",
+    "37.7M",
+    "372",
+    "38.4M",
+    "38.5",
+    "38.6M",
+    "48",
+    "52",
+    "53",
+    "54",
+    "80",
+    "85",
+    "AND",
+    "Adding",
+    "After",
+    "Applying",
+    "Average",
+    "Big",
+    "Calculates",
+    "Dependencies",
+    "Estimates",
+    "From",
+    "High",
+    "IF",
+    "If",
+    "Lists",
+    "Low",
+    "MAX",
+    "Medium",
+    "ROUND",
+    "Recommends",
+    "SUMIFS",
+    "Share",
+    "Since",
+    "Small",
+    "There",
+    "We"
+  ],
+  "num_keywords": 57,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates the average Share of revenue for the Low loyalty-Small size segment as 22% (acceptable value is 22%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Low',$F:$F,'Small')/SUMIFS($D:$D,$E:$E,'Low',$F:$F,'Small'),2) to SoW v2, we get 22%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates the average Share of revenue for the Average loyalty-Small size segment as 54% (acceptable value is 54%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Average',$F:$F,'Small')/SUMIFS($D:$D,$E:$E,'Average',$F:$F,'Small'),2) to SoW v2, we get 54%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates the average Share of revenue for the High loyalty-Small size segment as 80% (acceptable value is 80%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'High',$F:$F,'Small')/SUMIFS($D:$D,$E:$E,'High',$F:$F,'Small'),2) to SoW v2, we get 80%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Calculates the average Share of revenue for the Low loyalty-Medium size segment as 20% (acceptable value is 20%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Low',$F:$F,'Medium')/SUMIFS($D:$D,$E:$E,'Low',$F:$F,'Medium'),2) to SoW v2, we get 20%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Calculates the average Share of revenue for the Average loyalty-Medium size segment as 52% (acceptable value is 52%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Average',$F:$F,'Medium')/SUMIFS($D:$D,$E:$E,'Average',$F:$F,'Medium'),2) to SoW v2, we get 52%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Calculates the average Share of revenue for the High loyalty-Medium size segment as 80% (acceptable value is 80%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'High',$F:$F,'Medium')/SUMIFS($D:$D,$E:$E,'High',$F:$F,'Medium'),2) to SoW v2, we get 80%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Calculates the average Share of revenue for the Low loyalty-Big size segment as 20% (acceptable value is 20%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Low',$F:$F,'Big')/SUMIFS($D:$D,$E:$E,'Low',$F:$F,'Big'),2) to SoW v2, we get 20%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Calculates the average Share of revenue for the Average loyalty-Big size segment as 53% (acceptable value is 53%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'Average',$F:$F,'Big')/SUMIFS($D:$D,$E:$E,'Average',$F:$F,'Big'),2) to SoW v2, we get 53%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "Calculates the average Share of revenue for the High loyalty-Big size segment as 85% (acceptable value is 85%)",
+      "sources": "SOW v2.xlsx",
+      "justification": "Applying the fomula =ROUND(SUMIFS($B:$B,$E:$E,'High',$F:$F,'Big')/SUMIFS($D:$D,$E:$E,'High',$F:$F,'Big'),2) to SoW v2, we get 85%",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "Calculates the potential revenue increase of targeting Small size merchants as $24.9M (acceptable range is 24.8M to 25.0M)",
+      "sources": "SOW v2.xlsx",
+      "justification": "After calculating the average shares of revenue per segment, we need to apply the potential increase row by row (we cannot calculate using aggregate numbers per segment because we should only consider the upside for merchants, i.e. merchants that are already at or above their potential increase should not be brought down). The formula on excel is =IF(AND(E2='High',F2='Big'),0,IF(E2='High',MAX(85%-C2/100,0),IF(F2='Small',IF(E2='Low',MAX(22%+20%-C2/100,0),MAX(54%+20%-C2/100,0)),IF(F2='Medium',IF(E2='Low',MAX(20%+10%-C2/100,0),MAX(52%+10%-C2/100,0)),IF(E2='Low',MAX(20%+1%-C2/100,0),MAX(53%+1%-C2/100,0))))))*D2 that we can add to column H We then sum it up per size: =ROUND(SUMIFS($H:$H,$F:$F,[size])/1000000,1) Small 24.9 Medium 38.5 Big 37.6 Dependencies are the segments involving small size and all 3 involving high loyalty. This is because low and average loyalty categories can only increase in relation to their segments (so low-small and average-small), but high loyalty increases to up to the segment with highest share of wallet. Since loyalty is determined by share of wallet, we only have to look at the segments with high loyalty merchants to find the highest average share of wallet of a segment",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "criterion 11": {
+      "description": "Calculates the potential revenue increase of targeting Medium size merchants as $38.5M (acceptable range is 38.4M to 38.6M)",
+      "sources": "SOW v2.xlsx",
+      "justification": "After calculating the average shares of wallet per segment, we need to apply the potential increase row by row (we cannot calculate using aggregate numbers per segment because we should only consider the upside for merchants, i.e. merchants that are already at or above their potential increase should not be brought down). The formula on excel is =IF(AND(E2='High',F2='Big'),0,IF(E2='High',MAX(85%-C2/100,0),IF(F2='Small',IF(E2='Low',MAX(22%+20%-C2/100,0),MAX(54%+20%-C2/100,0)),IF(F2='Medium',IF(E2='Low',MAX(20%+10%-C2/100,0),MAX(52%+10%-C2/100,0)),IF(E2='Low',MAX(20%+1%-C2/100,0),MAX(53%+1%-C2/100,0))))))*D2 that we can add to column H We then sum it up per size: =ROUND(SUMIFS($H:$H,$F:$F,[size])/1000000,1) Small 24.9 Medium 38.5 Big 37.6 Dependencies are the segments involving medium size and all 3 involving high loyalty. This is because low and average loyalty categories can only increase in relation to their segments (so low-mediumand average-medium), but high loyalty increases to up to the segment with highest share of wallet. Since loyalty is determined by share of wallet, we only have to look at the segments with high loyalty merchants to find the highest average share of wallet of a segment",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "criterion 12": {
+      "description": "Calculates the potential revenue increase of targeting Big size merchants as $37.6M (acceptable range is 37.5M to 37.7M)",
+      "sources": "SOW v2.xlsx",
+      "justification": "After calculating the average shares of wallet per segment, we need to apply the potential increase row by row (we cannot calculate using aggregate numbers per segment because we should only consider the upside for merchants, i.e. merchants that are already at or above their potential increase should not be brought down). The formula on excel is =IF(AND(E2='High',F2='Big'),0,IF(E2='High',MAX(85%-C2/100,0),IF(F2='Small',IF(E2='Low',MAX(22%+20%-C2/100,0),MAX(54%+20%-C2/100,0)),IF(F2='Medium',IF(E2='Low',MAX(20%+10%-C2/100,0),MAX(52%+10%-C2/100,0)),IF(E2='Low',MAX(20%+1%-C2/100,0),MAX(53%+1%-C2/100,0))))))*D2 that we can add to column H We then sum it up per size: =ROUND(SUMIFS($H:$H,$F:$F,[size])/1000000,1) Small 24.9 Medium 38.5 Big 37.6 Dependencies are the segments involving big size and all 3 involving high loyalty. This is because low and average loyalty categories can only increase in relation to their segments (so low-big and average-big), but high loyalty increases to up to the segment with highest share of wallet. Since loyalty is determined by share of wallet, we only have to look at the segments with high loyalty merchants to find the highest average share of wallet of a segment",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "criterion 13": {
+      "description": "Recommends a focus on the Medium size category when based purely on revenue potential",
+      "sources": "",
+      "justification": "From criteria 13072, 13073 and 13074, we get: Small 24.9 Medium 38.5 Big 37.6 The prompt asks for the decision to be made purely on revenue potential. Since 38.5>37.6>24.9, we recommend the Medium size merchants",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        10,
+        11,
+        12
+      ]
+    },
+    "criterion 14": {
+      "description": "Lists at least one of the following as a reason why prioritizing the Medium size may not be the best choice: -Medium size category has many more merchants than Big size category -Adding one decimal to the share of merchant revenue percentages switches the answer to the Big size category -Any progress made on outliers makes the big size more promising -Estimates for big merchants seem conservative versus for medium merchants -Estimates should be done more granularly based on size - The provided data set does not include other key decision criteria (e.g., cost to implement the revenue growth strategy, availability of staff, alignment with client vision, competitor moves)",
+      "sources": "SOW v2.xlsx",
+      "justification": "There are many reasons why the choice would be different: -Medium size category has many more merchants than Big size category: There are 372 merchants in the medium category, versus 48 non-outlier merchants in the big category (extraction) -Adding one decimal to the share of wallet percentages switches the answer to the Big size category. If we include one decimal in the share of wallets used (=ROUND([SoW calc],3)), the results become Small 24.7 Medium 37.4 Big 37.6 (extraction) -Any progress made on outliers makes the big size more promising (reasoning based on criteria 13074 and 13073 + extraction to see the numbers for outliers) -Estimates for big merchants seem conservative versus for medium merchants (avg + 10% is much more generous than average + 1%, especially when we consider that many values are very near the cutoff from medium to big) -Estimates should be done more granularly based on size (following the point above)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        13
+      ]
+    }
+  }
+}

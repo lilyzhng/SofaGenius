@@ -1,0 +1,291 @@
+{
+  "task_id": "apex-consulting-069",
+  "source_index": 69,
+  "domain": "Consulting",
+  "keywords": [
+    "$184,702.48",
+    "$510,161.45",
+    "10",
+    "100",
+    "101",
+    "102",
+    "123.9",
+    "12359",
+    "12384",
+    "1239",
+    "12394",
+    "12395",
+    "124",
+    "1240,0.33",
+    "1240,0.67",
+    "125",
+    "126",
+    "13",
+    "13.7",
+    "132",
+    "133",
+    "135",
+    "137",
+    "140",
+    "144",
+    "146",
+    "147",
+    "150",
+    "153",
+    "161",
+    "161.07",
+    "170",
+    "183,882.60",
+    "184,702.48",
+    "184702.48",
+    "185,400.00",
+    "239",
+    "30",
+    "35",
+    "380",
+    "40",
+    "405",
+    "406",
+    "409",
+    "421",
+    "454",
+    "48",
+    "510,094.80",
+    "510,161.45",
+    "510,239.00",
+    "510.161.45",
+    "510161.45",
+    "65",
+    "8.2",
+    "Apply",
+    "Average",
+    "Big",
+    "COUNT",
+    "Count",
+    "First",
+    "From",
+    "High",
+    "INC",
+    "Identifies",
+    "If",
+    "Just",
+    "Low",
+    "Medium",
+    "Proposes",
+    "Results",
+    "Small",
+    "So",
+    "States",
+    "Then",
+    "There",
+    "Therefore",
+    "We"
+  ],
+  "num_keywords": 77,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that the cutoff total delivery revenue between the Small and Medium size categories is $184,702.48 (acceptable range is 183,882.60 to 185,400.00)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, apply the formula =PERCENTILE.INC(D2:D1240,0.33), which will give you 184,702.48. The lower bound is the exact value of the last number to belong in the small group and the upper bound is a few cents before the first to be in the medium, since it should not be included",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that the cutoff total delivery revenue between the Medium and Big size categories is $510,161.45 (acceptable range is 510,094.80 to 510,239.00)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, apply the formula =PERCENTILE.INC(D2:D1240,0.67), which will give you 510,161.45. The lower bound is the exact value of the last number to belong in the medium group and the upper bound is a few cents before the first to be in the big, since it should not be included",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Identifies that 409 merchants are categorized as Small in size (acceptable value is 409)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, using the result from criterion 12359 of a cutoff of 184,702.48, check how many merchants have a total delivery revenue below or equal to that amount by using the formula =COUNTIFS(D:D,'<=184702.48'), which will give you 409",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 4": {
+      "description": "Identifies that 421 merchants are categorized as Medium in size (acceptable value is 421)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, using the result from criteria 12359 of a cutoff of 184,702.48 and 12384 of a cutoff of 510,161.45, check how many merchants have a total delivery revenue above the lower bound and below the upper bound by using the formula =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45'), which will give you 421",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2
+      ]
+    },
+    "criterion 5": {
+      "description": "Identifies that 409 merchants are categorized as Big in size (acceptable value is 409)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, using the result from criterion 12384 of a cutoff of 510.161.45, check how many merchants have a total delivery revenue greater than that amount by using the formula =COUNTIFS(D:D,'>510161.45'), which will give you 409",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 6": {
+      "description": "States that the cutoff share of wallet between the Low and Average loyalty categories is 40% (acceptable value is 40%)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "Apply the formula =PERCENTILE.INC(C2:C1240,0.33), which will give you 40. There is no range since both the merchants before and after the cutoff have the same share of wallet",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "States that the cutoff share of wallet between the Average and High loyalty categories is 65% (acceptable value is 65%)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "Apply the formula =PERCENTILE.INC(C2:C1240,0.67), which will give you 65. There is no range since both the merchants before and after the cutoff have the same share of wallet",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Identifies that 454 merchants are categorized as Low in loyalty (acceptable value is 454)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "Using the result from criterion 12394 of a cutoff of 40, check how many merchants have a share of wallet below or equal to that amount by using the formula =COUNTIFS(C:C,'<=40'), which will give you 454",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 9": {
+      "description": "Identifies that 380 merchants are categorized as Average in loyalty (acceptable value is 380)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "Using the results from criteria 12394 of a cutoff of 40 and 12395 of a cutoff of 65, check how many merchants have a share of wallet in-between these values (excluding the lower bound and including the upper bound) by using the formula =COUNTIFS(C:C,'>40',C:C,'<=65'), which will give you 380",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6,
+        7
+      ]
+    },
+    "criterion 10": {
+      "description": "Identifies that 405 merchants are categorized as High in loyalty (acceptable value is 405)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "Using the results from criterion 12395 of a cutoff of 65, check how many merchants have a share of wallet above that by using the formula =COUNTIFS(C:C,'>65'), which will give you 405",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 11": {
+      "description": "States that 2 groups are unbalanced (acceptable value is 2)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, we will use the cutoffs to investigate every pairing. The size cutoffs are, from criterion 12359, 184,702.48 and from criterion 12384, 510,161.45. The loyalty cutoffs are, from criterion 12394, 40%, and from criterion 12395, 65%. We then inspect each group: Small size-Low loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'<=40') = 144 Small size-Average loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'>40',C:C,'<=65') = 132 Small size-High loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'>65') = 133 Medium size-Low loyalty: =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45',C:C,'<=40') = 140 Medium size-Average loyalty: =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45',C:C,'>40',C:C,'<=65') = 146 Medium size-High loyalty: =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45',C:C,'>65') = 135 Big size-Low loyalty: =COUNTIFS(D:D,'>510161.45',C:C,'<=40') = 170. Big size-Average loyalty: =COUNTIFS(D:D,'>510161.45',C:C,'>40',C:C,'<=65') = 102 Big size-High loyalty: =COUNTIFS(D:D,'>510161.45',C:C,'>65') = 137 From =Count(C:C) we know there are 1239 total merchants. The thresholds are 10% and 13%. 10%*1239 = 123.9. 13%*1239 = 161.07. So, to be balanced, all number must be between 124 and 161 (inclusive). We see that 2, big size-low loyalty and big size-medium loyalty, are not",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        6,
+        7,
+        12,
+        13
+      ]
+    },
+    "criterion 12": {
+      "description": "States that the group of Big size-Low loyalty merchants is unbalanced",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, using the result from criterion 12384 of a cutoff of 510.161.45 and from criterion 12394 of a cutoff of 40, check how many merchants fall in the Big size - Low loyalty group by using the formula =COUNTIFS(D:D,'>510161.45',C:C,'<=40'), which will give you 170. Using =COUNT(C:C) we get a total of 1239. 170/239 = 13.7%, which is above the balance threshold of 13% given by the prompt, so it is unbalanced",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        6
+      ]
+    },
+    "criterion 13": {
+      "description": "States that the group of Big size-Average loyalty merchants is unbalanced",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "First, create a new column in the file, in column D, where we calculate total revenue. The formula is =B2/C2*100. Then, using the result from criterion 12384 of a cutoff of 510.161.45 and from criteria 12394 and 12395 of cutoffs of 40 and 65, check how many merchants fall in the Big size - Average loyalty group by using the formula =COUNTIFS(D:D,'>510161.45',C:C,'>40',C:C,'<=65'), which will give you 102. Using =COUNT(C:C) we get a total of 1239. 102/239 = 8.2%, which is below the balance threshold of 10% given by the prompt, so it is unbalanced",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        6,
+        7
+      ]
+    },
+    "criterion 14": {
+      "description": "Proposes that the cutoff share of wallet between Low loyalty and Average loyalty gets moved to 35% (acceptable value is 35%)",
+      "sources": "Restaurant SOW Estimates.csv",
+      "justification": "The unbalance happens because the 33rd percentile cutoff is at position 409, and the first merchant with 40% is at position 406. This puts 40% in the 33rd percentile, but since we must include up to and equal to the cutoff, all 48 players with estimated 40% SoW end up in the low category. The solution is then to move it down to 35%. A more mathematical reasoning is that If we move the threshold from Medium to Big companies, both the low-big and average-big groups will move in the same direction (if we raise the cutoff both decrease, if we lower the cutoff both increase). But we need each to in a different direction. Therefore, the only option we can consider is to move the low-to average threshold down, to move some merchants from low to average. Then, we have to check if this shift affects the other buckets to check if it is valid. Results when the cutoff is moved down to 35% SoW (skipping low loyalty, because the group is unaffected by this change): Small size-Low loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'<=35') = 126 Small size-Average loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'>35',C:C,'<=65') = 150 Medium size-Low loyalty: =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45',C:C,'<=35') = 133 Medium size-Average loyalty: =COUNTIFS(D:D,'>184702.48',D:D,'<=510161.45',C:C,'>35',C:C,'<=65') = 153 Big size-Low loyalty: =COUNTIFS(D:D,'>510161.45',C:C,'<=35') = 147 Big size-Average loyalty: =COUNTIFS(D:D,'>510161.45',C:C,'>35',C:C,'<=65') = 125. From =Count(C:C) we know there are 1239 total merchants. The thresholds are 10% and 13%. 10%*1239 = 123.9. 13%*1239 = 161.07. So, to be balanced, all number must be between 124 and 161 (inclusive), and they all are. The final check we must do is if a further descent will still remain balanced. The next value below 35% is 30%. Just by checking the first one, we see that Small size-Low loyalty: =COUNTIFS(D:D,'<=184702.48',C:C,'<=30') = 101, which falls outside of the range for balance. Therefore this option doesn't work and moving the threshold down to 35% is the only valid option",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        11,
+        1,
+        2,
+        6,
+        7
+      ]
+    }
+  }
+}

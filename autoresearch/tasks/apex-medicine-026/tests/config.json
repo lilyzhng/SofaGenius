@@ -1,0 +1,235 @@
+{
+  "task_id": "apex-medicine-026",
+  "source_index": 26,
+  "domain": "Medicine",
+  "keywords": [
+    ",13.6%",
+    ",K",
+    ".,",
+    ".44,45",
+    "0043",
+    "10",
+    "10.1055",
+    "10.1155",
+    "10955003",
+    "13.6",
+    "15",
+    "16",
+    "17.5",
+    "1760740.",
+    "18",
+    "18.8",
+    "2%",
+    "20%",
+    "2010%",
+    "2021",
+    "28.6",
+    "4%",
+    "43.8",
+    "538230",
+    "6346957",
+    "64.3",
+    "71.4",
+    "7708374",
+    "8310900",
+    "8518335",
+    "87.5",
+    "88.9",
+    "8896379",
+    "90",
+    "97%",
+    "Antibiotics",
+    "As",
+    "BAC",
+    "BOV",
+    "Bacteremia",
+    "Common",
+    "EE",
+    "Early",
+    "Empiric",
+    "Endogenous",
+    "Even",
+    "Gram",
+    "Hepatobiliary",
+    "However",
+    "ID",
+    "INR",
+    "IV",
+    "Identifies",
+    "Introduction",
+    "It",
+    "KCN",
+    "Klebsiella",
+    "Laboratory",
+    "Ophthalmological",
+    "Oxidase",
+    "Patients",
+    "Percutaneous",
+    "Prealbumin",
+    "Presenting",
+    "Proskauer",
+    "Pyogenic Liver Abscess",
+    "Recommends",
+    "Refer",
+    "Southeast Asia",
+    "Southeast Asian",
+    "States",
+    "Taiwan",
+    "Treatment",
+    "US",
+    "VP",
+    "Voges"
+  ],
+  "num_keywords": 76,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Recommends consulting infectious disease.",
+      "sources": "",
+      "justification": "Refer to dependency.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 2": {
+      "description": "Identifies that the microbiological features of the blood culture are consistent with Klebsiella pneumoniae.",
+      "sources": "",
+      "justification": "'K. pneumoniae is lactose fermenting, H2S- and indole-negative, has a positive Voges-Proskauer (VP) reaction, is capable of growth in KCN and using citrate as a sole carbon source, and is incapable of growth at 10ºC.' https://www.uptodate.com/contents/microbiology-and-pathogenesis-of-klebsiella-pneumoniae-infection/print#:~:text=%E2%97%8F-,K.,incapable%20of%20growth%20at%2010%C2%BAC. 'K. pneumoniae is a Gram-negative, nonmotile, encapsulated, lactosefermenting, facultative anaerobic, rod-shaped bacterium. It appears as a mucoid lactose fermenter on MacConkey agar. Oxidase-negative, catalase –positive, urease- positive.' https://uomustansiriyah.edu.iq/media/lectures/6/6_2017_10_15!09_25_19_AM.pdf",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that the patient likely has Klebsiella pneumoniae bacteremia.",
+      "sources": "",
+      "justification": "As noted from the prompt and dependency; the blood cultures are growing what is likely to be K. pneumoniae. 'Bacteremia is the presence of bacteria in the bloodstream.' https://www.msdmanuals.com/professional/infectious-diseases/biology-of-infectious-disease/bacteremia",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        4
+      ]
+    },
+    "criterion 4": {
+      "description": "States that the patient's liver abscess is the likely source of the Klebsiella pneumoniae bacteremia.",
+      "sources": "",
+      "justification": "Refer to dependencies, and below: 'Laboratory tests include a complete blood count with differential, tests for hepatocellular injury (liver enzymes that are usually elevated in half the cases), liver synthetic function tests (Prealbumin and INR), alkaline phosphatase (elevated in around 90% of patients), C-reactive protein, erythrocyte sedimentation rate, and blood cultures to rule out bacteremia.' https://www.ncbi.nlm.nih.gov/books/NBK538230/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 5": {
+      "description": "Identifies at least one of the following risk factors of Klebsiella pneumoniae related liver abscess in the patient: Southeast Asian descent or diabetes.",
+      "sources": "",
+      "justification": "'Klebsiella pneumoniae is a prominent etiology in Southeast Asia and is thought to be related to or associated with colorectal cancer there as well.[4][5] It is usually present with no hepatobiliary system disease and is exclusively monomicrobial. It happens in a background of diabetes and is more severe than other forms of bacterial abscesses, possibly because of enhanced virulence factors of the bacteria.' https://www.ncbi.nlm.nih.gov/books/NBK538230/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "States that the antibiotic regimen should be guided by treatment response.",
+      "sources": "",
+      "justification": "'Treatment duration is determined by clinical as well as radiological response. Early conversion to oral antibiotics has been studied for Klebsiella-related liver abscesses and has been found equally efficacious.44,45 Empiric antibiotics should be directed against organisms typically responsible for causing liver abscess, covering gram-positive cocci, aerobic gram-negative bacilli, and anaerobes' https://www.thieme-connect.com/products/ejournals/pdf/10.1055/s-0043-1760740.pdf 'Pyogenic Liver Abscess - Antibiotics (duration: 2‐6 weeks)' https://pmc.ncbi.nlm.nih.gov/articles/PMC8518335/ 'The medical literature clearly points to third and fourth-generation cephalosporins as the antibiotic treatment of choice in these settings, whereas these hypermucoviscous strains have been found to be uniformly resistant to ampicillin. The treatment regimen duration varies from 2 to 4 weeks with a solitary abscess and at least 6 weeks in the event of multiple abscesses.' https://pmc.ncbi.nlm.nih.gov/articles/PMC6346957",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "States that the infectious diseases team should manage the antibiotics.",
+      "sources": "",
+      "justification": "'The optimal duration of intravenous (IV) antibiotic therapy and subsequent oral therapy remains unclear. The study in Taiwan leads to a nearly standardized treatment with 3 weeks of IV antibiotics followed by 1 or 2 months of oral antibiotics [6]. However, studies in the US demonstrate extremely low mortality with a shorter duration of IV antibiotics (mean of 17.5 days) and oral antibiotics (mean of 13.6 days)' https://onlinelibrary.wiley.com/doi/10.1155/2021/8896379#:~:text=Percutaneous%20drainage%20along%20with%20antibiotics,13.6%20days)%20%5B4%5D. 'Patients receiving ID consultations are highly complex, frequently need further treatment after discharge and have a high economic impact.' https://pmc.ncbi.nlm.nih.gov/articles/PMC10955003/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "Recommends consulting ophthalmology.",
+      "sources": "",
+      "justification": "Refer to dependency.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        12
+      ]
+    },
+    "criterion 9": {
+      "description": "States that Klebsiella pneumoniae bacteremia can cause endogenous endophthalmitis (EE).",
+      "sources": "",
+      "justification": "'Endogenous endophthalmitis (EE) is a rare but potentially sight-threatening disease with an appreciable mortality rate [1-2]. It is a sequel of hematogenous spread from a distant source that breaches the blood ocular barrier causing infection of the intraocular tissue' https://pmc.ncbi.nlm.nih.gov/articles/PMC8310900/#:~:text=Introduction,treatment%20outcomes%20of%20each%20patient. 'Hepatobiliary system was the commonest source of infection (64.3%), followed by respiratory system (28.6%). ' https://pmc.ncbi.nlm.nih.gov/articles/PMC7708374/#:~:text=INTRODUCTION,make%20recommendations%20on%20ophthalmological%20screening.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 10": {
+      "description": "States either of the following as a symptom of endogenous Klebsiella endophthalmitis in this patient: eye redness or eye discomfort.",
+      "sources": "",
+      "justification": "'The majority of cases were unilateral (n=10, 71.4%). The 16 out of 18 eyes (88.9%) were symptomatic before the time of diagnosis. Common presenting symptoms included blurring of vision (87.5%), eye redness (43.8%) and floaters (18.8%). ' 'Presenting ocular symptoms: BOV, redness, pain' https://pmc.ncbi.nlm.nih.gov/articles/PMC7708374/#:~:text=INTRODUCTION,make%20recommendations%20on%20ophthalmological%20screening.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 11": {
+      "description": "States that endogenous Klebsiella endophthalmitis can cause vision loss.",
+      "sources": "",
+      "justification": "'Even with increasing reports and awareness, together with improving intervention for endogenous Klebsiella endophthalmitis, visual outcomes reported by recent studies remain poor with high rates of total loss of vision and evisceration' https://pmc.ncbi.nlm.nih.gov/articles/PMC7708374/#:~:text=INTRODUCTION,make%20recommendations%20on%20ophthalmological%20screening.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 12": {
+      "description": "States that ophthalmological screening can support prompt diagnosis of endogenous Klebsiella endophthalmitis.",
+      "sources": "",
+      "justification": "'Even with increasing reports and awareness, together with improving intervention for endogenous Klebsiella endophthalmitis, visual outcomes reported by recent studies remain poor with high rates of total loss of vision and evisceration' 'Ophthalmological screening has been advocated' https://pmc.ncbi.nlm.nih.gov/articles/PMC7708374/#:~:text=INTRODUCTION,make%20recommendations%20on%20ophthalmological%20screening.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        11
+      ]
+    }
+  }
+}

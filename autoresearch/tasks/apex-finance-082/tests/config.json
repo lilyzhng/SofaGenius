@@ -1,0 +1,117 @@
+{
+  "task_id": "apex-finance-082",
+  "source_index": 82,
+  "domain": "Finance",
+  "keywords": [
+    "1,000",
+    "1,650",
+    "1,667",
+    "1,684",
+    "10,000",
+    "10,000,000",
+    "10,009,650",
+    "10,009,667",
+    "10,009,684",
+    "12",
+    "15,000",
+    "16,333",
+    "18,000",
+    "20,000",
+    "25",
+    "26,000",
+    "3,000",
+    "35,000",
+    "5,000",
+    "7,000",
+    "Add",
+    "Bank",
+    "Calculate",
+    "Calculates",
+    "Calculates Debt",
+    "Debt",
+    "Do",
+    "EV",
+    "Enterprise",
+    "Enterprise Value",
+    "Equity",
+    "Equity Bridge",
+    "Equity Value",
+    "Excess Cash",
+    "From",
+    "Mar",
+    "Mercor",
+    "States",
+    "Subtract",
+    "Taxes",
+    "Test Version",
+    "The Prompt"
+  ],
+  "num_keywords": 42,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States the Enterprise Value as £10,000,000 (acceptable value is £10,000,000)",
+      "sources": "",
+      "justification": "The Prompt articulates the EV is £10,000,000",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates excess cash as £15,000 (acceptable value is £15,000)",
+      "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+      "justification": "From the 'Mercor - EV to Equity Bridge - Test Version' file, deduct the minimum cash requirement of £5,000 from the cash at Bank of £20,000 at Mar-25 to calculate Excess Cash of £15,000",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates Debt/Debt-like items as £7,000 (acceptable value is £7,000)",
+      "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+      "justification": "From the 'Mercor - EV to Equity Bridge - Test Version' file, extract the £7,000 of corporation tax at Mar-25. Taxes payable are considered debt-like items for an EV to Equity Bridge while trade creditors and accruals are captured within the net working capital adjustment and should not be double‑counted.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Calculates the net working capital adjustment at Mar-25 of £1,667 (acceptable range between £1,650 and £1,684)",
+      "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+      "justification": "Add: trade debtors (£35,000), other debtors (£10,000), accrued income (£3,000), prepayments (£1,000) and subtract trade creditors (£26,000) and accruals (£5,000) to arrive at £18,000 actual net working capital at Mar-25 Do this for all months, and then take a simple average of each month's net working capital to get £16,333 average net working capital for the last 12 months Subtract the average net working capital position at Mar-25 from the actual net working capital position at Mar-25 to equal £1,667",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Calculate the Equity value for the company at Mar-25 of £10,009,667 (acceptable range £10,009,650 to £10,009,684)",
+      "sources": "",
+      "justification": "Add the excess cash of approximately £15,000 to the Enterprise value of £10,000,000, deduct £7,000 due to tax being a debt-like item and add the net working capital adjustment of £1,667 to achieve an Equity Value of £10,009,667",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  }
+}

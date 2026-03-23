@@ -40,31 +40,29 @@ SofaGenius/
 
 ## Migration Steps
 
-### PR 1: Agent Configs + Handoff (config only, low risk)
+### PR 1: Agent Configs + Handoff (config only, low risk) — ✅ MERGED (PR #20)
 
-1. **CLAUDE.md files — use LOCAL versions** (they're more complete with Discord IDs, content strategy, handoff protocols)
-   - `claude/ceo/CLAUDE.md` → overwrites `SofaGenius/agents/ceo/CLAUDE.md`
-   - `claude/builder/CLAUDE.md` → overwrites `SofaGenius/agents/builder/CLAUDE.md`
-   - `claude/researcher/CLAUDE.md` → overwrites `SofaGenius/agents/researcher/CLAUDE.md`
-   - **Update paths** in CLAUDE.md files: replace vault-relative paths with SofaGenius-relative paths
+1. **CLAUDE.md files — use LOCAL versions** ✅
+   - Agent folders renamed to `genius-*` convention
+   - Handoff directory organized into `status/`, `specs/`, `reports/` subfolders
+   - Paths updated to SofaGenius-relative
 
-2. **Handoff directory**
-   - Move all files from `claude/handoff/` → `SofaGenius/handoff/`
-   - Replace stale SofaGenius handoff files with local ones
-   - Include: status files, specs, `onboarding.md`
+2. **Handoff directory** ✅
+   - Migrated to `agents/handoff/` with subfolders
 
-3. **Launch scripts**
-   - Move `claude/launch-*.sh` and `claude/launch.sh` → `SofaGenius/agents/`
-   - Update paths inside scripts to point to SofaGenius structure
+3. **Launch scripts** ✅
+   - Moved to `agents/scripts/`
 
-### PR 2: AutoResearch
+### PR 2: AutoResearch — 🚧 IN PROGRESS
 
-1. **Move autoresearch into SofaGenius as top-level folder**
-   - Copy contents of `lilyzhng/autoresearch` → `SofaGenius/autoresearch/`
-   - Keep `pyproject.toml`, `uv.lock` — Researcher runs `cd autoresearch && uv sync` for their own venv
-   - `.gitignore` model artifacts, large data files (use HF Hub / DVC for those)
+1. **Move autoresearch into SofaGenius as top-level folder** ✅
+   - Copied all git-tracked files (excl. submodules/) → `SofaGenius/autoresearch/`
+   - Kept `pyproject.toml`, `uv.lock` — Researcher runs `cd autoresearch && uv sync`
+   - Clean `.gitignore` for model artifacts, large data, submodules
 
-2. **Update Researcher's CLAUDE.md** to reference `autoresearch/` as their workspace within SofaGenius
+2. **Update Researcher's CLAUDE.md** ✅ — added Workspace section with autoresearch paths and submodule instructions
+
+3. **Update README.md** ✅ — project structure updated with autoresearch and correct `genius-*` folder names
 
 ### PR 3: Builder Work Files
 
@@ -91,10 +89,10 @@ SofaGenius/
 
 ## Completion Criteria
 
-- [ ] All CLAUDE.md files in SofaGenius are the complete local versions
-- [ ] Handoff directory fully migrated
-- [ ] Launch scripts work from SofaGenius
-- [ ] AutoResearch merged as top-level folder with own venv
+- [x] All CLAUDE.md files in SofaGenius are the complete local versions (PR #20)
+- [x] Handoff directory fully migrated (PR #20)
+- [x] Launch scripts work from SofaGenius (PR #20)
+- [x] AutoResearch merged as top-level folder with own venv (PR 2 — in progress)
 - [ ] Local `claude/` folder deleted from vault
 - [ ] All agents can start sessions from SofaGenius repo
 - [ ] No broken path references

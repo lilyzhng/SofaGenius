@@ -1,0 +1,141 @@
+{
+  "task_id": "apex-finance-084",
+  "source_index": 84,
+  "domain": "Finance",
+  "keywords": [
+    "01",
+    "09",
+    "10",
+    "10.",
+    "15",
+    "17",
+    "196.",
+    "198.",
+    "2.406",
+    "2.412",
+    "2.520",
+    "2.546",
+    "2.581",
+    "2.621",
+    "20.",
+    "200.",
+    "21.",
+    "217.",
+    "219.",
+    "222.",
+    "25",
+    "34",
+    "365.25",
+    "4.488",
+    "4.533",
+    "4.578",
+    "4.671",
+    "4.718",
+    "4.765",
+    "7.",
+    "8.",
+    "89.467",
+    "90.749",
+    "Bond",
+    "Calculates",
+    "Corresponding",
+    "Credit",
+    "Determines",
+    "EUR",
+    "Excel",
+    "Interpolated",
+    "Lower",
+    "MS",
+    "Material",
+    "Movement",
+    "Oct",
+    "Rate",
+    "Target",
+    "Tightening",
+    "Upper",
+    "YIELD",
+    "YTM"
+  ],
+  "num_keywords": 52,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates the bond's yield to maturity on 01-Oct-25 as 4.718% (acceptable range is 4.671% to 4.765%)",
+      "sources": "",
+      "justification": "YTM on 01-Oct-25: All relevant inputs are provided in the prompt, using 01-Oct-25 as settlement date: Bond trades at 89.467 -> 4.718% YTM (using Excel's YIELD formula)",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates the bond's yield to maturity on 15-Oct-25 as 4.533% (acceptable range is 4.488% to 4.578%)",
+      "sources": "",
+      "justification": "YTM on 15-Oct-25: All relevant inputs are provided in the prompt, using 15-Oct-25 as settlement date: Bond trades at 90.749 -> 4.533% YTM (using Excel's YIELD formula)",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates the bond's credit spread (i-spread) on 01-Oct-25 as 219.8bps (acceptable range is 217.6bps to 222.0bps)",
+      "sources": "2205_HEIANA_Input.csv",
+      "justification": "Credit spread (i-spread) on 01-Oct-25: Bond remaining life on 01-Oct-25: (17/09/34 - 01/10/25) / 365.25 = 8.961yrs (target tenor) Corresponding lower EUR MS tenor = 7.000yrs Corresponding upper EUR MS tenor = 10.000yrs Corresponding lower EUR MS rate= 2.406% Corresponding upper EUR MS rate= 2.581% Interpolated EUR MS Rate = Lower rate + (Upper rate - lower rate) / (Upper tenor - lower tenor) * (Target tenor - lower tenor) 2.406% + (2.581% - 2.406%) / (10.000yrs - 7.000yrs) * (8.961yrs - 7.000yrs) = 2.520% Credit spread = YTM - interpolated EUR MS Rate = 4.718% - 2.520% = 219.8bps",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 4": {
+      "description": "Calculates the bond's credit spread (i-spread) on 15-Oct-25 as 198.7bps (acceptable range is 196.7bps to 200.7bps)",
+      "sources": "2205_HEIANA_Input.csv",
+      "justification": "Credit spread (i-spread) on 15-Oct-25: Bond remaining life on 15-Oct-25: (17/09/34 - 15/10/25) / 365.25 = 8.923yrs (target tenor) Corresponding lower EUR MS tenor = 7.000yrs Corresponding upper EUR MS tenor = 10.000yrs Corresponding lower EUR MS rate= 2.412% Corresponding upper EUR MS rate= 2.621% Interpolated EUR MS Rate = Lower rate + (Upper rate - lower rate) / (Upper tenor - lower tenor) * (Target tenor - lower tenor) 2.412% + (2.621% - 2.412%) / (10.000yrs - 7.000yrs) * (8.923yrs - 7.000yrs) = 2.546% Credit spread = YTM - interpolated EUR MS Rate = 4.533% - 2.546% = 198.7bps",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 5": {
+      "description": "Calculates the movement in credit spreads as -21.1bps (acceptable range is -21.3bps to -20.9bps)",
+      "sources": "",
+      "justification": "Movement in credit spread Credit spread (as of 15-Oct-25) - Credit spread (as of 01-Oct-25) = 198.7bps - 219.8bps = -21.1bps",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "Determines that the movement in credit spreads is material.",
+      "sources": "",
+      "justification": "Tightening by 21.1bps exceeds specified threshold of 20.0bps -> Material move",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    }
+  }
+}

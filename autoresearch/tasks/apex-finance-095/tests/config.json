@@ -1,0 +1,283 @@
+{
+  "task_id": "apex-finance-095",
+  "source_index": 95,
+  "domain": "Finance",
+  "keywords": [
+    "0.266199545",
+    "1.06365",
+    "1.5",
+    "10364",
+    "132290",
+    "141456.5469",
+    "141857",
+    "15,834.45396",
+    "15853",
+    "16741.6498",
+    "17,807.26",
+    "17188.73669",
+    "17540.15",
+    "17807.25581",
+    "17807.26",
+    "18001.74964",
+    "18074.37",
+    "18847.7763",
+    "18882.88088",
+    "19745.80095",
+    "20,391.54688",
+    "20,956.45503",
+    "2024",
+    "2025",
+    "2028",
+    "2029",
+    "20497.88822",
+    "20699.32291",
+    "22.77",
+    "2267.65",
+    "2302.18",
+    "2302.184599",
+    "2336.71",
+    "23418.20635",
+    "235334.3102",
+    "23761.34325",
+    "24,508.03",
+    "24124.32087",
+    "24140.38",
+    "24470.54628",
+    "24508.03",
+    "24508.03206",
+    "24875.62",
+    "25426.93751",
+    "286679.454",
+    "2873.6972",
+    "295",
+    "307223.83",
+    "311902.37",
+    "316581.00",
+    "3426.937364",
+    "357470.7013",
+    "369942.43",
+    "374912.4555",
+    "375,576.07",
+    "375576.07",
+    "381209.71",
+    "395372.2499",
+    "4,869.30666",
+    "42.65",
+    "43.30",
+    "43.95",
+    "462568.18",
+    "4655.31",
+    "469,612.37",
+    "469612.37",
+    "4726.21",
+    "4726.213469",
+    "476656.55",
+    "4797.10",
+    "503648.87",
+    "511,318.65449",
+    "511318.65",
+    "511318.6544",
+    "518988.43",
+    "5340",
+    "6,997.00000",
+    "6.3650",
+    "6172.695459",
+    "63432",
+    "7204",
+    "7361.054151",
+    "7466",
+    "9,770.988334",
+    "9,778.465762",
+    "94,036.30",
+    "Acceptable",
+    "Acceptable Range",
+    "Accumulated Depreciation",
+    "Capex",
+    "Cash",
+    "Depreciation",
+    "Diluted",
+    "EBIT",
+    "EV",
+    "Enterprise Value",
+    "Equity",
+    "Equity Value",
+    "Equivalents",
+    "FCFF",
+    "Goodwill",
+    "Gross",
+    "Hence",
+    "Implied Share",
+    "Implied Share Price",
+    "Inventory",
+    "Latest Share",
+    "Long",
+    "Minority Interest",
+    "NOPAT",
+    "NWC",
+    "Net Debt",
+    "Number",
+    "Other Current Assets",
+    "Other Intangible Assets",
+    "Other Long",
+    "PPE",
+    "PV",
+    "Prepaid Expenses",
+    "Price",
+    "QA",
+    "Reports",
+    "Restricted Cash",
+    "Rounding",
+    "Shares Outstanding",
+    "Since",
+    "So",
+    "States",
+    "Sum",
+    "TA",
+    "TE",
+    "TL",
+    "Term Assets",
+    "Term Deferred Charges",
+    "Term Investments",
+    "Terminal Value",
+    "Total Liabilities",
+    "Total Receivables",
+    "WACC",
+    "Working Capital"
+  ],
+  "num_keywords": 140,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Reports the Cash and Equivalents in 2025 as 4726.21 (Acceptable range 4655.31 to 4797.10).",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "For 2025. Total Receivables: 17188.73669 Inventory: 2873.6972 Prepaid Expenses: 6172.695459 Restricted Cash: 1 Other Current Assets: 5340 Gross PPE: 286679.454 Accumulated Depreciation: 141456.5469 Long-Term Investments: 295 Goodwill: 63432 Other Intangible Assets: 132290 Long-Term Deferred Charges: 7466 Other Long-Term Assets: 10364 Total Liabilities & Equity: 395372.2499 Hence, the Cash and Equivalents in 2025 = 4726.213469 For QA -- Rounding drives delta between total liabilities & equity and total assets. So computed answer off by 1.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Reports the Cash and Equivalents in 2029 as 2302.18 (Acceptable range from 2267.65 to 2336.71)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "For 2029. TA = TE + TL cash is used as plug Total Receivables: 20497.88822 Inventory: 3426.937364 Prepaid Expenses: 7361.054151 Restricted Cash: 1 Other Current Assets: 5340 Gross PPE: 357470.7013 Accumulated Depreciation: 235334.3102 Long-Term Investments: 295 Goodwill: 63432 Other Intangible Assets: 132290 Long-Term Deferred Charges: 7466 Other Long-Term Assets: 10364 Total Liabilities & Equity: 374912.4555 Hence, the Cash and Equivalents in 2029 = 2302.184599",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Reports the FCFF for 2025 as 17807.26 (Acceptable range from 17540.15 to 18074.37)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "FCFF 2025 = NOPAT 2025+ Depreciation 2025 – Capex 2025 – change in NWC = EBIT*(1-tax rate) + Depreciation – Capex – (Working Capital 2025 – Working Capital 2024) = 20,956.45503*(1–0.266199545) + 20,391.54688 – 15,834.45396 – [(–4,869.30666) – (–6,997.00000)] = 17,807.26",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Reports the FCFF for 2029 as 24508.03 (Acceptable range from 24140.38 to 24875.62)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "FCFF 2029 = NOPAT 2029 + Depreciation 2029 - Capex 2029 - change in NWC = EBIT*(1 - tax rate) + Depreciation - Capex - [(Working Capital 2029 - Working Capital 2028)] = 24470.54628*(1-0.266199545) + 25426.93751 - 18882.88088 - [(-9,778.465762) - (-9,770.988334)] = 24,508.03",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Reports the terminal value of FCFF as 511318.65 (Acceptable Range from 503648.87 to 518988.43)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "Terminal Value = FCFF 2029*(1+g)/(WACC-g) = 24508.03206*(1+1.5%)/(6.3650%-1.5%) = 511318.6544",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "Reports the PV of terminal value of FCFF as 375576.07 (Acceptable range from 369942.43 to 381209.71)",
+      "sources": "",
+      "justification": "PV of terminal value = 511,318.65449 / (1.06365)^5 = 375,576.07",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "Reports the Enterprise Value as 469612.37 (Acceptable range from 462568.18 to 476656.55)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "FCFF for years 2025 to 2029 are as follows: 17807.25581, 23418.20635, 23761.34325, 24124.32087, 24508.03206. PV of FCFF for years 2025 to 2029 are therefore: 16741.6498, 20699.32291, 19745.80095, 18847.7763, 18001.74964. . EV = sum PVs (FCFF2025–2029) = 94,036.30; PV of terminal value = 375,576.07; EV = 94,036.30 + 375,576.07 = 469,612.37. Enterprise Value = Sum of all PVs (including terminal value) = 469,612.37",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "Reports the Equity Value as 311902.37 (Acceptable range from 307223.83 to 316581.00)",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "Equity Value = Enterprise Value - Net Debt – Minority Interest = 469612.37 - 141857 – 15853 = 311902.37",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 9": {
+      "description": "Reports the Implied Share Price as 43.30 (Acceptable range from 42.65 to 43.95).",
+      "sources": "Telecom Valuation_DATA2.csv",
+      "justification": "Implied Share price = Equity Value/Number of Shares Outstanding (Diluted) = 311902.37/ 7204 = 43.30",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        8
+      ]
+    },
+    "criterion 10": {
+      "description": "States the firm is undervalued because implied share Price exceeds latest share price",
+      "sources": "Telecom Valuation_Stock Data.csv",
+      "justification": "Since the Implied Share price = 43.30 > Latest Share price = 22.77 The firm stock is undervalued",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        9
+      ]
+    }
+  }
+}

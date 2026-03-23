@@ -1,0 +1,256 @@
+{
+  "task_id": "apex-consulting-064",
+  "source_index": 64,
+  "domain": "Consulting",
+  "keywords": [
+    "1,400",
+    "102",
+    "113",
+    "12423",
+    "12426",
+    "12427",
+    "12428",
+    "12430",
+    "13.9",
+    "13.99",
+    "1371",
+    "1374",
+    "1382",
+    "14.0",
+    "14.1",
+    "14.2",
+    "14.3",
+    "14.31",
+    "14.4",
+    "14.48",
+    "14.5",
+    "14.58",
+    "14.6",
+    "14.7",
+    "1400",
+    "1404",
+    "1487",
+    "15.3",
+    "15.36",
+    "15.4",
+    "15.5",
+    "1636",
+    "2.99",
+    "2026",
+    "21",
+    "24",
+    "300",
+    "466",
+    "467.53",
+    "468",
+    "471",
+    "63",
+    "7200",
+    "90",
+    "96",
+    "98",
+    "Acceptable",
+    "As",
+    "Average",
+    "Average Time",
+    "CEO",
+    "Calculates",
+    "Calculation",
+    "Cars",
+    "Column",
+    "Count",
+    "Criterion",
+    "Data",
+    "Data Reliability Risk",
+    "Dilution",
+    "Employee",
+    "Establishing",
+    "Financial Risk",
+    "Hrs",
+    "Human",
+    "Human Resources Risk",
+    "ID",
+    "INR",
+    "Identifies",
+    "In",
+    "Market Demand Forecasting Risk",
+    "Market Demand Forecasting Risk Below",
+    "Million",
+    "Number",
+    "Operational Risk",
+    "Quality",
+    "Quality Control Risk",
+    "Recruiting",
+    "Relying",
+    "Reports",
+    "Sedan",
+    "Setting",
+    "Since",
+    "Sum",
+    "Task",
+    "Task Data",
+    "Task Number",
+    "Time",
+    "Time Taken",
+    "Timeline Risk",
+    "To",
+    "Use",
+    "We"
+  ],
+  "num_keywords": 93,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates the Average time taken for Task 1 as 14.6 Hrs (Acceptable range: 14.5 to 14.7 Hrs)",
+      "sources": "Task Data.csv",
+      "justification": "Use the data in the file Task data.csv to create a pivot table with header stage under row, and time taken under values to show both sum of time taken & count of time taken. To calculate the average time for Task 1, divide the sum of time taken item for Task 1 with the corresponding count, resulting in average of 14.6 Hrs. Calculation: Count of Task 1: 102 ; Sum of Time for Task 1: 1487 Hrs; Average Time for Task 1: 1487/ 102 = 14.58 hours, which is rounded off to 14.6 Hrs based on prompt instruction (rounded off to nearest decimal place)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates the Average time taken for Task 2 as 14.0 hrs (Acceptable range: 13.9 to 14.1 Hrs)",
+      "sources": "Task Data.csv",
+      "justification": "Use the data in the file Task data.csv to create a pivot table with header stage under row, and time taken under values to show both sum of time taken & count of time taken. To calculate the average time for Task 2, divide the sum of time taken item for Task 2 with the corresponding count, resulting in average of 14.0 Hrs. Calculation: Count of Task 2: 98 ; Sum of Time for Task 2: 1371 Hrs; Average Time for Task 2: 1371/ 98 = 13.99 hours, which is rounded off to 14.0 Hrs based on prompt instruction (rounded off to nearest decimal place)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates the Average time taken for Task 3 is 15.4 hrs (Acceptable range: 15.3 to 15.5 Hrs)",
+      "sources": "Task Data.csv",
+      "justification": "Use the data in the file Task data.csv to create a pivot table with header stage under row, and time taken under values to show both sum of time taken & count of time taken. To calculate the average time for Task 3, divide the sum of time taken item for Task 3 with the corresponding count, resulting in average of 15.4 Hrs. Calculation: Count of Task 3: 90 ; Sum of Time for Task 3: 1382 Hrs; Average Time for Task 3: 1382/ 90 = 15.36 hours, which is rounded off to 15.4 Hrs based on prompt instruction (rounded off to nearest decimal place)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Calculates the Average time taken for Task 4 as 14.3 hrs (Acceptable range: 14.2 to 14.4 Hrs)",
+      "sources": "Task Data.csv",
+      "justification": "Use the data in the file Task data.csv to create a pivot table with header stage under row, and time taken under values to show both sum of time taken & count of time taken. To calculate the average time for Task 4, divide the sum of time taken item for Task 4 with the corresponding count, resulting in average of 14.3 Hrs. Calculation: Count of Task 4: 96 ; Sum of Time for Task 4: 1374 Hrs; Average Time for Task 4: 1374/ 96 = 14.31 hours, which is rounded off to 14.3 Hrs based on prompt instruction (rounded off to nearest decimal place)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Calculates the Average time taken for Task 5 as 14.5 hrs (Acceptable range: 14.4 to 14.6 Hrs)",
+      "sources": "Task Data.csv",
+      "justification": "Use the data in the file Task data.csv to create a pivot table with header stage under row, and time taken under values to show both sum of time taken & count of time taken. To calculate the average time for Task 5, divide the sum of time taken item for Task 5 with the corresponding count, resulting in average of 14.5 Hrs. Calculation: Count of Task 5: 113 ; Sum of Time for Task 5: 1636 Hrs; Average Time for Task 5: 1636/ 113 = 14.48 hours, which is rounded off to 14.5 Hrs based on prompt instruction (rounded off to nearest decimal place)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Calculates the average time taken between produced cars when production is in steady-state as 15.4 Hrs (Acceptable range: 15.3 to 15.5 Hrs)",
+      "sources": "",
+      "justification": "The average production time per car is determined by the highest time-taking task (bottleneck) in the assembly line which is Task 3 (15.4 hours) [Criterion 12423] as calculated in criteria 3 Task Number AVERAGE of Time Taken (In hrs) 1 14.6 (criteria 1) 2 14.0 (criteria 2) 3 15.4 (criteria 3) 4 14.3 (criteria 4) 5 14.5 (criteria 5)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "Calculates the production capacity per assembly line as 468 cars per year (acceptable range 466 - 471 cars per year)",
+      "sources": "",
+      "justification": "For one assembly line, with the plant operating 24 hours/day for 300 days/year, total hours = 7200 (24 × 300). Using the average time per car of 15.4 hours (from criterion 12426), annual capacity = 7200/15.4 = 467.53, which rounds to 468 cars per year (nearest whole number as per the prompt)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "Calculates the number of assembly lines needed to fulfill expectations as 3. Acceptable value is 3",
+      "sources": "",
+      "justification": "As per the prompt, target revenue is INR 1,400 million at INR 1 million per car, so cars required = 1,400. Since one line produces 468 cars/year (criterion 12427), lines needed = 1400/468 = 2.99, rounded to 3 (nearest whole number).",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 9": {
+      "description": "Reports the current count of employees in reference assembly line as 21. Acceptable value is 21",
+      "sources": "Task Data.csv",
+      "justification": "In the data set Task Data.csv, deduping the unique values in Column named 'Employee ID' will give us a list of 21 unique IDs, hence depicting 21 unique employees working on that assembly line.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "Calculates the required headcount of employees as 63. Acceptable value is 63",
+      "sources": "",
+      "justification": "Since the number of employees in the reference assembly line is 21, and the number of assembly lines needed is 3, the total number of employees needed is 21 [Criterion 12430] * 3 [Criterion 12428] = 63",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        8,
+        9
+      ]
+    },
+    "criterion 11": {
+      "description": "Identifies one of the following risks: 1. Dilution of market image 2. Timeline Risk 3. Financial Risk 4. Operational Risk 5. Data reliability risk 6. Human resource risk 7. Quality control risk 8. Market Demand Forecasting Risk",
+      "sources": "",
+      "justification": "Below are the key risks along with their rationale: 1. Dilution of market image: The client is primarily into hatchbacks right now, launch of sedans might impact their brand image, and might make a dent in their hatchback business. 2. Timeline Risk: The calculations suggest that the client will just closely clear the CEO's cutoff of 1400 cars per year (calculated capacity = 1404 cars per year) in a year, even a slight delay will lead to non-achievement of target 3. Financial Risk: Setting up new assembly lines will incur a lot of fixed capital & employee costs, which can translate into a financial issue if the projected production capacity is not reached/ delayed 4. Operational Risk: Sedan manufacturing is quite different and more complicated than hatchback, hence a lot of operational updates need to be done to ensure compliance to the production schedule. 5. Data Reliability Risk: The entire plan is based on a competitor's data, which may not be accurate, current, or representative of a process that can be replicated. Relying on this data without internal validation is a significant risk. 6. Human Resources Risk: Recruiting and training 63 skilled employees for a new venture is a difficult and time-consuming 7. Quality Control Risk: Establishing new processes with a new workforce across multiple lines increases the risk of quality control failures. 8. Market Demand Forecasting Risk: We might not be able to forecast the demand accurately leading to over investment and losses",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 12": {
+      "description": "Calculates the Number of cars needed to fulfil CEO's expectation as 1400 Cars per year. Acceptable value is 1400",
+      "sources": "",
+      "justification": "As per the prompt, CEO's target revenue is INR 1400 Million for 2026, and with each car priced at INR 1 Million, the total number of cars that need to be produced is; = 1400/1 = 1400 cars.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

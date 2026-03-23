@@ -1,0 +1,154 @@
+{
+  "task_id": "apex-legal-024",
+  "source_index": 24,
+  "domain": "Legal",
+  "keywords": [
+    "1.1",
+    "2015",
+    "2024",
+    "25",
+    "4.1",
+    "456",
+    "An",
+    "Appeal",
+    "As",
+    "Because",
+    "Because Berry",
+    "Berry",
+    "By",
+    "Crossman",
+    "Est Pow",
+    "Hampton",
+    "Hamptons",
+    "If",
+    "In",
+    "Issue",
+    "Lewis",
+    "NY",
+    "New York",
+    "None",
+    "States",
+    "Testator",
+    "To",
+    "Trusts",
+    "When",
+    "Where"
+  ],
+  "num_keywords": 30,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that when a will was last in the possession of the testator and goes missing upon their death, then courts impute a presumption that the will was revoked",
+      "sources": "In re Lewis.pdf",
+      "justification": "'That a testator has in fact revoked a will by destruction is strongly presumed where the will, although once possessed by the testator, cannot be found posthumously despite a thorough search.' In re Lewis.pdf In re Lewis is a recent case from 2015 from New York's highest court which dealt with the nuanced issue of duplicate original wills.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that when there are multiple original wills, all of the wills must be presented to the court to avoid the presumption of revocation",
+      "sources": "NY Est Pow & Trusts L § 3-4.1 (2024) https://law.justia.com/codes/new-york/ept/article-3/part-4/3-4-1/ In re Lewis.pdf Crossman v. Crossman.pdf",
+      "justification": "'(2) A will may be revoked by: (A) An act of burning, tearing, cutting, cancellation, obliteration, or other mutilation or destruction performed by: (i) The testator' NY Est Pow & Trusts L § 3-4.1 (2024) 'A will may, of course, be revoked not only by means of a writing executed in the manner of a will, but by the testator's act of destroying it with revocatory intent, which act achieves the revocatory purpose even if there remain will duplicates outstanding.' In re Lewis.pdf 'Where a will is executed in duplicate, both duplicates being executed at the same time, it is not necessary that both should be admitted to probate ; it is proper, however, when one is presented for probate, that the other should be produced in order that it may appear that they are alike in all particulars, and also that the will has not been revoked, as the revocation of one would be the revocation of both.' Crossman v. Crossman.pdf Crossman is one the first NY court of Appeal opinions to deal with the nuanced issue of duplicate original wills and set out the original rule that all duplicates must be presented to the court.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that Berry executed two wills.",
+      "sources": "Prompt",
+      "justification": "'Berry met with his attorney in 2015 and executed two wills.'",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "States that both wills were last in Berry's possession.",
+      "sources": "Prompt",
+      "justification": "The prompt indicates 'Berry kept one in his NY apartment and the other at his vacation home in the Hamptons.'",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        3
+      ]
+    },
+    "criterion 5": {
+      "description": "States that the will previously located in the Hampton home went missing.",
+      "sources": "Prompt",
+      "justification": "Because the wills were last known to be located in the Testator's properties, they would be deemed last in his possession. 'The executor of Berry's estate found the will in the NY apartment but did not find the one previously located in the Hamptons vacation home.'",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "States that the court will likely find a presumption that Berry revoked his will.",
+      "sources": "Prompt NY Est Pow & Trusts L § 3-4.1 (2024) https://law.justia.com/codes/new-york/ept/article-3/part-4/3-4-1/ In re Lewis.pdf Crossman v. Crossman.pdf",
+      "justification": "'The executor of Berry's estate found the will in the NY apartment but did not find the one previously located in the Hamptons vacation home.' '(2) A will may be revoked by: (A) An act of burning, tearing, cutting, cancellation, obliteration, or other mutilation or destruction performed by: (i) The testator' NY Est Pow & Trusts L § 3-4.1 (2024) 'A will may, of course, be revoked not only by means of a writing executed in the manner of a will, but by the testator's act of destroying it with revocatory intent, which act achieves the revocatory purpose even if there remain will duplicates outstanding.' In re Lewis.pdf 'Where a will is executed in duplicate, both duplicates being executed at the same time, it is not necessary that both should be admitted to probate ; it is proper, however, when one is presented for probate, that the other should be produced in order that it may appear that they are alike in all particulars, and also that the will has not been revoked, as the revocation of one would be the revocation of both.' Crossman v. Crossman.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "States that Berry's property would likely pass through intestacy.",
+      "sources": "NY Est Pow & Trusts L § 4-1.1 (2024) Learn more https://law.justia.com/codes/new-york/ept/article-4/part-1/4-1-1/",
+      "justification": "Because Berry's will would likely be presumed revoked, his property would likely need to pass through intestacy law. 'The property of a decedent not disposed of by will shall be distributed as provided in this section.' NY Est Pow & Trusts L § 4-1.1 (2024)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "States that each of Berry's issue would receive an equal share of the property under the laws of intestacy.",
+      "sources": "NY Est Pow & Trusts L § 4-1.1 (2024) Learn more https://law.justia.com/codes/new-york/ept/article-4/part-1/4-1-1/",
+      "justification": "'(a) If a decedent is survived by: (3) Issue and no spouse, the whole to the issue, by representation.' NY Est Pow & Trusts L § 4-1.1 (2024) By representation distribution entails equal distribution to the closest living generation, which are Berry's children.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7
+      ]
+    },
+    "criterion 9": {
+      "description": "The proponent of the Hamptons will cannot overcome the presumption of revocation.",
+      "sources": "",
+      "justification": "When a will that was last in the testator's possession cannot be found after death, it is strongly presumed revoked. Berry's statement that he executed two wills to safeguard his estate is insufficient to rebut this presumption. To overcome it, the proponent would need clear and convincing evidence such as: testimony from credible witnesses that Berry did not destroy the Hamptons will, proof that the will was lost due to circumstances beyond Berry's control, or contemporaneous documents indicating Berry's intent to keep both wills valid. None of these forms of evidence are present. As a result, the presumption of revocation stands, and the Hamptons will likely will not be admitted to probate (In re Lewis, 25 N.Y.3d 456, 2015).",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

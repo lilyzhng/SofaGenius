@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Secrets
+.env
+.env.*
+
+# Virtual environments
+.venv
+
+# Agent prompt files (generated per-session)
+CLAUDE.md
+AGENTS.md
+
+# Experimental code/artifacts
+dev/
+worktrees/
+
+# Large/regenerable artifacts
+results/
+results.tsv
+queue/
+jobs/
+datasets/
+*.parquet
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+*.tar.gz
+checkpoints/
+outputs/
+wandb/
+
+# Submodules (external deps — clone separately)
+submodules/
+
+# OS / editor
+.DS_Store
+.vscode/
+*.swp
+
+# Notebooks
+.ipynb_checkpoints

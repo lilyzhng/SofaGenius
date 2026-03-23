@@ -1,0 +1,201 @@
+{
+  "task_id": "apex-legal-017",
+  "source_index": 17,
+  "domain": "Legal",
+  "keywords": [
+    "10",
+    "18",
+    "19",
+    "2024",
+    "2025",
+    "21",
+    "29783",
+    "29787",
+    "29810",
+    "29839",
+    "29840",
+    "29841",
+    "29842",
+    "29875",
+    "32398",
+    "32399",
+    "415",
+    "490.1",
+    "54",
+    "602",
+    "667.5",
+    "As",
+    "Ashland",
+    "Ashland Police Officer Sarah Biscayne",
+    "Because",
+    "California",
+    "California Code",
+    "Concludes",
+    "Dokee",
+    "Entering",
+    "Gerald Jefferson",
+    "Here",
+    "ISSUE",
+    "Identifies",
+    "Identify",
+    "In California",
+    "Jefferson",
+    "LAW",
+    "Mr",
+    "Ms",
+    "No",
+    "October",
+    "Officer Biscayne",
+    "Okee",
+    "PC",
+    "PEN",
+    "Penal Code",
+    "Per",
+    "Pugh",
+    "Section",
+    "States",
+    "Three",
+    "Thus",
+    "Where",
+    "While",
+    "Write",
+    "Yeah"
+  ],
+  "num_keywords": 57,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that to commit a trespass under PC 602(t), the defendant must enter upon private property.",
+      "sources": "California Penal Code 602.pdf",
+      "justification": "California Code, Penal Code - PEN § 602: '(t)(1) Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person; or refusing or failing to leave the property upon being asked to leave the property in the manner provided in this subdivision. (2) This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. (3) A single notification or request to the person as set forth above shall be valid and enforceable under this subdivision unless and until rescinded by the owner, the owner's agent, or the person in lawful possession of the property. (4) Where the person has been convicted of a violent felony, as described in subdivision (c) of Section 667.5, this subdivision applies without time limitation. Where the person has been convicted of any other felony, this subdivision applies for no more than five years from the date of conviction. Where the person has been convicted of a misdemeanor, this subdivision applies for no more than two years from the date of conviction. Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction.' https://codes.findlaw.com/ca/penal-code/pen-sect-602/ Three elements come from PC 602(t)(1). Here they are in unabridged form: - Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, - after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, - and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person A fourth element comes from PC 602(t)(2). Here it is in unabridged form: - This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. A fifth element comes from PC 602(t)(4). Here it is in unabridged form: - Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction. For efficiency, those five unabridged elements are reordered and boiled down to: (1) the defendant entered upon private property (2) the property's owner had previously requested a peace officer to inform the defendant that the property was not open to the defendant (3) a peace officer had previously informed the defendant that, at the request of the owner, the property was not open to the defendant (4) the defendant was previously convicted of a crime committed upon the particular private property (5) the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 Thus, to commit a trespass under PC 602(t), the defendant must enter upon private property.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that to qualify as a trespass under PC 602(t), the property owner must have previously requested a peace officer to inform the defendant that the property was not open to the defendant.",
+      "sources": "California Penal Code 602.pdf",
+      "justification": "California Code, Penal Code - PEN § 602: '(t)(1) Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person; or refusing or failing to leave the property upon being asked to leave the property in the manner provided in this subdivision. (2) This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. (3) A single notification or request to the person as set forth above shall be valid and enforceable under this subdivision unless and until rescinded by the owner, the owner's agent, or the person in lawful possession of the property. (4) Where the person has been convicted of a violent felony, as described in subdivision (c) of Section 667.5, this subdivision applies without time limitation. Where the person has been convicted of any other felony, this subdivision applies for no more than five years from the date of conviction. Where the person has been convicted of a misdemeanor, this subdivision applies for no more than two years from the date of conviction. Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction.' https://codes.findlaw.com/ca/penal-code/pen-sect-602/ Three elements come from PC 602(t)(1). Here they are in unabridged form: - Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, - after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, - and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person A fourth element comes from PC 602(t)(2). Here it is in unabridged form: - This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. A fifth element comes from PC 602(t)(4). Here it is in unabridged form: - Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction. For efficiency, those five unabridged elements are reordered and boiled down to: (1) the defendant entered upon private property (2) the property's owner had previously requested a peace officer to inform the defendant that the property was not open to the defendant (3) a peace officer had previously informed the defendant that, at the request of the owner, the property was not open to the defendant (4) the defendant was previously convicted of a crime committed upon the particular private property (5) the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 Thus, to qualify as a trespass under PC 602(t), the property owner must have previously requested a peace officer to inform the defendant that the property was not open to the defendant.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that to qualify as a trespass under PC 602(t), a peace officer must have previously informed the defendant that, at the request of the owner, the property was not open to the defendant.",
+      "sources": "California Penal Code 602.pdf",
+      "justification": "California Code, Penal Code - PEN § 602: '(t)(1) Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person; or refusing or failing to leave the property upon being asked to leave the property in the manner provided in this subdivision. (2) This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. (3) A single notification or request to the person as set forth above shall be valid and enforceable under this subdivision unless and until rescinded by the owner, the owner's agent, or the person in lawful possession of the property. (4) Where the person has been convicted of a violent felony, as described in subdivision (c) of Section 667.5, this subdivision applies without time limitation. Where the person has been convicted of any other felony, this subdivision applies for no more than five years from the date of conviction. Where the person has been convicted of a misdemeanor, this subdivision applies for no more than two years from the date of conviction. Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction.' https://codes.findlaw.com/ca/penal-code/pen-sect-602/ Three elements come from PC 602(t)(1). Here they are in unabridged form: - Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, - after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, - and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person A fourth element comes from PC 602(t)(2). Here it is in unabridged form: - This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. A fifth element comes from PC 602(t)(4). Here it is in unabridged form: - Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction. For efficiency, those five unabridged elements are reordered and boiled down to: (1) the defendant entered upon private property (2) the property's owner had previously requested a peace officer to inform the defendant that the property was not open to the defendant (3) a peace officer had previously informed the defendant that, at the request of the owner, the property was not open to the defendant (4) the defendant was previously convicted of a crime committed upon the particular private property (5) the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 Thus, to qualify as a trespass under PC 602(t), a peace officer must have previously informed the defendant that, at the request of the owner, the property was not open to the defendant.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "States that to commit a trespass under PC 602(t), the defendant must have previously been convicted of a crime committed upon the particular private property.",
+      "sources": "California Penal Code 602.pdf",
+      "justification": "California Code, Penal Code - PEN § 602: '(t)(1) Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person; or refusing or failing to leave the property upon being asked to leave the property in the manner provided in this subdivision. (2) This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. (3) A single notification or request to the person as set forth above shall be valid and enforceable under this subdivision unless and until rescinded by the owner, the owner's agent, or the person in lawful possession of the property. (4) Where the person has been convicted of a violent felony, as described in subdivision (c) of Section 667.5, this subdivision applies without time limitation. Where the person has been convicted of any other felony, this subdivision applies for no more than five years from the date of conviction. Where the person has been convicted of a misdemeanor, this subdivision applies for no more than two years from the date of conviction. Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction.' https://codes.findlaw.com/ca/penal-code/pen-sect-602/ Three elements come from PC 602(t)(1). Here they are in unabridged form: - Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, - after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, - and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person A fourth element comes from PC 602(t)(2). Here it is in unabridged form: - This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. A fifth element comes from PC 602(t)(4). Here it is in unabridged form: - Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction. For efficiency, those five unabridged elements are reordered and boiled down to: (1) the defendant entered upon private property (2) the property's owner had previously requested a peace officer to inform the defendant that the property was not open to the defendant (3) a peace officer had previously informed the defendant that, at the request of the owner, the property was not open to the defendant (4) the defendant was previously convicted of a crime committed upon the particular private property (5) the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 Thus, to commit a trespass under PC 602(t), the defendant must have previously convicted of a crime committed upon the particular private property.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "States that trespass under PC 602(t) does not apply when the crime the defendant previously committed upon the private property was an infraction other than PC 490.1.",
+      "sources": "California Penal Code 602.pdf",
+      "justification": "California Code, Penal Code - PEN § 602: '(t)(1) Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person; or refusing or failing to leave the property upon being asked to leave the property in the manner provided in this subdivision. (2) This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. (3) A single notification or request to the person as set forth above shall be valid and enforceable under this subdivision unless and until rescinded by the owner, the owner's agent, or the person in lawful possession of the property. (4) Where the person has been convicted of a violent felony, as described in subdivision (c) of Section 667.5, this subdivision applies without time limitation. Where the person has been convicted of any other felony, this subdivision applies for no more than five years from the date of conviction. Where the person has been convicted of a misdemeanor, this subdivision applies for no more than two years from the date of conviction. Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction.' https://codes.findlaw.com/ca/penal-code/pen-sect-602/ Three elements come from PC 602(t)(1). Here they are in unabridged form: - Entering upon private property, including contiguous land, real property, or structures thereon belonging to the same owner, whether or not generally open to the public, - after having been informed by a peace officer at the request of the owner, the owner's agent, or the person in lawful possession, - and upon being informed by the peace officer that the peace officer is acting at the request of the owner, the owner's agent, or the person in lawful possession, that the property is not open to the particular person A fourth element comes from PC 602(t)(2). Here it is in unabridged form: - This subdivision applies only to a person who has been convicted of a crime committed upon the particular private property. A fifth element comes from PC 602(t)(4). Here it is in unabridged form: - Where the person was convicted for an infraction pursuant to Section 490.1, this subdivision applies for no more than one year from the date of conviction. This subdivision does not apply to convictions for any other infraction. For efficiency, those five unabridged elements are reordered and boiled down to: (1) the defendant entered upon private property (2) the property's owner had previously requested a peace officer to inform the defendant that the property was not open to the defendant (3) a peace officer had previously informed the defendant that, at the request of the owner, the property was not open to the defendant (4) the defendant was previously convicted of a crime committed upon the particular private property (5) the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 Thus, to qualify as a trespass under PC 602(t), the crime the defendant previously committed upon the particular private property must be an infraction other than PC 490.1.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Identifies that Mr. Jefferson entered the Okee-Dokee convenience store on October 21st, 2025.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: 'Identify and apply each element of trespassing.' LAW As established in C1/29783, to commit a trespass under PC 602(t), the defendant must enter upon private property. APPLICATION Per the prompt, Mr. Jefferson entered the Okee-Dokee convenience store on October 21, 2025.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Identifies that prior to October 21st, 2025, Ms. Pugh had requested that Officer Biscayne inform Mr. Jefferson that Okee-Dokee was not open to him.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: 'Identify and apply each element of trespassing.' LAW As established in C2/29839, to qualify as a trespass under PC 602(t), the property owner must have previously requested a peace officer to inform the defendant that the property was not open to the defendant. APPLICATION Per the prompt, on the day before the court hearing [i.e., on October 18, 2024] Ms. Pugh had requested Officer Biscayne to inform Mr. Jefferson that Okee-Dokee was no longer open to Mr. Jefferson.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Identifies that prior to October 21st, 2025, Officer Biscayne had informed Mr. Jefferson that, at the request of Ms. Pugh, Okee-Dokee was not open to Mr. Jefferson.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: 'Identify and apply each element of trespassing.' LAW As established in C3/29842, to qualify as a trespass under PC 602(t), a peace officer must have previously informed the defendant that, at the request of the owner, the property was not open to the defendant. APPLICATION Per the prompt, at the court hearing (i.e., on October 19, 2024), Ashland Police Officer Sarah Biscayne informed Mr. Jefferson that, at the request of Ms. Pugh, the Okee-Dokee was not open to him. Mr. Jefferson replied, 'Yeah whatever,' before exiting the courthouse, thereby indicating he heard the advisement.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "Identifies that prior to October 21st, 2025, Mr. Jefferson was convicted of a crime committed upon the grounds of Okee-Dokee.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: 'Identify and apply each element of trespassing.' LAW As established in C4/29841, to commit a trespass under PC 602(t), the defendant must have previously been convicted of a crime committed upon the particular private property. APPLICATION Per the prompt, on October 19th, 2024, our client, Gerald Jefferson, aged 54, was found guilty of a violation of Penal Code (PC) section 415(2), as an infraction, based on his causing a disturbance in the Okee-Dokee convenience store located in Ashland, California.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "Identifies that prior to October 21st, 2025, the crime that Mr. Jefferson was convicted of upon the grounds of Okee-Dokee was a violation of Penal Code (PC) section 415(2), as an infraction.",
+      "sources": "Prompt.",
+      "justification": "ISSUE The prompt states: 'Identify and apply each element of trespassing.' LAW As established in C5/29840, to qualify as a trespass under PC 602(t), the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 APPLICATION Per the prompt, on October 19th, 2024, our client, Gerald Jefferson, aged 54, was found guilty of a violation of Penal Code (PC) section 415(2), as an infraction, based on his causing a disturbance in the Okee-Dokee convenience store located in Ashland, California.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 11": {
+      "description": "Concludes that Mr. Jefferson will not be convicted of trespassing.",
+      "sources": "",
+      "justification": "ISSUE The prompt states: 'Write a client advisement letter informing Mr. Jefferson of his potential criminal liability for trespassing in this case.' LAW As established in C1/29783, to commit a trespass under PC 602(t), the defendant must enter upon private property. As established in C2/29839, to qualify as a trespass under PC 602(t), the property owner must have previously requested a peace officer to inform the defendant that the property was not open to the defendant. As established in C3/29842, to qualify as a trespass under PC 602(t), a peace officer must have previously informed the defendant that, at the request of the owner, the property was not open to the defendant. As established in C4/29841, to commit a trespass under PC 602(t), the defendant must have previously been convicted of a crime committed upon the particular private property. As established in C5/29840, to qualify as a trespass under PC 602(t), the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1 APPLICATION As established in C6/29875, Mr. Jefferson entered the Okee-Dokee convenience store on October 21st, 2025. As established in C7/29810, prior to October 21st, 2025, Ms. Pugh had requested that Officer Biscayne inform Mr. Jefferson that Okee-Dokee was not open to him. As established in C8/32398 , prior to October 21st, 2025, Officer Biscayne had informed Mr. Jefferson that, at the request of Ms. Pugh, Okee-Dokee was not open to Mr. Jefferson. As established in C9/29787, prior to October 21st, 2025, Mr. Jefferson was convicted of a crime committed upon the grounds of Okee-Dokee. As established in C10/32399, prior to October 21st, 2025, the crime that Mr. Jefferson was convicted of upon the grounds of Okee-Dokee was a violation of Penal Code (PC) section 415(2), as an infraction. CONCLUSION While the first four elements are satisfied, the fifth element, which requires that the crime the defendant previously committed upon the particular private property was not an infraction other than PC 490.1, is not satisfied, because the prior crime that Mr. Jefferson committed at Okee-Dokee was PC 415(2) as an infraction, which is 'an infraction other than PC 490.1.' Because the fifth element is not satisfied, Mr. Jefferson is not liable for trespass under PC 602(t). In California, trespass is governed exclusively under PC 602. No other subdivisions of PC 602 apply to these facts. As such, Mr. Jefferson will not be convicted of trespassing.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        6,
+        9,
+        7,
+        2,
+        5,
+        4,
+        3,
+        8,
+        10
+      ]
+    }
+  }
+}

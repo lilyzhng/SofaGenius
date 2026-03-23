@@ -1,0 +1,198 @@
+{
+  "task_id": "apex-consulting-067",
+  "source_index": 67,
+  "domain": "Consulting",
+  "keywords": [
+    "10,986.40",
+    "100",
+    "11866",
+    "11867",
+    "11868",
+    "11869",
+    "11871",
+    "20,847.90",
+    "23.90",
+    "23.9355",
+    "23.94",
+    "23.98",
+    "25.00",
+    "25.53",
+    "25.6290",
+    "25.63",
+    "261",
+    "32.09",
+    "32.19",
+    "32.1946",
+    "32.29",
+    "36,974.20",
+    "459",
+    "720",
+    "79.78",
+    "79.8770",
+    "79.88",
+    "79.98",
+    "8,402.20",
+    "8.20",
+    "8.25",
+    "8.30",
+    "80.00",
+    "80.45",
+    "80.55",
+    "80.5538",
+    "80.65",
+    "AI",
+    "Acceptable",
+    "Again",
+    "Already",
+    "As",
+    "Calculates",
+    "Column",
+    "Criterion",
+    "DI",
+    "Doing",
+    "Draft",
+    "Drafting",
+    "FALSE",
+    "First",
+    "From Criterion",
+    "Given",
+    "ID",
+    "Identifies",
+    "Next",
+    "Now",
+    "Per",
+    "Per Criterion",
+    "Provides",
+    "ROI",
+    "Rounded",
+    "Simply",
+    "Suggests",
+    "Total",
+    "We"
+  ],
+  "num_keywords": 66,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates the average review time spent on claims without AI Drafting as 32.19 minutes. (Acceptable range is 32.09 minutes to 32.29 minutes)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Using the Automated_Letter_Generation_Pilot.csv dataset, we identify that there are 720 claims (rows). We will be focusing on Column C AI_Drafted and Column F Reviewer_Time_Minutes. First we filter the dataset for AI_Drafted = FALSE to determine the time spent on claims without the AI drafting. This results in 261 claims. We then total the minutes spent from Column F for these 261 rows and get 8,402.20 total no AI draft reviewer minutes. We then must: Total no AI Draft reviewer minutes / total number of claims without AI Drafting 8,402.20/261 = 32.1946 Rounded to 32.19 minutes per the prompt",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates the average review time spent on claims with AI Drafting as 23.94 minutes. (Acceptable range is 23.90 minutes to 23.98 minutes)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Next, we filter the dataset for AI_Drafted = TRUE and there are 459 rows. We then total the minutes spent from Column F for these 459 rows and get 10,986.40 total reviewer minutes on claims with AI Drafting. We then must: Total reviewer time minutes on claims with AI Drafting / total number of claims with AI Drafting 10,986.40/459 = 23.9355 Rounded to 23.94 minutes per the prompt.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates the overall efficiency gain when AI drafted was utilized as 8.25 minutes. (Acceptable range is 8.20 minutes to 8.30 minutes)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "From Criterion 11866 we have average reviewer time spent without using the AI Drafting and in Criterion 11867 we have the average reviewer time spent when we do use the AI Drafting. We must: average reviewer time spent without using the AI Drafting - average reviewer time spent when we do use the AI Drafting 32.19 minutes - 23.94 minutes = 8.25 minutes Already rounded to two decimal points as per the prompt.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2
+      ]
+    },
+    "criterion 4": {
+      "description": "Calculates the efficiency gain percentage as 25.63%. (Acceptable range is 25.53% to 25.63%)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Given the calculations already performed in Criterion IDs 11866, 11867 and 11868, we now must calculate the percentage efficiency gain. ((average reviewer time spent without using the AI Drafting - average reviewer time spent when we do use the AI Drafting) / average reviewer time spent without using the AI Drafting) x 100 ((32.19 minutes - 23.94 minutes) / 32.19 minutes) x 100 = 25.6290 Rounded to 25.63% per the prompt.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        1
+      ]
+    },
+    "criterion 5": {
+      "description": "Identifies that the efficiency gain percentage is higher than the benchmark.",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Per the prompt, the vendor benchmark is at least 25.00% efficiency gain. Per Criterion ID 11869, we have established the efficiency gain to be 25.63%. As 25.63%>25.00%, the efficiency gain percentage is higher than the benchmark.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "Calculates the average reviewer satisfaction for claims where AI was used for drafting as 80.55. (Acceptable range is 80.45 to 80.65)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Now we focus on Column C AI_Drafted and Column M Reviewer_Satisfaction_Score We know there are 459 rows where AI_Drafted = TRUE, indicating 459 claims using the AI drafting. We then total these claims in Column M and get a total reviewer satisfaction score on claims with AI Drafting of 36,974.20. We then must: Total reviewer satisfaction score of AI Draft claims / Total number of AI Draft claims 36,974.20 / 459 = 80.5538 Rounded to average score of 80.55 per the prompt.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Calculates the average reviewer satisfaction for claims where AI was not used for drafting as 79.88. (Acceptable range is 79.78 to 79.98)",
+      "sources": "Automated_Letter_Generation_Pilot.csv",
+      "justification": "Again, we return to Column C AI_Drafted and Column M Reviewer_Satisfaction_Score We know there are 261 rows where AI_Drafted = FALSE, indicating there are 261 claims that did not use the AI Drafting. We then total these claims in Column M and get a total reviewer satisfaction score on claims that did not use AI drafting of 20,847.90. We then must: total reviewer satisfaction score of non-AI Draft claims / Total number of non-AI Draft claims 20,847.90 / 261 = 79.8770 Rounded to average score of 79.88 per the prompt",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Identifies the reviewer satisfaction for claims where AI was used is higher than the benchmark.",
+      "sources": "Automated_Letter_Generation_Pilot.csv,",
+      "justification": "From Criterion 11871, the average reviewer satisfaction for claims where AI was used for drafting as 80.55. Per the prompt, the benchmark from the vendor was an average reviewer satisfaction score of at least 80.00. 80.55 > 80.00 As such, the reviewer satisfaction for claims where AI was used is higher than the benchmark.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 9": {
+      "description": "Provides a strategic recommendation that includes one of the following: - Suggests a discussion for full rollout for high volume, low risk communications - Suggests entering into a partnership agreement - Suggests expanding the pilot into additional lines of business - Suggests benchmarking ROI to quantify labor savings - Suggests the creation of a reviewer feedback loop",
+      "sources": "",
+      "justification": "- Suggests a discussion for full rollout for high volume, low risk communications These are the least 'risky' claim communications and since the vendor performed positively on both benchmarks, it is suggested to begin discussions to scale. - Suggests entering into a partnership agreement Simply, they performed positive on both benchmarks and this is a simply response that would be justified. - Suggests expanding the pilot into additional lines of business As the prompt indicates the pilot was for the DI business, expanding to other lines of business in the portfolio (i.e. dental, accident, etc.) would be a great next step. - Suggests benchmarking ROI to quantify labor savings This is to create internal benchmarks to track ROI and justify the vendor use into actual dollars or manpower saved. - Suggests the creation of a reviewer feedback loop Doing so would develop data that would help the vendor continue to train and calibrate their model to the client's needs and would increase performance even further above the benchmarks.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4,
+        8
+      ]
+    }
+  }
+}

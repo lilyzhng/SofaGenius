@@ -1,0 +1,196 @@
+{
+  "task_id": "apex-legal-004",
+  "source_index": 4,
+  "domain": "Legal",
+  "keywords": [
+    "0.",
+    "1.",
+    "1141",
+    "1154",
+    "1158",
+    "12860209247378946331",
+    "15311569676613545674",
+    "15423113561218411933",
+    "20006",
+    "2006",
+    "2007",
+    "2010",
+    "2011",
+    "2012",
+    "2025",
+    "24",
+    "25249",
+    "25895",
+    "28888",
+    "3%",
+    "4006",
+    "40378",
+    "42",
+    "442",
+    "496",
+    "5.",
+    "565",
+    "568",
+    "57",
+    "571",
+    "58",
+    "595",
+    "657",
+    "6905964674287180458",
+    "694",
+    "71",
+    "8254559749589629717",
+    "912",
+    "914",
+    "947",
+    "951",
+    "957",
+    "An",
+    "Appeals",
+    "But Combs",
+    "Cir",
+    "Coil",
+    "Combs",
+    "Concludes",
+    "De Vaughn",
+    "Federal",
+    "Fifth",
+    "Fifth Circuits",
+    "First Circuit",
+    "Gonz",
+    "Here",
+    "Identifies",
+    "In",
+    "In United States",
+    "Jacobo Castillo",
+    "LAW",
+    "Ninth",
+    "No",
+    "On",
+    "Only",
+    "Per",
+    "Puerto Rico",
+    "Riojas",
+    "See",
+    "See United States",
+    "Seventh",
+    "Seventh Circuit",
+    "States",
+    "Tenth",
+    "Tenth Circuits",
+    "The First Circuit",
+    "The Ninth",
+    "The Seventh Circuit",
+    "Therefore",
+    "They",
+    "Three",
+    "Typically",
+    "United",
+    "United States",
+    "United States Court"
+  ],
+  "num_keywords": 85,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that a denial of a pretrial motion is a non-jurisdictional defect that is waived by an unconditional guilty plea.",
+      "sources": "US-v.-Coil.pdf",
+      "justification": "Federal case law provides, 'An erroneous pretrial ruling is a non-jurisdictional defect that is waived by an unconditional guilty plea.' United States v. Coil, 442 F.3d 912, 914 (5th Cir. 2006). https://scholar.google.com/scholar_case?case=15423113561218411933&q=442+F.3d+912&hl=en&as_sdt=4006",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Identifies that the defendant waived his right to appeal the denial of his suppression motion by entering an unconditional plea agreement.",
+      "sources": "US-v.-Coil.pdf",
+      "justification": "LAW Per C1/25249, 'An erroneous pretrial ruling is a non-jurisdictional defect that is waived by an unconditional guilty plea.' United States v. Coil, 442 F.3d 912, 914 (5th Cir. 2006). https://scholar.google.com/scholar_case?case=15423113561218411933&q=442+F.3d+912&hl=en&as_sdt=4006 APPLICATION Here, the defendant moved to suppress evidence of the firearm that was found in his home. The district court denied this motion. Per U.S. v. Coil, this is a non-jurisdictional defect, and the defendant waived his right to appeal this defect when he entered the unconditional plea agreement.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1
+      ]
+    },
+    "criterion 3": {
+      "description": "Identifies that the First Circuit has jurisdiction over the case.",
+      "sources": "Prompt",
+      "justification": "LAW The First Circuit has jurisdiction over Puerto Rico. https://www.ca1.uscourts.gov/about-court\\n APPLICATION The defendant was arrested and charged federally in Puerto Rico. Therefore, his appeal will be heard by the United States Court of Appeals for the First Circuit.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Identifies that a majority of the United States Court of Appeals circuit courts have held that if the government does not timely invoke a defendant's waiver of appeal due to an unconditional guilty plea, the appellate court can assert jurisdiction.",
+      "sources": "",
+      "justification": "Three out of the four circuit courts (Ninth, Tenth, and Fifth versus Seventh) that have addressed the issue of whether an appellate court can assert jurisdiction when the government does not timely invoke a defendant's waiver of appeal due to an unconditional guilty plea, have decided that the appellate court can assert jurisdiction, making this the majority holding.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "States that the First Circuit has not addressed the issue of whether appellate courts must raise a defendant's waiver sua sponte where an unconditional guilty plea would otherwise preclude appellate review.",
+      "sources": "US-v.-Dávila-González.pdf US-v.-Combs.pdf US-v.-Jacobo Castillo.pdf US v. De Vaughn.pdf US v. Riojas.pdf",
+      "justification": "Only the Ninth, Tenth, Seventh, and Fifth Circuits have addressed this particular issue. See e.g., United States v. Riojas, No. 24-40378, (5th Cir. 2025) ('On that point, our sister circuits split. The Seventh Circuit treats an unconditional guilty plea as jurisdictional and enforces it sua sponte. See United States v. Combs, 657 F.3d 565, 568-71 (7th Cir. 2011) (per curiam). The Ninth and Tenth Circuits disagree. They treat the plea as a non-jurisdictional bar—a waivable claim-processing rule. See United States v. Jacobo Castillo, 496 F.3d 947, 951-57 (9th Cir. 2007) (en banc); United States v. DeVaughn, 694 F.3d 1141, 1154-58 (10th Cir. 2012).') https://www.ca5.uscourts.gov/opinions/pub/24/24-40378-CR0.pdf United States v. Dávila-González, 595 F.3d 42 (1st Cir. 2010), does not apply here because the crux of the issue in the prompt and among the split circuits is when the government never invokes the defendant's guilty plea as a bar to the appeal. The question then becomes whether the appellate court will enforce the guilty plea, sua sponte, or will view the government's failure to invoke the plea as a waiver. In Dávila-González, the defendant challenged his sentence on appeal, and the government raised the issue of his guilty plea as a bar to his appeal. https://scholar.google.com/scholar_case?case=15311569676613545674&q=United+States+v.+D%C3%A1vila-Gonz%C3%A1lez,+595+F.3d+42+(1st+Cir.+2010)&hl=en&as_sdt=4006",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Concludes that if the First Circuit adopts the precedent set by the Seventh Circuit, the First Circuit would not have jurisdiction.",
+      "sources": "US-v.-Combs.pdf",
+      "justification": "Per C8/28888, the Seventh Circuit enforces unconditional guilty pleas as a jurisdictional bar to appeal, sua sponte. 'Typically, the jurisdictional bar is asserted by the government in response to a defendant's attempt to raise pre-plea issues after entering an unconditional plea. Here, however, the government overlooked the absence of a conditional guilty plea and responded to Combs's brief as if there is no question about our jurisdiction to evaluate his contentions. . .' 'But Combs waived this contention by pleading guilty unconditionally, and, because he did not preserve any issues for review, we must dismiss for lack of jurisdiction.' United States v. Combs, 657 F.3d 565 (7th Cir. 2011). https://scholar.google.com/scholar_case?case=8254559749589629717&hl=en&as_sdt=4006",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        8
+      ]
+    },
+    "criterion 7": {
+      "description": "Concludes that if the First Circuit adopts the precedent set by the majority of the circuit courts, the First Circuit would have jurisdiction.",
+      "sources": "US-v.-Jacobo Castillo.pdf US v. De Vaughn.pdf US v. Riojas.pdf",
+      "justification": "Per C4/25895, the Ninth, Tenth, and Fifth Circuits have held that if the government does not timely invoke a defendant's waiver of appeal due to an unconditional guilty plea, the appellate court can assert jurisdiction. United States v. Riojas, No. 24-40378, (5th Cir. 2025). https://www.ca5.uscourts.gov/opinions/pub/24/24-40378-CR0.pdf 3 United States v. De Vaughn, 694 F.3d1141, 1158 (10th Cir. 2012). https://scholar.google.com/scholar_case?case=6905964674287180458&q=United+States+v.+Riojas&hl=en&as_sdt=20006&as_ylo=2025#p1154 United States v. Jacobo Castillo, 496 F.3d 947, 957 (9th Cir. 2007). https://scholar.google.com/scholar_case?case=12860209247378946331&q=United+States+v.+Riojas&hl=en&as_sdt=20006&as_ylo=2025#p951",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 8": {
+      "description": "Identifies that the Seventh Circuit court enforces unconditional guilty pleas on the court's own initiative.",
+      "sources": "US-v.-Combs.pdf",
+      "justification": "In the Seventh Circuit, unconditional guilty pleas are treated as jurisdictional, and the court enforces them on the court's own initiative, regardless of whether the government invoked the waiver itself. See United States v. Combs, 657 F.3d 565, 571 (7th Cir. 2011). https://scholar.google.com/scholar_case?case=8254559749589629717&hl=en&as_sdt=4006 In United States v. Combs, the defendant, Combs, sought leave to file an untimely motion to suppress, which the district court denied. Combs subsequently entered an unconditional guilty plea. Combs then filed an appeal, challenging the district court's refusal to let him file a late motion to suppress. On appeal, the government did not argue that Combs had waived his right to appeal the district court's ruling due to him entering an unconditional guilty plea. The Seventh Circuit held that while 'the government can forego a defense . . . [the appellate court is] not obligated to accept the government's waiver.' The Seventh Circuit enforced Combs's unconditional guilty waiver sua sponte and dismissed the case for lack of jurisdiction. United States v. Combs, 657 F.3d 565 (7th Cir. 2011). https://scholar.google.com/scholar_case?case=8254559749589629717&hl=en&as_sdt=4006",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

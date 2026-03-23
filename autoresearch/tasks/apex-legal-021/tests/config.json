@@ -1,0 +1,297 @@
+{
+  "task_id": "apex-legal-021",
+  "source_index": 21,
+  "domain": "Legal",
+  "keywords": [
+    "10",
+    "12",
+    "14",
+    "146",
+    "152",
+    "16",
+    "18.2",
+    "1983",
+    "1985",
+    "1989",
+    "1994",
+    "2004",
+    "2022",
+    "225",
+    "227",
+    "230",
+    "237",
+    "248",
+    "303",
+    "310",
+    "311",
+    "314",
+    "328",
+    "337",
+    "377",
+    "44",
+    "450",
+    "47",
+    "475",
+    "489",
+    "491",
+    "493",
+    "494",
+    "501",
+    "511",
+    "559",
+    "561",
+    "58",
+    "595",
+    "600",
+    "604",
+    "605",
+    "711",
+    "714",
+    "74",
+    "755",
+    "757",
+    "870",
+    "910",
+    "911",
+    "912",
+    "Abduction",
+    "App",
+    "As",
+    "Bank",
+    "Bank Tellers",
+    "Berry",
+    "Bobby",
+    "Brown",
+    "By",
+    "Cardwell",
+    "Code",
+    "Commonwealth",
+    "Concludes",
+    "Court",
+    "Duration",
+    "He",
+    "Hoke",
+    "However",
+    "Hoyt",
+    "Identifies",
+    "In",
+    "It",
+    "Its",
+    "Janet",
+    "Jim",
+    "Law",
+    "Page",
+    "Pritchard",
+    "Prompt",
+    "Robbery",
+    "See Hoyt",
+    "Since Jim",
+    "States",
+    "There",
+    "Thus",
+    "Under Virginia Code",
+    "Va",
+    "Virginia",
+    "Virginia Code",
+    "Walker",
+    "We",
+    "Whether"
+  ],
+  "num_keywords": 93,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "States that Virginia Code § 18.2-47 governs the crime of abduction.",
+      "sources": "Va. Code Ann. _ 18.2-47.Pdf",
+      "justification": "Law: '§ 18.2-47. Abduction and kidnapping defined; forced labor; punishment. A. Any person who, by force, intimidation or deception, and without legal justification or excuse, seizes, takes, transports, detains or secretes another person with the intent to deprive such other person of his personal liberty or to withhold or conceal him from any person, authority or institution lawfully entitled to his charge, shall be deemed guilty of 'abduction.''",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that under Virginia Code § 18.2-47 any person who 1) by force, intimidation or deception 2) seizes, takes, transports, detains or secretes another person 3) with the intent to deprive such other person of his personal liberty shall be deemed guilty of 'abduction.'",
+      "sources": "Va. Code Ann. _ 18.2-47.Pdf",
+      "justification": "Law: '§ 18.2-47. Abduction and kidnapping defined; forced labor; punishment. A. Any person who, by force, intimidation or deception, and without legal justification or excuse, seizes, takes, transports, detains or secretes another person with the intent to deprive such other person of his personal liberty or to withhold or conceal him from any person, authority or institution lawfully entitled to his charge, shall be deemed guilty of 'abduction.' The aspects of 'without legal justification or excuse' and 'withhold or conceal' have not been included because they are not applicable in this analysis.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that a defendant can be convicted of abduction in addition to robbery if the victim's detention is separate and apart from the restraint employed in the commission of robbery.",
+      "sources": "Cardwell v. Commonwealth_248 Va. 501.Pdf",
+      "justification": "Law: Cardwell v. Commonwealth, 248 Va. 501, 511, 450 S.E.2d 146, 152 (1994) 'A defendant may be convicted of abduction in addition to robbery if the victim's detention ''is separate and apart from, and not merely incidental to, the restraint employed in the commission of [robbery].'' Hoke v. Commonwealth, 237 Va. 303, 311, 377 S.E.2d 595, 600 (quoting Brown v. Commonwealth, 230 Va. 310, 314, 337 S.E.2d 711, 714 (1985)), [***16] cert. denied, 491 U.S. 910 (1989). Thus, to constitute an abduction, separate and apart from a robbery, the victim's detention must be greater than the restraint that is intrinsic in a robbery' (Page 5 of 9.)",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "States that a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery.",
+      "sources": "Cardwell v. Commonwealth_248 Va. 501.Pdf",
+      "justification": "Law: Cardwell v. Commonwealth, 248 Va. 501, 511, 450 S.E.2d 146, 152 (1994) 'A defendant may be convicted of abduction in addition to robbery if the victim's detention ''is separate and apart from, and not merely incidental to, the restraint employed in the commission of [robbery].'' Hoke v. Commonwealth, 237 Va. 303, 311, 377 S.E.2d 595, 600 (quoting Brown v. Commonwealth, 230 Va. 310, 314, 337 S.E.2d 711, 714 (1985)), [***16] cert. denied, 491 U.S. 910 (1989). Thus, to constitute an abduction, separate and apart from a robbery, the victim's detention must be greater than the restraint that is intrinsic in a robbery' (Page 5 of 9.)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "States that all of the following factors are central to determining whether an abduction is incidental to another crime: 1) the duration of the detention; 2) whether the detention occurred during the commission of a separate offense; 3) whether the detention which occurred is inherent in the separate offense; and 4) whether the detention created a significant danger to the victim independent of that posed by the separate offense.",
+      "sources": "Hoyt v. Commonwealth_44 Va. App. 489",
+      "justification": "Law: Hoyt v. Commonwealth, 44 Va. App. 489, 494, 605 S.E.2d 755, 757 (2004) 'There, the court stated that HN4 'four factors are [***9] central to' determining whether or not an abduction or kidnapping is incidental to another crime. Berry, 604 F.2d at 227. Those factors are: (1) the duration of the detention or asportation; (2) whether the detention or asportation occurred during the commission of a separate offense; (3) whether the detention or asportation which occurred is inherent in the separate offense; and (4) whether the asportation or detention created a significant danger to the victim independent of that posed by the separate offense.' Page 3 of 5 The asportation element is not mentioned in the description because it is not relevant to this analysis.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 6": {
+      "description": "Identifies all of the following as elements of robbery: the taking, with intent to steal, of the personal property of another, from his person or in his presence, against his will, and by violence or intimidation.",
+      "sources": "Pritchard v. Commonwealth_225 Va. 559.Pdf",
+      "justification": "Law: Pritchard v. Commonwealth, 225 Va. 559, 561, 303 S.E.2d 911, 912 (1983) 'Robbery is a common-law crime in Virginia, although its punishment is prescribed by Code § 18.2-58. It is a crime against the person. Its elements are 'the taking, with intent to steal, of the personal property of another, from his person or in his presence, against his will, by violence or intimidation.'' Page 2 of 3.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 7": {
+      "description": "Identifies that Jim told Bobby to lay on the floor after striking Bobby.",
+      "sources": "Prompt",
+      "justification": "Prompt: 'Jim, holding a gun in his right hand, struck Bobby across the face and told him to lay on the floor.' This fact is important to identify because it constitutes a detention.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 8": {
+      "description": "Identifies that Jim took Bobby's belongings.",
+      "sources": "Prompt",
+      "justification": "Prompt: 'He then took Bobby's wallet and watch.' This fact is important to identify because it qualifies Jim's actions as a robbery of Bobby.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "Concludes that Jim is likely to be convicted of robbery for the taking of Bobby's belongings from his person by violence.",
+      "sources": "Prompt",
+      "justification": "As stated in C6, 'robbery is defined as the taking, with intent to steal, of the personal property of another, from his person or in his presence, against his will, by violence or intimidation.' Jim struck Bobby across the face and told him to lie on the floor. This would qualify as the requisite violence. Jim then took Bobby's wallet and watch. This would qualify as an intent to steal of personal property from Bobby's person. Jim took Bobby's wallet and watch from his person, by the use of violence in striking him across the face. Jim's action would likely qualify as robbery of Bobby.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6,
+        7,
+        8
+      ]
+    },
+    "criterion 10": {
+      "description": "Concludes that Bobby's detention was incidental to the crime of robbery against him.",
+      "sources": "Prompt; Walker v. Commonwealth_74 Va. App. 475.Pdf",
+      "justification": "As stated in C3, a defendant can be convicted of abduction in addition to robbery if the victim's detention is separate and apart from the restraint employed in the commission of robbery. In contrast, as stated in C4 a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery. Whether an abduction is merely incidental to an offense is determined by the following factors '1) the duration of the detention 2) whether the detention occurred during the commission of a separate offense; 3) whether the detention which occurred is inherent in the separate offense; 4) whether the detention created a significant danger to the victim independent of that posed by the separate offense.' (C5) 1: Duration - Bobby was only made to lay on the ground for as long as the Bank robbery, a short period of time. 2/3: Whether detention occurred during the commission of a separate offense: As stated in C9 the detention occurred during the robbery of Bobby and the force was inherent to the robbery. 4: It is unlikely that a factfinder here would find the detention created a significant danger to the victim independent of that posed by the separate offense. Bobby was merely made to lay on the ground. The facts of this case were nearly identical to Walker v. Commonwealth, see page 2. However in Walker v. Commonwealth the Court stated at page 7 'In the context of a bank robbery, a perpetrator's only reason to interact with customers from whom he does not seek money is to limit their ability to interfere in his or her interactions with the bank tellers from whom he or she does seek money.' Walker v. Commonwealth, 74 Va. App. 475, 493, 870 S.E.2d 328, 337 (2022)' The difference in this case is that Jim did seek money from Bobby. Since Jim committed a robbery against Bobby, the detention is merely incidental to the robbery.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        4,
+        5,
+        9,
+        7,
+        8
+      ]
+    },
+    "criterion 11": {
+      "description": "Concludes that Jim is not likely to be convicted of abduction pursuant to Virginia Code § 18.2-47 in relation to Bobby.",
+      "sources": "",
+      "justification": "Under Virginia Code § 18.2-47 any person who 1) by force, intimidation or deception 2) seizes, takes, transports, detains or secretes another person 3) with the intent to deprive such other person of his personal liberty shall be deemed guilty of 'abduction.' (C2) However, as stated in C4 a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery. We have determined in C10 that Bobby's detention was merely an incident to the robbery committed against him and therefore Jim is not likely to be convicted of abduction pursuant to Virginia Code § 18.2-47.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        10,
+        2,
+        4
+      ]
+    },
+    "criterion 12": {
+      "description": "Concludes that Jim likely committed robbery of the bank.",
+      "sources": "Prompt",
+      "justification": "As stated in C6, 'robbery is defined as the taking, with intent to steal, of the personal property of another, from his person or in his presence, against his will, by violence or intimidation.' Jim entered the bank and pointed, 'a gun at everyone and told employees to put money in a bag he was carrying.' This would likely meet the threshold for violence or intimidation. Jim 'was using the gun to 'direct' tellers to fill the bag with money and that the man was 'forceful' and 'demanding.'' By doing so he was using intimidation to take the money from the person of the Bank Tellers. This would likely qualify as robbery under the standard stated in C6.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        6
+      ]
+    },
+    "criterion 13": {
+      "description": "Identifies that Jim commanded the Bank teller (Janet) to lay face down on the floor after she put the money in the bag.",
+      "sources": "Prompt",
+      "justification": "Prompt: 'Jim commanded Janet to lay face down on the floor after she put the money in the bag.' This fact is important to identify because it constitutes a 'detention'.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 14": {
+      "description": "Concludes that the bank teller's (Janet's) detention was incidental to the robbery of the bank.",
+      "sources": "Prompt; Hoyt v. Commonwealth_44 Va. App. 489",
+      "justification": "As stated in C3, a defendant can be convicted of abduction in addition to robbery if the victim's detention is separate and apart from the restraint employed in the commission of robbery. In contrast, as stated in C4 a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery. Whether an abduction is merely incidental to an offense is determined by the following factors '1) the duration of the detention 2) whether the detention occurred during the commission of a separate offense; 3) whether the detention which occurred is inherent in the separate offense; 4) whether the detention created a significant danger to the victim independent of that posed by the separate offense.' (C5) 1: Duration - Janet was only made to lay on the ground for as long as the Bank robbery, a short period of time. 2/3: Whether detention occurred during the commission of a separate offense: As stated in C12 the detention occurred during the robbery of the bank. The type of force used here is inherent to a robbery. See Hoyt v. Commonwealth (Hoyt pointed the gun at one victim and told them to lay on the floor, the Court ultimately found that this detention was incidental to a robbery) 4: It is unlikely that a factfinder here would find the detention created a significant danger to the victim independent of that posed by the separate offense. Janet was merely made to lay on the ground.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        4,
+        5,
+        12,
+        13
+      ]
+    },
+    "criterion 15": {
+      "description": "Concludes that Jim is not likely to be convicted of abduction pursuant to Virginia Code 18.2-47 in relation to the Bank teller (Janet).",
+      "sources": "",
+      "justification": "Under Virginia Code § 18.2-47 any person who 1) by force, intimidation or deception 2) seizes, takes, transports, detains or secretes another person 3) with the intent to deprive such other person of his personal liberty shall be deemed guilty of 'abduction.' (C2) However, as stated in C4 a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery. We have determined in C14 that Janet's detention was merely an incident to the robbery committed against her and therefore Jim is not likely to be convicted of abduction pursuant to Virginia Code § 18.2-47.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        2,
+        4,
+        14
+      ]
+    }
+  }
+}

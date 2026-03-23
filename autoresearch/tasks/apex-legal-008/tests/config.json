@@ -1,0 +1,121 @@
+{
+  "task_id": "apex-legal-008",
+  "source_index": 8,
+  "domain": "Legal",
+  "keywords": [
+    ".19",
+    ".B",
+    "1299",
+    "130",
+    "130.1",
+    "16",
+    "17",
+    "2025",
+    "28",
+    "3316",
+    "As",
+    "Assuming",
+    "Code",
+    "Concludes",
+    "First",
+    "GA",
+    "He",
+    "However",
+    "Identifies",
+    "If",
+    "In",
+    "In State",
+    "In Wierson",
+    "Mr",
+    "See",
+    "State",
+    "The State",
+    "There",
+    "Thus",
+    "Under",
+    "When",
+    "Wierson"
+  ],
+  "num_keywords": 32,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Identifies that a person cannot be guilty of a crime if they did not have the mental capacity to distinguish between right and wrong at the time the crime was committed.",
+      "sources": "",
+      "justification": "Under GA Code § 16-3-2: 'A person shall not be found guilty of a crime if, at the time of the act, omission, or negligence constituting the crime, the person did not have mental capacity to distinguish between right and wrong in relation to such act, omission, or negligence'. https://law.justia.com/codes/georgia/title-16/chapter-3/article-1/section-16-3-2/",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Identifies that a person cannot be guilty of a crime if they acted because of a delusional compulsion at the time the crime was committed.",
+      "sources": "The State v. Wierson.pdf",
+      "justification": "GA Code § 16-3-3 provides: 'A person shall not be found guilty of a crime when, at the time of the act, omission, or negligence constituting the crime, the person, because of mental disease, injury, or congenital deficiency, acted as he did because of a delusional compulsion as to such act which overmastered his will to resist committing the crime.' https://law.justia.com/codes/georgia/title-16/chapter-3/article-1/section-16-3-3/ In State v. Wierson, S24G1299 (May 28, 2025) the court noted that 'the statutory defense of delusional compulsion is available if there is evidence 'that the defendant was laboring under a delusion, that the act itself was connected with the delusion and furthermore that the delusion would, if true, justify the act'.' (pg.19)",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Identifies that Mr. B's failure to take his medication is not relevant to whether the insanity defenses are available to him.",
+      "sources": "The State v. Wierson.pdf",
+      "justification": "In Wierson v. The State, the court stated: 'In short, the plain language of these statutes, their context, and their long history all align: the insanity defenses are available even to a person who has 'voluntarily' induced the relevant mental state. And applied to this case, that would mean that whether Wierson stopped taking her medication some weeks before the accident is not relevant to whether the statutory insanity defenses are available to her'. State v. Wierson, S24G1299 (May 28, 2025) (pg. 17) https://www.casemine.com/judgement/us/6838ee016810eefbb04b3316 Thus, the fact of Mr. B's voluntary failure to take his medication has no relevance to whether or not an insanity plea is available to him. If the State seeks to present evidence of Mr.B's failure to take his medication, Mr. B can object.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Identifies that a successful insanity plea requires expert testimony from a qualified medical expert.",
+      "sources": "",
+      "justification": "Under GA Code § 17-7-130.1, 'at the trial of a criminal case in which the defendant intends to interpose the defense of insanity, evidence may be introduced to prove the defendant's sanity or insanity at the time at which he is alleged to have committed the offense charged in the indictment or information. When notice of an insanity defense is filed, the court shall appoint at least one psychiatrist or licensed psychologist to examine the defendant and to testify at the trial. This testimony shall follow the presentation of the evidence for the prosecution and for the defense, including testimony of any medical experts employed by the state or by the defense. The medical witnesses appointed by the court may be cross-examined by both the prosecution and the defense, and each side may introduce evidence in rebuttal to the testimony of such a medical witness'. Thus, a qualified medical expert will have to testify that Mr. B met the definition of either insanity tests at the time of the commission of the murder. https://law.justia.com/codes/georgia/title-17/chapter-7/article-6/part-2/section-17-7-130-1/",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Identifies that Mr. B's insanity defense based on delusional compulsion will likely be unsuccessful.",
+      "sources": "The State v. Wierson.pdf",
+      "justification": "Under GA Code § 16-3-3, three elements must be met for insanity based on delusional compulsion: 1. The defendant was laboring under a delusion; 2. The criminal act was connected with the delusion, and 3. The delusion was as to a fact that, if true, would have justified the act. https://law.justia.com/codes/georgia/title-16/chapter-3/article-1/section-16-3-3/ See also, State v. Wierson, S24G1299 (May 28, 2025) where the court noted that 'the statutory defense of delusional compulsion is available if there is evidence 'that the defendant was laboring under a delusion, that the act itself was connected with the delusion and furthermore that the delusion would, if true, justify the act'.' (pg.19) Mr. B will be able to satisfy the first two elements. First, he was laboring under a delusion in the form of auditory hallucinations that prompted him to commit murder. However, he will not be able to meet the third element. The delusion told him to kill someone who was wearing a black t-shirt. The fact of the delusion was that a person was wearing a black t-shirt. There is nothing about a person wearing a black t-shirt that would, in any situation, justify murder. As a result, this insanity defense will likely be unsuccessful.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        2
+      ]
+    },
+    "criterion 6": {
+      "description": "Concludes that Mr. B's insanity defense based on an inability to distinguish between right and wrong will likely be successful.",
+      "sources": "",
+      "justification": "Under GA Code O.C.G.A. § 16-3-2, a person is not criminally responsible if, at the time of the act, they lacked the mental capacity to distinguish between right and wrong in relation to such act. https://law.justia.com/codes/georgia/title-16/chapter-3/article-1/section-16-3-2/ Assuming that a qualified medical expert provides testimony confirming that Mr. B lacked the mental capacity to distinguish between right and wrong at the time of the murder, Mr. B has a significant chance of success using this defense. Mr. B was experiencing auditory hallucinations at the time of the murder, and he thus lacked the mental capacity to distinguish between whether his act was right or wrong. He lacked the mental capacity to make such a distinction at the time of the murder, and thus will likely be successful.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        1,
+        4
+      ]
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "task_id": "apex-finance-079",
+  "source_index": 79,
+  "domain": "Finance",
+  "keywords": [
+    "$14,291,818",
+    "$14,436,180",
+    "$14,580,541",
+    "$150,404.14",
+    "$2,774,807.19",
+    "$7,632,086",
+    "$7,709,178",
+    "$7,786,270",
+    ",0",
+    "10",
+    "100",
+    "11",
+    "119,546,781,682.19",
+    "12",
+    "1200",
+    "13",
+    "15,950,140.11",
+    "2,774,807.19",
+    "2017",
+    "2018",
+    "43,083",
+    "5.37",
+    "5.42",
+    "5.47",
+    "59.81",
+    "60.42",
+    "61.02",
+    "80",
+    "9,636,472.58",
+    "Acceptable",
+    "Advance Rate",
+    "Aggregate Write",
+    "BK",
+    "Bankruptcy Date",
+    "Bankruptcy Filing Date",
+    "Bankruptcy Flag",
+    "Borrower",
+    "Borrowing Base",
+    "Calculates",
+    "Concentration",
+    "Core Payers",
+    "Current",
+    "Current Interest Rate",
+    "Current Maturity Date",
+    "Date",
+    "Due Date",
+    "FV",
+    "Filing Date",
+    "Flag",
+    "Formula",
+    "Loan",
+    "Loan Balance Write",
+    "MAX",
+    "Market Value",
+    "Maturity",
+    "Note Date",
+    "Origination",
+    "PV",
+    "Pool",
+    "Pools",
+    "Rem Term",
+    "Reperforming",
+    "Sum",
+    "Total Balance",
+    "Total Balance Rem Term",
+    "Unpaid",
+    "Weighted Average",
+    "Weighted Average Market Value",
+    "Weighted Market Value",
+    "Where"
+  ],
+  "num_keywords": 70,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Calculates the Weighted Average (by Total Balance) Bankruptcy Date for bankruptcy flagged loans as 12/13/2017. (Acceptable range 11/13/2017 to 1/13/2018).",
+      "sources": "RPL NPL Tape_Trunc_v10.12.25 - NPL Tape-4.CSV",
+      "justification": "Bankruptcy Filing Date = (Sum of each bankruptcy filing date × corresponding loan balance) ÷ (Sum of all bankruptcy loan balances) = SUMPRODUCT(--(Bankruptcy Flag = 'Y'), Total Balance, BK Filing Date) / SUMPRODUCT(--(Bankruptcy Flag = 'Y'), Total Balance) = 119,546,781,682.19 / 2,774,807.19 = 43,083 = 12/13/2017. https://docs.google.com/spreadsheets/d/1Imkp6ZRZJyYXiF0zvPFeCJdVsthbuCP6hQHzfF-BxQw/edit?usp=sharing",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "Calculates the concentration of bankruptcy flagged loans where the Borrower filed for bankruptcy within 5 years of the loan's origination date as 5.42%. (Acceptable range 5.37% to 5.47%).",
+      "sources": "RPL NPL Tape_Trunc_v10.12.25 - NPL Tape-4.CSV",
+      "justification": "Concentration (%) = (Sum of balances for loans with bankruptcy filed within 5 years of origination) ÷ (Sum of all bankruptcy loan balances) × 100 = SUMPRODUCT(--(Bankruptcy Flag = 'Y'), --(BK Date within 5 Flag = 'Y'), Total Balance) / SUMPRODUCT(--(Bankruptcy Flag = 'Y'), Total Balance) = $150,404.14 / $2,774,807.19 = 5.42% BK Date within 5 Flag = =if(BK Filing Date = '', 0, if( edate ( Origination or Note Date, 5*12) < BK Filing Date, 0, 1)) https://docs.google.com/spreadsheets/d/1Imkp6ZRZJyYXiF0zvPFeCJdVsthbuCP6hQHzfF-BxQw/edit?usp=sharing",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "Calculates the Weighted Average Market Value (by Total Balance) for Pools 1 through 3 as 60.42%. (Acceptable range 59.81% to 61.02%).",
+      "sources": "RPL NPL Tape_Trunc_v10.12.25 - NPL Tape-4.CSV",
+      "justification": "Weighted Market Value (%) = (Sum of each loan's market value percentage × loan balance) ÷ (Sum of all loan balances in Pools 1-3) = SUMPRODUCT( --(Pool 1-3 Flag = 1), Market Value as % of Total Balance, Total Balance) / SUMPRODUCT( --(Pool 1-3 Flag = 1), Total Balance) = 9,636,472.58 / 15,950,140.11 = 60.42%. Pool 1-3 Flag = if (or (Pool = 'Pool 1: Reperforming', Pool = 'Pool 2: Reperforming', Pool = 'Pool 3: Core Payers'), 1, 0) Market Value as % of Total Balance = PV(10%/12, Rem Term, -Current P&I,0)/ Total Balance Rem Term = DATEDIF(Due Date, Current Maturity Date,'m') https://docs.google.com/spreadsheets/d/1Imkp6ZRZJyYXiF0zvPFeCJdVsthbuCP6hQHzfF-BxQw/edit?usp=sharing",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 4": {
+      "description": "Calculates the aggregate loan balance write-off at maturity for Pools 1 through 3 as $14,436,180. (Acceptable range $14,291,818 to $14,580,541).",
+      "sources": "RPL NPL Tape_Trunc_v10.12.25 - NPL Tape-4.CSV",
+      "justification": "Aggregate Write-off = Sum of (Unpaid loan balance at maturity) across all loans in Pools 1-3 Where unpaid balance at maturity is the future outstanding balance after scheduled payments Formula = SUMPRODUCT( --(Pool 1-3 Flag = 1), Loan Balance Write-off at Maturity) = $14,436,180. Pool 1-3 Flag = if (or (Pool = 'Pool 1: Reperforming', Pool = 'Pool 2: Reperforming', Pool = 'Pool 3: Core Payers'), 1, 0) Loan balance write-off at maturity = unpaid balance at maturity. Unpaid balance at maturity = MAX(-FV(Current Interest Rate %/1200, Rem Term, -Current P&I, Total Balance, 0), 0). Rem Term = DATEDIF(Due Date, Current Maturity Date,'m') https://docs.google.com/spreadsheets/d/1Imkp6ZRZJyYXiF0zvPFeCJdVsthbuCP6hQHzfF-BxQw/edit?usp=sharing",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Calculates the implied borrowing base for Pools 1 through 3 as $7,709,178. (Acceptable range $7,632,086 to $7,786,270).",
+      "sources": "RPL NPL Tape_Trunc_v10.12.25 - NPL Tape-4.CSV",
+      "justification": "Borrowing Base = Sum of (Loan market value × advance rate) across all loans in Pools 1-3 Formula = SUMPRODUCT( --(Pool 1-3 Flag = 1), Borrowing Base) = $7,709,178. Pool 1-3 Flag = if (or (Pool = 'Pool 1: Reperforming', Pool = 'Pool 2: Reperforming', Pool = 'Pool 3: Core Payers'), 1, 0). Borrowing Base = Market Value x Advance Rate. Market Value = PV(10%/12, Rem Term, -Current P&I,0) Advance Rate = 80% per prompt. Rem Term = DATEDIF(Due Date, Current Maturity Date,'m') https://docs.google.com/spreadsheets/d/1Imkp6ZRZJyYXiF0zvPFeCJdVsthbuCP6hQHzfF-BxQw/edit?usp=sharing",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)",
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    }
+  }
+}

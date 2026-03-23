@@ -1,0 +1,233 @@
+{
+  "task_id": "apex-medicine-029",
+  "source_index": 29,
+  "domain": "Medicine",
+  "keywords": [
+    "02",
+    "1,400",
+    "1,500",
+    "2.1",
+    "2019",
+    "3650",
+    "ACR",
+    "ADC",
+    "American College",
+    "DCE",
+    "DWI",
+    "Data System",
+    "Defines",
+    "Diffusion",
+    "Dynamic",
+    "ESUR",
+    "European Society",
+    "Files",
+    "Focal",
+    "Foundation",
+    "Identifies",
+    "MR",
+    "MRI",
+    "Mentions",
+    "Noted",
+    "PI",
+    "PIRADS",
+    "PZ",
+    "Permeability",
+    "Prompt",
+    "Prostate Imaging Reporting",
+    "RADS",
+    "Radiology",
+    "Recognizes",
+    "Report",
+    "Reporting",
+    "Revisions",
+    "Score Peripheral Zone",
+    "States",
+    "TZ",
+    "Template",
+    "Transition",
+    "Transition Zone",
+    "Urogenital Radiology",
+    "Utilizes"
+  ],
+  "num_keywords": 45,
+  "expected_output": "text",
+  "gold_response": "",
+  "rubric": {
+    "criterion 1": {
+      "description": "Utilizes the Prostate Imaging Reporting and Data System, version 2.1 (PI-RADS v2.1).",
+      "sources": "",
+      "justification": "'Prostate Imaging Reporting and Data System (PI-RADS) is a structured reporting scheme for multiparametric prostate MRI in the evaluation of suspected prostate cancer in treatment naive prostate glands. This article reflects version 2.1 (v2.1), published in 2019 and developed by an internationally representative group involving the American College of Radiology (ACR), European Society of Urogenital Radiology (ESUR), and AdMeTech Foundation 6.' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2 https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/PI-RADS/PIRADS-Revisions.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 2": {
+      "description": "States that the assessment is for a lesion located in the peripheral zone of the prostate.",
+      "sources": "MRI findings_task 1352.pdf",
+      "justification": "Noted from the attachment.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 3": {
+      "description": "States that, for peripheral zone lesions, the dominant sequence for assigning the overall PI-RADS v2.1 score is diffusion-weighted imaging (DWI).",
+      "sources": "",
+      "justification": "'For peripheral zone lesions, the overall PI-RADS assessment usually follows the DWI score, but a score of 3 can be upgraded by the presence of dynamic contrast enhancement.' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        1,
+        2
+      ]
+    },
+    "criterion 4": {
+      "description": "Defines a high b-value on DWI as ≥1,400 sec/mm².",
+      "sources": "",
+      "justification": "'A high b-value (≥1,400 sec/mm2) image set is also mandatory ' https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/PI-RADS/PIRADS-Revisions.pdf",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 5": {
+      "description": "Recognizes that a high b-value was used for this patient's DWI sequence.",
+      "sources": "",
+      "justification": "Noted from the prompt as a b-value of 1,500 sec/mm2 was used in DWI.",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        4
+      ]
+    },
+    "criterion 6": {
+      "description": "Identifies that the patient demonstrates a focal moderate hyperintensity on high b-value DWI.",
+      "sources": "MRI findings_task 1352.pdf",
+      "justification": "Noted from the attachment.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        5
+      ]
+    },
+    "criterion 7": {
+      "description": "Mentions a focal moderate hyperintensity on high b-value DWI receives a DWI score of 3 under PI-RADS v2.1.",
+      "sources": "",
+      "justification": "'Diffusion weighted imaging (DWI) score Transition zone or peripheral zone 3: focal (discrete and different from background), mild/moderate hypointensity on ADC and/or mild/moderate hyperintensity on high b-value DWI; may be markedly hypointense on ADC or markedly hyperintense on high b-value DWI, but not both' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        3,
+        6
+      ]
+    },
+    "criterion 8": {
+      "description": "States that permeability magnetic resonance imaging (MRI) is equivalent to dynamic contrast-enhanced (DCE) MRI.",
+      "sources": "",
+      "justification": "'Dynamic contrast-enhanced (DCE) MR perfusion, sometimes also referred to as permeability MRI, is one of the main MRI perfusion techniques which calculates perfusion parameters by evaluating T1 shortening induced by a gadolinium-based contrast bolus passing through tissue. ' https://radiopaedia.org/articles/dynamic-contrast-enhanced-dce-mr-perfusion-1",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 9": {
+      "description": "States that focal early enhancement corresponding to the DWI lesion indicates a positive DCE score.",
+      "sources": "",
+      "justification": "'DCE Score Peripheral Zone (PZ) or Transition Zone (TZ) (+) focal, and; earlier than or contemporaneously with enhancement of adjacent normal prostatic tissues, and; corresponds to suspicious finding on T2W and/or DWI' https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/PI-RADS/PIRADS-Revisions.pdf 'Reporting DCE: focal early enhancement, positive' https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/RADS/PI-RADS/PIRADS-Report-Template.pdf",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 10": {
+      "description": "Identifies the patient has focal early enhancement corresponding to the DWI lesion on permeability MRI.",
+      "sources": "MRI findings_task 1352.pdf",
+      "justification": "Prompt: 'Permeability MRI: Focal early enhancement noted at the same location of DWI lesion'",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": []
+    },
+    "criterion 11": {
+      "description": "Recognizes that the patient has a positive DCE score.",
+      "sources": "MRI findings_task 1352.pdf",
+      "justification": "Noted from the attachment & dependency.",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning",
+        "Extraction (recall)"
+      ],
+      "dependent_criteria": [
+        8,
+        9,
+        10
+      ]
+    },
+    "criterion 12": {
+      "description": "States that a positive DCE upgrades a DWI score of 3 to form an overall PI-RADS v2.1 score of 4.",
+      "sources": "",
+      "justification": "'For peripheral zone lesions with DWI score of 3, the presence of dynamic contrast enhancement is used to upgrade the overall PI-RADS assessment category to 4.' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        7,
+        11
+      ]
+    },
+    "criterion 13": {
+      "description": "States that the patient's DWI score under PI-RADS v2.1 is 4.",
+      "sources": "",
+      "justification": "'For peripheral zone lesions with DWI score of 3, the presence of dynamic contrast enhancement is used to upgrade the overall PI-RADS assessment category to 4.' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2",
+      "weight": "Primary objective(s)",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        12
+      ]
+    },
+    "criterion 14": {
+      "description": "States that a PI-RADS v2.1 score of 4 puts the patient at high risk of a clinically significant prostate cancer.",
+      "sources": "",
+      "justification": "'PI-RADS 4: high (clinically significant cancer is likely to be present)' https://radiopaedia.org/articles/prostate-imaging-reporting-and-data-system-pi-rads-2",
+      "weight": "Not primary objective",
+      "human_rating": false,
+      "criterion_type": [
+        "Reasoning"
+      ],
+      "dependent_criteria": [
+        13
+      ]
+    }
+  }
+}
