@@ -98,7 +98,7 @@ When reviewing, check for:
 ## Review Workflow
 
 1. **Author raises PR** with clear, single-scope description
-2. **Author posts the PR link in #shipping** (channel ID: `1484388088087052478`) **and tags reviewers** — this is how the team discovers new PRs
+2. **Author posts the PR link in #shipping** (channel ID: `1484388088087052478`) **and tags reviewers with `<@user_id>`** so they get notified — this is how the team discovers new PRs
 3. **Reviewer posts inline comments** on the PR (not Discord messages about the PR)
 4. **Author replies to every comment** — confirm fix or push back with reasoning
 5. **Reviewer re-reviews** after fixes
@@ -120,3 +120,4 @@ When reviewing, check for:
 - **Don't discuss PR content in Discord instead of on the PR** — keep review discussion on GitHub for the paper trail
 - **Don't mix unrelated changes in one PR** — one purpose per PR
 - **Don't ignore reviewer comments** — reply to every one
+- **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
