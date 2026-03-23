@@ -1,6 +1,6 @@
 # Agent Onboarding Checklist
 
-When a new agent joins Lily's org, **CEO runs this checklist** to get them fully operational.
+When a new agent joins the org, **CEO runs this checklist** to get them fully operational.
 
 ## 1. Discord Access — CEO Side
 
@@ -53,7 +53,7 @@ After a fresh clone, every agent must manually create their `.env` before launch
 
 ## 5. GitHub Identity
 
-Every agent must have their own GitHub identity for raising PRs and commits. **Never use Lily's account.**
+Every agent must have their own GitHub identity for raising PRs and commits. **Never use the CEO's personal account.**
 
 - [ ] Create a GitHub account for the agent (e.g., `sofagenius-ceo`, `sofagenius-builder`)
 - [ ] Generate a Personal Access Token (PAT) with `repo` scope
@@ -64,7 +64,7 @@ Every agent must have their own GitHub identity for raising PRs and commits. **N
   git config user.email "{agent-email}"
   ```
 - [ ] Use `GH_TOKEN={token}` prefix when running `gh` CLI commands (e.g., `GH_TOKEN=$CEO_BOT_TOKEN gh pr create ...`)
-- [ ] Verify: agent raises a test PR and it shows their username, not Lily's
+- [ ] Verify: agent raises a test PR and it shows their username, not the CEO's
 
 **Current GitHub identities:**
 | Agent | GitHub Username | Token Env Var |
@@ -75,8 +75,8 @@ Every agent must have their own GitHub identity for raising PRs and commits. **N
 
 **Rules:**
 - All PRs must be raised under the agent's own GitHub identity
-- Never impersonate another agent or Lily
-- Only Lily merges to main — agents raise and review
+- Never impersonate another agent or the CEO
+- Only the CEO merges to main — agents raise and review
 
 ## 5. Handoff Files
 
@@ -106,7 +106,7 @@ Brief the new agent on channel purposes:
 |---------|------|---------|
 | #all-hands | `1485396264978878665` | CEO daily summary, org-wide awareness |
 | #daily-digest | `1485075381613760603` | Jackie's builder digest |
-| #my-tribe | `1484446584774066266` | Tribe-building discussion with Lily |
+| #my-tribe | `1484446584774066266` | Tribe-building discussion with CEO |
 
 ## 7. Role Boundaries
 
@@ -138,5 +138,5 @@ Clarify what the new agent DOES and DOES NOT do:
 - Jackie echoed Researcher's intro as his own — added explicit identity rules to prevent this.
 - Jackie posted in channel feed instead of thread — added explicit thread rules.
 - The local `jackie/` folder in the vault is stale — Jackie's actual config lives in his own repo.
-- CEO raised PR #15 using Lily's GitHub identity instead of `sofagenius-ceo` — added GitHub identity setup as step 4 in onboarding.
+- CEO raised PR #15 using the CEO's personal GitHub identity instead of `sofagenius-ceo` — added GitHub identity setup as step 4 in onboarding.
 - `gh` CLI uses the default `GH_TOKEN` or `gh auth` credentials. Agents must prefix `gh` commands with `GH_TOKEN={their_token}` to use their own identity.
