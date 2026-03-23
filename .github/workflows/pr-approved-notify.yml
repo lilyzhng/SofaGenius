@@ -21,14 +21,23 @@ jobs:
           PR_TITLE="${{ github.event.pull_request.title }}"
 
           # Map GitHub username to Discord bot ID
+          # Note: Jackie (1477895765698547844) is excluded — he runs on OpenClaw and doesn't raise PRs here
           DISCORD_ID=$(jq -r ".\"${AUTHOR}\"" agents/github-to-discord.json)
 
           if [ "$DISCORD_ID" != "null" ] && [ -n "$DISCORD_ID" ]; then
-            MSG="<@${DISCORD_ID}> PR #${PR_NUM} approved by Lily — merge it!\n**${PR_TITLE}**\n${PR_URL}"
+            MENTION="<@${DISCORD_ID}>"
           else
-            MSG="PR #${PR_NUM} approved by Lily — merge it!\n**${PR_TITLE}**\n${PR_URL}"
+            MENTION=""
           fi
 
+          # Use jq to safely construct JSON (avoids injection from PR titles with quotes/special chars)
+          PAYLOAD=$(jq -n \
+            --arg mention "$MENTION" \
+            --arg title "$PR_TITLE" \
+            --arg url "$PR_URL" \
+            --arg num "$PR_NUM" \
+            '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
+
           curl -s -H "Content-Type: application/json" \
-            -d "{\"content\": \"${MSG}\"}" \
+            -d "$PAYLOAD" \
             "${DISCORD_WEBHOOK_URL}"
