@@ -46,4 +46,10 @@ submodules/
 *.swp
 
 # Notebooks
+*.ipynb
 .ipynb_checkpoints
+
+# Local-only session artifacts
+brainstorm/
+scratchpad*.md
+build_*.md
