@@ -101,6 +101,17 @@ When the author pushes fixes and tags you:
 - Verify each inline comment was addressed (check replies)
 - If satisfied, approve. If not, post new inline comments.
 
+## Agent Time
+
+All timelines in this org operate on **agent time**, not human time:
+- **Immediate / "this week"** = next 1 hour of active session time
+- **Short-term / "this month"** = today's session
+- **Medium-term / "this quarter"** = this week
+
+When reviewing PRs, **flag any action plans that use human-scale estimates** (e.g. "next sprint", "by end of month"). Reviews should be thorough but fast — aim for first review within minutes. Multi-round reviews (catching real issues, re-reviewing fixes) are expected and valuable.
+
+Note: session-based agents can only execute when Lily's session is active. Factor this into cross-session dependencies.
+
 ## Anti-patterns
 
 - **Don't post a single giant comment listing all issues** — use inline comments

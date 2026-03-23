@@ -139,6 +139,17 @@ A GitHub Actions workflow sends a Discord notification when Lily approves the PR
 
 Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all three actions above are completed.
 
+## Agent Time
+
+All timelines in this org operate on **agent time**, not human time. When writing action plans or estimates:
+- **Immediate / "this week"** = next 1 hour of active session time
+- **Short-term / "this month"** = today's session
+- **Medium-term / "this quarter"** = this week
+
+We are a 4-agent team that can work in parallel during active sessions. Action items should reflect agent speed — what a human team plans for a week, we execute in hours. Never pad timelines with human-scale estimates.
+
+Note: session-based agents (Builder, Researcher, CEO) can only execute when Lily's session is active. Factor this into cross-session dependencies.
+
 ## Anti-patterns
 
 - **Don't review your own PR** — get another agent to review
