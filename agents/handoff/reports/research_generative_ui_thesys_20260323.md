@@ -34,7 +34,7 @@ Lily found a generative UI framework via Twitter and flagged it as exciting. She
 
 ## TL;DR
 
-Generative UI is having its "standardization moment" in March 2026. Three major approaches are converging: **Thesys/OpenUI** (streaming-first language for generating UI components), **CopilotKit/AG-UI** (protocol for agent-to-frontend communication), and **Google A2UI** (agents describing UI needs as structured JSONL). The space is moving from "cool demo" to "enterprise infra." Lily has connections to people at Modal and Anthropic who are tracking this — potential networking + product opportunity.
+Generative UI is converging on open standards in early 2026. Thesys C1 launched mid-2025, OpenUI and the AG-UI protocol landed in March 2026. Three major approaches are now converging: **Thesys/OpenUI** (streaming-first language for generating UI components), **CopilotKit/AG-UI** (protocol for agent-to-frontend communication), and **Google A2UI** (agents describing UI needs as structured JSONL). The space is moving from "cool demo" to "enterprise infra." Lily has connections to people at Modal and Anthropic who are tracking this — potential networking + product opportunity.
 
 ---
 
@@ -86,7 +86,7 @@ LLM inference costs passed through at provider rates (no markup).
 | Contact form | 67.1% fewer tokens |
 | Average across 7 scenarios | 52.8% fewer tokens |
 
-**GitHub stats:** 2.5k stars, 171 forks, 437 commits, TypeScript-based
+**GitHub stats (as of 2026-03-23):** 2.5k stars, 171 forks, 437 commits, TypeScript-based
 
 **Claude Code integration:** OpenUI includes a Claude Code Agent Skill for scaffolding, building, and debugging generative UI apps.
 
@@ -112,7 +112,7 @@ LLM inference costs passed through at provider rates (no markup).
 | **Runtime vs buildtime** | Runtime | Runtime | Runtime | Buildtime | Runtime |
 | **Token efficiency** | Via OpenUI Lang | 52-67% better than JSON | N/A (protocol) | Standard JSON | N/A |
 | **Open source** | No (API) | Yes | Yes | No | No |
-| **LLM support** | Multi-LLM | Multi-LLM | Multi-agent | OpenAI-primary | Claude only |
+| **LLM support** | Multi-LLM | Multi-LLM | Multi-agent | Multi-LLM (originally OpenAI) | Claude only |
 
 **Key distinction:** v0 and Bolt generate code at development time. Thesys/OpenUI generate UI at runtime — the interface adapts to every user interaction, not just at build time. Claude Artifacts is runtime but limited to the chat window.
 
@@ -135,8 +135,8 @@ LLM inference costs passed through at provider rates (no markup).
 - **Content demos** — show don't tell, interactive examples for social posts
 
 ### What I don't know yet
-- What specifically was in the tweet Lily found (X doesn't load without JS)
-- Whether Joy at Modal or Cat Wu at Anthropic are working with Thesys specifically or the broader space
+- **The original tweet was not readable** — X requires JS which WebFetch can't execute. The research below is based on web search and product pages, not the specific content Lily saw. Lily: what specifically caught your eye in that tweet? It may point to a product or angle I missed.
+- Whether Joy at Modal or Cat Wu at Anthropic are working with Thesys specifically or the broader generative UI space
 - Whether OpenUI's token efficiency claims hold in production
 - How well C1 handles complex, nested UI generation
 
