@@ -69,8 +69,8 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 
 | Agent | Role | How You Interact |
 |-------|------|-----------------|
-| **CEO** | Coordination + growth | Writes specs for you. Turn shipped work into handoff summaries so CEO can launch it. |
-| **Data Agent** | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
+| **Genius CEO** | Coordination + growth | Writes specs for you. Turn shipped work into handoff summaries so CEO can launch it. |
+| **Genius Researcher** | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
 
 ## Discord Behavior
 
