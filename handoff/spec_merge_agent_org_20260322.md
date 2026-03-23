@@ -22,7 +22,11 @@ All paths are relative to the repo root.
 │   ├── researcher/CLAUDE.md   ← from local
 │   ├── handoff/               ← status files, specs (from local)
 │   ├── onboarding.md
-│   └── launch-*.sh            ← launch scripts
+│   └── scripts/
+│       ├── launch-ceo.sh
+│       ├── launch-builder.sh
+│       ├── launch-researcher.sh
+│       └── launch.sh
 ├── autoresearch/              ← moved in as folder, keeps own pyproject.toml/venv
 │   ├── pyproject.toml
 │   ├── uv.lock
@@ -57,7 +61,7 @@ All paths are relative to the repo root.
    - Delete the old top-level `handoff/` directory
 
 3. **Launch scripts**
-   - Move `claude/launch-*.sh` and `claude/launch.sh` → `agents/`
+   - Move `claude/launch-*.sh` and `claude/launch.sh` → `agents/scripts/`
    - Update paths inside scripts to point to repo structure
 
 ### PR 2: AutoResearch
