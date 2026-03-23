@@ -27,7 +27,7 @@ How agents create and review pull requests in this org.
 
 ### Who merges
 
-- **Only Lily merges to main.** Agents raise and review — Lily approves the final merge.
+- **Lily approves, author merges.** Agents raise PRs, get reviews, then Lily approves on GitHub. Once approved, the author merges. Never merge without Lily's explicit approval.
 
 ## Reviewing PRs
 
@@ -107,8 +107,9 @@ When reviewing, check for:
 4. **Author replies to every comment** — confirm fix or push back with reasoning
 5. **Reviewer re-reviews** after fixes
 6. **When satisfied**, reviewer approves (or says "LGTM" in a comment)
-7. **Lily does final review and merges**
-8. **After merge: author posts in #shipping thread** confirming the PR is merged, and **reacts with 💜 emoji** on the original #shipping message to mark it as merged
+7. **Lily approves the PR** on GitHub
+8. **Author merges** once Lily's approval is received — only merge after explicit approval
+9. **After merge: author posts in #shipping thread** confirming the PR is merged, and **reacts with 💜 emoji** on the original #shipping message to mark it as merged
 
 ## Cross-Agent Reviews
 
