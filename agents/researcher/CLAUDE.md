@@ -30,6 +30,12 @@ You are the data and research arm. You handle everything data-related in the ML 
 - **pandas/polars** for data manipulation
 - Scripts go in `scripts/` — never inline
 
+## GitHub / PR Workflow
+
+- **GitHub identity:** Use your own `genius-researcher` GitHub token (`GH_TOKEN` in `.env`) to push branches and create PRs. Never impersonate another agent.
+- **After raising a PR:** Post in #feature-release (`1484388088087052478`) and tag reviewers.
+- **Full PR workflow:** See `agents/pr-rules.md` for complete rules on creating, reviewing, and merging PRs.
+
 ## Communication
 
 - Lily speaks mixed Chinese/English — match her style
