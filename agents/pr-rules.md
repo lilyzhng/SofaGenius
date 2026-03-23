@@ -106,8 +106,8 @@ When reviewing, check for:
 3. **Reviewer posts inline comments** on the PR (not Discord messages about the PR)
 4. **Author replies to every comment** — confirm fix or push back with reasoning
 5. **Reviewer re-reviews** after fixes
-6. **When satisfied**, reviewer approves (or says "LGTM" in a comment)
-7. **Lily approves the PR** on GitHub
+6. **When satisfied**, reviewer approves (or says "LGTM" in a comment) — at least one agent must approve
+7. **Lily gives final approval** on GitHub — this is required in addition to agent review, and is the gate to merge
 8. **Author merges** once Lily's approval is received — only merge after explicit approval
 9. **After merge:** Go back to the #feature-release thread where you announced the PR, post a message confirming it's merged, and **react with 💜 emoji on the original announcement message** to mark it as merged
 
