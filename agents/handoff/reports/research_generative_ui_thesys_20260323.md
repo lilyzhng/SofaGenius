@@ -1,176 +1,158 @@
 ---
 type: research-report
-topic: Generative UI landscape — Thesys/OpenUI, CopilotKit/AG-UI, and the emerging standard
+topic: Generative TUI — Vercel's json-render for terminal dashboards
 date: 2026-03-23
-status: initial-findings
+status: hands-on
 requested-by: lilyzhng (via Discord)
 origin: https://x.com/i/status/2036149934441783691
 context: Lily chatted with Joy from Modal about this; Cat Wu from Anthropic is also interested
 ---
 
-# Generative UI Framework Research
+# Generative TUI — Vercel's json-render
 
-## Screenshots
+## The Tweet That Started This
 
-### Thesys C1 Chat Demo — "Chat with C1, Experience Generative UI"
-![C1 Chat Demo](images/thesys_chat_demo.png)
-*Live demo at demo.thesys.dev/chat — shows prompt cards for stocks, travel, movies, street food + artifact generation (slides, reports). Uses GPT-5 by default, supports multiple LLMs.*
+**Chris Tate (@ctatedev, Vercel engineer):**
+> "Introducing Generative TUI. Ask anything — get polished dashboards with real data, rendered live in your terminal. 27 components. Streaming. json-render + Ink. `npx skills add vercel-labs/json-render --skill ink`"
 
-### Thesys Examples Page — "One API, Limitless Interfaces"
-![Thesys Examples](images/thesys_examples.png)
-*Interactive demos including Fintech Co-pilot (analytics), C1 Web Search, C1 Chat, and C1 Canvas.*
+Source: https://x.com/i/status/2036149934441783691
 
-### OpenUI GitHub Repo — 2.5k stars, open-source framework
-![OpenUI GitHub](images/openui_github.png)
-*Full-stack generative UI framework — streaming-first language, React runtime, 67% more token-efficient than JSON.*
+## What This Is
 
-## Origin
+**json-render** is Vercel's open-source Generative UI framework (13k GitHub stars as of 2026-03-23). The key innovation Lily spotted: the `@json-render/ink` package renders AI-generated dashboards **directly in the terminal** using Ink (React for CLIs).
 
-Lily found a generative UI framework via Twitter and flagged it as exciting. She has existing relationships in this space — chatted with Joy from Modal a few days ago, and Cat Wu from Anthropic is also interested.
+Instead of the AI generating raw text or code, it generates structured JSON that maps to a predefined component catalog. The framework renders it progressively as the model streams — so you see charts, tables, and interactive forms building in real-time in your terminal.
 
-- Original tweet: https://x.com/i/status/2036149934441783691
-
-> **Note on data quality:** All claims below are from vendor pages, blog posts, or press releases unless marked otherwise. No independent verification yet.
-
-## TL;DR
-
-Generative UI is converging on open standards in early 2026. Thesys C1 launched mid-2025, OpenUI and the AG-UI protocol landed in March 2026. Three major approaches are now converging: **Thesys/OpenUI** (streaming-first language for generating UI components), **CopilotKit/AG-UI** (protocol for agent-to-frontend communication), and **Google A2UI** (agents describing UI needs as structured JSONL). The space is moving from "cool demo" to "enterprise infra." Lily has connections to people at Modal and Anthropic who are tracking this — potential networking + product opportunity.
+> **Note on data quality:** Star count and feature claims are from the GitHub repo. Performance claims are from vendor blog posts, unverified by us.
 
 ---
 
-## Part 1: Key Players
+## How It Works
 
-### Thesys (thesys.dev) — "The Generative UI Company"
+1. **Define a catalog** of allowed components (what the AI can use)
+2. **AI generates JSON** constrained to your catalog schema
+3. **Framework renders** the JSON as real terminal UI components via Ink
+4. **Streaming** — components appear progressively as the model responds
 
-**What it does:** API middleware (C1) that sits between your app and any LLM. Instead of returning plain text, the LLM returns structured UI components (forms, tables, charts, layouts) that render in real-time via a React SDK.
+The default model in the ink-chat example is `anthropic/claude-haiku-4.5` — it already uses Claude out of the box.
 
-**How C1 works:**
-1. Developer swaps their LLM endpoint URL to C1 (OpenAI-compatible)
-2. C1 intercepts the LLM response and structures it as UI components
-3. C1 React SDK renders the components live as tokens stream in
-4. Supports custom React components and design systems (via Crayon)
+## 27 Terminal Components
 
-**Key technical details:**
-- OpenAI-compatible endpoint — drop-in replacement (vendor-claimed)
-- Multi-LLM: works with OpenAI, Anthropic, Google models
-- Supports tool calls for database/API integration
-- Enterprise: zero data retention, GDPR/SOC2/ISO27001 compliant (vendor-claimed)
+### Layout
+| Component | What It Does |
+|-----------|-------------|
+| Box | Flexbox container |
+| Text | Styled text (color, bold, italic) |
+| Spacer | Flexible empty space |
 
-**Team:** Founded 2024 by Rabi Shankar Guha and Parikshit Deshmukh. Team includes former Google, Stripe, Salesforce engineers.
+### Content (the interesting ones)
+| Component | What It Does |
+|-----------|-------------|
+| **Table** | Tabular data with headers, borders, column widths |
+| **BarChart** | Horizontal bar charts with labels and values |
+| **Sparkline** | Inline sparkline charts using Unicode blocks |
+| Card | Bordered container with title |
+| KeyValue | Key-value pair display |
+| Badge | Colored inline status label |
+| ProgressBar | Horizontal progress bar |
+| Markdown | Renders markdown with terminal styling |
+| Heading | h1-h4 section headings |
+| Divider | Horizontal separator |
 
-**Pricing:**
-| Tier | Cost | API Calls | Notes |
-|------|------|-----------|-------|
-| Free | $0 | 5K/mo | + $10 LLM credits |
-| Build | $49/mo | 25K/mo | $0.002/call overage |
-| Grow | $499/mo | 500K/mo | $0.001/call overage |
-| Scale | Custom | Custom | Self-host/VPC option |
+### Interactive
+| Component | What It Does |
+|-----------|-------------|
+| **TextInput** | Text field with two-way binding |
+| **Select** | Arrow-key navigated selection |
+| **MultiSelect** | Space to toggle, Enter to confirm |
+| **ConfirmInput** | Yes/No prompt |
+| **Tabs** | Tab bar with left/right arrows |
 
-LLM inference costs passed through at provider rates (no markup).
+## Cross-Platform (not just terminal)
 
-### OpenUI (github.com/thesysdev/openui) — The Open Standard
+json-render isn't terminal-only — it's a full ecosystem:
 
-**What it is:** Open-source full-stack generative UI framework by Thesys. Launched March 2026.
+| Package | Target |
+|---------|--------|
+| `@json-render/ink` | **Terminal UI** (the tweet) |
+| `@json-render/react` | Web (React) |
+| `@json-render/shadcn` | 36 pre-built shadcn/ui components |
+| `@json-render/vue` | Vue |
+| `@json-render/svelte` | Svelte |
+| `@json-render/react-native` | Mobile |
+| `@json-render/react-pdf` | PDF documents |
+| `@json-render/remotion` | Video generation |
+| `@json-render/react-three-fiber` | 3D scenes |
+| `@json-render/image` | SVG/PNG (OG images) |
+| `@json-render/react-email` | HTML emails |
+| **`@json-render/mcp`** | **Claude integration via MCP** |
 
-**Core innovation — OpenUI Lang:**
-- Compact, streaming-first language for model-generated UI
-- Up to **67% more token-efficient than JSON** (vendor-benchmarked)
-- Progressive rendering as LLM tokens arrive
-- Built-in component libraries (charts, forms, tables, layouts)
-- Typed component contracts using Zod schemas
+## Hands-On: What I Found
 
-**Token efficiency benchmarks (vendor-claimed):**
-| UI Type | Reduction vs JSON-Render |
-|---------|------------------------|
-| Simple table | 56.5% fewer tokens |
-| Contact form | 67.1% fewer tokens |
-| Average across 7 scenarios | 52.8% fewer tokens |
+### Cloned and scaffolded locally
 
-**GitHub stats (as of 2026-03-23):** 2.5k stars, 171 forks, 437 commits, TypeScript-based
+```
+git clone https://github.com/vercel-labs/json-render.git
+```
 
-**Claude Code integration:** OpenUI includes a Claude Code Agent Skill for scaffolding, building, and debugging generative UI apps.
+The `examples/ink-chat/` is a full terminal chat app:
+- Uses `@ai-sdk/gateway` with `anthropic/claude-haiku-4.5` as default model
+- Has built-in tools: `web_search`, `get_weather`, `get_hacker_news`, `get_github_repo`, `get_crypto_price`
+- Streams JSON specs as the model responds, rendering live in the terminal
+- Interactive wizard mode: steps through forms one input at a time
+- The system prompt includes detailed design principles for terminal dashboards (hierarchy, color strategy, spacing, chart usage)
 
-### CopilotKit / AG-UI Protocol
+### Claude Code Skill
 
-**What it is:** Open protocol standardizing how AI agents communicate with frontends in real-time.
+The tweet mentions `npx skills add vercel-labs/json-render --skill ink` — this installs json-render as a **Claude Code skill**, meaning any Claude Code session can generate terminal UIs. This is directly applicable to our agents.
 
-**March 12, 2026 joint release:** Oracle + Google + CopilotKit aligned three specs:
-- **Open Agent Specification** (Oracle) — define agent behavior framework-agnostically
-- **AG-UI** (CopilotKit) — standardize live agent-to-frontend interaction streams
-- **A2UI** (Google) — agents describe UI needs as structured JSONL, frontends render natively
+### MCP Integration
 
-**Why it matters:** This is the "HTTP of agent UIs" — a standard protocol so any agent can talk to any frontend without vendor lock-in.
-
----
-
-## Part 2: How They Compare
-
-| Dimension | Thesys/C1 | OpenUI | CopilotKit/AG-UI | v0 (Vercel) | Claude Artifacts |
-|-----------|-----------|--------|-------------------|-------------|-----------------|
-| **Approach** | API middleware | OSS framework | Protocol standard | Code generation | Inline rendering |
-| **Output** | Live UI components | Streaming UI lang | Agent-frontend bridge | Static code | HTML/React in chat |
-| **Runtime vs buildtime** | Runtime | Runtime | Runtime | Buildtime | Runtime |
-| **Token efficiency** | Via OpenUI Lang | 52-67% better than JSON | N/A (protocol) | Standard JSON | N/A |
-| **Open source** | No (API) | Yes | Yes | No | No |
-| **LLM support** | Multi-LLM | Multi-LLM | Multi-agent | Multi-LLM (originally OpenAI) | Claude only |
-
-**Key distinction:** v0 and Bolt generate code at development time. Thesys/OpenUI generate UI at runtime — the interface adapts to every user interaction, not just at build time. Claude Artifacts is runtime but limited to the chat window.
-
----
-
-## Part 3: Relevance to SofaGenius
-
-### Why this matters to us
-
-1. **Our agents produce reports and research** — currently as markdown in handoff files. Generative UI could turn those into interactive dashboards, filterable tables, and visual comparisons. Instead of reading my sandbox research report as a markdown file, imagine it as a live comparison tool.
-
-2. **Content/product opportunity** — Lily has direct connections (Joy at Modal, Cat Wu at Anthropic). Both companies are interested in this space. This could be a collaboration, content, or integration opportunity.
-
-3. **OpenUI has a Claude Code skill** — immediate integration path for our agents. We could use it to generate interactive research reports or data visualizations.
-
-### Potential use cases
-- **Research reports as interactive UIs** — filter, sort, compare products dynamically
-- **Data exploration** — DuckDB query results rendered as live charts/tables
-- **Agent dashboards** — what did your agents do today, visualized
-- **Content demos** — show don't tell, interactive examples for social posts
-
-### What I don't know yet
-- **The original tweet was not readable** — X requires JS which WebFetch can't execute. The research below is based on web search and product pages, not the specific content Lily saw. Lily: what specifically caught your eye in that tweet? It may point to a product or angle I missed.
-- Whether Joy at Modal or Cat Wu at Anthropic are working with Thesys specifically or the broader generative UI space
-- Whether OpenUI's token efficiency claims hold in production
-- How well C1 handles complex, nested UI generation
+`@json-render/mcp` turns json-render into an MCP server. Claude, ChatGPT, Cursor, and VS Code can all generate UIs through it. This means our agents could render research results as interactive terminal dashboards via MCP.
 
 ---
 
-## Part 4: Suggested Next Steps
+## Why This Matters for SofaGenius
 
-### For Lily (networking)
-- [ ] Follow up with Joy at Modal — ask what they're building with generative UI
-- [ ] Connect with Cat Wu at Anthropic — OpenUI already has Claude Code integration
-- [ ] Consider a "generative UI for AI agents" content angle — we have a real use case
+### 1. We live in the terminal
+All our agents run via Claude Code in the terminal. json-render/ink means our agents could render rich dashboards, charts, and interactive forms instead of plain text. Imagine: Researcher generates a dataset comparison as a live BarChart + Table instead of a markdown file.
 
-### For Researcher (technical evaluation)
-- [ ] Try OpenUI Claude Code skill — install and test with a research report
-- [ ] Benchmark token efficiency against raw markdown output
-- [ ] Test C1 API free tier (5K calls/mo) with a sample data visualization
+### 2. Claude is the default model
+The ink-chat example already uses Claude Haiku. Zero friction to integrate.
 
-### For Builder (if we decide to integrate)
-- [ ] Evaluate OpenUI React SDK for potential agent dashboard
-- [ ] Assess whether our existing frontend could use C1 as a drop-in
+### 3. MCP bridge to other tools
+`@json-render/mcp` means the same UI generation works in Cursor, VS Code, and web apps. Build once, render anywhere.
+
+### 4. Networking opportunity
+Lily knows Joy from Modal and Cat Wu from Anthropic — both interested in this space. Chris Tate is at Vercel. This is a three-way connection opportunity (Vercel × Modal × Anthropic) around generative UI for AI agents.
+
+---
+
+## Action Plan
+
+### Immediate (Owner: Researcher)
+- [ ] Run the ink-chat example locally with Claude API key and capture terminal screenshots
+- [ ] Test `npx skills add vercel-labs/json-render --skill ink` in a Claude Code session
+- [ ] Evaluate: can our research reports be rendered as terminal dashboards?
+
+### Short-term (Owner: Builder if we decide to integrate)
+- [ ] Evaluate `@json-render/mcp` for agent integration
+- [ ] Prototype: Researcher generates dataset comparison as terminal dashboard
+
+### Networking (Owner: Lily)
+- [ ] Follow up with Joy (Modal) — what are they building with json-render?
+- [ ] Connect with Cat Wu (Anthropic) — OpenAI-compatible but Claude-default is interesting positioning
+- [ ] Consider reaching out to Chris Tate (Vercel) — our multi-agent terminal workflow is a compelling use case
 
 ---
 
 ## Sources
 
 ### Primary
-- https://www.thesys.dev — Thesys product page
-- https://www.thesys.dev/pricing — Pricing details
-- https://github.com/thesysdev/openui — OpenUI open source repo (2.5k stars)
-- https://www.copilotkit.ai/blog/introducing-ag-ui-the-protocol-where-agents-meet-users — AG-UI launch
-- https://x.com/i/status/2036149934441783691 — Original tweet (Lily's find)
+- https://github.com/vercel-labs/json-render — GitHub repo (13k stars)
+- https://json-render.dev/ — Official docs
+- https://x.com/i/status/2036149934441783691 — Original tweet by Chris Tate
 
 ### Secondary
-- https://www.copilotkit.ai/blog/the-developer-s-guide-to-generative-ui-in-2026 — CopilotKit's landscape overview
-- https://blogs.oracle.com/ai-and-datascience/announcing-agent-spec-for-a2ui-copilotkit-ag-ui — Oracle/Google/CopilotKit joint release
-- https://www.infoworld.com/article/3971182/thesys-introduces-generative-ui-api-for-building-ai-apps.html — InfoWorld coverage
-- https://www.businesswire.com/news/home/20250418761213/en/Thesys-Introduces-C1-to-Launch-the-Era-of-Generative-UI — Thesys C1 launch press release
+- https://thenewstack.io/vercels-json-render-a-step-toward-generative-ui/ — The New Stack coverage
+- https://blog.logrocket.com/vercel-json-render-dynamic-ui/ — LogRocket analysis
