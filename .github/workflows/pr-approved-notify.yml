@@ -15,6 +15,7 @@ jobs:
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
           FEATURE_RELEASE_CHANNEL: "1484388088087052478"
+          GH_TOKEN: ${{ github.token }}
         run: |
           AUTHOR="${{ github.event.pull_request.user.login }}"
           PR_NUM="${{ github.event.pull_request.number }}"
@@ -22,7 +23,8 @@ jobs:
           PR_TITLE="${{ github.event.pull_request.title }}"
 
           # Map GitHub username to Discord bot ID
-          # Uses Jackie's bot token to post — Jackie is the notifier since she doesn't raise PRs here
+          # Uses Jackie's bot token — Jackie handles notifications since she doesn't raise PRs
+          # and won't be confused with an agent making a request (unlike CEO or Builder tokens)
           DISCORD_ID=$(jq -r ".\"${AUTHOR}\"" agents/github-to-discord.json)
 
           if [ "$DISCORD_ID" != "null" ] && [ -n "$DISCORD_ID" ]; then
@@ -31,7 +33,19 @@ jobs:
             MENTION=""
           fi
 
-          # Use jq to safely construct JSON (avoids injection from PR titles with quotes/special chars)
+          # Look for the discord-announcement comment to find the right thread
+          # Uses tail -1 so if agent posts a correction, the latest ID wins
+          ANNOUNCEMENT_ID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUM}/comments" \
+            --jq '.[] | select(.body | startswith("discord-announcement:")) | .body | ltrimstr("discord-announcement: ") | rtrimstr("\n")' \
+            2>/dev/null | tail -1)
+
+          # Validate: must be a numeric Discord snowflake ID
+          if [ -n "$ANNOUNCEMENT_ID" ] && ! echo "$ANNOUNCEMENT_ID" | grep -qE '^[0-9]+$'; then
+            echo "Warning: invalid announcement ID '$ANNOUNCEMENT_ID', ignoring"
+            ANNOUNCEMENT_ID=""
+          fi
+
+          # Build the notification payload with jq string interpolation for proper newlines
           PAYLOAD=$(jq -n \
             --arg mention "$MENTION" \
             --arg title "$PR_TITLE" \
@@ -39,8 +53,35 @@ jobs:
             --arg num "$PR_NUM" \
             '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
 
-          # Post via Discord Bot API (not webhook) so mentions actually ping
-          curl -sf -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
-            -d "$PAYLOAD" \
-            "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
+          if [ -n "$ANNOUNCEMENT_ID" ]; then
+            # Try posting in the existing thread (message ID = thread ID for threads on messages)
+            RESPONSE=$(curl -s -w "\n%{http_code}" -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+              -d "$PAYLOAD" \
+              "https://discord.com/api/v10/channels/${ANNOUNCEMENT_ID}/messages")
+
+            HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+
+            if [ "$HTTP_CODE" != "200" ]; then
+              # Thread doesn't exist yet — create one, then post the message in it
+              THREAD=$(curl -sf -H "Content-Type: application/json" \
+                -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+                -d '{"name": "PR Approved", "auto_archive_duration": 1440}' \
+                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/threads")
+
+              THREAD_ID=$(echo "$THREAD" | jq -r '.id')
+
+              if [ "$THREAD_ID" != "null" ] && [ -n "$THREAD_ID" ]; then
+                curl -sf -H "Content-Type: application/json" \
+                  -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+                  -d "$PAYLOAD" \
+                  "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
+              fi
+            fi
+          else
+            # Fallback: post in the channel if no announcement ID found
+            curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
+              -d "$PAYLOAD" \
+              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
+          fi
