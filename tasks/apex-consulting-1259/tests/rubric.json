@@ -1,0 +1,113 @@
+{
+  "criterion 1": {
+    "description": "States that the difference between the average annual charges incurred by customers aged under 25 and with a BMI of over 25 with dependents vs. without dependents is $4,075 (acceptable range is $3,975 to $4,175).",
+    "sources": "insurance.csv",
+    "justification": "To assess the data and create the data splits that can help us address the client's ask, we first need to classify each customer using the following formulas and fields: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. Once these fields have been created, we can get all required datapoints by creating 2 pivot tables: Table 1 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'With Dependents' Table 2 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'Without Dependents' This gives us the following numbers: Table 1 Age Group Under 25 Over 25 Under 25 $5,506 $12,802 25 to 50 $10,785 $13,074 Above 50 $16,566 $20,223 Table 2 Age Group Under 25 Over 25 Under 25 $5,656 $8,727 25 to 50 $9,761 $12,737 Above 50 $14,325 $17,164 This gives us the following information for the 4 customer segments our client is interested in repricing Age Group BMI Annual Difference (w/ Dependents - w/o) (1) Under 25 Over 25 = $12,801.6 - $8,726.5 = $4,075.1 (2) 25 to 50 Over 25 = $13,073.9 - $12,736.8 = $337.1 (3) Above 50 Over 25 = $20,223.1 - $17,163.7 = $3,059.4 (4) Above 50 Under 25 = $16,565.8 - $14,324.7 = $2,241.1 Output to be reported in whole numbers as follows: (1) Under 25 Over 25 = $4,075 (2) 25 to 50 Over 25 = $337 (3) Above 50 Over 25 = $3,059 (4) Above 50 Under 25 = $2,241",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the difference between the average annual charges incurred by customers aged between 25 and 50 and with a BMI of over 25 with dependents vs. without dependents is $337 (acceptable range is $327 to $347).",
+    "sources": "insurance.csv",
+    "justification": "To assess the data and create the data splits that can help us address the client's ask, we first need to classify each customer using the following formulas and fields: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. Once these fields have been created, we can get all required datapoints by creating 2 pivot tables: Table 1 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'With Dependents' Table 2 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'Without Dependents' This gives us the following numbers: Table 1 Age Group Under 25 Over 25 Under 25 $5,506 $12,802 25 to 50 $10,785 $13,074 Above 50 $16,566 $20,223 Table 2 Age Group Under 25 Over 25 Under 25 $5,656 $8,727 25 to 50 $9,761 $12,737 Above 50 $14,325 $17,164 This gives us the following information for the 4 customer segments our client is interested in repricing Age Group BMI Annual Difference (w/ Dependents - w/o) (1) Under 25 Over 25 = $12,801.6 - $8,726.5 = $4,075.1 (2) 25 to 50 Over 25 = $13,073.9 - $12,736.8 = $337.1 (3) Above 50 Over 25 = $20,223.1 - $17,163.7 = $3,059.4 (4) Above 50 Under 25 = $16,565.8 - $14,324.7 = $2,241.1 Output to be reported in whole numbers as follows: (1) Under 25 Over 25 = $4,075 (2) 25 to 50 Over 25 = $337 (3) Above 50 Over 25 = $3,059 (4) Above 50 Under 25 = $2,241",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that the difference between the average annual charges incurred by customers aged above 50 and with a BMI of over 25 with dependents vs. without dependents is $3,059 (acceptable range is $2,959 to $3,159).",
+    "sources": "insurance.csv",
+    "justification": "To assess the data and create the data splits that can help us address the client's ask, we first need to classify each customer using the following formulas and fields: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. Once these fields have been created, we can get all required datapoints by creating 2 pivot tables: Table 1 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'With Dependents' Table 2 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'Without Dependents' This gives us the following numbers: Table 1 Age Group Under 25 Over 25 Under 25 $5,506 $12,802 25 to 50 $10,785 $13,074 Above 50 $16,566 $20,223 Table 2 Age Group Under 25 Over 25 Under 25 $5,656 $8,727 25 to 50 $9,761 $12,737 Above 50 $14,325 $17,164 This gives us the following information for the 4 customer segments our client is interested in repricing Age Group BMI Annual Difference (w/ Dependents - w/o) (1) Under 25 Over 25 = $12,801.6 - $8,726.5 = $4,075.1 (2) 25 to 50 Over 25 = $13,073.9 - $12,736.8 = $337.1 (3) Above 50 Over 25 = $20,223.1 - $17,163.7 = $3,059.4 (4) Above 50 Under 25 = $16,565.8 - $14,324.7 = $2,241.1 Output to be reported in whole numbers as follows: (1) Under 25 Over 25 = $4,075 (2) 25 to 50 Over 25 = $337 (3) Above 50 Over 25 = $3,059 (4) Above 50 Under 25 = $2,241",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the difference between the average annual charges incurred by customers aged above 50 and with a BMI of under or equal to 25 with dependents vs. without dependents is $2,241 (acceptable range is $2,141 to $2,341).",
+    "sources": "insurance.csv",
+    "justification": "To assess the data and create the data splits that can help us address the client's ask, we first need to classify each customer using the following formulas and fields: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. Once these fields have been created, we can get all required datapoints by creating 2 pivot tables: Table 1 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'With Dependents' Table 2 - Rows: 'Age group' - Columns: 'BMI category' - Values: Average of 'charges' - Filter: 'Dependent category' = 'Without Dependents' This gives us the following numbers: Table 1 Age Group Under 25 Over 25 Under 25 $5,506 $12,802 25 to 50 $10,785 $13,074 Above 50 $16,566 $20,223 Table 2 Age Group Under 25 Over 25 Under 25 $5,656 $8,727 25 to 50 $9,761 $12,737 Above 50 $14,325 $17,164 This gives us the following information for the 4 customer segments our client is interested in repricing Age Group BMI Annual Difference (w/ Dependents - w/o) (1) Under 25 Over 25 = $12,801.6 - $8,726.5 = $4,075.1 (2) 25 to 50 Over 25 = $13,073.9 - $12,736.8 = $337.1 (3) Above 50 Over 25 = $20,223.1 - $17,163.7 = $3,059.4 (4) Above 50 Under 25 = $16,565.8 - $14,324.7 = $2,241.1 Output to be reported in whole numbers as follows: (1) Under 25 Over 25 = $4,075 (2) 25 to 50 Over 25 = $337 (3) Above 50 Over 25 = $3,059 (4) Above 50 Under 25 = $2,241",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Recommends that the updated monthly premium for customers aged under 25, with a BMI of over 25, who have dependents should be $790 per month (acceptable range is $780 to $800).",
+    "sources": "Prompt",
+    "justification": "To calculate the new monthly premiums, we first need to add additional fields to the underlying dataset: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. We know from criteria (IDs 12733, 12734, 12735, and 12736) that the difference between customers with and without dependents for the 4 customer segments our client wants to reprice is as follows: Age Group BMI Annual Difference Under 25 Over 25 $4,075 25 to 50 Over 25 $337 Above 50 Over 25 $3,059 Above 50 Under 25 $2,241 Per the prompt, we know that the amount our client would like to increase current premiums by (for each category) is equal to this difference, divided by 12, and rounded to the next highest multiple of 10.\u00a0 We also know from the prompt that the current monthly premiums for each customer segment are as follows: Age Group BMI Current Premium Under 25 Over 25 $450 25 to 50 Over 25 $600 Above 50 Over 25 $1,000 Above 50 Under 25 $800 Therefore, the new premiums can be calculated as = roundup(Annual Difference / 12, -1) + Current Premium The new premiums for customers aged between 25 and 50 (both inclusive) and a BMI of over 25 is therefore = roundup(337/12, -1) + $600 = roundup($28.1,-1) + $600 = $30 + $600 = $630 To summarize, our recommendation is as follows: Age Group BMI Proposed New Premium Under 25 Over 25 $790 25 to 50 Over 25 $630 Above 50 Over 25 $1,260 Above 50 Under 25 $990 Therefore, the premiums for customers aged under 25, with a BMI of over 25, and with a dependent, should be $630 (direct reference of criterion ID 12734). Numbers to be reported as whole numbers, though due to rounding output should only be multiples of 10. Please note, the answers resulting from expressing the stated formulas with the stated inputs may vary from the final presented answers given that the prompt instructs that interim calculations should not be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 6": {
+    "description": "Recommends that the updated monthly premium for customers aged between 25 to 50 (including both ends), with a BMI of over 25, who have dependents should be $630 per month (acceptable range is $620 to $640).",
+    "sources": "Prompt",
+    "justification": "To calculate the new monthly premiums, we first need to add additional fields to the underlying dataset: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. We know from criteria (IDs 12733, 12734, 12735, and 12736) that the difference between customers with and without dependents for the 4 customer segments our client wants to reprice is as follows: Age Group BMI Annual Difference Under 25 Over 25 $4,075 25 to 50 Over 25 $337 Above 50 Over 25 $3,059 Above 50 Under 25 $2,241 Per the prompt, we know that the amount our client would like to increase current premiums by (for each category) is equal to this difference, divided by 12, and rounded to the next highest multiple of 10.\u00a0 We also know from the prompt that the current monthly premiums for each customer segment are as follows: Age Group BMI Current Premium Under 25 Over 25 $450 25 to 50 Over 25 $600 Above 50 Over 25 $1,000 Above 50 Under 25 $800 Therefore, the new premiums can be calculated as = roundup(Annual Difference / 12, -1) + Current Premium The new premiums for customers aged between 25 and 50 (both inclusive) and a BMI of over 25 is therefore = roundup(337/12, -1) + $600 = roundup($28.1,-1) + $600 = $30 + $600 = $630 To summarize, our recommendation is as follows: Age Group BMI Proposed New Premium Under 25 Over 25 $790 25 to 50 Over 25 $630 Above 50 Over 25 $1,260 Above 50 Under 25 $990 Therefore, the premiums for customers aged under 25, with a BMI of over 25, and with a dependent, should be $630 (direct reference of criterion ID 12734). Numbers to be reported as whole numbers, though due to rounding output should only be multiples of 10. Please note, the answers resulting from expressing the stated formulas with the stated inputs may vary from the final presented answers given that the prompt instructs that interim calculations should not be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 7": {
+    "description": "Recommends that the updated monthly premium for customers aged over 50, with a BMI of over 25, who have dependents should be $1,260 per month (acceptable range is $1,250 to $1,270).",
+    "sources": "Prompt",
+    "justification": "To calculate the new monthly premiums, we first need to add additional fields to the underlying dataset: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. We know from criteria (IDs 12733, 12734, 12735, and 12736) that the difference between customers with and without dependents for the 4 customer segments our client wants to reprice is as follows: Age Group BMI Annual Difference Under 25 Over 25 $4,075 25 to 50 Over 25 $337 Above 50 Over 25 $3,059 Above 50 Under 25 $2,241 Per the prompt, we know that the amount our client would like to increase current premiums by (for each category) is equal to this difference, divided by 12, and rounded to the next highest multiple of 10.\u00a0 We also know from the prompt that the current monthly premiums for each customer segment are as follows: Age Group BMI Current Premium Under 25 Over 25 $450 25 to 50 Over 25 $600 Above 50 Over 25 $1,000 Above 50 Under 25 $800 Therefore, the new premiums can be calculated as = roundup(Annual Difference / 12, -1) + Current Premium The new premiums for customers aged between 25 and 50 (both inclusive) and a BMI of over 25 is therefore = roundup(337/12, -1) + $600 = roundup($28.1,-1) + $600 = $30 + $600 = $630 To summarize, our recommendation is as follows: Age Group BMI Proposed New Premium Under 25 Over 25 $790 25 to 50 Over 25 $630 Above 50 Over 25 $1,260 Above 50 Under 25 $990 Therefore, the premiums for customers aged under 25, with a BMI of over 25, and with a dependent, should be $630 (direct reference of criterion ID 12734). Numbers to be reported as whole numbers, though due to rounding output should only be multiples of 10. Please note, the answers resulting from expressing the stated formulas with the stated inputs may vary from the final presented answers given that the prompt instructs that interim calculations should not be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 8": {
+    "description": "Recommends that the updated monthly premium for customers aged over 50, with a BMI of under or equal to 25, who have dependents should be $990 per month (acceptable range is $980 to $1,000).",
+    "sources": "Prompt",
+    "justification": "To calculate the new monthly premiums, we first need to add additional fields to the underlying dataset: - Age group = IF(A2 < 25, 'Under 25' , IF ( A2 \u2264 50, '25 to 50' , 'Above 50')) where column A = 'age' column; - BMI category = IF(C2 \u2264 25,'Under 25','Over 25')\u00a0 where column C = 'bmi' column; - Dependent category = IF(D2 <> 0, 'With Dependents' , 'Without Dependents') where column D = 'children' column. We know from criteria (IDs 12733, 12734, 12735, and 12736) that the difference between customers with and without dependents for the 4 customer segments our client wants to reprice is as follows: Age Group BMI Annual Difference Under 25 Over 25 $4,075 25 to 50 Over 25 $337 Above 50 Over 25 $3,059 Above 50 Under 25 $2,241 Per the prompt, we know that the amount our client would like to increase current premiums by (for each category) is equal to this difference, divided by 12, and rounded to the next highest multiple of 10.\u00a0 We also know from the prompt that the current monthly premiums for each customer segment are as follows: Age Group BMI Current Premium Under 25 Over 25 $450 25 to 50 Over 25 $600 Above 50 Over 25 $1,000 Above 50 Under 25 $800 Therefore, the new premiums can be calculated as = roundup(Annual Difference / 12, -1) + Current Premium The new premiums for customers aged between 25 and 50 (both inclusive) and a BMI of over 25 is therefore = roundup(337/12, -1) + $600 = roundup($28.1,-1) + $600 = $30 + $600 = $630 To summarize, our recommendation is as follows: Age Group BMI Proposed New Premium Under 25 Over 25 $790 25 to 50 Over 25 $630 Above 50 Over 25 $1,260 Above 50 Under 25 $990 Therefore, the premiums for customers aged under 25, with a BMI of over 25, and with a dependent, should be $630 (direct reference of criterion ID 12734). Numbers to be reported as whole numbers, though due to rounding output should only be multiples of 10. Please note, the answers resulting from expressing the stated formulas with the stated inputs may vary from the final presented answers given that the prompt instructs that interim calculations should not be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4
+    ]
+  },
+  "criterion 9": {
+    "description": "States at least one of the following key risks with the pricing methodology: - It unfairly penalizes customers for having children as opposed to focusing on underlying health issues to drive pricing. - It does not account for outliers especially for smaller customer segments. - It does not incorporate known health determinants other than BMI and age (e.g., smoking behavior).",
+    "sources": "",
+    "justification": "A consultant would readily state at least one of the following risk factors associated with this methodology: - The methodology does not address other drivers of medical costs, including drivers that have been widely studied and acknowledged, e.g., whether a customer is a smoker or not, or if they exercise or not. - The methodology treats correlation as causation, potentially unfairly penalizing individuals with children when other underlying health conditions or habits may be at play. - The methodology does not account for outliers, particularly for customer segments with a low N where outliers can skew averages significantly.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

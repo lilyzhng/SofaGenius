@@ -1,0 +1,104 @@
+{
+  "criterion 1": {
+    "description": "States that Mr. Smith is liable for Ms. Brown's damages due to his failure to yield the right-of-way.",
+    "sources": "Ct. Gen. Stat. 14-301.pdf",
+    "justification": "Per Connecticut law, '[t]he driver of a vehicle shall stop in obedience to a stop sign at such clearly marked stop line or lines as may be established by the traffic authority having jurisdiction or, in the absence of such line or lines, shall stop in obedience to a stop sign at the entrance to a through highway and shall yield the right-of-way to vehicles not so obliged to stop which are within the intersection or approaching so closely as to constitute an immediate hazard. (Ct. Gen. Stat. 14-301 (c)). Mr. Smith breached his duty to stop at the stop sign and he did not yield the right-of-way to oncoming vehicles, such as Ms. Brown. Accordingly, Mr. Smith will be considered negligent and liable for Ms. Brown's injuries.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that Acme Trucking is liable for Ms. Brown's damages under 'respondeat superior'.",
+    "sources": "Ct. Gen. Stat. 52-183.pdf",
+    "justification": "Section 52-183 provides that '[i]n any civil action brought against the owner of a motor vehicle to recover damages for the negligent or reckless operation of the motor vehicle, the operator, if he is other than the owner of the motor vehicle, shall be presumed to be the agent and servant of the owner of the motor vehicle and operating it in the course of his employment. The defendant shall have the burden of rebutting the presumption.' (Ct. Gen. Stat. 52-183). As noted in the prompt, the semi-truck was owned by Acme Trucking and was operated by Acme Trucking's employee, Mr. Smith. Therefore, there is a presumption under Connecticut law that he was operating the vehicle in the course of his employment. There are no facts provided that would rebut the presumption. As such, Acme Trucking can also be held responsible for Ms. Brown's damages under a vicarious liability theory or 'respondeat superior.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that Ms. Brown's recovery may be reduced in proportion to any comparative fault she may have in contributing to the accident.",
+    "sources": "Ct. Gen. Stat. 52-572h.pdf",
+    "justification": "Under Connecticut law, where a plaintiff is 50% or less at fault, the plaintiff's damages must be diminished in proportion to the plaintiff's negligence. If the plaintiff's fault is greater than the defendant's fault (51%), the plaintiff is barred from recovery. (Ct. Gen. Stat. 52-572h (b), (c)). Ms. Brown stated that she never saw the semi-truck, despite it crossing three lanes of traffic before striking her vehicle. She also took no evasive actions. She may be found to have been inattentive and, had she seen the vehicle and applied the brakes, could have possibly avoided the accident. As such, a factfinder may find that she contributed, partially, to the accident, although Mr. Smith will still be found majority at fault.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Identifies that the recovery of economic damages will be reduced based on Ms. Brown's comparative negligence.",
+    "sources": "Ct. Gen. Stat. 52-572h.pdf",
+    "justification": "'Economic damages' means compensation determined by the trier of fact for pecuniary losses including, but not limited to, the cost of reasonable and necessary medical care, rehabilitative services, custodial care and loss of earnings or earning capacity excluding any noneconomic damages'. (Ct. Gen. Stat. 52-572h(a)(1)). Ms. Brown has claimed economic damages in connection with the following: EMT Ambulance - $1,000. Memorial Hospital - $20,000. Physical Therapy - $24,000. Lost Wages - $2,000. 'Recoverable economic damages' means the economic damages reduced by any applicable findings including but not limited to set-offs, credits, comparative negligence, additur and remittitur, and any reduction for applicable collateral sources. (Ct. Gen. Stat. 52-572h(a)(3)). The above-listed economic damages incurred by Ms. Brown are recoverable subject to reductions based on Ms. Brown's comparative negligence and any applicable collateral sources.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that Ms. Brown's damages will be reduced by applicable collateral sources.",
+    "sources": "Hassett v. City of New Haven.pdf",
+    "justification": "In Connecticut, courts are required to initially calculate the amount of the plaintiff's total damages proximately caused by the tortfeasor and then deduct the appropriate amount of 'collateral sources' as that term is defined by \u00a7 52-225b. (Hassett v. City of New Haven, 858 A. 2d 922, 925 (Conn. Super. Ct. 2004)). 'Collateral sources' means any payments made to the claimant, or on his behalf, by or pursuant to: (1) Any health or sickness insurance, automobile accident insurance that provides health benefits, and any other similar insurance benefits, except life insurance benefits available to the claimant, whether purchased by him or provided by others; or (2) any contract or agreement of any group, organization, partnership or corporation to provide, pay for or reimburse the costs of hospital, medical, dental or other health care services. 'Collateral sources' do not include amounts received by a claimant as a settlement. (Ct. Gen. Stat. 52-225b). Absent any applicable exception or prohibition, Ms. Brown's economic damages may be reduced by applicable collateral sources.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that no reductions are allowed for collateral payments for which a right of subrogation exists.",
+    "sources": "Marciano v. Jimenez.pdf Ct. Gen. Stat. 52-225a.pdf",
+    "justification": "Section 52-225a makes an exception to the required deduction for collateral source payments for which a right of subrogation, or reimbursement, exists. (Marciano v. Jimenez, 151 A. 3d 1280, 1281 (Ct. 2016)). As noted by the Connecticut Supreme Court, 'if there is any right of subrogation, a reduction is precluded. The phrase 'no reduction' in \u00a7 52-225a (a) leaves no doubt that if a right of subrogation exists, the trial court cannot order a collateral source reduction of any amount'. (Marciano v. Jimenez, 151 A. 3d 1280, 1284 (Ct. 2016)). Assuming that Ms. Brown's healthcare insurer has a right of subrogation, a collateral source reduction is prohibited.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "States that voluntary write-offs are not 'collateral sources.'",
+    "sources": "Hassett v. City of New Haven.pdf",
+    "justification": "Subsequently forgiven debts are not collateral sources under the statute. (Hassett v. City of New Haven, 858 A. 2d 922, 924 (Conn. Super. Ct. 2004)). Accordingly, the voluntary write-offs by the medical providers, which are 'subsequently forgiven debts', will not count as a collateral source payment that can be reduced.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "States that collateral source reductions are offset by any premium payments made by Ms. Brown or on her behalf.",
+    "sources": "Jones v. Kramer.pdf Alvarado v. Black.pdf Ct. Gen. Stat. 52-225a.pdf",
+    "justification": "\u00a7 52-225a authorizes the trial court to reduce the plaintiff's economic damages award by an amount equal to the sum of collateral source payments received by the plaintiff, less any amount paid by or on behalf of the plaintiff to secure those payments. (Jones v. Kramer, 267 Conn. 336, 339 (Ct. 2004)). Collateral source reduction is a two part process: (1) the total amount of collateral source benefits a claimant has received is determined in accordance with \u00a7 52-225a (b); and (2) that amount is then decreased, pursuant to \u00a7 52-225a (c), by the total amount that has been 'paid, contributed, or forfeited ... by, or on behalf of, the claimant or members of his immediate family' to secure those benefits. (Alvarado v. Black, 248 Conn. 409, 413 (Ct. 1999)). Applying the above to the current situation, the payments made by the Ms. Brown's health insurer constitute collateral source payments within the meaning of \u00a7 52-225b. Consequently, those payments can be included in the first step of the calculation of the amount by which the defendant is entitled to a reduction of the economic damages. As previously noted, \u00a7 52-225a (c) permits Ms. Brown to offset the amount of a reduction for collateral source benefits she has received by 'any amount which has been paid, contributed, or forfeited ... by, or on behalf of, the claimant or members of his immediate family to secure his right to any collateral source benefit which he has received as a result of such injury or death.' Thus, the premium payments made by Ms. Brown to secure the health insurance can be used to offset the collateral source payment reduction. (Alvarado v. Black, 248 Conn. 409, 414-15 (Ct. 1999)).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  }
+}

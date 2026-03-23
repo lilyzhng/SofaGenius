@@ -1,0 +1,104 @@
+{
+  "criterion 1": {
+    "description": "Identifies that only substantive requirements of ARARs must be met for on-site CERCLA actions.",
+    "sources": "",
+    "justification": "For on-site CERCLA response actions, permits are not required: 'No Federal, State, or local permit shall be required for the portion of any removal or remedial action conducted entirely onsite.' 42 U.S.C. \u00a7 9621(e)(1); see also NCP, 'No federal, state, or local permits are required for on-site response actions.' 40 C.F.R. \u00a7 300.400(e)(1). At the same time, a selected remedial action must, upon completion, 'at least attain [the] legally applicable or relevant and appropriate standard, requirement, criteria, or limitation (ARARs).' 42 U.S.C. \u00a7 9621(d)(2)(A); NCP directs identification of ARARs on a site-specific basis. 40 C.F.R. \u00a7 300.400(g)(1)\u2013(2). The ROD expressly lists ARARs as 'Substantive Portions of Section 106 of the NHPA' and 'Substantive Portions of ORS 97.745,' and the selected remedy is an on-site 'dig-and-haul.' Application. Because this is an on-site CERCLA remedial action, procedural/permit steps are not required, but EPA must still meet the substantive portions of the identified ARARs (NHPA \u00a7 106; ORS 97.745). https://www.law.cornell.edu/uscode/text/42/9621 https://semspub.epa.gov/work/HQ/174076.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Identifies that NHPA consultation is a procedural requirement.",
+    "sources": "",
+    "justification": "Section 106 of NHPA, 54 U.S.C. 306108, requires that federal agencies take into account the effect of their projects on any historic property, and provide the Advisory Council on Historic Preservation (ACHP) a reasonable opportunity to comment with regard to the undertaking. Federal agencies must also undertake planning to minimize any harm to historic places posed by their undertakings. 54 U.S. Code 306107. https://www.law.cornell.edu/uscode/text/54/306108 https://www.law.cornell.edu/uscode/text/54/306107 Consultation procedures are set out in 36 CFR Part 800. Per the ACHP's own guidance, an agency conducting a CERCLA action may - but is not required - to follow the Section 106 review process. https://www.achp.gov/coordination-cercla-faq In this case, the EPA alerted the SHPO (the individual who administers the NHPA at the state level) of the action, and the SHPO and EPA jointly determined that the project may affect historic property given its proximity to a school listed on the National Register of Historic Places. Importantly, the cleanup was not on a land of tribal significance, meaning that EPA did not have an obligation to consult with any Tribe or Tribal Historic Preservation Officer. After its discussion with the SHPO, the EPA agreed to contract with an archeologist and documented the conversation. This meets the requirement of Section 106 that EPA provide the ACHP (through the SHPO) a reasonable opportunity to comment. The remaining Section 106 review steps are procedural, and EPA was therefore not obligated to meet those requirements as ARARs under CERCLA. It was therefore proper for EPA to conduct the cleanup without undergoing formal NHPA review.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Concludes that EPA was not required to engage in formal NHPA review because it is a procedural requirement.",
+    "sources": "Prompt",
+    "justification": "EPA must meet the substantive portions of ARARs. This is reflected in the prompt's statement that the ROD states that EPA must attain 'Substantive Portions of Section 106 of the National Historic Preservation Act.' EPA was therefore not required to meet procedural obligations. NHPA contains both substantive and procedural requirements. Formal review is procedural by nature. Accordingly, it was proper for EPA to conduct the cleanup without undergoing formal review under Section 106 of NHPA.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2
+    ]
+  },
+  "criterion 4": {
+    "description": "Identifies that ORS 97.745(2)(a) prohibits the possession of native Indian artifacts, human remains or funerary objects having been taken from a native Indian cairn or burial.",
+    "sources": "",
+    "justification": "Per ORS 97.745(2)(a): Except as authorized by the appropriate Indian tribe, no person shall: (a) Possess any native Indian artifacts, human remains or funerary object having been taken from a native Indian cairn or burial in a manner other than that authorized under ORS 97.750 (Permitted acts). Here, EPA briefly took possession of the item of an Indian cairn. The prompt requests analysis of whether this act was permissible. If prohibited by this section of ORS 97.745, it was not permissible. https://oregon.public.law/statutes/ors_97.745",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Identifies that ORS 97.745(1) requires that inadvertently discovered Indian cairns must be reinterred under the supervision of the appropriate Indian tribe.",
+    "sources": "",
+    "justification": "ORS 97.745 includes a requirement that 'Persons disturbing native Indian cairns or burials through inadvertence, including by construction, mining, logging or agricultural activity, shall at their own expense reinter the human remains or funerary object under the supervision of the appropriate Indian tribe.' Here, the EPA discovered a cairn which was later determined to be built by the Celilo Wy'Am Tribe during the cleanup. Under ORS 97.745(1), such objects must be reinterred under the supervision of the relevant Tribe. This must be done at the person who discovers the item's expense. https://oregon.public.law/statutes/ors_97.745",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Identifies that the definition of 'Indian Tribes' limits the applicability of ORS 97.745 to specific tribes.",
+    "sources": "",
+    "justification": "ORS 97.740 contains definitions applicable to ORS 97.745. Relevant here is the definition of 'Indian Tribe' as 'any tribe of Indians recognized by the Secretary of the Interior or listed in the Klamath Termination Act, 25 U.S.C. 3564 et seq., or listed in the Western Oregon Indian Termination Act, 25 U.S.C. 3691 et seq., if the traditional cultural area of the tribe includes Oregon lands.' Thus, if a tribe is not federally-recognized, nor listed in the Klamath Termination or Western Oregon Indian Termination Act, the requirements of ORS 97.745 do not apply to that tribe. https://oregon.public.law/statutes/ors_97.740",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that the Celilo Wy'am tribe is not a federally recognized tribe for the purposes of ORS 97.745.",
+    "sources": "Prompt",
+    "justification": "ORS 97.740(3) defines 'Indian tribe' as a tribe 'recognized by the Secretary of the Interior' or listed in specified termination acts, if the tribe's traditional cultural area includes Oregon lands. The object was identified as a cairn built by Celilo Wy'am Indians and the question is whether that group qualifies as an 'Indian tribe' for ORS 97.745 purposes (e.g., supervision/authorization). (Prompt facts). Because ORS 97.740(3) ties coverage to federal recognition (or the termination-act listings), whether Celilo Wy'am is covered turns on that status\u2014not on cultural association alone. Oregon's official listing of nine federally recognized tribes (e.g., CTUIR for the Pendleton area) does not include 'Celilo Wy'am' as a separate tribe, indicating the 'appropriate Indian tribe' under ORS 97.745 would be the relevant federally recognized tribe whose traditional area includes the site.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Concludes that it was proper for EPA to transfer the cairn to the SHPO.",
+    "sources": "",
+    "justification": "The requirements of ORS 97.745 deal with artifacts, including cairns, of Indian Tribes. ORS 97.740 provides a definition of 'Indian Tribes.' The Ceililo Wy'Am tribe does not meet this definition. Thus, the EPA's actions - while morally questionable - are not strictly prohibited by the law.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7,
+      4,
+      5,
+      6
+    ]
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "criterion 1": {
+    "description": "Recognizes that the patient has chronic post-surgical hypoparathyroidism.",
+    "sources": "",
+    "justification": "This is directly stated in the prompt.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that recombinant human parathyroid hormone (rhPTH) is short-acting.",
+    "sources": "",
+    "justification": "rhPTH has a very short half-life. 'The first peak appears in 5\u201330 min, and the second, frequently smaller peak, appears in 1\u20132 h. The apparent terminal half-life of rhPTH (1\u201384) is 3.02 h' https://link.springer.com/rwe/10.1007/978-981-99-9283-6_2335#:~:text=The%20first%20peak%20appears%20in,pain%20in%20extremities%2C%20and%20sinusitis.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that the correct next step in management is to start palopegteriparatide (Yorvipath).",
+    "sources": "",
+    "justification": "Due to dependencies and below: This is the indication for palopegteriparatide, according to the manufacturer. 'YORVIPATH is a parathyroid hormone analog (PTH(1-34)) indicated for the treatment of hypoparathyroidism in adults' https://ascendispharma.us/products/pi/yorvipath/yorvipath_pi.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      4,
+      9,
+      11,
+      16,
+      18
+    ]
+  },
+  "criterion 4": {
+    "description": "States that palopegteriparatide is approved by the United States Food and Drug Administration (FDA) for use in hypoparathyroidism.",
+    "sources": "",
+    "justification": "This is what palopegteriparatide is approved for according to the manufacturer. 'YORVIPATH is a parathyroid hormone analog (PTH(1-34)) indicated for the treatment of hypoparathyroidism in adults' https://ascendispharma.us/products/pi/yorvipath/yorvipath_pi.pdf",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 5": {
+    "description": "States that the long-acting nature of palopegteriparatide maintains more stable serum calcium levels.",
+    "sources": "",
+    "justification": "The medication replaces the patient's missing PTH, so it addresses the underlying root cause of the patient's condition. 'At physiological conditions, palopegteriparatide releases PTH(1-34) to maintain a continuous systemic exposure. Endogenous PTH maintains extracellular calcium and phosphate homeostasis by increasing serum calcium and decreasing serum phosphate.' https://ascendispharma.us/products/pi/yorvipath/yorvipath_pi.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 6": {
+    "description": "States that palopegteriparatide reduces the patient's pill burden.",
+    "sources": "",
+    "justification": "The medication is an injection, so it does not require any additional pills. 'YORVIPATH\u00ae (palopegteriparatide) injection, for subcutaneous use' https://ascendispharma.us/products/pi/yorvipath/yorvipath_pi.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 7": {
+    "description": "States that palopegteriparatide can maintain serum calcium levels without supplementation.",
+    "sources": "",
+    "justification": "This has been supported by clinical studies. 'Recently, palopegteriparatide (4) has demonstrated the ability to maintain stable serum calcium levels, despite the discontinuation of calcium and active vitamin D supplementation.' https://academic.oup.com/jcem/article-abstract/110/11/e3899/7965149#:~:text=Regarding%20serum%20calcium%20and%20phosphate,and%20active%20vitamin%20D%20supplementation.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "States that palopegteriparatide is long-acting.",
+    "sources": "",
+    "justification": "Paopegteriparatide has a long half-life, according to the manufacturer. 'The apparent half-life of PTH released from palopegteriparatide is approximately 60 hours' https://ascendispharma.us/products/pi/yorvipath/yorvipath_pi.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "States that thiazide diuretics add to the patient's pill burden.",
+    "sources": "",
+    "justification": "Thiazide diuretics are pills that add to the patient's pill burden. 'HCTZ: Initial dose: 25 mg orally once daily. Maintenance dose: May increase to 50 mg orally daily, as a single or 2 divided doses.' https://www.drugs.com/dosage/hydrochlorothiazide.html",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      10
+    ]
+  },
+  "criterion 10": {
+    "description": "States that the patient may still need calcium supplementation while on thiazide diuretics.",
+    "sources": "",
+    "justification": "Thiazide diuretics address urinary calcium absorption and excretion. They do not replace PTH, so the patient may still require calcium supplementation. 'data show that thiazide diuretics significantly lower calciuria in patients with hypoparathyroidism, but they do not impact serum calcium' https://www.endocrine-abstracts.org/ea/0099/ea0099oc13.5",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "States that rhPTH has been discontinued globally.",
+    "sources": "",
+    "justification": "This has been stated by the manufacturer. 'Takeda (TSE:4502/NYSE:TAK) today announced its decision, made on October 3, 2022, that it will discontinue manufacturing NATPAR\u00ae/NATPARA\u00ae (parathyroid hormone) for Injection1 globally at the end of 2024 due to unresolved supply issues.' https://www.takeda.com/en-us/newsroom/statements/2022/takeda-to-discontinue-manufacturing-of-natpar-natpara/",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 12": {
+    "description": "States that serum calcium levels peak after an rhPTH dose.",
+    "sources": "",
+    "justification": "This has been supported by clinical studies. 'Teriparatide transiently increases serum calcium, with the maximal effect observed at approximately 4.25 h (median increase, 0.4 mg/dl or 0.1 mM) followed by a decline to predose levels before the next teriparatide dose is administered 24 h later.' https://pmc.ncbi.nlm.nih.gov/articles/PMC2978887/",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 13": {
+    "description": "States that serum calcium levels decline after they peak.",
+    "sources": "",
+    "justification": "This has been supported by clinical studies. 'Teriparatide transiently increases serum calcium, with the maximal effect observed at approximately 4.25 h (median increase, 0.4 mg/dl or 0.1 mM) followed by a decline to predose levels before the next teriparatide dose is administered 24 h later.' https://pmc.ncbi.nlm.nih.gov/articles/PMC2978887/",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 14": {
+    "description": "States that the short-acting nature of rhPTH causes unstable serum calcium levels.",
+    "sources": "",
+    "justification": "'Although the pharmacodynamic half-life is longer than the pharmacokinetic half-life, this is a likely explanation for the REPLACE study not showing a significant reduction in 24-hour renal calcium excretion in response to once-a-day treatment with rhPTH(1-84). Moreover, treatment has been shown to cause fluctuations in calcium levels, with an increase immediately after an injection followed by a decline during the last part of a 24-hour treatment period.' https://www.e-enm.org/journal/view.php?doi=10.3803/EnM.2024.1916",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12,
+      13
+    ]
+  },
+  "criterion 15": {
+    "description": "States that unstable serum calcium levels require frequent calcium supplementation.",
+    "sources": "",
+    "justification": "If serum calcium levels are not appropriate, supplementation may be required. 'The treatment of hypercalcemia or hypocalcemia focuses on correcting the underlying disorder, which is usually causing a disturbance in calcium homeostasis. In extreme circumstances, calcium supplementation or calciuresis can correct for severe derangements in calcium levels.' https://www.ncbi.nlm.nih.gov/books/NBK482128/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      14
+    ]
+  },
+  "criterion 16": {
+    "description": "Recognizes that the patient is experiencing pill burden from frequent calcium supplementation while on rhPTH.",
+    "sources": "",
+    "justification": "This is directly stated in the prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      15
+    ]
+  },
+  "criterion 17": {
+    "description": "Recognizes that the patient has clinical features of hypocalcemia.",
+    "sources": "1371 Physical Exam.pdf",
+    "justification": "Noted from the examination findings from '1371 Physical Exam.pdf': 'Neuromuscular: Positive Chvostek and Trousseau signs; mild fine tremor; no focal weakness. Skin/Hair/Nails: Dry, cool skin; brittle nails; coarse hair. Extremities: No edema; capillary refill < 2 s; carpopedal spasm with cuff inflation.' Also from the symptoms stated on the prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 18": {
+    "description": "States that unstable serum calcium levels while on rhPTH manifests as symptoms in the patient.",
+    "sources": "",
+    "justification": "This is directly stated in the prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      17,
+      14
+    ]
+  }
+}

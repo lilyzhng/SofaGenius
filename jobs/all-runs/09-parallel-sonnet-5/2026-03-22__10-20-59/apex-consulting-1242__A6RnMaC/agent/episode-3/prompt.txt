@@ -1,0 +1,26 @@
+New Terminal Output:
+
+root@b1534533e1cb:/app# wc -l /app/data/Data.csv
+481 /app/data/Data.csv
+root@b1534533e1cb:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

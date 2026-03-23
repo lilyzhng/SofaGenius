@@ -1,0 +1,267 @@
+[?2004hroot@7326c35a90b6:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@7326c35a90b6:/app# clear
+[?2004l[H[J[3J[?2004hroot@7326c35a90b6:/app# ls -la /app/data/
+[?2004ltotal 132
+drwxr-xr-x 2 root root   4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root   4096 Mar 22 05:19  ..
+-rw-r--r-- 1 root root 124255 Mar 22 04:43 'ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004hroot@7326c35a90b6:/app# which python3
+[?2004l/usr/local/bin/python3
+[?2004hroot@7326c35a90b6:/app# python3 -c "import pandas as pd; print('pandas available')"
+[?2004lpandas available
+[?2004hroot@7326c35a90b6:/app# python3 -c "import openpyxl; print('openpyxl available')"
+[?2004lopenpyxl available
+[?2004hroot@7326c35a90b6:/app# mkdir -p /app/scripts
+[?2004l[?2004hroot@7326c35a90b6:/app# cat > /app/scripts/examine_excel.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> from openpyxl import load_workbook
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> data_file = "/app/data/ConSup Inc Financial Model_PROMPT.xlsx"
+[?2004l[?2004h> 
+[?2004l[?2004h> # Get all sheet names
+[?2004l[?2004h> wb = load_workbook(data_file)
+[?2004l[?2004h> sheet_names = wb.sheetnames
+[?2004l[?2004h> print("Available sheets:")
+[?2004l[?2004h> for name in sheet_names:
+[?2004l[?2004h>     print(f"  - {name}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Try to read a few sheets to see data structure
+[?2004l[?2004h> try:
+[?2004l[?2004h>     # Read a few sheets to understand the data
+[?2004l[?2004h>     for sheet in sheet_names[:3]:
+[?2004l[?2004h>         try:
+[?2004l[?2004h>             df = pd.read_excel(data_file, sheet_name=sheet)
+[?2004l[?2004h>             print(f"\nSheet: {sheet}")
+[?2004l[?2004h>             print(f"Shape: {df.shape}")
+[?2004l[?2004h>             print(f"First 5 rows:")
+[?2004l[?2004h>             print(df.head())
+[?2004l[?2004h>         except Exception as e:
+[?2004l[?2004h>             print(f"Could not read {sheet}: {e}")
+[?2004l[?2004h> except Exception as e:
+[?2004l[?2004h>     print(f"Error reading Excel file: {e}")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@7326c35a90b6:/app# python3 /app/scripts/examine_excel.py
+[?2004lAvailable sheets:
+  - Transaction Structure
+  - Assumptions
+  - Financial Statements
+  - Debt
+  - PP&E
+  - NWC
+  - Historicals
+
+Sheet: Transaction Structure
+Shape: (53, 13)
+First 5 rows:
+   Unnamed: 0                    Unnamed: 1  Unnamed: 2 Unnamed: 3   Unnamed: 4  ...    Unnamed: 8 Unnamed: 9                Unnamed: 10 Unnamed: 11  Unnamed: 12
+0         NaN      1. Transaction Structure         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          NaN
+1         NaN  In USD 000, FY ending Dec 31         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          NaN
+2         NaN                           NaN         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          NaN
+3         NaN                   Assumptions         NaN        NaN          NaN  ...           NaN        NaN                       Uses         NaN          NaN
+4         NaN                   FY24 EBITDA         NaN          $  8318.254226  ...  16636.508452        NaN  Purchase Enterprise Value         NaN  66546.03381
+
+[5 rows x 13 columns]
+
+Sheet: Assumptions
+Shape: (123, 13)
+First 5 rows:
+   Unnamed: 0                    Unnamed: 1           Unnamed: 2 Unnamed: 3 Unnamed: 4  ... Unnamed: 8 Unnamed: 9 Unnamed: 10 Unnamed: 11 Unnamed: 12
+0         NaN               2. Assumptions                   NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+1         NaN  In USD 000, FY ending Dec 31                  NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+2         NaN                           NaN                  NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+3         NaN                 Growth Levers        Growth Timing  Selection        NaN  ...        NaN        NaN         NaN         NaN         NaN
+4         NaN              New Construction  2025-12-31 00:00:00        Yes        NaN  ...        NaN        NaN         NaN         NaN         NaN
+
+[5 rows x 13 columns]
+
+Sheet: Financial Statements
+Shape: (95, 13)
+First 5 rows:
+  Unnamed: 0                    Unnamed: 1 Unnamed: 2  ...  -0.46173999999882653.1 -0.46173999999882653.2 -0.46174000001337845.1
+0        NaN       3. Financial Statements        NaN  ...                     NaN                    NaN                    NaN
+1        NaN  In USD 000, FY ending Dec 31        NaN  ...                     NaN                    NaN                    NaN
+2        NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+3        NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+4        NaN                           NaN        NaN  ...     2027-12-31 00:00:00    2028-12-31 00:00:00    2029-12-31 00:00:00
+
+[5 rows x 13 columns]
+[?2004hroot@7326c35a90b6:/app# cat > /app/scripts/parse_financial_data.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> from openpyxl import load_workbook
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> data_file = "/app/data/ConSup Inc Financial Model_PROMPT.xlsx"
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load workbook to see structure
+[?2004l[?2004h> wb = load_workbook(data_file)
+[?2004l[?2004h> print("Sheet names:")
+[?2004l[?2004h> for i, name in enumerate(wb.sheetnames):
+[?2004l[?2004h>     print(f"{i}: {name}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read specific sheets with proper column handling
+[?2004l[?2004h> try:
+[?2004l[?2004h>     # Let's focus on Financial Statements
+[?2004l[?2004h>     df_financial = pd.read_excel(data_file, sheet_name="Financial Statements", header=3)
+[?2004l[?2004h>     print(f"\nFinancial Statements (first 10 rows):")
+[?2004l[?2004h>     print(df_financial.head(10))
+[?2004l[?2004h>     print(f"Shape: {df_financial.shape}")
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Read Transaction Structure
+[?2004l[?2004h>     df_transaction = pd.read_excel(data_file, sheet_name="Transaction Structure", header=3)
+[?2004l[?2004h>     print(f"\nTransaction Structure (first 10 rows):")
+[?2004l[?2004h>     print(df_transaction.head(10))
+[?2004l[?2004h>     print(f"Shape: {df_transaction.shape}")
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Read Assumptions
+[?2004l[?2004h>     df_assumptions = pd.read_excel(data_file, sheet_name="Assumptions", header=3)
+[?2004l[?2004h>     print(f"\nAssumptions (first 10 rows):")
+[?2004l[?2004h>     print(df_assumptions.head(10))
+[?2004l[?2004h>     print(f"Shape: {df_assumptions.shape}")
+[?2004l[?2004h>     
+[?2004l[?2004h> except Exception as e:
+[?2004l[?2004h>     print(f"Error processing sheets: {e}")
+[?2004l[?2004h>     
+[?2004l[?2004h> # Look for EBITDA related data in the Financial Statements
+[?2004l[?2004h> if 'Financial Statements' in wb.sheetnames:
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         df_financial = pd.read_excel(data_file, sheet_name="Financial Statements", header=3)
+[?2004l[?2004h>         # Look for EBITDA column
+[?2004l[?2004h>         ebitda_cols = [col for col in df_financial.columns if 'EBITDA' in str(col) or 'ebitda' in str(col)]
+[?2004l[?2004h>         print(f"\nEBITDA related columns found: {ebitda_cols}")
+[?2004l[?2004h>         
+[?2004l[?2004h>         # Filter for EBITDA data
+[?2004l[?2004h>         if len(ebitda_cols) > 0:
+[?2004l[?2004h>             # Print the EBITDA values
+[?2004l[?2004h>             print("\nEBITDA values:")
+[?2004l[?2004h>             for col in ebitda_cols:
+[?2004l[?2004h>                 values = df_financial[col].dropna().tolist()[:10]  # First 10 values
+[?2004l[?2004h>                 print(f"{col}: {values}")
+[?2004l[?2004h>     except Exception as e:
+[?2004l[?2004h>         print(f"Error analyzing EBITDA: {e}")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@7326c35a90b6:/app# python3 /app/scripts/parse_financial_data.py
+[?2004lSheet names:
+0: Transaction Structure
+1: Assumptions
+2: Financial Statements
+3: Debt
+4: PP&E
+5: NWC
+6: Historicals
+
+Financial Statements (first 10 rows):
+  Unnamed: 0        Unnamed: 1 Unnamed: 2  Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+1        NaN               NaN        NaN         NaN  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+2        NaN               NaN        NaN         NaN  ...              FY2026F              FY2027F              FY2028F              FY2029F
+3        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+4        NaN             Check          .         NaN  ...                    0                    0                    0                    0
+5          X  Income Statement        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+6        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+7        NaN           Revenue        NaN         NaN  ...         35746.610677         40779.542891         43104.533748         45849.794423
+8        NaN        Growth (%)        NaN         NaN  ...             0.051171             0.140795             0.057014             0.063688
+9        NaN     Core Business        NaN         NaN  ...         32646.610677         33299.542891         33965.533748         34644.844423
+
+[10 rows x 13 columns]
+Shape: (92, 13)
+
+Transaction Structure (first 10 rows):
+   Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0         NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+1         NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+2         NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+3         NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+4         NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+5         NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+6         NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+7         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+8         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+9         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+
+[10 rows x 13 columns]
+Shape: (50, 13)
+
+Assumptions (first 10 rows):
+   Unnamed: 0        Unnamed: 1           Unnamed: 2 Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0         NaN     Growth Levers        Growth Timing  Selection  ...                  NaN                  NaN                  NaN                  NaN
+1         NaN  New Construction  2025-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+2         NaN       Hospitality  2026-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+3         NaN    U.S. Expansion  2027-12-31 00:00:00        Yes  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+4         NaN               NaN                  NaN        NaN  ...              FY2026A              FY2027A              FY2028A              FY2029A
+5         NaN               NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+6         NaN  Income Statement                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+7         NaN               NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+8         NaN           Revenue                  NaN        NaN  ...         35746.610677         40779.542891         43104.533748         45849.794423
+9         NaN        Growth (%)                  NaN        NaN  ...             0.051171             0.140795             0.057014             0.063688
+
+[10 rows x 13 columns]
+Shape: (120, 13)
+
+EBITDA related columns found: []
+[?2004hroot@7326c35a90b6:/app# cat > /app/scripts/extract_key_data.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> from openpyxl import load_workbook
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> data_file = "/app/data/ConSup Inc Financial Model_PROMPT.xlsx"
+[?2004l[?2004h> 
+[?2004l[?2004h> # Try to extract key data from Financial Statements
+[?2004l[?2004h> try:
+[?2004l[?2004h>     df_financial = pd.read_excel(data_file, sheet_name="Financial Statements", header=3)
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Let's look at column names to identify EBITDA
+[?2004l[?2004h>     print("Financial Statements column names:")
+[?2004l[?2004h>     for i, col in enumerate(df_financial.columns):
+[?2004l[?2004h>         print(f"  {i}: {col}")
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Find the Core Business row (which contains EBITDA data)
+[?2004l[?2004h>     core_business_row = df_financial[df_financial.iloc[:, 0].str.contains('Core Business', na=False)]
+[?2004l[?2004h>     if not core_business_row.empty:
+[?2004l[?2004h>         print(f"\nCore Business row found at index: {core_business_row.index[0]}")
+[?2004l[?2004h>         core_business_data = core_business_row.iloc[0]
+[?2004l[?2004h>         print("Core Business data:")
+[?2004l[?2004h>         print(core_business_data)
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Extract the EBITDA values for FY24-FY29
+[?2004l[?2004h>     # We need to look for the row that contains EBITDA data
+[?2004l[?2004h>     ebitda_row = None
+[?2004l[?2004h>     for idx, row in df_financial.iterrows():
+[?2004l[?2004h>         if 'EBITDA' in str(row.iloc[0]) or 'Core Business' in str(row.iloc[0]):
+[?2004l[?2004h>             ebitda_row = row
+[?2004l[?2004h>             print(f"\nEBITDA/Core Business row found at index: {idx}")
+[?2004l[?2004h>             print(row)
+[?2004l[?2004h>             break
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Look at the actual values for EBITDA in each year
+[?2004l[?2004h>     print("\nExamining row data for EBITDA values:")
+[?2004l[?2004h>     for idx, row in df_financial.iterrows():
+[?2004l[?2004h>         if not pd.isna(row.iloc[0]) and ('EBITDA' in str(row.iloc[0]) or 'Core' in str(row.iloc[0])):
+[?2004l[?2004h>             print(f"Row {idx}: {row.iloc[0]}")
+[?2004l[?2004h>             # Print the data values for this row
+[?2004l[?2004h>             for i in range(1, len(row)):
+[?2004l[?2004h>                 if not pd.isna(row.iloc[i]):
+[?2004l[?2004h>                     print(f"  Year {i}: {row.iloc[i]}")
+[?2004l[?2004h>                     
+[?2004l[?2004h> except Exception as e:
+[?2004l[?2004h>     print(f"Error extracting financial data: {e}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Now extract transaction details
+[?2004l[?2004h> try:
+[?2004l[?2004h>     df_transaction = pd.read_excel(data_file, sheet_name="Transaction Structure", header=3)
+[?2004l[?2004h>     print(f"\nTransaction Structure data:")
+[?2004l[?2004h>     print(df_transaction.head(15))
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Look for key transaction data
+[?2004l[?2004h>     key_fields = ['FY24 EBITDA', 'Purchase Enterprise Value', 'Rollover Equity', 'Sponsor Equity']
+[?2004l[?2004h>     for field in key_fields:
+[?2004l[?2004h>         field_row = df_transaction[df_transaction.iloc[:, 0].str.contains(field, na=False)]
+[?2004l[?2004h>         if not field_row.empty:
+[?2004l[?2004h>             print(f"\n{field}: {field_row.iloc[0].iloc[1]}")
+[?2004l[?2004h>             
+[?2004l[?2004h> except Exception as e:
+[?2004l[?2004h>     print(f"Error extracting transaction data: {e}")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@7326c35a90b6:/app# 

@@ -1,0 +1,35 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; import openpyxl; print('Required libraries are available')"
+Required libraries are available
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; sheets = pd.ExcelFile(file_path).sheet_
+names; print('Available sheets:', sheets)"
+Available sheets: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+root@dd06356d1acd:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,174 @@
+{
+  "criterion 1": {
+    "description": "Calculates the total combined valuation of all unicorns globally as $3,853B (acceptable value is $3,853B).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', calculate the sum of all valuations from column B as $3,853B, rounded from $3852.51 per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Identifies the country that produced the most unicorns as United States.",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', group the country (col D) and calculate the count of unicorns. As per below, United states is the country with the highest number of unicorns. United States 656 China 168 India 71 United Kingdom 54 Singapore 17 Germany 31 France 26 Israel 25 Canada 21 Australia 9 Brazil 17 South Korea 15 Netherlands 9 Sweden 6 Mexico 8 Turkey 3 Finland 4 Switzerland 6 Seychelles 2 Ireland 7 Indonesia 7 Hong Kong 7 Belgium 3 Estonia 2 Japan 7 Austria 2 United Arab Emirates 5 Lithuania 2 Colombia 3 Spain 5 Denmark 2 Vietnam 2 Italy 3 Norway 4 Thailand 3 Greece 2 Croatia 2 Chile 2 Argentina 1 Luxembourg 1 Nigeria 1 Senegal 1 Malaysia 1 Bermuda 1 South Africa 1 Ecuador 1 Czech Republic 1 Uzbekistan 1 Egypt 1 Saudi Arabia 1 Cayman Islands 1 Liechtenstein 1 Philippines 1",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates the total number of unicorns produced by the United States as 656 (acceptable value is 656).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv' and criterion 12752, group the country (col D) and calculate the count of unicorns. United states is the country with the highest number of unicorns with 656 unicorns. United States 656 China 168 India 71 United Kingdom 54 Singapore 17 Germany 31 France 26 Israel 25 Canada 21 Australia 9 Brazil 17 South Korea 15 Netherlands 9 Sweden 6 Mexico 8 Turkey 3 Finland 4 Switzerland 6 Seychelles 2 Ireland 7 Indonesia 7 Hong Kong 7 Belgium 3 Estonia 2 Japan 7 Austria 2 United Arab Emirates 5 Lithuania 2 Colombia 3 Spain 5 Denmark 2 Vietnam 2 Italy 3 Norway 4 Thailand 3 Greece 2 Croatia 2 Chile 2 Argentina 1 Luxembourg 1 Nigeria 1 Senegal 1 Malaysia 1 Bermuda 1 South Africa 1 Ecuador 1 Czech Republic 1 Uzbekistan 1 Egypt 1 Saudi Arabia 1 Cayman Islands 1 Liechtenstein 1 Philippines 1",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 4": {
+    "description": "Identifies the country with largest share of the total combined global valuation of all unicorns as United States.",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', group the country (col D) and calculate the sum of valuation (col B). Then divide each country's valuation with total valuation of $3,853 (criterion 12751) As per below, United states is the country with the largest valuation share Country Valuation Share United States 2111.7 54.81% China 640.7 16.63% India 192.24 4.99% United Kingdom 177.69 4.61% Singapore 94.71 2.46% Germany 81.35 2.11% France 61.03 1.58% Israel 56.32 1.46% Canada 52.23 1.36% Australia 42.33 1.10% Brazil 38.64 1.00% South Korea 34.57 0.90% Netherlands 24.46 0.63% Sweden 21.62 0.56% Mexico 18.7 0.49% Turkey 13.55 0.35% Finland 12.46 0.32% Switzerland 12.3 0.32% Seychelles 11.8 0.31% Ireland 11.05 0.29% Indonesia 10.43 0.27% Hong Kong 10.35 0.27% Belgium 10.08 0.26% Estonia 9.9 0.26% Japan 9.82 0.25% Austria 7.61 0.20% United Arab Emirates 7.55 0.20% Lithuania 7.53 0.20% Colombia 7.4 0.19% Spain 7.15 0.19% Denmark 6.7 0.17% Vietnam 5.27 0.14% Italy 4.55 0.12% Norway 4.5 0.12% Thailand 3.5 0.09% Greece 3.32 0.09% Croatia 3 0.08% Chile 2.5 0.06% Argentina 2.45 0.06% Luxembourg 2 0.05% Nigeria 2 0.05% Senegal 1.7 0.04% Malaysia 1.7 0.04% Bermuda 1.6 0.04% South Africa 1.59 0.04% Ecuador 1.5 0.04% Czech Republic 1.2 0.03% Uzbekistan 1.16 0.03% Egypt 1 0.03% Saudi Arabia 1 0.03% Cayman Islands 1 0.03% Liechtenstein 1 0.03% Philippines 1 0.03% NOTE: final answers may vary from the figures depicted in formulas, given that prompt states no interim calculations should be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 5": {
+    "description": "Calculates the percentage share of valuation dollars for unicorns for United States as 54.8%.",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv' and criterion 12754, group the country (col D) and calculate the sum of valuation (col B). Then divide each country's valuation with total valuation $3,853 (criterion 12751) As per below, United states is the country with the largest valuation share ~54.81% (Rounded to 54.8% as per prompt to one decimal place) Country Valuation Share United States 2111.7 54.81% China 640.7 16.63% India 192.24 4.99% United Kingdom 177.69 4.61% Singapore 94.71 2.46% Germany 81.35 2.11% France 61.03 1.58% Israel 56.32 1.46% Canada 52.23 1.36% Australia 42.33 1.10% Brazil 38.64 1.00% South Korea 34.57 0.90% Netherlands 24.46 0.63% Sweden 21.62 0.56% Mexico 18.7 0.49% Turkey 13.55 0.35% Finland 12.46 0.32% Switzerland 12.3 0.32% Seychelles 11.8 0.31% Ireland 11.05 0.29% Indonesia 10.43 0.27% Hong Kong 10.35 0.27% Belgium 10.08 0.26% Estonia 9.9 0.26% Japan 9.82 0.25% Austria 7.61 0.20% United Arab Emirates 7.55 0.20% Lithuania 7.53 0.20% Colombia 7.4 0.19% Spain 7.15 0.19% Denmark 6.7 0.17% Vietnam 5.27 0.14% Italy 4.55 0.12% Norway 4.5 0.12% Thailand 3.5 0.09% Greece 3.32 0.09% Croatia 3 0.08% Chile 2.5 0.06% Argentina 2.45 0.06% Luxembourg 2 0.05% Nigeria 2 0.05% Senegal 1.7 0.04% Malaysia 1.7 0.04% Bermuda 1.6 0.04% South Africa 1.59 0.04% Ecuador 1.5 0.04% Czech Republic 1.2 0.03% Uzbekistan 1.16 0.03% Egypt 1 0.03% Saudi Arabia 1 0.03% Cayman Islands 1 0.03% Liechtenstein 1 0.03% Philippines 1 0.03% NOTE: final answers may vary from the figures depicted in formulas, given that prompt states no interim calculations should be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      1
+    ]
+  },
+  "criterion 6": {
+    "description": "Identifies the industry with highest average valuation per unicorn as Media & Entertainment.",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', group the industry (col F) and calculate the average valuation per unicorn (col B). As per below, Media & Entertainment is the industry with the highest average valuation. Media & Entertainment 5.80 Industrials 3.23 Enterprise Tech 2.89 Consumer & Retail 2.87 Financial Services 3.24 Healthcare & Life Sciences 2.32 Insurance 2.13 Health 1.00",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Calculates the average valuation per unicorn for Media & Entertainment as $6B (acceptable value is 6B).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv' and criterion 12756, group the industry (col F) and calculate the average of valuation per unicorn (col B). As per below, Media & Entertainment is the industry with the highest average valuation of $5.8B, ~$6B (round to nearest whole number as per prompt). Media & Entertainment 5.80 Industrials 3.23 Enterprise Tech 2.89 Consumer & Retail 2.87 Financial Services 3.24 Healthcare & Life Sciences 2.32 Insurance 2.13 Health 1.00",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Calculates the percentage of unicorns that became unicorns since 2021 as 68.5% (acceptable value is 68.0% to 68.9%).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', filter for the unicorns which has joined since 2021. There were 845 unicorns out of total 1233 unicorns which translates to 68.53% (68.5% rounded to one decimal place as per prompt).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "Calculates the avg valuation of the top 10% of unicorns as $14B (acceptable range is $13B to $15B).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', identify the total number of companies within the top 10% percentile by count Total unicorns = 1,233 Top 10% = 123.3 ~124 unicorns (rounded up as per the prompt) Then sort the unicorns from top to bottom where top is the highest valuation. Total value of top 10% ordered by valuation = $1,781.77 (Col. B) The average valuation for the top (most valuable) 10% unicorns is ($1,781.77/124) = $14.37B, rounded to $14B per prompt.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "Calculates the avg valuation of the bottom 90% of unicorns as $2B (acceptable range is $1B to $3B).",
+    "sources": "Unicorns",
+    "justification": "From the dataset 'Unicorns.csv', identify the total number of companies within the top 10% percentile Total unicorns = 1,233 Top 10% = 123.3 ~124 unicorns Then sort the unicorns from top to bottom where top is the highest valuation. Total value of bottom 90% ordered by valuation = $2,070.74 (Col. B) The average valuation for bottom (least valuable) 90% unicorns is calculated as $2,070.74/ (1,233-124) = $1.87B = $2B rounded to two decimal places per prompt.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "Calculates the ratio of the avg. valuation of the top 10% to the bottom 90% of unicorns as 7.7 (acceptable range is 7.0 to 8.4).",
+    "sources": "",
+    "justification": "From criterion 12759, the average valuation for the top (most valuable) 10% unicorns is $14B as per prompt. From criterion 12789, the average valuation for bottom (least valuable) 90% unicorns is $2B Ratio is calculated = $14B/$2B = 7.695 = 7.7 (rounded to one decimal place as per prompt) NOTE: final answers may vary from the figures depicted in formulas, given that prompt states no interim calculations should be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9,
+      10
+    ]
+  },
+  "criterion 12": {
+    "description": "Recommends that Titan Capital should prioritize the country-industry combination of United States and Media & Entertainment industry.",
+    "sources": "",
+    "justification": "The U.S. not hosts the largest pool of deal flow (656 unicorns) [criterion 12753] and controls a majority of value (54.8% of global valuation) [criterion 12755], while Media & Entertainment shows the highest per-company valuation ($6B avg) [criterion 12757].",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      4,
+      6
+    ]
+  },
+  "criterion 13": {
+    "description": "Provides at least one of the following as an explanation for the Media & Entertainment not being the best industry to prioritize within the United States: -Within the United States, the industry with highest average valuation is Industrials -ByteDance is inflating the Media & Entertainment Industry's average valuation -ByteDance is not located in the United States -When outliers are removed, the highest average industry is no longer Media & Entertainment",
+    "sources": "Unicorns",
+    "justification": "Within the US, here is the average: Media & Entertainment 3.35 Industrials 4.53 Enterprise Tech 3.18 Consumer & Retail 2.78 Financial Services 3.56 Healthcare & Life Sciences 2.33 Insurance 1.94 Health #DIV/0! Industrials is bigger. Without ByteDance, the average for Media & Entertainment is 3.12. ByteDance is located in China, so it may be skewing the analysis. ByteDance is 10x higher valuation than the second biggest Media & Entertainment unicorn",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  }
+}

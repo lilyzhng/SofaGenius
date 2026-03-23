@@ -1,0 +1,33 @@
+New Terminal Output:
+
+root@1847a34e18e1:/app# cat > detailed_analysis.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Load the Excel file
+> xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx')
+>
+> print("=== KEY DEAL PARAMETERS ===")
+> tx_df = pd.read_excel(xl, 'Transaction Structure', header=None)
+> print(f"FY24 EBITDA: ${tx_df.iloc[5,4]:,.0f}k")
+> print(f"Purchase Multiple: {tx_df.iloc[6,4]:.1f}x")
+> print(f"Senior Debt/EBITDA: {tx_df.iloc[7,4]:.1f}x")
+> print(f"Sub Debt/EBITDA: {tx_df.iloc[8,4]:.1f}x")
+> print(f"Rollover Equity: {tx_df.iloc[9,4]:.1%}")
+> print(f"Purchase Enterprise Value: ${tx_df.iloc[19,4]:,.0f}k")
+> print(f"Purchase Equity Value: ${tx_df.iloc[22,4]:,.0f}k")
+>
+> print("\n=== EXAMINING MORE FINANCIAL PROJECTIONS ===")
+> fs_df = pd.read_excel(xl, 'Financial Statements', header=None)
+> # Look for years beyond 2024
+> for i in range(40):
+>     if i < len(fs_df):
+>         row = fs_df.iloc[i, :]
+>         if any(pd.notna(row)) and len(str(row).strip()) > 0:
+>             print(f"Row {i}: {row.iloc[0:8].values}")
+>
+> print("\n=== EXAMINING DEBT STRUCTURE ===")
+> debt_df = pd.read_excel(xl, 'Debt', header=None)
+> print(debt_df.iloc[0:20, 0:8].to_string())
+> EOF
+root@1847a34e18e1:/app#

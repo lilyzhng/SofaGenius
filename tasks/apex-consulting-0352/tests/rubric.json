@@ -1,0 +1,145 @@
+{
+  "criterion 1": {
+    "description": "Calculates the number of orders delivered in same month as order placement as 200 (Acceptable value is 200).",
+    "sources": "Order Details.csv",
+    "justification": "In the attached dataset, create columns 'Order Month' and 'Delivery Month' and populate them, for each order, using =MONTH(B2:B253) and =MONTH(E2:E253), respectively. Then count orders where Order Month = Delivery Month and get 200 orders. The total orders in the dataset is 252. Therefore, there are 200 out of 252 orders that have same month of order placement and delivery.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates the percentage of orders delivered in the same month as order placement as 79%. (Acceptable value is 79%)",
+    "sources": "Order Details.csv",
+    "justification": "In the attached dataset, create columns 'Order Month' and 'Delivery Month' and populate them, for each order, using =MONTH(B2:B253) and =MONTH(E2:E253), respectively. Then count orders where Order Month = Delivery Month and get 200 orders. The total orders in the dataset is 252. Therefore, there are 200 (criteria 12170) out of 252 orders that have same month of order placement and delivery. This gives (200/252)*100 = 79.36507937% = 79%, rounded to the nearest whole percentage per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Calculates average time from ordered to processed as 2.0 days (Acceptable value is 2.0 days)",
+    "sources": "Order Details.csv",
+    "justification": "Using the attached datafile, create a column 'Order processing days' and populate it by calculating the number of days between order date and processing date per order using =days(Processed_Date,Order_Date). Therefore, average order processing days using =average(Order processing days column). This gives 1.988095238 = 2.0 days, rounded to nearest one decimal place.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates average time from processed to shipped as 3.1 days (Acceptable value is 3.1days)",
+    "sources": "Order Details.csv",
+    "justification": "Using the attached datafile, create a column 'Order Shipping days' and populate it by calculating the number of days between processing date and shipping date per order using =days(Shipped_Date,Processed_Date). Therefore, average order shipping days using =average(Order shipping days column). This gives 3.071428571 = 3.1 days, rounded to nearest one decimal place per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Calculates average time from shipped to delivered as 3.6 days (Acceptable value is 3.6 days)",
+    "sources": "Order Details.csv",
+    "justification": "Using the attached datafile, create a column 'Order Delivery days' and populate it by calculating the number of days between shipping date and delivery date per order using =days(Delivery_Date,Shipped_Date). Therefore, average order delivery days using =average(Order Delivery days column). This gives 3.595238095 = 3.6 days, rounded to nearest one decimal place per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that the milestone from processed to shipped has room to improve compared to Market Benchmark",
+    "sources": "Prompt",
+    "justification": "Based on criterion 12179, the average days taken to ship an order is 3.1. The comparison of the average days taken to ship an order to market benchmark for order shipping of 2.5 days (per prompt) shows that apparel e-commerce website has a higher average shipping days.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4
+    ]
+  },
+  "criterion 7": {
+    "description": "Identifies that the milestone from shipped to delivered does not have room to improve compared to Market Benchmark",
+    "sources": "Prompt",
+    "justification": "Based on criterion 12180, the average days taken to deliver an order is 3.6. The comparison of the average days taken to deliver an order to market benchmark for order shipping of 4 days (per prompt) shows that apparel e-commerce website has a lower average delivery days.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "Identifies that the milestone from ordered to processed does not have room to improve compared to Market Benchmark",
+    "sources": "Prompt",
+    "justification": "Based on criterion 12178, the average days taken to process an order is 2.0. The comparison of the average days taken to process an order to market benchmark for order shipping of 2 days (per prompt) shows that apparel e-commerce website has the same average delivery days as the market benchmark.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 9": {
+    "description": "Calculates the number of orders having processed to shipped turnaround time higher than market benchmark as 180 (Acceptable value is 180)",
+    "sources": "Order Details.csv",
+    "justification": "Criterion 12181 States that the milestone from processed to shipped has room to improve compared to Market Benchmark Using the attached datafile, create a column 'Order Shipping days' and populate it by calculating the number of days between processing date and shipping date per order using =days(Shipped_Date,Processed_Date). Then, filter orders with Order Shipping days greater than the market benchmark of 2.5. This gives 180 orders as have a shipping turnaround time higher than 2.5 days.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 10": {
+    "description": "Calculates the percentage of orders having processed to shipped turnaround time higher than market benchmark as 71%. (Acceptable value is 71%)",
+    "sources": "Order Details.csv",
+    "justification": "Criterion 12181 States that the milestone from processed to shipped has room to improve compared to Market Benchmark Using the attached datafile, create a column 'Order Shipping days''and populate it by calculating the number of days between processing date and shipping date per order using =days(Shipped_Date,Processed_Date). Then, filter orders with Order Shipping days greater than the market benchmark of 2.5. This gives 180 orders (criterion 12333) as have a shipping turnaround time higher than 2.5 days. Total orders in the dataset are 252. As a percentage, orders that have a shipping turnaround time higher than 2.5 days are 180/252 =0.714285714 = 71.4% which is further rounded off to 71% as per prompt instruction.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      9,
+      6
+    ]
+  },
+  "criterion 11": {
+    "description": "Recommends that the client can bring its processed to shipped performance in line with industry standard by taking one or more of the following steps: - Adjust internal shipping processes - Adjust internal handover from processing to shipping - Adjust handover to shipping providers - Update shipping providers",
+    "sources": "",
+    "justification": "Criterion 12181 States that the milestone from processed to shipped has room to improve compared to Market Benchmark A consultant would readily recommend that the client can bring its processed to shipped performance in line with industry standard by taking one or more of the following steps: - Adjust internal shipping processes - Adjust internal handover from processing to shipping - Adjust handover to shipping providers - Update shipping providers",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  }
+}

@@ -1,0 +1,107 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# pdftotext "data/1371_Pritchard v. Commonwealth_225 Va. 559.pdf" - | head -100
+11/14/25, 10:28 PM
+
+Pritchard v. Commonwealth – CourtListener.com
+
+June 17, 1983
+
+Pritchard v. Commonwealth
+Supreme Court of Virginia
+Citations: 303 S.E.2d 911, 225 Va. 559, 1983 Va. LEXIS 256
+Docket Number: Record 821509
+Panel: Harry L. Carrico (/person/5920/harry-l-carrico/), George M. Cochran (/person/5921/george-m-cochran/), Asbury Christian
+Compton (/person/5922/asbury-christian-compton/), Albertis S. Harrison (/person/5928/albertis-s-harrison/), Richard Harding
+Poff (/person/5942/richard-harding-poff/), Charles S. Russell (/person/5944/charles-s-russell/), Roscoe B. Stephenson Jr.
+(/person/5949/roscoe-b-stephenson-jr/)
+Judges: Carrico, Cochran, Poff, Compton, Stephenson, Russell, Harrison
+
+Headmatter
+Richmond
+Jesse James Pritchard, Jr. v. Commonwealth of Virginia
+June 17, 1983.
+Record No. 821509.
+Present: Carrico, C.J., Cochran, Poff, Compton, Stephenson, and Russell, JJ., and Harrison, Retired Justice.
+*560 William S. Hayes, Jr. (Dillard Associates, P.C., on brief), for appellant.
+Robert Q. Harris, Assistant Attorney General (Gerald L. Baliles, Attorney General, on brief), for appellee.
+
+Combined Opinion by Russell
+RUSSELL, J.,
+delivered the opinion of the Court.
+Jesse James Pritchard, Jr., was convicted in a bench trial of robbery and the use of a firearm in the commission of robbery. He
+appeals both convictions on the ground that the evidence shows no presentation of “deadly force” until after the asportation of
+the stolen property. Upon an examination of the evidence, we reject his analysis and affirm the convictions.
+William Hatton was the proprietor of a service station at Laneview, in Essex County. He testified that during the afternoon of
+November 26, 1981, an orange Datsun 280-Z stopped at his pumps. Hatton walked over to the Datsun and filled its tank with
+gasoline at the driver’s request, notwithstanding the fact that the driver was wearing a ski mask. He testified:
+
+Q. What happened after that?
+
+A. I went back to the driver’s side of the car. I told him his purchase was $14.20 and he looked at
+me and asked me if I could cash a 20. I said: I think so. And he looked at me again and didn’t
+say a word. The next thing was he pulled out a gun and cocked it ... . And I ran .... Back into the
+station, and I picked up a piece of pipe. I thought, this is *561 the wrong thing to do. I laid it back
+down, and he took off at a high rate of speed.
+Hatton noted the Datsun’s license number.
+A state trooper pursued the orange Datsun about fifteen minutes later, but lost it after a high speed chase near the King WilliamCaroline County line. The car,
+which was stolen, was later recovered, having been abandoned in a recently cleared field in
+Caroline County. Troopers used a tracking dog which followed the defendant’s scent from the abandoned car to a trailer a mile
+
+https://www.courtlistener.com/opinion/1321454/pritchard-v-commonwealth/?q=pritchard+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/2
+
+
+11/14/25, 10:28 PM
+
+Pritchard v. Commonwealth – CourtListener.com
+
+away. An occupant of the trailer said he had given the defendant a ride to a nearby hunt club. The defendant was apprehended
+at the hunt club. There, the police recovered a revolver, a box of bullets, and a ski mask, jacket, and gloves which Hatton
+identified as similar to those worn by the driver of the Datsun.
+Pritchard argues on appeal that he did not commit a robbery because he presented no deadly force or intimidation to Hatton
+until after the asportation of the stolen gasoline was complete. He contends that asportation occurred when Hatton pumped the
+gasoline into the Datsun’s tank, thereby surrendering “control and possession” to Pritchard. Thus, he says, the taking was
+unaccompanied by force and amounted to no more than petit larceny. The trial court took the view that asportation was not
+complete until the defendant drove the car off the owner’s premises, and that this maneuver was accomplished by the
+presentation of a firearm, overcoming any means of resistance by the owner. We agree with the trial court’s analysis.
+Robbery is a common-law crime in Virginia, although its punishment is prescribed by Code § 18.2-58. It is a crime against the
+person. Its elements are “ ‘the taking, with intent to steal, of the personal property of another, from his person or in his presence,
+against his will, by violence or intimidation.’ ” Mason v. Commonwealth, 200 Va. 253, 254 (/opinion/1338432/mason-vcommonwealth/#254), 105 S.E.2d 149, 150 (/opi
+nion/1338432/mason-v-commonwealth/#150) (1958).
+In Mason (/opinion/1338432/mason-v-commonwealth/), Grimes, a proprietor of a television store, apprehensive as to a possible
+burglary, concealed himself within the darkened store at night. He watched Mason smash a plate glass window, enter the store,
+pick up a television set, and hand it through the hole in the glass to a confederate, who was standing on the sidewalk outside.
+While this transfer was taking place, Grimes struck Mason from behind with a board. Mason completed the transfer of the
+television set from his arms into the arms of his *562 confederate, turned toward Grimes, threw a portable radio at Grimes, and
+fired four pistol shots. We held that the asportation of the stolen property was complete before any force or intimidation was
+used toward Grimes. Noting that violence or intimidation must precede, or be concomitant with, the taking of property from the
+person or presence of the owner, to constitute an essential element of robbery, we reversed Mason’s robbery conviction.
+Here, the defendant argues that violence or intimidation used to retain property already in the thief s possession, or to facilitate
+his escape after he has obtained possession, cannot “bootstrap” a completed larceny into a robbery. Any analysis of this
+argument requires a consideration of the distinction, in the context of larceny, between possession and custody.
+The owner of personal property may deliver it to another upon conditions, or in circumstances, which give the recipient bare
+custody of the property. Constructive possession remains in the owner. Examples are: a watch handed to a friend to time a race,
+the owner expecting its return at the end of the race; clothing handed to a customer in a clothing store, to try on for size, the
+owner expecting it to be returned if rejected, paid for if accepted; groceries loaded into a shopping cart in a supermarket, the
+owner expecting them to be paid for at a cash register before they are removed from the premises. See W. Clark & W. Marshall,
+Law of Crimes § 12.06, p. 849 (7th ed. 1967); R. Perkins, Criminal Law ch. 4 § 1(B)(2), p. 248 (2d ed. 1969); 2 W. Burdick, Law of
+Crime § 531, p. 295 (1946). Even though the property remains in the control of the custodian, asportation has not been
+completed until it is carried away in violation of the condition precedent upon which it was delivered. But if the property is
+carried away before the condition is performed, with the intent to steal it from the owner, the act becomes larceny. Blunt’s Case,
+31 Va. (4 Leigh) 683 (/opinion/6910923/old-dom-steamship-co-v-burckhardt/) (1834). This act converts the recipient’s bare
+custody to possession.
+“[TJhere can be no trespass against mere custody; trespass can only invade possession and it can be perpetrated as easily by a
+custodian as by anyone else.” W. Clark & W. Marshall, supra, at 849. Thus, a custodian, holding the property of another upon
+condition of prompt payment in cash, has committed no larceny until he carries the goods away in violation of the condition,
+with requisite intent. If, before carrying the goods away, he uses violence or intimidation to avoid payment, that violence or
+intimidation pre *563 cedes the taking. Custody is converted into possession by the exercise of force, and the offense is robbery.
+Pritchard relies on two cases, Williams v. State, 124 Ohio St. 585 (/opinion/4025706/williams-v-state/), 180 N.E. 58
+(/opinion/4025706/williams-v-state/) (1932), and Kernell v. State, 53 Okla. Crim. 259 (/opinion/4066808/kernell-v-state/), 10 P.2d
+287 (/opinion/4066808/kernell-v-state/) (1932). We find both cases distinguishable from the instant case. They presented
+situations in which thieves drove into service stations, had gasoline pumped into their tanks by attendants, and drove away
+without making payment. In both cases the attendants ran after and leaped onto the moving cars to prevent their escape, and
+were repelled by force. In both cases, the force was held to be subsequent to the asportation. Force was applied only to retain
+possession already obtained, or to facilitate escape. It was not used to obtain possession of the gasoline.
+root@78f1db70b96f:/app#

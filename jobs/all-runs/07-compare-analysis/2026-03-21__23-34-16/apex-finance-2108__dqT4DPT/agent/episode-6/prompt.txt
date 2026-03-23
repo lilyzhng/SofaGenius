@@ -1,0 +1,26 @@
+New Terminal Output:
+
+root@ee2595532515:/app# grep -n -i 'consolidated statements of income' /app/data/nike_10k.txt
+2158:expense in the Consolidated Statements of Income. Total NI E, Inc. EBIT for fiscal 2025, 2024 and 2023 are as follows:
+4796:fluctuations in Other (income) expense, net within our Consolidated Statements of Income.
+5483:31, 2025 and 2024, and the related consolidated statements of income, of comprehensive income, of shareholders' equity and of
+6632:Consolidated Statements of Income. Shipping and handling costs associated with outbound freight after control over a product
+6878:Consolidated Statements of Income on a straight-line basis over the lease term. Certain lease agreements include variable lease
+6939:impact of which is recorded in Other (income) expense, net, within the Consolidated Statements of Income.
+8488:
+     The following tables present the amounts affecting the Consolidated Statements of Income for the years ended May 31, 2025,
+8667:hedge results are classified in the Consolidated Statements of Income in the same manner as the underlying exposure. hen it
+9461:net and Income tax expense in the Consolidated Statements of Income.
+10169:Lease expense is recogni ed in Cost of sales or Operating overhead expense within the Consolidated Statements of Income,
+root@ee2595532515:/app#
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+{
+  "analysis": "The Cardwell case shows an example of abduction in the context of forcing someone into a car at gunpoint and transporting them. Let me examine another case to get more insight into the elements, particularly focusing on detention and the intent requirement.",
+  "plan": "I'll look at the other cases to understand how courts interpret 'detention' and the intent elements of abduction. Then I'll examine what constitutes sufficient evidence for these elements in cases involving brief restraints during robberies.",
+  "commands": [
+    {
+      "keystrokes": "pdftotext \"data/1371_Hoyt v. Commonwealth_44 Va. App. 489 (1).pdf\" - | head -100\n",
+      "duration": 1.0
+    }
+  ]
+}

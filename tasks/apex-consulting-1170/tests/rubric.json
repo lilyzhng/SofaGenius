@@ -1,0 +1,172 @@
+{
+  "criterion 1": {
+    "description": "Calculates the rejection rate in 2023 as 40.7% (Acceptable value is 40.7%)",
+    "sources": "orders.csv",
+    "justification": "Based on the 'Status' column in the provided dataset orders.csv, we can calculate the number of 'Approved' & 'Rejected' orders. The overall data contains 658 orders with 241 orders in 2023, 216 orders in 2024, 201 orders in 2025. Among the 241 orders in 2023, 143 were approved and 98 were rejected, this gives us the Rejection rate = 98/241 = 40.66%, which is rounded off to 40.7% as instructed in the prompt (Rounded off to nearest one decimal place)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates the rejection rate in 2024 as 32.4% (Acceptable value is 32.4%)",
+    "sources": "orders.csv",
+    "justification": "Based on the 'Status' column in the provided dataset orders.csv, we can calculate the number of 'Approved' & 'Rejected' orders. The overall data contains 658 orders with 241 orders in 2023, 216 orders in 2024, 201 orders in 2025. Among the 216 orders in 2024, 146 were approved and 70 were rejected, this gives us the Rejection rate = 70/216 = 32.41%, which is rounded off to 32.4% as instructed in the prompt (Rounded off to nearest one decimal place)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates the rejection rate in 2025 as 28.4% (Acceptable value is 28.4%)",
+    "sources": "orders.csv",
+    "justification": "Based on the 'Status' column in the provided dataset orders.csv, we can calculate the number of 'Approved' & 'Rejected' orders. The overall data contains 658 orders with 241 orders in 2023, 216 orders in 2024, 201 orders in 2025. Among the 201 orders in 2025, 144 were approved and 57 were rejected, this gives us the Rejection rate = 57/201 = 28.36%, which is rounded off to 28.4% as instructed in the prompt (Rounded off to nearest one decimal place)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the CEO's hypothesis is not true.",
+    "sources": "",
+    "justification": "Rejection rate has dropped from 40.7% [12345] in 2023 to 32.4% [12346] in 2024 & eventually to 28.4% [12347] in 2025, which depicts a clear downward trajectory",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Identifies 'Finishing' as the reason for highest rejections in 2023",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection' from the dataset orders.csv, for year 2023, we have the following count of orders against different reasons: Total Rejected Orders: 98 'Dimensions' - 21; 'Finishing' - 29; 'Material' - 12; 'Packaging' - 11; 'Rust' - 25 Among these, Finishing has the highest count of orders with 29.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Identifies 'Rust' as the reason for highest rejections in 2024",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection', for year 2024 from the dataset orders.csv, we have the following count of orders against different reasons: Total Rejected Orders: 70 'Dimensions' - 11; 'Finishing' - 17; 'Material' - 6; 'Packaging' - 13; 'Rust' - 23 Among these, Rust has the highest count of orders with 23.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Identifies 'Finishing' as the reason for highest rejections in 2025",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection', for year 2025 from the dataset orders.csv, we have the following count of orders against different reasons: Total Rejected Orders: 57 'Dimensions' - 10; 'Finishing' - 19; 'Material' - 9; 'Packaging' - 8; 'Rust' - 11 Among these, Finishing has the highest count of rejected orders with 19.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Calculates the percentage share of cases rejected due to 'Finishing' issues, out of total rejected cases in 2023 as 29.6% (Acceptable value is 29.6%)",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection' and based on criterion 12349, for year 2023, we have the following count of orders against different reasons: Total Rejected Orders: 98 'Dimensions' - 21; 'Finishing' - 29; 'Material' - 12; 'Packaging' - 11; 'Rust' - 25 Among these, Finishing has the highest count of orders with 29. Percentage contribution of 'Finishing' to rejected orders in 2023 = 29/98 = 29.59%, rounded off to 29.6% as per prompt instructions (Rounded off to nearest one decimal place)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 9": {
+    "description": "Calculates the percentage share of cases rejected due to 'Rust' issues, out of total rejected cases in 2024 as 32.9% (Acceptable value is 32.9%)",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection', for year 2024 and based on criterion 12350, we have the following count of orders against different reasons: Total Rejected Orders: 70 'Dimensions' - 11; 'Finishing' - 17; 'Material' - 6; 'Packaging' - 13; 'Rust' - 23 Among these, Rust has the highest count of orders with 23. Percentage contribution of 'Rust' to rejected orders in 2024 = 23/70 = 32.86%, rounded off to 32.9% as per prompt instructions (Rounded off to nearest one decimal place)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 10": {
+    "description": "Calculates the percentage share of cases rejected due to 'Finishing' issues, out of total rejected cases in 2025 as 33.3% (Acceptable value is 33.3%)",
+    "sources": "orders.csv",
+    "justification": "Based on column 'Reason for Rejection', for year 2025 and based on criterion 123445, we have the following count of orders against different reasons: Total Rejected Orders: 57 'Dimensions' - 10; 'Finishing' - 19; 'Material' - 9; 'Packaging' - 8; 'Rust' - 11 Among these, Finishing has the highest count of rejected orders with 19. Percentage contribution of 'Finishing' to rejected orders in 2025 = 19/57 = 33.33%, rounded off to 33.3% as per prompt instructions (Rounded off to nearest one decimal place)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 11": {
+    "description": "Suggests at least one of the following corrective measures to reduce rejection: 1. Better Storage Environment: Prevents formation of rust on metal parts. 2. Usage of Modern High Quality Tools & Machines: Helpful in more finished product 3. Improved Packaging: Helps in maintaining the finish of the product and prevent rust as well 4. Employee training 5. Hiring a more skilled workforce 6. Employee incentives to reduce quality errors 7. Review and/or standardize production procedures 8. Changing source inputs to more rust-resistant materials 9. Reducing timeframes between production and shipping",
+    "sources": "",
+    "justification": "Criteria 12349 Identifies 'Finishing' as the reason for highest rejections in 2023 Criteria 12350 Identifies 'Rust' as the reason for highest rejections in 2024 Criteria 12445 Identifies 'Finishing' as the reason for highest rejections in 2025 A consultant would readily suggest at least one of the following corrective measures to reduce rejection: 1. Better Storage Environment: Prevents formation of rust on metal parts. 2. Usage of Modern High Quality Tools & Machines: Helpful in more finished product 3. Improved Packaging: Helps in maintaining the finish of the product and prevent rust as well 4. Employee training 5. Hiring a more skilled workforce 6. Employee incentives to reduce quality errors 7. Review and/or standardize production procedures 8. Changing source inputs to more rust-resistant materials 9. Reducing timeframes between production and shipping",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5,
+      6,
+      7
+    ]
+  },
+  "criterion 12": {
+    "description": "Calculates the total order value of rejected orders as $123,602. (Accepted value is $123,602)",
+    "sources": "orders.csv",
+    "justification": "Adding up the column 'Order Value' from the dataset orders.csv, for orders with the 'Status' as 'Rejected'. There are a total of 225 orders, adding up to $123,602 in order value. No rounding is required, as provided data matches prompt specifications.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 13": {
+    "description": "Calculates the potential additional revenue by selling rejected orders at a discount as $61,801 (Acceptable value is $61,801)",
+    "sources": "orders.csv",
+    "justification": "Adding up the column 'Order Value' for orders from the dataset orders.csv, with the 'Status' as 'Rejected'. There are a total of 225 orders, adding up to $123,602 in order value (criteria 12451). As mentioned in the prompt, it can be sold at a discount of 50%, hence potential revenue = 50% of $123,602 = $61,801.00 ~$61,801 (rounded to nearest whole number as per prompt)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  }
+}

@@ -1,0 +1,118 @@
+{
+    "id": "734fda5f-4de8-44ae-abb5-3ee2c0b82daf",
+    "task_name": "apex-finance-1588",
+    "trial_name": "apex-finance-1588__anRzL3Y",
+    "trial_uri": "file:///Users/lilyzhang/Documents/lilyzhng/claude/builder/jobs/all-runs/08-timed-qwen/2026-03-21__23-51-25/apex-finance-1588__anRzL3Y",
+    "task_id": {
+        "path": "tasks/apex-finance-1588"
+    },
+    "source": null,
+    "task_checksum": "26f9de3d63921eb973a797aad37942721804ac48ed6619503447a6c579ede581",
+    "config": {
+        "task": {
+            "path": "tasks/apex-finance-1588",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "apex-finance-1588__anRzL3Y",
+        "trials_dir": "jobs/all-runs/08-timed-qwen/2026-03-21__23-51-25",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "terminus-2",
+            "import_path": null,
+            "model_name": "openrouter/qwen/qwen3-coder-30b-a3b-instruct",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {
+                "max_turns": 10
+            },
+            "env": {
+                "OPENROUTER_API_KEY": "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"
+            }
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": 2048,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "846ee948-346d-4c8b-813e-85d07a0b9144"
+    },
+    "agent_info": {
+        "name": "terminus-2",
+        "version": "2.0.0",
+        "model_info": {
+            "name": "qwen/qwen3-coder-30b-a3b-instruct",
+            "provider": "openrouter"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 31265,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 4223,
+        "cost_usd": 0.0033838699999999998,
+        "rollout_details": [],
+        "metadata": {
+            "n_episodes": 10,
+            "api_request_times_msec": [
+                1943.6960220336914,
+                1378.1561851501465,
+                2058.3250522613525,
+                2398.980140686035,
+                1914.808988571167,
+                1447.4878311157227,
+                2682.7242374420166,
+                2980.2920818328857,
+                2016.2129402160645,
+                13858.054161071777
+            ],
+            "summarization_count": 0
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-03-22T06:51:25.850880Z",
+    "finished_at": "2026-03-22T06:52:16.151765Z",
+    "environment_setup": {
+        "started_at": "2026-03-22T06:51:25.851766Z",
+        "finished_at": "2026-03-22T06:51:27.793002Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-22T06:51:27.793059Z",
+        "finished_at": "2026-03-22T06:51:34.139389Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-22T06:51:34.139577Z",
+        "finished_at": "2026-03-22T06:52:14.342978Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-22T06:52:14.343082Z",
+        "finished_at": "2026-03-22T06:52:14.624988Z"
+    }
+}

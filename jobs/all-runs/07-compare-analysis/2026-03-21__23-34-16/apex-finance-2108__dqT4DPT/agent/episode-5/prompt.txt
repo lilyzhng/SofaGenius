@@ -1,0 +1,28 @@
+New Terminal Output:
+
+root@ee2595532515:/app# wc -l /app/data/nike_10k.txt
+10354 /app/data/nike_10k.txt
+root@ee2595532515:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+New Terminal Output:
+
+root@ee2595532515:/app# sed -n '8480,8520p' /app/data/nike_10k.txt
+TOTAL DERI ATI E LIABILITIES
+
+78
+
+NIKE, INC.
+
+Accrued liabilities
+
+
+The following tables present the amounts affecting the Consolidated Statements of Income for the years ended May 31, 2025,
+2024 and 2023:
+AM
+T GAI
+EC G I E I T E
+C MP E E I E I C ME
+E I ATI E 1
+EA E
+2025
+
+(Dollars in millions)
+Derivatives designated as
+cash flow hedges:
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+
+$
+
+AM
+T GAI
+EC A I IE
+M ACC M ATE
+T E C MP E E I E
+I C ME
+I T I C ME 1
+CATI
+GAI
+root@ee2595532515:/app#

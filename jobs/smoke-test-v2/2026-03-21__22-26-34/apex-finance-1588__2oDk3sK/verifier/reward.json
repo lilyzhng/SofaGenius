@@ -1,0 +1,9 @@
+{
+  "reward": 0.5,
+  "reason": "criteria 5/10",
+  "file_exists": true,
+  "correctness": 0.5,
+  "criteria_met": 5,
+  "criteria_total": 10,
+  "tool_engaged": true
+}

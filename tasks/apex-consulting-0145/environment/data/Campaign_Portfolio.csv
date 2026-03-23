@@ -1,0 +1,101 @@
+Campaign ID,Channel,Category,Partners,Runtime,Target_Group_1,Target_Group_2,Target_Group_3,Payment_Method,Payment ($), Total_Impressions , Total_Clicks 
+1,TV,Sports Channel,ESPN,04/13/25 - 05/12/25,Family Man,Single Man,Elderly Man,Pay Per Impression,$0.18, 191160 ,
+2,TV,Sports Channel,ESPN,06/29/25 - 07/13/25,Family Man,Single Man,Elderly Man,Pay Per Impression,$0.18, 80775 ,
+3,TV,Sports Channel,ESPN,04/03/25 - 04/12/25,Family Man,Single Man,Elderly Man,Pay Per Impression,$0.18, 61270 ,
+4,TV,Sports Channel,Redbull,01/15/25 - 01/30/25,Single Man,,,Fixed Price,$10224, 65216 ,
+5,TV,Sports Channel,Redbull,04/17/25 - 05/06/25,Single Man,,,Fixed Price,$9420, 92580 ,
+6,SoMe,Social,Meta,03/13/25 - 03/31/25,Single Man,,,Pay Per Click,$0.95, 200906 , 30136 
+7,SoMe,Social,Meta,01/21/25 - 02/08/25,Single Man,,,Pay Per Click,$0.95, 156256 , 23439 
+8,SoMe,Social,Meta,04/13/25 - 05/06/25,Single Man,,,Pay Per Click,$0.95, 183120 , 21975 
+9,SoMe,Social,Meta,05/02/25 - 05/17/25,Single Man,,,Pay Per Click,$0.95, 153952 , 7698 
+10,TV,Social,Youtube,03/16/25 - 03/30/25,Family Man,,,Pay Per Click,$1.05, 155790 , 21811 
+11,TV,Entertainment,Youtube,03/29/25 - 04/13/25,Single Man,,,Pay Per Click,$1.05, 158160 , 22143 
+12,TV,Entertainment,Youtube,04/27/25 - 05/20/25,Single Man,,,Pay Per Impression,$0.20, 133944 ,
+13,TV,Entertainment,Youtube,04/10/25 - 05/06/25,Single Man,,,Pay Per Impression,$0.20, 184815 ,
+14,TV,Entertainment,Youtube,04/14/25 - 05/13/25,Single Man,,,Pay Per Impression,$0.20, 181860 ,
+15,SoMe,Social,TikTok,06/01/25 - 06/19/25,Single Man,,,Pay Per Click,$1.10, 234346 , 32809 
+16,SoMe,Social,TikTok,05/11/25 - 05/31/25,Single Man,,,Pay Per Click,$1.10, 292866 , 32216 
+17,SoMe,Social,TikTok,05/30/25 - 06/15/25,Single Man,,,Pay Per Click,$1.10, 235705 , 28285 
+18,TV,Entertainment,Disney,02/22/25 - 03/23/25,Family Man,,,Pay Per Click,$0.85, 254880 , 15293 
+19,TV,Entertainment,Disney,06/03/25 - 06/13/25,Family Man,,,Pay Per Click,$0.85, 107118 , 8570 
+20,TV,Entertainment,Disney,01/21/25 - 02/14/25,Family Man,,,Pay Per Click,$0.85, 202475 , 14174 
+21,TV,Entertainment,Disney,02/12/25 - 03/03/25,Family Man,,,Pay Per Click,$0.85, 225960 , 22596 
+22,TV,Sports Channel,FOX,01/24/25 - 02/17/25,Elderly Man,Family Man,Single Man,Fixed Price,$14125, 137150 ,
+23,TV,Sports Channel,FOX,04/04/25 - 04/15/25,Elderly Man,Family Man,Single Man,Fixed Price,$6948, 57660 ,
+24,TV,Entertainment,FOX,03/19/25 - 04/03/25,Elderly Man,Family Man,Single Man,Fixed Price,$9456, 61104 ,
+25,TV,Entertainment,FOX,05/24/25 - 06/17/25,Elderly Man,Family Man,Single Man,Fixed Price,$14350, 122075 ,
+26,TV,Entertainment,FOX,04/28/25 - 05/15/25,Elderly Man,Family Man,Single Man,Fixed Price,$8982, 97992 ,
+27,TV,Sports Channel,NBC,03/10/25 - 03/28/25,Elderly Man,,,Pay Per Impression,$0.18, 98952 ,
+28,TV,Entertainment,NBC,04/10/25 - 05/03/25,Elderly Man,,,Pay Per Impression,$0.18, 86064 ,
+29,Online,Entertainment,New York Times,03/11/25 - 04/09/25,Single Man,,,Pay Per Click,$0.80, 329520 , 52724 
+30,Online,Entertainment,Washington Post,02/27/25 - 03/16/25,Single Man,,,Pay Per Click,$0.80, 151200 , 25704 
+31,Online,Entertainment,Washington Post,03/29/25 - 04/22/25,Single Man,,,Pay Per Click,$0.80, 209300 , 33488 
+32,TV,Entertainment,Amazon,02/18/25 - 03/12/25,Family Man,Family Man,,Pay Per Impression,$0.20, 120773 ,
+33,TV,Entertainment,Amazon,02/16/25 - 03/10/25,Family Man,Family Man,,Pay Per Impression,$0.20, 163176 ,
+34,TV,Entertainment,Amazon,04/09/25 - 05/03/25,Single Man,Family Man,,Pay Per Impression,$0.20, 185825 ,
+35,TV,Entertainment,Amazon,03/21/25 - 04/06/25,Single Man,Family Man,,Pay Per Impression,$0.20, 135626 ,
+36,TV,Entertainment,Amazon,04/25/25 - 05/13/25,Single Man,Family Man,,Pay Per Impression,$0.20, 142804 ,
+37,TV,Entertainment,Amazon,06/09/25 - 06/29/25,Single Man,Family Man,,Pay Per Impression,$0.20, 161238 ,
+38,TV,Entertainment,Amazon,02/05/25 - 03/06/25,Single Man,Family Man,,Pay Per Impression,$0.20, 229020 ,
+39,Online,Audio,Spotify,03/30/25 - 04/15/25,Single Man,,,Pay Per Click,$0.70, 227426 , 25017 
+40,TV,Sports Channel,Discovery+,03/17/25 - 04/10/25,Family Man,Family Man,Single Man,Fixed Price,$10825, 93675 ,
+41,TV,Sports Channel,Discovery+,04/14/25 - 05/09/25,Family Man,Single Man,Family Man,Fixed Price,$10426, 136916 ,
+42,TV,Sports Channel,Discovery+,05/21/25 - 06/17/25,Elderly Man,Family Man,Single Man,Fixed Price,$11872, 141680 ,
+43,TV,Entertainment,Discovery+,06/07/25 - 06/28/25,Elderly Man,Single Man,Family Man,Fixed Price,$10560, 111496 ,
+44,TV,Entertainment,Hulu,04/12/25 - 05/01/25,Single Man,Family Man,,Fixed Price,$8940, 103220 ,
+45,TV,Entertainment,Hulu,01/10/25 - 01/29/25,Single Man,Family Man,,Fixed Price,$8000, 88720 ,
+46,TV,Entertainment,Hulu,05/07/25 - 06/01/25,Single Man,Family Man,,Fixed Price,$12116, 136812 ,
+47,Online,Entertainment,Hulu,02/17/25 - 03/09/25,Single Man,Family Man,,Fixed Price,$11739, 74886 ,
+48,Online,Entertainment,Hulu,06/02/25 - 06/14/25,Single Man,Family Man,,Fixed Price,$7384, 41210 ,
+49,Online,Sports Channel,BBC,03/07/25 - 04/03/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 270844 ,
+50,Online,Sports Channel,BBC,03/22/25 - 04/12/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 212740 ,
+51,TV,Sports Channel,BBC,01/18/25 - 02/14/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 274568 ,
+52,Online,Entertainment,BBC,06/01/25 - 06/22/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 209704 ,
+53,Online,Entertainment,BBC,01/23/25 - 02/14/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 212957 ,
+54,TV,Entertainment,BBC,03/27/25 - 04/06/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 101948 ,
+55,TV,Entertainment,Warner Media,02/06/25 - 02/28/25,Family Man,Single Man,Elderly Man,Fixed Price,$11385, 112792 ,
+56,TV,Entertainment,Warner Media,02/17/25 - 03/16/25,Family Man,Single Man,Elderly Man,Fixed Price,$16436, 105980 ,
+57,TV,Entertainment,Warner Media,04/25/25 - 05/23/25,Family Man,Single Man,Elderly Man,Fixed Price,$11629, 113970 ,
+58,TV,Entertainment,Warner Media,01/19/25 - 02/17/25,Family Man,Single Man,Elderly Man,Fixed Price,$12060, 144330 ,
+59,TV,Entertainment,Warner Media,05/22/25 - 06/10/25,Family Man,Single Man,Elderly Man,Fixed Price,$11300, 89340 ,
+60,TV,Entertainment,Paramount_Paramount+,04/12/25 - 05/06/25,Family Man,Single Man,,Pay Per Impression,$0.18, 109625 ,
+61,TV,Entertainment,Paramount_Paramount+,06/02/25 - 06/13/25,Family Man,Single Man,,Pay Per Impression,$0.18, 40932 ,
+62,TV,Entertainment,Peacock,01/14/25 - 01/28/25,Single Man,Elderly Man,,Pay Per Impression,$0.18, 79230 ,
+63,TV,Entertainment,Peacock,04/24/25 - 05/21/25,Single Man,Elderly Man,,Pay Per Impression,$0.18, 135436 ,
+64,SoMe,Social,Pinterest ,01/27/25 - 02/05/25,Single Man,,,Pay Per Click,$0.70, 84790 , 5936 
+65,Online,Sports Channel,The Players Tribune ,02/04/25 - 02/25/25,Single Man,Elderly Man,Family Man,Pay Per Click,$0.70, 154616 , 12370 
+66,Online,Sports Channel,The Players Tribune ,05/08/25 - 05/21/25,Single Man,Elderly Man,Family Man,Pay Per Click,$0.70, 72506 , 4351 
+67,Online,Sports Channel,The Players Tribune ,01/31/25 - 02/28/25,Single Man,Elderly Man,Family Man,Pay Per Click,$0.70, 199404 , 11965 
+68,Online,Entertainment,HBO,01/26/25 - 02/23/25,Family Man,Single Man,Elderly Man,Fixed Price,$16443, 124903 ,
+69,TV,Entertainment,HBO,06/01/25 - 06/12/25,Family Man,Single Man,Elderly Man,Fixed Price,$4944, 37908 ,
+70,TV,Entertainment,HBO,04/21/25 - 04/30/25,Family Man,Single Man,Elderly Man,Fixed Price,$4100, 48300 ,
+71,TV,Entertainment,HBO,05/04/25 - 05/18/25,Family Man,Single Man,Elderly Man,Fixed Price,$6840, 63975 ,
+72,TV,Entertainment,ABC,03/31/25 - 04/29/25,Elderly Man,Family Man,Single Man,Pay Per Impression,$0.15, 173460 ,
+73,TV,Entertainment,ABC,01/12/25 - 01/22/25,Elderly Man,Family Man,Single Man,Pay Per Impression,$0.15, 82500 ,
+74,TV,Entertainment,ABC,03/14/25 - 03/31/25,Elderly Man,Family Man,Single Man,Pay Per Impression,$0.15, 116820 ,
+75,TV,Sports Channel,ABC,03/25/25 - 04/21/25,Elderly Man,Family Man,Single Man,Pay Per Impression,$0.15, 205716 ,
+76,TV,Sports Channel,ABC,03/10/25 - 04/05/25,Elderly Man,Family Man,Single Man,Pay Per Impression,$0.15, 138510 ,
+77,TV,Sports Channel,CBS,01/30/25 - 02/17/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 156484 ,
+78,TV,Sports Channel,CBS,02/20/25 - 03/12/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 180411 ,
+79,Online,Sports Channel,CBS,01/22/25 - 02/02/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 98400 ,
+80,TV,Entertainment,CBS,01/03/25 - 01/19/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 137309 ,
+81,TV,Entertainment,CBS,04/07/25 - 05/04/25,Elderly Man,Family Man,,Pay Per Impression,$0.15, 227304 ,
+82,TV,Entertainment,PBS,02/03/25 - 03/01/25,Family Man,Elderly Man,,Pay Per Impression,$0.20, 151011 ,
+83,TV,Entertainment,PBS,01/24/25 - 02/11/25,Family Man,Elderly Man,,Pay Per Impression,$0.20, 83486 ,
+84,TV,Entertainment,PBS,04/01/25 - 04/15/25,Family Man,Elderly Man,,Pay Per Impression,$0.20, 89670 ,
+85,TV,Entertainment,CNN,06/01/25 - 06/30/25,Single Man,Family Man,,Pay Per Impression,$0.15, 168690 ,
+86,TV,Entertainment,CNN,03/12/25 - 03/24/25,Single Man,Family Man,,Pay Per Impression,$0.15, 95875 ,
+87,TV,Sports Channel,CNN,03/22/25 - 04/15/25,Single Man,Family Man,,Pay Per Impression,$0.15, 151950 ,
+88,TV,Sports Channel,CNN,03/12/25 - 04/10/25,Single Man,Family Man,,Pay Per Impression,$0.15, 153600 ,
+89,TV,Entertainment,AMC,02/18/25 - 02/28/25,Family Man,Single Man,Elderly Man,Fixed Price,$5005, 56452 ,
+90,TV,Entertainment,AMC,02/01/25 - 02/21/25,Family Man,Single Man,Elderly Man,Fixed Price,$9912, 100044 ,
+91,TV,Entertainment,AMC,05/01/25 - 05/25/25,Family Man,Single Man,Elderly Man,Fixed Price,$12700, 130175 ,
+92,Online,Entertainment,AMC,03/04/25 - 03/28/25,Family Man,Single Man,Elderly Man,Fixed Price,$12350, 99850 ,
+93,TV,Entertainment,TBS,01/28/25 - 02/10/25,Family Man,Single Man,,Pay Per Impression,$0.20, 101850 ,
+94,TV,Entertainment,TBS,02/05/25 - 03/05/25,Family Man,Single Man,,Pay Per Impression,$0.20, 212889 ,
+95,TV,Entertainment,TBS,03/26/25 - 04/09/25,Family Man,Single Man,,Pay Per Impression,$0.20, 92085 ,
+96,TV,Entertainment,TBS,03/02/25 - 03/22/25,Family Man,Single Man,,Pay Per Impression,$0.20, 137466 ,
+97,TV,Entertainment,TLC,01/09/25 - 01/31/25,Single Man,,,Fixed Price,$9959, 80270 ,
+98,TV,Entertainment,TLC,04/10/25 - 04/30/25,Single Man,,,Fixed Price,$9261, 89355 ,
+99,TV,Entertainment,TLC,05/09/25 - 05/30/25,Single Man,,,Fixed Price,$12188, 67210 ,
+100,SoMe,Social,TLC,02/15/25 - 03/16/25,Single Man,,,Fixed Price,$16410, 158010 ,

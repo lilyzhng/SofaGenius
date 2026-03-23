@@ -1,0 +1,157 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# pdftotext "data/1371_Walker v. Commonwealth_74 Va. App. 475.pdf" - | head -150
+11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+June 1, 2023
+
+Walker v. Commonwealth
+Supreme Court of Virginia
+Citations: None known
+Docket Number: 220378
+
+Combined Opinion
+
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/22
+
+
+11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+PRESENT: Goodwyn, C.J., Powell, Kelsey, McCullough, Chafin, and Mann, JJ., and Koontz,
+S.J.
+JACQUES LAMAR WALKER
+OPINION BY
+JUSTICE STEPHEN R. McCULLOUGH
+June 1, 2023
+
+v. Record No. 220378
+COMMONWEALTH OF VIRGINIA
+
+FROM THE COURT OF APPEALS OF VIRGINIA
+This appeal presents two primary issues. First, we consider whether the Due Process
+Clause of the United States Constitution requires a court to pre-screen eyewitness identification
+testimony before the eyewitness can be permitted to make an identification of the defendant for
+the first time in open court. We also examine whether the jury was properly instructed that the
+defendant was subject to the second or subsequent offense provisions of Code § 18.2-53.1 for
+using a firearm in the commission of robbery. With regard to the first issue, in accord with the
+majority of courts that have considered this question, we conclude that the Due Process Clause
+does not require a court to pre-screen an eyewitness identification made for the first time in
+court. Second, we hold that the jury was properly instructed on the second or subsequent offense
+provisions of Code § 18.2-53.1.
+BACKGROUND
+I.
+
+A WELLS FARGO BANK IS ROBBED AT GUNPOINT BY A MASKED INDIVIDUAL.
+
+On the afternoon of May 23, 2016, a man wearing a mask, a hooded sweatshirt, and a
+distinctive yellow work vest “barge[d]” into the lobby of a Wells Fargo bank branch. Edlin
+Cottrell, one of the tellers, heard a scream, which another teller described as a “blood curdling
+scream.” Cottrell saw the masked man and ducked behind her desk.
+The robber struck a customer and knocked him down. The robber then went behind the
+teller line to where the bank employees were. He pointed a gun at the tellers and told them in a
+“demanding,” and “rushed” voice to put money in a bag. His demeanor was “forceful.” The
+bag, a black bag with handles, appeared to be the kind of plastic bag used at liquor stores. The
+teller complied, as did other bank employees. A third teller mostly hid under her desk. Once the
+money was placed in the bag, the robber then ran out the front door. All told, the robber ran off
+with over $15,000.
+The mask covered the robber’s nose and mouth. His eyes and skin tone were visible.
+Based on skin tone, he was described as black. A teller described the robber as medium build
+and maybe 5’8” or 5’9”.
+A person in the parking lot observed the robber exiting the bank and getting into the
+passenger side of a white Acura automobile. Another person was driving.
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+2/22
+
+
+11/14/25, 10:28 PM
+
+II.
+
+Walker v. Commonwealth – CourtListener.com
+
+THE INVESTIGATION AND WALKER’S ARREST.
+
+The Wells Fargo bank branch that was robbed is located at Tackett’s Mill Shopping
+Center in Prince William County. Approximately four hours before the robbery of the Wells
+Fargo bank, an employee of a different bank, a branch of BB&T, located a few miles from the
+Wells Fargo bank that was robbed, heard a report of suspicious activity. Acting on this report,
+she followed a suspicious vehicle with two men in it. The vehicle was a late model white Acura.
+She wrote down the license plate and reported it to the police. She also was able to observe the
+two men when they stepped out of the car. One of the men was “shorter and . . . stockier” and
+the other was “taller and thinner.” The thinner, taller man was in the passenger seat. The
+thinner of the two was wearing a “yellow shirt.” She saw their faces. She identified Walker at
+
+2
+trial as one of the men in the white Acura. Police later learned that an Acura with the reported
+license plate was registered to a Jacques Walker.
+Some of the money the Wells Fargo tellers placed in the bag was “strapped money,”
+meaning a stack of bills wrapped with a band. The straps have a Wells Fargo Bank stamp on
+them, which has a date and a number for a particular branch. These straps also bear the initials
+of a service manager and a particular teller. These straps help ensure the money is accounted for
+and help the tellers identify certain bundled amounts, such as $500 or $5,000.
+A police officer who responded to the 9-1-1 call from the bank robbery observed a
+yellow vest on the ground, by the road. Police collected the vest, as well as additional items of
+clothing, including a black ski mask and a pair of jeans, further down the road from the Wells
+Fargo bank that was robbed.
+After the robbery, one of the bank customers, the man struck by the robber, noticed a
+pistol on a mulch pile in the bed of his pickup truck. He called the police, who retrieved the gun.
+The gun turned out to be a BB gun.
+Two days after the robbery, on May 25, 2016, police arrested Walker in Maryland, after a
+traffic stop. The white Acura he was traveling in was being driven 91 miles per hour in a 55
+mile per hour zone. The license plate matched the license plate for the white Acura that the
+BB&T bank employee had noted. Walker was the passenger in the vehicle. Walker had about
+$2,600 in cash in his pocket. There was also a suitcase in the back seat. It contained a backpack,
+and inside that backpack was a black plastic bag with $9,060 in cash. The cash from the suitcase
+was wrapped in the distinctive bands from the Wells Fargo bank. Walker told the police in
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+3/22
+
+
+11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+Maryland that they were headed to a casino. Police also recovered two cell phones.
+
+3
+When questioned by the police about the Wells Fargo robbery, Walker stated that he was
+working for an employment service called Labor Ready that day, on a moving job in Warrenton.
+He said he worked from 8:00 a.m. to 3:00 p.m. A work ticket from Labor Ready, however,
+showed that Walker had worked four hours that day. The evidence established that four hours is
+the minimum amount of pay a worker receives; the actual hours worked could have been less.
+A manager for Labor Ready confirmed that Walker worked on May 23, 2016, for a
+moving job. She identified the yellow vest worn by the robber as “the same type” of vest the
+company provides to persons who work for them. She identified Walker as the bank robber from
+a still photo. When asked how she could identify Walker as the robber, when the robber was
+wearing a mask, she responded:
+Well, he started working for us in the colder months so a lot of the
+workers come in very bundled up so you learn to recognize them when they’re
+coming in.
+So and I had worked with him for four months, he’d been coming in every
+day just about asking for work so after a while you really get to know your
+workers and so I recognized him.
+App. 236.
+A search of the phones recovered from the Acura in Maryland revealed that someone
+used one of the phones to pull up an article titled A Man in a Yellow Vest Robs Tackett’s Mill
+Wells Fargo. A forensic analysis of the search history of the phone revealed a query for “do
+sweat have DNA.”
+DNA testing on the mask recovered by the side of the road revealed a mixture. Walker
+could not be eliminated as the major contributor to the mixture. No DNA was recovered from
+the yellow vest found by the road. The pair of jeans found near the road also contained a DNA
+mixture that was a match for Walker.
+
+4
+Walker offered alibi evidence from a “good friend” and five-time convicted felon, who
+testified that Walker worked on the moving job all day, from around noon to about 6:00 p.m.
+Walker himself testified to that effect. However, this evidence differed in a number of ways
+from the alibi he provided to a detective just days after the robbery. Walker also offered
+evidence from another convicted felon that a man named “Mike” may have committed the
+root@78f1db70b96f:/app#

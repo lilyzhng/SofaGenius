@@ -1,0 +1,57 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# cat > /app/scripts/parse_financial_data.py << 'EOF'
+> import pandas as pd
+> from openpyxl import load_workbook
+>
+> # Load the Excel file
+> data_file = "/app/data/ConSup Inc Financial Model_PROMPT.xlsx"
+>
+> # Load workbook to see structure
+> wb = load_workbook(data_file)
+> print("Sheet names:")
+> for i, name in enumerate(wb.sheetnames):
+>     print(f"{i}: {name}")
+>
+> # Read specific sheets with proper column handling
+> try:
+>     # Let's focus on Financial Statements
+>     df_financial = pd.read_excel(data_file, sheet_name="Financial Statements", header=3)
+>     print(f"\nFinancial Statements (first 10 rows):")
+>     print(df_financial.head(10))
+>     print(f"Shape: {df_financial.shape}")
+>
+>     # Read Transaction Structure
+>     df_transaction = pd.read_excel(data_file, sheet_name="Transaction Structure", header=3)
+>     print(f"\nTransaction Structure (first 10 rows):")
+>     print(df_transaction.head(10))
+>     print(f"Shape: {df_transaction.shape}")
+>
+>     # Read Assumptions
+>     df_assumptions = pd.read_excel(data_file, sheet_name="Assumptions", header=3)
+>     print(f"\nAssumptions (first 10 rows):")
+>     print(df_assumptions.head(10))
+>     print(f"Shape: {df_assumptions.shape}")
+>
+> except Exception as e:
+>     print(f"Error processing sheets: {e}")
+>
+> # Look for EBITDA related data in the Financial Statements
+> if 'Financial Statements' in wb.sheetnames:
+>     try:
+>         df_financial = pd.read_excel(data_file, sheet_name="Financial Statements", header=3)
+>         # Look for EBITDA column
+>         ebitda_cols = [col for col in df_financial.columns if 'EBITDA' in str(col) or 'ebitda' in str(col)]
+>         print(f"\nEBITDA related columns found: {ebitda_cols}")
+>
+>         # Filter for EBITDA data
+>         if len(ebitda_cols) > 0:
+>             # Print the EBITDA values
+>             print("\nEBITDA values:")
+>             for col in ebitda_cols:
+>                 values = df_financial[col].dropna().tolist()[:10]  # First 10 values
+>                 print(f"{col}: {values}")
+>     except Exception as e:
+>         print(f"Error analyzing EBITDA: {e}")
+> EOF
+root@7326c35a90b6:/app#

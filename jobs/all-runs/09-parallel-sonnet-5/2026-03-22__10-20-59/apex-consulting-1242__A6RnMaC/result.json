@@ -1,0 +1,118 @@
+{
+    "id": "ba00a086-cb91-4752-9bf3-184bab35df59",
+    "task_name": "apex-consulting-1242",
+    "trial_name": "apex-consulting-1242__A6RnMaC",
+    "trial_uri": "file:///Users/lilyzhang/Documents/lilyzhng/claude/builder/jobs/all-runs/09-parallel-sonnet-5/2026-03-22__10-20-59/apex-consulting-1242__A6RnMaC",
+    "task_id": {
+        "path": "tasks/apex-consulting-1242"
+    },
+    "source": "tasks",
+    "task_checksum": "146e44c2a74b061cb80ce6d7447e9d8806f48fbcf84f5f1c892c3c3145a58320",
+    "config": {
+        "task": {
+            "path": "tasks/apex-consulting-1242",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "tasks"
+        },
+        "trial_name": "apex-consulting-1242__A6RnMaC",
+        "trials_dir": "jobs/all-runs/09-parallel-sonnet-5/2026-03-22__10-20-59",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "terminus-2",
+            "import_path": null,
+            "model_name": "openrouter/anthropic/claude-sonnet-4",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {
+                "max_turns": 10
+            },
+            "env": {
+                "OPENROUTER_API_KEY": "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"
+            }
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": 2048,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "f39fab4c-d921-4280-acd0-b5a8b2b1fbc4"
+    },
+    "agent_info": {
+        "name": "terminus-2",
+        "version": "2.0.0",
+        "model_info": {
+            "name": "anthropic/claude-sonnet-4",
+            "provider": "openrouter"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 47502,
+        "n_cache_tokens": 35580,
+        "n_output_tokens": 4112,
+        "cost_usd": 0.11627175000000001,
+        "rollout_details": [],
+        "metadata": {
+            "n_episodes": 10,
+            "api_request_times_msec": [
+                4209.295034408569,
+                2582.3769569396973,
+                3224.2629528045654,
+                4495.33224105835,
+                5257.5178146362305,
+                29593.477249145508,
+                3948.755979537964,
+                2604.9978733062744,
+                2766.5610313415527,
+                2504.2030811309814
+            ],
+            "summarization_count": 0
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.8462
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-03-22T17:20:59.694876Z",
+    "finished_at": "2026-03-22T17:22:21.030118Z",
+    "environment_setup": {
+        "started_at": "2026-03-22T17:20:59.696006Z",
+        "finished_at": "2026-03-22T17:21:02.900323Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-22T17:21:02.900351Z",
+        "finished_at": "2026-03-22T17:21:10.759084Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-22T17:21:10.759173Z",
+        "finished_at": "2026-03-22T17:22:17.849076Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-22T17:22:17.849133Z",
+        "finished_at": "2026-03-22T17:22:19.463182Z"
+    }
+}

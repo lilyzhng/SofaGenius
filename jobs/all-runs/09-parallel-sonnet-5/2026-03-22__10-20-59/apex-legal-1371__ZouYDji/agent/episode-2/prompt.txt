@@ -1,0 +1,36 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# ls -la data/
+total 1108
+drwxr-xr-x 2 root root   4096 Mar 22 17:21  .
+drwxr-xr-x 1 root root   4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 339354 Mar 22 04:43 '1371_Cardwell v. Commonwealth_248 Va. 501.pdf'
+-rw-r--r-- 1 root root 260537 Mar 22 04:43 '1371_Hoyt v. Commonwealth_44 Va. App. 489 (1).pdf'
+-rw-r--r-- 1 root root 130957 Mar 22 04:43 '1371_Pritchard v. Commonwealth_225 Va. 559.pdf'
+-rw-r--r-- 1 root root 317932 Mar 22 04:43 '1371_Walker v. Commonwealth_74 Va. App. 475.pdf'
+-rw-r--r-- 1 root root  70733 Mar 22 04:43 'Va. Code Ann. _ 18.2-47.pdf'
+root@78f1db70b96f:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,10 @@
+{
+  "analysis": "I can see key transaction data: FY24 EBITDA of $8,318k, purchase multiple of 8x, senior debt 2x EBITDA, subordinate debt 1x EBITDA, 15% rollover equity. I also see historical revenue, COGS, payroll, and EBITDA data. I need to get the full financial projections to build the LBO model.",
+  "plan": "Extract the complete financial projections including EBITDA forecasts through FY29, then build the LBO calculations for both exit scenarios with the modified payroll growth assumption.",
+  "commands": [
+    {
+      "keystrokes": "cat > /app/get_projections.py << 'EOF'\nimport pandas as pd\nimport numpy as np\nfrom openpyxl import load_workbook\n\n# Load the workbook\nwb = load_workbook('/app/data/ConSup Inc Financial Model_PROMPT.xlsx', data_only=True)\n\n# Read Financial Statements projections\nfs_sheet = wb['Financial Statements']\nprint(\"=== Financial Statements Projections ===\")\nfor row in range(1, 50):\n    row_data = []\n    for col in range(1, 15):\n        cell_value = fs_sheet.cell(row=row, column=col).value\n        if cell_value is not None:\n            row_data.append(str(cell_value))\n    if row_data and len(row_data) > 2:\n        print(f\"Row {row}: {' | '.join(row_data)}\")\n\nprint(\"\\n=== Assumptions Sheet ===\")\nassump_sheet = wb['Assumptions']\nfor row in range(1, 30):\n    row_data = []\n    for col in range(1, 15):\n        cell_value = assump_sheet.cell(row=row, column=col).value\n        if cell_value is not None:\n            row_data.append(str(cell_value))\n    if row_data and len(row_data) > 2:\n        print(f\"Row {row}: {' | '.join(row_data)}\")\n\nEOF\n",
+      "duration": 0.1
+    }
+  ]
+}

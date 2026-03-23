@@ -1,0 +1,181 @@
+{
+  "criterion 1": {
+    "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M1 as 2.73 (acceptable value is 2.73)",
+    "sources": "Data.csv",
+    "justification": "From the dataset data.csv attached, first calculate Lifetime Pay per row (or employee). To do this, we determine the total lifetime (in years) for each employee by finding the difference between each employee's Date of Joining (column B) and 10/25/2025 (per prompt). We can determine this using a formula like this: =DATEDIF(B2,$O$1,'d')/365 Next, we multiply this tenure in years by the Total Pay (column J) which is also in years, per prompt. We can determine the Lifetime Pay using a formula like this, assuming the tenure in years is created in column M: =M2*J2 To determine the weighted average of the ratio of average lifetime revenue to average lifetime pay for every grade, create a pivot table where employee Grade (column C) is the rows and the values are sum of Lifetime Revenue (column L) and sum of the newly calculated Total Pay (column J). The ratio is the simple division of total lifetime revenue by total lifetime pay for each grade. Output as follows: Row Labels Sum of Lifetime Revenue Sum of Lifetime Pay Unrounded Ratio Rounded Ratio M1 $4,727,876,336 $1,734,938,806 2.725096886 2.73 M2 $3,889,169,727 $1,196,019,801 3.251760316 3.25 M3 $5,473,528,658 $1,788,044,299 3.061181795 3.06 M4 $288,497,996 $101,777,314 2.834600214 2.83 M5 $519,250,542 $299,058,552 1.736283877 1.74 For M1, the ratio = 2.725096886= 2.73 rounded to two decimal places per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M2 as 3.25 (acceptable value is 3.25)",
+    "sources": "Data.csv",
+    "justification": "From the dataset data.csv attached, first calculate Lifetime Pay per row (or employee). To do this, we determine the total lifetime (in years) for each employee by finding the difference between each employee's Date of Joining (column B) and 10/25/2025 (per prompt). We can determine this using a formula like this: =DATEDIF(B2,$O$1,'d')/365 Next, we multiply this tenure in years by the Total Pay (column J) which is also in years, per prompt. We can determine the Lifetime Pay using a formula like this, assuming the tenure in years is created in column M: =M2*J2 To determine the weighted average of the ratio of average lifetime revenue to average lifetime pay for every grade, create a pivot table where employee Grade (column C) is the rows and the values are sum of Lifetime Revenue (column L) and sum of the newly calculated Total Pay (column J). The ratio is the simple division of total lifetime revenue by total lifetime pay for each grade. Output as follows: Row Labels Sum of Lifetime Revenue Sum of Lifetime Pay Unrounded Ratio Rounded Ratio M1 $4,727,876,336 $1,734,938,806 2.725096886 2.73 M2 $3,889,169,727 $1,196,019,801 3.251760316 3.25 M3 $5,473,528,658 $1,788,044,299 3.061181795 3.06 M4 $288,497,996 $101,777,314 2.834600214 2.83 M5 $519,250,542 $299,058,552 1.736283877 1.74 For M2, the ratio = 3.251760316= 3.25 rounded to two decimal places per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M3 as 3.06 (acceptable value is 3.06)",
+    "sources": "Data.csv",
+    "justification": "From the dataset data.csv attached, first calculate Lifetime Pay per row (or employee). To do this, we determine the total lifetime (in years) for each employee by finding the difference between each employee's Date of Joining (column B) and 10/25/2025 (per prompt). We can determine this using a formula like this: =DATEDIF(B2,$O$1,'d')/365 Next, we multiply this tenure in years by the Total Pay (column J) which is also in years, per prompt. We can determine the Lifetime Pay using a formula like this, assuming the tenure in years is created in column M: =M2*J2 To determine the weighted average of the ratio of average lifetime revenue to average lifetime pay for every grade, create a pivot table where employee Grade (column C) is the rows and the values are sum of Lifetime Revenue (column L) and sum of the newly calculated Total Pay (column J). The ratio is the simple division of total lifetime revenue by total lifetime pay for each grade. Output as follows: Row Labels Sum of Lifetime Revenue Sum of Lifetime Pay Unrounded Ratio Rounded Ratio M1 $4,727,876,336 $1,734,938,806 2.725096886 2.73 M2 $3,889,169,727 $1,196,019,801 3.251760316 3.25 M3 $5,473,528,658 $1,788,044,299 3.061181795 3.06 M4 $288,497,996 $101,777,314 2.834600214 2.83 M5 $519,250,542 $299,058,552 1.736283877 1.74 For M3, the ratio = 3.061181795= 3.06 rounded to two decimal places per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M4 as 2.83 (acceptable value is 2.83)",
+    "sources": "Data.csv",
+    "justification": "From the dataset data.csv attached, first calculate Lifetime Pay per row (or employee). To do this, we determine the total lifetime (in years) for each employee by finding the difference between each employee's Date of Joining (column B) and 10/25/2025 (per prompt). We can determine this using a formula like this: =DATEDIF(B2,$O$1,'d')/365 Next, we multiply this tenure in years by the Total Pay (column J) which is also in years, per prompt. We can determine the Lifetime Pay using a formula like this, assuming the tenure in years is created in column M: =M2*J2 To determine the weighted average of the ratio of average lifetime revenue to average lifetime pay for every grade, create a pivot table where employee Grade (column C) is the rows and the values are sum of Lifetime Revenue (column L) and sum of the newly calculated Total Pay (column J). The ratio is the simple division of total lifetime revenue by total lifetime pay for each grade. Output as follows: Row Labels Sum of Lifetime Revenue Sum of Lifetime Pay Unrounded Ratio Rounded Ratio M1 $4,727,876,336 $1,734,938,806 2.725096886 2.73 M2 $3,889,169,727 $1,196,019,801 3.251760316 3.25 M3 $5,473,528,658 $1,788,044,299 3.061181795 3.06 M4 $288,497,996 $101,777,314 2.834600214 2.83 M5 $519,250,542 $299,058,552 1.736283877 1.74 For M4, the ratio = 2.834600214= 2.83 rounded to two decimal places per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M5 as 1.74 (acceptable value is 1.74)",
+    "sources": "Data.csv",
+    "justification": "From the dataset data.csv attached, first calculate Lifetime Pay per row (or employee). To do this, we determine the total lifetime (in years) for each employee by finding the difference between each employee's Date of Joining (column B) and 10/25/2025 (per prompt). We can determine this using a formula like this: =DATEDIF(B2,$O$1,'d')/365 Next, we multiply this tenure in years by the Total Pay (column J) which is also in years, per prompt. We can determine the Lifetime Pay using a formula like this, assuming the tenure in years is created in column M: =M2*J2 To determine the weighted average of the ratio of average lifetime revenue to average lifetime pay for every grade, create a pivot table where employee Grade (column C) is the rows and the values are sum of Lifetime Revenue (column L) and sum of the newly calculated Total Pay (column J). The ratio is the simple division of total lifetime revenue by total lifetime pay for each grade. Output as follows: Row Labels Sum of Lifetime Revenue Sum of Lifetime Pay Unrounded Ratio Rounded Ratio M1 $4,727,876,336 $1,734,938,806 2.725096886 2.73 M2 $3,889,169,727 $1,196,019,801 3.251760316 3.25 M3 $5,473,528,658 $1,788,044,299 3.061181795 3.06 M4 $288,497,996 $101,777,314 2.834600214 2.83 M5 $519,250,542 $299,058,552 1.736283877 1.74 For M5, the ratio = 1.736283877= 1.74 rounded to two decimal places per prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "State that M2 is one of the top 2 grades",
+    "sources": "",
+    "justification": "As per criterions 12522, 12523, 12524, 12525, 12526, the ratio value for all the grades is as follows- M1: 2.73 M2: 3.25 M3: 3.06 M4: 2.83 M5: 1.74 We can clearly state that M2 has the highest ratio of 3.25, followed by M3 with 3.06",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "State that M3 is one of the top 2 grades",
+    "sources": "",
+    "justification": "As per criterions 12522, 12523, 12524, 12525, 12526, the ratio value for all the grades is as follows- M1: 2.73 M2: 3.25 M3: 3.06 M4: 2.83 M5: 1.74 We can clearly state that M2 has the highest ratio of 3.25, followed by M3 with 3.06 Criteria 12527 States that M2 is one of the top 2 grades based on Average Lifetime Revenue to Average Lifetime Pay ratio. So M3 is mentioned in this criteria.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Calculate the number of additional employees to be added for M2 as 20 (Acceptable value is 20)",
+    "sources": "Data.csv",
+    "justification": "Based on criterion 12527, M2 is a grade with one of the highest ratios. As per the dataset data.csv, the current number of employees for M2 are 101. (Filter on column C 'Grade' and count the rows) As per the prompt instruction, 20% of the workforce needs to be added for two grades with the highest ratios. 20% of workforce for M2 = 20% * 101 = 20.2, which is rounded off to 20, since we can't have fractional employees, per prompt",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 9": {
+    "description": "Calculate the number of additional employees to be added for M3 as 20 (Acceptable value is 20)",
+    "sources": "Data.csv",
+    "justification": "Based on criterion 12528, M3 is a grade with one of the highest ratios. As per the dataset data.csv, the current number of employees for M3 are 99. (Filter on column C 'Grade' and count the rows) As per the prompt instruction, 20% of the workforce needs to be added for two grades with the highest ratios. 20% of workforce for M3 = 20% * 99 = 19.8, which is rounded off to 20, since we can't have fractional employees, per prompt",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 10": {
+    "description": "Calculate the total annual additional expense as $78,907,051 (Acceptable value is $78,907,051)",
+    "sources": "",
+    "justification": "As per Criterion 12558 & 12559, the cost of adding 20% employees in M2 & M3 is calculated by adding the total cost of hiring in each of the grades. Total Annual Additional Expense = Total Annual Additional Expense for M2 (Criterion 12558) + Total Annual Additional Expense for M3 (Criterion 12559) = $31,764,666 + $47,142,384 = $78,907,050.6 = $78,907,051 rounded per prompt Note: the final answers reported may differ from the answers resulting from expressing the preceding formulas given that the prompt directs that no interim calculations should be rounded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11,
+      12
+    ]
+  },
+  "criterion 11": {
+    "description": "Calculate the total annual additional expense for M2 as $31,764,666 (Acceptable value is $31,764,666)",
+    "sources": "Data.csv",
+    "justification": "As per Criterion 12529, 20 employees need to be added at grade M2. As per the dataset data.csv, the average annual pay for M2 is $1,572,508.228 The total annual additional expense for M2 is = 20 * $1,572,508.228 = $31,764,666.2 = $31,764,666 (rounded to nearest whole number as per prompt) Note: the final answers reported may differ from the answers resulting from expressing the preceding formulas given that the prompt directs that no interim calculations should be rounded.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 12": {
+    "description": "Calculate the total annual additional expense for M3 as $47,142,384 (Acceptable value is $47,142,384)",
+    "sources": "Data.csv",
+    "justification": "As per Criterion 12530, 20 employees need to be added at grade M3. As per the dataset data.csv, the average annual pay for M3 is $2,380,928.505 The total annual additional expense for M3 is = 20 * $2,380,928.505 = $47,142,384.4 = $47,142,384 (rounded to nearest whole number as per prompt) Note: the final answers reported may differ from the answers resulting from expressing the preceding formulas given that the prompt directs that no interim calculations should be rounded.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 13": {
+    "description": "Recommends the bank should focus on one of the following employee grade levels for its expansion plans: 1) The bank should prioritize expanding high-return senior grades (e.g., M2-M3) 2) The bank should focus on developing lower-grade talent (e.g., M1) 3) A balanced approach should be adopted, expanding senior grades (e.g., M2-M3) while simultaneously building lower-grade talent (e.g., M1) 4) Any one or combination of M1, M2 or M3",
+    "sources": "",
+    "justification": "Based on criterion 12527 and 12528, M2 and M3 are the grades with the highest ratios. 1) The bank should prioritize expanding high-return senior grades (M2-M3) since they generate the highest revenue per dollar invested, directly enhancing short-term profitability and operational efficiency. 2) The bank should focus on developing lower-grade talent (M1) because it provides a more scalable and cost-efficient workforce pipeline, ensuring sustained value creation over the long term. 3) A balanced approach should be adopted, expanding M2-M3 for immediate financial impact while simultaneously building M1 capabilities to secure long-term growth and reduce dependency on high-cost senior roles. If the business strategy emphasizes innovation, leadership, and client acquisition, prioritizing M2-M3 expansion makes sense; however, if the focus is cost control and operational efficiency, strengthening M1 is more prudent.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      7
+    ]
+  }
+}

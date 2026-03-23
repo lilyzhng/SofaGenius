@@ -1,0 +1,118 @@
+{
+  "criterion 1": {
+    "description": "Recommends the child receive a repeat dose of Hepatitis B (Hep B) vaccine today.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "This child needs a repeat of dose 3 because the interval of 5 weeks was too short between doses 2 and 3. The recommended interval is 8 weeks. Pages 3 and 9 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      2,
+      3
+    ]
+  },
+  "criterion 2": {
+    "description": "Recognizes that the child received his third Hepatitis B dose 5 weeks after his second dose.",
+    "sources": "",
+    "justification": "Based on the prompt, the child received Hep B #3 only 5 weeks after Hep B #2",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Specifies that the minimum interval between the second and third doses of Hepatitis B should be 8 weeks.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Minimum interval between doses Dose 2 to Dose 3: 8 weeks.' Page 3 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Recommends that the Influenza vaccine should be administered today.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Age 6 months\u20138 years who have received at least 2 influenza vaccine doses before July 1, 2025: recommendation is 1' dose. Page 9 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States the AAP recommends COVID vaccine for children aged 6 months through 23 months.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months ... age 6\u201323 months \u2022 Unvaccinated (ie, never received any COVID-19 vaccine doses): \u2022 2 doses Moderna Spikevax 0, 4\u20138 weeks' Page 3 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Recommends that the first dose of the COVID vaccine should be administered today.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months ... age 6\u201323 months \u2022 Unvaccinated (ie, never received any COVID-19 vaccine doses): \u2022 2 doses Moderna Spikevax 0, 4\u20138 weeks' Page 3 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "States that the initial COVID vaccine series for an infant is a 2-dose series.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months ... age 6\u201323 months \u2022 Unvaccinated (ie, never received any COVID-19 vaccine doses): \u2022 2 doses Moderna Spikevax 0, 4\u20138 weeks' Page 3 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Recommends that the second dose of the COVID vaccine should be administered in 4 to 8 weeks from the current visit.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months ... age 6\u201323 months \u2022 Unvaccinated (ie, never received any COVID-19 vaccine doses): \u2022 2 doses Moderna Spikevax 0, 4\u20138 weeks' Page 3 https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Concludes the child is up to date on other childhood vaccinations.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "This child will need IPV #4 and DTaP #4 at future appointments, but is not needing them in a 'catch-up' Schedule. His 3rd dose of Hib and PCV on 9/1/25 were his final doses of these vaccines. He will need Hep A #2 in 6 months, but this also will not be catch-up. Pages 3, 7, 8, 11, and 12. https://downloads.aap.org/AAP/PDF/AAP-Immunization-Schedule.pdf",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  }
+}

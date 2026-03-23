@@ -1,0 +1,91 @@
+{
+  "criterion 1": {
+    "description": "Calculates combined AHT in weeks 6 and 7 as 3.23 (acceptable value is 3.23)",
+    "sources": "Mercury 4.csv",
+    "justification": "Average AHT = Total hours / Total approved quantity Week 6 Total hours = SUM(B:B) = 71,259.02 Total approved quantity = SUM(C:C) = 22,263.00 Week 7 Total hours = SUM(D:D) = 71,211.98 Total approved quantity = SUM(E:E) = 21,889.00 Average AHT = (71,259.02 + 71,211.98) / (22,263.00 + 21,889.00) = 142,471.00 / 44,152.00 = 3.227 = 3.23 (rounded to two decimal places per prompt requirement)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates AHT in week 8 as 3.91 (acceptable value is 3.91)",
+    "sources": "Mercury 4.csv",
+    "justification": "Average AHT = Total hours / Total approved quantity Week 8 Total hours = SUM(F:F) = 67,254.23 Total approved quantity = SUM(G:G) = 17,204.00 Average AHT = 67,254.23 / 17,204.00 = 3.909 = 3.91 (rounded to two decimal places per prompt requirement)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates combined AHT in weeks 9 and 10 as 4.49 (acceptable value is 4.49)",
+    "sources": "Mercury 4.csv",
+    "justification": "Average AHT = Total hours / Total approved quantity Week 9 Total hours = SUM(H:H) = 56,195.89 Total approved quantity = SUM(I:I) = 12,507.00 Week 10 Total hours = SUM(J:J) = 56,133.90 Total approved quantity = SUM(K:K) = 12,534.00 Average AHT = (56,195.89 + 56,133.90) / (12,507.00 + 12,534.00) = 112,329.79 / 25,041.00 = 4.486 = 4.49 (rounded to two decimal places per prompt requirement)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates the percent difference between combined AHT in weeks 6 + 7 vs week 8 as 21.1% (acceptable range is 20.9% to 21.3%)",
+    "sources": "",
+    "justification": "Based on criterion 4621 and 7413, the average AHT in weeks 6 and 7 and that for week 8 are 3.23 and 3.91, respectively. Percent difference = (3.91 / 3.23) - 1 = 21.05% = 21.1% (rounded to one decimal place per prompt requirement)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2
+    ]
+  },
+  "criterion 5": {
+    "description": "Calculates the percent difference between combined AHT in weeks 6 + 7 vs combined AHT in weeks 9 + 10 as 39.0% (acceptable range is 38.8% to 39.2%)",
+    "sources": "",
+    "justification": "Based on criterion 4621 and 5113, the average AHT in weeks 6 and 7 and that for weeks 9 and 10 are 3.23 and 4.49, respectively. Percent difference = (4.49 / 3.23) - 1 = 39.01% = 39.0% (rounded to one decimal place per prompt requirement)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      3
+    ]
+  },
+  "criterion 6": {
+    "description": "Writes a memo to Paw Prints management",
+    "sources": "",
+    "justification": "Prompt states 'Please summarize your findings in a draft memo to the Paw Prints management team'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Style"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States one of the following hypotheses as to why the AHTs changed as they did when more offshore workers were introduced: - Learning curve period required by the new workers - Lower domain familiarity of the new workers - Higher rates of rework for new workers - Asynchronous collaboration delays - Difference in work objectives between the onshore and offshore workers",
+    "sources": "",
+    "justification": "Required by prompt Criteria 2163 Calculates the percent difference between average AHT in weeks 6 + 7 and in week 8 as 21.1% Criteria 3126 Calculates the percent difference between average AHT in weeks 6 + 7 and in weeks 9 + 10 as 39.0% The average AHT increased as the penetration of offshore workers increased A consultant would readily state one of the following hypotheses as to why the AHTs changed as they did when more offshore workers were introduced: - Learning curve period required by the new workers - Lower domain familiarity of the new workers - Higher rates of rework for new workers - Asynchronous collaboration delays - Difference in work objectives between the onshore and offshore workers",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5
+    ]
+  }
+}

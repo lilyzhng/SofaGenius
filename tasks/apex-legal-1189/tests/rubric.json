@@ -1,0 +1,132 @@
+{
+  "criterion 1": {
+    "description": "States that for a net income of $550,000, Chen's estimated California income tax liability would be $50,758 (acceptable value is 50,758).",
+    "sources": "",
+    "justification": "A Limited Liability Company (LLC) is generally viewed as a pass-through entity in California for income tax purposes, meaning the owner (member) is taxed on the income. Source: Franchise Tax Board of State of California has published guidelines for LLC: 'A disregarded entity (for federal purposes), if it has only one member Single member limited liability company (SMLLC)...An LLC must have the same classification for both California and federal tax purposes.' https://www.ftb.ca.gov/file/business/types/limited-liability-company/index.html Chen is the owner of the LLC, therefore in California, she has to pay personal income tax for the $550,000 net earning of the LLC. California government publishes tax brackets and provides a tax calculator to calculate personal income tax. Using the calculator and applying the 2024 tax bracket, one can arrive that the estimated California state income tax for a taxable income of $550,000 is $50,758. Source: https://webapp.ftb.ca.gov/taxcalc/Home/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that in Tennessee, Chen does not have to pay personal income tax for earnings from the LLC.",
+    "sources": "",
+    "justification": "Tennessee has no state personal income tax, this is the biggest advantage for moving to Tennessee, especially for high income persons. Source: Tennessee Constitution, Article II, section 28: 'Notwithstanding the authority to tax privileges or any other authority set forth in this Constitution, the Legislature shall not levy, authorize or otherwise permit any state or local tax upon payroll or earned personal income or any state or local tax measured by payroll or earned personal income; however, nothing contained herein shall be construed as prohibiting any tax in effect on January 1, 2011, or adjustment of the rate of such tax.' https://law.justia.com/constitution/tennessee/article-ii/section-28/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that in California, Chen's LLC has to pay an annual franchise tax of $800 (acceptable value is 800).",
+    "sources": "",
+    "justification": "Every LLC that is doing business or organized in California must pay an annual tax of $800. See https://www.ftb.ca.gov/file/business/types/limited-liability-company/index.html",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that in California, Chen's LLC has to pay an annual LLC fee of $6,000 (acceptable value is 6,000).",
+    "sources": "",
+    "justification": "If an LLC in California makes more than $250,000, you will have to pay a fee. Chen indicates her LLC makes $1 million a year, for the bracket of $1,000,000 to $4,999,999, the annual LLC fee is $6,000. https://www.ftb.ca.gov/file/business/types/limited-liability-company/index.html",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that in Tennessee, Chen's LLC has to pay excise tax at the rate of 6.5% of its net earnings (acceptable value is 6.5%).",
+    "sources": "",
+    "justification": "Based on information published by the Government of Tennessee, 'If you are a corporation, limited partnership, limited liability company, or business trust chartered, qualified, or registered in Tennessee or doing business in this state, then you must register for and pay franchise and excise taxes.' 'The excise tax is based on the taxpayer's net earnings or income for the tax year.' Source: https://www.tn.gov/revenue/taxes/franchise---excise-tax.html Excise tax is 6.5% of Tennessee net earnings. Source: https://www.tn.gov/revenue/taxes/franchise---excise-tax/due-dates-and-tax-rates.html Tennessee net earnings means your net earning for federal income tax purpose with Tennessee special adjustment. Source: https://revenue.support.tn.gov/hc/en-us/articles/360058272391-ET-1-Excise-Tax-Computation",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that in Tennessee, Chen's LLC has to pay franchise tax at the rate of 0.25% of the net worth, subject to a minimum of $100 per year (acceptable value is 0.25%).",
+    "sources": "",
+    "justification": "Based on information published by the Government of Tennessee, 'If you are a corporation, limited partnership, limited liability company, or business trust chartered, qualified, or registered in Tennessee or doing business in this state, then you must register for and pay franchise and excise taxes.' 'The minimum franchise tax is $100 and is payable if you are incorporated, domesticated, qualified, or otherwise registered through the Secretary of State to do business in Tennessee, regardless of whether the company is active or inactive.' Source: https://www.tn.gov/revenue/taxes/franchise---excise-tax.html Franchise is 0.25% of Tennessee net worth. Source: https://www.tn.gov/revenue/taxes/franchise---excise-tax/due-dates-and-tax-rates.html Tennessee net worth carries the ordinary meaning of net worth, i.e. total assets minus total liability. Source: https://revenue.support.tn.gov/hc/en-us/articles/360058275991-FT-1-Franchise-Tax-Computation",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that in Tennessee, Chen's LLC has to pay business tax based on its gross revenue.",
+    "sources": "",
+    "justification": "Based on information published by the Government of Tennessee, 'if you conduct business within any county and/or incorporated municipality in Tennessee, and your business grosses $100,000 or more, then you should register for and remit business tax. Business tax consists of two separate taxes: the state business tax and the city business tax.' Source: https://www.tn.gov/revenue/taxes/business-tax.html Chen's immigration consulting service business grosses $1mm and falls under Class 3 for business tax purpose. The prompt does not indicate or imply it is a law firm, which would be exempt. Source: https://www.tn.gov/revenue/taxes/business-tax/classifications.html The business tax rates for Class 3 business are both 0.1875% at state level and Nashville city level. Source: https://www.tn.gov/revenue/taxes/business-tax/due-dates-and-tax-rates.html (State rate) https://library.municode.com/tn/metro_government_of_nashville_and_davidson_county/codes/code_of_ordinances?nodeId=CD_TIT5REFI_DIVIITA_CH5.16PRTA_ARTIIIBUTA_5.16.080TAIMTARAADOPFI (Nashville city rate, in section 5.16.080 it states that the state level statutory rates are adopted)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States that relocating to Tennessee gives Chen a tax saving of $17,958 for 2024 (acceptable value is 17,958).",
+    "sources": "",
+    "justification": "California tax burden for Chen and her LLC is $57,558 (personal income tax $50,758 + $800 franchise tax + $6,000 LLC fee). Tennessee tax burden includes LLC excise tax, franchise tax, and business tax. Excise tax is 6.5% of the annual net income, with a $550,000 net income, the excise tax is $35,750. Franchise tax is 0.25% of net worth, with a minimum of $100. Chen estimates that her net assets are worth $20,000, this will make the minimum $100 franchise tax apply. Business Tax is 0.1875% for state and 0.1875% for city level of the gross revenue. With a 1 million gross revenue, the total business tax is $3,750. Tennessee tax burden for Chen and her LLC is $39,600 This results in a tax saving of $17,958 for 2024.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      3,
+      2,
+      4,
+      5,
+      6,
+      9
+    ]
+  },
+  "criterion 9": {
+    "description": "States that Chen can minimize the Tennessee franchise tax by strategically managing the balance sheet to minimize the value of the net assets.",
+    "sources": "",
+    "justification": "To optimize the Tennessee tax burdens, one way is to strategically manage the net worth of the LLC. She can keep renting offices, use her old furniture and computers from California instead of buying new ones in Tennessee. For a consulting business with light assets, Chen should be able to keep the net worth of the LLC under $40,000, thereby only have to pay a minimum $100 franchise tax per year (100/0.25% = 40,000).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 10": {
+    "description": "Recommends that Chen elect S-corporation status for the LLC to reduce excise tax liabilities.",
+    "sources": "",
+    "justification": "Since the Tennessee excise tax is based on the net income of the LLC, the key to minimize the excise tax is to maximize expenses to keep the net income low. S-corporation allows a member of a LLC to pay herself both a reasonable salary and a dividend. The salary to Chen will constitute expenses, thus reducing the net income of the LLC. Electing S-corporation status would not reduce California tax in the same way because California imposes a 1.5% franchise tax on S-corporation's net income. For a $550,000 net income, it would be $8250 franchise tax for a S-corporation while California only charges a $6,000 LLC fee for a 1 million revenue business. Source: https://www.ftb.ca.gov/file/business/types/corporations/s-corporations.html It's kind of common knowledge in the industry that by electing S-corporation status for an LLC, the member can pay herself both a reasonable salary and dividends. People usually take advantage of S-corp to reduce self-employment tax, but in the excise tax context, it is also helpful since it adds expenses, thus reducing the net income. See for example: https://patrickaccounting.com/blog/s-corp-and-llc-in-tennessee-guide 'Pros of S Corp: ... Shareholders can receive both salaries and dividend payments, which can be beneficial for tax planning.' https://domyllc.com/basics-of-starting-an-s-corp-in-tennessee/ 'As the owner of an S corp, you will have the flexibility in choosing how to characterize income for tax purposes. You can be considered as an employee of the company so that you can pay yourself a salary. Additionally, you can pay yourself with dividends from the company or distributions that are either tax-free or have lower rates than the salary of an employee. With this, you can reduce self-employment tax liabilities.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  }
+}

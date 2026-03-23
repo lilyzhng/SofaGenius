@@ -1,0 +1,133 @@
+{
+  "criterion 1": {
+    "description": "Determine the total weighted Stable Retail Deposits as at 31 December 2025 as \u00a366,736 million. (Acceptable range is \u00a366,136 million to \u00a367,336 million)",
+    "sources": "Lloyds Bank - 2025 HY Pillar 3 report and Lloyds Retail Deposit & Wholesale Funding Report",
+    "justification": "The total weighted Stable Retail Deposit is projected to be \u00a366,736 million as at 31.12.2025. Calculation: Step 1 => Extraction: Initial balances: * Initial Stable Deposits: \u00a3270,248 million sourced from line item 5 in Lloyds Bank - 2025 HY Pillar 3 report. Step 2 => Adjustments: * Reclassification of Customer A1 (See Lloyds Retail Deposit & Wholesale Funding Report) : Customer A1's \u00a370,000 million is moved from Stable to Less Stable deposits. (as per Basel III, the switch of the balance to investment related account makes the balance less stable) * Reclassification of Customers A3, A4, A5 (see Lloyds Retail Deposit & Wholesale Funding Report): The combined total of \u00a3130,000 million (\u00a335,000m + \u00a345,000m + \u00a350,000m) is moved from Stable Deposits to Other Wholesale Funding. Step 3 => Recalculation: * Adjusted Stable Deposits: \u00a3270,248m - \u00a370,000m - \u00a3130,000m = \u00a370,248m * Weighted Stable Deposits: \u00a370,248m * 95% ASF factor = \u00a366,736 million. => Result * The total weighted Stable Retail Deposits as at 31 December 2025 is \u00a366,736 million",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Determine the total weighted Less Stable Retail Deposit as at 31 December 2025 as \u00a3135,875m. (Acceptable range is \u00a3134,875m to \u00a3136,875m)",
+    "sources": "Lloyds Bank - 2025 HY Pillar 3 report and Lloyds Retail Deposit & Wholesale Funding Report",
+    "justification": "The total weighted Less Stable Retail Deposit is projected to be \u00a3135,875m as at 31.12.2025. Calculation: Step 1 => Extraction: Initial balances * Initial Less Stable Deposits: \u00a380,972 million (See line item 6 in Lloyds Bank - 2025 HY Pillar 3 report) Step 2 => Adjustments * Reclassification of Customer A1 (See Lloyds Retail Deposit & Wholesale Funding Report) : Customer A1's \u00a370,000 million is moved from Stable to Less Stable deposits. (as per Basel III, the switch of the balance to investment related account makes the balance less stable). Per the prompt, the account is used for crypto-asset investments and is rate or market-sensitive, therefore it has higher change to be withdrawn quickly in response to market conditions, thus justifying the classification into 'Less Stable'. Step 3 => Recalculation: * Adjusted Less Stable Deposits: \u00a380,972m + \u00a370,000m = \u00a3150,972m * Weighted Less Stable Deposits: \u00a3150,972m * 90% ASF factor = \u00a3135,875 million. => Result * Total Weighted Less Stable Retail Deposits is \u00a3135,875m",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Determine the total weighted Retail Deposit as at 31 December 2025 as \u00a3202,611 million. (Acceptable range is \u00a3200,611 million to \u00a3204,611 million)",
+    "sources": "",
+    "justification": "The total weighted Retail Deposit is projected to be \u00a3202,611 million as at 31.12.2025. Calculation: * Total Weighted Retail Deposits = Weighted Stable Retail Deposit + Weighted Less Stable Retail Deposit = \u00a366,736m + \u00a3135,875m = \u00a3202,611 million => Result * The total weighted Retail Deposits as at 31 December 2025 is \u00a3202,611 million",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2
+    ]
+  },
+  "criterion 4": {
+    "description": "Determine the total weighted Operational Deposits as at 31 December 2025 as \u00a312,084 million (Acceptable value is \u00a311,984 million to \u00a312,184 million)",
+    "sources": "Lloyds Bank - 2025 HY Pillar 3 report and Lloyds Retail Deposit & Wholesale Funding Report",
+    "justification": "The total weighted Operational Deposits is projected to be \u00a312,084 million as at 31.12.2025. Calculation: Step 1 => Extractions: Initial Balances * Initial Operational Deposits (unweighted) is \u00a324,167 million (sourced from line 8, Lloyds Bank - 2025 HY Pillar 3 report) Step 2 => Adjustments * No adjustment required as per instructions Step 3 => Recalculations: * Weighted Operational Deposit: \u00a324,167m * 50% = \u00a312,084 million Step 4=> Result *The total weighted Operational Deposits as at 31 December 2025 is \u00a312,084 million.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Determine the total weighted Other Wholesale Funding as at 31 December 2025 as \u00a3213,070 million (Acceptable range is \u00a3211,070 million to \u00a3215,070 million)",
+    "sources": "Lloyds Bank - 2025 HY Pillar 3 report and Lloyds Retail Deposit & Wholesale Funding Report",
+    "justification": "The total weighted Other Wholesale Funding is projected to be \u00a3213,070 million as at 31.12.2025. Calculation: Step 1 => Extract: * Initial Other Wholesale Funding (weighted): \u00a383,070 million Step 2 => Adjustment: * Reclassification of Customers A3, A4, A5 from Stable Retail Deposit to Other Wholesale Funding: \u00a3130,000 million * Residual maturity bucket change: As per Lloyds - Retail Deposit & Wholesale Funding Report, the reclassified customers rolled at maturity and their maturity changed to a >1 year maturity bucket as follows: -> A3, new maturity date is 5 Sep 2027, with residual maturity of 613 days > 365 days as at 31 Dec 2025; -> A4, new maturity date is 7 July 2027, with residual maturity of 553 days > 365 days as at 31.12.2025; -> A5, new maturity date is 9 Dec 2027, with residual maturity of 708 days > 365 days as at 31.12.2025. Under the Basel III NSFR standard (BCBS 295, para 33-34), >1 year maturity weighting factor is 100% Step 3 => Recalculation * Weighted Other Wholesale Funding: \u00a383,070m (initial) + \u00a3130,000m (reclassified with a 100% weighting) = \u00a3213,070m Step 4 => Result: The total weighted Other Wholesale Funding as at 31 December 2025 is \u00a3213,070 million",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Determine the total weighted Wholesale Funding as at 31 December 2025 as \u00a3225,154 million (Acceptable range is \u00a3223,154 million to \u00a3227,154 million)",
+    "sources": "",
+    "justification": "The total weighted Wholesale Funding is projected to be \u00a3225,154 million as at 31.12.2025. Calculation: * Total Weighted Wholesale Funding = Weighted Operational deposits + Weighted Other Wholesale Funding = \u00a312,084m (Criteria 4) + \u00a3213,070m (Criteria 5) = 225,154million Result: The total weighted Wholesale Funding as at 31 December 2025 is \u00a3225,154million.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Determine the total weighted ASF as at 31 December 2025 is \u00a3480,876 million (Acceptable range is \u00a3476,876 million to \u00a3484,876 million)",
+    "sources": "Lloyds Bank - 2025 HY Pillar 3 report",
+    "justification": "The total Available Stable Funding (ASF) is recalculated by adjusting the starting ASF figure from 30 June 2025 with the changes in the weighted retail and wholesale funding components. Calculation: Step 1 => Extract Initial Balances * Initial Total ASF (30 June 2025): \u00a3477,876 million (as per line 14, Lloyds Bank - 2025 HY Pillar 3 report) * Initial Weighted Retail Deposits: \u00a3329,611 million (as per line 4, Lloyds Bank - 2025 HY Pillar 3 report) * Initial Weighted Wholesale Funding: \u00a395,154 million (as per line 7, Lloyds Bank - 2025 HY Pillar 3 report) Step 2 => Calculation of Change in ASF: * Change in Weighted Retail: \u00a3202,611m (New - Criteria 3 above) - \u00a3329,611m (Old) = -\u00a3127,000 million * Change in Weighted Wholesale: \u00a3225,154m (New, criteria 6 above) - \u00a395,154m (Old) = +\u00a3130,000 million * Net Change in ASF:** -\u00a3127,000m + \u00a3130,000m = +\u00a33,000 million Step 3 => Calculation of New Total ASF * New Total ASF: \u00a3477,876m + \u00a33,000m = \u00a3480,876 million Step 4: Result *The total weighted ASF as at 31 December 2025 is \u00a3480,876 million.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      3
+    ]
+  },
+  "criterion 8": {
+    "description": "Determine the Net Stable Funding Ratio (NSFR) as at 31 December 2025 as 123% (acceptable range is 121% to 125%)",
+    "sources": "",
+    "justification": "The projected NSFR is calculated using the new total ASF, while the Required Stable Funding (RSF) is assumed to remain constant as per the instructions. Calculation: Step 1: => Recall * New Total ASF: \u00a3480,876 million (criteria 7 above) * Total RSF (unchanged):\u00a3391,916 million Step 2 => NSFR Calculation * NSFR: Total weighted ASF/Total weighted RSF * 100 = (\u00a3480,876m / \u00a3391,916m) * 100 = 122.70% * Rounded to the nearest percentage as per instructions => 123% Step 3 => Result * The Net Stable Funding Ratio (NSFR) as at 31 December 2025 is 123%.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Assess that the projected NSFR as at 31 December 2025 has not changed materially (i.e., by more than +/- 5%) compared to 30 June 2025.",
+    "sources": "",
+    "justification": "* NSFR at 30 June 2025:** 122% * Projected NSFR at 31 December 2025: 123% * Change in NSFR:** 123% - 122% = +1% The projected NSFR as at 31 December 2025 has not changed materially, as the increase of 1% is within the +/- 5% threshold.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 10": {
+    "description": "Determine that the bank will still be operating within Basel III's Net Stable Funding Ratio (NSFR) framework based on the projected NSFR as at 31 December 2025.",
+    "sources": "",
+    "justification": "Yes, the projected NSFR of 123% (see Criteria 8) exceeds the Basel III minimum requirement of 100% for the NSFR (BCBS295)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  }
+}

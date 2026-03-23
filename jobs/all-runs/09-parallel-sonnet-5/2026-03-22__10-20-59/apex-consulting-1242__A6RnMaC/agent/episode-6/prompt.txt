@@ -1,0 +1,169 @@
+New Terminal Output:
+
+root@b1534533e1cb:/app# cat > /app/analysis.py << 'EOF'
+write("- Al> import pandas as pd
+> import numpy as np
+> from datetime import datetime
+>
+> # Load the data
+> df = pd.read_csv('/app/data/Data.csv')
+r >
+> # Clean column names
+f.i> df.columns = df.columns.str.strip()
+>
+> print("=== EMPLOYEE GRADE ANALYSIS ===")
+> print(f"Total employees: {len(df)}")
+ployee_Co> print(f"Grade distribution:")
+> for grade in sorted(df['Grade'].unique()):
+>     count = len(df[df['Grade'] == grade])
+>     print(f"  {grade}: {count} employees")
+fetime>
+> # Convert Date of Joining to datetime
+> df['Date of Joining'] = pd.to_datetime(df['Date of Joining'])
+>
+w> # Define end date (10/25/2025)
+> end_date = datetime(2025, 10, 25)
+>
+> # Calculate lifetime in years for each employee
+> df['Lifetime_Years'] = (end_date - df['Date of Joining']).dt.days / 365.25
+>
+> # Calculate lifetime revenue and lifetime pay for each employee
+> df['Lifetime_Pay'] = df['Total Pay'] * df['Lifetime_Years']
+>
+t> print("\n=== CALCULATIONS BY GRADE ===")
+row>
+s> results = []
+> for grade in sorted(df['Grade'].unique()):
+>     grade_data = df[df['Grade'] == grade]
+>
+>     # Calculate averages
+>     avg_lifetime_revenue = grade_data['Lifetime Revenue'].mean()
+)
+>     avg_lifetime_pay = grade_data['Lifetime_Pay'].mean()
+>     avg_annual_pay = grade_data['Total Pay'].mean()
+>
+>     # Calculate ratio
+>     ratio = avg_lifetime_revenue / avg_lifetime_pay
+>
+>     # Count employees
+>     employee_count = len(grade_data)
+e>
+>     results.append({
+>         'Grade': grade,
+.writ>         'Employee_Count': employee_count,
+{a>         'Avg_Lifetime_Revenue': avg_lifetime_revenue,
+ Additional>         'Avg_Lifetime_Pay': avg_lifetime_pay,
+>         'Avg_Annual_Pay': avg_annual_pay,
+>         'Ratio': ratio
+:,.0f}>     })
+\n")
+  >
+>     print(f"\nGrade {grade}:")
+>     print(f"  Employees: {employee_count}")
+>     print(f"  Average Lifetime Revenue: ${avg_lifetime_revenue:,.2f}")
+>     print(f"  Average Lifetime Pay: ${avg_lifetime_pay:,.2f}")
+>     print(f"  Average Annual Pay: ${avg_annual_pay:,.2f}")
+>     print(f"  Ratio (Revenue/Pay): {ratio:.2f}")
+>
+> # Convert to DataFrame for easier manipulation
+> results_df = pd.DataFrame(results)
+>
+a> # Calculate weighted average ratio for each grade
+> print("\n=== WEIGHTED AVERAGE RATIOS ===")
+> for _, row in results_df.iterrows():
+>     grade = row['Grade']
+se ")
+    f.write(f"would>     ratio = row['Ratio']
+>     employee_count = row['Employee_Count']
+>     print(f"Grade {grade}: {ratio:.2f} (weight: {employee_count} employees)")
+u>
+> # Sort by ratio to find top 2 grades
+> top_grades = results_df.nlargest(2, 'Ratio')
+>
+> print("\n=== TOP 2 GRADES WITH BEST RATIOS ===")
+> for i, (_, row) in enumerate(top_grades.iterrows(), 1):
+>     print(f"{i}. Grade {row['Grade']}: {row['Ratio']:.2f}")
+>
+> # Calculate additional cost for 20% increase
+> print("\n=== COST ANALYSIS FOR 20% EMPLOYEE INCREASE ===")
+> total_additional_cost = 0
+>
+> for _, row in top_grades.iterrows():
+>     grade = row['Grade']
+>     current_employees = row['Employee_Count']
+>     avg_annual_pay = row['Avg_Annual_Pay']
+>
+>     additional_employees = round(current_employees * 0.20)
+>     additional_annual_cost = additional_employees * avg_annual_pay
+>     total_additional_cost += additional_annual_cost
+>
+>     print(f"\nGrade {grade}:")
+>     print(f"  Current employees: {current_employees}")
+>     print(f"  Additional employees (20%): {additional_employees}")
+>     print(f"  Average annual pay: ${avg_annual_pay:,.0f}")
+>     print(f"  Additional annual cost: ${additional_annual_cost:,.0f}")
+>
+> print(f"\nTotal additional annual cost: ${total_additional_cost:,.0f}")
+>
+> # Write detailed results to output file
+> with open('/app/output/answer.txt', 'w') as f:
+>     f.write("EMPLOYEE GRADE ANALYSIS REPORT\n")
+>     f.write("=" * 50 + "\n\n")
+>
+>     f.write("DATASET OVERVIEW:\n")
+>     f.write(f"Total employees analyzed: {len(df)}\n")
+>     f.write("Grade distribution:\n")
+>     for grade in sorted(df['Grade'].unique()):
+>         count = len(df[df['Grade'] == grade])
+>         f.write(f"  {grade}: {count} employees\n")
+>
+>     f.write("\nMETHODOLOGY:\n")
+>     f.write("- Employee lifetime calculated from joining date to 10/25/2025\n")
+>     f.write("- Lifetime pay = Total annual pay × Lifetime in years\n")
+>     f.write("- Ratio = Average lifetime revenue ÷ Average lifetime pay\n")
+>     f.write("- All calculations performed without rounding interim values\n")
+>
+>     f.write("\nDETAILED CALCULATIONS BY GRADE:\n")
+>     for _, row in results_df.iterrows():
+>         f.write(f"\nGrade {row['Grade']}:\n")
+>         f.write(f"  Number of employees: {row['Employee_Count']}\n")
+>         f.write(f"  Average lifetime revenue: ${row['Avg_Lifetime_Revenue']:,.2f}\n")
+>         f.write(f"  Average lifetime pay: ${row['Avg_Lifetime_Pay']:,.2f}\n")
+>         f.write(f"  Average annual pay: ${row['Avg_Annual_Pay']:,.0f}\n")
+>         f.write(f"  Revenue-to-pay ratio: {row['Ratio']:.2f}\n")
+>
+>     f.write("\nTOP TWO GRADES WITH BEST RATIOS:\n")
+>     for i, (_, row) in enumerate(top_grades.iterrows(), 1):
+>         f.write(f"{i}. Grade {row['Grade']}: {row['Ratio']:.2f}\n")
+>
+>     f.write("\nCOST IMPACT OF 20% EMPLOYEE INCREASE:\n")
+>     total_cost = 0
+>     for _, row in top_grades.iterrows():
+>         grade = row['Grade']
+>         current_employees = row['Employee_Count']
+>         avg_annual_pay = row['Avg_Annual_Pay']
+>         additional_employees = round(current_employees * 0.20)
+>         additional_cost = additional_employees * avg_annual_pay
+>         total_cost += additional_cost
+>
+>         f.write(f"\nGrade {grade}:\n")
+>         f.write(f"  Current employees: {current_employees}\n")
+>         f.write(f"  Additional employees (20%): {additional_employees}\n")
+>         f.write(f"  Average annual pay per employee: ${avg_annual_pay:,.0f}\n")
+>         f.write(f"  Additional annual cost: ${additional_cost:,.0f}\n")
+>
+>     f.write(f"\nTotal additional annual cost: ${total_cost:,.0f}\n")
+>
+>     f.write("\nRECOMMENDAIONS:\n")
+>     f.write(f"Based on the analysis, I recommend focusing expansion on grades ")
+>     f.write(f"{top_grades.iloc[0]['Grade']} and {top_grades.iloc[1]['Grade']} as they provide ")
+>     f.write(f"the highest revenue-to-pay ratios of {top_grades.iloc[0]['Ratio']:.2f} ")
+>     f.write(f"and {top_grades.iloc[1]['Ratio']:.2f} respectively. ")
+>     f.write(f"These grades generate the most revenue per dollar of compensation, ")
+>     f.write(f"making them the most cost-effective for expansion. The 20% increase ")
+>     f.write(f"would require an additional annual investment of ${total_cost:,.0f}.")
+>
+> print("\n=== ANALYSIS COMPLETE ===")
+> print("Detailed results written to /app/output/answer.txt")
+> EOF
+root@b1534533e1cb:/app#

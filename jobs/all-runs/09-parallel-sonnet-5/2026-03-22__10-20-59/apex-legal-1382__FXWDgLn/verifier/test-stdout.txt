@@ -1,0 +1,23 @@
+Reward: 1.0 — criteria 8/8
+
+Files created: convention.txt
+
+Per-criterion breakdown:
+  [PASS] criterion 1 (keyword_match)
+         Recognizes that Spain is subject to the terms set forth in the Convention.
+  [PASS] criterion 2 (keyword_match)
+         Identifies that under Article 5 of the Convention, lines anchored in the sea shall be marked in order to indicate their position.
+  [PASS] criterion 3 (keyword_match)
+         Identifies that under Article 9(5) of the Convention, if an authorized officer has reason to believe that a vessel of any Contracting Party is not complying with the provisions of the convention, he m
+  [PASS] criterion 4 (keyword_match)
+         Notes that the Belgian officers had reason to believe that the Spanish vessel was not complying with the Convention.
+  [PASS] criterion 5 (keyword_match)
+         Notes that the Belgian officers were acting in accordance with Article 9(5) of the Convention.
+  [PASS] criterion 6 (number_match)
+         Identifies that under Article 14(3) of the Convention, a Contracting Party may reserve the right to not apply the terms set forth in Article 9(5).
+  [PASS] criterion 7 (keyword_match)
+         Identifies that Spain reserved the right to not apply the terms set forth in Article 9(5) with respect to all Contracting Parties.
+  [PASS] criterion 8 (keyword_match)
+         Concludes that the review board will likely side with Spain.
+
+Summary: 8 passed, 0 failed

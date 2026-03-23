@@ -1,0 +1,350 @@
+[?2004hroot@1847a34e18e1:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@1847a34e18e1:/app# clear
+[?2004l[H[J[3J[?2004hroot@1847a34e18e1:/app# ls -la
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 22 05:19 .
+drwxr-xr-x 1 root root 4096 Mar 22 05:26 ..
+drwxr-xr-x 2 root root 4096 Mar 22 04:46 data
+drwxr-xr-x 2 root root 4096 Mar 22 05:19 output
+[?2004hroot@1847a34e18e1:/app# ls -la data/
+[?2004ltotal 132
+drwxr-xr-x 2 root root   4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root   4096 Mar 22 05:19  ..
+-rw-r--r-- 1 root root 124255 Mar 22 04:43 'ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004hroot@1847a34e18e1:/app# python3 -c "import pandas as pd; xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx'); print('Available sheets:'); print(xl.sheet_names)"
+[?2004lAvailable sheets:
+['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+[?2004hroot@1847a34e18e1:/app# python3 -c "import pandas as pd; import numpy as np; xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx'); df = pd.read_excel(xl, 'Transaction Structure'); print('Transaction Structure:'); print(df.head(20))"
+[?2004lTransaction Structure:
+    Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0          NaN            1. Transaction Structure         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+1          NaN        In USD 000, FY ending Dec 31         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+2          NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+3          NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+4          NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+5          NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+6          NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+7          NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+8          NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+9          NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+10         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+11         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+12         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+13         NaN                    Transaction Date         NaN       Date  ...        NaN                        NaN         NaN           NaN
+14         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+15         NaN               Closing Balance Sheet         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+16         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+17         NaN                Goodwill Calculation         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+18         NaN           Purchase Enterprise Value         NaN          $  ...        NaN                        NaN         NaN           NaN
+19         NaN                          Less: Debt         NaN          $  ...        NaN                        NaN         NaN           NaN
+
+[20 rows x 13 columns]
+[?2004hroot@1847a34e18e1:/app# cat > analyze_lbo.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx')
+[?2004l[?2004h> 
+[?2004l[?2004h> print("=== EXAMINING TRANSACTION STRUCTURE ===")
+[?2004l[?2004h> tx_df = pd.read_excel(xl, 'Transaction Structure', header=None)
+[?2004l[?2004h> print(tx_df.iloc[0:30, 0:5].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== EXAMINING ASSUMPTIONS ===")
+[?2004l[?2004h> assump_df = pd.read_excel(xl, 'Assumptions', header=None)
+[?2004l[?2004h> print(assump_df.iloc[0:30, 0:5].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== EXAMINING FINANCIAL STATEMENTS ===")
+[?2004l[?2004h> fs_df = pd.read_excel(xl, 'Financial Statements', header=None)
+[?2004l[?2004h> print(fs_df.iloc[0:20, 0:8].to_string())
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@1847a34e18e1:/app# python3 analyze_lbo.py
+[?2004l=== EXAMINING TRANSACTION STRUCTURE ===
+     0                                   1   2      3                    4
+0  NaN                                 NaN NaN    NaN                  NaN
+1  NaN            1. Transaction Structure NaN    NaN                  NaN
+2  NaN        In USD 000, FY ending Dec 31 NaN    NaN                  NaN
+3  NaN                                 NaN NaN    NaN                  NaN
+4  NaN                         Assumptions NaN    NaN                  NaN
+5  NaN                         FY24 EBITDA NaN      $          8318.254226
+6  NaN                   Purchase Multiple NaN      x                    8
+7  NaN                Senior Debt / EBITDA NaN      x                    2
+8  NaN           Subordinate Debt / EBITDA NaN      x                    1
+9  NaN                     Rollover Equity NaN      %                 0.15
+10 NaN                         Cash to B/S NaN      $                 1000
+11 NaN                    Transaction Fees NaN      %                 0.03
+12 NaN                      Financing Fees NaN      %                 0.02
+13 NaN  Financing Fees Amortization Period NaN  Years                    7
+14 NaN                    Transaction Date NaN   Date  2024-12-31 00:00:00
+15 NaN                                 NaN NaN    NaN                  NaN
+16 NaN               Closing Balance Sheet NaN    NaN                  NaN
+17 NaN                                 NaN NaN    NaN                  NaN
+18 NaN                Goodwill Calculation NaN    NaN                  NaN
+19 NaN           Purchase Enterprise Value NaN      $          66546.03381
+20 NaN                          Less: Debt NaN      $                    0
+21 NaN                          Plus: Cash NaN      $          5469.191154
+22 NaN               Purchase Equity Value NaN      $         72015.224964
+23 NaN          Less: Book Value of Equity NaN      $          8936.272885
+24 NaN             Plus: Existing Goodwill NaN      $                    0
+25 NaN          Allocable Purchase Premium NaN      $         63078.952079
+26 NaN                                 NaN NaN    NaN                  NaN
+27 NaN             Pro Forma Balance Sheet NaN    NaN                  NaN
+28 NaN                                 NaN NaN    NaN                  NaN
+29 NaN                              Assets NaN    NaN                  NaN
+
+=== EXAMINING ASSUMPTIONS ===
+     0                             1                    2          3    4
+0  NaN                           NaN                  NaN        NaN  NaN
+1  NaN               2. Assumptions                   NaN        NaN  NaN
+2  NaN  In USD 000, FY ending Dec 31                  NaN        NaN  NaN
+3  NaN                           NaN                  NaN        NaN  NaN
+4  NaN                 Growth Levers        Growth Timing  Selection  NaN
+5  NaN              New Construction  2025-12-31 00:00:00        Yes  NaN
+6  NaN                   Hospitality  2026-12-31 00:00:00        Yes  NaN
+7  NaN                U.S. Expansion  2027-12-31 00:00:00        Yes  NaN
+8  NaN                           NaN                  NaN        NaN  NaN
+9  NaN                           NaN                  NaN        NaN  NaN
+10 NaN              Income Statement                  NaN        NaN  NaN
+11 NaN                           NaN                  NaN        NaN  NaN
+12 NaN                       Revenue                  NaN        NaN    $
+13 NaN                    Growth (%)                  NaN        NaN    %
+14 NaN                           NaN                  NaN        NaN  NaN
+15 NaN                 Core Business                  NaN        NaN    $
+16 NaN                    Growth (%)                  NaN       0.02    %
+17 NaN                           NaN                  NaN        NaN  NaN
+18 NaN  New Construction (Expansion)                  NaN        NaN    $
+19 NaN        Initial Assumption ($)                  NaN       2000    $
+20 NaN                    Growth (%)                  NaN        0.3    %
+21 NaN                           NaN                  NaN        NaN  NaN
+22 NaN                  Hospitality                   NaN        NaN    $
+23 NaN        Initial Assumption ($)                  NaN        500    $
+24 NaN                    Growth (%)                  NaN        0.2    %
+25 NaN                           NaN                  NaN        NaN  NaN
+26 NaN                U.S. Expansion                  NaN        NaN    $
+27 NaN        Initial Assumption ($)                  NaN       3500    $
+28 NaN                    Growth (%)                  NaN       0.15    %
+29 NaN                           NaN                  NaN        NaN  NaN
+
+=== EXAMINING FINANCIAL STATEMENTS ===
+      0                             1    2   3    4                    5                    6                    7
+0   NaN                           NaN  NaN NaN  NaN                    0                    0                -0.15
+1   NaN       3. Financial Statements  NaN NaN  NaN                  NaN                  NaN                  NaN
+2   NaN  In USD 000, FY ending Dec 31  NaN NaN  NaN                  NaN                  NaN                  NaN
+3   NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+4   NaN                           NaN  NaN NaN  NaN    Historical Period                  NaN                  NaN
+5   NaN                           NaN  NaN NaN  NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+6   NaN                           NaN  NaN NaN  NaN              FY2022A              FY2023A             FY2024PF
+7   NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+8   NaN                         Check    . NaN  NaN                    0                    0                    0
+9     X              Income Statement  NaN NaN  NaN                  NaN                  NaN                  NaN
+10  NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+11  NaN                       Revenue  NaN NaN    $         30571.118162         30347.674004         31378.902996
+12  NaN                    Growth (%)  NaN NaN    %                  NaN            -0.007309              0.03398
+13  NaN                 Core Business  NaN NaN    $         30571.118162         30347.674004         31378.902996
+14  NaN  New Construction (Expansion)  NaN NaN    $                    0                    0                    0
+15  NaN                  Hospitality   NaN NaN    $                    0                    0                    0
+16  NaN                U.S. Expansion  NaN NaN    $                    0                    0                    0
+17  NaN            Cost Of Goods Sold  NaN NaN    $         17512.269986         17843.689955          17937.42077
+18  NaN                    Growth (%)  NaN NaN    %                  NaN             0.018925             0.005253
+19  NaN                 Core Business  NaN NaN    $         17512.269986         17843.689955          17937.42077
+[?2004hroot@1847a34e18e1:/app# cat > detailed_analysis.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx')
+[?2004l[?2004h> 
+[?2004l[?2004h> print("=== KEY DEAL PARAMETERS ===")
+[?2004l[?2004h> tx_df = pd.read_excel(xl, 'Transaction Structure', header=None)
+[?2004l[?2004h> print(f"FY24 EBITDA: ${tx_df.iloc[5,4]:,.0f}k")
+[?2004l[?2004h> print(f"Purchase Multiple: {tx_df.iloc[6,4]:.1f}x")
+[?2004l[?2004h> print(f"Senior Debt/EBITDA: {tx_df.iloc[7,4]:.1f}x")
+[?2004l[?2004h> print(f"Sub Debt/EBITDA: {tx_df.iloc[8,4]:.1f}x")
+[?2004l[?2004h> print(f"Rollover Equity: {tx_df.iloc[9,4]:.1%}")
+[?2004l[?2004h> print(f"Purchase Enterprise Value: ${tx_df.iloc[19,4]:,.0f}k")
+[?2004l[?2004h> print(f"Purchase Equity Value: ${tx_df.iloc[22,4]:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== EXAMINING MORE FINANCIAL PROJECTIONS ===")
+[?2004l[?2004h> fs_df = pd.read_excel(xl, 'Financial Statements', header=None)
+[?2004l[?2004h> # Look for years beyond 2024
+[?2004l[?2004h> for i in range(40):
+[?2004l[?2004h>     if i < len(fs_df):
+[?2004l[?2004h>         row = fs_df.iloc[i, :]
+[?2004l[?2004h>         if any(pd.notna(row)) and len(str(row).strip()) > 0:
+[?2004l[?2004h>             print(f"Row {i}: {row.iloc[0:8].values}")
+[?2004l[?2004h>             
+[?2004l[?2004h> print("\n=== EXAMINING DEBT STRUCTURE ===")
+[?2004l[?2004h> debt_df = pd.read_excel(xl, 'Debt', header=None)
+[?2004l[?2004h> print(debt_df.iloc[0:20, 0:8].to_string())
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@1847a34e18e1:/app# python3 detailed_analysis.py
+[?2004l=== KEY DEAL PARAMETERS ===
+FY24 EBITDA: $8,318k
+Purchase Multiple: 8.0x
+Senior Debt/EBITDA: 2.0x
+Sub Debt/EBITDA: 1.0x
+Rollover Equity: 15.0%
+Purchase Enterprise Value: $66,546k
+Purchase Equity Value: $72,015k
+
+=== EXAMINING MORE FINANCIAL PROJECTIONS ===
+Row 0: [nan nan nan np.float64(nan) nan 0 0 -0.15000000000873115]
+Row 1: [nan '3. Financial Statements' nan np.float64(nan) nan nan nan nan]
+Row 2: [nan 'In USD 000, FY ending Dec 31' nan np.float64(nan) nan nan nan nan]
+Row 4: [nan nan nan np.float64(nan) nan 'Historical Period' nan nan]
+Row 5: [nan nan nan np.float64(nan) nan datetime.datetime(2022, 12, 31, 0, 0)
+ datetime.datetime(2023, 12, 31, 0, 0)
+ datetime.datetime(2024, 12, 31, 0, 0)]
+Row 6: [nan nan nan np.float64(nan) nan 'FY2022A' 'FY2023A' 'FY2024PF']
+Row 8: [nan 'Check' '.' np.float64(nan) nan 0 0 0]
+Row 9: ['X' 'Income Statement' nan np.float64(nan) nan nan nan nan]
+Row 11: [nan 'Revenue' nan np.float64(nan) '$' 30571.118161500002 30347.6740035
+ 31378.902996000008]
+Row 12: [nan 'Growth (%)' nan np.float64(nan) '%' nan -0.007308995268658469
+ 0.03398049525578384]
+Row 13: [nan 'Core Business' nan np.float64(nan) '$' 30571.118161500002
+ 30347.6740035 31378.902996000008]
+Row 14: [nan 'New Construction (Expansion)' nan np.float64(nan) '$' 0 0 0]
+Row 15: [nan 'Hospitality ' nan np.float64(nan) '$' 0 0 0]
+Row 16: [nan 'U.S. Expansion' nan np.float64(nan) '$' 0 0 0]
+Row 17: [nan 'Cost Of Goods Sold' nan np.float64(nan) '$' 17512.269986099996
+ 17843.689954620906 17937.420769775184]
+Row 18: [nan 'Growth (%)' nan np.float64(nan) '%' nan 0.01892501479157005
+ 0.0052528829739055816]
+Row 19: [nan 'Core Business' nan np.float64(nan) '$' 17512.269986099996
+ 17843.689954620906 17937.420769775184]
+Row 20: [nan 'New Construction (Expansion)' nan np.float64(nan) '$' 0 0 0]
+Row 21: [nan 'Hospitality ' nan np.float64(nan) '$' 0 0 0]
+Row 22: [nan 'U.S. Expansion' nan np.float64(nan) '$' 0 0 0]
+Row 23: [nan 'Gross Profit' nan np.float64(nan) '$' 13058.848175400006
+ 12503.984048879094 13441.482226224824]
+Row 24: [nan '% margin' nan np.float64(nan) '%' 0.4271629224162882
+ 0.4120244618232359 0.4283604888271034]
+Row 25: [nan 'Payroll' nan np.float64(nan) '$' 3391.79 3308.76 3401.06]
+Row 26: [nan 'Rent' nan np.float64(nan) '$' 528.736 575.82 589.968]
+Row 27: [nan 'Other Administrative' nan np.float64(nan) '$' 1053.15 1021.02 1132.2]
+Row 28: [nan 'Operating Expenses' nan np.float64(nan) '$' 4973.6759999999995
+ 4905.6 5123.228]
+Row 29: [nan '% of revenues' nan np.float64(nan) '%' 0.16269198835728688
+ 0.1616466553395241 0.1632698249729469]
+Row 30: [nan 'EBITDA' nan np.float64(nan) '$' 8085.172175400006 7598.384048879094
+ 8318.254226224824]
+Row 31: [nan '% margin' nan np.float64(nan) '%' 0.26447093405900135
+ 0.2503778064837118 0.2650906638541566]
+Row 32: [nan 'Growth (%)' nan np.float64(nan) '%' nan -0.06020751518465084
+ 0.09473990426318668]
+Row 33: [nan 'Less: Interest Expense' nan np.float64(nan) '$' -295.68751
+ -355.51898 -392.7981700000001]
+Row 34: [nan 'Less: D&A' nan np.float64(nan) '$' -103.37571 -82.41233 -82.41233]
+Row 35: [nan 'Less: Amortization of Financing Fees' nan np.float64(nan) '$' nan
+ nan nan]
+Row 36: [nan 'EBT' nan np.float64(nan) '$' 7686.108955400006 7160.452738879094
+ 7843.043726224824]
+Row 37: [nan 'Less: Income Tax' nan np.float64(nan) '$' -1224.3490199999999
+ -1076.0666500000002 -1076.0666500000002]
+Row 38: [nan 'Net Income' nan np.float64(nan) '$' 6461.759935400007
+ 6084.386088879093 6766.9770762248245]
+Row 39: [nan '% margin' nan np.float64(nan) '%' 0.21136812534183586
+ 0.2004893715471367 0.21565371731087724]
+
+=== EXAMINING DEBT STRUCTURE ===
+     0                                          1         2             3        4                    5                    6                    7
+0  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+1  NaN                                    4. Debt       NaN           NaN      NaN                  NaN                  NaN                  NaN
+2  NaN               In USD 000, FY ending Dec 31       NaN           NaN      NaN                  NaN                  NaN                  NaN
+3  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+4  NaN                               Debt Paydown  Leverage        Amount  Pricing                 Term         Amortization              Balloon
+5  NaN                                Senior Debt         2  16636.508452    0.065                    5                   10                    0
+6  NaN                           Subordinate Debt         1   8318.254226     0.08                    5                   10                    0
+7  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+8  NaN              Circularity Toggle ("0" = On)         0           NaN      NaN    Historical Period                  NaN                  NaN
+9  NaN                                        NaN       NaN           NaN   Period                  NaN                  NaN                  NaN
+10 NaN                                        NaN       NaN           NaN      NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+11 NaN                                        NaN       NaN           NaN      NaN              FY2022A              FY2023A             FY2024PF
+12 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+13 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+14 NaN                              Debt Schedule       NaN           NaN      NaN                  NaN                  NaN                  NaN
+15 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+16 NaN   Cash Available for Cash Sweep / Revolver       NaN           NaN      NaN                  NaN                  NaN                  NaN
+17 NaN                       Plus: Beginning Cash       NaN           NaN        $                  NaN                  NaN                  NaN
+18 NaN  Plus: Cash Flow Available After Repayment       NaN           NaN        $                  NaN                  NaN                  NaN
+19 NaN                     Plus: Capitalizations        NaN           NaN        $                  NaN                  NaN                  NaN
+[?2004hroot@1847a34e18e1:/app# cat > find_projections.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the Excel file
+[?2004l[?2004h> xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx')
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Financial Statements with different approach to find all columns
+[?2004l[?2004h> fs_df = pd.read_excel(xl, 'Financial Statements', header=None)
+[?2004l[?2004h> 
+[?2004l[?2004h> print("=== LOOKING FOR ALL PROJECTION YEARS ===")
+[?2004l[?2004h> print(f"Shape of Financial Statements: {fs_df.shape}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Check first few rows across all columns to find year headers
+[?2004l[?2004h> for i in range(10):
+[?2004l[?2004h>     print(f"Row {i}: {fs_df.iloc[i, :].values}")
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== CHECKING COLUMN HEADERS SPECIFICALLY ===")
+[?2004l[?2004h> # Look at row 5 and 6 which seem to contain dates and year labels
+[?2004l[?2004h> date_row = fs_df.iloc[5, :]
+[?2004l[?2004h> year_row = fs_df.iloc[6, :]
+[?2004l[?2004h> print(f"Date row: {date_row.values}")
+[?2004l[?2004h> print(f"Year row: {year_row.values}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Find non-null values in these rows
+[?2004l[?2004h> for col in range(fs_df.shape[1]):
+[?2004l[?2004h>     if pd.notna(date_row.iloc[col]) or pd.notna(year_row.iloc[col]):
+[?2004l[?2004h>         print(f"Column {col}: Date={date_row.iloc[col]}, Year={year_row.iloc[col]}")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@1847a34e18e1:/app# python3 find_projections.py
+[?2004l=== LOOKING FOR ALL PROJECTION YEARS ===
+Shape of Financial Statements: (96, 13)
+Row 0: [nan nan nan np.float64(nan) nan 0 0 -0.15000000000873115
+ -0.46173999999882653 -0.46174000001337845 -0.46173999999882653
+ -0.46173999999882653 -0.46174000001337845]
+Row 1: [nan '3. Financial Statements' nan np.float64(nan) nan nan nan nan nan nan
+ nan nan nan]
+Row 2: [nan 'In USD 000, FY ending Dec 31' nan np.float64(nan) nan nan nan nan
+ nan nan nan nan nan]
+Row 3: [nan nan nan np.float64(nan) nan nan nan nan nan nan nan nan nan]
+Row 4: [nan nan nan np.float64(nan) nan 'Historical Period' nan nan
+ 'Forecast Period' nan nan nan nan]
+Row 5: [nan nan nan np.float64(nan) nan datetime.datetime(2022, 12, 31, 0, 0)
+ datetime.datetime(2023, 12, 31, 0, 0)
+ datetime.datetime(2024, 12, 31, 0, 0)
+ datetime.datetime(2025, 12, 31, 0, 0)
+ datetime.datetime(2026, 12, 31, 0, 0)
+ datetime.datetime(2027, 12, 31, 0, 0)
+ datetime.datetime(2028, 12, 31, 0, 0)
+ datetime.datetime(2029, 12, 31, 0, 0)]
+Row 6: [nan nan nan np.float64(nan) nan 'FY2022A' 'FY2023A' 'FY2024PF' 'FY2025F'
+ 'FY2026F' 'FY2027F' 'FY2028F' 'FY2029F']
+Row 7: [nan nan nan np.float64(nan) nan nan nan nan nan nan nan nan nan]
+Row 8: [nan 'Check' '.' np.float64(nan) nan 0 0 0 0 0 0 0 0]
+Row 9: ['X' 'Income Statement' nan np.float64(nan) nan nan nan nan nan nan nan
+ nan nan]
+
+=== CHECKING COLUMN HEADERS SPECIFICALLY ===
+Date row: [nan nan nan np.float64(nan) nan datetime.datetime(2022, 12, 31, 0, 0)
+ datetime.datetime(2023, 12, 31, 0, 0)
+ datetime.datetime(2024, 12, 31, 0, 0)
+ datetime.datetime(2025, 12, 31, 0, 0)
+ datetime.datetime(2026, 12, 31, 0, 0)
+ datetime.datetime(2027, 12, 31, 0, 0)
+ datetime.datetime(2028, 12, 31, 0, 0)
+ datetime.datetime(2029, 12, 31, 0, 0)]
+Year row: [nan nan nan np.float64(nan) nan 'FY2022A' 'FY2023A' 'FY2024PF' 'FY2025F'
+ 'FY2026F' 'FY2027F' 'FY2028F' 'FY2029F']
+Column 5: Date=2022-12-31 00:00:00, Year=FY2022A
+Column 6: Date=2023-12-31 00:00:00, Year=FY2023A
+Column 7: Date=2024-12-31 00:00:00, Year=FY2024PF
+Column 8: Date=2025-12-31 00:00:00, Year=FY2025F
+Column 9: Date=2026-12-31 00:00:00, Year=FY2026F
+Column 10: Date=2027-12-31 00:00:00, Year=FY2027F
+Column 11: Date=2028-12-31 00:00:00, Year=FY2028F
+Column 12: Date=2029-12-31 00:00:00, Year=FY2029F
+[?2004hroot@1847a34e18e1:/app# 

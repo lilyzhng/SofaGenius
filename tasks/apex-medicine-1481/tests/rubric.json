@@ -1,0 +1,278 @@
+{
+  "criterion 1": {
+    "description": "States that the patient has metastatic lung adenocarcinoma.",
+    "sources": "",
+    "justification": "The prompt states 'A CSF sample is sent to you from a 59-year-old man with a 4-month history of metastatic lung adenocarcinoma.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the primary tumour harbored an epidermal growth factor receptor (EGFR) mutation.",
+    "sources": "Attached document - 'Patient_C_biopsy.pdf'",
+    "justification": "The attached document 'Patient_C_biopsy.pdf' states 'A mutation in EGFR has been detected.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that the cerebrospinal fluid (CSF) shows atypical cells.",
+    "sources": "Attached document - 'Patient_C.pdf'",
+    "justification": "The attached document 'Patient_C.pdf' states 'Microscopic examination shows an infiltrate of medium sized atypical cells.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the CSF shows necrosis.",
+    "sources": "Attached document - 'Patient_C.pdf'",
+    "justification": "The attached document 'Patient_C.pdf' states 'The background appears necrotic.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States 'metastatic lung adenocarcinoma' is one of the most likely neuropathological differential diagnoses.",
+    "sources": "",
+    "justification": "'The confirmative diagnosis of leptomeningeal metastasis depends on detecting malignant cells on the cytologic examination of cerebrospinal fluid (CSF). The presence of leptomeningeal metastasis is a very important factor to determine the aggressiveness of treatment. We analyzed 273 cases that were diagnosed as malignancies on the CSF cytology. The most common metastatic carcinoma was lung cancer (76 cases, 27.8%). ' Hwang I, et al. Analysis of Leptomeningeal Metastasis in Cerebrospinal Fluid Cytology. Journal of Pathology and Translational Medicine 2009;43(1):63-67 DOI: https://doi.org/10.4132/KoreanJPathol.2009.43.1.6.3",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "States 'metastatic lung adenocarcinoma with small cell transformation' is one of the most likely neuropathological differential diagnoses.",
+    "sources": "",
+    "justification": "'Histologic transformation of EGFR mutant lung adenocarcinoma (LADC) into small-cell lung cancer (SCLC) has been identified as one of the major mechanisms of resistance to epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors (TKIs).1-3 Patients typically present with an aggressive clinical course after the transformation, which leads to a rapid deterioration of the patients' condition.4 ' Lee, June-Koo, et al. 'Clonal History and Genetic Predictors of Transformation Into Small-Cell Carcinomas From Lung Adenocarcinomas.' Journal of Clinical Oncology, vol. 35, no. 26, 2017, pp. 3065\u201374, https://doi.org/10.1200/JCO.2016.71.9096.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9,
+      5,
+      2,
+      1,
+      3,
+      4
+    ]
+  },
+  "criterion 7": {
+    "description": "States that metastasis to the cerebrospinal fluid (CSF) is a known consequence of metastatic lung adenocarcinoma.",
+    "sources": "",
+    "justification": "'Leptomeningeal metastasis (LM) occurs in 4\u201315% of patients with solid tumors.' 'We retrospectively analyzed a series of 85 consecutive patients with cytologically proven LM who were treated between 1997 and 2005. The primary diseases were as follows; lung cancer (n = 36), breast cancer (n = 33), gastric cancer (n = 8), and others (n = 8).' Waki, Fusako et al. 'Prognostic factors and clinical outcomes in patients with leptomeningeal metastasis from solid tumors.' Journal of neuro-oncology vol. 93,2 (2009): 205-12. doi:10.1007/s11060-008-9758-3",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "Mentions that the patient is likely to have received EGFR tyrosine kinase (TK) inhibitor treatment.",
+    "sources": "",
+    "justification": "'Osimertinib is recommended, within its marketing authorisation, as an option for untreated locally advanced or metastatic epidermal growth factor receptor (EGFR) mutation-positive non-small-cell lung cancer (NSCLC) in adults.' https://www.nice.org.uk/guidance/ta654/chapter/1-Recommendation",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 9": {
+    "description": "Mentions that metastatic lung adenocarcinoma with small cell transformation is a complication of EGFR tyrosine kinase (TK) inhibitor treatment.",
+    "sources": "",
+    "justification": "'Histologic transformation of EGFR mutant lung adenocarcinoma (LADC) into small-cell lung cancer (SCLC) has been identified as one of the major mechanisms of resistance to epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors (TKIs).1-3 Patients typically present with an aggressive clinical course after the transformation, which leads to a rapid deterioration of the patients' condition.4 ' Lee, June-Koo, et al. 'Clonal History and Genetic Predictors of Transformation Into Small-Cell Carcinomas From Lung Adenocarcinomas.' Journal of Clinical Oncology, vol. 35, no. 26, 2017, pp. 3065\u201374, https://doi.org/10.1200/JCO.2016.71.9096.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 10": {
+    "description": "Mentions that metastatic lung adenocarcinoma with small cell transformation is a complication of EGFR tyrosine kinase (TK) inhibitor treatment in up to 15% of patients.",
+    "sources": "",
+    "justification": "'Histologic transformation from LUAD to small cell lung cancer (SCLC) is one well-characterized resistance mechanism that occurs in up to 15% of patients with EGFRm LUAD following progression on an EGFR TKI, and appears to be increasing in prevalence with the use of more selective EGFR TKIs, such as osimertinib (4\u20137). EGFRm LUADs that undergo SCLC transformation are aggressive cancers that portend poor prognosis and require a change in therapeutic regimen (8). Zarif T et al. Detecting Small Cell Transformation in Patients with Advanced EGFR Mutant Lung Adenocarcinoma through Epigenomic cfDNA Profiling. Clin Cancer Res 1 September 2024; 30 (17): 3798\u20133811. https://doi.org/10.1158/1078-0432.CCR-24-0466",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 11": {
+    "description": "Mentions that metastatic lung adenocarcinoma with small cell transformation is clinically important because of management implications.",
+    "sources": "",
+    "justification": "'After transformation, clinical behavior mimics classic (EGFR wild-type) SCLC on many levels, with frequent but transient responses to platinum etoposide. The median PFS was 4 months after first-line treatment and the median OS was 8.5 months. Compared with primary SCLC, the clinical prognosis of transformed SCLC is worse (66). We found that combination therapy (including chemotherapy combined with radiotherapy, chemotherapy combined with targeted therapy, and chemotherapy combined with chemotherapy and targeted therapy) had a longer median PFS than conventional chemotherapy (4 months vs. 7 months). However, there was no significant benefit in the combined treatment group in the transformed median OS.' Xu, Jinhe et al. 'Outcomes in Patients With Lung Adenocarcinoma With Transformation to Small Cell Lung Cancer After EGFR Tyrosine Kinase Inhibitors Resistance: A Systematic Review and Pooled Analysis.' Frontiers in oncology vol. 11 766148. 28 Jan. 2022, doi:10.3389/fonc.2021.766148",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 12": {
+    "description": "Lists TTF-1 immunocytochemistry in the suggested panel of stains.",
+    "sources": "",
+    "justification": "'Expressed in a high percentage of lung adenocarcinoma and small cell carcinoma, also in a variable percentage of extrapulmonary small cell carcinoma' https://www.pathologyoutlines.com/topic/stainsttf1.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      5
+    ]
+  },
+  "criterion 13": {
+    "description": "Mentions that TTF-1 confirms that the tumor originated in the lung.",
+    "sources": "",
+    "justification": "'Expressed in a high percentage of lung adenocarcinoma and small cell carcinoma, also in a variable percentage of extrapulmonary small cell carcinoma' https://www.pathologyoutlines.com/topic/stainsttf1.html",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 14": {
+    "description": "States TTF-1 is positive in metastatic lung adenocarcinoma.",
+    "sources": "",
+    "justification": "'Expressed in a high percentage of lung adenocarcinoma and small cell carcinoma, also in a variable percentage of extrapulmonary small cell carcinoma' https://www.pathologyoutlines.com/topic/stainsttf1.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 15": {
+    "description": "States TTF-1 is positive in metastatic lung adenocarcinoma with small cell transformation.",
+    "sources": "",
+    "justification": "'Expressed in a high percentage of lung adenocarcinoma and small cell carcinoma, also in a variable percentage of extrapulmonary small cell carcinoma' https://www.pathologyoutlines.com/topic/stainsttf1.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 16": {
+    "description": "Lists Napsin A immunocytochemistry in the suggested panel of stains.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Lung adenocarcinoma (74 - 92%) (Pathology 2019;51:240, Pathol Oncol Res 2021;27:613099, Cancer Cytopathol 2016;124:472, Turk Patoloji Derg 2021;37:7, Asian Pac J Cancer Prev 2020;21:3345, Appl Immunohistochem Mol Morphol 2016;24:648)' 'Negative staining - Poorly differentiated neuroendocrine (small cell) carcinoma (0 - 20%) (Pathol Oncol Res 2021;27:613099, Am J Clin Pathol 2014;142:320, Biotech Histochem 2018;93:364)' https://www.pathologyoutlines.com/topic/stainsnapsina.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      5
+    ]
+  },
+  "criterion 17": {
+    "description": "States Napsin A is positive in metastatic lung adenocarcinoma.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Lung adenocarcinoma (74 - 92%) (Pathology 2019;51:240, Pathol Oncol Res 2021;27:613099, Cancer Cytopathol 2016;124:472, Turk Patoloji Derg 2021;37:7, Asian Pac J Cancer Prev 2020;21:3345, Appl Immunohistochem Mol Morphol 2016;24:648)' 'Negative staining - Poorly differentiated neuroendocrine (small cell) carcinoma (0 - 20%) (Pathol Oncol Res 2021;27:613099, Am J Clin Pathol 2014;142:320, Biotech Histochem 2018;93:364)' https://www.pathologyoutlines.com/topic/stainsnapsina.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 18": {
+    "description": "States Napsin A is negative in metastatic lung adenocarcinoma with small cell transformation.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Lung adenocarcinoma (74 - 92%) (Pathology 2019;51:240, Pathol Oncol Res 2021;27:613099, Cancer Cytopathol 2016;124:472, Turk Patoloji Derg 2021;37:7, Asian Pac J Cancer Prev 2020;21:3345, Appl Immunohistochem Mol Morphol 2016;24:648)' 'Negative staining - Poorly differentiated neuroendocrine (small cell) carcinoma (0 - 20%) (Pathol Oncol Res 2021;27:613099, Am J Clin Pathol 2014;142:320, Biotech Histochem 2018;93:364)' https://www.pathologyoutlines.com/topic/stainsnapsina.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 19": {
+    "description": "Lists synaptophysin immunocytochemistry in the suggested panel of stains.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Small cell neuroendocrine carcinoma (Am J Surg Pathol 2020;44:757)' 'Negative staining: Adenocarcinoma' https://www.pathologyoutlines.com/topic/stainssynaptophysin.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      5
+    ]
+  },
+  "criterion 20": {
+    "description": "States synaptophysin is positive in metastatic lung adenocarcinoma with small cell transformation.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Small cell neuroendocrine carcinoma (Am J Surg Pathol 2020;44:757)' 'Negative staining: Adenocarcinoma' https://www.pathologyoutlines.com/topic/stainssynaptophysin.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      19
+    ]
+  },
+  "criterion 21": {
+    "description": "States synaptophysin is negative in metastatic lung adenocarcinoma.",
+    "sources": "",
+    "justification": "'Positive staining - disease: Small cell neuroendocrine carcinoma (Am J Surg Pathol 2020;44:757)' 'Negative staining: Adenocarcinoma' https://www.pathologyoutlines.com/topic/stainssynaptophysin.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      19
+    ]
+  }
+}

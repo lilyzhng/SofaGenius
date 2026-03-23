@@ -1,0 +1,28 @@
+New Terminal Output:
+
+root@7cd6440d93ae:/app# cat > lbo_analysis.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+> from datetime import datetime
+>
+> # Read the Excel file
+> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+> xl = pd.ExcelFile(xl_file)
+>
+> print("Reading Excel file and extracting data...")
+>
+> # Read all sheets
+> transaction_df = pd.read_excel(xl, 'Transaction Structure')
+> assumptions_df = pd.read_excel(xl, 'Assumptions')
+> financials_df = pd.read_excel(xl, 'Financial Statements')
+>
+> print("\n=== TRANSACTION STRUCTURE ===")
+> print(transaction_df.iloc[0:25, 0:4])
+>
+> print("\n=== ASSUMPTIONS (first 30 rows) ===")
+> print(assumptions_df.iloc[0:30, 0:6])
+>
+> print("\n=== FINANCIAL STATEMENTS (first 30 rows) ===")
+> print(financials_df.iloc[0:30, 0:6])
+> EOF
+root@7cd6440d93ae:/app#

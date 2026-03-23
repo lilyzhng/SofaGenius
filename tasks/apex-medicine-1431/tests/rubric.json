@@ -1,0 +1,220 @@
+{
+  "criterion 1": {
+    "description": "States that the risk of CVD events can be predicted by adolescent risk factors.",
+    "sources": "",
+    "justification": "'The results from the present study suggest that a risk prediction method based on BMI, blood pressure, and smoking status that does not require any laboratory tests could be noninferior to one requiring laboratory information.i' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Lists body mass index (BMI) as an adolescent risk factor.",
+    "sources": "",
+    "justification": "'The results from the present study suggest that a risk prediction method based on BMI, blood pressure, and smoking status that does not require any laboratory tests could be noninferior to one requiring laboratory information.i' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Lists hypertension as an adolescent risk factor.",
+    "sources": "",
+    "justification": "'The results from the present study suggest that a risk prediction method based on BMI, blood pressure, and smoking status that does not require any laboratory tests could be noninferior to one requiring laboratory information.i' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 4": {
+    "description": "Lists smoking status as an adolescent risk factor.",
+    "sources": "",
+    "justification": "'The results from the present study suggest that a risk prediction method based on BMI, blood pressure, and smoking status that does not require any laboratory tests could be noninferior to one requiring laboratory information.i' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 5": {
+    "description": "States the patient is 14 years old.",
+    "sources": "",
+    "justification": "'A 14-year-old teen presents to the clinic' Prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that the patient weighs 205 pounds.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "'Weight 205 pounds' Patient info for task 1431.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that the patient's height is 64 inches.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "'Height: 64 inches' Patient info for task 1431.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Concludes that the patient has a body mass index of 35.2 kg/m2 .",
+    "sources": "",
+    "justification": "Uses 205 pounds and 64 inches in BMI calculator to calculate BMI for 14 year old girl. https://www.uptodate.com/contents/calculator-body-mass-index-bmi-percentiles-and-z-scores-females-2-to-20-years-cdc?search=body%20mass%20index%20of%20children&topicRef=5861&source=see_link",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5,
+      6,
+      7,
+      17
+    ]
+  },
+  "criterion 9": {
+    "description": "States that a BMI of 35.2 kg/m2 in considered obese.",
+    "sources": "",
+    "justification": "'Class 2 obesity \u2026 BMI \u2265 35 kg/m2 to <40 kg/m2\u2026 based on age and sex' https://publications.aap.org/pediatrics/article/151/2/e2022060640/190443/Clinical-Practice-Guideline-for-the-Evaluation-and",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 10": {
+    "description": "States that the patient's blood pressure is 116/73 mmHg.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "'Blood pressure: 116/73 mmHg' Patient info for task 1431.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "States that the patient's height is in the 63rd percentile.",
+    "sources": "",
+    "justification": "Uses 64 inches and teen's age of 14 and likely female in calculator to get height percentile for age. https://www.uptodate.com/contents/calculator-height-for-age-percentiles-and-z-scores-females-2-to-20-years-cdc?search=calculating%20height%20for%20age%20percentile%20in%20childrec&source=search_result&selectedTitle=1~150&usage_type=default&display_rank=1",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5,
+      7
+    ]
+  },
+  "criterion 12": {
+    "description": "States that the patient's blood pressure is normal.",
+    "sources": "",
+    "justification": "This teen (likely female) who is 63rd %ile for height and is 14 years old should have a BP less than 122/76. Table 3 https://www.uptodate.com/contents/hypertension-in-children-and-adolescents-evaluation?search=normal%20blood%20pressure%20in%20children&topicRef=6087&source=see_link",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      10,
+      11,
+      17
+    ]
+  },
+  "criterion 13": {
+    "description": "States that the patient does not smoke.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "'She has no history of smoking or vaping.' Patient info for task 1431.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 14": {
+    "description": "Concludes that that patient has one risk factor for a CVD event.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "BMI calculated in Criterion 8 as 35.2 kg/m2 'Blood pressure: 116/73 mmHg' and 'She has no history of smoking or vaping.' Patient info for task 1431.pdf 'BMI, blood pressure, and smoking status' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      9,
+      16,
+      4,
+      3,
+      15
+    ]
+  },
+  "criterion 15": {
+    "description": "States that the adolescent risk factors do not require labs.",
+    "sources": "",
+    "justification": "'The results from the present study suggest that a risk prediction method based on BMI, blood pressure, and smoking status that does not require any laboratory tests could be noninferior to one requiring laboratory information.i' https://publications.aap.org/pediatrics/article/154/5/e2024066736/199627/Predictors-in-Youth-of-Adult-Cardiovascular-Events",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 16": {
+    "description": "States that the patient does not vape.",
+    "sources": "Patient info for task 1431.pdf",
+    "justification": "'She has no history of smoking or vaping.' Patient info for task 1431.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 17": {
+    "description": "States the patient is likely female.",
+    "sources": "",
+    "justification": "A 14-year-old teen presents to the clinic for obesity follow-up. According to her mother, she has always been overweight. Prompt",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

@@ -1,0 +1,57 @@
+New Terminal Output:
+
+root@7cd6440d93ae:/app# cat > lbo_analysis_full.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read the Excel file
+> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+> xl = pd.ExcelFile(xl_file)
+>
+> # Function to find value by searching for a label
+> def find_value_by_label(df, label, col_offset=1):
+>     for idx, row in df.iterrows():
+>         if pd.notna(row.iloc[1]) and str(row.iloc[1]).strip() == label:
+>             return row.iloc[1 + col_offset]
+>     return None
+>
+> # Function to find value in specific location
+> def find_value_at_location(df, row_label, col_search=None):
+>     for idx, row in df.iterrows():
+>         if pd.notna(row.iloc[1]) and str(row.iloc[1]).strip() == row_label:
+>             # Look for non-NaN values in this row
+>             for col_idx in range(2, len(row)):
+>                 if pd.notna(row.iloc[col_idx]) and isinstance(row.iloc[col_idx], (int, float)):
+>                     return row.iloc[col_idx]
+>     return None
+>
+> print("=== EXTRACTING KEY TRANSACTION DATA ===")
+>
+> # Read sheets
+> transaction_df = pd.read_excel(xl, 'Transaction Structure')
+> financials_df = pd.read_excel(xl, 'Financial Statements')
+> assumptions_df = pd.read_excel(xl, 'Assumptions')
+>
+> # Look for key transaction values
+> print("\nSearching for Purchase Enterprise Value...")
+> for idx, row in transaction_df.iterrows():
+>     if pd.notna(row.iloc[1]) and 'Purchase Enterprise Value' in str(row.iloc[1]):
+>         print(f"Row {idx}: {row.iloc[1]} = {row.iloc[-1]}")
+>
+> print("\nSearching for equity values...")
+> for idx, row in transaction_df.iterrows():
+>     if pd.notna(row.iloc[1]) and ('Equity' in str(row.iloc[1]) or 'equity' in str(row.iloc[1])):
+>         print(f"Row {idx}: {row.iloc[1]} = {row.iloc[-1] if pd.notna(row.iloc[-1]) else 'N/A'}")
+>
+> print("\nSearching for EBITDA values in financials...")
+> for idx, row in financials_df.iterrows():
+>     if pd.notna(row.iloc[1]) and 'EBITDA' in str(row.iloc[1]):
+>         print(f"Row {idx}: {[row.iloc[i] for i in range(min(8, len(row)))]")
+>
+> print("\nSearching for Payroll in financials...")
+> for idx, row in financials_df.iterrows():
+>     if pd.notna(row.iloc[1]) and 'Payroll' in str(row.iloc[1]):
+>         print(f"Row {idx}: {[row.iloc[i] for i in range(min(8, len(row)))]")
+>
+> EOF
+root@7cd6440d93ae:/app#

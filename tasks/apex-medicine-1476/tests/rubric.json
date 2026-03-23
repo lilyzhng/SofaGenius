@@ -1,0 +1,275 @@
+{
+  "criterion 1": {
+    "description": "States the patient presents with symptoms of a possible lower urinary tract infection (UTI).",
+    "sources": "",
+    "justification": "The patient is an 8-year-old female who has pain on urination and urinary frequency without fever, abdominal pain, vomiting, or blood in stools or any other symptoms. If she has a UTI, it would be consistent with a lower tract UTI. At this presentation, symptoms are minor. 'Lower UTIs typically cause symptoms such as: more frequent urination pain, burning, or other discomfort during urination a sudden urge to urinate (even if you just went) feeling unable to empty the bladder fully urine that's cloudy or slightly colored with blood urine that smells more pungent than usual abdominal or pelvic pain' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      2
+    ]
+  },
+  "criterion 2": {
+    "description": "States the patient's pain on urination is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The patient is an 8-year-old female who has pain on urination and urinary frequency without fever, abdominal pain, vomiting, or blood in the urine, or any other symptoms. If she has a UTI, it would be consistent with a lower tract UTI. At this presentation, symptoms are minor. 'Lower UTIs typically cause symptoms such as: more frequent urination pain, burning, or other discomfort during urination a sudden urge to urinate (even if you just went) feeling unable to empty the bladder fully urine that's cloudy or slightly colored with blood urine that smells more pungent than usual abdominal or pelvic pain' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States the patient's urinary frequency is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The patient is an 8-year-old female who has pain on urination and urinary frequency without fever, abdominal pain, vomiting, or blood in stools or any other symptoms. If she has a UTI, it would be consistent with a lower tract UTI. At this presentation, symptoms are minor. 'Lower UTIs typically cause symptoms such as: more frequent urination pain, burning, or other discomfort during urination a sudden urge to urinate (even if you just went) feeling unable to empty the bladder fully urine that's cloudy or slightly colored with blood urine that smells more pungent than usual abdominal or pelvic pain' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States the patient's lack of fever is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The presence of fever may be suggestive of an upper urinary tract infection which would be more urgent. 'Upper UTIs typically cause symptoms such as: pain in the lower back or side fever or chills nausea or vomiting brain fog or overall restlessness bloody urine' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States the patient's lack of vomiting is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The presence of vomiting may be suggestive of an upper urinary tract infection or a less than straightforward lower UTI. Vomiting with possible UTI would be urgent. 'Upper UTIs typically cause symptoms such as: pain in the lower back or side fever or chills nausea or vomiting brain fog or overall restlessness bloody urine' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States the patient's lack of abdominal pain is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The presence of abdominal pain may make the presentation more concerning depending on the severity.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States the patient's lack of blood in the urine is consistent with a lower UTI.",
+    "sources": "",
+    "justification": "The presence of blood in the urine would make the presentation more concerning and more urgent. 'Upper UTIs typically cause symptoms such as: pain in the lower back or side fever or chills nausea or vomiting brain fog or overall restlessness bloody urine' https://www.healthline.com/health/upper-uti-vs-lower-uti#symptoms",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States a lower UTI is considered a minor illness.",
+    "sources": "",
+    "justification": "'The AMA defines an acute uncomplicated illness or injury as a 'recent or new short-term problem with low risk of morbidity'. A full recovery is expected without residual functionality impairment. This could also be a self-limited or minor condition showing no improvement with prescribed course of treatment. (e.g., cystitis, allergic rhinitis, or a simple sprain)' https://namas.co/acute-uncomplicated-vs-complicated-illness-or-injury/ 'Cystitis' is a lower urinary tract infection.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 9": {
+    "description": "States that the American Academy of Pediatrics (AAP) defines minor illnesses as nonurgent pediatric care.",
+    "sources": "",
+    "justification": "'For the purposes of this clinical report, nonurgent pediatric care is defined as preventive medicine (ie, services encompassed in pediatric health supervision visits, including immunizations and screening tests) and outpatient medical encounters for minor illnesses or injuries.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 10": {
+    "description": "Concludes that the patient presents for nonurgent pediatric care.",
+    "sources": "",
+    "justification": "'For the purposes of this clinical report, nonurgent pediatric care is defined as preventive medicine (ie, services encompassed in pediatric health supervision visits, including immunizations and screening tests) and outpatient medical encounters for minor illnesses or injuries.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8,
+      9,
+      1
+    ]
+  },
+  "criterion 11": {
+    "description": "States that a pediatrician can legally deny care for a nonurgent visit until consent is obtained.",
+    "sources": "",
+    "justification": "'Because there is no legal requirement to provide nonurgent pediatric care to a minor without the consent of an LAR, pediatricians who choose to treat such patients should be aware of potential liability risks.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      10,
+      15,
+      13
+    ]
+  },
+  "criterion 12": {
+    "description": "States that the patient's age qualifies her as a minor patient.",
+    "sources": "",
+    "justification": "'Physicians and medical researchers have a moral and legal obligation to obtain informed consent. Informed consent must include the patient being competent and understanding the options, risks, and benefits. For pediatric patients, parental consent, or consent from a surrogate, must be obtained for medical procedures, treatment, or research.' https://www.ncbi.nlm.nih.gov/books/NBK555889/ 'Because there is no legal requirement to provide nonurgent pediatric care to a minor without the consent of an LAR, pediatricians who choose to treat such patients should be aware of potential liability risks.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 13": {
+    "description": "States that a minor cannot consent to treatment on their own.",
+    "sources": "",
+    "justification": "'Physicians and medical researchers have a moral and legal obligation to obtain informed consent. Informed consent must include the patient being competent and understanding the options, risks, and benefits. For pediatric patients, parental consent, or consent from a surrogate, must be obtained for medical procedures, treatment, or research.' https://www.ncbi.nlm.nih.gov/books/NBK555889/ 'Because there is no legal requirement to provide nonurgent pediatric care to a minor without the consent of an LAR, pediatricians who choose to treat such patients should be aware of potential liability risks.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 14": {
+    "description": "States the aunt does not have court assigned guardianship at this time.",
+    "sources": "Patient history.pdf",
+    "justification": "This was stated in Patient History.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 15": {
+    "description": "States that the aunt cannot provide consent by proxy as a legally authorized representative (LAR).",
+    "sources": "Patient history.pdf",
+    "justification": "Due to the mother being in prison, the aunt was unable to provide a consent by proxy from a LAR. Refer to Patient history.pdf. 'A Legally authorized representative (LAR) is an individual or judicial or other body authorized under applicable law to make decisions on behalf of another individual. LARs may, for example, provide consent on behalf of a prospective subject to the subject's participation in research. The terms surrogate decision maker or surrogate consent are also sometimes used.' Source: https://www.washington.edu/research/glossary/legally-authorized-representative-lar/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      14
+    ]
+  },
+  "criterion 16": {
+    "description": "States that the pediatrician may use their best judgment in deciding to treat the patient.",
+    "sources": "",
+    "justification": "'The pediatrician should use his or her best judgment in deciding whether to postpone care until a guardian can be appointed or to render the care.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 17": {
+    "description": "States that the pediatrician should carefully document the visit.",
+    "sources": "",
+    "justification": "'If care is provided, careful documentation of the circumstances is recommended.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 18": {
+    "description": "States that the pediatrician should notify child protective services (CPS).",
+    "sources": "",
+    "justification": "'Pediatricians should notify child protective services when a child needs a legal guardian.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 19": {
+    "description": "States that the pediatrician should discuss the need to obtain court appointed legal guardianship with the aunt.",
+    "sources": "",
+    "justification": "Since the mother was just arrested a few days ago, the aunt may not yet have made a request to the court for guardianship. She should be encouraged to do so. That way, the child's medical care will not be hindered in the future. 'For some children, a request has not yet been made to the court for a guardian to be appointed. For this reason, authority to consent to these children's nonurgent care may be unclear' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      14
+    ]
+  },
+  "criterion 20": {
+    "description": "States that the pediatrician should document that the patient's history may not be accurate.",
+    "sources": "",
+    "justification": "'Pediatricians should be cautious about proxy situations if they are providing initial care for the child. Medical decisions may be made on the basis of information obtained from the proxy that may not be entirely accurate. Similarly, medical decisions may be made on the basis of follow-up visits that are contingent on the accuracy of the information from the documentation during the initial visit.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 21": {
+    "description": "States the pediatrician should flag the chart as an initial visit without access to a LAR.",
+    "sources": "",
+    "justification": "'Pediatricians should be cautious about proxy situations if they are providing initial care for the child. Medical decisions may be made on the basis of information obtained from the proxy that may not be entirely accurate. Similarly, medical decisions may be made on the basis of follow-up visits that are contingent on the accuracy of the information from the documentation during the initial visit.' 'Pediatricians who decide to treat children under these circumstances may want to consider 'flagging' such charts so that baseline information obtained from the initial visit can be later verified by the LAR. This flagging procedure would be especially important for details such as medication allergy and family history.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      20
+    ]
+  },
+  "criterion 22": {
+    "description": "States that baseline information obtained at the initial visit should be verified with the LAR at a subsequent visit.",
+    "sources": "",
+    "justification": "'Pediatricians should be cautious about proxy situations if they are providing initial care for the child. Medical decisions may be made on the basis of information obtained from the proxy that may not be entirely accurate. Similarly, medical decisions may be made on the basis of follow-up visits that are contingent on the accuracy of the information from the documentation during the initial visit.' 'Pediatricians who decide to treat children under these circumstances may want to consider 'flagging' such charts so that baseline information obtained from the initial visit can be later verified by the LAR. This flagging procedure would be especially important for details such as medication allergy and family history.' https://publications.aap.org/pediatrics/article/139/2/e20163911/60328/Consent-by-Proxy-for-Nonurgent-Pediatric-Care",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      20,
+      21
+    ]
+  }
+}

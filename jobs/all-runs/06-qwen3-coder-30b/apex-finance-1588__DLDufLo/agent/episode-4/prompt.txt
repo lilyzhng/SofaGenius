@@ -1,0 +1,35 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# python3 -c "import pandas as pd; print('pandas available')"
+pandas available
+root@7326c35a90b6:/app# python3 -c "import openpyxl; print('openpyxl available')"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

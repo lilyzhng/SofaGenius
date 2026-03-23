@@ -1,0 +1,29 @@
+{
+    "id": "29fef986-53fa-4638-bacd-043246c03e9b",
+    "started_at": "2026-03-21T22:19:39.583146",
+    "finished_at": "2026-03-21T22:20:08.241959",
+    "n_total_trials": 1,
+    "stats": {
+        "n_trials": 1,
+        "n_errors": 0,
+        "evals": {
+            "oracle__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "apex-finance-1588__Tigz8i8"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

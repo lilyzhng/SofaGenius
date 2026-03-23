@@ -1,0 +1,107 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# pdftotext "data/1371_Hoyt v. Commonwealth_44 Va. App. 489 (1).pdf" - | head -100
+11/14/25, 10:27 PM
+
+Hoyt v. Commonwealth – CourtListener.com
+
+Dec. 7, 2004
+
+Hoyt v. Commonwealth
+Court of Appeals of Virginia
+Citations: 605 S.E.2d 755, 44 Va. App. 489, 2004 Va. App. LEXIS 599
+Docket Number: 3042031
+Judges: Annunziata
+
+Headmatter
+605 S.E.2d 755 Robert Thomas HOYT v. COMMONWEALTH of Virginia.
+Record No. 3042-03-1.
+Court of Appeals of Virginia, Chesapeake.
+Dec. 7, 2004.
+*490 Charles E. Haden, for appellant.
+Robert H. Anderson, III, Senior Assistant Attorney General (Jerry W. Kilgore, Attorney General, on brief), for appellee.
+Present: Chief Judge FITZPATRICK, Judges ELDER and ANNUNZIATA.
+
+Combined Opinion by Rosemarie Annunziata (/person/8412/rosemarieannunziata/)
+ANNUNZIATA, Judge.
+Robert Thomas Hoyt appeals his conviction under Code § 18.2-47(A) for abduction. He contends his conviction should be
+reversed because the abduction was incidental to his commission of robbery. For the following reasons, we reverse and dismiss
+the abduction conviction and the related conviction for using a firearm in the commission of a felony. 1
+I. Background
+In accord with our usual standard of review, we review the evidence and all reasonable inferences flowing from the evidence in a
+light most favorable to the Commonwealth as the party prevailing below. Garcia v. Commonwealth, 40 Va.App. 184, 189
+(/opinion/1064308/garcia-v-commonwealth/#189), 578 S.E.2d 97, 99 (/opinion/1064308/garcia-v-commonwealth/#99) (2003). So
+viewed, the evidence establishes that Hoyt entered a Newport News gas station *491 store at 11:00 p.m. on October 10, 2001
+with the intent to rob it. When Hoyt entered the store, employees Marquelle Rid-dick and Minesh Patel were “getting ready to
+close” the store for the night.
+Hoyt directed Patel to “lay on the floor.” He then pointed a gun at Riddick and told him to “give me the money.” Riddick walked
+approximately ten feet to the cash register, opened the drawer, placed the money in a bag, and handed the bag to Hoyt. Hoyt
+then exited the store. The robbery lasted no more than five minutes.
+Hoyt was charged with abduction in violation of Code § 18.2-47(A), 2 wearing a mask in public in violation of Code § 18.2-422,
+two counts of robbery in violation of Code § 18.2-58, and three counts of use of a firearm during the commission of a felony in
+violation of Code § 18.2-58.1. Hoyt moved to strike the abduction and related firearm charge at the close of the
+Commonwealth’s case. The trial court denied the motion to strike. Hoyt renewed his motion to strike the abduction and related
+firearm charge at the end of the trial, but the trial court again denied the motion, stating
+
+That’s the only question this Court had in the evidence in this case, whether or not there was
+sufficient deprivation of the victims’ liberty to distinguish it from simple robbery with abduction
+being a part of it or carrying it a little further and I’m in agreement with the Commonwealth that
+once you use a weapon in moving people about, moving them on the floor, to the register, you
+deprive them of their freedom and I think that’s now no longer simple robbery, its abduction
+along with it.
+Hoyt was subsequently convicted on all counts and noted this appeal. We granted his appeal only on the issue of the validity of
+the evidence to prove the abduction was not incidental to his commission of robbery.
+https://www.courtlistener.com/opinion/1063649/hoyt-v-commonwealth/?q=hoyt+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/5
+
+
+11/14/25, 10:27 PM
+
+Hoyt v. Commonwealth – CourtListener.com
+
+*492 II. Analysis
+Code § 18.2-47(A), which criminalizes abduction or kidnapping, provides:
+
+Any person, who, by force, intimidation or deception, and without legal justification or excuse,
+seizes, takes, transports, detains or secretes the person of another, with the intent to deprive
+such other person of his personal liberty or to withhold or conceal him from any person, authority
+or institution lawfully entitled to his charge, shall be deemed guilty of “abduction”; but the
+provisions of this section shall not apply to any law-enforcement officer in the performance of his
+duty. The terms “abduction” and “kidnapping” shall be synonymous in this Code. Abduction for
+which no punishment is otherwise prescribed shall be punished as a Class 5 felony.
+In Scott v. Commonwealth, 228 Va. 519 (/opinion/1298135/scott-v-commonwealth/), 323 S.E.2d 572 (/opinion/1298135/scott-vcommonwealth/) (1984), the Supreme Court
+ of Virginia stated that an abduction generally inheres in a rape or robbery because
+“there is usually some detention, and often a seizure, of the victim.” Id. at 526 (/opinion/1298135/scott-v-commonwealth/#526),
+323 S.E.2d at 576 (/opinion/1298135/scott-v-commonwealth/#576). However, it declined to address the “constitutional problems
+... created by such an overlapping of crimes” because that precise issue was not before it. Id. (/opinion/1298135/scott-vcommonwealth/)
+The “constitutional problem” was squarely presented to the Supreme Court in Brown v. Commonwealth, 230 Va. 310
+(/opinion/1256303/brown-v-commonwealth/), 337 S.E.2d 711 (/opinion/1256303/brown-v-commonwealth/) (1985), where Brown
+argued that the Double Jeopardy Clause prohibited his convictions for rape and abduction. Id. at 311 (/opinion/1256303/brownv-commonwealth/#311), 337 S.E.2d at
+712 (/opinion/1256303/brown-v-commonwealth/#712). In addressing Brown’s argument,
+the Supreme Court determined that discussion of double jeopardy principles was unnecessary because the General Assembly
+“did not intend to make the kind of restraint which is an intrinsic element of crimes such as rape, robbery, and assault a criminal
+act, punishable as a separate offense.” Id. at 314 (/opinion/1256303/brown-v-commonwealth/#314), 337 S.E.2d at 713
+(/opinion/1256303/brown-v-commonwealth/#713). 3 Accordingly, the Court held that
+
+*493 one accused of abduction by detention and another crime involving restraint of the victim,
+both growing out of a continuing course of conduct, is subject upon conviction to separate
+penalties for separate offenses only when the detention committed in the act of abduction is
+separate and apart from, and not merely incidental to, the restraint employed in the commission
+of the other crime.
+Id. at 314 (/opinion/1256303/brown-v-commonwealth/#314), 337 S.E.2d at 713 (/opinion/1256303/brown-v-commonwealth/)-14
+(citing Iowa v. Folck, 325 N.W.2d 368 (/opinion/1576518/state-v-folck/) (Iowa 1982); Bass v. State, 380 So.2d 1181
+(/opinion/1821215/bass-v-state/) (Fla.Dist.Ct.App.1980)).
+A majority of other courts have reached a similar conclusion and have articulated the general policy considerations underlying it.
+For example, the Supreme Court of Maryland — which noted that “a majority of courts ... now hold that ‘kidnapping statutes do
+not apply to unlawful confinements or movements incidental to the commission of other felonies’ ” — recognized that a literal
+reading of abduction and kidnapping statutes would “overrun other crimes, such as robbery, rape, and assault.” State v.
+Stouffer, 352 Md. 97 (/opinion/1508408/state-v-stouffer/), 721 A.2d 207, 212 (/opinion/1508408/state-v-stouffer/#212) (1998)
+(quoting Frank J. Wozniak, Annotation, Seizure or Detention for Purpose of Committing Rape, Robbery, or Other Offense as
+Constituting Separate Crime of Kidnapping, 39 A.L.R.5th 283, 356 (1996)) (other internal quotations omitted).
+
+The rationale of [the majority] approach is the concern that a literal reading of the kidnapping
+statutes, which often carry significant penalties, can lead to an overzealous enforcement, with
+the result that “persons who have commit *494 ted such substantive crimes as robbery or
+assault — which inherently involve the temporary detention or seizure of the victim — will suffer
+root@78f1db70b96f:/app#

@@ -1,0 +1,118 @@
+{
+    "id": "02e2e9c3-2b83-4726-9dd7-facc05fc5a93",
+    "task_name": "apex-finance-1588",
+    "trial_name": "apex-finance-1588__2oDk3sK",
+    "trial_uri": "file:///Users/lilyzhang/Documents/lilyzhng/claude/builder/jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK",
+    "task_id": {
+        "path": "tasks/apex-finance-1588"
+    },
+    "source": null,
+    "task_checksum": "0eaf0da220faae8b56078799ca588a2f21235a6e8ec2764f25d5ebb330343bf9",
+    "config": {
+        "task": {
+            "path": "tasks/apex-finance-1588",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "apex-finance-1588__2oDk3sK",
+        "trials_dir": "jobs/smoke-test-v2/2026-03-21__22-26-34",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "terminus-2",
+            "import_path": null,
+            "model_name": "openrouter/anthropic/claude-sonnet-4",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {
+                "max_turns": 10
+            },
+            "env": {
+                "OPENROUTER_API_KEY": "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"
+            }
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": 2048,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "mounts_json": null,
+            "env": {},
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "a4b1f3be-1a76-4c30-8eb6-137aaff18293"
+    },
+    "agent_info": {
+        "name": "terminus-2",
+        "version": "2.0.0",
+        "model_info": {
+            "name": "anthropic/claude-sonnet-4",
+            "provider": "openrouter"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 48464,
+        "n_cache_tokens": 35917,
+        "n_output_tokens": 2814,
+        "cost_usd": 0.10001385,
+        "rollout_details": [],
+        "metadata": {
+            "n_episodes": 10,
+            "api_request_times_msec": [
+                3623.7082481384277,
+                2280.381917953491,
+                3841.210126876831,
+                3726.42183303833,
+                8006.109952926636,
+                2849.7941493988037,
+                14498.775005340576,
+                3329.0762901306152,
+                13145.91908454895,
+                2533.9581966400146
+            ],
+            "summarization_count": 0
+        }
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.5
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-03-22T05:26:34.797479Z",
+    "finished_at": "2026-03-22T05:27:51.248349Z",
+    "environment_setup": {
+        "started_at": "2026-03-22T05:26:34.798519Z",
+        "finished_at": "2026-03-22T05:26:37.131796Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-22T05:26:37.131884Z",
+        "finished_at": "2026-03-22T05:26:43.599620Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-22T05:26:43.599845Z",
+        "finished_at": "2026-03-22T05:27:49.457614Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-22T05:27:49.457710Z",
+        "finished_at": "2026-03-22T05:27:49.706245Z"
+    }
+}

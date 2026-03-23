@@ -1,0 +1,15 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# sed -n '125,135p' convention.txt
+(2) No other additional light and sound signals than those provided in the Annex
+shall be used.
+Article 5. Nets, lines and other gear anchored in the sea and nets or lines which
+drift in the sea shall be marked in order to indicate their position and extent. The marking
+shall be in accordance with the provisions of Annex IV to this Convention.
+Article 6. (1) Subject to compliance with the International Regulations for Pre
+venting Collisions at Sea all vessels shall conduct their operations so as not to interfere
+with the operations of fishing vessels or fishing gear and shall conform to the provisions
+of Annex V to this Convention.
+(2) For the better implementation of these provisions the competent authorities of
+Contracting Parties may at their discretion notify the competent authorities of other
+root@fb0478b90c9e:/app#

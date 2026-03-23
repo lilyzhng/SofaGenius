@@ -1,0 +1,44 @@
+Previous response had warnings:
+WARNINGS: - Extra text detected before JSON object
+
+New Terminal Output:
+root@5d6e4bbfe24a:/app# ls -la /app/data/
+total 20
+drwxr-xr-x 2 root root  4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root  4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 11410 Mar 22 04:43 'Order Details (1).csv'
+root@5d6e4bbfe24a:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

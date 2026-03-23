@@ -1,0 +1,9 @@
+{
+  "reward": 0.0,
+  "reason": "No output files created",
+  "file_exists": false,
+  "correctness": 0.0,
+  "criteria_met": 0,
+  "criteria_total": 6,
+  "tool_engaged": false
+}

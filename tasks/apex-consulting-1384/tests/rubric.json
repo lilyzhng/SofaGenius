@@ -1,0 +1,101 @@
+{
+  "criterion 1": {
+    "description": "Identifies Hyderabad as the city with the highest total business value",
+    "sources": "Employee_data.csv",
+    "justification": "Based on the Employee_data.csv, group each city (col D) to get the total business value (col G) for each city Intermediate outputs (not required in this criterion) Business value Share Hyderabad 1089696500 14% Pune 970071014 12% Delhi 1048523716 13% Mumbai 1065955320 14% Kolkata 953980505 12% Bangalore 847444794 11% Ahmedabad 980187749 12% Chennai 933582922 12% Hyderabad has the highest business value",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates share of total business value for Hyderabad as 14% (acceptable value is 14%)",
+    "sources": "Employee_data.csv",
+    "justification": "Based on criterion 1 and Employee_data.csv, group each city (col D) to get the total business value (col G) for each city Intermediate outputs Business value Share Hyderabad 1089696500 14% Pune 970071014 12% Delhi 1048523716 13% Mumbai 1065955320 14% Kolkata 953980505 12% Bangalore 847444794 11% Ahmedabad 980187749 12% Chennai 933582922 12% Hyderabad has the highest business value with share of 13.8% ~14% (rounded to nearest whole number as per prompt)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Identifies Bachelor as the education with highest average quarterly rating",
+    "sources": "Employee_data.csv",
+    "justification": "Based on Employee_data.csv, group each education (col E) to get the average overall rating (col H) for each education Intermediate outputs (not needed for this criterion) PhD 2.439 Master 2.510 Bachelor 2.518 Bachelor has the highest average quarterly rating of ~2.518",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates average quarterly rating for education as 2.52 (acceptable value is 2.52)",
+    "sources": "Employee_data.csv",
+    "justification": "Based on criterion 3 and Employee_data.csv, group each education (col E) to get the average overall rating (col H) for each education Intermediate outputs PhD 2.439 Master 2.510 Bachelor 2.518 Bachelor has the highest average quarterly rating of ~2.518 ~2.52 (rounded to two decimal places as per prompt)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Calculates the average salary difference between employees who left vs. who stayed as -12959 (acceptable value is -12959)",
+    "sources": "Employee_data.csv",
+    "justification": "Based on Employee_data.csv, group each attrition type (col J) to get the average salary (col F) for each type of employee Intermediate outputs (not needed for this criterion) Yes 1153314.0 No 1166273.0 Difference -12959.0 The difference in average salary ~12,959 (rounded to nearest whole number as per prompt)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Identifies employee 1336 as the existing employee with the lowest ratio. (Acceptable value is 1336)",
+    "sources": "Employee_data.csv",
+    "justification": "Based on Employee_data.csv, find each existing employee's ratio using (Total Business Value / Salary). The employee with the lowest ratio is Emp_ID 1336, and the associated ratio is 0.334330706.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Identifies employee 1336's ratio as 0.33. (Acceptable value is 0.33)",
+    "sources": "Employee_data.csv",
+    "justification": "Based on Employee_data.csv, find each existing employee's ratio using (Total Business Value / Salary). The employee with the lowest ratio is Emp_ID 1336, and the associated ratio is 0.334330706. (rounded to 0.33)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States one of the following as a way to decrease attrition from the employer's perspective: -offering better compensation -offering career growth -offering better work life balance -getting exit insights and continuous improvements",
+    "sources": "",
+    "justification": "A consultant would agree that the below are some ways to decrease attrition from the employer's perspective: -offering better compensation; such as ensuring competitive pay -offering career growth; such as investing in employees' learnings -offering better work life balance; such as offering more family days and flexible vacations -getting exit insights and continuous improvements; such as conducting exit interviews",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

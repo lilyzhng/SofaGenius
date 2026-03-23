@@ -1,0 +1,8 @@
+New Terminal Output:
+
+root@b1534533e1cb:/app# ls -la /app/output/
+total 16
+drwxr-xr-x 1 root root 4096 Mar 22 17:22 .
+drwxr-xr-x 1 root root 4096 Mar 22 17:22 ..
+-rw-r--r-- 1 root root 2259 Mar 22 17:22 answer.txt
+root@b1534533e1cb:/app#

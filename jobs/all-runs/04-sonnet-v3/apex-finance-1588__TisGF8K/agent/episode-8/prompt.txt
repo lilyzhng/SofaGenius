@@ -1,0 +1,48 @@
+New Terminal Output:
+
+root@31fea87767f4:/app# cat > extract_full_data.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read Excel file
+> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+>
+> print("=== EXTRACTING FULL MODEL DATA ===")
+>
+> # Transaction Structure
+> trans_df = pd.read_excel(xl_file, sheet_name='Transaction Structure', header=None)
+>
+> # Key transaction metrics
+> print("\nTransaction Structure:")
+> print(f"FY24 EBITDA: ${trans_df.iloc[5, 8]:,.0f}k")
+> print(f"Purchase Enterprise Value: ${trans_df.iloc[5, 12]:,.0f}k")
+> print(f"Senior Debt: ${trans_df.iloc[5, 8]:,.0f}k")
+> print(f"Subordinate Debt: ${trans_df.iloc[6, 8]:,.0f}k")
+> print(f"Rollover Equity: ${trans_df.iloc[7, 8]:,.0f}k")
+> print(f"Sponsor Equity: ${trans_df.iloc[8, 8]:,.0f}k")
+>
+> # Financial projections
+> financial_df = pd.read_excel(xl_file, sheet_name='Financial Statements', header=None)
+>
+> # Get EBITDA projections - extend to see if FY2029 exists
+> print("\nEBITDA Projections:")
+> ebitda_row = 30  # Found earlier
+> print("Years:", financial_df.iloc[5, 5:15].tolist())
+> print("EBITDA:", financial_df.iloc[ebitda_row, 5:15].tolist())
+>
+> # Check Debt sheet
+> print("\n=== DEBT STRUCTURE ===")
+> debt_df = pd.read_excel(xl_file, sheet_name='Debt', header=None)
+> print("Debt sheet preview:")
+> print(debt_df.iloc[0:20, 0:8].to_string())
+>
+> # Look for more transaction details
+> print("\n=== MORE TRANSACTION DETAILS ===")
+> for i in range(20, 40):
+>     if i < trans_df.shape[0]:
+>         if pd.notna(trans_df.iloc[i, 1]):
+>             row_vals = trans_df.iloc[i, 8:13].tolist()
+>             if any(pd.notna(val) and val != 0 for val in row_vals):
+>                 print(f"Row {i}: {trans_df.iloc[i, 1]} - {row_vals}")
+> EOF
+root@31fea87767f4:/app#

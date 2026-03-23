@@ -1,0 +1,54 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# python3 /app/scripts/examine_excel.py
+Available sheets:
+  - Transaction Structure
+  - Assumptions
+  - Financial Statements
+  - Debt
+  - PP&E
+  - NWC
+  - Historicals
+
+Sheet: Transaction Structure
+Shape: (53, 13)
+First 5 rows:
+   Unnamed: 0                    Unnamed: 1  Unnamed: 2 Unnamed: 3   Unnamed: 4  ...    Unnamed: 8 Unnamed: 9                Unnamed: 10 Unnamed: 11  Unnamed: 1
+2
+0         NaN      1. Transaction Structure         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          Na
+N
+1         NaN  In USD 000, FY ending Dec 31         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          Na
+N
+2         NaN                           NaN         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN          Na
+N
+3         NaN                   Assumptions         NaN        NaN          NaN  ...           NaN        NaN                       Uses         NaN          Na
+N
+4         NaN                   FY24 EBITDA         NaN          $  8318.254226  ...  16636.508452        NaN  Purchase Enterprise Value         NaN  66546.0338
+1
+
+[5 rows x 13 columns]
+
+Sheet: Assumptions
+Shape: (123, 13)
+First 5 rows:
+   Unnamed: 0                    Unnamed: 1           Unnamed: 2 Unnamed: 3 Unnamed: 4  ... Unnamed: 8 Unnamed: 9 Unnamed: 10 Unnamed: 11 Unnamed: 12
+0         NaN               2. Assumptions                   NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+1         NaN  In USD 000, FY ending Dec 31                  NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+2         NaN                           NaN                  NaN        NaN        NaN  ...        NaN        NaN         NaN         NaN         NaN
+3         NaN                 Growth Levers        Growth Timing  Selection        NaN  ...        NaN        NaN         NaN         NaN         NaN
+4         NaN              New Construction  2025-12-31 00:00:00        Yes        NaN  ...        NaN        NaN         NaN         NaN         NaN
+
+[5 rows x 13 columns]
+
+Sheet: Financial Statements
+Shape: (95, 13)
+First 5 rows:
+  Unnamed: 0                    Unnamed: 1 Unnamed: 2  ...  -0.46173999999882653.1 -0.46173999999882653.2 -0.46174000001337845.1
+0        NaN       3. Financial Statements        NaN  ...                     NaN                    NaN                    NaN
+1        NaN  In USD 000, FY ending Dec 31        NaN  ...                     NaN                    NaN                    NaN
+2        NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+3        NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+4        NaN                           NaN        NaN  ...     2027-12-31 00:00:00    2028-12-31 00:00:00    2029-12-31 00:00:00
+
+[5 rows x 13 columns]
+root@7326c35a90b6:/app#

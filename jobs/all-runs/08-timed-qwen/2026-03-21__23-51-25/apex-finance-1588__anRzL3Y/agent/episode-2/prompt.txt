@@ -1,0 +1,37 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 --version
+Python 3.11.15
+root@dd06356d1acd:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

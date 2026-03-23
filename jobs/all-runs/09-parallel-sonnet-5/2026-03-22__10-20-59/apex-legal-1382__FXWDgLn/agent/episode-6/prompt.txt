@@ -1,0 +1,18 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# grep -n -i 'mark' convention.txt
+33:The Governments of Belgium, Canada, Denmark, the French Republic, the Federal
+52:and marked in accordance with the regulations of that Party in order to ensure their
+73:Denmark ..................................................
+128:drift in the sea shall be marked in order to indicate their position and extent. The marking
+390:For thé Government of Denmark:
+391:Pour le Gouvernement du Danemark :
+564:IDENTIFICATION AND MARKING OF FISHING VESSELS AND GEAR
+574:(4) Small boats and, where practicable, all fishing implements shall be marked with the letter
+576:fishing implements may be distinguished by private marks.
+659:MARKING OF NETS, LINES AND OTHER GEAR
+674:of not more than 1 mile so that no part of the gear extending 1 mile or more shall be left unmarked.
+683:(1) Nets or lines which drift in the sea shall be marked at each end and at distances of not
+761:any remarks he or any member of his crew may wish to make. The authorised officer shall sign
+831:21. Marking of any anchored or drifting gear involved.
+root@fb0478b90c9e:/app#

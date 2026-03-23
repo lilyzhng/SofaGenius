@@ -1,0 +1,37 @@
+New Terminal Output:
+
+root@7cd6440d93ae:/app# python3 -c "import pandas as pd; print('Pandas available'); xl = pd.ExcelFile('/app/data/ConSup Inc Financial Model_PROMPT.xlsx'); print
+('Sheet names:', xl.sheet_names)"
+Pandas available
+Sheet names: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+root@7cd6440d93ae:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

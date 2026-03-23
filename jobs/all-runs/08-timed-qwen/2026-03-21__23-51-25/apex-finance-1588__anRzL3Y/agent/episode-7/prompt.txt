@@ -1,0 +1,24 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_nam
+e='Financial Statements'); print('Financial Statements (first 15 rows):'); print(df.head(15))"
+Financial Statements (first 15 rows):
+   Unnamed: 0                    Unnamed: 1 Unnamed: 2  ...  -0.46173999999882653.1 -0.46173999999882653.2 -0.46174000001337845.1
+0         NaN       3. Financial Statements        NaN  ...                     NaN                    NaN                    NaN
+1         NaN  In USD 000, FY ending Dec 31        NaN  ...                     NaN                    NaN                    NaN
+2         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+3         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+4         NaN                           NaN        NaN  ...     2027-12-31 00:00:00    2028-12-31 00:00:00    2029-12-31 00:00:00
+5         NaN                           NaN        NaN  ...                 FY2027F                FY2028F                FY2029F
+6         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+7         NaN                         Check          .  ...                       0                      0                      0
+8           X              Income Statement        NaN  ...                     NaN                    NaN                    NaN
+9         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+10        NaN                       Revenue        NaN  ...            40779.542891           43104.533748           45849.794423
+11        NaN                    Growth (%)        NaN  ...                0.140795               0.057014               0.063688
+12        NaN                 Core Business        NaN  ...            33299.542891           33965.533748           34644.844423
+13        NaN  New Construction (Expansion)        NaN  ...                    3380                   4394                 5712.2
+14        NaN                  Hospitality         NaN  ...                     600                    720                    864
+
+[15 rows x 13 columns]
+root@dd06356d1acd:/app#

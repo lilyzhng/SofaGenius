@@ -1,0 +1,144 @@
+[?2004hroot@ee2595532515:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@ee2595532515:/app# clear
+[?2004l[H[J[3J[?2004hroot@ee2595532515:/app# ls -la /app/
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 22 06:34 .
+drwxr-xr-x 1 root root 4096 Mar 22 06:34 ..
+drwxr-xr-x 2 root root 4096 Mar 22 06:34 data
+drwxr-xr-x 2 root root 4096 Mar 22 06:34 output
+[?2004hroot@ee2595532515:/app# ls -la /app/data/
+[?2004ltotal 1424
+drwxr-xr-x 2 root root    4096 Mar 22 06:34  .
+drwxr-xr-x 1 root root    4096 Mar 22 06:34  ..
+-rw-r--r-- 1 root root 1448837 Mar 22 04:43 'Nike-Inc-2025 Form-10K .pdf'
+[?2004hroot@ee2595532515:/app# which pdftotext
+[?2004l/usr/bin/pdftotext
+[?2004hroot@ee2595532515:/app# pdftotext '/app/data/Nike-Inc-2025 Form-10K .pdf' /app/data/nike_10k.txt
+[?2004l[?2004hroot@ee2595532515:/app# wc -l /app/data/nike_10k.txt
+[?2004l10354 /app/data/nike_10k.txt
+[?2004hroot@ee2595532515:/app# grep -n -i 'consolidated statements of income' /app/data/nike_10k.txt
+[?2004l2158:expense in the Consolidated Statements of Income. Total NI E, Inc. EBIT for fiscal 2025, 2024 and 2023 are as follows:
+4796:fluctuations in Other (income) expense, net within our Consolidated Statements of Income.
+5483:31, 2025 and 2024, and the related consolidated statements of income, of comprehensive income, of shareholders' equity and of
+6632:Consolidated Statements of Income. Shipping and handling costs associated with outbound freight after control over a product
+6878:Consolidated Statements of Income on a straight-line basis over the lease term. Certain lease agreements include variable lease
+6939:impact of which is recorded in Other (income) expense, net, within the Consolidated Statements of Income.
+8488:The following tables present the amounts affecting the Consolidated Statements of Income for the years ended May 31, 2025,
+8667:hedge results are classified in the Consolidated Statements of Income in the same manner as the underlying exposure. hen it
+9461:net and Income tax expense in the Consolidated Statements of Income.
+10169:Lease expense is recogni ed in Cost of sales or Operating overhead expense within the Consolidated Statements of Income,
+[?2004hroot@ee2595532515:/app# sed -n '8480,8520p' /app/data/nike_10k.txt
+[?2004lTOTAL DERI ATI E LIABILITIES
+
+78
+
+NIKE, INC.
+
+Accrued liabilities
+
+The following tables present the amounts affecting the Consolidated Statements of Income for the years ended May 31, 2025,
+2024 and 2023:
+AM
+T GAI
+EC G I E I T E
+C MP E E I E I C ME
+E I ATI E 1
+EA E
+2025
+
+(Dollars in millions)
+Derivatives designated as
+cash flow hedges:
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+Foreign exchange forwards
+and options
+
+$
+
+AM
+T GAI
+EC A I IE
+M ACC M ATE
+T E C MP E E I E
+I C ME
+I T I C ME 1
+CATI
+GAI
+[?2004hroot@ee2595532515:/app# grep -n -A5 -B5 -i 'net revenues' /app/data/nike_10k.txt
+[?2004l496-IG I ICA T C T ME
+497-No customer accounted for 10
+498-
+499-P
+500-
+501:or more of our consolidated net Revenues during fiscal 2025.
+502-
+503-CT E EA C
+504-
+505-E IG A
+506-
+--
+1308-brand image and have an adverse effect on our operating results, financial condition and cash flows. Conversely, if we
+1309-underestimate consumer demand for our products or if our manufacturers fail to supply products we require at the time we need
+1310-them, we may experience inventory shortages. Inventory shortages could delay shipments to customers, negatively impact
+1311-retailer, distributor and consumer relationships and diminish brand loyalty. The difficulty in forecasting demand also makes it
+1312-difficult to estimate our future results of operations, financial condition and cash flows from period to period. A failure to accurately
+1313:predict the level of demand for our products could adversely affect our net revenues and net income, and we are unlikely to
+1314-forecast such effects with any certainty in advance.
+1315-O r NIKE Direct operations have re ired and will contin e to re ire a s bstantial investment and commitment of
+1316-reso rces and are s b ect to n mero s risks and ncertainties.
+1317-Our NI E Direct operations, including our retail stores and digital platforms, have required and will continue to require significant
+1318-investment. Our NI E Direct stores have required and will continue to require substantial fixed investment in equipment and
+--
+5117-at a later date.
+5118-Estimates of discretionary authori ed returns, discounts and claims are based on (1) historical rates, (2) specific identification of
+5119-outstanding returns not yet received from customers and outstanding discounts and claims and (3) estimated returns, discounts
+5120-and claims expected but not yet finali ed with customers based on current marketplace needs. Actual returns, discounts and
+5121-claims in any future period are inherently uncertain and may differ from estimates recorded. If actual or expected future returns,
+5122:discounts or claims were significantly different than reserves established, a reduction or increase to net revenues would be
+5123-recorded in the period in which such determination was made. For fiscal 2025, any variances between actual and expected
+5124-sales-related reserves were not material to reported Revenues.
+5125-Refer to Note 14
+5126-
+5127-Revenues in the accompanying Notes to the Consolidated Financial Statements for additional information.
+--
+6656-
+6657-Estimates of discretionary authori ed returns, discounts and claims are based on (1) historical rates, (2) specific identification of
+6658-outstanding returns not yet received from customers and outstanding discounts and claims and (3) estimated returns, discounts
+6659-and claims expected but not yet finali ed with customers. Actual returns, discounts and claims in any future period are inherently
+6660-uncertain and thus may differ from estimates recorded. If actual or expected future returns, discounts or claims are significantly
+6661:greater or lower than the reserves established, a reduction or increase to net Revenues is recorded in the period in which such
+6662-determination is made.
+6663-
+6664-C
+6665-
+6666-T
+[?2004hroot@ee2595532515:/app# grep -n -A10 -B2 'CONSOLIDATED STATEMENTS OF INCOME' /app/data/nike_10k.txt
+[?2004l[?2004hroot@ee2595532515:/app# grep -n -A5 -B5 'Revenues.*[0-9]' /app/data/nike_10k.txt | head -20
+[?2004l496-IG I ICA T C T ME
+497-No customer accounted for 10
+498-
+499-P
+500-
+501:or more of our consolidated net Revenues during fiscal 2025.
+502-
+503-CT E EA C
+504-
+505-E IG A
+506-
+--
+2082-
+2083-I CA 2025 I A CIA
+2084-
+2085-IG IG T
+2086-
+2087:• NI E, Inc. Revenues for fiscal 2025 were $46.3 billion compared to $51.4 billion for fiscal 2024
+2088-• NI E Direct revenues declined 13 from $21.5 billion in fiscal 2024 to $18.8 billion in fiscal 2025, and represented
+2089-approximately 42 of total NI E Brand revenues for fiscal 2025
+[?2004hroot@ee2595532515:/app# 

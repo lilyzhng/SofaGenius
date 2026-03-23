@@ -1,0 +1,32 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# cat > /app/scripts/examine_excel.py << 'EOF'
+> import pandas as pd
+> from openpyxl import load_workbook
+>
+> # Load the Excel file
+> data_file = "/app/data/ConSup Inc Financial Model_PROMPT.xlsx"
+>
+> # Get all sheet names
+> wb = load_workbook(data_file)
+> sheet_names = wb.sheetnames
+> print("Available sheets:")
+> for name in sheet_names:
+>     print(f"  - {name}")
+>
+> # Try to read a few sheets to see data structure
+> try:
+>     # Read a few sheets to understand the data
+>     for sheet in sheet_names[:3]:
+>         try:
+>             df = pd.read_excel(data_file, sheet_name=sheet)
+>             print(f"\nSheet: {sheet}")
+>             print(f"Shape: {df.shape}")
+>             print(f"First 5 rows:")
+>             print(df.head())
+>         except Exception as e:
+>             print(f"Could not read {sheet}: {e}")
+> except Exception as e:
+>     print(f"Error reading Excel file: {e}")
+> EOF
+root@7326c35a90b6:/app#

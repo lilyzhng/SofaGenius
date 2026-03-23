@@ -1,0 +1,294 @@
+{
+  "criterion 1": {
+    "description": "Recommends that the child should receive a Measles, Mumps and Rubella (MMR) vaccine today.",
+    "sources": "AAP-Immunization-Schedule.pdf Immunization record for patient in task 1394.pdf",
+    "justification": "As per the prompt, it is presently October 2025. As per dependencies, 'the child's first dose of the MMR vaccine was invalid.' 'MMR - 03/4/23' Source document ''AAP-Immunization-Schedule.pdf Immunization record for patient in task 1394.pdf' record for patient in task 1394.pdf' 'The repeat dose should be spaced after the invalid dose by the recommended minimum interval.' and 'at least 4 weeks apart' Source document 'AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 2": {
+    "description": "Recommends that the child should receive a Varicella vaccine today.",
+    "sources": "AAP-Immunization-Schedule.pdf Immunization record for patient in task 1394.pdf",
+    "justification": "As per prompt, it is presently October 2025. As per dependency, 'the child's first dose of the Varicella vaccine was invalid.' 'Varicella - 03/4/23' Source document 'Immunization record for patient in task 1394.pdf' 'The repeat dose should be spaced after the invalid dose by the recommended minimum interval.' and ' at least 4 weeks apart' Source document 'AAP-Immunization-Schedule.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      13
+    ]
+  },
+  "criterion 3": {
+    "description": "States that any vaccine administered 5 or more days earlier than the minimum age is invalid.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Vaccine doses administered \u22644 days before the minimum age or interval are considered valid. Doses of any vaccine administered \u22655 days earlier than the minimum age or minimum interval should not be counted as valid and should be repeated as age appropriate.' Page 5 Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 4": {
+    "description": "States that if an invalid vaccine dose was given, it should be repeated at the appropriate age.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'The repeat dose should be spaced after the invalid dose by the recommended minimum interval.' Page 5 Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 5": {
+    "description": "States the child received his first MMR vaccine on 4th March 2023.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "'MMR - 03/4/23' Source document 'Immunization record for patient in task 1394.pdf'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States the child's date of birth is 10th March 2022.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "Per the prompt, the child received his Hep B vaccine on his date of birth. 'Hep B - 03/10/22' Source document 'Immunization record for patient in task 1394.pdf'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States the minimum age for the first MMR vaccine is 12 months.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Measles, mumps, and rubella 12 months' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 8": {
+    "description": "States that the child received the first MMR vaccine 5 days before turning 12 months old.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "As per dependencies. Source document 'Immunization record for patient in task 1394.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      5,
+      6,
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Concludes that the child's first MMR vaccine was invalid.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "Per dependency, 'the child received his MMR vaccine on 3/4/23', 6 days prior to him being 12 months old. 'Vaccine doses administered \u22644 days before the minimum age or interval are considered valid. Doses of any vaccine administered \u22655 days earlier than the minimum age or minimum interval should not be counted as valid and should be repeated as age appropriate. The repeat dose should be spaced after the invalid dose by the recommended minimum interval.' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      8,
+      3
+    ]
+  },
+  "criterion 10": {
+    "description": "States that the child received the first Varicella vaccine dose on 4th March 2023.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "'Varicella - 03/4/23' Source document 'Immunization record for patient in task 1394.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "States that the minimum age for the first dose of the Varicella vaccine is 12 months.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Varicella 12 months' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 12": {
+    "description": "States that the child received his first dose of the Varicella vaccine 5 days before he turned 12 months old.",
+    "sources": "",
+    "justification": "As per dependencies.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      10,
+      11,
+      6
+    ]
+  },
+  "criterion 13": {
+    "description": "Concludes that the child's first dose of the Varicella vaccine was invalid.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "As per dependencies 'the child received his Varicella vaccine on 3/4/23', 6 days prior to him being 12 months old. 'Vaccine doses administered \u22644 days before the minimum age or interval are considered valid. Doses of any vaccine administered \u22655 days earlier than the minimum age or minimum interval should not be counted as valid and should be repeated as age appropriate. The repeat dose should be spaced after the invalid dose by the recommended minimum interval.' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      12,
+      3,
+      4
+    ]
+  },
+  "criterion 14": {
+    "description": "States the COVID vaccine is recommended for children aged 6 months through 23 months.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months [Moderna Spikevax] Routine vaccination Everyone age 6\u201323 months' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 15": {
+    "description": "Recognizes that the child is 3 years and 7 months old.",
+    "sources": "",
+    "justification": "This is calculated from the date of birth on dependency, and the present month in the prompt which is October 2025.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 16": {
+    "description": "States that the child has not received his COVID vaccine yet.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "Source document 'Immunization record for patient in task 1394.pdf'.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      14,
+      15
+    ]
+  },
+  "criterion 17": {
+    "description": "Recommends that the child receives a COVID-19 vaccine during the present visit.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'COVID-19 vaccination (minimum age: 6 months [Moderna Spikevax] Routine vaccination Everyone age 6\u201323 months' Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 18": {
+    "description": "States that an annual influenza vaccine is recommended for children above 6 months of age.",
+    "sources": "AAP-Immunization-Schedule.pdf",
+    "justification": "'Age 6 months\u20138 years who have received at least 2 influenza vaccine doses before July 1, 2025: recommendation is 1 dose.' Page 9 Source document 'AAP-Immunization-Schedule.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": true,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      21
+    ]
+  },
+  "criterion 19": {
+    "description": "Recognizes that the child has not received his influenza vaccine for the year 2025.",
+    "sources": "Immunization record for patient in task 1394.pdf",
+    "justification": "Source document 'Immunization record for patient in task 1394.pdf'",
+    "weight": "Primary objective(s)",
+    "human_rating": true,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 20": {
+    "description": "Recommends that the child receives an influenza vaccine during the present visit.",
+    "sources": "AAP-Immunization-Schedule.pdf Immunization record for patient in task 1394.pdf",
+    "justification": "'Influenza - 09/20/22 Influenza - 10/22/22' Source document 'Immunization record for patient in task 1394.pdf' 'Age 6 months\u20138 years who have received at least 2 influenza vaccine doses before July 1, 2025: recommendation is 1 dose.' Page 9 Source document 'AAP-Immunization-Schedule.pdf' Also due to criterion stating that visit is in October 2025 - as during this period the vaccination is most necessary to prevent infections from a spike in cases.",
+    "weight": "Primary objective(s)",
+    "human_rating": true,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      18,
+      19,
+      22
+    ]
+  },
+  "criterion 21": {
+    "description": "Utilizes recommendations from the AAP.",
+    "sources": "",
+    "justification": "As stated in the prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 22": {
+    "description": "Recognizes that the present clinic visit is in October 2025.",
+    "sources": "",
+    "justification": "As stated in the prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": true,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

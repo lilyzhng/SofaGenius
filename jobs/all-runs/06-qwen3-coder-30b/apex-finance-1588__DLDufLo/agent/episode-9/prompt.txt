@@ -1,0 +1,62 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# python3 /app/scripts/parse_financial_data.py
+Sheet names:
+0: Transaction Structure
+1: Assumptions
+2: Financial Statements
+3: Debt
+4: PP&E
+5: NWC
+6: Historicals
+
+Financial Statements (first 10 rows):
+  Unnamed: 0        Unnamed: 1 Unnamed: 2  Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+1        NaN               NaN        NaN         NaN  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+2        NaN               NaN        NaN         NaN  ...              FY2026F              FY2027F              FY2028F              FY2029F
+3        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+4        NaN             Check          .         NaN  ...                    0                    0                    0                    0
+5          X  Income Statement        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+6        NaN               NaN        NaN         NaN  ...                  NaN                  NaN                  NaN                  NaN
+7        NaN           Revenue        NaN         NaN  ...         35746.610677         40779.542891         43104.533748         45849.794423
+8        NaN        Growth (%)        NaN         NaN  ...             0.051171             0.140795             0.057014             0.063688
+9        NaN     Core Business        NaN         NaN  ...         32646.610677         33299.542891         33965.533748         34644.844423
+
+[10 rows x 13 columns]
+Shape: (92, 13)
+
+Transaction Structure (first 10 rows):
+   Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0         NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+1         NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+2         NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+3         NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+4         NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+5         NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+6         NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+7         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+8         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+9         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+
+[10 rows x 13 columns]
+Shape: (50, 13)
+
+Assumptions (first 10 rows):
+   Unnamed: 0        Unnamed: 1           Unnamed: 2 Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0         NaN     Growth Levers        Growth Timing  Selection  ...                  NaN                  NaN                  NaN                  NaN
+1         NaN  New Construction  2025-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+2         NaN       Hospitality  2026-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+3         NaN    U.S. Expansion  2027-12-31 00:00:00        Yes  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+4         NaN               NaN                  NaN        NaN  ...              FY2026A              FY2027A              FY2028A              FY2029A
+5         NaN               NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+6         NaN  Income Statement                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+7         NaN               NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+8         NaN           Revenue                  NaN        NaN  ...         35746.610677         40779.542891         43104.533748         45849.794423
+9         NaN        Growth (%)                  NaN        NaN  ...             0.051171             0.140795             0.057014             0.063688
+
+[10 rows x 13 columns]
+Shape: (120, 13)
+
+EBITDA related columns found: []
+root@7326c35a90b6:/app#

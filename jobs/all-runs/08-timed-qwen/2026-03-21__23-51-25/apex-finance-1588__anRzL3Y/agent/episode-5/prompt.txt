@@ -1,0 +1,30 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_nam
+e='Transaction Structure'); print('Transaction Structure:'); print(df.head(10))"
+Transaction Structure:
+   Unnamed: 0                    Unnamed: 1  Unnamed: 2 Unnamed: 3   Unnamed: 4  ...    Unnamed: 8 Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed:
+12
+0         NaN      1. Transaction Structure         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           N
+aN
+1         NaN  In USD 000, FY ending Dec 31         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           N
+aN
+2         NaN                           NaN         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           N
+aN
+3         NaN                   Assumptions         NaN        NaN          NaN  ...           NaN        NaN                       Uses         NaN           N
+aN
+4         NaN                   FY24 EBITDA         NaN          $  8318.254226  ...  16636.508452        NaN  Purchase Enterprise Value         NaN  66546.0338
+10
+5         NaN             Purchase Multiple         NaN          x            8  ...   8318.254226        NaN                Cash to B/S         NaN   1000.0000
+00
+6         NaN          Senior Debt / EBITDA         NaN          x            2  ...    6763.01211        NaN           Transaction Fees         NaN   1996.3810
+14
+7         NaN     Subordinate Debt / EBITDA         NaN          x            1  ...  38323.735289        NaN             Financing Fees         NaN    499.0952
+54
+8         NaN               Rollover Equity         NaN          %         0.15  ...           NaN        NaN                        NaN         NaN           N
+aN
+9         NaN                   Cash to B/S         NaN          $         1000  ...  70041.510078        NaN                     Total          NaN  70041.5100
+78
+
+[10 rows x 13 columns]
+root@dd06356d1acd:/app#

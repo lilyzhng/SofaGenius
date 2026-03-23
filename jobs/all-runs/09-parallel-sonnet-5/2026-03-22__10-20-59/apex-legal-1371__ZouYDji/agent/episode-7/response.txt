@@ -1,0 +1,10 @@
+{
+  "analysis": "The Hoyt case is very relevant! It establishes the key principle that abduction must be 'separate and apart from, and not merely incidental to' other crimes like robbery. The court noted that restraint which is an intrinsic element of crimes like robbery should not be punishable as a separate abduction offense. Let me examine the other cases to see how courts distinguish between incidental restraint and separate abduction.",
+  "plan": "I'll look at the Pritchard and Walker cases to understand how courts apply the 'incidental vs. separate' test, then analyze Jim's actions toward Bobby and the tellers under this framework.",
+  "commands": [
+    {
+      "keystrokes": "pdftotext \"data/1371_Pritchard v. Commonwealth_225 Va. 559.pdf\" - | head -100\n",
+      "duration": 1.0
+    }
+  ]
+}

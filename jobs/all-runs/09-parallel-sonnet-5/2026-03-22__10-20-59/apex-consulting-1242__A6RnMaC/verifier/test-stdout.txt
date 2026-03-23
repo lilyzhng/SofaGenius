@@ -1,0 +1,35 @@
+Reward: 0.8462 — criteria 11/13
+
+Files created: analysis.py, answer.txt
+
+Per-criterion breakdown:
+  [PASS] criterion 1 (number_match)
+         Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M1 as 2.73 (acceptable value is 2.73)
+  [PASS] criterion 2 (number_match)
+         Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M2 as 3.25 (acceptable value is 3.25)
+  [PASS] criterion 3 (number_match)
+         Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M3 as 3.06 (acceptable value is 3.06)
+  [PASS] criterion 4 (number_match)
+         Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M4 as 2.83 (acceptable value is 2.83)
+  [PASS] criterion 5 (number_match)
+         Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M5 as 1.74 (acceptable value is 1.74)
+  [FAIL] criterion 6 (failed)
+         State that M2 is one of the top 2 grades
+         → Matched 0/1 keywords
+  [FAIL] criterion 7 (failed)
+         State that M3 is one of the top 2 grades
+         → Matched 0/1 keywords
+  [PASS] criterion 8 (number_match)
+         Calculate the number of additional employees to be added for M2 as 20 (Acceptable value is 20)
+  [PASS] criterion 9 (number_match)
+         Calculate the number of additional employees to be added for M3 as 20 (Acceptable value is 20)
+  [PASS] criterion 10 (number_match)
+         Calculate the total annual additional expense as $78,907,051 (Acceptable value is $78,907,051)
+  [PASS] criterion 11 (number_match)
+         Calculate the total annual additional expense for M2 as $31,764,666 (Acceptable value is $31,764,666)
+  [PASS] criterion 12 (number_match)
+         Calculate the total annual additional expense for M3 as $47,142,384 (Acceptable value is $47,142,384)
+  [PASS] criterion 13 (keyword_match)
+         Recommends the bank should focus on one of the following employee grade levels for its expansion plans: 1) The bank should prioritize expanding high-return senior grades (e.g., M2-M3) 2) The bank shou
+
+Summary: 11 passed, 2 failed

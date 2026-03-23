@@ -1,0 +1,78 @@
+{
+  "criterion 1": {
+    "description": "States that Indiana law prohibits passing upon approach of a crest that obstructs the driver's view.",
+    "sources": "Indiana Code 9-21-8-8.pdf",
+    "justification": "Under Indiana Code 9-21-8-8(b)(1): A vehicle may not be driven to the left side of the roadway when approaching the crest of a grade or upon a curve in the highway where the view of the person who drives the vehicle is obstructed within a distance that creates a hazard if another vehicle might approach from the opposite direction. In this situation, although another vehicle was not, in fact, approaching from the opposite direction, Indiana law prohibits driving a vehicle on the left side of the road on approaching a crest where the view is obstructed. Therefore, Mr. Green should not have initiated the pass in this area of the roadway and it was not a lawful pass.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that Indiana law requires a vehicle being passed to yield the right of way to a passing vehicle on audible signal.",
+    "sources": "Indiana Code 9-21-8-5.pdf",
+    "justification": "Under Indiana law, a person who drives an overtaken vehicle shall give way to the right in favor of the overtaking vehicle on audible signal and may not increase the speed of the overtaken vehicle until completely passed by the overtaking vehicle. (Indiana Code 9-21-8-5 (2)). Here, Mr. Smith had the right of way as the lead vehicle travelling in the same direction as Mr. Green. Under Indiana law, upon Mr. Green's initiation of the pass, Mr. Smith would only have been required to 'give way' or yield the right-of-way if Mr. Green honked the horn and provided the requisite audible signal. As no audible signal was provided, Mr. Smith still had the right-of-way. (IC 9-21-8-5 (2)).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that Indiana law requires vehicles making left-turns to yield to oncoming vehicles proceeding in the opposite direction.",
+    "sources": "Indiana Code 9-21-8-30.pdf",
+    "justification": "Under Indiana Code 9-21-8-30, '[a] person who drives a vehicle within an intersection intending to turn to the left shall yield the right-of-way to a vehicle approaching from the opposite direction that is within the intersection or so close to the intersection as to constitute an immediate hazard.' As noted in the prompt, Mr. Smith was making a left turn from a two-lane road into a driveway, when Mr. Green came up from behind him and attempted to pass. Indiana law governing left turns required Mr. Smith to yield to oncoming traffic coming from the opposite direction. The law is silent as to any requirement for a left-turning vehicle to yield to a vehicle approaching from the rear and proceeding in the same direction.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Concludes that Mr. Smith (the overtaken vehicle) had the right-of-way.",
+    "sources": "Indiana Code 9-21-8-5.pdf Indiana Code 9-21-8-8.pdf Indiana Code 9-21-8-30.pdf",
+    "justification": "As noted above, Mr. Green was prohibited from driving in the left-hand lane due to the approaching hill/crest that obstructed the vision. As such, he did not complete a lawful pass. (IC 9-21-8-8-(b)(1)). Additionally, an overtaken vehicle must yield the right-of-way to an overtaking vehicle upon audible signal. Here, Mr. Green (the overtaking vehicle) did not provide audible signal. Therefore, Mr. Smith was not required to yield the right-of-way and he maintained the right-of-way. (IC 9-21-8-5). Finally, the law governing left-turns requires the turning vehicle to yield to 'oncoming vehicles' approaching from the opposite direction. (IC 9-21-8-30). Here, Mr. Green was not an 'oncoming vehicle' and he was proceeding in the same direction. There is no reference in the law governing left-turns to require Mr. Smith to yield to a vehicle that is approaching from the rear and proceeding in the same direction.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      3,
+      1
+    ]
+  },
+  "criterion 5": {
+    "description": "States that Mr. Smith breached defensive driving duties for improper look out prior to initiating the left turn.",
+    "sources": "Indiana Code 9-21-8-24.pdf",
+    "justification": "Under Indiana law, Mr. Smith was prohibited from slowing or changing direction of the vehicle unless the movement could be made with reasonable safety. (IC 9-21-8-4). Mr. Smith slowed the vehicle and, although he did use a turn signal, he did not ensure that the turn could be made safely before he turned. A driver has a duty to ensure that the movement can be made with reasonable safety prior to changing course, per Indiana Code 9-21-8-4. As Mr. Smith did not have a proper look out to ensure that the turn could be made with reasonable safety, Mr. Smith breached this duty by turning without even seeing Mr. Green's vehicle attempting to pass him.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Concludes that Mr. Smith's recovery will be reduced as he is partially at fault.",
+    "sources": "Indiana Code 34-51-2-5.pdf Indiana Code 34-51-2-6.pdf",
+    "justification": "Per Indiana law, '[i]n an action based on fault, any contributory fault chargeable to the claimant diminishes proportionately the amount awarded as compensatory damages for an injury attributable to the claimant's contributory fault, but does not bar recovery except as provided in section 6 of this chapter.' (IC 34-51-2-5). If a claimant is found to be 51% or more at fault, the claimant is barred from recovery. However, if the claimant is found to be 50% or less at fault, the plaintiff may recover, but damages are reduced in proportion to the comparative fault of the plaintiff. (IC 34-51-2-6). As noted, although Mr. Smith had the right-of-way, he contributed to the accident in failing to have a proper look out before executing the left turn. As such, Mr. Smith's recovery will be reduced by the percentage of fault attributed in contributing to the accident. (IC 34-51-2-5). If the trier of fact finds that Mr. Smith's failure to keep a proper look out and failure to ensure that the left turn could be made safely was greater than Mr. Green's fault, Mr. Smith would be barred from recovery. (IC 34-51-2-6).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

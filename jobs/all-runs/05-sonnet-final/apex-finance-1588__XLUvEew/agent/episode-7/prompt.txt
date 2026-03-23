@@ -1,0 +1,49 @@
+New Terminal Output:
+
+root@d471ed93970f:/app# python3 extract_data.py
+=== TRANSACTION STRUCTURE (Raw) ===
+Shape: (54, 13)
+Row 0: [np.float64(nan), nan, np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 1: [np.float64(nan), '1. Transaction Structure', np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 2: [np.float64(nan), 'In USD 000, FY ending Dec 31', np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 3: [np.float64(nan), nan, np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 4: [np.float64(nan), 'Assumptions', np.float64(nan), nan, nan, np.float64(nan), 'Sources', nan, nan, nan, 'Uses', np.float64(nan), np.float64(nan)]
+Row 5: [np.float64(nan), 'FY24 EBITDA', np.float64(nan), '$', 8318.254226224823, np.float64(nan), 'Senior Debt', nan, 16636.508452449645, nan, 'Purchase Enterpr
+ise Value', np.float64(nan), np.float64(66546.03380979858)]
+Row 6: [np.float64(nan), 'Purchase Multiple', np.float64(nan), 'x', 8, np.float64(nan), 'Subordinate Debt', nan, 8318.254226224823, nan, 'Cash to B/S', np.float
+64(nan), np.float64(1000.0)]
+Row 7: [np.float64(nan), 'Senior Debt / EBITDA', np.float64(nan), 'x', 2, np.float64(nan), 'Rollover Equity ', nan, 6763.012109848733, nan, 'Transaction Fees',
+np.float64(nan), np.float64(1996.3810142939574)]
+Row 8: [np.float64(nan), 'Subordinate Debt / EBITDA', np.float64(nan), 'x', 1, np.float64(nan), 'Sponsor Equity ', nan, 38323.73528914282, nan, 'Financing Fees'
+, np.float64(nan), np.float64(499.09525357348934)]
+Row 9: [np.float64(nan), 'Rollover Equity', np.float64(nan), '%', 0.15, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 10: [np.float64(nan), 'Cash to B/S', np.float64(nan), '$', 1000, np.float64(nan), 'Total ', nan, 70041.51007766603, nan, 'Total ', np.float64(nan), np.float
+64(70041.51007766603)]
+Row 11: [np.float64(nan), 'Transaction Fees', np.float64(nan), '%', 0.03, np.float64(nan), nan, nan, nan, nan, 'Check ', np.float64(nan), np.float64(0.0)]
+Row 12: [np.float64(nan), 'Financing Fees', np.float64(nan), '%', 0.02, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 13: [np.float64(nan), 'Financing Fees Amortization Period', np.float64(nan), 'Years', 7, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float
+64(nan)]
+Row 14: [np.float64(nan), 'Transaction Date', np.float64(nan), 'Date', datetime.datetime(2024, 12, 31, 0, 0), np.float64(nan), nan, nan, nan, nan, nan, np.float
+64(nan), np.float64(nan)]
+Row 15: [np.float64(nan), nan, np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 16: [np.float64(nan), 'Closing Balance Sheet', np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 17: [np.float64(nan), nan, np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 18: [np.float64(nan), 'Goodwill Calculation', np.float64(nan), nan, nan, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 19: [np.float64(nan), 'Purchase Enterprise Value', np.float64(nan), '$', 66546.03380979858, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.fl
+oat64(nan)]
+Row 20: [np.float64(nan), 'Less: Debt', np.float64(nan), '$', 0, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 21: [np.float64(nan), 'Plus: Cash', np.float64(nan), '$', 5469.191153999998, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+Row 22: [np.float64(nan), 'Purchase Equity Value', np.float64(nan), '$', 72015.22496379858, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float6
+4(nan)]
+Row 23: [np.float64(nan), 'Less: Book Value of Equity', np.float64(nan), '$', 8936.272884947037, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.f
+loat64(nan)]
+Row 24: [np.float64(nan), 'Plus: Existing Goodwill', np.float64(nan), '$', 0, np.float64(nan), nan, nan, nan, nan, nan, np.float64(nan), np.float64(nan)]
+
+=== FINANCIAL STATEMENTS (Raw) ===
+Shape: (96, 13)
+Columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+Revenue Row 11: [nan, 'Revenue', nan, np.float64(nan), '$', 30571.118161500002, 30347.6740035, 31378.902996000008, 34006.48105592001, 35746.61067703841, 40779.5
+4289057918, 43104.533748390764, 45849.79442335858]
+Revenue Row 29: [nan, '% of revenues', nan, np.float64(nan), '%', 0.16269198835728688, 0.1616466553395241, 0.1632698249729469, 0.16795887673904683, 0.1715049830
+2033507, 0.18216177382802676, 0.18100643066895863, 0.1788021088082455]
+root@d471ed93970f:/app#

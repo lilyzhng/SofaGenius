@@ -1,0 +1,200 @@
+{
+  "criterion 1": {
+    "description": "Formats the response as a legal memorandum that includes at least three of the following: a question presented identifying the legal issue, a brief answer identifying an answer to the legal issue, a fact section, a discussion section where the legal issue is analyzed, and a conclusion summarizing the legal analysis.",
+    "sources": "Prompt",
+    "justification": "The prompt indicates that the answer should be formatted as a legal memorandum that includes at least three of the following: a question presented identifying the legal issue, a brief answer identifying an answer to the legal issue, a fact section, a discussion section where the legal issue is analyzed, and a conclusion summarizing the legal analysis.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Style"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Identifies that Florida law applies.",
+    "sources": "Prompt",
+    "justification": "The prompt indicates that Florida Law should be applied in answering the questions.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Identifies that video footage may be admitted under the 'pictorial theory' if it fairly and accurately depicts what a witness personally observed.",
+    "sources": "WAGNER v. STATE.pdf",
+    "justification": "Under the theory of pictorial testimony a video may be admitted if the witness testifies that the video fairly and accurately depicts what the witness personally observed. Wagner v. State, 707 So.2d 827, 830 (Fla. 1st DCA 1998).",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Identifies that video footage may be admissible under the 'silent witness theory' if the video is determined to be reliable.",
+    "sources": "WAGNER v. STATE.pdf",
+    "justification": "'Under the 'silent witness' theory, photographic evidence may be admitted upon proof of the reliability of the process which produced the photograph or videotape.' Wagner v. State, 707 So. 2d 827, 830 (Fla. 1st DCA 1998).",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Identifies that the Court considers five factors in determining if the video is reliable under the 'silent witness' theory.",
+    "sources": "WAGNER v. STATE.pdf",
+    "justification": "'We thus hold that relevant photographic evidence may be admitted into evidence on the 'silent witness' theory when the trial judge determines it to be reliable, after having considered the following: (1) evidence establishing the time and date of the photographic evidence; (2) any evidence of editing or tampering; (3) the operating condition and capability of the equipment producing the photographic evidence as it relates to the accuracy and reliability of the photographic product;(4) the procedure employed as it relates to the preparation, testing, operation, and security of the equipment used to produce the photographic product, including the security of the product itself; and (5) testimony identifying the relevant participants depicted in the photographic evidence.' Wagner v. State, 707 So. 2d 827, 831 (Fla. 1st DCA 1998)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Identifies factor 1 (time/date accuracy) under the silent witness test and reaches a defended conclusion.",
+    "sources": "Prompt, WAGNER v. STATE.pdf",
+    "justification": "In this case the manager does not know the time or date that the recording was made as he has no familiarity with the video surveillance system. This is in contrast to the witness in Wagner v. State, 707 So.2d 827, 831 (Fla. 1st DCA 1998), who testified 'as to the time and date that on which the tape was made.' Here, the manager is unable provide any testimony about the time and date the recording was made and therefore the first factor weighs against the video being reliable.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Identifies factor 2 (no editing/tampering) on these facts and reaches a defended conclusion.",
+    "sources": "Prompt, WAGNER v. STATE.pdf",
+    "justification": "In this case the manager is unable to provide any testimony regarding whether the footage has been edited or tampered with. This is in contrast to the witness in Wagner v. State, 707 So.2d 827, 831 (Fla. 1st DCA 1998), who testified that the recording 'had not been tampered or edited.' Id. In this case the manager is unable to testify that the video footage was not tampered with or edited because he does not know how the recording system works, therefore the second factor also weighs against the video footage being reliable.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "Identifies factor 3 (installation/operation accuracy) on these facts and reaches a defended conclusion.",
+    "sources": "Prompt, WAGNER v. STATE.pdf",
+    "justification": "In this case the manager does not know the operating condition and capability of the equipment producing the photographic evidence as it relates to the accuracy and reliability of the photographic product. This is in contrast to Wagner v. State, 707 So.2d 827, 831 (Fla. 1st DCA 1998), where the witness testified 'as to the installation and operation of the video camera.' Thus, in this case the manager's inability to testify about the operating condition and capability of the equipment weighs against the video footage being reliable.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 9": {
+    "description": "Identifies factor 4 (procedures/security; chain of custody/system integrity) on these facts and reaches a defended conclusion.",
+    "sources": "Prompt",
+    "justification": "In this case the manager does not know the procedure employed as it relates to the preparation, testing, operation, and security of the equipment used to produce the photographic product, including the security of the product itself. In fact, the manager does not have any idea as to any of the procedures used in the preparation, testing, operation, and security of the equipment used to produce the recording. The manager is also unable to testify about the system's security. Therefore, the fourth factor weighs against the recording being reliable.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 10": {
+    "description": "Identifies factor 5 (clear depiction of persons/events) on these facts and reaches a defended conclusion.",
+    "sources": "Prompt",
+    "justification": "In this case the manager is able to identify on the video recording. Therefore, this factor weighs in favor of the recording being reliable.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 11": {
+    "description": "Identifies pictorial-testimony foundation on these facts and reaches a defended conclusion.",
+    "sources": "Prompt, WAGNER v. STATE.pdf",
+    "justification": "The manager did not see the events that were recorded and therefore cannot testify that the recording fairly and accurately depicts what he witnessed. The recording is therefore not admissible under the pictorial theory of authentication of video footage. See Wagner v. State, 707 So.2d 827, 830 (Fla. 1st DCA 1998) (discussing that recording or photographs are admissible under pictorial theory of authentication if witness can testify that it fairly and accurately represents what the witness personally saw).",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 12": {
+    "description": "Identifies admissibility under the silent-witness doctrine on these facts and reaches a defended conclusion.",
+    "sources": "Prompt, WAGNER v. STATE.pdf",
+    "justification": "Evidence must be authenticated before admission. Fla. Stat. \u00a7 90.901 ('Authentication or identification of evidence is required as a condition precedent to its admissibility.'). Under Florida's silent-witness doctrine, video may be admitted 'upon proof of the reliability of the process which produced the\u2026 videotape,' evaluated through five non-exclusive factors (time/date; tampering; equipment condition/capability; procedures/security/chain; participant identification). Wagner v. State enumerates the five factors and explains that reliability of the producing process governs admission. (Factors listed at (1)\u2013(5).) Here, the manager lacked access to or knowledge of the surveillance system, obtained the footage from IT, and there is no testimony about time/date metadata, operating condition, procedures/security or chain of custody; the manager can only identify the participant from a file photo. (Prompt facts.) On these facts, factor (5) (identification) may be satisfied, but factors (1)\u2013(4) are not established: no evidence of recording time/date accuracy, no affirmative proof ruling out editing/tampering, no testimony on equipment operation/capability, and no procedures/security or chain-of-custody foundation. Because the State has not shown the process to be reliable, \u00a7 90.901 authentication under silent witness is not met and the objection should be sustained. (If the State later presents a qualified IT/custodian to lay these elements, the analysis could change.)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "criterion 13": {
+    "description": "States Florida's lay-opinion identification rule, based on the witness's perceptions, is helpful to the jury.",
+    "sources": "PROCTOR v. STATE.pdf",
+    "justification": "Fla. Stat. \u00a7 90.701(1)\u2013(2) permits lay identification only when testimony is based on the witness's perceptions and 'may be in the form of inference and opinion' where the perception cannot be 'readily\u2026 communicate[d]' otherwise and the opinion will not mislead the jury. In evaluating photo/video identifications by non-eyewitnesses with no special familiarity, Florida courts caution that 'the jurors should have been allowed to determine for themselves whether Proctor was the person shown in the surveillance video.' Proctor v. State, 97 So. 3d 313, 316 (Fla. 5th DCA 2012). Here, the manager never met the defendant and knows him only from a file photograph; he was not an eyewitness and has no specialized identification expertise, so his familiarity is no better than the jury's, triggering \u00a7 90.701's limits and Proctor's warning about invading the jury's role.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 14": {
+    "description": "Identifies admissibility of law identification by a non-eyewitness whose familiarity derives from an employee photo.",
+    "sources": "Prompt, PROCTOR v. STATE.pdf",
+    "justification": "Florida permits lay identification only when the opinion is based on the witness's own perceptions and is necessary/helpful to the jury, and it does not require specialized expertise. Fla. Stat. \u00a7 90.701(1)\u2013(2) ('testimony about what he or she perceived may be in the form of inference and opinion' if the witness cannot otherwise convey it equally well and it will not mislead). Florida courts caution against allowing non-eyewitness identification where the witness lacks special familiarity; 'The jurors should have been allowed to determine for themselves whether Proctor was the person shown in the surveillance video.' Proctor v. State, 97 So. 3d 313, 316 (Fla. 5th DCA 2012). Here, the manager had never met the defendant, had no specialized identification training, and knew him only from a single employee-file photograph. (Prompt facts.) Application. Because the manager is in no better position than jurors to identify the person in the video, and his opinion risks substituting for the jury's own comparison, \u00a7 90.701's 'helpfulness' requirement is not met on these facts; consistent with Proctor, the identification should be excluded.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 15": {
+    "description": "States that testifying to the contents of a business record is hearsay unless the record is admitted.",
+    "sources": "T.V.U. v. STATE.pdf",
+    "justification": "'Although section 90.803(6) permits the admission of business records under certain circumstances, testimony of a business record's contents may not be introduced when that record has not been admitted into evidence.' T.V.U. v. State, 403 So. 3d 389, 390 (Fla. 2d DCA 2025)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 16": {
+    "description": "Identifies whether the timesheet/register-log testimony is inadmissible hearsay absent a proper Section 90.903(6) foundation.",
+    "sources": "Prompt, YISRAEL v. STATE .pdf",
+    "justification": "Hearsay is an out-of-court statement offered for its truth and is inadmissible unless an exception applies. Fla. Stat. \u00a7\u00a7 90.801(1)(c), 90.802. The business-records exception requires a proper foundation: the record was made at or near the time by a person with knowledge, kept in the course of a regularly conducted activity, and 'shown by the testimony of the custodian or other qualified witness' (or by certification). Fla. Stat. \u00a7 90.803(6)(a). See Yisrael v. State, 993 So. 2d 952, 956\u201357 (Fla. 2008) (statutory predicates must be established through a records custodian/qualified witness or via \u00a7 90.902(11) certification). The State elicited the manager's testimony about what the timesheets/register logs say (who worked; sales entries) but did not introduce those records, present a custodian/qualified witness, or provide a \u00a7 90.902(11) certification; the manager lacked personal knowledge of the entries' creation. Because the State neither admitted the records nor laid the \u00a7 90.803(6) foundation, the manager's testimony relaying their contents is hearsay offered for its truth and does not fit an exception. On these facts, the objection to the timesheet/register-log testimony should be sustained (if the State later admits the records with a proper foundation, the analysis may change).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "criterion 1": {
+    "description": "Requires Promoter to maintain legal authorization to use the Venue for the Festival.",
+    "sources": "Prompt",
+    "justification": "The Festival takes place on county-leased farmland, so Promoter must keep whatever permits or permissions the county requires to operate there to ensure that the event stays lawful and prevents Company from performing on an unapproved site. This liability transfer is standard in public-site vendor contracts because it protects Company from compliance issues outside its control.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that Company may suspend services for any of at least 2 of the following reasons: Promoter's nonpayment; loss of legal authorization to use the Venue for the Festival; or unsafe site conditions that prevent lawful or safe servicing.",
+    "sources": "Prompt",
+    "justification": "Company needs flexibility to pause work when payment stops, access is revoked, or conditions make service unsafe because, without that right, it could be forced to continue operating in violation of safety or health regulations. Including a suspension clause like this is routine in regulated service agreements because it gives the vendor leverage to fix problems before they result in legal or financial exposure.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that Promoter is solely responsible for at least 3 of the following site-readiness measures: providing firm pads for Units; clearing truck paths for servicing; maintaining adequate lighting near Units; or managing crowd access in service areas.",
+    "sources": "Prompt",
+    "justification": "At a large outdoor event, safe and efficient servicing depends on how well the site is prepared, and only Promoter can manage ground conditions, lighting, and crowd flow. Consequently, assigning this responsibility aligns risk with control and follows common practice in event and construction logistics contracts.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that Promoter is solely responsible for at least 3 of the following duties related to non-human waste: remediation; transport; disposal; or reporting.",
+    "sources": "Prompt",
+    "justification": "Promoter's draft contract 'doesn't allocate risk for hazardous waste found in Units.' Since Company cannot control what thousands of attendees put into the Units, Promoter should handle the cleanup, disposal, and any required reporting. Incorporating this risk allocation into the Agreement ensures that liability remains with Promoter, who is responsible for managing attendees and security. This approach aligns with the practices of the sanitation industry regarding temporary event agreements, where the site operator\u2014not the vendor\u2014is expected to handle hazardous materials resulting from attendee misuse.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that Company's environmental liability is limited to damages resulting from Company's negligence.",
+    "sources": "Prompt",
+    "justification": "The prompt notes that the allocation of risk for spills is an issue. Liability should follow control, so if Company causes a spill through its own error, it pays for it. However, Company should not be responsible for contamination caused by others. This limitation is a normal protection in service contracts and ensures the vendor's exposure stays proportionate to its own conduct.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Requires Promoter to indemnify Company for at least 3 of the following categories of loss, to the extent not caused by Company's negligence: bodily injury; property damage; regulatory penalties; cleanup costs; or third-party claims arising from Promoter's operations.",
+    "sources": "Prompt",
+    "justification": "Promoter runs the event and controls the Venue, so it should cover losses that result from its operations or the actions of attendees, and a broad indemnity covering injury, property damage, and compliance costs prevents Company from paying for risks it cannot manage. This structure is the standard way public-event contracts divide liability between organizers and service vendors, and this indemnity shifts risk to the party who best controls it (consistent with Estes Express Lines v. Chopper Express, Inc., 273 Va. 358, 365 to 367 (2007)). https://www.casemine.com/judgement/us/59146ee0add7b0493433eac2",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that Promoter will fund a refundable security deposit in favor of Company.",
+    "sources": "",
+    "justification": "Company must commit trucks, staff, and other resources before the Festival begins, and a deposit guarantees payment even if ticket sales or cash flow falter, which could occur if poor weather or other conditions restrict attendance. Deposits are a common financial safeguard in short-term service contracts where the vendor's costs come first and revenue follows later.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Requires Promoter to pay interest on overdue amounts.",
+    "sources": "VA \u00a7 6.2-302.pdf",
+    "justification": "Including an interest clause encourages prompt payment and compensates Company for delays in settlement after the Festival ends. Virginia law expressly allows parties to contract for interest on unpaid amounts, as confirmed in Va. Code \u00a7 6.2-302, so including this term provides both a financial safeguard and a clear legal basis for recovery of late fees in a commercial services agreement. https://law.lis.virginia.gov/vacode/title6.2/chapter3/section6.2-302/",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "States that the Agreement controls over any Promoter-issued document that conflicts with its terms.",
+    "sources": "Prompt",
+    "justification": "The prompt noted that Promoter's 'Volunteer and Contractor Safety Policy' conflicts with the contract's insurance and waiver terms. A supremacy clause fixes this by making the Agreement the final word to ensure that no internal policy can override the negotiated risk allocation (and doing so is standard in vendor agreements for managed venues).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "Prohibits Promoter from requiring Company personnel to sign documents that conflict with the Agreement.",
+    "sources": "Prompt",
+    "justification": "Event staff often distribute safety forms or waivers at festival check-ins (and the prompt noted that The prompt noted the Promoter's 'Volunteer and Contractor Safety Policy' conflicts with the contract's insurance and waiver terms) and if Company's crew signs them, those papers could be used to alter or limit the Agreement's protections, so the Agreement should include a clause to prevent that from happening. Doing this will also keep all legal obligations confined to the signed Agreement.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "Requires Promoter to maintain comprehensive general liability insurance containing at least 3 of the following: naming Company as an additional insured; providing primary and non-contributory coverage; waiving subrogation against Company; specifying minimum per-occurrence limits consistent with event-industry standards; or specifying aggregate limits consistent with event-industry standards.",
+    "sources": "Prompt",
+    "justification": "Festivals carry significant public-liability risk, so Promoter's insurance must respond first to attendee or property claims. Listing Company as an additional insured extends coverage to the vendor, while the primary and non-contributory language prevents insurer disputes, a waiver of subrogation blocks reimbursement claims, and minimum coverage limits ensure adequate protection, which mirror standard drafting in event and facilities management contracts.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 12": {
+    "description": "States that Virginia law governs the Agreement.",
+    "sources": "Prompt",
+    "justification": "Both parties are Virginia-based and the event takes place on county land in Virginia, so it is logical to apply Virginia law, and choosing the law of the place of performance is standard in service contracts because it simplifies enforcement and compliance.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

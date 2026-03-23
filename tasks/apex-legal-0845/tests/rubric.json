@@ -1,0 +1,109 @@
+{
+  "criterion 1": {
+    "description": "Identify Libby's claim against The Roamers for negligence as related to premises liability.",
+    "sources": "CIV_1714",
+    "justification": "California Civil Code outlines negligence as follows: 'Everyone is responsible, not only for the result of his or her willful acts, but also for an injury occasioned to another by his or her want of ordinary care or skill in the management of his or her property or person, except so far as the latter has, willfully or by want of ordinary care, brought the injury upon himself or herself.' [(Cal. Civ. Code \u00a7 1714(a)] In managing Circus Circus, The Roamers owed Libby and all visitors a duty to maintain reasonably safe premises. Libby can argue that they breached this duty by exhibiting disturbing (and dangerous) imagery, and failing to properly warn her of the potential danger. She would also have to make the case that it was reasonably foreseeable that disturbing blood imagery could cause harm, especially since they anticipated disturbing reactions (they had a medical team ready). In her case, the imagery did indeed cause her to faint. Damages may include hospital bills and emotional distress.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Conclude that Libby will fail on her negligence claim.",
+    "sources": "CIV_1714",
+    "justification": "The Roamers can rebut many of Libby's arguments in the negligence claim, but their most convincing defense is that Libby assumed the risk. Libby fainted, struck her head, and suffered injuries, but because she had prior knowledge of her sensitivity, she was also at fault (i.e., 'has willfully or by want of ordinary care, brought the injury upon himself or herself.' [Cal. Civ. Code \u00a7 1714(a)]. The waiver warned that 'contents may be disturbing,' which may be construed as vague, but when Libby specifically disclosed her sensitivity to blood, the attendant's emphatic nod communicated that the risk of blood-like imagery was indeed present. The facts state that Libby and Lonson entered 'anyway,' implying that they were aware of the risk, and made the decision to enter regardless. The court may apportion each party's degree of fault in a comparative negligence assessment to award damages, but the assumption of the risk defense is a strong bar against Libby's negligence claim.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Identify Libby's claim against The Roamers for public disclosure of private facts.",
+    "sources": "Cal. Const. art. I, \u00a71; CACI-1801",
+    "justification": "California places a high value on the right to privacy. ('All people are by nature free and independent and have inalienable rights. Among these are enjoying and defending life and liberty, acquiring, possessing, and protecting property, and pursuing and obtaining safety, happiness, and privacy.' (Cal. Const. art. I, \u00a71)) California's jury instructions for deciding the tort of public disclosure of private facts reads: '[Name of plaintiff] claims that [name of defendant] violated [his/her/nonbinary pronoun] right to privacy. To establish this claim, [plaintiff] must prove all of the following: 1. That [name of defendant] publicized private information concerning [plaintiff]; 2. That a reasonable person in [plaintiff]'s position would consider the publicity highly offensive; 3. That [defendant] knew, or acted with reckless disregard of the fact, that a reasonable person in [plaintiff]'s position would consider the publicity highly offensive; 4. That the private information was not of legitimate public concern [or did not have a substantial connection to a matter of legitimate public concern]; 5. That [plaintiff] was harmed; and 6. That [defendant]'s conduct was a substantial factor in causing [plaintiff]'s harm.' (CACI 1801). Libby can meet the elements of her case simply: The Roamers publicly disclosed (via the Circus Circus website), a private secret ('I cheated on my husband'), that they knew would be highly offensive to a reasonable person (scandal ensued), and not of legitimate public concern (as the inner workings of most marital relationships are not), with severe damage (divorce, reputational damage).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Identify Libby's consent to disclosure as a bar to the public disclosure of private facts claim.",
+    "sources": "CACI-1801;",
+    "justification": "When ruling on public disclosure of private facts, California juries are given this guidance: 'In deciding whether the information was a matter of legitimate public concern, you should consider, among other factors ... whether [name of plaintiff] consented to the publicity explicitly or by voluntarily seeking public attention or a public office...' [CACI 1801 (c)]. Here, The Roamers can argue that Libby explicitly consented to the disclosure of her secret when she wrote it down on the form for entry, and when she affirmed to the attendant 'I'm sure.' Also, her later instagram post about the incident that included details of the exhibit can be said to have opened the door for publication of her secret.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Identify that The Roamers can defend against the public disclosure of private facts claim because Libby is a public figure.",
+    "sources": "CACI-1801",
+    "justification": "The Roamers can argue that Libby is a public figure and so her secret was fair game for publication. The analysis for 'deciding whether the information was a matter of legitimate public concern' includes 'the social value of the information.' [CACI 1801(a)]. California's jury instructions offer additional common law findings to support this particular analysis, including: '[N]ewsworthiness is not limited to 'news' in the narrow sense of reports of current events. It extends also to the use of names, likenesses or facts in giving information to the public for purposes of education, amusement or enlightenment, when the public may reasonably be expected to have a legitimate interest in what is published' [CACI 1801, citing (Jackson v. Mayweather (2017)10 Cal.App.5th at p. 1257]; and: 'Almost any truthful commentary on public officials or public affairs, no matter how serious the invasion of privacy, will be privileged.' [CACI 1801, citing Briscoe v. Reader's Digest Assn., Inc. (1971) 4 Cal.3d at p. 535, fn. 5]. The facts state that Libby and Lonson are 'local celebrity influencers.' Though the degree of their celebrity status may be at issue, the Roamers can make that case that their very profession willingly subjects the details of their lives to public scrutiny. Though it may not be news in the traditional sense, Libby's secret can certainly be expected to draw 'legitimate interest' whether for 'amusement' or other entertaining reasons.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 6": {
+    "description": "Conclude that Libby will likely fail on her public disclosure of private facts claim.",
+    "sources": "Prompt",
+    "justification": "The jury instructions further explain that 'the absence of any one of these elements is a complete bar to liability,' [CACI 1801, citing (Moreno v. Hanford Sentinel, Inc. (2009) 172 Cal.App.4th 1125, 1129\u20131130 (91 Cal.Rptr.3d 858)], so the court only needs to agree with The Roamers in one of their arguments: that Libby consented to the disclosure of her secret, or that she was indeed a public figure. Both are convincing, and so Libby is likely to fail on her claim of public disclosure of a private fact.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Identify Libby's claim for intentional infliction of emotional distress.",
+    "sources": "Hughes v Pair",
+    "justification": "A successful claim for intentional infliction of emotional distress requires: (1) extreme and outrageous conduct, (2) intent to cause or reckless disregard of the probability of causing emotional distress, (3) severe emotional distress, and (4) causation. ['A cause of action for intentional infliction of emotional distress exists when there is '(1) extreme and outrageous conduct by the defendant with the intention of causing, or reckless disregard of the probability of causing, emotional distress; (2) the plaintiff\u201fs suffering severe or extreme emotional distress; and (3) actual and proximate causation of the emotional distress by the defendant\u201fs outrageous conduct.\u201f (Hughes v. Pair, 46 Cal.4th 1035 (2009), p. 18.] Here, Libby can argue that publicizing her secret in a humiliating manner on the Circus Circus website qualifies as outrageous conduct; it was reasonably foreseeable that such disclosure would cause distress (and duly caused it); and that she suffered loss of her marriage and humiliation.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Conclude that Libby will likely fail on her claim of intentional infliction of emotional distress.",
+    "sources": "Hughes v Pair",
+    "justification": "The bar for proving IIED is high. In Hughes v Pair, the court cited a similar line of cases to emphasize the severity of a finding of IIED: 'A defendant's conduct is 'outrageous' when it is so 'extreme as to exceed all bounds of that usually tolerated in a civilized community... And the defendant's conduct must be 'intended to inflict injury or engaged in with the realization that injury will result.'...With respect to the requirement that the plaintiff show severe emotional distress, this court has set a high bar. 'Severe emotional distress means 'emotional distress of such substantial quality or enduring quality that no reasonable [person] in civilized society should be expected to endure it.' ' [Hughes v. Pair, 46 Cal.4th 1035 (2009) p. 18-19]. The Roamers can argue that their act of publishing Libby's secret did not meet the high bar of misconduct the court requires in a few ways: that it was not outrageous because Libby knew of the terms and potential for publication, and chose to offer it anyway - (i.e., that it was not surprising); or that they did not intend to cause injury, but rather to follow through on a contractual agreement designed to protect their own business interests; and that many people have endured similar revelations of adultery, and Libby should be expected to do the same. Ultimately it will be up to the court to decide whether The Roamers are guilty of IIED, but the degree of the offense is certainly mitigated by Libby's own actions and by the high bar of this tort.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  }
+}

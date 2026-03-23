@@ -1,0 +1,30 @@
+{
+    "id": "84aeac04-eaa1-4c7f-b3ac-e024d2e0bb03",
+    "started_at": "2026-03-21T23:07:42.936647",
+    "finished_at": null,
+    "n_total_trials": 1,
+    "stats": {
+        "n_trials": 1,
+        "n_errors": 0,
+        "evals": {
+            "terminus-2__qwen-qwen3-coder-30b-a3b-instruct__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.3
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.3": [
+                            "apex-finance-1588__DLDufLo"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    },
+    "trial_results": []
+}

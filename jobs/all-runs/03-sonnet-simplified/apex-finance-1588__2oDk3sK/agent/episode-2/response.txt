@@ -1,0 +1,10 @@
+{
+  "analysis": "There's an Excel file named 'ConSup Inc Financial Model_PROMPT.xlsx' in the data directory. This appears to be the LBO model for the HVAC distributor acquisition. I need to examine this file to understand the financial projections and structure.",
+  "plan": "I'll use Python with pandas to read and analyze the Excel file. First, let me check what sheets are available in the workbook, then examine the data structure to understand the base case projections.",
+  "commands": [
+    {
+      "keystrokes": "python3 -c \"import pandas as pd; xl = pd.ExcelFile('data/ConSup Inc Financial Model_PROMPT.xlsx'); print('Available sheets:'); print(xl.sheet_names)\"\n",
+      "duration": 1.0
+    }
+  ]
+}

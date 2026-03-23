@@ -1,0 +1,35 @@
+Reward: 0.4545 — criteria 5/11
+
+Files created: analyze_orders.py, answer.txt
+
+Per-criterion breakdown:
+  [FAIL] criterion 1 (failed)
+         Calculates the number of orders delivered in same month as order placement as 200 (Acceptable value is 200).
+         → Expected 200.0, closest agent value: 100.0 (50.0% off)
+  [PASS] criterion 2 (number_match)
+         Calculates the percentage of orders delivered in the same month as order placement as 79%. (Acceptable value is 79%)
+  [PASS] criterion 3 (number_match)
+         Calculates average time from ordered to processed as 2.0 days (Acceptable value is 2.0 days)
+  [PASS] criterion 4 (number_match)
+         Calculates average time from processed to shipped as 3.1 days (Acceptable value is 3.1days)
+  [PASS] criterion 5 (number_match)
+         Calculates average time from shipped to delivered as 3.6 days (Acceptable value is 3.6 days)
+  [FAIL] criterion 6 (failed)
+         States that the milestone from processed to shipped has room to improve compared to Market Benchmark
+         → Matched 1/3 keywords
+  [FAIL] criterion 7 (failed)
+         Identifies that the milestone from shipped to delivered does not have room to improve compared to Market Benchmark
+         → Matched 1/3 keywords
+  [FAIL] criterion 8 (failed)
+         Identifies that the milestone from ordered to processed does not have room to improve compared to Market Benchmark
+         → Matched 1/3 keywords
+  [FAIL] criterion 9 (failed)
+         Calculates the number of orders having processed to shipped turnaround time higher than market benchmark as 180 (Acceptable value is 180)
+         → Expected 180.0, closest agent value: 100.0 (44.4% off)
+  [PASS] criterion 10 (number_match)
+         Calculates the percentage of orders having processed to shipped turnaround time higher than market benchmark as 71%. (Acceptable value is 71%)
+  [FAIL] criterion 11 (failed)
+         Recommends that the client can bring its processed to shipped performance in line with industry standard by taking one or more of the following steps: - Adjust internal shipping processes - Adjust int
+         → Matched 0/5 keywords
+
+Summary: 5 passed, 6 failed

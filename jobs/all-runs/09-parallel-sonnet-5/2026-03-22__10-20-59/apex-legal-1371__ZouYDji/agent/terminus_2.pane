@@ -1,0 +1,650 @@
+[?2004hroot@78f1db70b96f:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@78f1db70b96f:/app# clear
+[?2004l[H[J[3J[?2004hroot@78f1db70b96f:/app# ls -la
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 22 17:21 .
+drwxr-xr-x 1 root root 4096 Mar 22 17:21 ..
+drwxr-xr-x 2 root root 4096 Mar 22 17:21 data
+drwxr-xr-x 2 root root 4096 Mar 22 17:21 output
+[?2004hroot@78f1db70b96f:/app# ls -la data/
+[?2004ltotal 1108
+drwxr-xr-x 2 root root   4096 Mar 22 17:21  .
+drwxr-xr-x 1 root root   4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 339354 Mar 22 04:43 '1371_Cardwell v. Commonwealth_248 Va. 501.pdf'
+-rw-r--r-- 1 root root 260537 Mar 22 04:43 '1371_Hoyt v. Commonwealth_44 Va. App. 489 (1).pdf'
+-rw-r--r-- 1 root root 130957 Mar 22 04:43 '1371_Pritchard v. Commonwealth_225 Va. 559.pdf'
+-rw-r--r-- 1 root root 317932 Mar 22 04:43 '1371_Walker v. Commonwealth_74 Va. App. 475.pdf'
+-rw-r--r-- 1 root root  70733 Mar 22 04:43 'Va. Code Ann. _ 18.2-47.pdf'
+[?2004hroot@78f1db70b96f:/app# file "data/Va. Code Ann. _ 18.2-47.pdf"
+[?2004lbash: file: command not found
+[?2004hroot@78f1db70b96f:/app# which pdftotext
+[?2004l/usr/bin/pdftotext
+[?2004hroot@78f1db70b96f:/app# pdftotext "data/Va. Code Ann. _ 18.2-47.pdf" - | head -50
+[?2004lSession Information
+Virginia Law
+
+Bills & Resolutions
+
+State Budget
+
+Reports to the General Assembly
+
+Code of Virginia
+Title 18.2. Crimes and Offenses Generally
+Chapter 4. Crimes Against the Person
+
+§ 18.2-47. Abduction and kidnapping defined;
+forced labor; punishment.
+A. Any person who, by force, intimidation or deception, and without legal justification or excuse, seize
+takes, transports, detains or secretes another person with the intent to deprive such other person of hi
+personal liberty or to withhold or conceal him from any person, authority or institution lawfully entitl
+to his charge, shall be deemed guilty of "abduction."
+B. Any person who, by force, intimidation or deception, and without legal justification or excuse, obtai
+the labor or services of another person, or seizes, takes, transports, detains or secretes another person
+threatens to do so, with the intent to subject him to forced labor or services, shall be deemed guilty of
+"abduction." For purposes of this subsection, the term "intimidation" shall include destroying,
+concealing, confiscating, withholding, or threatening to withhold a passport, immigration document, o
+other governmental identification, threatening to report another as being illegally present in the Unite
+States, or threatening to separate another from or to harm a family member.
+C. The provisions of this section shall not apply to any law-enforcement officer in the performance of
+his duty. The terms "abduction" and "kidnapping" shall be synonymous in this Code. Except as provided
+in subsection D, abduction of a minor shall be punished as a Class 2 felony. Abduction for which no
+punishment is otherwise prescribed shall be punished as a Class 5 felony.
+D. If an offense under subsection A is committed by the parent or a family or household member, as
+defined in § 16.1-228, who has been ordered custody or visitation of the person abducted and
+punishable as contempt of court in any proceeding then pending, the offense shall be a Class 1
+misdemeanor in addition to being punishable as contempt of court. However, such offense, if committ
+by the parent or a family or household member, as defined in § 16.1-228, who has been ordered custod
+or visitation of the person abducted and punishable as contempt of court in any proceeding then
+pending and the person abducted is removed from the Commonwealth by the abducting parent or a
+family or household member, as defined in § 16.1-228, who has been ordered custody or visitation, sha
+be a Class 6 felony in addition to being punishable as contempt of court.
+Code 1950, §§ 18.1-36, 18.1-37; 1960, c. 358; 1975, cc. 14, 15; 1979, c. 663; 1980, c. 506; 1997, c. 747;
+2009, c. 662; 2023, c. 400; 2024, c. 368.
+The chapters of the acts of assembly referenced in the historical citation at the end of this section may not constitute a
+comprehensive list of such chapters and may exclude chapters whose provisions have expired.
+
+11/14/20
+
+ Virginia Law Library
+
+The Code of Virginia, Constitution
+of Virginia, Charters, Authorities,
+[?2004hroot@78f1db70b96f:/app# pdftotext "data/1371_Cardwell v. Commonwealth_248 Va. 501.pdf" - | head -100
+[?2004l11/14/25, 10:26 PM
+
+Cardwell v. Commonwealth – CourtListener.com
+
+Nov. 4, 1994
+
+Cardwell v. Commonwealth
+Supreme Court of Virginia
+Citations: 450 S.E.2d 146, 248 Va. 501, 1994 Va. LEXIS 149
+Docket Number: Record 940345 and 940346
+Judges: Stephenson
+
+Headmatter
+Kevin DeWayne Cardwell v. Commonwealth of Virginia
+Record Nos. 940345 and 940346 November 4, 1994
+Present: All the Justices
+*503 Robert P. Geary (John F. McGarvey, on brief), for appellant. John H. McLees, Jr., Assistant Attorney General (James S.
+Gilmore, III, Attorney General, on brief), for appellee.
+
+Combined Opinion by Roscoe B. Stephenson Jr.
+(/person/5949/roscoe-b-stephenson-jr/)
+JUSTICE STEPHENSON
+delivered the opinion of the Court.
+In these appeals, we review two capital murder convictions and a sentence of death imposed upon Kevin DeWayne Cardwell
+(Record No. 940345) and other related convictions (Record No. 940346).
+*504 I
+PROCEEDINGS
+In the first phase of a bifurcated jury trial conducted pursuant to Code §§ 19.2-264.3 and -264.4, Cardwell was found guilty of
+two charges of capital murder, i.e., the willful, deliberate, and premeditated killing of Anthony Brown (1) in the commission of
+abduction with intent to extort money or pecuniary benefit, in violation of Code § 18.2-31(1), and (2) in the commission of
+robbery while armed with a deadly weapon, in violation of Code § 18.2-31(4). The jury also found Cardwell guilty of (1)
+abduction; (2) robbery; (3) using a firearm while committing murder; (4) using a firearm while committing abduction; and (5) using
+a firearm in the commission of robbery. The jury then fixed Cardwell’s punishment at (1) life imprisonment for the abduction; (2)
+20 years’ imprisonment for the robbery; and (3) 10 years’ imprisonment for the firearms charges. The jury also imposed a fine of
+$100,000 for the abduction.
+In the second phase of the trial, the jury fixed Cardwell’s punishment at death for capital murder, based upon the “vileness”
+predicate. Code § 19.2-264.2. After considering a post sentence report, prepared by a probation officer pursuant to Code §
+19.2-264.5, the trial court sentenced Cardwell in accord with the jury verdicts.
+Pursuant to Code § 17-110.1(F), we have consolidated the automatic review of Cardwell’s death sentence with his appeal of the
+capital murder convictions. By order entered March 4, 1994, Cardwell’s appeals of his other convictions were certified from the
+Court of Appeals, and we have consolidated those appeals with the capital murder appeal. Code § 17-116.06. We have given all
+the appeals priority on our docket. Code § 17-110.2.
+II
+THE CRIMES
+On November 20, 1991, 15-year-old Anthony Brown travelled by bus from New York City to Richmond, ostensibly to visit Tina
+Poindexter. Poindexter told Cardwell that she was going to meet Brown at the bus station and that Brown would be carrying
+drugs. Cardwell related this information to his friends, Jermaine Jones, Richard Claiborne, and Craig Coles.
+*505 Shortly before the bus was to arrive, Poindexter drove her car to the bus station. Claiborne drove Cardwell, Coles, and
+Jones to the bus station in Coles’ car. After Poindexter met Brown and the two got into Poindexter’s car, Cardwell, Coles, and
+Jones got into the back seat of the car. While Coles held Brown, Cardwell, armed with both his inoperable .25 caliber pistol and
+https://www.courtlistener.com/opinion/1305815/cardwell-v-commonwealth/?q=cardwell+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/8
+
+11/14/25, 10:26 PM
+
+Cardwell v. Commonwealth – CourtListener.com
+
+Claiborne’s operable .380 caliber automatic pistol, took Brown’s duffle bag. The robbers also took Brown’s shoes in order to
+make any flight difficult. They then fled to an apartment shared by Cardwell and Jones where Cardwell discovered that Brown’s
+duffle bag contained no drugs.
+A short time later, Cardwell received a telephone call from Poindexter, informing him that Brown had the drugs strapped to the
+inside of his thigh and that she was bringing Brown to the apartment. When Cardwell announced that he planned to rob Brown
+again and either knock him out or kill him, Jones and Coles wanted nothing to do with the plan and left the apartment.
+Poindexter brought Brown to Cardwell’s apartment on the pretext of helping Brown retrieve his duffle bag. Soon after their
+arrival, Cardwell threatened Brown with a pistol and demanded the drugs. Claiborne then pulled down Brown’s pants and took
+the drugs that were strapped to Brown’s thigh.
+Cardwell, holding Brown at gunpoint, forced Brown to lie facedown on the floor of the back seat of Poindexter’s car. Poindexter
+drove, Cardwell rode in the back seat, and Claiborne rode in the front, passenger seat. They intended to take Brown to
+Goochland County.
+Brown repeatedly begged for his life, and Cardwell told him to “shut up.” Poindexter realized that she did not have enough
+gasoline to drive to Goochland County, so Cardwell told her to drive behind a shopping center at the intersection of Patterson
+Avenue and Pump Road in Henrico County.
+Once behind the shopping center, Cardwell demanded Claiborne’s pistol. Claiborne believed that Cardwell intended to use the
+larger handgun to knock Brown unconscious. After obtaining Claiborne’s pistol, Cardwell led Brown into woods behind the
+shopping center, and Claiborne followed.
+From a distance of approximately 10 feet, Claiborne heard Brown beg, “Please don’t kill me,” and Cardwell say, “Shut up.” Then
+Claiborne heard a “gargling noise” which he recognized “[f]rom the movies” as the sound of someone’s throat being cut. *506
+Cardwell told Claiborne, “I’m going to shoot him and he’s going to die,” and Claiborne said, “No.” As Claiborne started back
+toward the car, he heard two gunshots, and, a minute or so later, Cardwell arrived at the car. Claiborne asked for the. pistol, and
+Cardwell returned it.
+Back at Cardwell’s apartment, Cardwell asked for the gun in order to dispose of it. Claiborne unloaded the weapon so Cardwell
+could not use it against him and gave the pistol to Cardwell. Cardwell then put the pistol and a steak knife with a six-inch blade
+into a bag. Later, Cardwell threw the bag containing the pistol and knife into a dumpster at his apartment complex.
+On January 26, 1992, Brown’s decomposed body was discovered in the woods behind the shopping center. The body was
+identified by using dental records. It was determined, from the age of insects found on the body, that death had occurred in
+November 1991.
+An autopsy revealed that Brown had sustained injuries in the throat area and on one wrist. Brown also had sustained two
+gunshot wounds to the back of the head, both of which passed through the right temple. Instantaneous unconsciousness and
+death would have resulted from either gunshot wound.
+Ill
+PRETRIAL MATTERS
+A
+Constitutionality of the Death Penalty
+In a pretrial written motion, Cardwell asserted certain constitutional challenges to the death penalty statutes. The trial court
+rejected all the challenges, and Cardwell makes the same claims on appeal.
+First, Cardwell claims that the death penalty statutes “on their face and as applied violate the Eighth Amendment prohibition
+against cruel and unusual punishment, the Sixth Amendment guarantee to a fair trial, and the Fourteenth Amendment guarantee
+that no person shall be deprived of life, liberty or property without due process of law.” Next, he contends that the death penalty
+statutory scheme is unconstitutional because “it fails to guide the jury’s discretion.” Finally, Cardwell asserts that the death
+[?2004hroot@78f1db70b96f:/app# pdftotext "data/1371_Hoyt v. Commonwealth_44 Va. App. 489 (1).pdf" - | head -100
+[?2004l11/14/25, 10:27 PM
+
+Hoyt v. Commonwealth – CourtListener.com
+
+Dec. 7, 2004
+
+Hoyt v. Commonwealth
+Court of Appeals of Virginia
+Citations: 605 S.E.2d 755, 44 Va. App. 489, 2004 Va. App. LEXIS 599
+Docket Number: 3042031
+Judges: Annunziata
+
+Headmatter
+605 S.E.2d 755 Robert Thomas HOYT v. COMMONWEALTH of Virginia.
+Record No. 3042-03-1.
+Court of Appeals of Virginia, Chesapeake.
+Dec. 7, 2004.
+*490 Charles E. Haden, for appellant.
+Robert H. Anderson, III, Senior Assistant Attorney General (Jerry W. Kilgore, Attorney General, on brief), for appellee.
+Present: Chief Judge FITZPATRICK, Judges ELDER and ANNUNZIATA.
+
+Combined Opinion by Rosemarie Annunziata (/person/8412/rosemarieannunziata/)
+ANNUNZIATA, Judge.
+Robert Thomas Hoyt appeals his conviction under Code § 18.2-47(A) for abduction. He contends his conviction should be
+reversed because the abduction was incidental to his commission of robbery. For the following reasons, we reverse and dismiss
+the abduction conviction and the related conviction for using a firearm in the commission of a felony. 1
+I. Background
+In accord with our usual standard of review, we review the evidence and all reasonable inferences flowing from the evidence in a
+light most favorable to the Commonwealth as the party prevailing below. Garcia v. Commonwealth, 40 Va.App. 184, 189
+(/opinion/1064308/garcia-v-commonwealth/#189), 578 S.E.2d 97, 99 (/opinion/1064308/garcia-v-commonwealth/#99) (2003). So
+viewed, the evidence establishes that Hoyt entered a Newport News gas station *491 store at 11:00 p.m. on October 10, 2001
+with the intent to rob it. When Hoyt entered the store, employees Marquelle Rid-dick and Minesh Patel were “getting ready to
+close” the store for the night.
+Hoyt directed Patel to “lay on the floor.” He then pointed a gun at Riddick and told him to “give me the money.” Riddick walked
+approximately ten feet to the cash register, opened the drawer, placed the money in a bag, and handed the bag to Hoyt. Hoyt
+then exited the store. The robbery lasted no more than five minutes.
+Hoyt was charged with abduction in violation of Code § 18.2-47(A), 2 wearing a mask in public in violation of Code § 18.2-422,
+two counts of robbery in violation of Code § 18.2-58, and three counts of use of a firearm during the commission of a felony in
+violation of Code § 18.2-58.1. Hoyt moved to strike the abduction and related firearm charge at the close of the
+Commonwealth’s case. The trial court denied the motion to strike. Hoyt renewed his motion to strike the abduction and related
+firearm charge at the end of the trial, but the trial court again denied the motion, stating
+
+That’s the only question this Court had in the evidence in this case, whether or not there was
+sufficient deprivation of the victims’ liberty to distinguish it from simple robbery with abduction
+being a part of it or carrying it a little further and I’m in agreement with the Commonwealth that
+once you use a weapon in moving people about, moving them on the floor, to the register, you
+deprive them of their freedom and I think that’s now no longer simple robbery, its abduction
+along with it.
+Hoyt was subsequently convicted on all counts and noted this appeal. We granted his appeal only on the issue of the validity of
+the evidence to prove the abduction was not incidental to his commission of robbery.
+https://www.courtlistener.com/opinion/1063649/hoyt-v-commonwealth/?q=hoyt+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/5
+
+11/14/25, 10:27 PM
+
+Hoyt v. Commonwealth – CourtListener.com
+
+*492 II. Analysis
+Code § 18.2-47(A), which criminalizes abduction or kidnapping, provides:
+
+Any person, who, by force, intimidation or deception, and without legal justification or excuse,
+seizes, takes, transports, detains or secretes the person of another, with the intent to deprive
+such other person of his personal liberty or to withhold or conceal him from any person, authority
+or institution lawfully entitled to his charge, shall be deemed guilty of “abduction”; but the
+provisions of this section shall not apply to any law-enforcement officer in the performance of his
+duty. The terms “abduction” and “kidnapping” shall be synonymous in this Code. Abduction for
+which no punishment is otherwise prescribed shall be punished as a Class 5 felony.
+In Scott v. Commonwealth, 228 Va. 519 (/opinion/1298135/scott-v-commonwealth/), 323 S.E.2d 572 (/opinion/1298135/scott-vcommonwealth/) (1984), the Supreme Court of Virginia stated that an abduction generally inheres in a rape or robbery because
+“there is usually some detention, and often a seizure, of the victim.” Id. at 526 (/opinion/1298135/scott-v-commonwealth/#526),
+323 S.E.2d at 576 (/opinion/1298135/scott-v-commonwealth/#576). However, it declined to address the “constitutional problems
+... created by such an overlapping of crimes” because that precise issue was not before it. Id. (/opinion/1298135/scott-vcommonwealth/)
+The “constitutional problem” was squarely presented to the Supreme Court in Brown v. Commonwealth, 230 Va. 310
+(/opinion/1256303/brown-v-commonwealth/), 337 S.E.2d 711 (/opinion/1256303/brown-v-commonwealth/) (1985), where Brown
+argued that the Double Jeopardy Clause prohibited his convictions for rape and abduction. Id. at 311 (/opinion/1256303/brownv-commonwealth/#311), 337 S.E.2d at 712 (/opinion/1256303/brown-v-commonwealth/#712). In addressing Brown’s argument,
+the Supreme Court determined that discussion of double jeopardy principles was unnecessary because the General Assembly
+“did not intend to make the kind of restraint which is an intrinsic element of crimes such as rape, robbery, and assault a criminal
+act, punishable as a separate offense.” Id. at 314 (/opinion/1256303/brown-v-commonwealth/#314), 337 S.E.2d at 713
+(/opinion/1256303/brown-v-commonwealth/#713). 3 Accordingly, the Court held that
+
+*493 one accused of abduction by detention and another crime involving restraint of the victim,
+both growing out of a continuing course of conduct, is subject upon conviction to separate
+penalties for separate offenses only when the detention committed in the act of abduction is
+separate and apart from, and not merely incidental to, the restraint employed in the commission
+of the other crime.
+Id. at 314 (/opinion/1256303/brown-v-commonwealth/#314), 337 S.E.2d at 713 (/opinion/1256303/brown-v-commonwealth/)-14
+(citing Iowa v. Folck, 325 N.W.2d 368 (/opinion/1576518/state-v-folck/) (Iowa 1982); Bass v. State, 380 So.2d 1181
+(/opinion/1821215/bass-v-state/) (Fla.Dist.Ct.App.1980)).
+A majority of other courts have reached a similar conclusion and have articulated the general policy considerations underlying it.
+For example, the Supreme Court of Maryland — which noted that “a majority of courts ... now hold that ‘kidnapping statutes do
+not apply to unlawful confinements or movements incidental to the commission of other felonies’ ” — recognized that a literal
+reading of abduction and kidnapping statutes would “overrun other crimes, such as robbery, rape, and assault.” State v.
+Stouffer, 352 Md. 97 (/opinion/1508408/state-v-stouffer/), 721 A.2d 207, 212 (/opinion/1508408/state-v-stouffer/#212) (1998)
+(quoting Frank J. Wozniak, Annotation, Seizure or Detention for Purpose of Committing Rape, Robbery, or Other Offense as
+Constituting Separate Crime of Kidnapping, 39 A.L.R.5th 283, 356 (1996)) (other internal quotations omitted).
+
+The rationale of [the majority] approach is the concern that a literal reading of the kidnapping
+statutes, which often carry significant penalties, can lead to an overzealous enforcement, with
+the result that “persons who have commit *494 ted such substantive crimes as robbery or
+assault — which inherently involve the temporary detention or seizure of the victim — will suffer
+[?2004hroot@78f1db70b96f:/app# pdftotext "data/1371_Pritchard v. Commonwealth_225 Va. 559.pdf" - | head -100
+[?2004l11/14/25, 10:28 PM
+
+Pritchard v. Commonwealth – CourtListener.com
+
+June 17, 1983
+
+Pritchard v. Commonwealth
+Supreme Court of Virginia
+Citations: 303 S.E.2d 911, 225 Va. 559, 1983 Va. LEXIS 256
+Docket Number: Record 821509
+Panel: Harry L. Carrico (/person/5920/harry-l-carrico/), George M. Cochran (/person/5921/george-m-cochran/), Asbury Christian
+Compton (/person/5922/asbury-christian-compton/), Albertis S. Harrison (/person/5928/albertis-s-harrison/), Richard Harding
+Poff (/person/5942/richard-harding-poff/), Charles S. Russell (/person/5944/charles-s-russell/), Roscoe B. Stephenson Jr.
+(/person/5949/roscoe-b-stephenson-jr/)
+Judges: Carrico, Cochran, Poff, Compton, Stephenson, Russell, Harrison
+
+Headmatter
+Richmond
+Jesse James Pritchard, Jr. v. Commonwealth of Virginia
+June 17, 1983.
+Record No. 821509.
+Present: Carrico, C.J., Cochran, Poff, Compton, Stephenson, and Russell, JJ., and Harrison, Retired Justice.
+*560 William S. Hayes, Jr. (Dillard Associates, P.C., on brief), for appellant.
+Robert Q. Harris, Assistant Attorney General (Gerald L. Baliles, Attorney General, on brief), for appellee.
+
+Combined Opinion by Russell
+RUSSELL, J.,
+delivered the opinion of the Court.
+Jesse James Pritchard, Jr., was convicted in a bench trial of robbery and the use of a firearm in the commission of robbery. He
+appeals both convictions on the ground that the evidence shows no presentation of “deadly force” until after the asportation of
+the stolen property. Upon an examination of the evidence, we reject his analysis and affirm the convictions.
+William Hatton was the proprietor of a service station at Laneview, in Essex County. He testified that during the afternoon of
+November 26, 1981, an orange Datsun 280-Z stopped at his pumps. Hatton walked over to the Datsun and filled its tank with
+gasoline at the driver’s request, notwithstanding the fact that the driver was wearing a ski mask. He testified:
+
+Q. What happened after that?
+
+A. I went back to the driver’s side of the car. I told him his purchase was $14.20 and he looked at
+me and asked me if I could cash a 20. I said: I think so. And he looked at me again and didn’t
+say a word. The next thing was he pulled out a gun and cocked it ... . And I ran .... Back into the
+station, and I picked up a piece of pipe. I thought, this is *561 the wrong thing to do. I laid it back
+down, and he took off at a high rate of speed.
+Hatton noted the Datsun’s license number.
+A state trooper pursued the orange Datsun about fifteen minutes later, but lost it after a high speed chase near the King WilliamCaroline County line. The car, which was stolen, was later recovered, having been abandoned in a recently cleared field in
+Caroline County. Troopers used a tracking dog which followed the defendant’s scent from the abandoned car to a trailer a mile
+
+https://www.courtlistener.com/opinion/1321454/pritchard-v-commonwealth/?q=pritchard+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/2
+
+11/14/25, 10:28 PM
+
+Pritchard v. Commonwealth – CourtListener.com
+
+away. An occupant of the trailer said he had given the defendant a ride to a nearby hunt club. The defendant was apprehended
+at the hunt club. There, the police recovered a revolver, a box of bullets, and a ski mask, jacket, and gloves which Hatton
+identified as similar to those worn by the driver of the Datsun.
+Pritchard argues on appeal that he did not commit a robbery because he presented no deadly force or intimidation to Hatton
+until after the asportation of the stolen gasoline was complete. He contends that asportation occurred when Hatton pumped the
+gasoline into the Datsun’s tank, thereby surrendering “control and possession” to Pritchard. Thus, he says, the taking was
+unaccompanied by force and amounted to no more than petit larceny. The trial court took the view that asportation was not
+complete until the defendant drove the car off the owner’s premises, and that this maneuver was accomplished by the
+presentation of a firearm, overcoming any means of resistance by the owner. We agree with the trial court’s analysis.
+Robbery is a common-law crime in Virginia, although its punishment is prescribed by Code § 18.2-58. It is a crime against the
+person. Its elements are “ ‘the taking, with intent to steal, of the personal property of another, from his person or in his presence,
+against his will, by violence or intimidation.’ ” Mason v. Commonwealth, 200 Va. 253, 254 (/opinion/1338432/mason-vcommonwealth/#254), 105 S.E.2d 149, 150 (/opinion/1338432/mason-v-commonwealth/#150) (1958).
+In Mason (/opinion/1338432/mason-v-commonwealth/), Grimes, a proprietor of a television store, apprehensive as to a possible
+burglary, concealed himself within the darkened store at night. He watched Mason smash a plate glass window, enter the store,
+pick up a television set, and hand it through the hole in the glass to a confederate, who was standing on the sidewalk outside.
+While this transfer was taking place, Grimes struck Mason from behind with a board. Mason completed the transfer of the
+television set from his arms into the arms of his *562 confederate, turned toward Grimes, threw a portable radio at Grimes, and
+fired four pistol shots. We held that the asportation of the stolen property was complete before any force or intimidation was
+used toward Grimes. Noting that violence or intimidation must precede, or be concomitant with, the taking of property from the
+person or presence of the owner, to constitute an essential element of robbery, we reversed Mason’s robbery conviction.
+Here, the defendant argues that violence or intimidation used to retain property already in the thief s possession, or to facilitate
+his escape after he has obtained possession, cannot “bootstrap” a completed larceny into a robbery. Any analysis of this
+argument requires a consideration of the distinction, in the context of larceny, between possession and custody.
+The owner of personal property may deliver it to another upon conditions, or in circumstances, which give the recipient bare
+custody of the property. Constructive possession remains in the owner. Examples are: a watch handed to a friend to time a race,
+the owner expecting its return at the end of the race; clothing handed to a customer in a clothing store, to try on for size, the
+owner expecting it to be returned if rejected, paid for if accepted; groceries loaded into a shopping cart in a supermarket, the
+owner expecting them to be paid for at a cash register before they are removed from the premises. See W. Clark & W. Marshall,
+Law of Crimes § 12.06, p. 849 (7th ed. 1967); R. Perkins, Criminal Law ch. 4 § 1(B)(2), p. 248 (2d ed. 1969); 2 W. Burdick, Law of
+Crime § 531, p. 295 (1946). Even though the property remains in the control of the custodian, asportation has not been
+completed until it is carried away in violation of the condition precedent upon which it was delivered. But if the property is
+carried away before the condition is performed, with the intent to steal it from the owner, the act becomes larceny. Blunt’s Case,
+31 Va. (4 Leigh) 683 (/opinion/6910923/old-dom-steamship-co-v-burckhardt/) (1834). This act converts the recipient’s bare
+custody to possession.
+“[TJhere can be no trespass against mere custody; trespass can only invade possession and it can be perpetrated as easily by a
+custodian as by anyone else.” W. Clark & W. Marshall, supra, at 849. Thus, a custodian, holding the property of another upon
+condition of prompt payment in cash, has committed no larceny until he carries the goods away in violation of the condition,
+with requisite intent. If, before carrying the goods away, he uses violence or intimidation to avoid payment, that violence or
+intimidation pre *563 cedes the taking. Custody is converted into possession by the exercise of force, and the offense is robbery.
+Pritchard relies on two cases, Williams v. State, 124 Ohio St. 585 (/opinion/4025706/williams-v-state/), 180 N.E. 58
+(/opinion/4025706/williams-v-state/) (1932), and Kernell v. State, 53 Okla. Crim. 259 (/opinion/4066808/kernell-v-state/), 10 P.2d
+287 (/opinion/4066808/kernell-v-state/) (1932). We find both cases distinguishable from the instant case. They presented
+situations in which thieves drove into service stations, had gasoline pumped into their tanks by attendants, and drove away
+without making payment. In both cases the attendants ran after and leaped onto the moving cars to prevent their escape, and
+were repelled by force. In both cases, the force was held to be subsequent to the asportation. Force was applied only to retain
+possession already obtained, or to facilitate escape. It was not used to obtain possession of the gasoline.
+[?2004hroot@78f1db70b96f:/app# pdftotext "data/1371_Walker v. Commonwealth_74 Va. App. 475.pdf" - | head -150
+[?2004l11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+June 1, 2023
+
+Walker v. Commonwealth
+Supreme Court of Virginia
+Citations: None known
+Docket Number: 220378
+
+Combined Opinion
+
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/22
+
+11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+PRESENT: Goodwyn, C.J., Powell, Kelsey, McCullough, Chafin, and Mann, JJ., and Koontz,
+S.J.
+JACQUES LAMAR WALKER
+OPINION BY
+JUSTICE STEPHEN R. McCULLOUGH
+June 1, 2023
+
+v. Record No. 220378
+COMMONWEALTH OF VIRGINIA
+
+FROM THE COURT OF APPEALS OF VIRGINIA
+This appeal presents two primary issues. First, we consider whether the Due Process
+Clause of the United States Constitution requires a court to pre-screen eyewitness identification
+testimony before the eyewitness can be permitted to make an identification of the defendant for
+the first time in open court. We also examine whether the jury was properly instructed that the
+defendant was subject to the second or subsequent offense provisions of Code § 18.2-53.1 for
+using a firearm in the commission of robbery. With regard to the first issue, in accord with the
+majority of courts that have considered this question, we conclude that the Due Process Clause
+does not require a court to pre-screen an eyewitness identification made for the first time in
+court. Second, we hold that the jury was properly instructed on the second or subsequent offense
+provisions of Code § 18.2-53.1.
+BACKGROUND
+I.
+
+A WELLS FARGO BANK IS ROBBED AT GUNPOINT BY A MASKED INDIVIDUAL.
+
+On the afternoon of May 23, 2016, a man wearing a mask, a hooded sweatshirt, and a
+distinctive yellow work vest “barge[d]” into the lobby of a Wells Fargo bank branch. Edlin
+Cottrell, one of the tellers, heard a scream, which another teller described as a “blood curdling
+scream.” Cottrell saw the masked man and ducked behind her desk.
+The robber struck a customer and knocked him down. The robber then went behind the
+teller line to where the bank employees were. He pointed a gun at the tellers and told them in a
+“demanding,” and “rushed” voice to put money in a bag. His demeanor was “forceful.” The
+bag, a black bag with handles, appeared to be the kind of plastic bag used at liquor stores. The
+teller complied, as did other bank employees. A third teller mostly hid under her desk. Once the
+money was placed in the bag, the robber then ran out the front door. All told, the robber ran off
+with over $15,000.
+The mask covered the robber’s nose and mouth. His eyes and skin tone were visible.
+Based on skin tone, he was described as black. A teller described the robber as medium build
+and maybe 5’8” or 5’9”.
+A person in the parking lot observed the robber exiting the bank and getting into the
+passenger side of a white Acura automobile. Another person was driving.
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+2/22
+
+11/14/25, 10:28 PM
+
+II.
+
+Walker v. Commonwealth – CourtListener.com
+
+THE INVESTIGATION AND WALKER’S ARREST.
+
+The Wells Fargo bank branch that was robbed is located at Tackett’s Mill Shopping
+Center in Prince William County. Approximately four hours before the robbery of the Wells
+Fargo bank, an employee of a different bank, a branch of BB&T, located a few miles from the
+Wells Fargo bank that was robbed, heard a report of suspicious activity. Acting on this report,
+she followed a suspicious vehicle with two men in it. The vehicle was a late model white Acura.
+She wrote down the license plate and reported it to the police. She also was able to observe the
+two men when they stepped out of the car. One of the men was “shorter and . . . stockier” and
+the other was “taller and thinner.” The thinner, taller man was in the passenger seat. The
+thinner of the two was wearing a “yellow shirt.” She saw their faces. She identified Walker at
+
+2
+trial as one of the men in the white Acura. Police later learned that an Acura with the reported
+license plate was registered to a Jacques Walker.
+Some of the money the Wells Fargo tellers placed in the bag was “strapped money,”
+meaning a stack of bills wrapped with a band. The straps have a Wells Fargo Bank stamp on
+them, which has a date and a number for a particular branch. These straps also bear the initials
+of a service manager and a particular teller. These straps help ensure the money is accounted for
+and help the tellers identify certain bundled amounts, such as $500 or $5,000.
+A police officer who responded to the 9-1-1 call from the bank robbery observed a
+yellow vest on the ground, by the road. Police collected the vest, as well as additional items of
+clothing, including a black ski mask and a pair of jeans, further down the road from the Wells
+Fargo bank that was robbed.
+After the robbery, one of the bank customers, the man struck by the robber, noticed a
+pistol on a mulch pile in the bed of his pickup truck. He called the police, who retrieved the gun.
+The gun turned out to be a BB gun.
+Two days after the robbery, on May 25, 2016, police arrested Walker in Maryland, after a
+traffic stop. The white Acura he was traveling in was being driven 91 miles per hour in a 55
+mile per hour zone. The license plate matched the license plate for the white Acura that the
+BB&T bank employee had noted. Walker was the passenger in the vehicle. Walker had about
+$2,600 in cash in his pocket. There was also a suitcase in the back seat. It contained a backpack,
+and inside that backpack was a black plastic bag with $9,060 in cash. The cash from the suitcase
+was wrapped in the distinctive bands from the Wells Fargo bank. Walker told the police in
+https://www.courtlistener.com/opinion/9404931/walker-v-commonwealth/?q=walker+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+3/22
+
+11/14/25, 10:28 PM
+
+Walker v. Commonwealth – CourtListener.com
+
+Maryland that they were headed to a casino. Police also recovered two cell phones.
+
+3
+When questioned by the police about the Wells Fargo robbery, Walker stated that he was
+working for an employment service called Labor Ready that day, on a moving job in Warrenton.
+He said he worked from 8:00 a.m. to 3:00 p.m. A work ticket from Labor Ready, however,
+showed that Walker had worked four hours that day. The evidence established that four hours is
+the minimum amount of pay a worker receives; the actual hours worked could have been less.
+A manager for Labor Ready confirmed that Walker worked on May 23, 2016, for a
+moving job. She identified the yellow vest worn by the robber as “the same type” of vest the
+company provides to persons who work for them. She identified Walker as the bank robber from
+a still photo. When asked how she could identify Walker as the robber, when the robber was
+wearing a mask, she responded:
+Well, he started working for us in the colder months so a lot of the
+workers come in very bundled up so you learn to recognize them when they’re
+coming in.
+So and I had worked with him for four months, he’d been coming in every
+day just about asking for work so after a while you really get to know your
+workers and so I recognized him.
+App. 236.
+A search of the phones recovered from the Acura in Maryland revealed that someone
+used one of the phones to pull up an article titled A Man in a Yellow Vest Robs Tackett’s Mill
+Wells Fargo. A forensic analysis of the search history of the phone revealed a query for “do
+sweat have DNA.”
+DNA testing on the mask recovered by the side of the road revealed a mixture. Walker
+could not be eliminated as the major contributor to the mixture. No DNA was recovered from
+the yellow vest found by the road. The pair of jeans found near the road also contained a DNA
+mixture that was a match for Walker.
+
+4
+Walker offered alibi evidence from a “good friend” and five-time convicted felon, who
+testified that Walker worked on the moving job all day, from around noon to about 6:00 p.m.
+Walker himself testified to that effect. However, this evidence differed in a number of ways
+from the alibi he provided to a detective just days after the robbery. Walker also offered
+evidence from another convicted felon that a man named “Mike” may have committed the
+[?2004hroot@78f1db70b96f:/app# cat > /app/output/answer.txt << 'EOF'
+[?2004l[?2004h> LEGAL MEMORANDUM
+[?2004llemen[?2004h> 
+[?2004l[?2004h> TO:     Client
+[?2004lts Analysis:
+   [?2004h> FROM:   Legal Counsel
+[?2004l[?2004h> DATE:   [Date]
+[?2004l[?2004h> RE:     Jim's Potential Abduction Charges - Analysis and Likelihood of Conviction
+[?2004ll" demeanor.
+   
+[?2004h> 
+[?2004l [?2004h> I. EXECUTIVE SUMMARY
+[?2004lo[?2004h> 
+[?2004l[?2004h> Jim faces potential abduction charges under Virginia Code § 18.2-47(A) in connection with his actions toward bank customer Bobby and bank tellers during the May 23, 2025 Wells Fargo Bank robbery. Based on Virginia case law, particularly the "incidental restraint" doctrine established in Brown v. Commonwealth and Hoyt v. Commonwealth, Jim's likelihood of conviction on separate abduction charges is LOW to MODERATE. The restraints imposed appear largely incidental to the robbery, though Bobby's situation presents the strongest case for the Commonwealth.
+[?2004l[?2004h> 
+[?2004l [?2004h> II. LEGAL FRAMEWORK
+[?2004l[?2004h> 
+[?2004l[?2004h> A. Statutory Elements of Abduction (Va. Code § 18.2-47(A))
+[?2004l[?2004h> 
+[?2004l [?2004h> Virginia Code § 18.2-47(A) defines abduction as occurring when any person:
+[?2004l[?2004h> 
+[?2004ly[?2004h> 1. By force, intimidation or deception, and
+[?2004l[?2004h> 2. Without legal justification or excuse,
+[?2004l[?2004h> 3. Seizes, takes, transports, detains or secretes another person
+[?2004l[?2004h> 4. With the intent to deprive such other person of personal liberty or to withhold or conceal him from any person, authority or institution lawfully entitled to his charge
+[?2004l[?2004h> 
+[?2004l [?2004h> Abduction is punishable as a Class 5 felony when no other punishment is prescribed.
+[?2004l[?2004h> 
+[?2004lt[?2004h> B. The "Incidental Restraint" Doctrine
+[?2004lo[?2004h> 
+[?2004ls[?2004h> Virginia courts have established that abduction charges cannot be based on restraints that are merely incidental to other crimes. In Brown v. Commonwealth, 230 Va. 310, 337 S.E.2d 711 (1985), the Virginia Supreme Court held that "one accused of abduction by detention and another crime involving restraint of the victim, both growing out of a continuing course of conduct, is subject upon conviction to separate penalties for separate offenses only when the detention committed in the act of abduction is separate and apart from, and not merely incidental to, the restraint employed in the commission of the other crime."
+[?2004l[?2004h> 
+[?2004l[?2004h> This principle was reinforced in Hoyt v. Commonwealth, 44 Va. App. 489, 605 S.E.2d 755 (2004), where the Court of Appeals reversed an abduction conviction arising from a gas station robbery, finding that directing victims to lie on the floor during a five-minute robbery was incidental to the robbery itself.
+[?2004l[?2004h> 
+[?2004lu[?2004h> III. ANALYSIS OF POTENTIAL CHARGES
+[?2004l[?2004h> 
+[?2004l[?2004h> A. Abduction Charge Related to Bobby
+[?2004l[?2004h> 
+[?2004l[?2004h> 1. Elements Analysis:
+[?2004l[?2004h>    
+[?2004l[?2004h>    a) Force/Intimidation: CLEARLY ESTABLISHED
+[?2004l[?2004h>    Jim used a gun and struck Bobby across the face, demonstrating both force and intimidation.
+[?2004l[?2004h>    
+[?2004lr th[?2004h>    b) Seizure/Detention: ESTABLISHED
+[?2004l[?2004h>    Jim commanded Bobby to "lay on the floor" and Bobby remained there "fearful" with his "head on the ground" until Jim left the bank.
+[?2004l[?2004h>    
+[?2004ln [?2004h>    c) Intent to Deprive of Personal Liberty: LIKELY ESTABLISHED
+[?2004lh[?2004h>    Jim's actions in striking Bobby, commanding him to the floor, and taking his personal property suggest intent to control his movement and liberty.
+[?2004l[?2004h>    
+[?2004l[?2004h>    d) Without Legal Justification: CLEARLY ESTABLISHED
+[?2004l[?2004h>    No legal justification exists for Jim's actions.
+[?2004l[?2004h> 
+[?2004l[?2004h> 2. Incidental Restraint Analysis:
+[?2004l[?2004h> 
+[?2004l[?2004h> Bobby's situation presents the Commonwealth's strongest case because:
+[?2004l[?2004h> - Jim specifically targeted Bobby as an individual victim separate from the bank robbery
+[?2004l[?2004h> - Jim struck Bobby and robbed him of personal items (wallet and watch)
+[?2004l[?2004h> - The restraint continued throughout the robbery duration
+[?2004l[?2004h> - Bobby was removed from the teller station, suggesting movement beyond what was necessary for the bank robbery
+[?2004l[?2004h> 
+[?2004l[?2004h> However, defense arguments include:
+[?2004l[?2004h> - The detention was brief (approximately 5 minutes total)
+[?2004l[?2004h> - Bobby was restrained primarily to prevent interference with the ongoing robbery
+[?2004l[?2004h> - No separate transportation or extended detention occurred
+[?2004l[?2004h> - The restraint was contemporaneous with and in furtherance of the robbery
+[?2004l[?2004h> 
+[?2004l[?2004h> 3. Likelihood of Conviction: MODERATE (60-70%)
+[?2004l[?2004h> 
+[?2004l[?2004h> The individual targeting of Bobby and theft of his personal property distinguishes this from the typical "incidental restraint" scenario. However, the brief duration and connection to the overall robbery provide viable defense arguments.
+[?2004l[?2004h> 
+[?2004l[?2004h> B. Abduction Charges Related to Bank Tellers
+[?2004l[?2004h> 
+[?2004l[?2004h> 1. Elements Analysis:
+[?2004l[?2004h>    
+[?2004l[?2004h>    a) Force/Intimidation: ESTABLISHED
+[?2004l[?2004h>    Jim pointed guns at tellers and used a "demanding," "forceful" demeanor.
+[?2004l[?2004h>    
+[?2004l[?2004h>    b) Seizure/Detention: QUESTIONABLE
+[?2004l[?2004h>    While Jim commanded Janet to "lay face down on the floor," the other tellers' movements appear less constrained.
+[?2004l[?2004h>    
+[?2004l[?2004h>    c) Intent to Deprive of Personal Liberty: WEAK
+[?2004l[?2004h>    The primary intent appears focused on obtaining money rather than controlling the tellers' liberty.
+[?2004l[?2004h> 
+[?2004l[?2004h> 2. Incidental Restraint Analysis:
+[?2004l[?2004h> 
+[?2004l[?2004h> The tellers' situation closely parallels Hoyt v. Commonwealth:
+[?2004l[?2004h> - Brief duration (approximately 5 minutes)
+[?2004l[?2004h> - Restraints directly related to facilitating the robbery
+[?2004l[?2004h> - No movement or transportation of victims
+[?2004l[?2004h> - Commands to lie down were for the purpose of preventing interference with money collection
+[?2004l[?2004h> - Similar to gas station robbery in Hoyt where court found restraints incidental
+[?2004l[?2004h> 
+[?2004l[?2004h> Additionally, Walker v. Commonwealth (2023) involved virtually identical facts - a Wells Fargo bank robbery where the robber "struck a customer and knocked him down" and "pointed a gun at the tellers" - yet only robbery and firearm charges were pursued, not abduction.
+[?2004l[?2004h> 
+[?2004l[?2004h> 3. Likelihood of Conviction: LOW (20-30%)
+[?2004l[?2004h> 
+[?2004l[?2004h> The restraints of bank tellers appear clearly incidental to the robbery under established Virginia precedent.
+[?2004l[?2004h> 
+[?2004l[?2004h> IV. STRATEGIC CONSIDERATIONS
+[?2004l[?2004h> 
+[?2004l[?2004h> A. Prosecutorial Strategy
+[?2004l[?2004h> The Commonwealth will likely argue that:
+[?2004l[?2004h> - Jim's actions toward Bobby constitute a separate criminal episode
+[?2004l[?2004h> - The use of force (striking Bobby) elevates the restraint beyond mere robbery
+[?2004l[?2004h> - The theft of Bobby's personal property shows intent beyond bank robbery
+[?2004l[?2004h> 
+[?2004l[?2004h> B. Defense Strategy
+[?2004l[?2004h> Defense should emphasize:
+[?2004l[?2004h> - Brief duration of all restraints
+[?2004l[?2004h> - Restraints were in furtherance of robbery, not separate criminal intent
+[?2004l[?2004h> - Hoyt precedent regarding incidental restraints during robberies
+[?2004l[?2004h> - Walker case showing similar facts resulted in only robbery charges
+[?2004l[?2004h> 
+[?2004l[?2004h> V. CONCLUSION
+[?2004l[?2004h> 
+[?2004l[?2004h> While Jim clearly committed robbery and related firearms offenses, separate abduction charges face significant legal hurdles under Virginia's "incidental restraint" doctrine. The restraint of bank tellers appears clearly incidental to the robbery and unlikely to result in conviction. Bobby's situation presents a closer case due to the individual targeting and personal robbery, but the brief duration and connection to the overall criminal episode provide strong defense arguments.
+[?2004l[?2004h> 
+[?2004l[?2004h> The Commonwealth would be well-advised to focus on the substantial robbery and firearms charges rather than pursuing potentially vulnerable abduction counts that may be dismissed under the incidental restraint doctrine.
+[?2004l[?2004h> 
+[?2004l[?2004h> Recommendation: Prepare vigorous motion to strike abduction charges based on Brown and Hoyt precedents, with particular emphasis on the Walker case's similar factual pattern resulting in only robbery charges.
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@78f1db70b96f:/app# 

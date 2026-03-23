@@ -1,0 +1,55 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# head -50 convention.txt
+No. 15849
+
+MULTILATERAL
+Convention on Conduct of Fishing Operations in the North
+Atlantic (with annexes and procès-verbal of rectification
+dated 12 March 1970). Concluded at London on 1 June
+1967
+Authentic texts of Convention and annexes: English and French.
+Authentic text of procès-verbal of rectification: English.
+Registered by the United Kingdom of Great Britain and Northern Ireland on
+9 August 1977.
+
+MULTILATERAL
+Convention sur l'exercice de la pêche dans l'Atlantique Nord
+(avec annexes et procès-verbal de rectification en date
+du 12 mars 1970). Conclue à Londres le 1er juin 1967
+Textes authentiques de la Convention et des annexes : anglais et français.
+Texte authentique du procès-verbal de rectification : anglais.
+Enregistrée par le Royaume-Uni de Grande-Bretagne et d'Irlande du Nord le
+9 août 1977.
+
+Vol. 1051, 1-15849
+
+
+102
+
+United Nations — Treaty Series • Nations Unies — Recueil des Traités
+
+1977
+
+CONVENTION 1 ON CONDUCT OF FISHING OPERATIONS IN THE
+NORTH ATLANTIC
+
+The Governments of Belgium, Canada, Denmark, the French Republic, the Federal
+Republic of Germany, Iceland, Ireland, Italy, Luxembourg, the Netherlands, Norway,
+the Polish People's Republic, Portugal, Spain, Sweden, the Union of Soviet Socialist
+Republics, the United Kingdom of Great Britain and Northern Ireland, and the United
+States of America,
+Desiring to ensure good order and conduct on the fishing grounds in the North
+Atlantic area;
+Have agreed as follows:
+Article 1. ( 1 ) The present Convention applies to the waters of the Atlantic and
+Arctic Oceans and their dependent seas which are more specifically defined in Annex I
+to this Convention.
+(2) In this Convention
+"Fishing vessel" means any vessel engaged in the business of catching fish;
+"Vessel" means any fishing vessel and any vessel engaged in the business of
+processing fish or providing supplies or services to fishing vessels.
+Article 2. Nothing in this Convention shall be deemed to affect the rights, claims
+or views of any Contracting Party in regard to the limits of territorial waters or national
+fishery limits, or of the jurisdiction of a coastal State over fisheries.
+root@fb0478b90c9e:/app#

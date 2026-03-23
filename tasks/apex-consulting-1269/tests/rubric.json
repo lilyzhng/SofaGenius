@@ -1,0 +1,103 @@
+{
+  "criterion 1": {
+    "description": "Calculates total California population in 2020 as 39,521,958 (acceptable value is 39,521,958)",
+    "sources": "CA Population 2020 to 2024.csv",
+    "justification": "From CA Population 2020 to 2024.csv Sum up the POP_2020 column (column C) to get 39,521,958",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates total California population in 2024 as 39,431,263 (acceptable value is 39,431,263)",
+    "sources": "CA Population 2020 to 2024.csv",
+    "justification": "From CA Population 2020 to 2024.csv Sum up the POP_2024 column (column G) to get 39,431,263",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates total California population in 2030 as 39,338,611 (acceptable value is 39,338,611)",
+    "sources": "CA Population 2020 to 2024.csv",
+    "justification": "From CA Population 2020 to 2024.csv Take the annual CAGR between 2020 and 2024 (column C and G) for each row at a county level and then apply it to the the 6th rate of compounding to 2024 base (column G) to get to 2030 estimates Then sum up all the 2030 populations by county to get the total population for California of 39,338,612 (rounded from 39,338,611.495)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates total California population in 2030 within larger population areas of >1M people as 28,217,244 (acceptable range is 28,217,200 to 28,217,300)",
+    "sources": "CA Population 2020 to 2024.csv",
+    "justification": "From CA Population 2020 to 2024.csv Take the annual CAGR between 2020 and 2024 (column C and G) at a county level and then apply it to the 2024 base (column G) to get to 2030 estimates at a county level. Applying it means multiplying it to the 6th power (difference of 6 years between 2030 and 2024) Then sumif the total population if greater than 1M to find the total population in larger counties of 28,217,244 (rounded from 28,217,244.2)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Calculates total California population in 2030 within smaller population areas of <=1M people as 11,121,367 (acceptable range is 11,121,300 to 11,121,400)",
+    "sources": "CA Population 2020 to 2024.csv",
+    "justification": "From CA Population 2020 to 2024.csv Take the annual CAGR between 2020 and 2024 (column C and G) at a county level and then apply it to the 2024 base (column G) to get to 2030 estimates at a county level. Applying it means multiplying it to the 6th power (difference of 6 years between 2030 and 2024) Then sumif the total population if less than or equal to 1M to find the total population in smaller counties of 11,121,367 (rounded from 11,121,367.3)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Calculates total market size as $761,037,942 (acceptable range is $761,037,900 to $761,038,000)",
+    "sources": "Prompt",
+    "justification": "From CA Population 2020 to 2024.csv Take the annual CAGR between 2020 and 2024 (column C and G) at a county level and then apply it to the 2024 base (column G) to get to 2030 estimates at a county level. Applying it means multiplying it to the 6th power (difference of 6 years between 2030 and 2024) Larger population: Then sumif the total population if greater than 1M to find the total population in larger counties of 28,217,244. Multiply by 10% and $250 as stated in the prompt to get $705,431,105.17 Smaller population: Then sumif the total population if less than or equal to 1M to find the total population in smaller counties of 11,121,367. Then multiply by 5% and $100 as stated in the prompt to get $55,606,836.44 Finally sum up the larger population and smaller population markets to get the total TAM of $761,037,942 (rounded from $761,037,941.61 as per prompt)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Identifies that the market size estimate is too high",
+    "sources": "Prompt",
+    "justification": "A $700M market sizing in California alone for surfing is way too large, driven by the over-optimistic assumptions",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Provides one of the following options below as a reason why the market size estimate is too high: - Some of the assumptions may be overly-optimistic - Surfing is a niche recreational activity that is not evenly distributed across counties",
+    "sources": "Prompt",
+    "justification": "A consultant would agree that these are acceptable answers for why the TAM maybe overstated 1) While California has a large coastal and affluent population, assuming 10% of residents in large counties and 5% in smaller counties are active or potential surfboard buyers likely overstates real demand. 2) Surfing is a niche recreational activity, concentrated heavily along certain coastal areas (e.g., San Diego, Orange, and Santa Cruz counties), not evenly distributed across inland counties that are included in the calculation.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7,
+      6
+    ]
+  }
+}

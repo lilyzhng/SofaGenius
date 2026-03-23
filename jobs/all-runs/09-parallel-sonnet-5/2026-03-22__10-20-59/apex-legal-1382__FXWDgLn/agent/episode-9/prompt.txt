@@ -1,0 +1,40 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# grep -n -i 'officer' convention.txt
+139:authorised officers appointed in accordance with article 9 of this Convention may also
+181:(2) Authorised officers means officers who may be appointed by the Contracting
+184:the latter of the names of the authorised officers who have been appointed or of the ships
+185:in which such officers are carried.
+186:(4) Authorised officers shall observe whether the provisions of the Convention are
+190:purposes with the authorised officers of other Contracting Parties.
+191:(5) If an authorised officer has reason to believe that a vessel of any Contracting
+196:(6) If an authorised officer has reason to believe that a vessel or its gear has caused
+200:(7) An authorised officer shall not order a fishing vessel to stop while it is actually
+203:(8) An authorised officer shall not pursue his enquiries further than is necessary
+207:(9) An authorised officer may, in case of damage to a vessel or fishing gear, offer
+209:settlement. At the request of the parties concerned the authorised officer shall draw up
+211:(10) Resistance by a vessel to the directions of an authorised officer shall be deemed
+214:officers under these arrangements on the same basis as reports of national officers. The
+216:give the report of a foreign authorised officer a higher evidential value than it would
+217:possess in the authorised officer's own country. Contracting Parties shall collaborate in
+219:officer under this Convention.
+220:(12) An authorised officer shall not exercise his powers to board a vessel of another
+221:Contracting Party if an authorised officer of that Contracting Party is available and in a
+736:RULES APPLYING TO AUTHORISED OFFICERS
+737:(1) An authorised officer shall carry a document of identity written in English, French and
+738:the language of the authorised officer (if different) in a form agreed by the Contracting Parties on
+740:(2) Any orders to stop given by an authorised officer shall be given by the appropriate signal
+742:(3) On boarding a vessel an authorised officer shall exhibit his document of identity.
+744:(4) On boarding a vessel an authorised officer may require the master of the vessel to exhibit
+754:shall immediately be endorsed upon it by the authorised officer or on some other official document
+756:(5) On each occasion on which an authorised officer boards a vessel, he shall draw up a
+759:(6) This report shall be drawn up in the language of the authorised officer and shown to the
+761:any remarks he or any member of his crew may wish to make. The authorised officer shall sign
+766:(7) Whenever an authorised officer observes a vessel infringing the provisions of the Con
+771:(8) Ships carrying authorised officers, which may be vessels as defined in article 1 (2), shall
+773:Parties on the request of the depositary Government. Authorised officers shall exercise their powers
+778:Authorised Officer (to be filled in in block letters)
+837:24. Comments by Authorised Officer.
+842:Signature of Authorised Officer ...................
+843:The above report was prepared and signed by the Authorised Officer in our presence.
+root@fb0478b90c9e:/app#

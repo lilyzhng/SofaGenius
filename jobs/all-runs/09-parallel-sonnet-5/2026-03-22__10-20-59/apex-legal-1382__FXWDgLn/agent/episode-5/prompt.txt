@@ -1,0 +1,5 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# wc -l convention.txt
+1061 convention.txt
+root@fb0478b90c9e:/app#

@@ -1,0 +1,10 @@
+{
+  "analysis": "Excellent! I now have the statutory definition of abduction from Virginia Code § 18.2-47. The key elements for abduction are: (1) by force, intimidation or deception, (2) without legal justification or excuse, (3) seize, take, transport, detain or secret another person, (4) with intent to deprive such person of personal liberty or withhold/conceal from lawful authority. Now let me examine the case law to understand how these elements are interpreted.",
+  "plan": "I'll extract text from the case law documents to understand judicial interpretation of the abduction elements, particularly focusing on what constitutes 'detention' and the required intent. Then I'll apply this to Jim's actions toward Bobby and the tellers.",
+  "commands": [
+    {
+      "keystrokes": "pdftotext \"data/1371_Cardwell v. Commonwealth_248 Va. 501.pdf\" - | head -100\n",
+      "duration": 1.0
+    }
+  ]
+}

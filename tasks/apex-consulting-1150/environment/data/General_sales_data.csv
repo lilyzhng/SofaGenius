@@ -1,0 +1,1001 @@
+Product_ID,Sale_Date,Sales_Rep,Region,Quantity_Sold,Product_Category,Unit_Cost,Unit_Price,Customer_Type,Discount,Payment_Method,Sales_Channel
+1052,2/3/23,Bob,North,18,Furniture,152.75,267.22,Returning,0.0225,Cash,Online
+1093,4/21/23,Bob,West,17,Furniture,3816.39,4209.44,Returning,0.0275,Cash,Retail
+1015,9/21/23,David,South,30,Food,261.56,371.4,Returning,0.05,Bank Transfer,Retail
+1072,8/24/23,Bob,South,39,Clothing,4330.03,4467.75,New,0.005,Credit Card,Retail
+1061,3/24/23,Charlie,East,13,Electronics,637.37,692.71,New,0.02,Credit Card,Online
+1021,2/11/23,Charlie,West,32,Food,900.79,1106.51,New,0.0525,Cash,Online
+1083,4/11/23,Bob,West,29,Furniture,2408.81,2624.09,Returning,0.035,Cash,Online
+1087,1/6/23,Eve,South,46,Furniture,3702.51,3964.65,New,0.03,Bank Transfer,Online
+1075,6/29/23,David,South,30,Furniture,738.06,1095.45,New,0.0125,Bank Transfer,Online
+1075,10/9/23,Charlie,West,18,Clothing,2228.35,2682.34,New,0.0325,Bank Transfer,Online
+1088,11/16/23,Eve,North,13,Furniture,2440.11,2517.6,New,0.0575,Bank Transfer,Retail
+1100,8/14/23,Bob,West,43,Food,1100.81,1137.44,Returning,0.02,Bank Transfer,Online
+1024,11/11/23,Eve,West,21,Food,622.01,641.09,Returning,0,Bank Transfer,Retail
+1003,12/31/23,Alice,South,30,Furniture,4190.28,4270.65,New,0.05,Cash,Online
+1022,8/17/23,Charlie,South,21,Food,2537.2,2869.6,New,0.0725,Bank Transfer,Retail
+1053,10/16/23,Bob,North,48,Furniture,121.19,487.65,New,0.045,Cash,Retail
+1002,5/30/23,David,North,17,Furniture,4024.76,4420.15,Returning,0.01,Cash,Online
+1088,10/4/23,Bob,East,40,Electronics,4904.93,5034.35,New,0.025,Credit Card,Retail
+1030,7/17/23,David,West,19,Clothing,3049.33,3209.22,Returning,0.065,Cash,Online
+1038,3/11/23,Bob,South,15,Clothing,2543.36,2790.1,Returning,0.0175,Cash,Online
+1002,4/22/23,Eve,North,9,Electronics,4398.16,4439.12,New,0.045,Bank Transfer,Online
+1064,1/4/23,Eve,East,10,Electronics,4764.96,5074.42,New,0.03,Cash,Online
+1060,12/16/23,Eve,East,44,Clothing,3784.96,4276.99,New,0.015,Bank Transfer,Retail
+1021,11/27/23,Alice,South,31,Furniture,2254.99,2441.79,Returning,0.06,Bank Transfer,Online
+1033,11/14/23,David,South,23,Furniture,2981.5,3360.4,Returning,0.055,Bank Transfer,Retail
+1076,12/16/23,Eve,East,30,Clothing,3519.63,3774.65,New,0.05,Credit Card,Retail
+1058,4/5/23,Alice,North,33,Furniture,1011.65,1084.28,Returning,0.0175,Bank Transfer,Retail
+1022,6/1/23,David,East,9,Electronics,2263.65,2558.95,New,0.0075,Cash,Online
+1089,11/7/23,Bob,West,47,Furniture,4157.62,4314.56,New,0.0425,Bank Transfer,Retail
+1049,5/17/23,Alice,West,1,Furniture,3290.89,3317.75,Returning,0.0425,Bank Transfer,Online
+1091,9/4/23,Charlie,South,44,Food,2085.46,2406.58,Returning,0.015,Bank Transfer,Retail
+1059,8/31/23,Alice,North,35,Food,3333.64,3764.52,Returning,0.005,Credit Card,Online
+1042,1/31/23,Alice,North,11,Food,635.2,814.14,Returning,0.005,Cash,Online
+1092,2/9/23,David,West,34,Furniture,2037.41,2238.65,New,0.075,Credit Card,Online
+1060,8/17/23,Bob,East,16,Clothing,3975.99,4422.59,New,0.06,Cash,Online
+1080,2/5/23,Charlie,South,9,Electronics,1141.52,1550.19,New,0.07,Credit Card,Retail
+1015,8/11/23,Eve,East,32,Furniture,970.51,1330.84,Returning,0.015,Cash,Retail
+1062,1/6/23,Eve,East,15,Clothing,4756.55,4888.46,New,0.0725,Credit Card,Online
+1062,11/18/23,Alice,East,12,Furniture,1088.99,1545,Returning,0.01,Bank Transfer,Retail
+1047,8/8/23,David,North,33,Electronics,1341.55,1427.21,Returning,0.0375,Credit Card,Online
+1062,3/16/23,David,West,45,Furniture,4849.6,5166.72,Returning,0.0625,Credit Card,Online
+1051,1/4/23,Eve,North,14,Electronics,3686.81,3710.92,New,0.025,Bank Transfer,Retail
+1055,12/1/23,Charlie,West,8,Furniture,3513,3838.42,Returning,0.0325,Bank Transfer,Online
+1064,5/14/23,Bob,South,8,Electronics,4271.99,4417.79,Returning,0.01,Cash,Online
+1003,4/28/23,Charlie,South,27,Furniture,623.32,853.66,Returning,0.01,Cash,Online
+1051,4/4/23,Bob,East,12,Electronics,3544.48,3723.66,Returning,0.0475,Cash,Online
+1007,3/3/23,Eve,West,1,Food,2543.26,2637.91,Returning,0.05,Credit Card,Online
+1021,7/13/23,Bob,West,43,Furniture,4154.3,4469.07,Returning,0.0575,Cash,Retail
+1073,12/1/23,David,West,40,Furniture,2565.3,3007.47,Returning,0.0425,Credit Card,Retail
+1039,7/22/23,Alice,East,42,Clothing,3120.19,3600.14,Returning,0.0475,Credit Card,Retail
+1018,1/26/23,Alice,East,11,Clothing,2414.82,2519.07,Returning,0,Cash,Online
+1004,6/22/23,Eve,South,39,Electronics,2416.89,2778.4,Returning,0.0125,Cash,Online
+1089,10/27/23,David,North,43,Furniture,3851.45,4186.98,Returning,0.075,Credit Card,Online
+1060,5/13/23,Charlie,West,31,Electronics,3161.4,3339.66,Returning,0.005,Bank Transfer,Online
+1014,11/22/23,David,West,17,Food,3184.65,3204.01,New,0.05,Bank Transfer,Online
+1009,4/28/23,Alice,North,33,Clothing,2278.9,2626.9,New,0.0125,Credit Card,Online
+1090,11/20/23,Alice,West,32,Electronics,2678.99,3152.28,Returning,0.055,Cash,Retail
+1053,10/2/23,David,East,29,Electronics,3741.3,4061.04,Returning,0.0525,Credit Card,Online
+1002,7/31/23,David,East,21,Clothing,4138.41,4361.7,Returning,0.0175,Credit Card,Retail
+1084,8/13/23,Alice,West,21,Furniture,3497.98,3765.31,New,0.02,Cash,Online
+1092,1/20/23,Charlie,East,40,Electronics,4624.16,4731.98,New,0.05,Bank Transfer,Retail
+1060,4/23/23,Eve,East,23,Clothing,4110.6,4488.37,New,0.03,Credit Card,Online
+1071,5/20/23,Eve,West,6,Furniture,2831.23,3206.98,Returning,0.015,Bank Transfer,Retail
+1044,2/16/23,David,South,22,Food,3373.46,3454.76,Returning,0.055,Bank Transfer,Retail
+1008,1/1/23,Eve,North,38,Clothing,4635.23,5075.44,Returning,0.0125,Cash,Online
+1047,3/31/23,Alice,East,37,Electronics,3114.88,3256.78,Returning,0.065,Credit Card,Online
+1035,5/22/23,Alice,South,45,Food,4132.79,4624.1,New,0.0375,Credit Card,Retail
+1078,11/16/23,David,East,8,Furniture,3459.61,3657.23,Returning,0.0075,Bank Transfer,Online
+1081,2/7/23,David,East,41,Furniture,2782.08,2879.24,New,0.0525,Bank Transfer,Online
+1036,10/20/23,David,North,49,Clothing,1247.1,1429.44,New,0.04,Cash,Online
+1050,5/19/23,Charlie,East,35,Clothing,2158.69,2384.38,Returning,0.0225,Bank Transfer,Retail
+1004,12/22/23,Eve,North,11,Clothing,4840.33,4884.29,New,0.0325,Cash,Online
+1002,11/29/23,David,North,24,Furniture,3305.94,3599.27,New,0.0225,Credit Card,Retail
+1006,9/16/23,Bob,North,49,Food,2843.76,3146.6,New,0.02,Cash,Retail
+1054,6/10/23,Bob,South,21,Furniture,4668.14,5040.22,New,0.0125,Bank Transfer,Online
+1004,6/27/23,Alice,West,2,Electronics,2953.23,2977.52,Returning,0.0275,Credit Card,Retail
+1054,1/10/23,Eve,South,40,Furniture,2654.11,2929.32,Returning,0.02,Cash,Online
+1093,9/18/23,David,West,19,Electronics,3808.59,3844.51,New,0.0525,Credit Card,Online
+1063,5/18/23,Bob,West,39,Food,3577.69,3931.25,Returning,0.0525,Cash,Retail
+1018,6/21/23,Eve,North,28,Clothing,1006.14,1043.45,New,0.0375,Bank Transfer,Retail
+1090,1/13/23,Alice,East,17,Clothing,2382.98,2839.73,Returning,0.0575,Bank Transfer,Retail
+1044,6/17/23,Charlie,North,6,Furniture,2388.95,2742.97,Returning,0.0625,Credit Card,Retail
+1034,5/10/23,Eve,East,19,Clothing,1922.21,2180.83,Returning,0.0425,Credit Card,Retail
+1074,3/25/23,Eve,West,38,Food,2610.6,2836.94,Returning,0.0475,Credit Card,Online
+1062,11/17/23,Charlie,North,28,Clothing,2094.88,2168.91,Returning,0.02,Cash,Retail
+1100,11/15/23,Eve,East,2,Furniture,1036.76,1189.35,New,0.0675,Bank Transfer,Online
+1014,4/11/23,Alice,South,38,Food,2091.21,2527,Returning,0.0025,Credit Card,Online
+1095,11/25/23,Alice,East,37,Electronics,407.77,860.95,New,0.025,Credit Card,Retail
+1048,9/30/23,Charlie,North,4,Furniture,2900.14,2910.51,New,0.055,Credit Card,Retail
+1015,9/22/23,David,South,22,Electronics,4275.59,4576.72,Returning,0.005,Cash,Retail
+1072,2/7/23,Bob,East,26,Food,3640.17,4002.63,New,0.0125,Credit Card,Retail
+1078,4/4/23,David,East,49,Furniture,1833.95,2147.14,Returning,0.045,Credit Card,Retail
+1087,4/5/23,Eve,East,43,Furniture,481,531.02,New,0.0425,Cash,Online
+1062,11/1/23,Bob,East,36,Food,1050.64,1167.33,New,0.055,Cash,Online
+1040,3/10/23,Charlie,East,13,Clothing,2750.18,2882.85,Returning,0.06,Credit Card,Online
+1085,11/14/23,Charlie,South,32,Furniture,1074.93,1492.48,Returning,0.01,Credit Card,Retail
+1080,8/24/23,Bob,West,17,Furniture,2742.67,2979.64,Returning,0.0025,Cash,Retail
+1082,11/30/23,Alice,South,41,Electronics,1196.42,1444.97,Returning,0.0525,Bank Transfer,Online
+1053,5/17/23,Bob,South,36,Clothing,4252.17,4720.27,New,0.0225,Cash,Retail
+1024,3/17/23,Eve,South,46,Electronics,2016.49,2338.66,Returning,0.0475,Bank Transfer,Retail
+1026,2/4/23,Alice,West,19,Electronics,1265.48,1715.83,New,0.0125,Credit Card,Retail
+1089,1/1/23,Charlie,North,35,Clothing,4071.01,4304.7,New,0.035,Credit Card,Online
+1060,10/23/23,Bob,West,46,Clothing,1747.05,1830.27,New,0.0375,Bank Transfer,Retail
+1041,11/16/23,David,South,40,Food,601.86,1067.53,New,0.045,Cash,Online
+1029,3/1/23,David,East,28,Clothing,2873.53,3108.3,New,0.0375,Credit Card,Retail
+1015,11/16/23,Eve,East,1,Furniture,2928.74,3027.74,New,0.0375,Bank Transfer,Retail
+1045,12/15/23,David,South,42,Clothing,3587.74,3745.91,Returning,0.025,Cash,Online
+1065,11/24/23,Bob,East,18,Food,1239.09,1273.98,New,0.005,Bank Transfer,Retail
+1089,9/24/23,Bob,South,48,Food,2246.67,2486.14,New,0.0075,Cash,Retail
+1071,12/27/23,David,East,40,Food,1447.72,1875.75,New,0.0325,Cash,Retail
+1009,8/17/23,Bob,West,33,Clothing,450.72,918.17,Returning,0.0275,Cash,Online
+1088,9/27/23,Eve,North,12,Clothing,4389.24,4856.22,Returning,0.0375,Cash,Retail
+1001,11/12/23,Alice,North,8,Electronics,3657.91,3729.27,New,0.0225,Bank Transfer,Retail
+1008,10/13/23,Eve,West,24,Electronics,1542.24,1739.45,Returning,0.0525,Bank Transfer,Retail
+1088,10/18/23,Eve,West,16,Furniture,3016.9,3040.73,New,0.065,Bank Transfer,Retail
+1063,8/1/23,Bob,South,4,Electronics,1046.26,1475.29,Returning,0.0225,Bank Transfer,Retail
+1011,6/14/23,Alice,South,38,Furniture,4456.67,4642.46,New,0.015,Bank Transfer,Online
+1081,1/5/23,Bob,South,44,Food,618.79,938.04,Returning,0.0075,Cash,Online
+1008,12/5/23,Charlie,East,27,Electronics,68.99,429.29,Returning,0.045,Credit Card,Retail
+1035,3/19/23,Bob,South,9,Clothing,2534.94,2755.56,Returning,0.0325,Credit Card,Retail
+1035,3/3/23,Bob,West,47,Electronics,2936.48,3096.64,New,0.015,Bank Transfer,Online
+1033,5/12/23,Bob,North,16,Furniture,2915.88,3397.36,New,0.05,Bank Transfer,Retail
+1005,3/30/23,Alice,East,12,Electronics,319.83,802.43,New,0.01,Credit Card,Retail
+1041,8/25/23,Bob,South,31,Food,1604.52,1756.34,Returning,0.0425,Cash,Retail
+1028,2/11/23,Alice,East,24,Clothing,2521.03,2766.05,Returning,0.04,Bank Transfer,Retail
+1007,3/30/23,David,East,14,Furniture,1122.07,1608.76,New,0.055,Cash,Retail
+1073,10/23/23,Charlie,South,45,Clothing,4369.5,4381.89,Returning,0.005,Credit Card,Retail
+1072,11/24/23,Alice,East,25,Clothing,481.19,693.4,New,0.0675,Credit Card,Retail
+1012,10/22/23,David,North,34,Furniture,2462.55,2521.77,New,0.0525,Bank Transfer,Retail
+1034,4/14/23,Alice,West,3,Clothing,3472.51,3732,New,0.015,Cash,Online
+1033,1/14/23,Alice,West,24,Clothing,1345.67,1367.76,New,0.015,Bank Transfer,Online
+1048,10/15/23,Charlie,North,42,Electronics,3139.99,3349.37,Returning,0.0325,Credit Card,Retail
+1023,6/28/23,Eve,East,9,Clothing,4155.46,4273.6,Returning,0.0625,Cash,Retail
+1062,5/5/23,Eve,South,26,Clothing,992.17,1263.49,Returning,0.0625,Bank Transfer,Retail
+1088,12/19/23,Alice,East,20,Clothing,4590.24,5088.28,New,0.04,Bank Transfer,Retail
+1037,1/23/23,Bob,North,40,Clothing,2790.11,3192.37,Returning,0.065,Bank Transfer,Online
+1099,3/4/23,David,East,10,Furniture,1531.2,1955.56,New,0,Credit Card,Online
+1044,5/23/23,Bob,West,19,Food,2182.75,2504.03,New,0.0025,Bank Transfer,Online
+1086,6/2/23,Bob,East,3,Electronics,1595.35,1625.71,New,0.0675,Cash,Online
+1091,5/25/23,Alice,North,24,Clothing,3639.3,3750.63,New,0.0575,Bank Transfer,Retail
+1035,8/13/23,Alice,West,5,Clothing,3991.69,4454.97,New,0.035,Credit Card,Retail
+1065,11/5/23,Alice,East,3,Furniture,4173.04,4362.44,New,0.0575,Bank Transfer,Retail
+1099,4/14/23,Alice,East,27,Food,4929.55,4990.33,Returning,0.0725,Credit Card,Online
+1047,4/14/23,Eve,West,16,Clothing,3966.86,4321.04,Returning,0.0575,Credit Card,Retail
+1078,2/8/23,Alice,South,49,Furniture,3026.85,3183.58,Returning,0.0625,Cash,Retail
+1003,7/17/23,Eve,West,15,Electronics,1729.14,1870.88,Returning,0.0575,Cash,Online
+1001,5/14/23,Eve,South,35,Electronics,2745.75,3244.76,New,0.0125,Bank Transfer,Online
+1005,3/8/23,Alice,North,12,Clothing,253.29,683.78,New,0.0625,Credit Card,Online
+1090,6/28/23,Charlie,North,41,Clothing,3736.88,3946.77,Returning,0.015,Credit Card,Online
+1014,2/11/23,David,West,44,Food,2257.48,2747.81,Returning,0.0675,Cash,Online
+1027,1/15/23,Bob,West,26,Food,149.11,477.67,Returning,0.035,Cash,Retail
+1009,4/21/23,Eve,North,47,Clothing,359.41,733,Returning,0.05,Bank Transfer,Retail
+1079,6/6/23,David,South,34,Furniture,1967.96,1993.4,Returning,0.0375,Credit Card,Online
+1015,10/16/23,Charlie,North,23,Food,2937.94,3007.53,Returning,0.0075,Cash,Retail
+1090,8/19/23,Bob,West,31,Clothing,2347.81,2668.02,Returning,0.0225,Bank Transfer,Retail
+1042,6/6/23,Bob,North,20,Food,3115.06,3565.58,Returning,0.075,Credit Card,Retail
+1077,2/7/23,Eve,West,12,Clothing,2427.46,2743.09,New,0.0725,Credit Card,Retail
+1051,4/7/23,Alice,West,23,Electronics,3325.43,3401.1,New,0.025,Cash,Online
+1063,10/16/23,Charlie,North,4,Clothing,1134.67,1201.39,New,0.075,Bank Transfer,Retail
+1096,9/11/23,Eve,South,23,Electronics,608.57,1032.22,New,0.0625,Cash,Retail
+1052,7/15/23,Charlie,East,48,Food,3002.35,3080.61,Returning,0.045,Bank Transfer,Retail
+1096,3/27/23,Alice,North,48,Clothing,2449.21,2714.12,New,0.0025,Credit Card,Online
+1004,11/18/23,Alice,East,1,Food,182.99,211.18,Returning,0.0675,Bank Transfer,Retail
+1094,1/10/23,Eve,North,25,Electronics,1933.39,1982.92,New,0.0425,Bank Transfer,Online
+1023,1/5/23,Alice,East,2,Clothing,575.32,914.77,Returning,0.065,Bank Transfer,Online
+1015,5/3/23,David,South,30,Food,2680.22,3027.92,Returning,0.0625,Bank Transfer,Online
+1043,11/26/23,Bob,South,3,Electronics,2009.1,2186.42,New,0.0625,Bank Transfer,Online
+1029,12/19/23,Eve,North,21,Food,3085.1,3200.75,New,0.0525,Cash,Retail
+1036,4/28/23,Charlie,West,25,Furniture,4037.73,4446.45,Returning,0.0225,Bank Transfer,Online
+1013,10/21/23,David,East,20,Electronics,1533.36,1649.74,Returning,0.025,Bank Transfer,Online
+1032,6/8/23,Eve,West,49,Electronics,4812.41,5088,Returning,0.0225,Credit Card,Online
+1071,10/30/23,Alice,West,22,Electronics,2701.39,3185.81,New,0.0025,Bank Transfer,Online
+1059,8/16/23,Alice,West,21,Clothing,3110.54,3192.99,New,0.0425,Credit Card,Online
+1086,12/31/23,Alice,South,33,Clothing,3419.33,3890.36,Returning,0.0525,Cash,Retail
+1028,8/4/23,Alice,North,38,Clothing,3350.32,3449.94,New,0.065,Cash,Online
+1066,7/3/23,Charlie,North,15,Furniture,2579.31,2867.36,Returning,0.01,Bank Transfer,Retail
+1042,1/15/23,David,South,46,Furniture,2172.38,2367.11,New,0.04,Cash,Retail
+1045,6/6/23,Bob,South,15,Electronics,316.22,799.04,New,0,Bank Transfer,Online
+1062,5/16/23,Charlie,North,46,Furniture,159.32,303.36,New,0.0075,Cash,Retail
+1057,9/18/23,Charlie,West,25,Food,1821.91,2027.74,New,0.005,Bank Transfer,Retail
+1006,6/6/23,Bob,East,21,Electronics,1701.62,2193.22,New,0.055,Bank Transfer,Retail
+1028,2/16/23,Bob,East,24,Electronics,1969.09,2241.96,Returning,0.005,Credit Card,Online
+1028,11/20/23,Alice,East,5,Food,734.92,991.21,Returning,0.0525,Credit Card,Online
+1044,11/28/23,Charlie,West,6,Electronics,3703.93,3840.24,New,0.0175,Credit Card,Online
+1084,6/22/23,Eve,North,49,Furniture,4291.97,4645.64,Returning,0.065,Credit Card,Online
+1030,5/10/23,Bob,South,43,Clothing,4696.64,4713.68,Returning,0.06,Bank Transfer,Online
+1062,4/5/23,Bob,North,48,Food,2487.19,2521.45,New,0.0725,Cash,Online
+1075,4/25/23,David,West,44,Furniture,3519.29,3822.98,Returning,0.0675,Bank Transfer,Online
+1092,8/31/23,Eve,South,47,Food,4284.98,4462.4,New,0.07,Credit Card,Retail
+1089,10/19/23,Eve,West,23,Food,2120.54,2597.67,Returning,0.065,Credit Card,Retail
+1062,10/9/23,Bob,East,4,Electronics,1581.59,2034.15,Returning,0.0525,Cash,Online
+1097,10/26/23,Alice,East,27,Electronics,4686.79,5046.51,Returning,0.0125,Credit Card,Retail
+1001,10/10/23,David,West,18,Furniture,2602.6,3013.49,Returning,0.02,Bank Transfer,Online
+1027,3/10/23,Eve,South,21,Food,2511.41,2848.4,Returning,0.015,Bank Transfer,Online
+1062,5/28/23,Bob,South,28,Electronics,933.16,1004.7,Returning,0.045,Bank Transfer,Online
+1077,1/11/23,Eve,North,35,Electronics,585.37,970.49,Returning,0.0375,Bank Transfer,Retail
+1003,9/11/23,David,East,22,Food,4218.43,4331.42,New,0.065,Bank Transfer,Online
+1070,11/26/23,David,North,40,Furniture,3089.96,3258.45,New,0.0725,Cash,Online
+1072,12/26/23,Charlie,North,23,Furniture,1662.83,2074.25,New,0.03,Bank Transfer,Online
+1027,2/7/23,Bob,West,3,Food,999.09,1271.99,New,0.0375,Credit Card,Online
+1009,5/14/23,David,West,40,Furniture,2799.71,3231.08,Returning,0.0725,Credit Card,Retail
+1062,7/19/23,Charlie,North,10,Electronics,2940.4,3054.79,Returning,0.02,Credit Card,Online
+1037,1/23/23,Charlie,East,25,Food,1074.62,1382.43,Returning,0.06,Credit Card,Retail
+1097,10/30/23,Eve,West,49,Electronics,4264.46,4315.52,New,0.0175,Cash,Retail
+1051,12/12/23,Eve,North,8,Clothing,467.11,792.21,New,0.05,Credit Card,Online
+1044,10/29/23,Charlie,North,11,Clothing,1812.66,2196.3,New,0.02,Cash,Online
+1024,12/29/23,Eve,North,5,Furniture,3417.9,3714.52,Returning,0.0675,Credit Card,Retail
+1079,8/6/23,David,North,45,Clothing,1406.9,1547.35,New,0.0425,Cash,Retail
+1059,5/21/23,Alice,North,37,Electronics,4146.99,4172.35,Returning,0.015,Cash,Retail
+1032,4/14/23,David,North,45,Clothing,3712.35,3780.88,New,0.0175,Cash,Retail
+1096,7/29/23,Charlie,West,38,Electronics,3955.66,4270.59,Returning,0.0375,Credit Card,Online
+1088,4/21/23,Charlie,East,29,Furniture,639.58,1107.45,New,0.0725,Cash,Retail
+1052,4/14/23,David,North,5,Furniture,745.71,856.91,Returning,0.0575,Bank Transfer,Retail
+1062,11/12/23,Eve,South,9,Electronics,1468.05,1838.21,New,0.0375,Bank Transfer,Retail
+1058,6/20/23,Eve,West,48,Clothing,2614.48,3049.04,New,0.025,Credit Card,Retail
+1052,12/22/23,Charlie,West,2,Furniture,3752.68,4017.91,Returning,0.04,Bank Transfer,Online
+1012,11/20/23,Bob,North,1,Food,4190.83,4528.77,Returning,0.055,Bank Transfer,Online
+1039,5/13/23,Eve,West,40,Furniture,3536.46,3945.82,New,0.06,Bank Transfer,Online
+1002,10/20/23,David,North,30,Clothing,4646.55,4784.28,Returning,0.025,Credit Card,Retail
+1003,11/24/23,Eve,East,11,Food,3706.78,3862.26,New,0.055,Credit Card,Retail
+1056,5/7/23,David,East,28,Clothing,1566.03,1576.34,Returning,0.05,Bank Transfer,Online
+1081,4/16/23,Charlie,West,44,Electronics,1362.15,1844.07,New,0.0725,Credit Card,Online
+1059,4/2/23,Eve,West,12,Food,3496.15,3955.75,Returning,0.07,Cash,Retail
+1002,10/14/23,David,South,39,Clothing,1004.71,1389.35,New,0.06,Bank Transfer,Online
+1002,2/20/23,Charlie,West,26,Food,508.94,557.69,New,0.055,Credit Card,Retail
+1092,1/29/23,Bob,South,13,Clothing,2684.5,2913.78,New,0.02,Credit Card,Retail
+1054,10/23/23,David,East,8,Food,4117.13,4177.06,Returning,0.0625,Bank Transfer,Retail
+1087,10/24/23,Bob,East,28,Clothing,551.83,569.63,New,0.0325,Credit Card,Retail
+1096,8/2/23,Bob,North,30,Electronics,3969.86,4281.79,Returning,0.02,Bank Transfer,Retail
+1097,9/24/23,Alice,East,9,Food,4067.28,4548.09,Returning,0.03,Credit Card,Retail
+1001,9/14/23,Eve,South,39,Food,2437.26,2889.67,Returning,0.0625,Cash,Online
+1019,10/29/23,David,West,31,Food,333.69,685.1,New,0.01,Bank Transfer,Online
+1002,4/11/23,Bob,North,21,Food,914.22,971.57,Returning,0.035,Cash,Online
+1053,12/12/23,Alice,South,47,Electronics,3551.76,3696.1,Returning,0.0375,Bank Transfer,Retail
+1044,4/20/23,Charlie,West,34,Food,3573.3,3740.13,Returning,0.0025,Credit Card,Online
+1090,7/1/23,David,North,31,Furniture,4496.86,4880.8,New,0.015,Cash,Retail
+1032,11/9/23,Bob,East,25,Electronics,2934.3,3337.4,Returning,0.0625,Credit Card,Retail
+1070,1/1/23,Eve,South,12,Furniture,664.33,863.03,Returning,0.0625,Bank Transfer,Retail
+1032,11/15/23,Alice,West,1,Food,651,865.76,Returning,0.0225,Bank Transfer,Retail
+1068,2/24/23,Bob,North,22,Clothing,3619.61,3651.42,Returning,0.065,Bank Transfer,Online
+1055,5/29/23,Eve,North,40,Furniture,959.73,1111.41,New,0.0575,Bank Transfer,Online
+1075,11/5/23,Bob,East,37,Food,1675.51,1906.64,New,0.0325,Bank Transfer,Online
+1056,5/17/23,David,West,47,Furniture,2461.7,2529.02,Returning,0.055,Cash,Retail
+1017,7/21/23,David,East,1,Food,172.59,404.69,Returning,0.0725,Bank Transfer,Online
+1038,11/9/23,David,East,1,Food,1281.65,1709.71,Returning,0.035,Credit Card,Online
+1024,4/27/23,Alice,West,42,Food,2069.05,2363.9,Returning,0.0175,Cash,Online
+1069,6/3/23,David,West,42,Clothing,1434.2,1482.88,New,0.07,Credit Card,Retail
+1098,10/18/23,Eve,West,21,Furniture,725.03,828.95,New,0.045,Bank Transfer,Online
+1070,3/4/23,Bob,South,15,Electronics,3653.66,3896.19,New,0.0075,Credit Card,Retail
+1086,9/1/23,Charlie,West,17,Electronics,4075.08,4262.21,New,0.0425,Cash,Online
+1011,1/25/23,Eve,North,22,Electronics,1324.52,1510.3,Returning,0.0375,Cash,Retail
+1016,3/31/23,Eve,East,38,Electronics,3883.38,4152.72,Returning,0.065,Cash,Online
+1097,3/16/23,David,South,35,Food,1958.49,2254.84,New,0.04,Credit Card,Online
+1073,10/21/23,Alice,West,45,Furniture,2558.09,2958.55,New,0.02,Cash,Online
+1059,7/29/23,Bob,South,16,Furniture,4287.21,4464.28,Returning,0.05,Credit Card,Retail
+1070,12/13/23,Alice,West,8,Clothing,3762.27,4166.95,Returning,0.04,Bank Transfer,Online
+1080,1/17/23,Bob,South,47,Furniture,4035.33,4211.25,Returning,0.0175,Bank Transfer,Online
+1093,5/8/23,Bob,East,17,Furniture,727.38,764.54,Returning,0.0425,Credit Card,Retail
+1003,12/30/23,Alice,East,17,Furniture,395.11,676.66,Returning,0.0625,Cash,Retail
+1020,9/8/23,Eve,North,26,Clothing,4472.35,4770.42,New,0.0025,Credit Card,Retail
+1059,6/28/23,Bob,North,13,Electronics,1969.78,2437.7,New,0.0475,Credit Card,Retail
+1036,7/1/23,Alice,West,17,Furniture,1475,1840.77,Returning,0.025,Credit Card,Online
+1019,6/1/23,Bob,East,38,Clothing,3637.25,4096.96,Returning,0.0225,Bank Transfer,Online
+1090,1/25/23,Charlie,South,17,Clothing,4190.26,4645.35,New,0.03,Credit Card,Retail
+1067,6/29/23,Eve,South,48,Food,4319.32,4625.56,Returning,0.025,Bank Transfer,Online
+1019,7/17/23,David,South,14,Clothing,1614.19,1882.79,New,0.0625,Credit Card,Retail
+1020,12/10/23,Bob,North,45,Electronics,4268.45,4551.6,New,0.02,Bank Transfer,Online
+1096,6/10/23,Charlie,South,6,Furniture,252.62,742,New,0.055,Credit Card,Retail
+1071,6/26/23,David,North,35,Clothing,295.82,684.67,New,0.0075,Credit Card,Online
+1052,10/12/23,David,North,46,Electronics,3136.42,3198.49,Returning,0.0725,Cash,Retail
+1033,3/4/23,Bob,West,14,Clothing,362.38,753.81,Returning,0.0475,Cash,Retail
+1040,5/30/23,Alice,South,47,Clothing,1656.82,1750.38,New,0.0525,Credit Card,Online
+1039,6/3/23,Bob,South,8,Clothing,3380.14,3609.34,Returning,0.0225,Credit Card,Online
+1082,6/5/23,Charlie,East,15,Clothing,1719.47,1832.6,Returning,0.03,Credit Card,Online
+1001,2/18/23,David,West,27,Clothing,939.02,1286.92,Returning,0.0175,Credit Card,Retail
+1011,12/3/23,Bob,East,13,Electronics,1442.69,1882.57,Returning,0.07,Cash,Online
+1092,3/25/23,Alice,West,49,Furniture,2315,2467.28,New,0.0375,Bank Transfer,Retail
+1057,12/27/23,Bob,South,31,Furniture,2403.16,2453.35,Returning,0.0475,Credit Card,Online
+1089,6/26/23,Eve,North,35,Furniture,3925.85,4082.11,New,0.055,Cash,Online
+1050,5/28/23,Alice,North,6,Furniture,3763.26,4102.72,New,0.0275,Credit Card,Retail
+1023,4/28/23,Charlie,North,5,Electronics,2311.25,2482.34,Returning,0.055,Credit Card,Retail
+1031,12/8/23,David,North,22,Food,4236.05,4382.32,New,0.05,Bank Transfer,Online
+1094,3/4/23,Bob,North,49,Food,615.47,715.84,Returning,0.0525,Credit Card,Retail
+1042,7/8/23,Alice,East,23,Electronics,1314,1567.78,Returning,0.0375,Credit Card,Retail
+1099,12/26/23,Eve,West,25,Electronics,4148.48,4293.69,New,0.0275,Bank Transfer,Online
+1007,2/18/23,Alice,South,34,Clothing,1921.07,2289.27,Returning,0.0175,Bank Transfer,Retail
+1016,11/23/23,Eve,East,26,Clothing,4906.85,4954.39,New,0.0625,Bank Transfer,Online
+1090,9/14/23,Charlie,West,47,Clothing,2357.95,2693.33,New,0.045,Bank Transfer,Online
+1060,8/12/23,David,North,5,Furniture,3970.08,4096.48,Returning,0.0325,Cash,Retail
+1002,5/21/23,Charlie,West,26,Clothing,2041.42,2291.17,Returning,0.07,Cash,Online
+1001,8/3/23,Bob,West,20,Food,2153.52,2303.7,Returning,0.0025,Cash,Retail
+1048,7/30/23,Alice,North,6,Furniture,1945.27,2309.43,New,0.065,Credit Card,Online
+1012,11/14/23,Eve,North,6,Clothing,3609.42,4082.62,Returning,0.075,Bank Transfer,Retail
+1069,2/1/23,Eve,North,18,Furniture,2760.21,3219.58,New,0.0675,Bank Transfer,Retail
+1037,6/7/23,Alice,South,4,Food,4721.7,5017.58,New,0.06,Cash,Retail
+1032,10/12/23,Alice,North,17,Clothing,1291.91,1528.59,Returning,0.0275,Credit Card,Retail
+1009,11/1/23,Bob,South,14,Food,547.79,958.76,Returning,0.0175,Credit Card,Retail
+1099,10/13/23,Charlie,North,14,Food,1996.64,2341.47,Returning,0.055,Credit Card,Online
+1019,5/24/23,Eve,South,13,Food,3102.73,3202.68,New,0.0225,Cash,Online
+1048,1/19/23,Bob,West,7,Clothing,4310.95,4723.2,Returning,0.0125,Credit Card,Retail
+1080,1/18/23,Charlie,East,44,Electronics,1763.67,1983.82,New,0.06,Credit Card,Online
+1003,9/14/23,Bob,West,15,Clothing,3286.24,3388.84,Returning,0.0225,Credit Card,Retail
+1020,3/19/23,Eve,West,19,Food,1783.48,1931.56,Returning,0.0675,Bank Transfer,Retail
+1024,6/24/23,Alice,North,43,Clothing,3105.24,3246.33,New,0.0625,Cash,Online
+1054,7/13/23,Alice,South,47,Food,4429.8,4694.21,New,0.0625,Bank Transfer,Online
+1033,4/23/23,Charlie,East,44,Electronics,1195.22,1320.06,Returning,0.0575,Bank Transfer,Retail
+1024,4/24/23,David,North,35,Furniture,2051,2121.55,Returning,0.065,Cash,Retail
+1075,8/10/23,Charlie,North,17,Electronics,4966.66,5037.27,Returning,0.06,Bank Transfer,Retail
+1072,6/15/23,David,North,35,Electronics,4349.36,4645.17,Returning,0.045,Credit Card,Retail
+1036,11/15/23,Bob,West,19,Furniture,2844.97,3215,Returning,0.0225,Credit Card,Retail
+1038,5/12/23,Bob,South,20,Clothing,2607.31,2774.86,New,0.0675,Credit Card,Retail
+1084,9/21/23,Eve,South,36,Furniture,1458.77,1485.75,New,0.0625,Credit Card,Online
+1099,2/24/23,David,East,35,Clothing,2610.19,2682.53,New,0.035,Cash,Retail
+1089,12/25/23,Eve,South,32,Clothing,4248.5,4706.7,New,0.0025,Bank Transfer,Retail
+1099,5/11/23,Alice,South,48,Food,3441.61,3693.45,Returning,0.0475,Bank Transfer,Online
+1025,10/15/23,David,North,44,Food,1485.72,1717.97,New,0.005,Credit Card,Retail
+1093,9/23/23,Charlie,North,40,Furniture,1047.25,1075.89,New,0.07,Credit Card,Retail
+1018,1/1/24,Alice,West,24,Electronics,1362.78,1729.81,New,0.0725,Bank Transfer,Online
+1082,6/11/23,Alice,North,17,Furniture,890.31,1159.06,Returning,0.015,Cash,Retail
+1066,3/28/23,Charlie,North,7,Clothing,523.42,632.44,New,0.05,Bank Transfer,Online
+1054,2/24/23,Alice,North,43,Food,2124.72,2188.66,Returning,0.0075,Credit Card,Retail
+1035,10/15/23,David,North,1,Furniture,610.83,808.69,New,0.055,Credit Card,Online
+1080,6/27/23,Eve,West,35,Furniture,900.97,1321.18,Returning,0.025,Cash,Online
+1061,12/15/23,Alice,North,32,Food,2759.26,3193.25,New,0.05,Bank Transfer,Online
+1041,1/8/23,David,East,36,Food,864.77,1170.16,Returning,0.0275,Cash,Retail
+1100,11/17/23,Bob,East,13,Food,366.2,732.69,New,0.01,Cash,Retail
+1033,11/9/23,David,East,6,Clothing,1621.07,1687.5,Returning,0.03,Credit Card,Online
+1068,9/4/23,Eve,East,14,Food,1140.58,1438.76,Returning,0.0075,Bank Transfer,Online
+1033,11/19/23,David,North,37,Electronics,2600.76,2937.57,New,0.0425,Credit Card,Retail
+1014,9/12/23,Charlie,East,48,Furniture,556.72,665.07,Returning,0.0025,Bank Transfer,Retail
+1021,11/24/23,Eve,North,15,Food,3771.27,4212.55,Returning,0.04,Credit Card,Retail
+1048,2/23/23,Bob,West,47,Food,4535.86,4641.41,New,0.0675,Credit Card,Retail
+1020,9/6/23,Charlie,East,4,Clothing,3730,3893.6,New,0.0625,Bank Transfer,Retail
+1008,8/27/23,David,South,40,Clothing,2687.49,3001.56,Returning,0.065,Bank Transfer,Online
+1007,8/17/23,Eve,East,16,Furniture,4310.31,4633.1,New,0.07,Credit Card,Retail
+1067,3/8/23,Bob,East,28,Electronics,3489.85,3842.55,New,0.0075,Bank Transfer,Online
+1017,2/20/23,Charlie,North,16,Furniture,102.23,167.12,New,0.01,Credit Card,Retail
+1033,4/7/23,Bob,East,4,Food,2000.75,2426.99,Returning,0.0425,Bank Transfer,Online
+1048,4/2/23,David,South,45,Electronics,4262.21,4533.31,Returning,0.0675,Credit Card,Online
+1076,9/21/23,Bob,North,26,Electronics,1762,2002.95,Returning,0.0725,Credit Card,Retail
+1059,10/18/23,Alice,North,28,Electronics,224.32,715.06,Returning,0.0025,Credit Card,Online
+1086,4/6/23,Charlie,West,32,Electronics,3743.59,4116.38,Returning,0.0275,Cash,Online
+1022,3/29/23,Bob,West,45,Furniture,4020.09,4087.91,Returning,0.015,Bank Transfer,Online
+1030,3/19/23,David,East,2,Clothing,844.94,1225.64,Returning,0.0575,Credit Card,Online
+1038,10/15/23,David,West,31,Clothing,2709.84,2766.51,New,0.0475,Cash,Retail
+1051,4/30/23,Bob,West,3,Food,1000.18,1023.64,Returning,0.01,Credit Card,Online
+1054,10/29/23,David,West,8,Clothing,3610.21,3817.99,Returning,0.0375,Cash,Retail
+1008,6/14/23,Eve,North,24,Clothing,1394.17,1891.02,New,0.0525,Credit Card,Online
+1027,7/1/23,Eve,North,15,Clothing,1615.26,1710.95,New,0.0575,Credit Card,Retail
+1027,8/11/23,Eve,North,43,Clothing,4232.61,4572.21,New,0.0025,Cash,Retail
+1098,11/7/23,Alice,West,31,Food,2407.8,2502.76,Returning,0.0675,Cash,Retail
+1021,1/7/23,Bob,North,9,Furniture,3365.28,3730.43,New,0.0425,Bank Transfer,Online
+1030,11/26/23,Alice,West,39,Electronics,2041.75,2299.37,Returning,0.06,Bank Transfer,Retail
+1097,9/20/23,David,North,45,Clothing,1525.13,1868.32,Returning,0.06,Cash,Retail
+1028,6/10/23,Alice,North,2,Furniture,3146.12,3255.53,Returning,0.015,Bank Transfer,Online
+1064,5/31/23,David,South,8,Clothing,816.54,1191.9,New,0.0075,Cash,Retail
+1097,3/26/23,David,East,7,Clothing,1896.35,2394.2,New,0.055,Bank Transfer,Online
+1069,5/27/23,Charlie,West,44,Electronics,1084.73,1420.9,Returning,0.0125,Credit Card,Online
+1061,4/22/23,Eve,South,39,Electronics,3494.19,3746,Returning,0.0625,Bank Transfer,Retail
+1048,2/5/23,David,North,42,Electronics,4723.83,5186.19,Returning,0.055,Credit Card,Online
+1019,10/12/23,Charlie,West,16,Clothing,4977.78,4995.55,New,0.0625,Credit Card,Online
+1004,7/7/23,Eve,North,35,Clothing,2278.87,2646.53,Returning,0.0225,Bank Transfer,Online
+1035,3/23/23,David,East,30,Clothing,1300.03,1745.52,New,0.0225,Cash,Retail
+1064,1/2/23,David,South,10,Electronics,2242.01,2282.23,Returning,0.05,Credit Card,Online
+1049,10/30/23,Alice,East,38,Food,4243.98,4474.51,New,0.0025,Credit Card,Online
+1017,7/16/23,Alice,South,18,Furniture,1069.73,1180.04,Returning,0.055,Bank Transfer,Online
+1044,1/11/23,Eve,North,5,Food,4762.87,5050.46,New,0.0625,Cash,Retail
+1092,8/22/23,David,East,29,Clothing,1742.24,2070.52,New,0.03,Cash,Online
+1030,7/14/23,Bob,East,39,Clothing,4929.73,5088.02,New,0.0575,Bank Transfer,Retail
+1093,4/29/23,Alice,North,34,Food,4201.11,4436.5,New,0.0125,Cash,Online
+1046,1/20/23,Eve,East,43,Clothing,4052.42,4199.3,New,0.025,Bank Transfer,Retail
+1006,9/18/23,David,West,45,Furniture,1623.63,1814.63,New,0.0725,Bank Transfer,Retail
+1099,10/20/23,David,South,23,Clothing,93.45,181.62,Returning,0.075,Bank Transfer,Retail
+1037,9/13/23,Bob,South,5,Furniture,1941.56,2385.48,Returning,0.0375,Credit Card,Online
+1024,8/10/23,Eve,South,30,Food,1543.96,1558.87,Returning,0.07,Credit Card,Online
+1093,8/14/23,David,West,6,Food,235.12,677.5,Returning,0.04,Credit Card,Online
+1046,2/22/23,Alice,South,46,Clothing,2551.56,2841.68,New,0.0225,Bank Transfer,Retail
+1053,12/21/23,Bob,North,44,Furniture,2045,2217.51,Returning,0.02,Credit Card,Online
+1095,12/8/23,Eve,East,4,Clothing,3191.05,3555.35,New,0.07,Credit Card,Online
+1099,12/30/23,Bob,West,29,Electronics,3124.87,3383.67,New,0.0125,Credit Card,Retail
+1060,10/7/23,Alice,South,23,Electronics,647.7,902.26,New,0.0425,Bank Transfer,Online
+1097,3/22/23,Eve,North,6,Electronics,4885.98,4949.95,Returning,0.0425,Bank Transfer,Online
+1063,7/21/23,Bob,East,32,Electronics,975.31,1176.17,New,0.055,Bank Transfer,Retail
+1085,6/7/23,Charlie,East,42,Clothing,2254.11,2382.23,Returning,0.0375,Credit Card,Retail
+1032,4/30/23,Alice,West,18,Electronics,2466.18,2483.87,Returning,0.02,Cash,Online
+1087,2/28/23,Alice,West,15,Furniture,4074.66,4261.11,Returning,0.0125,Credit Card,Retail
+1033,8/3/23,Alice,West,40,Food,541.19,595.2,Returning,0.0475,Credit Card,Online
+1067,5/8/23,Charlie,North,32,Food,2171.79,2307.64,Returning,0.055,Bank Transfer,Online
+1018,8/12/23,Charlie,North,9,Electronics,3161.09,3216.42,New,0.0425,Bank Transfer,Online
+1025,7/28/23,David,West,37,Electronics,1115.02,1174.48,New,0.055,Credit Card,Online
+1095,4/25/23,Bob,South,10,Electronics,3155.97,3263.49,Returning,0.01,Credit Card,Online
+1054,7/28/23,David,East,20,Clothing,4622.14,5122.07,New,0.065,Cash,Retail
+1058,1/14/23,Bob,East,6,Food,4987.71,4998.78,Returning,0.0425,Cash,Retail
+1067,1/9/23,Charlie,North,48,Electronics,210.63,533.58,New,0.01,Bank Transfer,Online
+1046,2/9/23,Charlie,East,3,Furniture,1216.16,1295.37,New,0.035,Cash,Retail
+1024,8/25/23,David,South,42,Electronics,1586.02,2047.13,New,0.0625,Cash,Retail
+1032,10/8/23,Eve,East,11,Food,2025.67,2081.55,New,0.0675,Bank Transfer,Online
+1047,12/25/23,David,North,43,Electronics,1249.17,1727.15,New,0.02,Cash,Retail
+1086,7/20/23,Bob,North,17,Food,1057.27,1366.62,New,0.0525,Credit Card,Retail
+1023,9/3/23,David,South,32,Electronics,4775.04,4785.66,New,0.0075,Cash,Online
+1066,10/5/23,Alice,South,4,Furniture,4596.68,5044.74,New,0.0025,Bank Transfer,Online
+1027,8/23/23,Bob,East,4,Electronics,282.61,548.25,New,0.0425,Credit Card,Online
+1002,1/4/23,Bob,East,17,Furniture,1727.12,1865.83,New,0.0525,Cash,Online
+1090,6/3/23,Eve,North,41,Furniture,2055.49,2441.46,New,0.06,Credit Card,Online
+1017,1/29/23,Charlie,South,19,Electronics,1233.12,1697.19,New,0.025,Credit Card,Online
+1033,4/19/23,Bob,South,5,Furniture,3162.92,3409.93,New,0,Cash,Online
+1009,4/8/23,Charlie,South,32,Clothing,3219.88,3384.5,Returning,0.035,Cash,Retail
+1043,8/3/23,David,East,22,Electronics,4260,4656.58,New,0,Bank Transfer,Online
+1048,10/20/23,Alice,South,6,Electronics,3717.3,4061.37,New,0.0075,Bank Transfer,Retail
+1039,3/16/23,Eve,North,35,Furniture,2735.74,3181.23,New,0.025,Credit Card,Retail
+1093,11/22/23,Charlie,North,22,Furniture,3285.25,3634.58,New,0.0325,Bank Transfer,Online
+1042,5/26/23,Bob,East,1,Electronics,1406.24,1535.57,New,0.02,Credit Card,Retail
+1026,5/8/23,Charlie,West,20,Clothing,2985.63,3452.14,New,0.0425,Credit Card,Retail
+1099,12/7/23,Bob,East,22,Furniture,2471.67,2533.04,Returning,0.005,Bank Transfer,Retail
+1050,2/11/23,Charlie,West,48,Furniture,710.06,851.35,Returning,0.01,Bank Transfer,Online
+1025,12/22/23,Bob,South,11,Food,1250.59,1515.49,Returning,0.0525,Bank Transfer,Retail
+1024,2/10/23,David,East,13,Clothing,1493.88,1781.09,New,0.01,Cash,Retail
+1013,2/3/23,Bob,North,42,Clothing,4625.33,4642.83,New,0.0475,Credit Card,Online
+1060,1/17/23,Bob,South,3,Electronics,1190.41,1582.89,New,0.005,Credit Card,Retail
+1007,6/14/23,Alice,North,9,Clothing,1481.76,1668.95,Returning,0.03,Credit Card,Retail
+1057,6/2/23,Bob,South,12,Electronics,1878.3,2087.45,New,0.0125,Bank Transfer,Retail
+1036,3/17/23,Alice,East,23,Food,3335.53,3742.12,New,0.0075,Bank Transfer,Retail
+1045,3/28/23,Eve,West,14,Clothing,635.28,831.13,Returning,0.0425,Bank Transfer,Retail
+1020,4/27/23,Alice,South,33,Furniture,4772.03,4805.17,Returning,0.07,Bank Transfer,Online
+1065,12/28/23,David,West,18,Food,4334.58,4431.04,New,0.005,Bank Transfer,Retail
+1008,12/8/23,Alice,South,49,Electronics,2907.22,3385.61,New,0.0325,Cash,Online
+1016,1/27/23,Eve,North,41,Food,3386.49,3430.99,New,0.0525,Bank Transfer,Retail
+1014,11/9/23,David,North,9,Electronics,132.47,316.39,New,0.035,Credit Card,Online
+1076,10/14/23,Charlie,South,23,Food,1727.78,1984.34,Returning,0.06,Bank Transfer,Online
+1087,5/14/23,Charlie,West,10,Electronics,3988.52,4240.23,New,0.0125,Credit Card,Online
+1015,8/7/23,Alice,East,19,Clothing,433.54,445.48,New,0.0725,Bank Transfer,Retail
+1092,6/17/23,Alice,East,47,Furniture,1447.45,1703.02,Returning,0.03,Bank Transfer,Retail
+1098,4/8/23,Eve,North,5,Electronics,2947.22,3145.27,New,0.025,Credit Card,Retail
+1066,9/25/23,Eve,East,47,Food,1319.24,1805.56,New,0.065,Credit Card,Retail
+1032,8/25/23,Bob,North,23,Electronics,4673.19,4761.18,Returning,0.0425,Credit Card,Retail
+1087,11/5/23,Eve,East,30,Electronics,698.74,882.28,Returning,0.0375,Credit Card,Online
+1063,6/22/23,Bob,South,25,Electronics,3997.1,4212.65,New,0.055,Cash,Online
+1086,7/9/23,David,North,28,Food,2564.35,2765.79,Returning,0.0425,Credit Card,Online
+1051,5/2/23,Alice,North,34,Furniture,3764.14,4100.4,Returning,0.0125,Bank Transfer,Retail
+1025,2/15/23,David,South,45,Clothing,1588.04,1703.64,New,0.05,Bank Transfer,Retail
+1058,3/5/23,Eve,North,48,Furniture,2596.72,2715.05,Returning,0.01,Cash,Online
+1063,5/10/23,David,East,47,Electronics,4291.33,4658.64,New,0.06,Credit Card,Retail
+1062,11/6/23,David,East,25,Food,2361.05,2616.19,New,0.075,Bank Transfer,Retail
+1022,12/29/23,David,North,10,Furniture,1830.61,2044.04,New,0.0275,Cash,Online
+1058,7/12/23,Eve,East,14,Electronics,2703.97,2796.88,New,0.0325,Bank Transfer,Online
+1058,11/3/23,David,West,42,Clothing,3600.95,3702.84,Returning,0.0025,Cash,Retail
+1086,6/30/23,Bob,North,46,Clothing,2245.64,2260.81,New,0,Cash,Retail
+1049,10/19/23,Eve,South,30,Clothing,4697.44,4752.24,New,0.07,Credit Card,Online
+1052,10/9/23,David,West,41,Electronics,1509.98,1792.83,New,0.01,Cash,Retail
+1042,1/29/23,Eve,North,25,Food,2403.54,2850.56,New,0.0325,Bank Transfer,Online
+1070,5/29/23,Charlie,South,14,Furniture,3796.79,3947.5,Returning,0.06,Bank Transfer,Online
+1015,9/24/23,Bob,East,35,Clothing,3461.15,3631.75,Returning,0.0675,Credit Card,Online
+1054,10/23/23,David,South,48,Electronics,4325.02,4391.67,Returning,0.04,Credit Card,Retail
+1060,1/11/23,Charlie,West,34,Electronics,4984.21,5184.64,New,0.0425,Cash,Online
+1097,6/13/23,Charlie,East,10,Furniture,2162.95,2191.19,Returning,0.05,Credit Card,Online
+1008,4/23/23,Eve,North,35,Clothing,600.2,1059.82,Returning,0.0725,Bank Transfer,Retail
+1053,7/6/23,Charlie,East,11,Electronics,200.56,540.38,New,0.045,Bank Transfer,Online
+1060,10/22/23,Bob,North,11,Furniture,3648.04,4143.51,Returning,0.0425,Credit Card,Retail
+1005,8/20/23,Bob,North,21,Food,4376.37,4818.95,New,0,Credit Card,Retail
+1068,8/15/23,Alice,South,21,Food,1142.53,1384.3,Returning,0.005,Credit Card,Retail
+1006,11/6/23,Bob,South,22,Food,834.32,1098.97,Returning,0.0425,Cash,Online
+1096,4/8/23,Charlie,South,45,Clothing,357.92,461.3,Returning,0.07,Cash,Online
+1094,2/24/23,Bob,West,7,Furniture,4122.38,4358.78,Returning,0.065,Bank Transfer,Retail
+1047,4/21/23,Eve,West,17,Furniture,1591.34,2043.82,New,0.0725,Cash,Retail
+1099,6/1/23,Alice,South,2,Electronics,2038.4,2073.32,New,0.04,Cash,Retail
+1055,9/3/23,Charlie,West,12,Electronics,2538.61,2971.75,Returning,0.06,Cash,Online
+1040,3/10/23,Alice,East,42,Electronics,4205.29,4382.35,New,0.0625,Cash,Retail
+1052,11/8/23,Charlie,East,18,Furniture,3271.62,3722.38,Returning,0.0475,Bank Transfer,Retail
+1016,10/16/23,Eve,West,11,Electronics,3094.57,3565.6,Returning,0.025,Credit Card,Retail
+1013,9/7/23,Alice,West,16,Furniture,919.58,1258.3,Returning,0.035,Bank Transfer,Online
+1030,2/5/23,David,East,49,Furniture,2590.29,2925.86,Returning,0.065,Cash,Retail
+1019,8/27/23,Charlie,North,18,Food,3591.14,3822.99,Returning,0.0225,Credit Card,Online
+1017,5/28/23,David,East,35,Electronics,4867.64,5287.05,Returning,0.07,Credit Card,Online
+1063,8/15/23,Alice,East,26,Food,1046.96,1528.15,New,0.0175,Credit Card,Retail
+1019,9/1/23,David,West,16,Clothing,97.24,487.03,New,0.055,Bank Transfer,Retail
+1092,12/3/23,David,East,6,Clothing,422.74,737.49,Returning,0.0475,Credit Card,Retail
+1058,12/31/23,Alice,West,44,Clothing,1910.47,2217.8,New,0.055,Bank Transfer,Online
+1055,7/20/23,Eve,West,43,Furniture,4111.7,4537.94,Returning,0.0325,Bank Transfer,Online
+1090,6/3/23,David,South,47,Furniture,85.35,360.54,New,0.07,Cash,Online
+1090,3/14/23,David,East,47,Furniture,2310.82,2714.71,New,0.0475,Cash,Retail
+1062,7/20/23,Eve,North,48,Electronics,1679.69,1939.04,New,0.0225,Credit Card,Online
+1023,10/23/23,David,South,42,Food,309.78,350.38,Returning,0.0475,Credit Card,Retail
+1009,1/17/23,David,West,12,Furniture,2278.67,2476.8,New,0.0225,Cash,Retail
+1012,5/9/23,David,West,13,Food,1311.01,1538.79,Returning,0.0225,Bank Transfer,Retail
+1001,8/5/23,Bob,North,4,Food,1791.83,1871.22,Returning,0.03,Bank Transfer,Online
+1058,3/2/23,Eve,West,39,Food,3542.8,3603.02,Returning,0.065,Cash,Online
+1001,4/14/23,David,East,2,Electronics,2631.68,2904.06,New,0.0375,Bank Transfer,Online
+1034,2/11/23,Eve,South,26,Electronics,667,718.72,New,0.05,Cash,Retail
+1096,1/25/23,Charlie,West,27,Clothing,4809,4967.44,New,0.03,Cash,Online
+1048,2/8/23,Charlie,West,27,Clothing,3197.76,3572.61,Returning,0.02,Credit Card,Online
+1089,10/18/23,David,North,15,Food,3841.05,4323.62,Returning,0.0725,Credit Card,Retail
+1001,5/11/23,Eve,East,8,Clothing,442.11,803.87,New,0.045,Cash,Retail
+1016,8/17/23,Eve,West,7,Food,282.94,779.33,Returning,0.07,Credit Card,Online
+1061,4/18/23,Eve,North,47,Electronics,146.27,498.46,New,0.015,Cash,Retail
+1064,6/21/23,Bob,West,46,Electronics,984.53,1138.49,New,0.01,Bank Transfer,Online
+1063,4/12/23,Charlie,North,40,Electronics,2101.32,2440.63,New,0.065,Bank Transfer,Retail
+1069,12/20/23,Eve,North,12,Furniture,4682.34,5036.4,New,0.05,Bank Transfer,Retail
+1022,1/12/23,Eve,East,13,Food,2312.45,2504.6,Returning,0.015,Bank Transfer,Online
+1093,10/2/23,Bob,West,43,Electronics,1486.76,1505.44,New,0.02,Cash,Retail
+1067,4/11/23,Bob,East,17,Food,2831.58,3186.15,New,0.06,Bank Transfer,Retail
+1076,2/13/23,Eve,North,17,Clothing,604.08,624.71,New,0.035,Bank Transfer,Retail
+1026,11/1/23,Alice,South,36,Clothing,3067.05,3386.33,New,0.05,Bank Transfer,Online
+1016,1/17/23,Eve,West,21,Electronics,2863.74,2953.91,New,0.025,Bank Transfer,Retail
+1051,11/26/23,Eve,South,8,Food,3970.37,4257.52,New,0.0275,Cash,Retail
+1086,2/26/23,Bob,West,5,Electronics,4934.1,5191.02,New,0.075,Bank Transfer,Online
+1057,11/7/23,Bob,East,26,Clothing,1291.82,1308.44,Returning,0.0175,Credit Card,Online
+1029,10/30/23,Eve,East,16,Electronics,2572.8,2760.6,Returning,0.0375,Credit Card,Retail
+1078,1/12/23,Eve,East,36,Food,4548.88,4853.41,Returning,0.0625,Credit Card,Retail
+1092,11/14/23,Eve,East,28,Clothing,3936.69,4362.51,Returning,0.0175,Credit Card,Retail
+1069,3/21/23,Bob,East,29,Furniture,2462.66,2908.09,New,0.03,Credit Card,Online
+1047,8/4/23,Eve,South,47,Clothing,4729.59,4976.68,Returning,0.045,Credit Card,Retail
+1094,12/5/23,Eve,East,12,Furniture,333.32,700.25,Returning,0.035,Cash,Online
+1062,9/21/23,David,North,37,Electronics,4658.44,4823.5,Returning,0.035,Credit Card,Online
+1069,5/29/23,Alice,North,30,Electronics,300.01,477.68,New,0.0275,Bank Transfer,Retail
+1076,3/22/23,Charlie,South,23,Food,2759.16,2864.45,Returning,0.045,Credit Card,Retail
+1016,8/3/23,Alice,West,16,Furniture,4457.68,4743.03,Returning,0.0475,Cash,Online
+1090,7/17/23,David,North,14,Electronics,1350.47,1514.61,New,0.05,Credit Card,Retail
+1090,7/19/23,Charlie,West,10,Furniture,2387.63,2438.97,Returning,0.005,Bank Transfer,Retail
+1048,1/25/23,Eve,South,7,Electronics,1655.43,2001.08,New,0.0475,Bank Transfer,Online
+1085,3/30/23,David,West,45,Clothing,4763.11,5119.91,Returning,0.0725,Cash,Retail
+1039,9/25/23,Eve,West,37,Electronics,4127.05,4313.45,New,0.04,Cash,Online
+1100,5/23/23,Bob,West,29,Food,3559.56,3607.15,Returning,0.0525,Cash,Retail
+1033,2/28/23,David,West,3,Clothing,2958.75,3177.64,Returning,0.0425,Cash,Online
+1094,12/31/23,Bob,South,15,Food,4111.93,4338.67,Returning,0.065,Credit Card,Online
+1023,1/26/23,David,North,36,Clothing,1991.72,2329.37,New,0.07,Credit Card,Retail
+1010,2/16/23,David,East,47,Furniture,2265.38,2429.93,Returning,0.015,Bank Transfer,Online
+1069,10/15/23,Bob,West,46,Food,3663.51,4007.98,New,0.0325,Cash,Online
+1100,9/23/23,Charlie,North,19,Electronics,1820.89,2257.92,New,0.03,Cash,Retail
+1034,1/16/23,Alice,North,13,Furniture,366.31,492.68,New,0.03,Credit Card,Retail
+1052,7/18/23,Eve,South,42,Electronics,417.96,907.63,New,0.01,Cash,Retail
+1095,10/9/23,David,North,21,Clothing,621.05,820.37,Returning,0.06,Bank Transfer,Online
+1010,3/27/23,Eve,South,37,Clothing,4354.92,4495.88,Returning,0.0025,Bank Transfer,Online
+1019,9/7/23,Bob,West,27,Electronics,2387.52,2604.06,Returning,0.04,Cash,Online
+1058,9/27/23,Eve,West,29,Electronics,3578.77,3635.02,New,0.05,Bank Transfer,Retail
+1096,12/1/23,Bob,East,20,Furniture,1994.9,2066.5,Returning,0.015,Bank Transfer,Online
+1001,4/27/23,Eve,East,25,Electronics,1330.62,1543.69,New,0.0675,Credit Card,Online
+1069,1/7/23,Alice,East,6,Food,1768.6,2152.2,New,0.0625,Bank Transfer,Retail
+1004,5/17/23,Alice,North,36,Food,3981.2,4432.35,New,0.035,Cash,Online
+1016,6/25/23,Alice,West,2,Electronics,3144.82,3480.58,Returning,0.03,Cash,Retail
+1024,11/24/23,Alice,South,22,Food,4691.32,4752.88,Returning,0.0175,Bank Transfer,Retail
+1080,11/11/23,Alice,East,32,Electronics,3414.54,3753.83,New,0.055,Cash,Retail
+1002,8/3/23,Alice,South,16,Furniture,2872.4,3193.76,Returning,0.01,Credit Card,Online
+1092,3/23/23,Bob,South,18,Food,3070.47,3475.29,Returning,0.05,Bank Transfer,Online
+1032,8/11/23,David,East,5,Food,4714.74,5129.11,New,0.0625,Bank Transfer,Online
+1091,4/13/23,Eve,West,36,Electronics,3951.59,4387.01,New,0.0175,Bank Transfer,Retail
+1084,9/30/23,Alice,East,30,Food,169,381.92,Returning,0.065,Cash,Retail
+1024,1/14/23,Bob,South,45,Clothing,2693.99,3045.94,New,0.0025,Cash,Retail
+1012,6/8/23,Bob,East,19,Furniture,3457.28,3598.72,New,0.0675,Bank Transfer,Online
+1050,6/1/23,Bob,South,23,Furniture,3756.06,4255.73,Returning,0.01,Cash,Online
+1035,4/18/23,David,South,34,Food,1105.05,1200.96,Returning,0.0475,Cash,Online
+1033,7/7/23,Eve,East,13,Food,4342.53,4357.49,New,0.02,Bank Transfer,Online
+1033,10/28/23,David,North,43,Clothing,4781.42,4864.34,Returning,0.0625,Bank Transfer,Online
+1061,4/8/23,Charlie,East,29,Clothing,1221.74,1611.92,New,0.0375,Cash,Retail
+1051,5/11/23,Bob,North,36,Food,4418.95,4647.87,New,0.01,Bank Transfer,Online
+1043,10/20/23,Charlie,South,22,Food,530.04,759.32,Returning,0.0425,Bank Transfer,Retail
+1012,6/20/23,Alice,South,47,Clothing,325.75,803.71,New,0.03,Bank Transfer,Retail
+1067,7/2/23,Alice,North,36,Electronics,689.66,1150.28,New,0.05,Bank Transfer,Online
+1065,12/30/23,David,South,9,Clothing,335.82,498.31,New,0.065,Cash,Retail
+1033,2/8/23,Eve,North,39,Electronics,4232.81,4345.25,Returning,0.03,Bank Transfer,Online
+1040,1/15/23,Charlie,North,19,Furniture,342.3,768.06,Returning,0.0225,Credit Card,Online
+1074,1/4/23,Eve,South,38,Furniture,1394.74,1848.69,Returning,0,Bank Transfer,Retail
+1043,12/15/23,David,West,6,Clothing,563.59,838.97,New,0.0425,Credit Card,Online
+1044,7/29/23,Alice,North,47,Electronics,1512.34,1830.76,New,0.03,Bank Transfer,Online
+1029,6/10/23,Eve,East,15,Clothing,498.27,634.16,Returning,0.0275,Credit Card,Retail
+1013,1/16/23,Eve,East,20,Clothing,3356.62,3759.01,Returning,0.0125,Credit Card,Retail
+1012,4/18/23,Alice,South,9,Electronics,709.97,1029.71,Returning,0.0325,Bank Transfer,Retail
+1095,11/7/23,Charlie,West,32,Clothing,4266.64,4523.36,New,0.075,Bank Transfer,Retail
+1046,8/15/23,Alice,South,4,Furniture,4095.1,4134.55,Returning,0.0225,Bank Transfer,Retail
+1002,6/19/23,Eve,West,18,Food,117.63,576.44,New,0.045,Credit Card,Retail
+1035,2/3/23,Charlie,North,5,Food,4483.85,4795.42,Returning,0.0575,Cash,Online
+1087,9/8/23,Charlie,North,20,Clothing,193.27,297.69,New,0.055,Cash,Online
+1081,9/4/23,Alice,North,23,Electronics,1236.25,1543.38,New,0.025,Bank Transfer,Online
+1090,9/26/23,Eve,North,11,Electronics,210.33,552.29,Returning,0.045,Cash,Retail
+1008,5/21/23,David,East,37,Furniture,1712.43,1980.06,New,0.065,Cash,Online
+1093,10/1/23,Eve,East,22,Electronics,2593.64,2955.51,Returning,0,Bank Transfer,Retail
+1026,4/6/23,Bob,South,4,Electronics,3993.39,4288.3,New,0.0325,Credit Card,Online
+1074,8/15/23,David,West,29,Furniture,1723.01,2197.42,New,0.0175,Bank Transfer,Retail
+1090,2/8/23,Charlie,North,44,Clothing,3542.18,3578.49,Returning,0.03,Cash,Online
+1034,10/29/23,David,North,34,Food,978.15,1040.21,New,0.03,Credit Card,Retail
+1007,1/29/23,Charlie,West,13,Furniture,3765.46,3860.56,Returning,0.055,Cash,Retail
+1068,11/14/23,Charlie,West,42,Clothing,1218.18,1566.36,Returning,0.0075,Credit Card,Retail
+1058,9/2/23,David,South,9,Furniture,760.55,1086.89,Returning,0.0375,Cash,Retail
+1075,8/24/23,Charlie,West,42,Clothing,967.77,1414.88,New,0.0425,Bank Transfer,Online
+1029,7/4/23,Charlie,North,31,Furniture,951.21,1320.32,New,0.0375,Cash,Online
+1036,9/29/23,Bob,North,7,Clothing,2588.67,2847.76,New,0.055,Cash,Retail
+1089,8/24/23,Eve,North,4,Furniture,4231.75,4727.75,Returning,0.03,Credit Card,Retail
+1021,8/27/23,Eve,North,19,Clothing,444.05,584.44,Returning,0.07,Cash,Retail
+1036,9/23/23,Bob,North,42,Furniture,3549.43,3967.69,New,0.035,Bank Transfer,Online
+1010,12/25/23,David,South,30,Food,3289.01,3508.14,New,0.0425,Bank Transfer,Retail
+1073,12/6/23,Alice,North,31,Food,4368.97,4696.85,Returning,0.0625,Bank Transfer,Retail
+1024,3/6/23,Alice,South,35,Electronics,1258.53,1624.89,New,0.02,Credit Card,Online
+1064,6/26/23,Alice,North,21,Clothing,2278.04,2598.58,Returning,0.005,Credit Card,Retail
+1099,1/3/23,Bob,East,31,Furniture,4632.85,4711.7,New,0.0525,Cash,Retail
+1049,5/22/23,Bob,East,19,Clothing,3316.97,3544.02,Returning,0.035,Cash,Online
+1099,6/7/23,Charlie,East,31,Food,1974.4,2259.5,New,0.0675,Cash,Retail
+1036,11/20/23,Alice,East,32,Clothing,700.49,1126.52,New,0.0725,Credit Card,Retail
+1082,5/26/23,David,South,2,Furniture,1349.3,1576.69,Returning,0.03,Credit Card,Online
+1096,10/20/23,David,South,10,Clothing,2927.02,3387.21,Returning,0.03,Cash,Retail
+1024,6/2/23,Alice,West,2,Furniture,3604.93,3830.71,Returning,0.03,Credit Card,Online
+1023,7/12/23,Alice,North,2,Food,665.89,944.79,New,0.025,Credit Card,Retail
+1062,3/14/23,Alice,East,24,Food,3018.01,3418.19,Returning,0.0575,Bank Transfer,Retail
+1096,11/1/23,Bob,South,17,Food,2774.24,3069.94,Returning,0.0575,Bank Transfer,Retail
+1037,12/10/23,Bob,North,32,Electronics,2594.08,3074.59,New,0.035,Cash,Retail
+1012,5/20/23,Bob,North,16,Food,3466.11,3799.67,Returning,0.0025,Cash,Retail
+1055,7/6/23,Eve,South,16,Clothing,4195.38,4461.51,Returning,0.0225,Bank Transfer,Online
+1013,10/20/23,David,East,46,Electronics,1648.8,1670.36,Returning,0.0225,Credit Card,Retail
+1023,3/2/23,David,West,39,Food,4450.61,4663.34,New,0.06,Cash,Retail
+1089,7/17/23,Charlie,North,31,Clothing,845.14,1001.77,New,0.0075,Cash,Online
+1099,10/22/23,Bob,West,43,Clothing,906.47,1283.04,New,0.06,Cash,Online
+1030,11/15/23,Eve,East,24,Clothing,1370.52,1482.58,Returning,0.05,Credit Card,Retail
+1017,10/29/23,Eve,East,1,Furniture,641.68,752.24,New,0.055,Bank Transfer,Online
+1062,12/10/23,David,West,11,Electronics,1190.08,1292.94,Returning,0.0325,Cash,Retail
+1084,1/11/23,Bob,East,21,Clothing,576.74,648.29,Returning,0.05,Bank Transfer,Online
+1089,3/3/23,Charlie,North,4,Furniture,4117.67,4280.06,Returning,0.045,Bank Transfer,Online
+1086,11/29/23,Bob,West,7,Food,737.9,1182,New,0.0575,Credit Card,Retail
+1013,8/14/23,Alice,East,26,Clothing,3749.12,4138.83,New,0.0325,Credit Card,Online
+1059,6/2/23,Bob,West,47,Furniture,287.17,657.44,Returning,0.035,Credit Card,Retail
+1019,7/18/23,Alice,North,12,Clothing,4745.18,5145.88,Returning,0.0475,Credit Card,Online
+1049,2/21/23,Alice,East,31,Electronics,3570.24,3712.25,New,0.0075,Credit Card,Online
+1100,9/17/23,Charlie,North,17,Electronics,83.64,528.49,New,0.0325,Credit Card,Online
+1012,2/28/23,David,East,33,Food,3831.09,3908.37,New,0.0725,Cash,Retail
+1061,3/13/23,Bob,South,11,Clothing,2594.71,2769.52,Returning,0.0025,Bank Transfer,Retail
+1019,5/28/23,Alice,East,28,Furniture,3907.86,4205.37,New,0.0225,Credit Card,Online
+1076,12/15/23,Bob,West,32,Food,2636.36,2696.78,New,0.0225,Cash,Retail
+1009,3/4/23,David,East,1,Clothing,3223.07,3590.83,New,0.0475,Bank Transfer,Retail
+1071,11/6/23,David,North,47,Food,3942.34,4142.09,Returning,0.0075,Credit Card,Retail
+1028,8/31/23,Eve,North,28,Furniture,2055.28,2449.64,New,0.0475,Credit Card,Online
+1078,1/1/24,David,East,42,Food,63.41,314.93,Returning,0.0075,Cash,Retail
+1095,11/26/23,Charlie,West,7,Food,4257.24,4355.87,Returning,0.0075,Bank Transfer,Online
+1052,4/17/23,Alice,South,2,Food,1935.41,2305.44,Returning,0.055,Credit Card,Online
+1083,8/14/23,Eve,West,42,Clothing,2505.41,2638.96,New,0.025,Bank Transfer,Online
+1016,11/9/23,Charlie,South,24,Furniture,88.44,338.94,New,0.0725,Cash,Online
+1069,8/6/23,Bob,North,4,Electronics,2485.86,2532.87,New,0.0025,Credit Card,Online
+1099,8/29/23,Alice,West,44,Clothing,4933.11,5245.86,Returning,0.0325,Bank Transfer,Retail
+1012,9/16/23,David,South,19,Electronics,1427.42,1763.69,New,0.0075,Cash,Retail
+1025,9/19/23,Alice,East,26,Electronics,2007.32,2202.87,Returning,0.0275,Cash,Online
+1052,1/5/23,Bob,North,11,Clothing,3451.59,3929.26,New,0.075,Credit Card,Retail
+1085,9/18/23,Eve,East,40,Clothing,4083.23,4521.57,New,0.0675,Bank Transfer,Retail
+1100,2/23/23,Eve,North,43,Furniture,2116.09,2472.98,New,0.0025,Credit Card,Retail
+1053,2/16/23,Eve,West,11,Furniture,1582.86,1942.55,New,0.0425,Credit Card,Retail
+1023,8/3/23,David,West,45,Food,4692.24,4825.92,Returning,0.0475,Bank Transfer,Retail
+1016,6/26/23,Charlie,North,3,Electronics,3401.87,3733.71,Returning,0.015,Bank Transfer,Retail
+1057,1/9/23,Charlie,North,12,Furniture,639.16,746.28,Returning,0.01,Bank Transfer,Retail
+1039,4/9/23,Alice,North,3,Food,391.19,471.75,Returning,0.0675,Cash,Online
+1053,1/20/23,David,West,42,Furniture,2443.57,2943.31,New,0.0725,Cash,Online
+1042,8/29/23,Eve,South,27,Clothing,1139.45,1454.41,Returning,0.075,Bank Transfer,Online
+1058,3/2/23,Eve,East,49,Furniture,1307.22,1528.4,Returning,0.06,Cash,Retail
+1039,6/27/23,Bob,East,2,Electronics,4394.58,4545.78,Returning,0.05,Credit Card,Retail
+1014,12/4/23,Bob,West,49,Furniture,493.35,799.27,New,0.025,Bank Transfer,Online
+1095,3/3/23,Eve,East,16,Electronics,3591.05,3625.35,Returning,0.0125,Credit Card,Retail
+1005,5/25/23,Eve,North,2,Clothing,1392.15,1448.54,Returning,0.005,Bank Transfer,Retail
+1035,8/4/23,David,South,30,Electronics,3813.62,3839.72,New,0.0525,Credit Card,Online
+1087,1/3/23,Charlie,East,20,Furniture,3625.94,3880.53,New,0.06,Bank Transfer,Online
+1093,6/9/23,Bob,South,38,Food,86.59,390.89,Returning,0.0625,Credit Card,Online
+1075,8/15/23,Charlie,North,28,Clothing,2570.22,2610.84,Returning,0.0675,Bank Transfer,Retail
+1018,9/26/23,David,East,25,Furniture,739.63,1103.03,New,0.065,Bank Transfer,Retail
+1076,4/30/23,Eve,West,32,Clothing,4337.82,4460.71,Returning,0.075,Cash,Retail
+1009,3/30/23,Charlie,South,10,Clothing,4364.35,4710.1,New,0.0175,Credit Card,Online
+1074,11/25/23,Eve,North,42,Furniture,2120.81,2611.94,Returning,0.0575,Cash,Online
+1058,3/9/23,Eve,South,40,Furniture,2249.76,2598.4,Returning,0.045,Credit Card,Retail
+1017,12/23/23,Alice,East,33,Food,1551.25,1994.01,Returning,0.02,Cash,Online
+1007,4/8/23,Charlie,East,13,Clothing,3597.2,4071.82,Returning,0.0725,Bank Transfer,Online
+1046,9/24/23,Charlie,West,41,Clothing,1825.37,2073.88,Returning,0.0675,Cash,Retail
+1013,4/15/23,Eve,North,42,Furniture,1375.57,1729.71,New,0.01,Cash,Online
+1040,11/19/23,David,North,47,Electronics,2189.54,2617,New,0.0025,Bank Transfer,Online
+1042,5/3/23,Alice,West,37,Furniture,502.86,687.6,Returning,0.0525,Cash,Online
+1009,1/29/23,Eve,West,16,Clothing,3745.69,3883.77,Returning,0.045,Bank Transfer,Retail
+1050,5/17/23,Bob,North,45,Furniture,112.35,586.18,Returning,0.07,Credit Card,Retail
+1027,7/14/23,Bob,South,22,Food,3240.2,3606.09,New,0.0175,Cash,Online
+1066,8/14/23,Alice,South,20,Electronics,955.18,1072.82,New,0.0075,Bank Transfer,Retail
+1005,11/28/23,David,West,43,Furniture,1200.4,1430.45,New,0.02,Bank Transfer,Retail
+1029,6/19/23,Eve,South,27,Food,3196.38,3596.64,New,0.0025,Cash,Retail
+1037,1/9/23,Charlie,North,41,Clothing,4965.07,5243.13,New,0.0025,Credit Card,Online
+1038,2/9/23,Alice,East,16,Furniture,3899.7,4228.18,New,0.0675,Cash,Retail
+1083,1/25/23,David,East,34,Clothing,1167.91,1547.26,New,0.0275,Bank Transfer,Online
+1008,9/18/23,Charlie,South,32,Food,921.32,1236.1,New,0.03,Credit Card,Online
+1065,8/14/23,Bob,West,26,Clothing,4337.85,4612.49,Returning,0.0025,Cash,Retail
+1086,5/4/23,Bob,West,25,Food,2248.71,2626.02,New,0.02,Bank Transfer,Online
+1017,2/7/23,Charlie,West,2,Food,728.41,1094.92,New,0.06,Cash,Retail
+1071,11/24/23,Alice,West,12,Food,4317.95,4636.59,New,0.045,Credit Card,Retail
+1089,9/8/23,Bob,West,40,Furniture,4089.66,4275.96,New,0.0575,Credit Card,Online
+1045,6/25/23,Eve,South,9,Clothing,4920.34,5129.19,Returning,0.0325,Credit Card,Online
+1004,3/31/23,Charlie,East,12,Clothing,4553.23,5038.74,New,0.0225,Credit Card,Retail
+1036,2/6/23,Charlie,East,26,Electronics,4266.36,4331.43,Returning,0.035,Credit Card,Retail
+1070,11/12/23,Bob,South,9,Electronics,310.24,451.81,Returning,0.025,Cash,Retail
+1031,6/25/23,Alice,West,10,Electronics,566.86,818.14,Returning,0.0625,Credit Card,Retail
+1019,10/11/23,Eve,South,32,Electronics,2866.47,3286.47,New,0.0225,Credit Card,Online
+1061,3/22/23,Alice,East,34,Clothing,2680.82,2771.02,New,0.05,Bank Transfer,Online
+1054,4/24/23,David,North,48,Food,2316.92,2462.63,New,0.01,Credit Card,Online
+1039,2/9/23,David,South,20,Food,2014.11,2056.35,Returning,0.0525,Bank Transfer,Retail
+1091,10/28/23,Bob,West,39,Furniture,2184.49,2540.42,Returning,0.0675,Bank Transfer,Online
+1074,8/12/23,Bob,East,2,Food,2868.02,2994.74,Returning,0.045,Bank Transfer,Online
+1090,11/14/23,Bob,East,1,Clothing,60.28,260.73,Returning,0.0425,Cash,Online
+1019,12/15/23,David,East,36,Clothing,1340.51,1567.92,New,0.0725,Cash,Online
+1039,4/25/23,Alice,East,24,Clothing,2615.48,3062.22,New,0.0475,Bank Transfer,Retail
+1067,7/5/23,Alice,West,27,Furniture,3624.97,3836.52,New,0.02,Cash,Online
+1045,11/19/23,Bob,North,2,Electronics,912.08,993.24,Returning,0.0225,Credit Card,Online
+1013,2/25/23,Eve,East,31,Food,2757.06,3023.97,Returning,0.0525,Cash,Online
+1092,2/9/23,Alice,South,14,Clothing,3586.58,4068.43,New,0.055,Credit Card,Online
+1058,12/20/23,David,North,2,Clothing,2250.91,2558.68,New,0.0225,Credit Card,Retail
+1020,2/9/23,Charlie,East,29,Electronics,184.05,675.91,Returning,0.025,Cash,Retail
+1092,12/13/23,Charlie,North,15,Clothing,2273.88,2696.02,New,0.075,Cash,Online
+1072,8/25/23,Charlie,South,12,Food,1517.4,1545.02,New,0.0075,Bank Transfer,Retail
+1061,10/16/23,Eve,East,37,Furniture,4651.77,4984.39,Returning,0.03,Cash,Retail
+1039,9/19/23,Bob,South,28,Clothing,666.84,817.36,Returning,0.005,Cash,Retail
+1001,8/4/23,David,West,20,Food,3279.76,3563.97,Returning,0.0625,Cash,Retail
+1003,5/27/23,Eve,East,39,Clothing,310.96,457.84,New,0.0075,Credit Card,Online
+1077,12/2/23,David,East,24,Electronics,2258.54,2439.49,Returning,0.05,Credit Card,Retail
+1092,6/17/23,David,East,21,Clothing,2792.2,3254.55,New,0.005,Credit Card,Retail
+1062,4/2/23,Bob,East,10,Clothing,1524.88,1636.14,New,0.05,Bank Transfer,Online
+1063,12/19/23,Charlie,West,46,Furniture,2302.62,2740.93,Returning,0.0625,Bank Transfer,Online
+1025,2/28/23,Bob,East,14,Electronics,859.59,884.51,New,0.03,Bank Transfer,Online
+1056,2/28/23,Eve,North,37,Electronics,1555.41,1609.94,Returning,0.04,Credit Card,Online
+1033,10/31/23,Eve,East,18,Furniture,3124.48,3553.27,Returning,0.03,Cash,Retail
+1038,6/18/23,Eve,West,24,Clothing,1543.91,1862.88,New,0.0225,Bank Transfer,Online
+1006,9/26/23,Bob,East,14,Food,4503.73,4879.88,New,0.06,Bank Transfer,Retail
+1058,12/29/23,David,North,34,Electronics,3160.61,3273.22,Returning,0.02,Credit Card,Retail
+1044,2/14/23,David,West,12,Electronics,2221.31,2494.48,Returning,0.055,Bank Transfer,Online
+1045,12/11/23,Alice,West,22,Clothing,241.85,613.09,Returning,0.015,Cash,Online
+1032,6/30/23,Eve,North,6,Clothing,2522.76,2840.14,Returning,0.0175,Credit Card,Retail
+1045,6/19/23,David,North,36,Electronics,3835.64,4076.77,Returning,0.025,Credit Card,Retail
+1061,12/22/23,Alice,North,45,Clothing,1364.51,1844.8,Returning,0.045,Cash,Online
+1047,7/10/23,David,North,36,Food,4043.53,4384.85,New,0.035,Cash,Online
+1021,6/4/23,Eve,North,22,Electronics,1296.44,1751.24,New,0.055,Cash,Online
+1080,7/7/23,Charlie,West,14,Food,4127.54,4495.13,New,0.015,Bank Transfer,Retail
+1085,1/7/23,Eve,West,16,Food,472.08,842.46,New,0,Cash,Retail
+1075,5/13/23,Bob,East,36,Clothing,4337.61,4386.82,Returning,0.0575,Credit Card,Online
+1036,8/23/23,David,East,25,Food,2520.97,2707.11,New,0.0625,Cash,Retail
+1099,2/14/23,David,South,32,Clothing,1517.86,1948.46,New,0.005,Credit Card,Online
+1019,11/10/23,Bob,East,33,Furniture,1362.31,1486.29,Returning,0.045,Credit Card,Retail
+1020,9/6/23,Bob,East,45,Clothing,2188.45,2255.05,New,0.0275,Bank Transfer,Retail
+1057,1/31/23,Charlie,North,36,Food,4995.3,5165.09,Returning,0.06,Cash,Online
+1018,1/23/23,David,North,20,Furniture,1140.62,1258.63,Returning,0.065,Bank Transfer,Online
+1047,6/9/23,David,East,18,Clothing,560.92,1024.31,Returning,0.065,Cash,Online
+1049,12/29/23,Charlie,South,38,Food,2945.92,3381.22,Returning,0.0575,Cash,Retail
+1014,6/7/23,Alice,North,3,Electronics,2468.29,2723.13,Returning,0.02,Cash,Retail
+1015,2/8/23,Charlie,East,23,Electronics,2644.77,2684.83,New,0.06,Cash,Online
+1031,3/23/23,Eve,East,32,Clothing,3351.33,3711.47,New,0.04,Cash,Retail
+1001,12/22/23,David,West,45,Clothing,1372.36,1687.83,New,0.005,Credit Card,Online
+1054,9/15/23,Bob,South,16,Electronics,4557.79,5043.36,Returning,0.035,Credit Card,Retail
+1003,7/25/23,Eve,West,5,Food,2206.58,2490.47,New,0.07,Cash,Online
+1016,3/18/23,David,South,4,Food,688.98,863.81,New,0.0675,Credit Card,Retail
+1087,1/12/23,Charlie,North,21,Food,3724.38,3988.7,New,0.0075,Bank Transfer,Retail
+1057,10/22/23,Eve,South,40,Clothing,3233.37,3723.21,New,0.055,Bank Transfer,Retail
+1075,8/12/23,David,East,14,Furniture,1612.93,1964.15,Returning,0.06,Bank Transfer,Retail
+1012,1/13/23,Alice,East,39,Furniture,3126.52,3465.79,New,0.02,Cash,Online
+1074,2/15/23,Alice,South,31,Furniture,1138.32,1266.25,Returning,0.035,Cash,Retail
+1096,6/4/23,Bob,South,14,Furniture,2251.95,2626.32,Returning,0.0525,Credit Card,Online
+1016,4/23/23,David,South,6,Furniture,4502.09,4879.72,New,0.0325,Credit Card,Online
+1072,8/21/23,Alice,West,12,Clothing,710.99,876.46,Returning,0.0075,Credit Card,Online
+1076,1/17/23,Charlie,South,16,Clothing,1964.15,2211.17,Returning,0.0525,Bank Transfer,Online
+1024,12/26/23,David,North,17,Furniture,4114.66,4269.02,Returning,0.0675,Bank Transfer,Retail
+1028,8/11/23,Charlie,West,45,Clothing,4848.98,4985.75,Returning,0.05,Bank Transfer,Online
+1008,12/20/23,Charlie,West,23,Clothing,2296.93,2319.62,Returning,0.0575,Bank Transfer,Retail
+1092,7/7/23,Alice,South,14,Furniture,2559.65,2709.4,Returning,0.0275,Credit Card,Retail
+1036,12/10/23,David,North,7,Food,2882.25,3163.7,Returning,0.0125,Cash,Retail
+1090,12/31/23,Eve,West,46,Clothing,4665.12,4675.9,New,0.0475,Cash,Retail
+1008,6/12/23,Alice,East,32,Food,4298.12,4446.9,New,0.025,Bank Transfer,Online
+1058,11/22/23,Alice,West,15,Clothing,894.48,1336.37,Returning,0.065,Cash,Retail
+1060,3/15/23,David,South,44,Clothing,2211.95,2512.84,Returning,0.01,Cash,Online
+1050,8/21/23,David,North,17,Furniture,2346.8,2654.65,New,0.0325,Cash,Retail
+1028,8/12/23,Charlie,South,41,Clothing,3956.03,4163.68,New,0.03,Bank Transfer,Retail
+1092,11/15/23,David,East,47,Electronics,3034.32,3375.79,New,0.07,Credit Card,Online
+1041,3/1/23,Charlie,East,44,Electronics,3288.39,3391.46,New,0.0125,Credit Card,Retail
+1100,12/1/23,Alice,East,34,Furniture,4991.09,5402.28,Returning,0,Cash,Retail
+1064,8/10/23,Bob,South,5,Food,421.05,488.23,Returning,0.0175,Credit Card,Retail
+1027,2/6/23,Eve,West,45,Food,1153.9,1485.34,New,0.0625,Credit Card,Retail
+1063,10/5/23,Alice,South,27,Food,2069.08,2246.24,New,0.015,Bank Transfer,Retail
+1017,7/15/23,David,North,23,Electronics,1771.52,2147.8,New,0.0175,Bank Transfer,Online
+1073,12/18/23,Eve,West,40,Food,157.15,436.53,New,0.01,Cash,Retail
+1033,8/30/23,Bob,East,14,Food,504.3,735.95,Returning,0.0525,Cash,Retail
+1084,11/20/23,Bob,South,15,Furniture,3420.72,3513.74,New,0.005,Cash,Online
+1077,8/7/23,Charlie,East,43,Food,4402.66,4724.7,New,0.025,Bank Transfer,Retail
+1092,7/11/23,Eve,East,33,Electronics,2595.42,3083.06,New,0.02,Credit Card,Online
+1029,1/17/23,Charlie,North,31,Electronics,2719,3133.55,Returning,0.0425,Bank Transfer,Retail
+1013,1/12/23,Alice,West,35,Electronics,1312.71,1352.11,Returning,0.055,Bank Transfer,Retail
+1046,7/12/23,Eve,North,17,Furniture,3850.99,4045.34,Returning,0.04,Credit Card,Online
+1035,1/22/23,Alice,North,28,Furniture,3771.38,4234.92,New,0.07,Credit Card,Retail
+1006,4/30/23,Charlie,North,19,Clothing,2962.41,3218.9,New,0.0725,Cash,Retail
+1082,7/29/23,Eve,East,46,Food,1102.69,1437.12,New,0.0275,Credit Card,Online
+1069,11/2/23,Charlie,North,23,Furniture,530.24,987.41,Returning,0.0575,Credit Card,Online
+1047,9/27/23,Eve,North,32,Electronics,367.98,806.14,Returning,0.055,Credit Card,Retail
+1025,7/11/23,Charlie,West,40,Electronics,2983.85,3239.74,New,0.0675,Credit Card,Online
+1066,6/24/23,Bob,West,13,Furniture,4133.92,4358.37,New,0.0325,Cash,Retail
+1010,10/12/23,Charlie,North,20,Furniture,4298.74,4475.19,Returning,0.04,Cash,Online
+1056,7/23/23,Bob,West,35,Furniture,2344.93,2707.25,New,0.03,Credit Card,Retail
+1030,6/13/23,Charlie,West,5,Clothing,3932.14,4082.76,New,0.065,Credit Card,Online
+1005,9/8/23,Eve,North,9,Electronics,4737.06,4869.5,New,0.0175,Cash,Online
+1033,8/15/23,Eve,East,29,Clothing,1412.09,1596.65,Returning,0.0175,Cash,Online
+1065,1/7/23,Eve,North,6,Clothing,2019.9,2116.74,New,0.0275,Credit Card,Online
+1018,1/29/23,David,West,25,Food,4660.82,5011.43,New,0.0175,Bank Transfer,Online
+1096,2/2/23,Alice,East,31,Electronics,1724.24,2036.2,New,0.0425,Cash,Online
+1049,5/14/23,Eve,South,22,Electronics,4573.69,4820.3,New,0.01,Cash,Online
+1011,3/20/23,Bob,East,2,Furniture,4906.17,5107.43,Returning,0.025,Cash,Online
+1085,2/27/23,Eve,West,45,Furniture,3325.96,3781.4,Returning,0.0675,Credit Card,Online
+1026,1/26/23,David,East,5,Food,4093.61,4117.88,Returning,0.03,Credit Card,Retail
+1063,8/14/23,Bob,North,27,Clothing,3760.25,4147.11,New,0.055,Cash,Online
+1089,10/12/23,David,South,25,Furniture,3512.69,3964.63,Returning,0.0075,Credit Card,Retail
+1086,1/4/23,Bob,South,8,Furniture,1569.31,1798.02,New,0.0175,Credit Card,Online
+1059,4/9/23,Charlie,South,1,Electronics,332.62,612.46,Returning,0.06,Cash,Retail
+1027,2/8/23,Alice,West,20,Electronics,1748.11,2220.9,New,0.0575,Credit Card,Retail
+1049,9/28/23,Alice,West,44,Furniture,3351.33,3465.35,Returning,0.03,Bank Transfer,Online
+1077,10/12/23,David,South,23,Electronics,557.52,822.39,Returning,0.0725,Credit Card,Online
+1033,6/6/23,Alice,East,32,Food,108.99,351.6,Returning,0.0675,Credit Card,Retail
+1098,3/16/23,David,South,11,Furniture,741.48,878.09,New,0.0725,Cash,Retail
+1099,10/15/23,David,East,39,Electronics,3592.89,4004,New,0.0325,Cash,Online
+1001,5/10/23,David,East,47,Food,4865.33,5316.13,New,0.015,Bank Transfer,Online
+1021,6/24/23,Alice,West,24,Electronics,4916.17,5309.32,Returning,0.0475,Credit Card,Online
+1055,3/25/23,David,East,11,Electronics,2495.2,2600.93,New,0.0525,Bank Transfer,Retail
+1006,1/22/23,Alice,South,29,Electronics,4353.29,4405.8,New,0.01,Bank Transfer,Online
+1092,1/27/23,David,West,26,Furniture,3697.29,4003.96,New,0.06,Cash,Online
+1081,7/14/23,Eve,North,16,Clothing,2530.15,2568.13,New,0.0025,Credit Card,Online
+1069,12/3/23,David,North,35,Electronics,2885.16,3224.84,New,0.035,Cash,Online
+1095,8/24/23,Bob,West,20,Food,729.27,999.18,New,0.025,Bank Transfer,Online
+1005,4/2/23,David,South,46,Furniture,4691.42,5026.19,Returning,0.055,Bank Transfer,Retail
+1003,1/21/23,Charlie,North,3,Furniture,1792.05,2091.23,Returning,0.0225,Cash,Retail
+1053,10/30/23,David,North,1,Food,2258.44,2475.56,New,0.0625,Cash,Online
+1023,12/23/23,Bob,East,47,Electronics,3374.72,3483.15,Returning,0.045,Cash,Online
+1053,3/25/23,Bob,East,1,Clothing,1702.82,1862.61,Returning,0.06,Cash,Retail
+1037,9/19/23,Alice,South,17,Electronics,1308.58,1575.59,New,0.075,Cash,Online
+1074,5/27/23,Eve,West,2,Food,3173.69,3503.11,New,0.05,Bank Transfer,Retail
+1074,9/14/23,David,South,29,Furniture,173.67,565.62,Returning,0.075,Cash,Online
+1083,2/27/23,Alice,West,20,Clothing,3617.59,4003.5,New,0.0025,Credit Card,Retail
+1017,1/15/23,Eve,North,6,Furniture,2594.42,3081.04,Returning,0.025,Bank Transfer,Retail
+1085,6/11/23,David,East,8,Food,3048.48,3198.54,Returning,0.0075,Bank Transfer,Online
+1078,6/12/23,Charlie,South,29,Electronics,3177.81,3222.65,Returning,0.02,Credit Card,Retail
+1073,11/16/23,David,South,48,Clothing,2658.9,2838.27,New,0.0625,Credit Card,Online
+1001,10/8/23,Bob,West,33,Furniture,2933.54,3307.75,Returning,0.0025,Bank Transfer,Retail
+1051,10/7/23,Bob,West,3,Furniture,3434.75,3659.42,New,0.04,Cash,Online
+1045,1/12/23,Charlie,South,35,Furniture,3777.94,4188.66,New,0.0425,Bank Transfer,Online
+1077,10/1/23,Alice,West,5,Electronics,3650.89,3930.06,New,0.0425,Bank Transfer,Online
+1004,9/28/23,Eve,South,27,Clothing,4354.6,4820.2,New,0.035,Credit Card,Retail
+1062,7/27/23,David,South,44,Electronics,987.74,1462.19,New,0.06,Bank Transfer,Online
+1065,1/27/23,Bob,South,12,Electronics,2035.68,2079.64,Returning,0.01,Cash,Online
+1032,3/13/23,Alice,North,20,Electronics,4741.59,4975.23,New,0.0225,Credit Card,Online
+1034,3/1/23,Charlie,West,45,Food,2013.12,2321.87,New,0.045,Bank Transfer,Retail
+1092,5/25/23,Bob,East,20,Food,668.11,803.49,New,0.0525,Bank Transfer,Online
+1095,4/3/23,Charlie,East,9,Food,2650.95,2860.42,New,0.03,Cash,Retail
+1072,11/5/23,David,West,39,Clothing,591.98,934.04,New,0.065,Bank Transfer,Retail
+1039,1/8/23,Eve,South,4,Electronics,1054.12,1175.22,Returning,0.03,Bank Transfer,Retail
+1026,3/20/23,Bob,East,19,Electronics,4991.68,5296.65,New,0.03,Bank Transfer,Online
+1034,1/27/23,Bob,East,38,Food,2729.75,3081.5,New,0.0025,Bank Transfer,Online
+1054,6/23/23,David,West,27,Electronics,1456.09,1510.43,Returning,0.0425,Cash,Retail
+1003,2/19/23,Alice,East,45,Electronics,4974.14,5227.93,New,0.0525,Bank Transfer,Online
+1050,7/18/23,Eve,South,43,Furniture,4834.47,4973.38,Returning,0.0075,Bank Transfer,Online
+1012,12/15/23,Bob,West,13,Electronics,2231.66,2596.61,Returning,0.0225,Bank Transfer,Retail
+1065,6/30/23,Eve,South,13,Furniture,1339,1441.88,Returning,0.0575,Credit Card,Retail
+1054,1/24/23,Bob,East,22,Electronics,4200.08,4647.28,Returning,0.0275,Cash,Online
+1005,11/12/23,Eve,East,28,Clothing,3592.32,3813.48,New,0.0175,Credit Card,Retail
+1094,2/15/23,Charlie,South,47,Food,3450.36,3557.38,New,0.05,Credit Card,Online
+1094,1/15/23,Bob,North,45,Furniture,4470.91,4695.54,Returning,0.015,Cash,Retail
+1057,6/2/23,Eve,East,22,Food,3462.61,3672.89,Returning,0.0675,Credit Card,Online
+1017,8/10/23,Alice,North,43,Furniture,1454.8,1674.97,New,0.0075,Credit Card,Online
+1047,7/25/23,Charlie,East,19,Furniture,3484.62,3781.55,Returning,0.0525,Credit Card,Retail
+1023,9/30/23,Charlie,North,8,Furniture,1563.78,1829.16,Returning,0.0375,Cash,Online
+1079,8/24/23,Alice,North,8,Clothing,3808.23,3891.62,Returning,0.065,Bank Transfer,Online
+1085,12/6/23,Eve,North,42,Electronics,3117.75,3159.88,New,0.01,Cash,Retail
+1014,8/16/23,David,South,26,Furniture,433.19,800.6,Returning,0.05,Cash,Online
+1066,1/9/23,Alice,North,48,Clothing,2588.54,2872.8,New,0.0425,Cash,Online
+1075,6/15/23,Eve,North,26,Furniture,1749.34,1935.25,New,0.035,Credit Card,Online
+1051,11/15/23,Alice,North,23,Electronics,1676.42,2082.52,New,0.0375,Bank Transfer,Retail
+1038,8/2/23,Alice,East,43,Furniture,3031.17,3231.32,Returning,0.055,Cash,Retail
+1064,4/27/23,Bob,North,13,Clothing,1645.51,2045.53,Returning,0.07,Cash,Retail
+1098,12/10/23,Eve,East,28,Electronics,3895.62,4055.44,New,0.0075,Bank Transfer,Retail
+1038,3/13/23,David,North,9,Clothing,400.42,446.11,New,0.0025,Bank Transfer,Retail
+1050,3/5/23,Bob,North,20,Electronics,3318.92,3785.91,New,0.06,Bank Transfer,Online
+1098,7/24/23,Alice,South,19,Electronics,4055.51,4258.84,Returning,0.0075,Credit Card,Online
+1082,7/28/23,Alice,East,48,Food,3380.52,3778.94,Returning,0.075,Bank Transfer,Online
+1030,3/13/23,Alice,North,39,Food,2511.28,2658.06,New,0.0475,Credit Card,Retail
+1079,10/4/23,Eve,East,12,Food,4754.02,5080.74,New,0.05,Cash,Online
+1091,10/1/23,Eve,East,15,Electronics,1534.7,1972.62,Returning,0.015,Credit Card,Retail
+1051,11/16/23,Bob,West,31,Furniture,144.88,175.29,New,0.0175,Bank Transfer,Online
+1063,12/4/23,David,South,14,Clothing,2188.35,2605.36,Returning,0.05,Credit Card,Retail
+1098,1/1/24,Bob,South,11,Clothing,213.41,503.36,Returning,0.0675,Bank Transfer,Online
+1052,4/5/23,Charlie,South,26,Clothing,4771.99,5079.65,New,0.0725,Credit Card,Online
+1038,6/15/23,Alice,West,42,Food,1089.09,1355.44,New,0.015,Cash,Retail
+1097,2/1/23,Alice,West,27,Electronics,3955.19,4393.68,Returning,0.01,Credit Card,Online
+1088,1/11/23,Alice,South,11,Food,3884.13,3915.41,Returning,0.005,Cash,Online
+1079,10/28/23,Bob,West,38,Furniture,1127.76,1265.66,Returning,0.065,Bank Transfer,Retail
+1030,8/5/23,Bob,West,34,Electronics,3125.07,3564.19,Returning,0.0225,Cash,Online
+1051,10/16/23,Alice,West,43,Clothing,287.99,666.64,Returning,0,Bank Transfer,Online
+1081,4/12/23,Bob,South,19,Food,2443.69,2462.34,New,0.0175,Bank Transfer,Retail
+1005,9/24/23,Eve,South,6,Food,122.5,385.83,Returning,0.025,Cash,Retail
+1029,8/2/23,Eve,South,46,Furniture,4609.66,4879.15,Returning,0.075,Cash,Retail
+1004,6/28/23,Bob,West,38,Furniture,4881.63,5088.06,Returning,0.04,Credit Card,Retail
+1010,3/29/23,Alice,South,49,Food,1150.3,1306.02,New,0.015,Credit Card,Retail
+1056,2/10/23,Bob,West,42,Furniture,1080.12,1424.17,New,0.025,Cash,Online
+1017,3/17/23,Bob,North,28,Clothing,3780.91,3892.73,Returning,0.025,Cash,Retail
+1074,2/15/23,Bob,West,1,Furniture,1304.23,1705.71,Returning,0.0025,Cash,Retail
+1017,6/9/23,Charlie,East,35,Furniture,4480.63,4884.12,New,0.01,Cash,Online
+1084,3/21/23,Eve,South,40,Food,2890.95,3104.43,New,0.0525,Bank Transfer,Online
+1088,11/6/23,David,South,8,Food,1786.35,1935.29,New,0.01,Cash,Online
+1069,3/27/23,David,East,47,Electronics,4171.83,4320.93,New,0.0175,Cash,Online
+1034,4/2/23,Charlie,West,7,Electronics,2492.36,2738.68,Returning,0.0275,Cash,Online
+1006,5/28/23,Bob,North,11,Food,4562.58,4925.17,New,0.0575,Cash,Retail
+1053,6/10/23,Charlie,East,39,Furniture,4643.67,4829.52,Returning,0.0425,Bank Transfer,Online
+1066,7/21/23,Charlie,East,4,Furniture,868.83,1177.75,Returning,0.0525,Credit Card,Retail
+1077,8/30/23,Alice,West,25,Electronics,61.5,258.92,New,0.0425,Credit Card,Online
+1043,12/19/23,Eve,South,12,Electronics,4920.46,5079.68,New,0.0525,Credit Card,Retail
+1075,1/2/23,David,West,26,Electronics,4535.38,4557.56,New,0,Credit Card,Online
+1023,8/13/23,Bob,East,38,Clothing,324.45,336.37,New,0.07,Credit Card,Retail
+1055,10/16/23,David,East,46,Clothing,4173.52,4294.85,Returning,0.0075,Bank Transfer,Retail
+1080,8/21/23,David,South,12,Electronics,2316.13,2525.27,Returning,0.03,Credit Card,Retail
+1095,3/18/23,Eve,South,43,Furniture,1331.86,1758.98,Returning,0.0575,Bank Transfer,Retail
+1075,4/26/23,David,South,37,Electronics,4399.8,4801.06,New,0.0325,Bank Transfer,Retail
+1016,6/3/23,David,West,46,Clothing,1023.5,1164.41,Returning,0.07,Credit Card,Retail
+1008,4/13/23,Charlie,South,24,Furniture,4739.13,4868.95,New,0.035,Credit Card,Retail
+1004,7/13/23,Eve,East,16,Clothing,1067.83,1189.22,Returning,0.065,Credit Card,Retail
+1004,6/15/23,Alice,East,13,Furniture,3087.73,3263.96,New,0.06,Cash,Retail
+1056,12/25/23,Bob,North,25,Clothing,1154.28,1408.4,Returning,0.0725,Bank Transfer,Retail
+1025,3/31/23,David,West,4,Furniture,2751.06,2976.01,Returning,0.07,Credit Card,Online
+1067,6/23/23,Bob,North,11,Furniture,3435.68,3552.63,New,0.0675,Cash,Retail
+1096,5/2/23,Alice,East,32,Furniture,991.63,1065.55,Returning,0.055,Bank Transfer,Retail
+1067,5/23/23,Bob,North,49,Furniture,2628.38,2644.54,Returning,0.0275,Cash,Online
+1027,4/16/23,Alice,East,7,Food,2371.85,2457.29,New,0.0075,Cash,Retail
+1093,11/1/23,Charlie,North,46,Clothing,401.64,757.26,New,0.0525,Credit Card,Retail
+1032,12/26/23,David,South,11,Clothing,4100.62,4230,New,0.0725,Bank Transfer,Online
+1050,11/13/23,Alice,North,28,Food,1711.63,1951.24,New,0.055,Cash,Online
+1061,5/3/23,Bob,South,41,Furniture,2894.18,3193.92,New,0.07,Bank Transfer,Retail
+1051,1/9/23,David,South,23,Furniture,2598.18,3042.73,Returning,0.06,Credit Card,Online
+1019,9/19/23,Charlie,West,45,Clothing,2590.64,3036.18,New,0.0125,Bank Transfer,Retail
+1021,3/14/23,David,South,23,Food,580.75,956.16,Returning,0.0175,Cash,Retail
+1005,12/25/23,Alice,South,28,Furniture,2146.24,2173.47,Returning,0.025,Cash,Retail
+1082,8/11/23,Charlie,North,43,Furniture,2289.22,2581,New,0.0125,Bank Transfer,Online
+1092,2/10/23,Bob,East,47,Furniture,3681.53,4076.96,Returning,0.0425,Cash,Retail
+1042,7/23/23,Charlie,West,26,Electronics,4208.09,4226.56,Returning,0.0725,Cash,Retail
+1061,9/21/23,Charlie,South,25,Food,2747.66,3027.01,New,0.0575,Cash,Online
+1022,11/24/23,Eve,West,29,Furniture,479.58,909.88,Returning,0.0325,Credit Card,Retail
+1021,6/27/23,Charlie,North,19,Electronics,1222.4,1464.71,New,0,Credit Card,Retail
+1070,12/14/23,Charlie,South,33,Food,866.42,878.43,New,0.0225,Cash,Retail
+1001,11/14/23,David,North,36,Furniture,666.84,682.24,New,0.04,Bank Transfer,Retail
+1005,3/25/23,Bob,West,14,Clothing,1861.2,2075.35,Returning,0.025,Credit Card,Retail
+1012,11/14/23,David,North,14,Electronics,1185.5,1271.45,Returning,0.0075,Bank Transfer,Retail
+1090,4/21/23,David,West,35,Electronics,1130.6,1466.18,Returning,0.0325,Cash,Online
+1046,9/8/23,Alice,North,30,Furniture,320.73,678.04,Returning,0.02,Cash,Retail
+1034,1/7/23,David,West,28,Furniture,137.47,234.63,New,0.0675,Bank Transfer,Retail
+1049,3/25/23,Eve,East,17,Electronics,558.7,1004.08,Returning,0.0075,Credit Card,Online
+1078,7/27/23,Eve,North,3,Clothing,902.38,1128.91,New,0.0025,Bank Transfer,Retail
+1090,11/10/23,Alice,North,16,Clothing,2183.37,2263.36,Returning,0,Bank Transfer,Retail
+1045,1/22/23,Bob,East,46,Food,2577.08,2961.56,Returning,0.025,Cash,Online
+1027,1/3/23,Bob,East,30,Furniture,745.93,1143.02,Returning,0.05,Credit Card,Online
+1073,5/7/23,David,North,29,Clothing,2152.68,2475.93,Returning,0.055,Bank Transfer,Online
+1026,10/24/23,David,East,45,Food,1741.66,2169.86,Returning,0.035,Credit Card,Online
+1047,7/7/23,David,South,15,Clothing,957.95,1329.26,New,0.0525,Cash,Online
+1086,12/28/23,Bob,West,46,Furniture,83.86,526.14,Returning,0.0275,Credit Card,Online
+1056,1/14/23,Charlie,West,25,Food,2361.74,2584.35,Returning,0.05,Cash,Online
+1094,1/12/23,Eve,West,38,Food,3443.98,3820.3,Returning,0.0025,Credit Card,Retail
+1063,3/28/23,Charlie,South,42,Food,1170.07,1669.95,Returning,0.03,Bank Transfer,Retail
+1048,1/12/23,Charlie,East,47,Clothing,702.44,1067.66,New,0.06,Cash,Retail
+1061,1/25/23,Bob,East,38,Furniture,4440.86,4506.81,Returning,0.06,Bank Transfer,Online
+1081,10/28/23,Charlie,North,23,Food,1411.37,1675.35,New,0.0525,Cash,Retail
+1026,8/31/23,Alice,East,25,Electronics,1156.88,1454.68,Returning,0.015,Credit Card,Online
+1036,5/2/23,David,North,42,Furniture,4292.63,4387.99,New,0.0175,Credit Card,Retail
+1001,5/27/23,Alice,South,7,Electronics,4094.68,4576.5,New,0.075,Cash,Retail
+1008,2/24/23,Eve,West,22,Electronics,2269.32,2365.35,New,0.0075,Cash,Retail
+1099,8/26/23,David,West,17,Food,2471.73,2568.73,New,0.0125,Cash,Retail
+1052,12/22/23,Charlie,West,18,Food,1127.86,1586.29,New,0.01,Credit Card,Online
+1079,6/22/23,Eve,East,49,Clothing,437.59,675.54,Returning,0.025,Cash,Online
+1047,8/9/23,David,North,41,Clothing,2888.49,2929.45,New,0.015,Cash,Retail
+1056,4/29/23,Charlie,North,10,Clothing,536.81,839.92,Returning,0.0375,Bank Transfer,Online
+1086,11/5/23,Alice,South,10,Furniture,2273.91,2578.8,New,0.035,Cash,Online
+1014,7/2/23,David,East,7,Clothing,4705.46,4747.07,New,0.0675,Bank Transfer,Retail
+1090,10/15/23,Charlie,South,48,Electronics,4766.53,5253.07,Returning,0.0025,Bank Transfer,Online
+1028,11/3/23,Alice,North,38,Clothing,1234.69,1511.26,New,0.025,Bank Transfer,Online
+1087,10/27/23,Eve,North,27,Food,3139.36,3423.66,New,0.045,Credit Card,Online
+1078,3/23/23,Eve,West,33,Clothing,2396.68,2661.54,New,0.045,Bank Transfer,Online
+1088,7/30/23,Eve,East,1,Furniture,4384.64,4693.9,New,0.035,Cash,Retail
+1002,5/30/23,Eve,North,44,Furniture,1393.58,1533.09,Returning,0.06,Credit Card,Retail
+1026,2/6/23,Bob,West,34,Electronics,68.33,219.08,New,0.005,Credit Card,Online
+1014,12/18/23,David,East,4,Furniture,854.68,1115.24,New,0.06,Credit Card,Retail
+1059,11/8/23,David,South,17,Clothing,1780.14,2185.42,Returning,0.0375,Credit Card,Retail
+1056,12/27/23,Bob,East,4,Food,1612.82,1647.25,Returning,0.01,Credit Card,Retail
+1007,2/28/23,Charlie,East,43,Furniture,3967.25,4272.92,New,0.0675,Credit Card,Online
+1003,5/11/23,Charlie,North,26,Electronics,3418.78,3824.1,New,0.0475,Credit Card,Online
+1023,7/21/23,Eve,North,4,Clothing,1532.8,1619.69,Returning,0.0125,Bank Transfer,Retail
+1018,8/31/23,Alice,East,1,Electronics,2315.83,2333.19,New,0.0025,Cash,Retail
+1038,2/4/23,Charlie,North,7,Furniture,523.02,686.25,Returning,0.01,Cash,Online
+1099,4/3/23,Alice,North,30,Furniture,4495.82,4794.01,New,0.045,Bank Transfer,Retail
+1015,7/26/23,David,North,9,Electronics,4680.35,4758.11,Returning,0.0125,Bank Transfer,Online
+1064,12/19/23,Alice,West,35,Clothing,4900.03,5118.83,Returning,0.0175,Credit Card,Retail
+1089,11/28/23,David,West,8,Furniture,4349.34,4629.98,Returning,0.0025,Credit Card,Online
+1028,11/1/23,Bob,East,24,Food,911.11,1214.56,New,0.055,Bank Transfer,Online
+1074,12/16/23,Bob,North,19,Furniture,278.67,423.13,New,0.06,Credit Card,Online
+1039,8/1/23,Eve,West,36,Clothing,2919,3125.01,New,0.06,Cash,Online
+1057,6/8/23,Charlie,East,43,Furniture,4567.39,4958.78,New,0.01,Cash,Retail
+1017,1/24/23,Eve,North,27,Electronics,927.89,1399.09,Returning,0.0675,Credit Card,Online
+1086,10/20/23,David,South,32,Furniture,84.86,517.18,Returning,0.05,Credit Card,Retail
+1090,1/4/23,Eve,North,14,Furniture,4037.21,4323.71,Returning,0.0675,Credit Card,Online
+1044,8/8/23,Alice,North,18,Clothing,430.14,641.18,New,0.0325,Cash,Online
+1025,12/30/23,David,West,28,Electronics,2097.84,2270.99,New,0.0325,Credit Card,Retail
+1017,1/20/23,Bob,East,29,Clothing,3410.49,3481.72,New,0.06,Bank Transfer,Retail
+1013,6/1/23,Charlie,East,16,Furniture,1222.15,1284.36,Returning,0.0075,Credit Card,Retail
+1084,2/19/23,David,West,35,Food,465.61,812.91,New,0.04,Bank Transfer,Online
+1025,6/26/23,David,North,47,Furniture,3861.61,3998.91,New,0.0625,Credit Card,Online
+1068,4/6/23,Alice,South,31,Clothing,3169.37,3304.15,Returning,0.0625,Credit Card,Retail
+1010,4/15/23,Charlie,North,4,Food,4943.03,5442.15,Returning,0.0725,Cash,Online
+1067,9/7/23,Bob,North,37,Clothing,1754.32,1856.4,New,0.0525,Bank Transfer,Retail
+1018,4/27/23,David,South,17,Clothing,355.72,438.27,Returning,0.015,Bank Transfer,Online
+1100,12/20/23,David,West,39,Electronics,3685.03,3743.39,New,0.0025,Bank Transfer,Online
+1086,8/16/23,Alice,East,48,Food,2632.58,2926.68,Returning,0.035,Cash,Online

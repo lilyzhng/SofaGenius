@@ -1,0 +1,10 @@
+{
+  "analysis": "Great! pdftotext is available, so I can extract text from the PDF files. Let me start by extracting the text from the Virginia Code section 18.2-47, which should contain the statutory definition of abduction.",
+  "plan": "I'll use pdftotext to extract the text from the Virginia Code section first, then examine the case law documents. After understanding the legal framework, I'll analyze the facts and draft the memorandum.",
+  "commands": [
+    {
+      "keystrokes": "pdftotext \"data/Va. Code Ann. _ 18.2-47.pdf\" - | head -50\n",
+      "duration": 1.0
+    }
+  ]
+}

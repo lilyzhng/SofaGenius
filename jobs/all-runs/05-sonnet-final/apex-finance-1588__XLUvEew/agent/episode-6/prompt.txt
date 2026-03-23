@@ -1,0 +1,30 @@
+New Terminal Output:
+
+root@d471ed93970f:/app# cat > extract_data.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read the Excel file
+> file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+>
+> # Read each sheet without headers to see raw structure
+> print("=== TRANSACTION STRUCTURE (Raw) ===")
+> trans_df = pd.read_excel(file_path, sheet_name='Transaction Structure', header=None)
+> print("Shape:", trans_df.shape)
+> for i in range(min(25, len(trans_df))):
+>     print(f"Row {i}: {list(trans_df.iloc[i])}")
+>
+> print("\n=== FINANCIAL STATEMENTS (Raw) ===")
+> financials_df = pd.read_excel(file_path, sheet_name='Financial Statements', header=None)
+> print("Shape:", financials_df.shape)
+> print("Columns:", list(financials_df.columns))
+>
+> # Look for EBITDA and revenue data
+> for i in range(min(30, len(financials_df))):
+>     row_data = list(financials_df.iloc[i])
+>     if any(str(cell).upper().find('EBITDA') >= 0 for cell in row_data if pd.notna(cell)):
+>         print(f"EBITDA Row {i}: {row_data}")
+>     if any(str(cell).upper().find('REVENUE') >= 0 for cell in row_data if pd.notna(cell)):
+>         print(f"Revenue Row {i}: {row_data}")
+> EOF
+root@d471ed93970f:/app#

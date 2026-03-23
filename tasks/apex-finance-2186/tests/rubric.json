@@ -1,0 +1,65 @@
+{
+  "criterion 1": {
+    "description": "States the Enterprise Value as \u00a310,000,000 (acceptable value is \u00a310,000,000)",
+    "sources": "",
+    "justification": "The Prompt articulates the EV is \u00a310,000,000",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates excess cash as \u00a315,000 (acceptable value is \u00a315,000)",
+    "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+    "justification": "From the 'Mercor - EV to Equity Bridge - Test Version' file, deduct the minimum cash requirement of \u00a35,000 from the cash at Bank of \u00a320,000 at Mar-25 to calculate Excess Cash of \u00a315,000",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates Debt/Debt-like items as \u00a37,000 (acceptable value is \u00a37,000)",
+    "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+    "justification": "From the 'Mercor - EV to Equity Bridge - Test Version' file, extract the \u00a37,000 of corporation tax at Mar-25. Taxes payable are considered debt-like items for an EV to Equity Bridge while trade creditors and accruals are captured within the net working capital adjustment and should not be double\u2011counted.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates the net working capital adjustment at Mar-25 of \u00a31,667 (acceptable range between \u00a31,650 and \u00a31,684)",
+    "sources": "Mercor - EV to Equity Bridge - Test Version (V2)",
+    "justification": "Add: trade debtors (\u00a335,000), other debtors (\u00a310,000), accrued income (\u00a33,000), prepayments (\u00a31,000) and subtract trade creditors (\u00a326,000) and accruals (\u00a35,000) to arrive at \u00a318,000 actual net working capital at Mar-25 Do this for all months, and then take a simple average of each month's net working capital to get \u00a316,333 average net working capital for the last 12 months Subtract the average net working capital position at Mar-25 from the actual net working capital position at Mar-25 to equal \u00a31,667",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Calculate the Equity value for the company at Mar-25 of \u00a310,009,667 (acceptable range \u00a310,009,650 to \u00a310,009,684)",
+    "sources": "",
+    "justification": "Add the excess cash of approximately \u00a315,000 to the Enterprise value of \u00a310,000,000, deduct \u00a37,000 due to tax being a debt-like item and add the net working capital adjustment of \u00a31,667 to achieve an Equity Value of \u00a310,009,667",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+}

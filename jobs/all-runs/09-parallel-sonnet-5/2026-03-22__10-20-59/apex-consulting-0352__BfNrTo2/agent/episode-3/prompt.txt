@@ -1,0 +1,26 @@
+New Terminal Output:
+
+root@5d6e4bbfe24a:/app# wc -l '/app/data/Order Details (1).csv'
+253 /app/data/Order Details (1).csv
+root@5d6e4bbfe24a:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

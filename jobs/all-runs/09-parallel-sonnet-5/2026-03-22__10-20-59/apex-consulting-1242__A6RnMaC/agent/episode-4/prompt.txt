@@ -1,0 +1,24 @@
+New Terminal Output:
+
+root@b1534533e1cb:/app# cut -d',' -f3 /app/data/Data.csv | sort | uniq -c
+      1 Grade
+    272 M1
+    101 M2
+     99 M3
+      4 M4
+      5 M5
+root@b1534533e1cb:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+

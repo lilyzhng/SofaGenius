@@ -1,0 +1,31 @@
+New Terminal Output:
+
+root@6fe3d9edcffb:/app# pdftotext 'data/Document A.pdf' -
+Document A
+Past Medical History: Psoriasis
+Past Surgical History: None
+Vitals: T = 98 degrees Fahrenheit, BP = 120/78 mm hg, HR = 80 bpm
+On skin examina on in the primary care oﬃce, the pa ent has scaly silvery plaques on both
+knees as well as scaly, red papules on his palms and on the bo om of his feet. His knees are
+itchy and sore, but he otherwise has no complaints.
+
+
+root@6fe3d9edcffb:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

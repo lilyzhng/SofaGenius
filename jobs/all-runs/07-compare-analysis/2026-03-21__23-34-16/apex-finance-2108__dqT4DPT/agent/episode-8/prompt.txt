@@ -1,0 +1,52 @@
+New Terminal Output:
+
+root@ee2595532515:/app# grep -n -A5 -B5 -i 'net revenues' /app/data/nike_10k.txt
+496-IG I ICA T C T ME
+497-No customer accounted for 10
+498-
+499-P
+500-
+501:or more of our consolidated net Revenues during fiscal 2025.
+502-
+503-CT E EA C
+504-
+505-E IG A
+506-
+--
+1308-brand image and have an adverse effect on our operating results, financial condition and cash flows. Conversely, if we
+1309-underestimate consumer demand for our products or if our manufacturers fail to supply products we require at the time we need
+1310-them, we may experience inventory shortages. Inventory shortages could delay shipments to customers, negatively impact
+1311-retailer, distributor and consumer relationships and diminish brand loyalty. The difficulty in forecasting demand also makes it
+1312-difficult to estimate our future results of operations, financial condition and cash flows from period to period. A failure to accurately
+1313:predict the level of demand for our products could adversely affect our net revenues and net income, and we are unlikely to
+1314-forecast such effects with any certainty in advance.
+1315-O r NIKE Direct operations have re ired and will contin e to re ire a s bstantial investment and commitment of
+1316-reso rces and are s b ect to n mero s risks and ncertainties.
+1317-Our NI E Direct operations, including our retail stores and digital platforms, have required and will continue to require significant
+1318-investment. Our NI E Direct stores have required and will continue to require substantial fixed investment in equipment and
+--
+5117-at a later date.
+5118-Estimates of discretionary authori ed returns, discounts and claims are based on (1) historical rates, (2) specific identification of
+5119-outstanding returns not yet received from customers and outstanding discounts and claims and (3) estimated returns, discounts
+5120-and claims expected but not yet finali ed with customers based on current marketplace needs. Actual returns, discounts and
+5121-claims in any future period are inherently uncertain and may differ from estimates recorded. If actual or expected future returns,
+5122:discounts or claims were significantly different than reserves established, a reduction or increase to net revenues would be
+5123-recorded in the period in which such determination was made. For fiscal 2025, any variances between actual and expected
+5124-sales-related reserves were not material to reported Revenues.
+5125-Refer to Note 14
+5126-
+5127-Revenues in the accompanying Notes to the Consolidated Financial Statements for additional information.
+--
+6656-
+6657-
+     Estimates of discretionary authori ed returns, discounts and claims are based on (1) historical rates, (2) specific identification of
+6658-outstanding returns not yet received from customers and outstanding discounts and claims and (3) estimated returns, discounts
+6659-and claims expected but not yet finali ed with customers. Actual returns, discounts and claims in any future period are inherently
+6660-uncertain and thus may differ from estimates recorded. If actual or expected future returns, discounts or claims are significantly
+6661:greater or lower than the reserves established, a reduction or increase to net Revenues is recorded in the period in which such
+6662-determination is made.
+6663-
+6664-C
+6665-
+6666-T
+root@ee2595532515:/app#

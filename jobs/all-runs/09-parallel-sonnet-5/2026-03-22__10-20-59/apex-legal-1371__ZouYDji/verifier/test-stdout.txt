@@ -1,0 +1,41 @@
+Reward: 0.7333 — criteria 11/15
+
+Files created: answer.txt
+
+Per-criterion breakdown:
+  [PASS] criterion 1 (number_match)
+         States that Virginia Code § 18.2-47 governs the crime of abduction.
+  [PASS] criterion 2 (number_match)
+         States that under Virginia Code § 18.2-47 any person who 1) by force, intimidation or deception 2) seizes, takes, transports, detains or secretes another person 3) with the intent to deprive such othe
+  [FAIL] criterion 3 (failed)
+         States that a defendant can be convicted of abduction in addition to robbery if the victim's detention is separate and apart from the restraint employed in the commission of robbery.
+         → Matched 0/1 keywords
+  [FAIL] criterion 4 (failed)
+         States that a defendant cannot be convicted of abduction in addition to robbery if the victim's detention is merely incidental to the restraint employed in the commission of robbery.
+         → Matched 0/1 keywords
+  [FAIL] criterion 5 (failed)
+         States that all of the following factors are central to determining whether an abduction is incidental to another crime: 1) the duration of the detention; 2) whether the detention occurred during the 
+         → Matched 0/1 keywords
+  [FAIL] criterion 6 (failed)
+         Identifies all of the following as elements of robbery: the taking, with intent to steal, of the personal property of another, from his person or in his presence, against his will, and by violence or 
+         → Matched 0/1 keywords
+  [PASS] criterion 7 (keyword_match)
+         Identifies that Jim told Bobby to lay on the floor after striking Bobby.
+  [PASS] criterion 8 (keyword_match)
+         Identifies that Jim took Bobby's belongings.
+  [PASS] criterion 9 (keyword_match)
+         Concludes that Jim is likely to be convicted of robbery for the taking of Bobby's belongings from his person by violence.
+  [PASS] criterion 10 (keyword_match)
+         Concludes that Bobby's detention was incidental to the crime of robbery against him.
+  [PASS] criterion 11 (number_match)
+         Concludes that Jim is not likely to be convicted of abduction pursuant to Virginia Code § 18.2-47 in relation to Bobby.
+  [PASS] criterion 12 (keyword_match)
+         Concludes that Jim likely committed robbery of the bank.
+  [PASS] criterion 13 (keyword_match)
+         Identifies that Jim commanded the Bank teller (Janet) to lay face down on the floor after she put the money in the bag.
+  [PASS] criterion 14 (keyword_match)
+         Concludes that the bank teller's (Janet's) detention was incidental to the robbery of the bank.
+  [PASS] criterion 15 (number_match)
+         Concludes that Jim is not likely to be convicted of abduction pursuant to Virginia Code 18.2-47 in relation to the Bank teller (Janet).
+
+Summary: 11 passed, 4 failed

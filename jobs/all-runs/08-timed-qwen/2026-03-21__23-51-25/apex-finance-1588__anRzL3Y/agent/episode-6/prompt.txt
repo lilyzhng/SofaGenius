@@ -1,0 +1,30 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_nam
+e='Assumptions'); print('Assumptions:'); print(df.head(10))"
+Assumptions:
+   Unnamed: 0                    Unnamed: 1           Unnamed: 2 Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed
+: 12
+0         NaN               2. Assumptions                   NaN        NaN  ...                  NaN                  NaN                  NaN
+ NaN
+1         NaN  In USD 000, FY ending Dec 31                  NaN        NaN  ...                  NaN                  NaN                  NaN
+ NaN
+2         NaN                           NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN
+ NaN
+3         NaN                 Growth Levers        Growth Timing  Selection  ...                  NaN                  NaN                  NaN
+ NaN
+4         NaN              New Construction  2025-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN
+ NaN
+5         NaN                   Hospitality  2026-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN
+ NaN
+6         NaN                U.S. Expansion  2027-12-31 00:00:00        Yes  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:0
+0:00
+7         NaN                           NaN                  NaN        NaN  ...              FY2026A              FY2027A              FY2028A              FY2
+029A
+8         NaN                           NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN
+ NaN
+9         NaN              Income Statement                  NaN        NaN  ...                  NaN                  NaN                  NaN
+ NaN
+
+[10 rows x 13 columns]
+root@dd06356d1acd:/app#

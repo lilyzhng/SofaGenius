@@ -1,0 +1,182 @@
+[?2004hroot@fb0478b90c9e:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@fb0478b90c9e:/app# clear
+[?2004l[H[J[3J[?2004hroot@fb0478b90c9e:/app# ls -la
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 22 17:21 .
+drwxr-xr-x 1 root root 4096 Mar 22 17:21 ..
+drwxr-xr-x 2 root root 4096 Mar 22 17:21 data
+drwxr-xr-x 2 root root 4096 Mar 22 17:21 output
+[?2004hroot@fb0478b90c9e:/app# ls -la data/
+[?2004ltotal 348
+drwxr-xr-x 2 root root   4096 Mar 22 17:21  .
+drwxr-xr-x 1 root root   4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 345851 Mar 22 04:43 'Convention on Conduct of Fishing Operations in the North Atlantic.pdf'
+[?2004hroot@fb0478b90c9e:/app# pdftotext "data/Convention on Conduct of Fishing Operations in the North Atlantic.pdf" convention.txt
+[?2004l[?2004hroot@fb0478b90c9e:/app# head -50 convention.txt
+[?2004lNo. 15849
+
+MULTILATERAL
+Convention on Conduct of Fishing Operations in the North
+Atlantic (with annexes and procès-verbal of rectification
+dated 12 March 1970). Concluded at London on 1 June
+1967
+Authentic texts of Convention and annexes: English and French.
+Authentic text of procès-verbal of rectification: English.
+Registered by the United Kingdom of Great Britain and Northern Ireland on
+9 August 1977.
+
+MULTILATERAL
+Convention sur l'exercice de la pêche dans l'Atlantique Nord
+(avec annexes et procès-verbal de rectification en date
+du 12 mars 1970). Conclue à Londres le 1er juin 1967
+Textes authentiques de la Convention et des annexes : anglais et français.
+Texte authentique du procès-verbal de rectification : anglais.
+Enregistrée par le Royaume-Uni de Grande-Bretagne et d'Irlande du Nord le
+9 août 1977.
+
+Vol. 1051, 1-15849
+
+102
+
+United Nations — Treaty Series • Nations Unies — Recueil des Traités
+
+1977
+
+CONVENTION 1 ON CONDUCT OF FISHING OPERATIONS IN THE
+NORTH ATLANTIC
+
+The Governments of Belgium, Canada, Denmark, the French Republic, the Federal
+Republic of Germany, Iceland, Ireland, Italy, Luxembourg, the Netherlands, Norway,
+the Polish People's Republic, Portugal, Spain, Sweden, the Union of Soviet Socialist
+Republics, the United Kingdom of Great Britain and Northern Ireland, and the United
+States of America,
+Desiring to ensure good order and conduct on the fishing grounds in the North
+Atlantic area;
+Have agreed as follows:
+Article 1. ( 1 ) The present Convention applies to the waters of the Atlantic and
+Arctic Oceans and their dependent seas which are more specifically defined in Annex I
+to this Convention.
+(2) In this Convention
+"Fishing vessel" means any vessel engaged in the business of catching fish;
+"Vessel" means any fishing vessel and any vessel engaged in the business of
+processing fish or providing supplies or services to fishing vessels.
+Article 2. Nothing in this Convention shall be deemed to affect the rights, claims
+or views of any Contracting Party in regard to the limits of territorial waters or national
+fishery limits, or of the jurisdiction of a coastal State over fisheries.
+[?2004hroot@fb0478b90c9e:/app# wc -l convention.txt
+[?2004l1061 convention.txt
+[?2004hroot@fb0478b90c9e:/app# grep -n -i 'mark' convention.txt
+[?2004l33:The Governments of Belgium, Canada, Denmark, the French Republic, the Federal
+52:and marked in accordance with the regulations of that Party in order to ensure their
+73:Denmark ..................................................
+128:drift in the sea shall be marked in order to indicate their position and extent. The marking
+390:For thé Government of Denmark:
+391:Pour le Gouvernement du Danemark :
+564:IDENTIFICATION AND MARKING OF FISHING VESSELS AND GEAR
+574:(4) Small boats and, where practicable, all fishing implements shall be marked with the letter
+576:fishing implements may be distinguished by private marks.
+659:MARKING OF NETS, LINES AND OTHER GEAR
+674:of not more than 1 mile so that no part of the gear extending 1 mile or more shall be left unmarked.
+683:(1) Nets or lines which drift in the sea shall be marked at each end and at distances of not
+761:any remarks he or any member of his crew may wish to make. The authorised officer shall sign
+831:21. Marking of any anchored or drifting gear involved.
+[?2004hroot@fb0478b90c9e:/app# sed -n '125,135p' convention.txt
+[?2004l(2) No other additional light and sound signals than those provided in the Annex
+shall be used.
+Article 5. Nets, lines and other gear anchored in the sea and nets or lines which
+drift in the sea shall be marked in order to indicate their position and extent. The marking
+shall be in accordance with the provisions of Annex IV to this Convention.
+Article 6. (1) Subject to compliance with the International Regulations for Pre
+venting Collisions at Sea all vessels shall conduct their operations so as not to interfere
+with the operations of fishing vessels or fishing gear and shall conform to the provisions
+of Annex V to this Convention.
+(2) For the better implementation of these provisions the competent authorities of
+Contracting Parties may at their discretion notify the competent authorities of other
+[?2004hroot@fb0478b90c9e:/app# grep -n -i 'cooperat' convention.txt
+[?2004l[?2004hroot@fb0478b90c9e:/app# grep -n -i 'officer' convention.txt
+[?2004l139:authorised officers appointed in accordance with article 9 of this Convention may also
+181:(2) Authorised officers means officers who may be appointed by the Contracting
+184:the latter of the names of the authorised officers who have been appointed or of the ships
+185:in which such officers are carried.
+186:(4) Authorised officers shall observe whether the provisions of the Convention are
+190:purposes with the authorised officers of other Contracting Parties.
+191:(5) If an authorised officer has reason to believe that a vessel of any Contracting
+196:(6) If an authorised officer has reason to believe that a vessel or its gear has caused
+200:(7) An authorised officer shall not order a fishing vessel to stop while it is actually
+203:(8) An authorised officer shall not pursue his enquiries further than is necessary
+207:(9) An authorised officer may, in case of damage to a vessel or fishing gear, offer
+209:settlement. At the request of the parties concerned the authorised officer shall draw up
+211:(10) Resistance by a vessel to the directions of an authorised officer shall be deemed
+214:officers under these arrangements on the same basis as reports of national officers. The
+216:give the report of a foreign authorised officer a higher evidential value than it would
+217:possess in the authorised officer's own country. Contracting Parties shall collaborate in
+219:officer under this Convention.
+220:(12) An authorised officer shall not exercise his powers to board a vessel of another
+221:Contracting Party if an authorised officer of that Contracting Party is available and in a
+736:RULES APPLYING TO AUTHORISED OFFICERS
+737:(1) An authorised officer shall carry a document of identity written in English, French and
+738:the language of the authorised officer (if different) in a form agreed by the Contracting Parties on
+740:(2) Any orders to stop given by an authorised officer shall be given by the appropriate signal
+742:(3) On boarding a vessel an authorised officer shall exhibit his document of identity.
+744:(4) On boarding a vessel an authorised officer may require the master of the vessel to exhibit
+754:shall immediately be endorsed upon it by the authorised officer or on some other official document
+756:(5) On each occasion on which an authorised officer boards a vessel, he shall draw up a
+759:(6) This report shall be drawn up in the language of the authorised officer and shown to the
+761:any remarks he or any member of his crew may wish to make. The authorised officer shall sign
+766:(7) Whenever an authorised officer observes a vessel infringing the provisions of the Con
+771:(8) Ships carrying authorised officers, which may be vessels as defined in article 1 (2), shall
+773:Parties on the request of the depositary Government. Authorised officers shall exercise their powers
+778:Authorised Officer (to be filled in in block letters)
+837:24. Comments by Authorised Officer.
+842:Signature of Authorised Officer ...................
+843:The above report was prepared and signed by the Authorised Officer in our presence.
+[?2004hroot@fb0478b90c9e:/app# sed -n '180,225p' convention.txt
+[?2004loutside national fishery limits.
+(2) Authorised officers means officers who may be appointed by the Contracting
+Parties for the purpose of these arrangements.
+(3) Any Contracting Party shall, upon request of another Contracting Party, notify
+the latter of the names of the authorised officers who have been appointed or of the ships
+in which such officers are carried.
+(4) Authorised officers shall observe whether the provisions of the Convention are
+being carried out, enquire and report on infringements of the provisions of the Convention,
+seek information in cases of damage, where desirable draw the attention of vessels of
+Contracting Parties to the provisions of the Convention, and shall co-operate for these
+purposes with the authorised officers of other Contracting Parties.
+(5) If an authorised officer has reason to believe that a vessel of any Contracting
+Party is not complying with the provisions of the Convention, he may identify the vessel,
+seek to obtain the necessary information from the vessel and report. If the matter is
+sufficiently serious, he may order the vessel to stop and, if it is necessary in order to
+verify the facts of the case, he may board the vessel for enquiry and report.
+(6) If an authorised officer has reason to believe that a vessel or its gear has caused
+damage to a vessel or fishing gear and that this may be due to a breach of the Convention,
+he may, under the same conditions as in the preceding paragraph, order any vessel
+concerned to stop and board it for enquiry and report.
+(7) An authorised officer shall not order a fishing vessel to stop while it is actually
+fishing or engaged in shooting or hauling gear except in an emergency to avoid damage
+to vessels or gear.
+(8) An authorised officer shall not pursue his enquiries further than is necessary
+to satisfy him either that there has been no breach of the Convention, or, where it appears
+to him that a breach has occurred, to secure information about the relevant facts, always
+acting in such a manner that vessels suffer the minimum interference and inconvenience.
+(9) An authorised officer may, in case of damage to a vessel or fishing gear, offer
+to conciliate at sea, and if the parties concerned agree to this, assist them in reaching a
+settlement. At the request of the parties concerned the authorised officer shall draw up
+a protocol recording the settlement reached.
+(10) Resistance by a vessel to the directions of an authorised officer shall be deemed
+as resistance to the authority of the flag State of that vessel.
+(11) The Contracting Parties shall consider and act on reports of foreign authorised
+officers under these arrangements on the same basis as reports of national officers. The
+provisions of this paragraph shall not impose any obligation on a Contracting Party to
+give the report of a foreign authorised officer a higher evidential value than it would
+possess in the authorised officer's own country. Contracting Parties shall collaborate in
+order to facilitate judicial or other proceedings arising from a report of an authorised
+officer under this Convention.
+(12) An authorised officer shall not exercise his powers to board a vessel of another
+Contracting Party if an authorised officer of that Contracting Party is available and in a
+position to do so himself.
+Article 10. (1) Any Contracting Party may propose amendments to the articles
+of this Convention. The text of any proposed amendment shall be sent to the depositary
+Government, which shall transmit copies thereof to all Contracting Parties and signatory
+[?2004hroot@fb0478b90c9e:/app# 

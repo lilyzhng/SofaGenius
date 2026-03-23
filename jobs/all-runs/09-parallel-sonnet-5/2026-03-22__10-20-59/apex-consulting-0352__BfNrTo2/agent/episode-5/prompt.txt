@@ -1,0 +1,136 @@
+New Terminal Output:
+
+root@5d6e4bbfe24a:/app# cat > analyze_orders.py << 'EOF'
+> import pandas as pd
+> from datetime import datetime
+> import numpy as np
+>
+> # Read the CSV file
+v> df = pd.read_csv('/app/data/Order Details (1).csv')
+>
+> # Convert date columns to datetime
+> date_columns = ['Order_Date', 'Processed_Date', 'Shipped_Date', 'Delivery_Date']
+> for col in date_columns:
+ce.items():
+        benchmark = benchmarks[stage]
+        status = "NEEDS IMPROVEMENT" if avg_time > benchmark else "MEETS BENCHMARK"
+       >     df[col] = pd.to_datetime(df[col], format='%m/%d/%Y')
+>
+> # Calculate same-month deliveries
+> same_month_deliveries = (df['Order_Date'].dt.month == df['Delivery_Date'].dt.month) & \
+>                        (df['Order_Date'].dt.year == df['Delivery_Date'].dt.year)
+> same_month_percentage = round((same_month_deliveries.sum() / len(df)) * 100)
+>
+t> # Calculate milestone durations in days
+> df['ordered_to_processed'] = (df['Processed_Date'] - df['Order_Date']).dt.days
+> df['processed_to_shipped'] = (df['Shipped_Date'] - df['Processed_Date']).dt.days
+> df['shipped_to_delivered'] = (df['Delivery_Date'] - df['Shipped_Date']).dt.days
+>
+> # Calculate average days for each milestone
+> avg_ordered_to_processed = round(df['ordered_to_processed'].mean(), 1)
+> avg_processed_to_shipped = round(df['processed_to_shipped'].mean(), 1)
+> avg_shipped_to_delivered = round(df['shipped_to_delivered'].mean(), 1)
+>
+> # Industry benchmarks
+> benchmarks = {
+>     'ordered_to_processed': 2.0,
+>     'processed_to_shipped': 2.5,
+s >     'shipped_to_delivered': 4.0
+ /ap> }
+>
+> # Compare against benchmarks and identify underperforming stages
+> performance = {
+>     'ordered_to_processed': avg_ordered_to_processed,
+>     'processed_to_shipped': avg_processed_to_shipped,
+>     'shipped_to_delivered': avg_shipped_to_delivered
+> }
+>
+> underperforming_stages = []
+> for stage, avg_time in performance.items():
+>     if avg_time > benchmarks[stage]:
+>         underperforming_stages.append(stage)
+>
+> # Calculate percentage exceeding benchmarks for underperforming stages
+> exceeding_percentages = {}
+> for stage in underperforming_stages:
+>     exceeding_count = (df[stage] > benchmarks[stage]).sum()
+>     exceeding_percentage = round((exceeding_count / len(df)) * 100)
+>     exceeding_percentages[stage] = exceeding_percentage
+>
+> # Generate recommendations
+> recommendations = {
+>     'ordered_to_processed': [
+>         "Implement automated order processing systems to reduce manual handling time",
+>         "Streamline inventory verification processes",
+>         "Establish dedicated order processing teams during peak hours",
+>         "Use real-time inventory management to avoid processing delays"
+>     ],
+>     'processed_to_shipped': [
+>         "Optimize warehouse layout for faster picking and packing",
+>         "Implement batch processing for similar orders",
+>         "Establish partnerships with multiple shipping carriers for faster pickup",
+>         "Invest in automated packaging systems",
+>         "Improve coordination between processing and shipping teams"
+>     ],
+>     'shipped_to_delivered': [
+>         "Partner with faster shipping carriers or upgrade shipping tiers",
+>         "Implement regional distribution centers to reduce shipping distances",
+>         "Offer expedited shipping options",
+>         "Negotiate better service level agreements with current carriers",
+>         "Consider last-mile delivery partnerships in major metropolitan areas"
+>     ]
+> }
+>
+> # Write results to output file
+> with open('/app/output/answer.txt', 'w') as f:
+>     f.write("APPAREL E-COMMERCE ORDER ANALYSIS REPORT\n")
+>     f.write("=" * 45 + "\n\n")
+>
+>     # Same-month delivery percentage
+>     f.write(f"1. SAME-MONTH DELIVERY PERFORMANCE\n")
+>     f.write(f"Percentage of orders delivered in the same month as order placement: {same_month_percentage}%\n\n")
+>
+>     # Average milestone durations
+>     f.write("2. AVERAGE MILESTONE DURATIONS\n")
+>     f.write(f"- Ordered to Processed: {avg_ordered_to_processed} days\n")
+>     f.write(f"- Processed to Shipped: {avg_processed_to_shipped} days\n")
+>     f.write(f"- Shipped to Delivered: {avg_shipped_to_delivered} days\n\n")
+>
+>     # Benchmark comparison
+>     f.write("3. INDUSTRY BENCHMARK COMPARISON\n")
+>     f.write("Stage\t\t\tActual\tBenchmark\tStatus\n")
+>     f.write("-" * 50 + "\n")
+>
+>     stage_names = {
+>         'ordered_to_processed': 'Ordered to Processed',
+>         'processed_to_shipped': 'Processed to Shipped',
+>         'shipped_to_delivered': 'Shipped to Delivered'
+>     }
+>
+>     for stage, avg_time in performance.items():
+>         benchmark = benchmarks[stage]
+>         status = "NEEDS IMPROVEMENT" if avg_time > benchmark else "MEETS BENCHMARK"
+>         f.write(f"{stage_names[stage]}\t{avg_time}\t{benchmark}\t\t{status}\n")
+>
+>     f.write("\n")
+>
+>     # Underperforming stages analysis
+>     if underperforming_stages:
+>         f.write("4. UNDERPERFORMING STAGES ANALYSIS\n")
+>         for stage in underperforming_stages:
+>             f.write(f"\n{stage_names[stage]}:\n")
+>             f.write(f"- Average time: {performance[stage]} days (vs benchmark: {benchmarks[stage]} days)\n")
+>             f.write(f"- Percentage of orders exceeding benchmark: {exceeding_percentages[stage]}%\n")
+>
+>         f.write("\n5. RECOMMENDATIONS FOR IMPROVEMENT\n")
+>         for stage in underperforming_stages:
+>             f.write(f"\n{stage_names[stage]} Improvements:\n")
+>             for i, rec in enumerate(recommendations[stage], 1):
+>                 f.write(f"{i}. {rec}\n")
+>     else:
+>         f.write("4. PERFORMANCE SUMMARY\n")
+>         f.write("All stages meet or exceed industry benchmarks. No immediate improvements needed.\n")
+>
+> print("Analysis complete. Results written to /app/output/answer.txt")
+> EOF
+root@5d6e4bbfe24a:/app#

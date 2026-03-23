@@ -1,0 +1,29 @@
+{
+    "id": "1925aa42-5a9c-4d37-b8d2-2904f8dabc84",
+    "started_at": "2026-03-21T23:01:54.992486",
+    "finished_at": "2026-03-21T23:03:36.742886",
+    "n_total_trials": 1,
+    "stats": {
+        "n_trials": 1,
+        "n_errors": 0,
+        "evals": {
+            "terminus-2__anthropic-claude-sonnet-4__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "apex-finance-1588__XLUvEew"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

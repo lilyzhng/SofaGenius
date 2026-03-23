@@ -1,0 +1,86 @@
+{
+  "criterion 1": {
+    "description": "States the California Penal Code section 288 prohibits lewd or lascivious acts.",
+    "sources": "",
+    "justification": "California Code, Penal Code - PEN \u00a7 288: '(a) Except as provided in subdivision (i), a person who willfully and lewdly ***commits any lewd or lascivious act***, including any of the acts constituting other crimes provided for in Part 1, upon or with the body, or any part or member thereof, of a child who is under the age of 14 years, with the intent of arousing, appealing to, or gratifying the lust, passions, or sexual desires of that person or the child, is guilty of a felony and shall be punished by imprisonment in the state prison for three, six, or eight years. ... (c)(1) A person who ***commits an act described in subdivision (a)*** with the intent described in that subdivision, and the victim is a child of 14 or 15 years, and that person is at least 10 years older than the child, is guilty of a public offense and shall be punished by imprisonment in the state prison for one, two, or three years, or by imprisonment in a county jail for not more than one year. In determining whether the person is at least 10 years older than the child, the difference in age shall be measured from the birth date of the person to the birth date of the child.' *** added for emphasis https://codes.findlaw.com/ca/penal-code/pen-sect-288/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that California Penal Code section 288(c)(1) applies only when the perpetrator is at least 10 years older than the victim.",
+    "sources": "",
+    "justification": "California Code, Penal Code - PEN \u00a7 288: '... (c)(1) A person who commits an act described in subdivision (a)*** with the intent described in that subdivision, ***and the victim is a child of 14 or 15 years, and that person is at least 10 years older than the child***, is guilty of a public offense and shall be punished by imprisonment in the state prison for one, two, or three years, or by imprisonment in a county jail for not more than one year. In determining whether the person is at least 10 years older than the child, the difference in age shall be measured from the birth date of the person to the birth date of the child.' *** added for emphasis https://codes.findlaw.com/ca/penal-code/pen-sect-288/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates that Ms. Rothschild is not at least 10 years older than Jontae.",
+    "sources": "Prompt.",
+    "justification": "PROMPT 'On January 11th, 2025, in Compton, California, Christy Rothschild, aged 24, was babysitting Jontae Rodriguez, aged 15.' APPLICATION 24 - 15 = 9 Thus, Ms. Rothschild is not at least 10 years older than Jontae.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Concludes that there was no evidence establishing the requisite 10+ year age difference required under PC 288(c)(1).",
+    "sources": "",
+    "justification": "As established in C2/22685, Penal Code section 288(c)(1) applies only when the perpetrator is at least 10 years older than the victim. As established in C3/22686, Ms. Rothschild is not at least 10 years older than Jontae. Thus, here was no evidence establishing the requisite 10+ year age gap required under PC 288(c)(1).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Concludes there is a very high likelihood Ms. Rothschild's appeal will be granted.",
+    "sources": "",
+    "justification": "As established in C1/22684, California Penal Code section 288 prohibits lewd or lascivious acts. As established in C7/22828, on an appeal of a criminal conviction for insufficiency of evidence, the standard of review is whether there is substantial evidence to support the conviction. As established in C4/22687, there was no evidence establishing the requisite 10+ year age difference required under PC 288(c)(1). As such, even under the deferential substantial evidence standard, there is a very high likelihood Ms. Rothschild's appeal will be granted. This conclusion applies regardless of whether Ms. Rothschild's conduct constituted a 'lewd or lascivious act.' The 10+ year age difference requirement is an element of PC 288(c)(1), and so a conviction under that statute cannot stand where there is no evidence in support of the age-difference element. See PC 288(c)(1): '...and that person is at least 10 years older than the child...' See the jury instruction for PC 288(c)(1), CALCRIM 1112, which states that the 10+ year age-difference is a distinct element of the offense: 'To prove that the defendant is guilty of this crime, the People must prove that: ...AND 4. When the defendant acted, the child was at least 10 years younger than the defendant.' https://www.justia.com/criminal/docs/calcrim/1000/1112/ In Ms. Rothschild's appeal, an expert appellate attorney would err on the side of caution and also argue there was not substantial evidence of a lewd or lascivious act. However, because: - under the deferential 'substantial evidence' standard there very likely was sufficient evidence of a lewd or lascivious act (deliberately grazing Jontae's chest, winking and purring, sticking her finger seductively into her mouth and inviting Jontae to the bedroom for 'more where that came from') - there is a complete lack of evidence supporting the age-gap element, and - the prompt asks for a client advisement letter addressing the likelihood that the appellate court will grant Ms. Rothschild's appeal, an expert advisement should focus exclusively on the age-gap issue and conclude that Ms. Rothschild's appeal will very likely be granted.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      7,
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "Formats the response as a client advisement letter that includes at least three of the following: a question presented identifying the legal issue, a brief answer identifying an answer to the legal issue, a fact section, a discussion section where the legal issue is analyzed, or a conclusion summarizing the legal analysis.",
+    "sources": "",
+    "justification": "The prompt asks for a client advisement letter. While there is no single style for this, such a document usually includes a question presented identifying the legal issue, a brief answer providing the resolution of the issue, a fact section, a discussion section analyzing the issue, and a conclusion summarizing the analysis.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Style"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that on an appeal of a criminal conviction for insufficiency of evidence, the standard of review is whether there is substantial evidence to support the conviction.",
+    "sources": "PEOPLE v. CROMER.pdf",
+    "justification": "People v. Cromer (2001) 24 Cal.4th 889: 'The standards of review for questions of pure fact and pure law are well developed and settled. Trial courts and juries are better situated to resolve questions of fact, while appellate courts are more competent to resolve questions of law. Traditionally, therefore, an appellate court reviews findings of fact under a deferential standard (substantial evidence under California law, clearly erroneous under federal law), but it reviews determinations of law under a nondeferential standard, which is independent or de novo review.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  }
+}

@@ -1,0 +1,30 @@
+Item,Value,Unit,Notes
+LTM EBITDA,220,USD m,
+Implemented cost savings (run-rate),30,USD m,
+Lost contracts / run-rate dis-synergies,10,USD m,
+Reorg valuation multiple (EV / normalized EBITDA),7.5,x,
+Existing cash on hand ,20,USD m,
+Asset sale proceeds,50,USD m,
+Rights offering size,100,USD m,
+Minimum cash required at emergence,40,USD m,
+Debtor-in-Possession new-money principal to be repaid,180,USD m,
+Admin & professional fees ,40,USD m,
+Cure costs ,20,USD m,
+Severance ,15,USD m,
+Contract rejection costs ,10,USD m,
+Exit Term Loan interest rate ,8,%,
+Plan basic new shares at emergence,100,million shares,Before rights/backstop/MIP
+Allocation of plan basic shares to first lien,60,million shares,Pre-rights allocation
+Allocation of plan basic shares to second lien,25,million shares,Pre-rights allocation
+Allocation of plan basic shares to Unsecured Notes,10,million shares,Pre-rights allocation
+Rights subscription price per share,5,USD per share,
+Rights participation classes,first and second lien onlu,,
+Backstop provider,first lien only,,paid in shares
+Backstop fee (percentage of offering size),6,%,
+MIP options ,5,million options,
+,,,
+Covenant mechanics ,,,
+Spinging net first lien leverage test ? 2.5x,,,
+Cash netting cap (of unrestricted cash),25,USD m,
+Permitted covenent add back to normalized EBITDA,8,USD m (capped ar 15% of LTM EBITDA),
+"Incremental first lien basket is greater of USD 50.00 m or 1.00x normalized EBITDA, but incurrence limited by pro-forma complaince with the springing covenant",,,

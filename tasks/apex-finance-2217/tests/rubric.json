@@ -1,0 +1,138 @@
+{
+  "criterion 1": {
+    "description": "Calculates basic shares outstanding as 256.9 million (acceptable range from 254.4 million to 259.5 million)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf",
+    "justification": "256.938 million basic shares outstanding = 215,159,125 Class A common stock outstanding (10-Q page 1) + 41,779,032 Class B common stock outstanding (10-Q page 1)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates total dilutive shares (impact of dilutive securities) as 27.8 million (acceptable range from 27.5 million to 28.1 million)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf Coinbase_Trading_History.pdf",
+    "justification": "* RSUs: Inputs: 3.568 million outstanding RSUs (10-Q page 22) Dilution: 100% of RSUs are included in dilution; therefore, the dilution from RSUs = 3.568 million * 100% = 3.568 million dilution * Performance-based RSUs (PSUs): Inputs: 0.643 million outstanding PSUs (10-Q page 22) Dilution: 100% of PSUs are included in dilution; therefore, the dilution from PSUs = 0.643 million * 100% = 0.643 million dilution * Stock Options: Inputs: 21.391 million outstanding stock options; $25.20 weighted-average exercise price (10-Q page 22) Dilution: Since the weighted-average exercise price ($25.20) is less than the share price as of October 14, 2025 ($341.55), the stock options are in-the-money; therefore, the dilution is: 21.391 million shares - ($25.20 * 21.391 million shares) / $341.55 share price as of October 14, 2025 = 19.813 million dilution * 2026 Convertible Notes: Inputs: $1,273 million principal balance (10-Q page 17); 2.6994 conversion rate (shares per $1,000 principal amount of the convertible notes) (10-K page 27); $370.45 conversion price per share (10-K page 27) Dilution: Since the share price as of October 14, 2025 ($341.55) is below the conversion price ($370.45), the convertible notes are considered out-of-the-money and are not included in fully diluted shares. Therefore, the dilution is zero. * 2030 Convertible Notes: Inputs: $1,265 million principal balance (10-Q page 17); 2.9981 conversion rate (shares per $1,000 principal amount of the convertible notes) (10-K page 28); $333.54 conversion price per share (10-K page 28) Dilution: Since the share price as of October 14, 2025 ($341.55), is above the conversion price ($333.54), the convertible notes are considered in-the-money and are included in fully diluted shares on an if-converted basis. The dilutive impact of the convertible notes: $1,265 million convertible notes principal balance / $1,000 * 2.9981 conversion ratio = 3.793 million dilution FINAL ANSWER (sum of the above dilutions): 3.568 million RSU dilution + 0.643 million PSU dilution + 19.813 million stock options dilution + 0 2026 convertible notes dilution + 3.793 million 2030 convertible notes dilution = 27.8 million total dilutive shares",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Calculates fully diluted shares outstanding as 284.8 million (acceptable range from 281.9 million to 287.6 million)",
+    "sources": "",
+    "justification": "284.754 million fully diluted shares outstanding = 256.938 million basic shares outstanding + 27.816 million total dilutive shares",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2
+    ]
+  },
+  "criterion 4": {
+    "description": "Calculates fully diluted market capitalization (based on VWAP) as $94,404 million (acceptable range from $93,460 million to $95,348 million)",
+    "sources": "Coinbase_Trading_History.pdf",
+    "justification": "Computes the volume-weighted average price (VWAP) over the last 45 trading days (August 12, 2025, through October 14, 2025) using the data from 'Coinbase_Trading_History.pdf' pages 1-2. VWAP = Sum(Closing Price(i) x Volume(i)) / Sum(Volume(i)), where (i) = each trading day in the window. * Per-day dollar-volume calculations (Closing price x Volume): 14-Oct-2025: $341.55 * 9,422,500 = $3,218,254,875 13-Oct-2025: $356.99 * 10,318,400 = $3,683,565,616 . . . 13-Aug-2025: $327.01 * 15,399,800 = $5,035,888,598 12-Aug-2025: $322.62 * 9,947,800 = $3,209,359,236 Sum of 12-Aug-2025 through 14-Oct-2025 per-day dollar-volume above = $136,951,530,350 Sum of 12-Aug-2025 through 14-Oct-2025 volume above = 413,093,100 VWAP = $331.53 = $136,951,530,350 / 413,093,100 Final answer: $94,404 million fully diluted market capitalization = 284.754 million fully diluted shares x $331.53 Coinbase 45-day VWAP as of October 14, 2025",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Calculates enterprise value as $84,444 million (acceptable range from $83,600 million to $85,289 million)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf",
+    "justification": "$94,404 million fully diluted market capitalization (-) Cash and cash equivalents: $7,539 million (10-Q page 6) (-) USDC not loaned or pledged as collateral: $1,784 million (10-Q page 42) (-) Strategic investments: $1,934 million (10-Q page 6) (-) Bitcoin held for investment: 11,776 Bitcoin held for investment (10-Q page 17) * $107,200 market value per Bitcoin = $1,262 million (-) Ethereum held for investment: 136,782 Ethereum held for investment (10-Q page 17) * $3,875 market value per Ethereum = = $530 million (-) Other crypto assets held for investment: $238 million (10-Q page 17) (+) Gross debt, excluding unamortized debt discount, premium, and issuance costs: $4,275 million (10-Q page 17) (-) Convertible notes principal (if in-the-money): $1,265 million (10-Q page 17) (+) Bitcoin borrowings: 1,342 Bitcoin borrowings (10-Q page 15) * $107,200 market value per Bitcoin = $144 million (+) Ethereum borrowings: 35,172 Ethereum borrowings (10-Q page 15) * $3,875 market value per Ethereum = $136 million (+) Other crypto asset borrowings: $37 million (10-Q page 15) = $84,444 million enterprise value",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "Calculates enterprise value to last twelve months (LTM) June 30, 2025, Revenue as 12.0x (acceptable range from 11.8x to 12.2x)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf",
+    "justification": "12.0x enterprise value to last twelve months (LTM) June 30, 2025, Revenue = $84,444 million enterprise value / ($6,564.0 million FY2024 revenue (10-K page 5) - $3,087.2 million revenue for the six months ended June 30, 2024 (10-Q page 7) + $3,531.5 million revenue for the six months ended June 30, 2025 (10-Q page 7))",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Calculates enterprise value to last twelve months (LTM) June 30, 2025, Gross Profit as 14.1x (acceptable range from 13.9x to 14.3x)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf",
+    "justification": "14.1x enterprise value to last twelve months (LTM) June 30, 2025, Gross Profit = $84,444 million enterprise value / (($6,564.0 million FY2024 revenue (10-K page 5) - $897.7 million FY2024 transaction expense (10-K page 5)) - ($3,087.2 million revenue for the six months ended June 30, 2024 (10-Q page 7) - $408.9 million transaction expense for the six months ended June 30, 2024 (10-Q page 7)) + ($3,531.5 million revenue for the six months ended June 30, 2025 (10-Q page 7) - $548.3 million transaction expense for the six months ended June 30, 2025 (10-Q page 7))",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "Calculates enterprise value to last twelve months (LTM) June 30, 2025, Operating Income as 44.8x (acceptable range from 44.3x to 45.3x)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf",
+    "justification": "44.8x enterprise value to last twelve months (LTM) June 30, 2025, Operating Income = $84,444 million enterprise value / ($2,307.2 million FY2024 Operating Income (10-K page 5) - $1,103.6 million Operating Income for the six months ended June 30, 2024 (10-Q page 7) + $681.2 million Operating Income for the six months ended June 30, 2025 (10-Q page 7))",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 9": {
+    "description": "Calculates fully diluted market capitalization (using VWAP) to last twelve months (LTM) June 30, 2025, Revenue as 13.5x (acceptable range from 13.2x to 13.8x)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf",
+    "justification": "13.5x fully diluted market capitalization to last twelve months (LTM) June 30, 2025, Revenue = $94,404 million fully diluted market capitalization / ($6,564.0 million FY2024 revenue (10-K page 5) - $3,087.2 million revenue for the six months ended June 30, 2024 (10-Q page 7) + $3,531.5 million revenue for the six months ended June 30, 2025 (10-Q page 7))",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4
+    ]
+  },
+  "criterion 10": {
+    "description": "Calculates fully diluted market capitalization (using VWAP) to last twelve months (LTM) June 30, 2025, Net Income as 33.0x (acceptable range from 32.5x to 33.5x)",
+    "sources": "Coinbase_Form_10-Q_Condensed.pdf Coinbase_Form_10-K_Condensed.pdf",
+    "justification": "33.0x fully diluted market capitalization to last twelve months (LTM) June 30, 2025, Net Income = $94,404 million fully diluted market capitalization / ($2,579.1 million FY2024 net income (10-K page 5) - $1,212.4 million net income for the six months ended June 30, 2024 (10-Q page 7) + $1,494.5 million net income for the six months ended June 30, 2025 (10-Q page 7))",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# pdftotext "data/Va. Code Ann. _ 18.2-47.pdf" - | head -50
+Session Information
+Virginia Law
+
+Bills & Resolutions
+
+State Budget
+
+Reports to the General Assembly
+
+Code of Virginia
+Title 18.2. Crimes and Offenses Generally
+Chapter 4. Crimes Against the Person
+
+§ 18.2-47. Abduction and kidnapping defined;
+forced labor; punishment.
+A. Any person who, by force, intimidation or deception, and without legal justification or excuse, seize
+takes, transports, detains or secretes another person with the intent to deprive such other person of hi
+personal liberty or to withhold or conceal him from any person, authority or institution lawfully entitl
+to his charge, shall be deemed guilty of "abduction."
+B. Any person who, by force, intimidation or deception, and without legal justification or excuse, obtai
+the labor or services of another person, or seizes, takes, transports, detains or secretes another person
+threatens to do so, with the intent to subject him to forced labor or services, shall be deemed guilty of
+"abduction." For purposes of this subsection, the term "intimidation" shall include destroying,
+concealing, confiscating, withholding, or threatening to withhold a passport, immigration document, o
+other governmental identification, threatening to report another as being illegally present in the Unite
+States, or threatening to separate another from or to harm a family member.
+C. The provisions of this section shall not apply to any law-enforcement officer in the performance of
+his duty. The terms "abduction" and "kidnapping" shall be synonymous in this Code. Except as provided
+in subsection D, abduction of a minor shall be punished as a Class 2 felony. Abduction for which no
+punishment is otherwise prescribed shall be punished as a Class 5 felony.
+D. If an offense under subsection A is committed by the parent or a family or household member, as
+defined in § 16.1-228, who has been ordered custody or visitation of the person abducted and
+punishable as contempt of court in any proceeding then pending, the offense shall be a Class 1
+misdemeanor in addition to being punishable as contempt of court. However, such offense, if committ
+by the parent or a family or household member, as defined in § 16.1-228, who has been ordered custod
+or visitation of the person abducted and punishable as contempt of court in any proceeding then
+pending and the person abducted is removed from the Commonwealth by the abducting parent or a
+family or household member, as defined in § 16.1-228, who has been ordered custody or visitation, sha
+be a Class 6 felony in addition to being punishable as contempt of court.
+Code 1950, §§ 18.1-36, 18.1-37; 1960, c. 358; 1975, cc. 14, 15; 1979, c. 663; 1980, c. 506; 1997, c. 747;
+2009, c. 662; 2023, c. 400; 2024, c. 368.
+The chapters of the acts of assembly referenced in the historical citation at the end of this section may not constitute a
+comprehensive list of such chapters and may exclude chapters whose provisions have expired.
+
+11/14/20
+
+ Virginia Law Library
+
+
+The Code of Virginia, Constitution
+of Virginia, Charters, Authorities,
+root@78f1db70b96f:/app#

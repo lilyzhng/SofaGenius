@@ -1,0 +1,79 @@
+{
+    "job_name": "2026-03-21__23-01-54",
+    "jobs_dir": "jobs/all-runs/05-detailed",
+    "n_attempts": 1,
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "debug": false,
+    "orchestrator": {
+        "type": "local",
+        "n_concurrent_trials": 4,
+        "quiet": false,
+        "retry": {
+            "max_retries": 0,
+            "include_exceptions": null,
+            "exclude_exceptions": [
+                "RewardFileNotFoundError",
+                "AgentTimeoutError",
+                "VerifierTimeoutError",
+                "VerifierOutputParseError",
+                "RewardFileEmptyError"
+            ],
+            "wait_multiplier": 1.0,
+            "min_wait_sec": 1.0,
+            "max_wait_sec": 60.0
+        },
+        "kwargs": {}
+    },
+    "environment": {
+        "type": "docker",
+        "import_path": null,
+        "force_build": false,
+        "delete": true,
+        "override_cpus": null,
+        "override_memory_mb": 2048,
+        "override_storage_mb": null,
+        "override_gpus": null,
+        "suppress_override_warnings": false,
+        "mounts_json": null,
+        "env": {},
+        "kwargs": {}
+    },
+    "verifier": {
+        "override_timeout_sec": null,
+        "max_timeout_sec": null,
+        "disable": false
+    },
+    "metrics": [],
+    "agents": [
+        {
+            "name": "terminus-2",
+            "import_path": null,
+            "model_name": "openrouter/anthropic/claude-sonnet-4",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {
+                "max_turns": 10
+            },
+            "env": {
+                "OPENROUTER_API_KEY": "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"
+            }
+        }
+    ],
+    "datasets": [],
+    "tasks": [
+        {
+            "path": "tasks/apex-finance-1588",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        }
+    ],
+    "artifacts": []
+}

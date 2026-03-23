@@ -1,0 +1,95 @@
+{
+  "reward": 0.8462,
+  "reason": "criteria 11/13",
+  "file_exists": true,
+  "correctness": 0.8462,
+  "criteria_met": 11,
+  "criteria_total": 13,
+  "tool_engaged": true,
+  "files_created": [
+    "analysis.py",
+    "answer.txt"
+  ],
+  "criteria_details": [
+    {
+      "criterion": "criterion 1",
+      "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M1 as 2.73 (acceptable value is 2.73)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 2",
+      "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M2 as 3.25 (acceptable value is 3.25)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 3",
+      "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M3 as 3.06 (acceptable value is 3.06)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 4",
+      "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M4 as 2.83 (acceptable value is 2.83)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 5",
+      "description": "Calculates the ratio of Average Lifetime Revenue to Average Lifetime Pay for grade M5 as 1.74 (acceptable value is 1.74)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 6",
+      "description": "State that M2 is one of the top 2 grades",
+      "passed": false,
+      "method": "failed",
+      "analysis": "Matched 0/1 keywords"
+    },
+    {
+      "criterion": "criterion 7",
+      "description": "State that M3 is one of the top 2 grades",
+      "passed": false,
+      "method": "failed",
+      "analysis": "Matched 0/1 keywords"
+    },
+    {
+      "criterion": "criterion 8",
+      "description": "Calculate the number of additional employees to be added for M2 as 20 (Acceptable value is 20)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 9",
+      "description": "Calculate the number of additional employees to be added for M3 as 20 (Acceptable value is 20)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 10",
+      "description": "Calculate the total annual additional expense as $78,907,051 (Acceptable value is $78,907,051)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 11",
+      "description": "Calculate the total annual additional expense for M2 as $31,764,666 (Acceptable value is $31,764,666)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 12",
+      "description": "Calculate the total annual additional expense for M3 as $47,142,384 (Acceptable value is $47,142,384)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 13",
+      "description": "Recommends the bank should focus on one of the following employee grade levels for its expansion plans: 1) The bank should prioritize expanding high-return senior grades (e.g., M2-M3) 2) The bank shou",
+      "passed": true,
+      "method": "keyword_match"
+    }
+  ]
+}

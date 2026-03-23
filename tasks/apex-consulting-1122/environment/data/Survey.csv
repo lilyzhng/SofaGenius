@@ -1,0 +1,1986 @@
+Customer_ID,Generation,Gender,Region,Diet,Spice_Preference,Menu_ITEM,Price_USD,Calories,Taste_Rating,Portion_Rating,Freshness_Rating,Value_for_Price,Likelihood_to_Recommend,Overall_Sat
+CUST_0001,Gen X,Male,Midwest,Flexitarian,Mild,Chicken Burrito,10.9,740,2,8,5,4,6,10
+CUST_0002,Gen X,Male,Midwest,Flexitarian,Mild,Steak Bowl,10.85,710,3,3,8,7,5,9
+CUST_0003,Gen X,Male,Midwest,Flexitarian,Mild,Veggie Bowl,9.69,590,7,4,7,6,4,8
+CUST_0004,Gen X,Male,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),12.74,650,2,5,4,3,6,4
+CUST_0005,Gen X,Male,Midwest,Flexitarian,Mild,Carnitas Salad,12.04,620,3,7,5,4,4,5
+CUST_0006,Gen Z,Male,Northeast,Flexitarian,Medium,Chicken Burrito,10.88,740,7,8,6,5,10,7
+CUST_0007,Gen Z,Male,Northeast,Flexitarian,Medium,Steak Bowl,10.35,710,6,7,7,6,8,8
+CUST_0008,Gen Z,Male,Northeast,Flexitarian,Medium,Veggie Bowl,9.04,590,3,4,8,7,3,8
+CUST_0009,Gen Z,Male,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),11.1,650,3,7,7,6,6,9
+CUST_0010,Gen Z,Male,Northeast,Flexitarian,Medium,Carnitas Salad,10.34,620,8,6,7,6,6,7
+CUST_0011,Gen Z,Female,Northeast,Omnivore,Mild,Chicken Burrito,10.18,740,4,3,7,6,6,5
+CUST_0012,Gen Z,Female,Northeast,Omnivore,Mild,Steak Bowl,12.52,710,4,3,8,7,8,7
+CUST_0013,Gen Z,Female,Northeast,Omnivore,Mild,Veggie Bowl,9.9,590,6,2,6,5,10,5
+CUST_0014,Gen Z,Female,Northeast,Omnivore,Mild,Barbacoa Tacos (3),12.8,650,7,2,6,5,5,4
+CUST_0015,Gen Z,Female,Northeast,Omnivore,Mild,Carnitas Salad,10.93,620,7,7,8,7,6,7
+CUST_0016,Boomer,Female,Northeast,Flexitarian,Mild,Chicken Burrito,9.47,740,2,4,8,7,8,10
+CUST_0017,Boomer,Female,Northeast,Flexitarian,Mild,Steak Bowl,11.54,710,3,4,8,7,9,3
+CUST_0018,Boomer,Female,Northeast,Flexitarian,Mild,Veggie Bowl,10.73,590,5,4,8,7,9,5
+CUST_0019,Boomer,Female,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),12.06,650,7,4,7,6,10,4
+CUST_0020,Boomer,Female,Northeast,Flexitarian,Mild,Carnitas Salad,11.18,620,8,8,5,4,4,6
+CUST_0021,Boomer,Male,Midwest,Flexitarian,Medium,Chicken Burrito,10.78,740,3,7,4,3,3,5
+CUST_0022,Boomer,Male,Midwest,Flexitarian,Medium,Steak Bowl,12.16,710,6,7,5,4,3,10
+CUST_0023,Boomer,Male,Midwest,Flexitarian,Medium,Veggie Bowl,10.66,590,6,8,10,9,5,10
+CUST_0024,Boomer,Male,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),11.63,650,6,8,7,6,5,10
+CUST_0025,Boomer,Male,Midwest,Flexitarian,Medium,Carnitas Salad,10.73,620,8,3,6,5,7,5
+CUST_0026,Gen X,Male,Northeast,Vegetarian,Hot,Chicken Burrito,10.3,740,6,7,6,5,5,3
+CUST_0027,Gen X,Male,Northeast,Vegetarian,Hot,Steak Bowl,12.11,710,7,3,7,6,5,10
+CUST_0028,Gen X,Male,Northeast,Vegetarian,Hot,Veggie Bowl,9.43,590,7,8,8,7,10,8
+CUST_0029,Gen X,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),12.78,650,4,7,3,2,5,7
+CUST_0030,Gen X,Male,Northeast,Vegetarian,Hot,Carnitas Salad,11.7,620,2,6,5,4,5,3
+CUST_0031,Boomer,Male,South,Omnivore,Mild,Chicken Burrito,9.87,740,3,2,8,7,4,8
+CUST_0032,Boomer,Male,South,Omnivore,Mild,Steak Bowl,11.27,710,3,2,3,2,9,5
+CUST_0033,Boomer,Male,South,Omnivore,Mild,Veggie Bowl,10.72,590,8,4,10,9,7,3
+CUST_0034,Boomer,Male,South,Omnivore,Mild,Barbacoa Tacos (3),12.07,650,4,5,10,9,5,9
+CUST_0035,Boomer,Male,South,Omnivore,Mild,Carnitas Salad,11.55,620,7,4,9,8,5,6
+CUST_0036,Boomer,Female,Midwest,Flexitarian,Medium,Chicken Burrito,10.43,740,2,5,7,6,6,4
+CUST_0037,Boomer,Female,Midwest,Flexitarian,Medium,Steak Bowl,11.47,710,8,8,7,6,3,5
+CUST_0038,Boomer,Female,Midwest,Flexitarian,Medium,Veggie Bowl,9.41,590,8,2,7,6,7,7
+CUST_0039,Boomer,Female,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),11.52,650,6,6,7,6,7,8
+CUST_0040,Boomer,Female,Midwest,Flexitarian,Medium,Carnitas Salad,11.47,620,2,6,6,5,4,3
+CUST_0041,Boomer,Male,Midwest,Vegetarian,Hot,Chicken Burrito,10.64,740,7,6,4,3,8,5
+CUST_0042,Boomer,Male,Midwest,Vegetarian,Hot,Steak Bowl,10.73,710,5,6,7,6,4,9
+CUST_0043,Boomer,Male,Midwest,Vegetarian,Hot,Veggie Bowl,9.92,590,8,3,3,2,5,8
+CUST_0044,Boomer,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),11.88,650,2,5,4,3,10,3
+CUST_0045,Boomer,Male,Midwest,Vegetarian,Hot,Carnitas Salad,9.94,620,5,4,6,5,6,8
+CUST_0046,Boomer,Male,Midwest,Omnivore,Mild,Chicken Burrito,9.71,740,8,2,6,5,5,8
+CUST_0047,Boomer,Male,Midwest,Omnivore,Mild,Steak Bowl,10.83,710,3,5,6,5,10,9
+CUST_0048,Boomer,Male,Midwest,Omnivore,Mild,Veggie Bowl,10.87,590,4,6,7,6,3,6
+CUST_0049,Boomer,Male,Midwest,Omnivore,Mild,Barbacoa Tacos (3),10.94,650,7,2,5,4,6,9
+CUST_0050,Boomer,Male,Midwest,Omnivore,Mild,Carnitas Salad,11.51,620,6,7,4,3,7,5
+CUST_0051,Boomer,Male,South,Flexitarian,Medium,Chicken Burrito,9.56,740,5,8,7,6,10,4
+CUST_0052,Boomer,Male,South,Flexitarian,Medium,Steak Bowl,12.6,710,6,2,3,2,6,9
+CUST_0053,Boomer,Male,South,Flexitarian,Medium,Veggie Bowl,10.32,590,6,8,3,2,3,4
+CUST_0054,Boomer,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),12.4,650,6,7,10,9,3,10
+CUST_0055,Boomer,Male,South,Flexitarian,Medium,Carnitas Salad,10.44,620,5,3,9,8,6,8
+CUST_0056,Gen X,Female,South,Vegetarian,Hot,Chicken Burrito,10.9,740,5,6,7,6,4,7
+CUST_0057,Gen X,Female,South,Vegetarian,Hot,Steak Bowl,12.21,710,7,4,3,2,9,10
+CUST_0058,Gen X,Female,South,Vegetarian,Hot,Veggie Bowl,9.18,590,3,5,4,3,7,4
+CUST_0059,Gen X,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),12.95,650,4,3,10,9,7,6
+CUST_0060,Gen X,Female,South,Vegetarian,Hot,Carnitas Salad,11.34,620,6,7,8,7,4,3
+CUST_0061,Gen X,Male,Midwest,Flexitarian,Medium,Chicken Burrito,9.94,740,3,2,10,9,7,7
+CUST_0062,Gen X,Male,Midwest,Flexitarian,Medium,Steak Bowl,11.81,710,7,5,9,8,3,6
+CUST_0063,Gen X,Male,Midwest,Flexitarian,Medium,Veggie Bowl,9.18,590,6,3,10,9,9,3
+CUST_0064,Gen X,Male,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),12.86,650,5,4,5,4,5,3
+CUST_0065,Gen X,Male,Midwest,Flexitarian,Medium,Carnitas Salad,10.34,620,7,8,5,4,3,5
+CUST_0066,Gen X,Male,West,Omnivore,Hot,Chicken Burrito,11.44,740,5,7,8,7,6,5
+CUST_0067,Gen X,Male,West,Omnivore,Hot,Steak Bowl,10.58,710,2,2,7,6,7,4
+CUST_0068,Gen X,Male,West,Omnivore,Hot,Veggie Bowl,9.81,590,7,6,10,9,4,8
+CUST_0069,Gen X,Male,West,Omnivore,Hot,Barbacoa Tacos (3),11.98,650,5,2,4,3,10,10
+CUST_0070,Gen X,Male,West,Omnivore,Hot,Carnitas Salad,10.64,620,8,8,10,9,5,6
+CUST_0071,Gen Z,Female,Midwest,Vegetarian,Medium,Chicken Burrito,10.32,740,7,4,6,5,5,3
+CUST_0072,Gen Z,Female,Midwest,Vegetarian,Medium,Steak Bowl,11.57,710,6,4,7,6,6,7
+CUST_0073,Gen Z,Female,Midwest,Vegetarian,Medium,Veggie Bowl,9.47,590,4,8,9,8,5,3
+CUST_0074,Gen Z,Female,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),12.18,650,7,8,5,4,4,6
+CUST_0075,Gen Z,Female,Midwest,Vegetarian,Medium,Carnitas Salad,11.53,620,5,4,8,7,8,8
+CUST_0076,Millennial,Female,South,Omnivore,Medium,Chicken Burrito,10.03,740,4,6,10,9,7,7
+CUST_0077,Millennial,Female,South,Omnivore,Medium,Steak Bowl,11.9,710,2,5,6,5,6,8
+CUST_0078,Millennial,Female,South,Omnivore,Medium,Veggie Bowl,10.94,590,3,6,10,9,7,5
+CUST_0079,Millennial,Female,South,Omnivore,Medium,Barbacoa Tacos (3),11.82,650,6,8,4,3,9,5
+CUST_0080,Millennial,Female,South,Omnivore,Medium,Carnitas Salad,10.62,620,8,7,4,3,3,7
+CUST_0081,Gen Z,Male,South,Vegan,Hot,Chicken Burrito,11.5,740,5,7,5,4,6,3
+CUST_0082,Gen Z,Male,South,Vegan,Hot,Steak Bowl,11.43,710,8,6,6,5,4,7
+CUST_0083,Gen Z,Male,South,Vegan,Hot,Veggie Bowl,9.8,590,2,2,3,2,3,5
+CUST_0084,Gen Z,Male,South,Vegan,Hot,Barbacoa Tacos (3),12.23,650,8,7,6,5,9,3
+CUST_0085,Gen Z,Male,South,Vegan,Hot,Carnitas Salad,12.07,620,6,6,8,7,6,7
+CUST_0086,Millennial,Female,South,Omnivore,Mild,Chicken Burrito,9.49,740,5,6,4,3,9,8
+CUST_0087,Millennial,Female,South,Omnivore,Mild,Steak Bowl,11.6,710,7,2,8,7,7,5
+CUST_0088,Millennial,Female,South,Omnivore,Mild,Veggie Bowl,10.81,590,6,3,3,2,4,8
+CUST_0089,Millennial,Female,South,Omnivore,Mild,Barbacoa Tacos (3),11.03,650,7,2,3,2,4,8
+CUST_0090,Millennial,Female,South,Omnivore,Mild,Carnitas Salad,10.16,620,2,8,9,8,5,7
+CUST_0091,Gen X,Female,South,Flexitarian,Medium,Chicken Burrito,10.32,740,8,7,9,8,5,6
+CUST_0092,Gen X,Female,South,Flexitarian,Medium,Steak Bowl,11.34,710,3,5,3,2,4,8
+CUST_0093,Gen X,Female,South,Flexitarian,Medium,Veggie Bowl,9.95,590,8,3,3,2,9,8
+CUST_0094,Gen X,Female,South,Flexitarian,Medium,Barbacoa Tacos (3),11.22,650,4,7,8,7,3,5
+CUST_0095,Gen X,Female,South,Flexitarian,Medium,Carnitas Salad,9.96,620,4,2,8,7,8,5
+CUST_0096,Millennial,Male,Northeast,Flexitarian,Medium,Chicken Burrito,9.51,740,8,2,8,7,7,5
+CUST_0097,Millennial,Male,Northeast,Flexitarian,Medium,Steak Bowl,11.59,710,6,2,6,5,9,7
+CUST_0098,Millennial,Male,Northeast,Flexitarian,Medium,Veggie Bowl,10.3,590,5,2,9,8,10,10
+CUST_0099,Millennial,Male,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.42,650,4,6,9,8,5,10
+CUST_0100,Millennial,Male,Northeast,Flexitarian,Medium,Carnitas Salad,10.44,620,5,4,9,8,8,5
+CUST_0101,Boomer,Male,South,Flexitarian,Mild,Chicken Burrito,11.39,740,6,6,6,5,10,8
+CUST_0102,Boomer,Male,South,Flexitarian,Mild,Steak Bowl,10.98,710,5,7,7,6,3,4
+CUST_0103,Boomer,Male,South,Flexitarian,Mild,Veggie Bowl,9.74,590,5,3,3,2,9,7
+CUST_0104,Boomer,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),12.09,650,7,2,9,8,4,10
+CUST_0105,Boomer,Male,South,Flexitarian,Mild,Carnitas Salad,11.66,620,5,4,8,7,9,10
+CUST_0106,Millennial,Female,Midwest,Flexitarian,Mild,Chicken Burrito,11.54,740,8,5,8,7,4,3
+CUST_0107,Millennial,Female,Midwest,Flexitarian,Mild,Steak Bowl,10.78,710,5,3,6,5,6,9
+CUST_0108,Millennial,Female,Midwest,Flexitarian,Mild,Veggie Bowl,10.4,590,8,6,7,6,9,8
+CUST_0109,Millennial,Female,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),11.8,650,5,2,5,4,7,8
+CUST_0110,Millennial,Female,Midwest,Flexitarian,Mild,Carnitas Salad,10.8,620,3,2,3,2,10,4
+CUST_0111,Millennial,Male,West,Vegan,Hot,Chicken Burrito,11.02,740,3,7,3,2,4,4
+CUST_0112,Millennial,Male,West,Vegan,Hot,Steak Bowl,10.95,710,3,7,9,8,5,8
+CUST_0113,Millennial,Male,West,Vegan,Hot,Veggie Bowl,10.45,590,2,7,4,3,3,5
+CUST_0114,Millennial,Male,West,Vegan,Hot,Barbacoa Tacos (3),12.28,650,2,8,3,2,3,3
+CUST_0115,Millennial,Male,West,Vegan,Hot,Carnitas Salad,11.17,620,5,8,6,5,8,6
+CUST_0116,Millennial,Male,Midwest,Omnivore,Medium,Chicken Burrito,9.61,740,5,8,10,9,10,10
+CUST_0117,Millennial,Male,Midwest,Omnivore,Medium,Steak Bowl,12.22,710,8,4,8,7,8,7
+CUST_0118,Millennial,Male,Midwest,Omnivore,Medium,Veggie Bowl,9.91,590,8,8,9,8,4,3
+CUST_0119,Millennial,Male,Midwest,Omnivore,Medium,Barbacoa Tacos (3),12.04,650,5,2,6,5,5,8
+CUST_0120,Millennial,Male,Midwest,Omnivore,Medium,Carnitas Salad,10.02,620,6,5,8,7,4,5
+CUST_0121,Gen X,Male,Northeast,Omnivore,Hot,Chicken Burrito,9.81,740,7,4,10,9,5,4
+CUST_0122,Gen X,Male,Northeast,Omnivore,Hot,Steak Bowl,11.77,710,3,7,3,2,8,9
+CUST_0123,Gen X,Male,Northeast,Omnivore,Hot,Veggie Bowl,9.15,590,7,7,8,7,3,5
+CUST_0124,Gen X,Male,Northeast,Omnivore,Hot,Barbacoa Tacos (3),11.84,650,5,6,3,2,6,4
+CUST_0125,Gen X,Male,Northeast,Omnivore,Hot,Carnitas Salad,11.4,620,3,7,7,6,6,7
+CUST_0126,Gen X,Male,Midwest,Vegan,Hot,Chicken Burrito,9.62,740,3,7,10,9,10,9
+CUST_0127,Gen X,Male,Midwest,Vegan,Hot,Steak Bowl,12.18,710,4,3,5,4,5,6
+CUST_0128,Gen X,Male,Midwest,Vegan,Hot,Veggie Bowl,9.15,590,2,2,9,8,4,3
+CUST_0129,Gen X,Male,Midwest,Vegan,Hot,Barbacoa Tacos (3),12.94,650,3,5,9,8,8,9
+CUST_0130,Gen X,Male,Midwest,Vegan,Hot,Carnitas Salad,11.94,620,5,7,8,7,6,10
+CUST_0131,Gen Z,Male,Midwest,Vegetarian,Hot,Chicken Burrito,10.78,740,4,6,5,4,6,9
+CUST_0132,Gen Z,Male,Midwest,Vegetarian,Hot,Steak Bowl,12.15,710,4,4,10,9,5,7
+CUST_0133,Gen Z,Male,Midwest,Vegetarian,Hot,Veggie Bowl,10.57,590,8,3,3,2,10,6
+CUST_0134,Gen Z,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),12.3,650,3,5,8,7,4,8
+CUST_0135,Gen Z,Male,Midwest,Vegetarian,Hot,Carnitas Salad,10.5,620,4,7,5,4,9,9
+CUST_0136,Millennial,Male,Northeast,Flexitarian,Mild,Chicken Burrito,10.88,740,4,3,3,2,3,9
+CUST_0137,Millennial,Male,Northeast,Flexitarian,Mild,Steak Bowl,10.87,710,4,2,6,5,7,4
+CUST_0138,Millennial,Male,Northeast,Flexitarian,Mild,Veggie Bowl,9.49,590,8,2,7,6,8,5
+CUST_0139,Millennial,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),12.47,650,2,6,9,8,5,7
+CUST_0140,Millennial,Male,Northeast,Flexitarian,Mild,Carnitas Salad,11.44,620,6,8,9,8,8,8
+CUST_0141,Boomer,Male,West,Omnivore,Medium,Chicken Burrito,9.58,740,3,3,9,8,5,10
+CUST_0142,Boomer,Male,West,Omnivore,Medium,Steak Bowl,12.59,710,8,3,3,2,10,10
+CUST_0143,Boomer,Male,West,Omnivore,Medium,Veggie Bowl,10.29,590,2,8,4,3,6,10
+CUST_0144,Boomer,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.52,650,6,5,8,7,10,9
+CUST_0145,Boomer,Male,West,Omnivore,Medium,Carnitas Salad,10.65,620,6,3,9,8,5,9
+CUST_0146,Boomer,Male,Northeast,Vegan,Mild,Chicken Burrito,10.94,740,8,8,6,5,6,5
+CUST_0147,Boomer,Male,Northeast,Vegan,Mild,Steak Bowl,10.83,710,3,8,7,6,8,7
+CUST_0148,Boomer,Male,Northeast,Vegan,Mild,Veggie Bowl,9.69,590,6,7,5,4,4,10
+CUST_0149,Boomer,Male,Northeast,Vegan,Mild,Barbacoa Tacos (3),11.64,650,8,6,4,3,6,5
+CUST_0150,Boomer,Male,Northeast,Vegan,Mild,Carnitas Salad,11.4,620,8,7,6,5,9,6
+CUST_0151,Gen Z,Female,Midwest,Vegetarian,Hot,Chicken Burrito,9.96,740,5,5,7,6,9,5
+CUST_0152,Gen Z,Female,Midwest,Vegetarian,Hot,Steak Bowl,11.48,710,2,3,3,2,5,10
+CUST_0153,Gen Z,Female,Midwest,Vegetarian,Hot,Veggie Bowl,10.55,590,3,7,4,3,8,5
+CUST_0154,Gen Z,Female,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),13.1,650,8,5,5,4,6,8
+CUST_0155,Gen Z,Female,Midwest,Vegetarian,Hot,Carnitas Salad,9.91,620,8,6,6,5,4,5
+CUST_0156,Gen Z,Male,West,Vegetarian,Mild,Chicken Burrito,10.21,740,8,4,6,5,7,6
+CUST_0157,Gen Z,Male,West,Vegetarian,Mild,Steak Bowl,11.64,710,6,7,9,8,4,8
+CUST_0158,Gen Z,Male,West,Vegetarian,Mild,Veggie Bowl,10.78,590,7,7,3,2,8,9
+CUST_0159,Gen Z,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),11.58,650,5,8,9,8,9,4
+CUST_0160,Gen Z,Male,West,Vegetarian,Mild,Carnitas Salad,10.68,620,2,3,7,6,4,4
+CUST_0161,Boomer,Female,Midwest,Vegetarian,Medium,Chicken Burrito,11.21,740,4,8,3,2,8,8
+CUST_0162,Boomer,Female,Midwest,Vegetarian,Medium,Steak Bowl,10.77,710,5,4,5,4,3,10
+CUST_0163,Boomer,Female,Midwest,Vegetarian,Medium,Veggie Bowl,10.63,590,3,5,5,4,8,7
+CUST_0164,Boomer,Female,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),11.31,650,2,7,3,2,4,10
+CUST_0165,Boomer,Female,Midwest,Vegetarian,Medium,Carnitas Salad,12.02,620,8,8,3,2,9,5
+CUST_0166,Gen X,Male,Northeast,Flexitarian,Mild,Chicken Burrito,11.13,740,6,4,9,8,8,5
+CUST_0167,Gen X,Male,Northeast,Flexitarian,Mild,Steak Bowl,11.25,710,2,6,10,9,8,5
+CUST_0168,Gen X,Male,Northeast,Flexitarian,Mild,Veggie Bowl,9.55,590,7,4,10,9,4,7
+CUST_0169,Gen X,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),11.38,650,4,3,4,3,3,4
+CUST_0170,Gen X,Male,Northeast,Flexitarian,Mild,Carnitas Salad,10.91,620,5,3,7,6,6,4
+CUST_0171,Gen X,Female,South,Omnivore,Medium,Chicken Burrito,10.12,740,8,4,3,2,3,5
+CUST_0172,Gen X,Female,South,Omnivore,Medium,Steak Bowl,10.51,710,6,5,8,7,6,6
+CUST_0173,Gen X,Female,South,Omnivore,Medium,Veggie Bowl,9.75,590,3,4,5,4,5,8
+CUST_0174,Gen X,Female,South,Omnivore,Medium,Barbacoa Tacos (3),13.06,650,3,2,7,6,9,3
+CUST_0175,Gen X,Female,South,Omnivore,Medium,Carnitas Salad,11.32,620,2,4,9,8,3,8
+CUST_0176,Millennial,Male,Midwest,Vegan,Medium,Chicken Burrito,10.83,740,7,3,7,6,8,5
+CUST_0177,Millennial,Male,Midwest,Vegan,Medium,Steak Bowl,12.13,710,6,5,4,3,3,8
+CUST_0178,Millennial,Male,Midwest,Vegan,Medium,Veggie Bowl,10.56,590,6,8,7,6,10,10
+CUST_0179,Millennial,Male,Midwest,Vegan,Medium,Barbacoa Tacos (3),11.95,650,7,7,4,3,7,5
+CUST_0180,Millennial,Male,Midwest,Vegan,Medium,Carnitas Salad,11.78,620,8,4,5,4,3,7
+CUST_0181,Gen X,Female,Northeast,Vegan,Mild,Chicken Burrito,9.6,740,4,3,7,6,10,10
+CUST_0182,Gen X,Female,Northeast,Vegan,Mild,Steak Bowl,11.98,710,8,5,8,7,5,4
+CUST_0183,Gen X,Female,Northeast,Vegan,Mild,Veggie Bowl,9.81,590,4,3,5,4,4,5
+CUST_0184,Gen X,Female,Northeast,Vegan,Mild,Barbacoa Tacos (3),11.68,650,5,3,7,6,3,9
+CUST_0185,Gen X,Female,Northeast,Vegan,Mild,Carnitas Salad,10.63,620,2,6,5,4,3,8
+CUST_0186,Gen X,Female,Midwest,Flexitarian,Medium,Chicken Burrito,9.46,740,2,2,8,7,10,10
+CUST_0187,Gen X,Female,Midwest,Flexitarian,Medium,Steak Bowl,11.99,710,7,6,7,6,6,9
+CUST_0188,Gen X,Female,Midwest,Flexitarian,Medium,Veggie Bowl,9.29,590,5,5,8,7,3,8
+CUST_0189,Gen X,Female,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),13.18,650,5,5,5,4,3,3
+CUST_0190,Gen X,Female,Midwest,Flexitarian,Medium,Carnitas Salad,10.65,620,3,8,8,7,9,7
+CUST_0191,Gen Z,Female,South,Vegetarian,Hot,Chicken Burrito,9.44,740,2,5,5,4,5,6
+CUST_0192,Gen Z,Female,South,Vegetarian,Hot,Steak Bowl,10.94,710,8,5,4,3,3,10
+CUST_0193,Gen Z,Female,South,Vegetarian,Hot,Veggie Bowl,10.33,590,7,4,4,3,5,8
+CUST_0194,Gen Z,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),12.4,650,8,5,6,5,8,5
+CUST_0195,Gen Z,Female,South,Vegetarian,Hot,Carnitas Salad,12.02,620,7,3,10,9,10,5
+CUST_0196,Gen X,Female,West,Omnivore,Hot,Chicken Burrito,10.14,740,2,5,4,3,5,3
+CUST_0197,Gen X,Female,West,Omnivore,Hot,Steak Bowl,11.59,710,6,7,3,2,9,3
+CUST_0198,Gen X,Female,West,Omnivore,Hot,Veggie Bowl,10.1,590,4,2,8,7,3,4
+CUST_0199,Gen X,Female,West,Omnivore,Hot,Barbacoa Tacos (3),12.13,650,7,7,7,6,6,9
+CUST_0200,Gen X,Female,West,Omnivore,Hot,Carnitas Salad,11.18,620,8,2,5,4,9,8
+CUST_0201,Boomer,Male,Midwest,Vegetarian,Medium,Chicken Burrito,10.86,740,4,4,3,2,5,10
+CUST_0202,Boomer,Male,Midwest,Vegetarian,Medium,Steak Bowl,11.77,710,5,3,6,5,4,5
+CUST_0203,Boomer,Male,Midwest,Vegetarian,Medium,Veggie Bowl,9.14,590,2,5,6,5,7,8
+CUST_0204,Boomer,Male,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),11.5,650,6,7,4,3,3,8
+CUST_0205,Boomer,Male,Midwest,Vegetarian,Medium,Carnitas Salad,11.75,620,8,7,8,7,4,4
+CUST_0206,Gen X,Female,Northeast,Vegan,Medium,Chicken Burrito,9.46,740,4,7,8,7,7,3
+CUST_0207,Gen X,Female,Northeast,Vegan,Medium,Steak Bowl,11.35,710,7,8,7,6,3,3
+CUST_0208,Gen X,Female,Northeast,Vegan,Medium,Veggie Bowl,10.99,590,3,2,5,4,6,5
+CUST_0209,Gen X,Female,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.84,650,4,6,8,7,6,9
+CUST_0210,Gen X,Female,Northeast,Vegan,Medium,Carnitas Salad,10.25,620,6,2,10,9,6,10
+CUST_0211,Millennial,Male,West,Vegetarian,Medium,Chicken Burrito,11.02,740,5,3,8,7,5,3
+CUST_0212,Millennial,Male,West,Vegetarian,Medium,Steak Bowl,11.1,710,6,8,10,9,8,5
+CUST_0213,Millennial,Male,West,Vegetarian,Medium,Veggie Bowl,9.95,590,8,4,8,7,10,8
+CUST_0214,Millennial,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),13.1,650,2,7,7,6,7,3
+CUST_0215,Millennial,Male,West,Vegetarian,Medium,Carnitas Salad,10.94,620,6,6,5,4,7,9
+CUST_0216,Boomer,Female,South,Omnivore,Hot,Chicken Burrito,11.4,740,3,6,3,2,8,7
+CUST_0217,Boomer,Female,South,Omnivore,Hot,Steak Bowl,11.29,710,2,2,5,4,10,9
+CUST_0218,Boomer,Female,South,Omnivore,Hot,Veggie Bowl,10.07,590,6,2,8,7,7,5
+CUST_0219,Boomer,Female,South,Omnivore,Hot,Barbacoa Tacos (3),12.51,650,4,6,5,4,4,8
+CUST_0220,Boomer,Female,South,Omnivore,Hot,Carnitas Salad,10.96,620,8,6,5,4,3,5
+CUST_0221,Boomer,Female,Northeast,Vegetarian,Medium,Chicken Burrito,11.16,740,6,2,5,4,8,10
+CUST_0222,Boomer,Female,Northeast,Vegetarian,Medium,Steak Bowl,12.25,710,6,2,8,7,9,9
+CUST_0223,Boomer,Female,Northeast,Vegetarian,Medium,Veggie Bowl,9.79,590,6,7,3,2,6,6
+CUST_0224,Boomer,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),12.76,650,6,4,5,4,10,8
+CUST_0225,Boomer,Female,Northeast,Vegetarian,Medium,Carnitas Salad,11.82,620,8,2,3,2,8,7
+CUST_0226,Gen X,Male,West,Omnivore,Medium,Chicken Burrito,10.76,740,4,7,5,4,8,7
+CUST_0227,Gen X,Male,West,Omnivore,Medium,Steak Bowl,11.51,710,5,6,6,5,7,6
+CUST_0228,Gen X,Male,West,Omnivore,Medium,Veggie Bowl,10.4,590,2,6,5,4,3,7
+CUST_0229,Gen X,Male,West,Omnivore,Medium,Barbacoa Tacos (3),12.51,650,6,2,6,5,4,10
+CUST_0230,Gen X,Male,West,Omnivore,Medium,Carnitas Salad,11.61,620,5,8,8,7,7,4
+CUST_0231,Gen Z,Male,West,Flexitarian,Medium,Chicken Burrito,9.88,740,4,7,4,3,7,6
+CUST_0232,Gen Z,Male,West,Flexitarian,Medium,Steak Bowl,11.43,710,2,6,7,6,9,9
+CUST_0233,Gen Z,Male,West,Flexitarian,Medium,Veggie Bowl,10.42,590,6,3,10,9,5,3
+CUST_0234,Gen Z,Male,West,Flexitarian,Medium,Barbacoa Tacos (3),11.2,650,5,3,9,8,3,5
+CUST_0235,Gen Z,Male,West,Flexitarian,Medium,Carnitas Salad,11.82,620,2,7,3,2,10,5
+CUST_0236,Gen Z,Male,Northeast,Flexitarian,Hot,Chicken Burrito,11.14,740,3,8,4,3,4,7
+CUST_0237,Gen Z,Male,Northeast,Flexitarian,Hot,Steak Bowl,11.98,710,7,4,8,7,6,10
+CUST_0238,Gen Z,Male,Northeast,Flexitarian,Hot,Veggie Bowl,10.12,590,3,7,3,2,7,3
+CUST_0239,Gen Z,Male,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),12.79,650,8,3,10,9,5,9
+CUST_0240,Gen Z,Male,Northeast,Flexitarian,Hot,Carnitas Salad,10.65,620,7,4,10,9,3,9
+CUST_0241,Boomer,Female,Northeast,Flexitarian,Mild,Chicken Burrito,10.78,740,2,8,7,6,10,3
+CUST_0242,Boomer,Female,Northeast,Flexitarian,Mild,Steak Bowl,12.06,710,4,7,10,9,8,9
+CUST_0243,Boomer,Female,Northeast,Flexitarian,Mild,Veggie Bowl,9.85,590,7,6,5,4,7,9
+CUST_0244,Boomer,Female,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),11.23,650,4,8,3,2,4,6
+CUST_0245,Boomer,Female,Northeast,Flexitarian,Mild,Carnitas Salad,10.58,620,8,7,7,6,3,5
+CUST_0246,Boomer,Male,West,Vegan,Medium,Chicken Burrito,9.79,740,3,5,6,5,7,5
+CUST_0247,Boomer,Male,West,Vegan,Medium,Steak Bowl,12.56,710,2,8,9,8,4,10
+CUST_0248,Boomer,Male,West,Vegan,Medium,Veggie Bowl,10.86,590,5,3,9,8,7,10
+CUST_0249,Boomer,Male,West,Vegan,Medium,Barbacoa Tacos (3),12.55,650,6,3,8,7,10,8
+CUST_0250,Boomer,Male,West,Vegan,Medium,Carnitas Salad,10.31,620,6,2,7,6,7,7
+CUST_0251,Millennial,Female,South,Vegan,Hot,Chicken Burrito,10.05,740,6,6,10,9,7,7
+CUST_0252,Millennial,Female,South,Vegan,Hot,Steak Bowl,10.4,710,7,2,9,8,7,4
+CUST_0253,Millennial,Female,South,Vegan,Hot,Veggie Bowl,9.59,590,7,7,6,5,6,9
+CUST_0254,Millennial,Female,South,Vegan,Hot,Barbacoa Tacos (3),12.37,650,5,4,3,2,3,6
+CUST_0255,Millennial,Female,South,Vegan,Hot,Carnitas Salad,11.41,620,8,5,4,3,6,10
+CUST_0256,Gen Z,Male,Northeast,Vegetarian,Mild,Chicken Burrito,9.82,740,6,2,5,4,6,5
+CUST_0257,Gen Z,Male,Northeast,Vegetarian,Mild,Steak Bowl,12.45,710,2,8,10,9,6,3
+CUST_0258,Gen Z,Male,Northeast,Vegetarian,Mild,Veggie Bowl,10.57,590,5,2,8,7,7,10
+CUST_0259,Gen Z,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.78,650,8,2,10,9,4,9
+CUST_0260,Gen Z,Male,Northeast,Vegetarian,Mild,Carnitas Salad,11.45,620,6,3,10,9,3,3
+CUST_0261,Gen Z,Male,Northeast,Omnivore,Mild,Chicken Burrito,11,740,2,2,6,5,4,8
+CUST_0262,Gen Z,Male,Northeast,Omnivore,Mild,Steak Bowl,10.44,710,4,3,7,6,10,3
+CUST_0263,Gen Z,Male,Northeast,Omnivore,Mild,Veggie Bowl,9.97,590,4,3,8,7,10,7
+CUST_0264,Gen Z,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),12.39,650,2,5,10,9,9,7
+CUST_0265,Gen Z,Male,Northeast,Omnivore,Mild,Carnitas Salad,11.46,620,7,6,8,7,9,9
+CUST_0266,Gen Z,Male,Midwest,Flexitarian,Hot,Chicken Burrito,11.13,740,3,4,8,7,7,6
+CUST_0267,Gen Z,Male,Midwest,Flexitarian,Hot,Steak Bowl,12.39,710,8,2,3,2,8,5
+CUST_0268,Gen Z,Male,Midwest,Flexitarian,Hot,Veggie Bowl,9.09,590,8,8,9,8,5,9
+CUST_0269,Gen Z,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),11.77,650,3,2,10,9,3,9
+CUST_0270,Gen Z,Male,Midwest,Flexitarian,Hot,Carnitas Salad,11.94,620,4,3,8,7,7,8
+CUST_0271,Boomer,Male,Northeast,Flexitarian,Medium,Chicken Burrito,10.74,740,3,7,3,2,4,8
+CUST_0272,Boomer,Male,Northeast,Flexitarian,Medium,Steak Bowl,12.48,710,6,4,5,4,10,8
+CUST_0273,Boomer,Male,Northeast,Flexitarian,Medium,Veggie Bowl,9.58,590,6,8,9,8,5,7
+CUST_0274,Boomer,Male,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.27,650,3,8,4,3,9,4
+CUST_0275,Boomer,Male,Northeast,Flexitarian,Medium,Carnitas Salad,11.14,620,5,3,5,4,8,10
+CUST_0276,Gen Z,Male,South,Omnivore,Mild,Chicken Burrito,11.14,740,3,3,7,6,7,3
+CUST_0277,Gen Z,Male,South,Omnivore,Mild,Steak Bowl,11.93,710,8,3,6,5,3,5
+CUST_0278,Gen Z,Male,South,Omnivore,Mild,Veggie Bowl,9.99,590,4,5,8,7,4,8
+CUST_0279,Gen Z,Male,South,Omnivore,Mild,Barbacoa Tacos (3),12.32,650,6,5,5,4,3,9
+CUST_0280,Gen Z,Male,South,Omnivore,Mild,Carnitas Salad,11.68,620,2,6,10,9,8,5
+CUST_0281,Millennial,Male,Midwest,Flexitarian,Medium,Chicken Burrito,11.2,740,5,4,4,3,5,9
+CUST_0282,Millennial,Male,Midwest,Flexitarian,Medium,Steak Bowl,12.31,710,2,2,10,9,8,7
+CUST_0283,Millennial,Male,Midwest,Flexitarian,Medium,Veggie Bowl,9.63,590,7,8,3,2,10,5
+CUST_0284,Millennial,Male,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),11.88,650,2,2,5,4,9,9
+CUST_0285,Millennial,Male,Midwest,Flexitarian,Medium,Carnitas Salad,10.19,620,4,7,5,4,10,8
+CUST_0286,Gen X,Male,South,Omnivore,Medium,Chicken Burrito,9.9,740,3,7,9,8,6,4
+CUST_0287,Gen X,Male,South,Omnivore,Medium,Steak Bowl,10.57,710,4,2,6,5,4,5
+CUST_0288,Gen X,Male,South,Omnivore,Medium,Veggie Bowl,9.67,590,3,5,5,4,4,3
+CUST_0289,Gen X,Male,South,Omnivore,Medium,Barbacoa Tacos (3),11.24,650,6,8,6,5,10,7
+CUST_0290,Gen X,Male,South,Omnivore,Medium,Carnitas Salad,10.71,620,3,8,4,3,3,8
+CUST_0291,Gen Z,Female,Midwest,Vegan,Mild,Chicken Burrito,11,740,8,3,7,6,8,10
+CUST_0292,Gen Z,Female,Midwest,Vegan,Mild,Steak Bowl,10.68,710,2,2,6,5,10,5
+CUST_0293,Gen Z,Female,Midwest,Vegan,Mild,Veggie Bowl,10.23,590,5,3,8,7,4,5
+CUST_0294,Gen Z,Female,Midwest,Vegan,Mild,Barbacoa Tacos (3),13.12,650,5,6,8,7,9,7
+CUST_0295,Gen Z,Female,Midwest,Vegan,Mild,Carnitas Salad,9.99,620,5,4,5,4,8,7
+CUST_0296,Gen Z,Male,West,Vegan,Mild,Chicken Burrito,11.46,740,4,4,6,5,5,7
+CUST_0297,Gen Z,Male,West,Vegan,Mild,Steak Bowl,11.82,710,5,7,6,5,3,6
+CUST_0298,Gen Z,Male,West,Vegan,Mild,Veggie Bowl,10.61,590,2,2,8,7,8,9
+CUST_0299,Gen Z,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.21,650,6,4,8,7,8,4
+CUST_0300,Gen Z,Male,West,Vegan,Mild,Carnitas Salad,10.21,620,7,4,10,9,9,6
+CUST_0301,Gen X,Male,Midwest,Vegetarian,Mild,Chicken Burrito,10.35,740,7,5,9,8,9,6
+CUST_0302,Gen X,Male,Midwest,Vegetarian,Mild,Steak Bowl,11.89,710,6,4,7,6,10,3
+CUST_0303,Gen X,Male,Midwest,Vegetarian,Mild,Veggie Bowl,10.9,590,5,8,7,6,3,3
+CUST_0304,Gen X,Male,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),13.02,650,5,5,6,5,6,4
+CUST_0305,Gen X,Male,Midwest,Vegetarian,Mild,Carnitas Salad,10.28,620,3,4,7,6,9,10
+CUST_0306,Millennial,Male,West,Vegetarian,Hot,Chicken Burrito,11.15,740,7,2,8,7,9,3
+CUST_0307,Millennial,Male,West,Vegetarian,Hot,Steak Bowl,11.36,710,8,2,5,4,10,3
+CUST_0308,Millennial,Male,West,Vegetarian,Hot,Veggie Bowl,9.43,590,5,4,4,3,7,4
+CUST_0309,Millennial,Male,West,Vegetarian,Hot,Barbacoa Tacos (3),12.83,650,2,3,6,5,4,10
+CUST_0310,Millennial,Male,West,Vegetarian,Hot,Carnitas Salad,11.42,620,3,2,10,9,7,3
+CUST_0311,Gen X,Male,South,Vegan,Mild,Chicken Burrito,11.33,740,8,5,9,8,3,7
+CUST_0312,Gen X,Male,South,Vegan,Mild,Steak Bowl,11.87,710,2,6,4,3,9,7
+CUST_0313,Gen X,Male,South,Vegan,Mild,Veggie Bowl,9.6,590,8,6,7,6,4,9
+CUST_0314,Gen X,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.32,650,8,8,8,7,6,10
+CUST_0315,Gen X,Male,South,Vegan,Mild,Carnitas Salad,10.6,620,2,7,3,2,5,7
+CUST_0316,Gen Z,Female,Midwest,Omnivore,Mild,Chicken Burrito,10.35,740,5,3,7,6,6,9
+CUST_0317,Gen Z,Female,Midwest,Omnivore,Mild,Steak Bowl,11.29,710,5,4,7,6,5,6
+CUST_0318,Gen Z,Female,Midwest,Omnivore,Mild,Veggie Bowl,10.62,590,5,5,5,4,4,5
+CUST_0319,Gen Z,Female,Midwest,Omnivore,Mild,Barbacoa Tacos (3),12.97,650,5,5,9,8,8,4
+CUST_0320,Gen Z,Female,Midwest,Omnivore,Mild,Carnitas Salad,11.95,620,8,7,5,4,3,9
+CUST_0321,Gen X,Male,West,Omnivore,Mild,Chicken Burrito,9.9,740,4,6,7,6,9,10
+CUST_0322,Gen X,Male,West,Omnivore,Mild,Steak Bowl,11.11,710,3,3,8,7,5,9
+CUST_0323,Gen X,Male,West,Omnivore,Mild,Veggie Bowl,10.03,590,4,4,10,9,10,10
+CUST_0324,Gen X,Male,West,Omnivore,Mild,Barbacoa Tacos (3),12.83,650,8,8,7,6,10,5
+CUST_0325,Gen X,Male,West,Omnivore,Mild,Carnitas Salad,10.39,620,5,7,9,8,5,3
+CUST_0326,Boomer,Male,South,Flexitarian,Hot,Chicken Burrito,11.12,740,8,6,3,2,4,4
+CUST_0327,Boomer,Male,South,Flexitarian,Hot,Steak Bowl,10.52,710,8,4,3,2,8,8
+CUST_0328,Boomer,Male,South,Flexitarian,Hot,Veggie Bowl,10.23,590,4,4,10,9,9,9
+CUST_0329,Boomer,Male,South,Flexitarian,Hot,Barbacoa Tacos (3),12.03,650,6,2,9,8,5,5
+CUST_0330,Boomer,Male,South,Flexitarian,Hot,Carnitas Salad,10.74,620,2,6,3,2,8,3
+CUST_0331,Millennial,Male,South,Omnivore,Medium,Chicken Burrito,10.7,740,4,7,3,2,8,7
+CUST_0332,Millennial,Male,South,Omnivore,Medium,Steak Bowl,12.36,710,3,5,7,6,9,6
+CUST_0333,Millennial,Male,South,Omnivore,Medium,Veggie Bowl,10.78,590,2,6,5,4,3,6
+CUST_0334,Millennial,Male,South,Omnivore,Medium,Barbacoa Tacos (3),12.1,650,4,6,9,8,10,4
+CUST_0335,Millennial,Male,South,Omnivore,Medium,Carnitas Salad,12.05,620,7,6,4,3,5,9
+CUST_0336,Millennial,Male,Northeast,Omnivore,Medium,Chicken Burrito,9.86,740,6,6,5,4,4,9
+CUST_0337,Millennial,Male,Northeast,Omnivore,Medium,Steak Bowl,11.55,710,8,8,3,2,9,6
+CUST_0338,Millennial,Male,Northeast,Omnivore,Medium,Veggie Bowl,9.36,590,8,7,7,6,6,3
+CUST_0339,Millennial,Male,Northeast,Omnivore,Medium,Barbacoa Tacos (3),13.13,650,4,5,6,5,10,4
+CUST_0340,Millennial,Male,Northeast,Omnivore,Medium,Carnitas Salad,9.94,620,6,3,9,8,4,3
+CUST_0341,Gen X,Male,South,Vegetarian,Medium,Chicken Burrito,9.87,740,3,4,6,5,9,5
+CUST_0342,Gen X,Male,South,Vegetarian,Medium,Steak Bowl,11.86,710,7,5,5,4,4,5
+CUST_0343,Gen X,Male,South,Vegetarian,Medium,Veggie Bowl,9.73,590,4,7,5,4,9,3
+CUST_0344,Gen X,Male,South,Vegetarian,Medium,Barbacoa Tacos (3),13.18,650,6,8,9,8,3,10
+CUST_0345,Gen X,Male,South,Vegetarian,Medium,Carnitas Salad,11.7,620,7,8,6,5,3,8
+CUST_0346,Millennial,Male,Midwest,Vegetarian,Medium,Chicken Burrito,9.64,740,2,4,6,5,6,8
+CUST_0347,Millennial,Male,Midwest,Vegetarian,Medium,Steak Bowl,10.43,710,8,7,7,6,7,8
+CUST_0348,Millennial,Male,Midwest,Vegetarian,Medium,Veggie Bowl,10.15,590,4,6,4,3,5,7
+CUST_0349,Millennial,Male,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),12.38,650,4,5,3,2,8,5
+CUST_0350,Millennial,Male,Midwest,Vegetarian,Medium,Carnitas Salad,10.85,620,5,4,6,5,5,6
+CUST_0351,Gen X,Male,South,Vegetarian,Mild,Chicken Burrito,10.63,740,2,4,7,6,9,3
+CUST_0352,Gen X,Male,South,Vegetarian,Mild,Steak Bowl,11.01,710,6,2,6,5,9,9
+CUST_0353,Gen X,Male,South,Vegetarian,Mild,Veggie Bowl,9.71,590,5,7,3,2,6,8
+CUST_0354,Gen X,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),11.31,650,5,3,10,9,4,3
+CUST_0355,Gen X,Male,South,Vegetarian,Mild,Carnitas Salad,11.84,620,7,7,10,9,8,5
+CUST_0356,Gen Z,Male,South,Vegetarian,Mild,Chicken Burrito,9.49,740,6,3,9,8,10,9
+CUST_0357,Gen Z,Male,South,Vegetarian,Mild,Steak Bowl,11.18,710,3,7,7,6,5,3
+CUST_0358,Gen Z,Male,South,Vegetarian,Mild,Veggie Bowl,10.04,590,6,7,9,8,8,6
+CUST_0359,Gen Z,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),11.16,650,2,5,6,5,6,9
+CUST_0360,Gen Z,Male,South,Vegetarian,Mild,Carnitas Salad,10.17,620,3,5,7,6,4,4
+CUST_0361,Gen Z,Male,South,Omnivore,Mild,Chicken Burrito,10.14,740,7,5,9,8,9,6
+CUST_0362,Gen Z,Male,South,Omnivore,Mild,Steak Bowl,12.01,710,5,6,4,3,9,3
+CUST_0363,Gen Z,Male,South,Omnivore,Mild,Veggie Bowl,10.26,590,3,4,10,9,3,8
+CUST_0364,Gen Z,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.08,650,2,8,9,8,6,3
+CUST_0365,Gen Z,Male,South,Omnivore,Mild,Carnitas Salad,10.32,620,8,4,9,8,9,7
+CUST_0366,Gen X,Female,West,Vegan,Mild,Chicken Burrito,11.02,740,6,5,6,5,8,4
+CUST_0367,Gen X,Female,West,Vegan,Mild,Steak Bowl,11.61,710,8,2,9,8,7,4
+CUST_0368,Gen X,Female,West,Vegan,Mild,Veggie Bowl,9.56,590,3,4,6,5,7,7
+CUST_0369,Gen X,Female,West,Vegan,Mild,Barbacoa Tacos (3),11.89,650,6,7,7,6,5,7
+CUST_0370,Gen X,Female,West,Vegan,Mild,Carnitas Salad,10.05,620,2,6,3,2,8,4
+CUST_0371,Boomer,Female,Northeast,Omnivore,Medium,Chicken Burrito,11.02,740,4,5,3,2,7,8
+CUST_0372,Boomer,Female,Northeast,Omnivore,Medium,Steak Bowl,11.05,710,8,6,9,8,3,3
+CUST_0373,Boomer,Female,Northeast,Omnivore,Medium,Veggie Bowl,10.25,590,7,8,10,9,8,8
+CUST_0374,Boomer,Female,Northeast,Omnivore,Medium,Barbacoa Tacos (3),12.28,650,6,5,9,8,10,8
+CUST_0375,Boomer,Female,Northeast,Omnivore,Medium,Carnitas Salad,11.44,620,6,4,6,5,10,10
+CUST_0376,Boomer,Male,South,Omnivore,Hot,Chicken Burrito,11.18,740,8,6,4,3,8,10
+CUST_0377,Boomer,Male,South,Omnivore,Hot,Steak Bowl,11.01,710,3,7,9,8,7,9
+CUST_0378,Boomer,Male,South,Omnivore,Hot,Veggie Bowl,9.02,590,4,2,9,8,9,9
+CUST_0379,Boomer,Male,South,Omnivore,Hot,Barbacoa Tacos (3),13.02,650,3,3,4,3,4,6
+CUST_0380,Boomer,Male,South,Omnivore,Hot,Carnitas Salad,11.31,620,6,3,4,3,6,8
+CUST_0381,Gen Z,Female,Northeast,Vegetarian,Hot,Chicken Burrito,11.39,740,4,6,9,8,7,9
+CUST_0382,Gen Z,Female,Northeast,Vegetarian,Hot,Steak Bowl,11.65,710,5,4,3,2,4,6
+CUST_0383,Gen Z,Female,Northeast,Vegetarian,Hot,Veggie Bowl,9.33,590,5,3,4,3,7,9
+CUST_0384,Gen Z,Female,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),13.11,650,4,8,4,3,3,8
+CUST_0385,Gen Z,Female,Northeast,Vegetarian,Hot,Carnitas Salad,10.61,620,2,4,3,2,10,6
+CUST_0386,Gen X,Female,Northeast,Flexitarian,Medium,Chicken Burrito,11.11,740,5,6,8,7,9,5
+CUST_0387,Gen X,Female,Northeast,Flexitarian,Medium,Steak Bowl,10.82,710,2,7,10,9,9,5
+CUST_0388,Gen X,Female,Northeast,Flexitarian,Medium,Veggie Bowl,10.17,590,7,5,10,9,8,7
+CUST_0389,Gen X,Female,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.3,650,4,6,8,7,9,7
+CUST_0390,Gen X,Female,Northeast,Flexitarian,Medium,Carnitas Salad,11.59,620,4,2,7,6,9,7
+CUST_0391,Boomer,Male,West,Vegetarian,Medium,Chicken Burrito,9.59,740,8,2,9,8,3,10
+CUST_0392,Boomer,Male,West,Vegetarian,Medium,Steak Bowl,11.77,710,5,8,10,9,6,5
+CUST_0393,Boomer,Male,West,Vegetarian,Medium,Veggie Bowl,10.54,590,6,3,7,6,10,4
+CUST_0394,Boomer,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),12.76,650,8,8,6,5,6,7
+CUST_0395,Boomer,Male,West,Vegetarian,Medium,Carnitas Salad,10.89,620,4,2,8,7,6,6
+CUST_0396,Millennial,Female,Northeast,Vegetarian,Mild,Chicken Burrito,10,740,3,5,8,7,10,7
+CUST_0397,Millennial,Female,Northeast,Vegetarian,Mild,Steak Bowl,11.39,710,5,5,5,4,5,5
+CUST_0398,Millennial,Female,Northeast,Vegetarian,Mild,Veggie Bowl,9.48,590,5,8,3,2,10,8
+CUST_0399,Millennial,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.63,650,5,6,8,7,3,7
+CUST_0400,Millennial,Female,Northeast,Vegetarian,Mild,Carnitas Salad,11.67,620,5,6,10,9,3,8
+CUST_0401,Gen Z,Male,South,Vegan,Hot,Chicken Burrito,11.37,740,4,6,7,6,5,9
+CUST_0402,Gen Z,Male,South,Vegan,Hot,Steak Bowl,12,710,8,3,4,3,8,10
+CUST_0403,Gen Z,Male,South,Vegan,Hot,Veggie Bowl,10.53,590,8,6,10,9,7,9
+CUST_0404,Gen Z,Male,South,Vegan,Hot,Barbacoa Tacos (3),11.51,650,2,4,10,9,4,8
+CUST_0405,Gen Z,Male,South,Vegan,Hot,Carnitas Salad,10.64,620,5,7,10,9,8,3
+CUST_0406,Gen X,Male,Northeast,Vegetarian,Hot,Chicken Burrito,10.65,740,8,8,3,2,10,10
+CUST_0407,Gen X,Male,Northeast,Vegetarian,Hot,Steak Bowl,10.38,710,6,3,9,8,5,9
+CUST_0408,Gen X,Male,Northeast,Vegetarian,Hot,Veggie Bowl,9.47,590,4,2,10,9,10,7
+CUST_0409,Gen X,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),11.64,650,4,2,6,5,7,5
+CUST_0410,Gen X,Male,Northeast,Vegetarian,Hot,Carnitas Salad,11.83,620,6,2,8,7,8,8
+CUST_0411,Gen Z,Male,South,Flexitarian,Medium,Chicken Burrito,10.57,740,6,3,9,8,3,7
+CUST_0412,Gen Z,Male,South,Flexitarian,Medium,Steak Bowl,11.6,710,7,7,5,4,7,10
+CUST_0413,Gen Z,Male,South,Flexitarian,Medium,Veggie Bowl,9.13,590,3,3,8,7,8,9
+CUST_0414,Gen Z,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),11.85,650,8,5,10,9,10,4
+CUST_0415,Gen Z,Male,South,Flexitarian,Medium,Carnitas Salad,10.79,620,8,2,7,6,6,9
+CUST_0416,Gen Z,Male,South,Vegan,Hot,Chicken Burrito,10.34,740,8,5,6,5,5,8
+CUST_0417,Gen Z,Male,South,Vegan,Hot,Steak Bowl,11.88,710,7,3,6,5,4,3
+CUST_0418,Gen Z,Male,South,Vegan,Hot,Veggie Bowl,10.43,590,5,6,5,4,9,7
+CUST_0419,Gen Z,Male,South,Vegan,Hot,Barbacoa Tacos (3),12.87,650,4,3,6,5,4,3
+CUST_0420,Gen Z,Male,South,Vegan,Hot,Carnitas Salad,10.91,620,5,5,10,9,9,7
+CUST_0421,Boomer,Female,South,Flexitarian,Hot,Chicken Burrito,10.13,740,4,2,9,8,9,3
+CUST_0422,Boomer,Female,South,Flexitarian,Hot,Steak Bowl,11.2,710,7,4,10,9,7,10
+CUST_0423,Boomer,Female,South,Flexitarian,Hot,Veggie Bowl,9.5,590,5,6,9,8,6,5
+CUST_0424,Boomer,Female,South,Flexitarian,Hot,Barbacoa Tacos (3),10.84,650,5,5,3,2,5,10
+CUST_0425,Boomer,Female,South,Flexitarian,Hot,Carnitas Salad,11.07,620,8,6,3,2,4,10
+CUST_0426,Millennial,Male,Northeast,Vegan,Medium,Chicken Burrito,10.54,740,6,4,9,8,7,8
+CUST_0427,Millennial,Male,Northeast,Vegan,Medium,Steak Bowl,10.54,710,7,5,4,3,7,7
+CUST_0428,Millennial,Male,Northeast,Vegan,Medium,Veggie Bowl,10.39,590,2,3,10,9,3,10
+CUST_0429,Millennial,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.17,650,3,7,6,5,9,10
+CUST_0430,Millennial,Male,Northeast,Vegan,Medium,Carnitas Salad,11.12,620,4,3,6,5,3,7
+CUST_0431,Gen Z,Female,South,Vegetarian,Mild,Chicken Burrito,10.17,740,5,6,5,4,8,8
+CUST_0432,Gen Z,Female,South,Vegetarian,Mild,Steak Bowl,10.73,710,8,3,7,6,7,8
+CUST_0433,Gen Z,Female,South,Vegetarian,Mild,Veggie Bowl,9.34,590,7,5,8,7,8,10
+CUST_0434,Gen Z,Female,South,Vegetarian,Mild,Barbacoa Tacos (3),13.05,650,2,4,4,3,10,9
+CUST_0435,Gen Z,Female,South,Vegetarian,Mild,Carnitas Salad,10.14,620,7,3,3,2,8,4
+CUST_0436,Millennial,Male,South,Vegetarian,Hot,Chicken Burrito,9.54,740,2,3,6,5,7,4
+CUST_0437,Millennial,Male,South,Vegetarian,Hot,Steak Bowl,11.84,710,5,6,6,5,5,9
+CUST_0438,Millennial,Male,South,Vegetarian,Hot,Veggie Bowl,9.68,590,8,5,10,9,9,4
+CUST_0439,Millennial,Male,South,Vegetarian,Hot,Barbacoa Tacos (3),10.8,650,7,8,7,6,10,5
+CUST_0440,Millennial,Male,South,Vegetarian,Hot,Carnitas Salad,10.53,620,8,5,6,5,7,4
+CUST_0441,Gen Z,Male,South,Flexitarian,Hot,Chicken Burrito,11.3,740,8,4,7,6,6,9
+CUST_0442,Gen Z,Male,South,Flexitarian,Hot,Steak Bowl,12.13,710,7,3,9,8,10,3
+CUST_0443,Gen Z,Male,South,Flexitarian,Hot,Veggie Bowl,9.4,590,3,4,10,9,3,3
+CUST_0444,Gen Z,Male,South,Flexitarian,Hot,Barbacoa Tacos (3),13.17,650,5,3,10,9,8,5
+CUST_0445,Gen Z,Male,South,Flexitarian,Hot,Carnitas Salad,11.98,620,3,6,10,9,10,7
+CUST_0446,Gen Z,Female,Midwest,Flexitarian,Medium,Chicken Burrito,10.17,740,7,6,8,7,7,3
+CUST_0447,Gen Z,Female,Midwest,Flexitarian,Medium,Steak Bowl,11.93,710,7,8,8,7,9,7
+CUST_0448,Gen Z,Female,Midwest,Flexitarian,Medium,Veggie Bowl,10.99,590,8,7,7,6,7,8
+CUST_0449,Gen Z,Female,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),12.17,650,2,3,10,9,3,10
+CUST_0450,Gen Z,Female,Midwest,Flexitarian,Medium,Carnitas Salad,9.92,620,2,2,8,7,4,10
+CUST_0451,Boomer,Male,Northeast,Vegan,Medium,Chicken Burrito,10.28,740,3,6,5,4,9,6
+CUST_0452,Boomer,Male,Northeast,Vegan,Medium,Steak Bowl,10.79,710,6,5,3,2,3,7
+CUST_0453,Boomer,Male,Northeast,Vegan,Medium,Veggie Bowl,10.22,590,3,6,8,7,6,3
+CUST_0454,Boomer,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),10.86,650,3,2,10,9,6,7
+CUST_0455,Boomer,Male,Northeast,Vegan,Medium,Carnitas Salad,11.72,620,5,2,5,4,6,10
+CUST_0456,Gen X,Male,Northeast,Flexitarian,Medium,Chicken Burrito,10.27,740,8,2,6,5,7,5
+CUST_0457,Gen X,Male,Northeast,Flexitarian,Medium,Steak Bowl,12.62,710,7,7,3,2,10,7
+CUST_0458,Gen X,Male,Northeast,Flexitarian,Medium,Veggie Bowl,9.21,590,6,5,5,4,9,10
+CUST_0459,Gen X,Male,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.24,650,5,3,7,6,7,3
+CUST_0460,Gen X,Male,Northeast,Flexitarian,Medium,Carnitas Salad,11.69,620,6,6,4,3,10,3
+CUST_0461,Gen Z,Female,West,Vegetarian,Mild,Chicken Burrito,10.02,740,7,6,4,3,7,5
+CUST_0462,Gen Z,Female,West,Vegetarian,Mild,Steak Bowl,12.58,710,3,8,9,8,4,3
+CUST_0463,Gen Z,Female,West,Vegetarian,Mild,Veggie Bowl,10.38,590,3,8,10,9,7,7
+CUST_0464,Gen Z,Female,West,Vegetarian,Mild,Barbacoa Tacos (3),12.14,650,6,2,10,9,8,8
+CUST_0465,Gen Z,Female,West,Vegetarian,Mild,Carnitas Salad,11.63,620,3,7,10,9,6,7
+CUST_0466,Boomer,Female,West,Vegan,Mild,Chicken Burrito,11.09,740,4,6,4,3,9,8
+CUST_0467,Boomer,Female,West,Vegan,Mild,Steak Bowl,10.8,710,3,6,9,8,8,3
+CUST_0468,Boomer,Female,West,Vegan,Mild,Veggie Bowl,10.72,590,2,6,9,8,4,5
+CUST_0469,Boomer,Female,West,Vegan,Mild,Barbacoa Tacos (3),10.91,650,7,4,5,4,7,6
+CUST_0470,Boomer,Female,West,Vegan,Mild,Carnitas Salad,10.94,620,2,5,7,6,9,5
+CUST_0471,Boomer,Female,South,Omnivore,Mild,Chicken Burrito,10.78,740,8,6,9,8,9,5
+CUST_0472,Boomer,Female,South,Omnivore,Mild,Steak Bowl,11.31,710,3,6,7,6,8,9
+CUST_0473,Boomer,Female,South,Omnivore,Mild,Veggie Bowl,9.4,590,5,8,3,2,7,4
+CUST_0474,Boomer,Female,South,Omnivore,Mild,Barbacoa Tacos (3),11.71,650,3,6,3,2,5,5
+CUST_0475,Boomer,Female,South,Omnivore,Mild,Carnitas Salad,10.98,620,3,7,8,7,4,10
+CUST_0476,Gen X,Female,Northeast,Vegan,Medium,Chicken Burrito,10.07,740,5,8,10,9,4,7
+CUST_0477,Gen X,Female,Northeast,Vegan,Medium,Steak Bowl,11.75,710,3,8,5,4,3,3
+CUST_0478,Gen X,Female,Northeast,Vegan,Medium,Veggie Bowl,10.48,590,7,5,10,9,7,6
+CUST_0479,Gen X,Female,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.55,650,5,7,3,2,10,4
+CUST_0480,Gen X,Female,Northeast,Vegan,Medium,Carnitas Salad,12,620,5,4,6,5,3,5
+CUST_0481,Millennial,Female,Midwest,Omnivore,Medium,Chicken Burrito,9.91,740,2,5,6,5,9,6
+CUST_0482,Millennial,Female,Midwest,Omnivore,Medium,Steak Bowl,11.2,710,7,3,9,8,3,7
+CUST_0483,Millennial,Female,Midwest,Omnivore,Medium,Veggie Bowl,9.76,590,7,4,8,7,6,9
+CUST_0484,Millennial,Female,Midwest,Omnivore,Medium,Barbacoa Tacos (3),13.18,650,7,8,6,5,3,6
+CUST_0485,Millennial,Female,Midwest,Omnivore,Medium,Carnitas Salad,11.82,620,4,4,8,7,3,10
+CUST_0486,Millennial,Male,South,Flexitarian,Medium,Chicken Burrito,11.07,740,5,3,8,7,4,9
+CUST_0487,Millennial,Male,South,Flexitarian,Medium,Steak Bowl,11.33,710,6,6,8,7,4,8
+CUST_0488,Millennial,Male,South,Flexitarian,Medium,Veggie Bowl,10.58,590,3,2,6,5,4,5
+CUST_0489,Millennial,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),10.89,650,3,2,3,2,8,4
+CUST_0490,Millennial,Male,South,Flexitarian,Medium,Carnitas Salad,11.18,620,4,3,4,3,4,6
+CUST_0491,Boomer,Male,South,Vegan,Hot,Chicken Burrito,10.22,740,8,3,6,5,7,10
+CUST_0492,Boomer,Male,South,Vegan,Hot,Steak Bowl,10.98,710,8,8,6,5,5,3
+CUST_0493,Boomer,Male,South,Vegan,Hot,Veggie Bowl,9.38,590,4,4,3,2,5,3
+CUST_0494,Boomer,Male,South,Vegan,Hot,Barbacoa Tacos (3),10.91,650,7,7,9,8,5,6
+CUST_0495,Boomer,Male,South,Vegan,Hot,Carnitas Salad,10.1,620,2,5,7,6,9,6
+CUST_0496,Boomer,Male,Northeast,Vegan,Hot,Chicken Burrito,10.98,740,5,6,4,3,6,10
+CUST_0497,Boomer,Male,Northeast,Vegan,Hot,Steak Bowl,11.87,710,8,8,9,8,3,8
+CUST_0498,Boomer,Male,Northeast,Vegan,Hot,Veggie Bowl,10.29,590,3,6,7,6,4,7
+CUST_0499,Boomer,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),11.37,650,6,3,3,2,8,5
+CUST_0500,Boomer,Male,Northeast,Vegan,Hot,Carnitas Salad,12.07,620,7,3,9,8,10,6
+CUST_0501,Boomer,Male,West,Vegetarian,Medium,Chicken Burrito,11.16,740,3,3,9,8,8,6
+CUST_0502,Boomer,Male,West,Vegetarian,Medium,Steak Bowl,11.45,710,3,7,4,3,5,5
+CUST_0503,Boomer,Male,West,Vegetarian,Medium,Veggie Bowl,10.59,590,8,4,9,8,9,8
+CUST_0504,Boomer,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),11.56,650,5,2,5,4,8,3
+CUST_0505,Boomer,Male,West,Vegetarian,Medium,Carnitas Salad,10.18,620,6,8,5,4,8,4
+CUST_0506,Gen X,Male,West,Vegan,Mild,Chicken Burrito,10.96,740,2,2,7,6,4,7
+CUST_0507,Gen X,Male,West,Vegan,Mild,Steak Bowl,11.34,710,6,5,4,3,4,6
+CUST_0508,Gen X,Male,West,Vegan,Mild,Veggie Bowl,9.15,590,4,5,4,3,3,8
+CUST_0509,Gen X,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.74,650,5,4,5,4,3,5
+CUST_0510,Gen X,Male,West,Vegan,Mild,Carnitas Salad,12.03,620,8,3,7,6,3,5
+CUST_0511,Gen Z,Male,South,Omnivore,Medium,Chicken Burrito,9.86,740,7,2,6,5,5,10
+CUST_0512,Gen Z,Male,South,Omnivore,Medium,Steak Bowl,11.99,710,3,4,4,3,7,9
+CUST_0513,Gen Z,Male,South,Omnivore,Medium,Veggie Bowl,9.98,590,7,3,6,5,5,7
+CUST_0514,Gen Z,Male,South,Omnivore,Medium,Barbacoa Tacos (3),12.82,650,8,7,7,6,4,4
+CUST_0515,Gen Z,Male,South,Omnivore,Medium,Carnitas Salad,12.07,620,3,5,9,8,4,5
+CUST_0516,Millennial,Male,West,Vegan,Hot,Chicken Burrito,11.34,740,8,7,3,2,8,10
+CUST_0517,Millennial,Male,West,Vegan,Hot,Steak Bowl,12.24,710,5,7,9,8,9,5
+CUST_0518,Millennial,Male,West,Vegan,Hot,Veggie Bowl,10.91,590,5,5,6,5,7,10
+CUST_0519,Millennial,Male,West,Vegan,Hot,Barbacoa Tacos (3),12.86,650,8,3,5,4,10,8
+CUST_0520,Millennial,Male,West,Vegan,Hot,Carnitas Salad,11.73,620,5,6,6,5,7,6
+CUST_0521,Boomer,Female,South,Flexitarian,Medium,Chicken Burrito,10.56,740,5,4,4,3,5,5
+CUST_0522,Boomer,Female,South,Flexitarian,Medium,Steak Bowl,10.49,710,8,3,4,3,6,4
+CUST_0523,Boomer,Female,South,Flexitarian,Medium,Veggie Bowl,10.8,590,7,8,4,3,3,3
+CUST_0524,Boomer,Female,South,Flexitarian,Medium,Barbacoa Tacos (3),13.04,650,6,8,5,4,3,7
+CUST_0525,Boomer,Female,South,Flexitarian,Medium,Carnitas Salad,10.72,620,4,8,6,5,7,3
+CUST_0526,Gen Z,Male,South,Flexitarian,Hot,Chicken Burrito,10.77,740,6,4,9,8,7,8
+CUST_0527,Gen Z,Male,South,Flexitarian,Hot,Steak Bowl,11.44,710,4,7,6,5,6,4
+CUST_0528,Gen Z,Male,South,Flexitarian,Hot,Veggie Bowl,9.08,590,3,6,10,9,10,8
+CUST_0529,Gen Z,Male,South,Flexitarian,Hot,Barbacoa Tacos (3),11.21,650,7,8,8,7,5,5
+CUST_0530,Gen Z,Male,South,Flexitarian,Hot,Carnitas Salad,11.75,620,6,5,5,4,3,3
+CUST_0531,Millennial,Male,Northeast,Vegan,Medium,Chicken Burrito,11.37,740,4,2,10,9,8,4
+CUST_0532,Millennial,Male,Northeast,Vegan,Medium,Steak Bowl,10.45,710,3,6,8,7,8,5
+CUST_0533,Millennial,Male,Northeast,Vegan,Medium,Veggie Bowl,10.85,590,3,5,7,6,8,9
+CUST_0534,Millennial,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.35,650,4,8,4,3,7,8
+CUST_0535,Millennial,Male,Northeast,Vegan,Medium,Carnitas Salad,10.3,620,3,6,6,5,3,9
+CUST_0536,Gen Z,Male,Midwest,Omnivore,Mild,Chicken Burrito,9.8,740,7,4,10,9,4,6
+CUST_0537,Gen Z,Male,Midwest,Omnivore,Mild,Steak Bowl,11.77,710,3,8,4,3,8,5
+CUST_0538,Gen Z,Male,Midwest,Omnivore,Mild,Veggie Bowl,10.82,590,8,2,6,5,8,3
+CUST_0539,Gen Z,Male,Midwest,Omnivore,Mild,Barbacoa Tacos (3),12.44,650,3,6,5,4,10,6
+CUST_0540,Gen Z,Male,Midwest,Omnivore,Mild,Carnitas Salad,10.89,620,8,4,6,5,9,10
+CUST_0541,Gen Z,Female,West,Omnivore,Mild,Chicken Burrito,9.7,740,2,4,6,5,5,4
+CUST_0542,Gen Z,Female,West,Omnivore,Mild,Steak Bowl,12.31,710,5,7,7,6,9,3
+CUST_0543,Gen Z,Female,West,Omnivore,Mild,Veggie Bowl,10.57,590,5,6,3,2,6,5
+CUST_0544,Gen Z,Female,West,Omnivore,Mild,Barbacoa Tacos (3),12.24,650,4,5,10,9,7,8
+CUST_0545,Gen Z,Female,West,Omnivore,Mild,Carnitas Salad,11.52,620,7,6,5,4,6,7
+CUST_0546,Gen Z,Male,Northeast,Omnivore,Mild,Chicken Burrito,10.79,740,5,6,9,8,9,5
+CUST_0547,Gen Z,Male,Northeast,Omnivore,Mild,Steak Bowl,11.68,710,3,5,8,7,5,5
+CUST_0548,Gen Z,Male,Northeast,Omnivore,Mild,Veggie Bowl,10.88,590,8,8,3,2,5,5
+CUST_0549,Gen Z,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),13.11,650,7,6,4,3,4,10
+CUST_0550,Gen Z,Male,Northeast,Omnivore,Mild,Carnitas Salad,11.91,620,3,6,3,2,6,8
+CUST_0551,Millennial,Male,West,Vegan,Mild,Chicken Burrito,9.92,740,4,8,4,3,8,9
+CUST_0552,Millennial,Male,West,Vegan,Mild,Steak Bowl,12.44,710,3,3,3,2,4,5
+CUST_0553,Millennial,Male,West,Vegan,Mild,Veggie Bowl,10.57,590,4,8,5,4,10,9
+CUST_0554,Millennial,Male,West,Vegan,Mild,Barbacoa Tacos (3),10.98,650,6,2,8,7,6,3
+CUST_0555,Millennial,Male,West,Vegan,Mild,Carnitas Salad,10.36,620,4,4,4,3,9,5
+CUST_0556,Boomer,Male,Midwest,Vegetarian,Mild,Chicken Burrito,11.41,740,6,3,4,3,6,7
+CUST_0557,Boomer,Male,Midwest,Vegetarian,Mild,Steak Bowl,11.79,710,7,4,7,6,4,4
+CUST_0558,Boomer,Male,Midwest,Vegetarian,Mild,Veggie Bowl,10.42,590,7,6,5,4,8,4
+CUST_0559,Boomer,Male,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),11.07,650,5,2,3,2,7,8
+CUST_0560,Boomer,Male,Midwest,Vegetarian,Mild,Carnitas Salad,11.7,620,6,8,9,8,10,8
+CUST_0561,Gen X,Male,Midwest,Omnivore,Mild,Chicken Burrito,11.09,740,3,6,3,2,5,4
+CUST_0562,Gen X,Male,Midwest,Omnivore,Mild,Steak Bowl,12.24,710,7,5,3,2,10,6
+CUST_0563,Gen X,Male,Midwest,Omnivore,Mild,Veggie Bowl,10.78,590,5,7,8,7,4,7
+CUST_0564,Gen X,Male,Midwest,Omnivore,Mild,Barbacoa Tacos (3),12,650,7,7,10,9,6,10
+CUST_0565,Gen X,Male,Midwest,Omnivore,Mild,Carnitas Salad,12.01,620,8,8,8,7,7,9
+CUST_0566,Gen Z,Female,Northeast,Omnivore,Mild,Chicken Burrito,10.38,740,5,7,8,7,7,8
+CUST_0567,Gen Z,Female,Northeast,Omnivore,Mild,Steak Bowl,12.15,710,7,6,5,4,9,9
+CUST_0568,Gen Z,Female,Northeast,Omnivore,Mild,Veggie Bowl,9.64,590,5,7,5,4,8,4
+CUST_0569,Gen Z,Female,Northeast,Omnivore,Mild,Barbacoa Tacos (3),11.36,650,2,8,9,8,4,9
+CUST_0570,Gen Z,Female,Northeast,Omnivore,Mild,Carnitas Salad,10.61,620,2,6,7,6,7,7
+CUST_0571,Gen Z,Male,Northeast,Omnivore,Mild,Chicken Burrito,10.56,740,2,3,7,6,4,8
+CUST_0572,Gen Z,Male,Northeast,Omnivore,Mild,Steak Bowl,10.93,710,3,3,10,9,4,6
+CUST_0573,Gen Z,Male,Northeast,Omnivore,Mild,Veggie Bowl,9.79,590,4,7,5,4,3,4
+CUST_0574,Gen Z,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),11.4,650,7,2,5,4,9,8
+CUST_0575,Gen Z,Male,Northeast,Omnivore,Mild,Carnitas Salad,10.43,620,6,3,10,9,8,5
+CUST_0576,Boomer,Female,Northeast,Omnivore,Mild,Chicken Burrito,10.11,740,6,8,5,4,9,3
+CUST_0577,Boomer,Female,Northeast,Omnivore,Mild,Steak Bowl,11.1,710,5,3,10,9,3,6
+CUST_0578,Boomer,Female,Northeast,Omnivore,Mild,Veggie Bowl,10.39,590,5,7,3,2,6,6
+CUST_0579,Boomer,Female,Northeast,Omnivore,Mild,Barbacoa Tacos (3),11.33,650,8,2,9,8,5,5
+CUST_0580,Boomer,Female,Northeast,Omnivore,Mild,Carnitas Salad,11.55,620,2,2,5,4,4,10
+CUST_0581,Boomer,Male,West,Omnivore,Mild,Chicken Burrito,9.93,740,8,4,6,5,7,9
+CUST_0582,Boomer,Male,West,Omnivore,Mild,Steak Bowl,11.95,710,5,6,7,6,4,4
+CUST_0583,Boomer,Male,West,Omnivore,Mild,Veggie Bowl,9.81,590,7,6,4,3,7,5
+CUST_0584,Boomer,Male,West,Omnivore,Mild,Barbacoa Tacos (3),11.5,650,5,3,6,5,9,4
+CUST_0585,Boomer,Male,West,Omnivore,Mild,Carnitas Salad,11.97,620,7,4,6,5,8,6
+CUST_0586,Boomer,Male,Northeast,Vegetarian,Hot,Chicken Burrito,11.48,740,8,8,9,8,10,9
+CUST_0587,Boomer,Male,Northeast,Vegetarian,Hot,Steak Bowl,12.53,710,7,8,7,6,9,5
+CUST_0588,Boomer,Male,Northeast,Vegetarian,Hot,Veggie Bowl,10.67,590,3,4,7,6,10,8
+CUST_0589,Boomer,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),11.63,650,2,7,8,7,3,7
+CUST_0590,Boomer,Male,Northeast,Vegetarian,Hot,Carnitas Salad,10.42,620,7,5,5,4,5,3
+CUST_0591,Gen Z,Male,South,Vegan,Mild,Chicken Burrito,10.22,740,7,2,4,3,3,10
+CUST_0592,Gen Z,Male,South,Vegan,Mild,Steak Bowl,11.44,710,3,6,5,4,7,8
+CUST_0593,Gen Z,Male,South,Vegan,Mild,Veggie Bowl,10.76,590,2,2,9,8,6,7
+CUST_0594,Gen Z,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.01,650,3,6,4,3,9,9
+CUST_0595,Gen Z,Male,South,Vegan,Mild,Carnitas Salad,11.26,620,7,6,4,3,9,7
+CUST_0596,Gen Z,Female,South,Flexitarian,Hot,Chicken Burrito,10.02,740,3,5,5,4,6,9
+CUST_0597,Gen Z,Female,South,Flexitarian,Hot,Steak Bowl,11.76,710,3,4,9,8,3,3
+CUST_0598,Gen Z,Female,South,Flexitarian,Hot,Veggie Bowl,10.83,590,4,6,3,2,5,8
+CUST_0599,Gen Z,Female,South,Flexitarian,Hot,Barbacoa Tacos (3),11.36,650,5,4,3,2,10,6
+CUST_0600,Gen Z,Female,South,Flexitarian,Hot,Carnitas Salad,11.8,620,3,4,8,7,9,7
+CUST_0601,Boomer,Male,West,Flexitarian,Medium,Chicken Burrito,10.15,740,8,3,3,2,4,3
+CUST_0602,Boomer,Male,West,Flexitarian,Medium,Steak Bowl,11.8,710,2,3,5,4,6,10
+CUST_0603,Boomer,Male,West,Flexitarian,Medium,Veggie Bowl,10.71,590,6,4,9,8,9,8
+CUST_0604,Boomer,Male,West,Flexitarian,Medium,Barbacoa Tacos (3),11.66,650,3,3,9,8,3,6
+CUST_0605,Boomer,Male,West,Flexitarian,Medium,Carnitas Salad,10.09,620,5,7,6,5,6,5
+CUST_0606,Gen X,Female,Northeast,Vegan,Medium,Chicken Burrito,10.27,740,7,5,10,9,4,4
+CUST_0607,Gen X,Female,Northeast,Vegan,Medium,Steak Bowl,12.21,710,8,8,3,2,10,5
+CUST_0608,Gen X,Female,Northeast,Vegan,Medium,Veggie Bowl,9.68,590,5,5,9,8,9,4
+CUST_0609,Gen X,Female,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.15,650,4,6,7,6,8,8
+CUST_0610,Gen X,Female,Northeast,Vegan,Medium,Carnitas Salad,10.4,620,7,8,6,5,10,10
+CUST_0611,Millennial,Male,Midwest,Flexitarian,Mild,Chicken Burrito,11.19,740,4,7,8,7,7,9
+CUST_0612,Millennial,Male,Midwest,Flexitarian,Mild,Steak Bowl,10.79,710,3,6,10,9,10,6
+CUST_0613,Millennial,Male,Midwest,Flexitarian,Mild,Veggie Bowl,9.58,590,2,4,7,6,9,8
+CUST_0614,Millennial,Male,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),12.41,650,4,5,7,6,10,9
+CUST_0615,Millennial,Male,Midwest,Flexitarian,Mild,Carnitas Salad,11.55,620,4,3,7,6,3,4
+CUST_0616,Boomer,Male,Midwest,Vegetarian,Hot,Chicken Burrito,9.49,740,4,2,8,7,4,8
+CUST_0617,Boomer,Male,Midwest,Vegetarian,Hot,Steak Bowl,11.66,710,5,8,4,3,6,10
+CUST_0618,Boomer,Male,Midwest,Vegetarian,Hot,Veggie Bowl,9.7,590,4,7,4,3,10,6
+CUST_0619,Boomer,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),12.79,650,6,4,5,4,7,7
+CUST_0620,Boomer,Male,Midwest,Vegetarian,Hot,Carnitas Salad,9.94,620,8,4,6,5,10,8
+CUST_0621,Millennial,Male,Northeast,Vegan,Hot,Chicken Burrito,10.47,740,2,5,4,3,10,9
+CUST_0622,Millennial,Male,Northeast,Vegan,Hot,Steak Bowl,10.58,710,7,8,4,3,8,4
+CUST_0623,Millennial,Male,Northeast,Vegan,Hot,Veggie Bowl,10.51,590,4,2,9,8,6,3
+CUST_0624,Millennial,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),11.58,650,5,5,7,6,10,4
+CUST_0625,Millennial,Male,Northeast,Vegan,Hot,Carnitas Salad,12,620,5,2,8,7,8,5
+CUST_0626,Boomer,Male,West,Vegetarian,Hot,Chicken Burrito,9.99,740,5,7,3,2,8,10
+CUST_0627,Boomer,Male,West,Vegetarian,Hot,Steak Bowl,10.45,710,8,4,3,2,9,6
+CUST_0628,Boomer,Male,West,Vegetarian,Hot,Veggie Bowl,9.92,590,4,5,10,9,8,8
+CUST_0629,Boomer,Male,West,Vegetarian,Hot,Barbacoa Tacos (3),12.04,650,7,6,6,5,5,4
+CUST_0630,Boomer,Male,West,Vegetarian,Hot,Carnitas Salad,11.81,620,3,3,5,4,4,3
+CUST_0631,Millennial,Male,Midwest,Vegetarian,Medium,Chicken Burrito,10.39,740,4,5,5,4,3,6
+CUST_0632,Millennial,Male,Midwest,Vegetarian,Medium,Steak Bowl,12.56,710,4,7,4,3,10,9
+CUST_0633,Millennial,Male,Midwest,Vegetarian,Medium,Veggie Bowl,10.09,590,8,6,3,2,8,3
+CUST_0634,Millennial,Male,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),12.73,650,5,2,9,8,7,9
+CUST_0635,Millennial,Male,Midwest,Vegetarian,Medium,Carnitas Salad,11.31,620,2,3,5,4,8,3
+CUST_0636,Millennial,Female,Northeast,Vegetarian,Medium,Chicken Burrito,10.02,740,7,7,9,8,6,4
+CUST_0637,Millennial,Female,Northeast,Vegetarian,Medium,Steak Bowl,11.49,710,6,7,6,5,8,10
+CUST_0638,Millennial,Female,Northeast,Vegetarian,Medium,Veggie Bowl,9.35,590,5,3,7,6,9,9
+CUST_0639,Millennial,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),11.82,650,6,7,5,4,3,9
+CUST_0640,Millennial,Female,Northeast,Vegetarian,Medium,Carnitas Salad,12.06,620,7,5,4,3,7,9
+CUST_0641,Gen X,Female,South,Vegan,Medium,Chicken Burrito,10.13,740,7,4,6,5,4,5
+CUST_0642,Gen X,Female,South,Vegan,Medium,Steak Bowl,11.23,710,6,4,3,2,6,6
+CUST_0643,Gen X,Female,South,Vegan,Medium,Veggie Bowl,9.19,590,2,6,5,4,6,3
+CUST_0644,Gen X,Female,South,Vegan,Medium,Barbacoa Tacos (3),11.89,650,5,6,6,5,8,3
+CUST_0645,Gen X,Female,South,Vegan,Medium,Carnitas Salad,10.14,620,8,5,8,7,7,4
+CUST_0646,Millennial,Male,South,Omnivore,Hot,Chicken Burrito,9.5,740,6,8,7,6,8,8
+CUST_0647,Millennial,Male,South,Omnivore,Hot,Steak Bowl,11.88,710,6,7,8,7,8,8
+CUST_0648,Millennial,Male,South,Omnivore,Hot,Veggie Bowl,9.95,590,5,4,5,4,9,8
+CUST_0649,Millennial,Male,South,Omnivore,Hot,Barbacoa Tacos (3),11.87,650,8,5,7,6,9,4
+CUST_0650,Millennial,Male,South,Omnivore,Hot,Carnitas Salad,9.94,620,8,8,7,6,8,5
+CUST_0651,Boomer,Male,Northeast,Vegan,Hot,Chicken Burrito,10.68,740,6,4,5,4,10,8
+CUST_0652,Boomer,Male,Northeast,Vegan,Hot,Steak Bowl,11.78,710,2,6,8,7,7,9
+CUST_0653,Boomer,Male,Northeast,Vegan,Hot,Veggie Bowl,10.05,590,6,8,4,3,9,9
+CUST_0654,Boomer,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),10.85,650,2,2,8,7,6,9
+CUST_0655,Boomer,Male,Northeast,Vegan,Hot,Carnitas Salad,10.14,620,6,2,5,4,10,3
+CUST_0656,Millennial,Male,Northeast,Omnivore,Hot,Chicken Burrito,11.02,740,2,8,6,5,6,4
+CUST_0657,Millennial,Male,Northeast,Omnivore,Hot,Steak Bowl,12.11,710,8,6,10,9,3,8
+CUST_0658,Millennial,Male,Northeast,Omnivore,Hot,Veggie Bowl,10.28,590,4,3,3,2,3,8
+CUST_0659,Millennial,Male,Northeast,Omnivore,Hot,Barbacoa Tacos (3),12.76,650,3,5,5,4,5,10
+CUST_0660,Millennial,Male,Northeast,Omnivore,Hot,Carnitas Salad,11.49,620,4,6,3,2,6,7
+CUST_0661,Gen X,Female,South,Vegetarian,Hot,Chicken Burrito,10.87,740,6,8,4,3,8,5
+CUST_0662,Gen X,Female,South,Vegetarian,Hot,Steak Bowl,12.07,710,4,4,4,3,4,9
+CUST_0663,Gen X,Female,South,Vegetarian,Hot,Veggie Bowl,10.71,590,8,2,5,4,5,5
+CUST_0664,Gen X,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),13.08,650,7,6,4,3,10,9
+CUST_0665,Gen X,Female,South,Vegetarian,Hot,Carnitas Salad,10.39,620,6,2,8,7,9,4
+CUST_0666,Boomer,Female,West,Vegan,Medium,Chicken Burrito,11.41,740,4,5,7,6,6,5
+CUST_0667,Boomer,Female,West,Vegan,Medium,Steak Bowl,11.02,710,3,3,3,2,8,6
+CUST_0668,Boomer,Female,West,Vegan,Medium,Veggie Bowl,10.73,590,3,2,5,4,9,6
+CUST_0669,Boomer,Female,West,Vegan,Medium,Barbacoa Tacos (3),12.19,650,5,4,6,5,4,4
+CUST_0670,Boomer,Female,West,Vegan,Medium,Carnitas Salad,11.07,620,8,4,10,9,10,6
+CUST_0671,Boomer,Female,Midwest,Vegetarian,Hot,Chicken Burrito,10.82,740,7,5,9,8,7,7
+CUST_0672,Boomer,Female,Midwest,Vegetarian,Hot,Steak Bowl,12.02,710,5,6,6,5,6,10
+CUST_0673,Boomer,Female,Midwest,Vegetarian,Hot,Veggie Bowl,9.87,590,7,6,10,9,10,9
+CUST_0674,Boomer,Female,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),13.17,650,8,4,7,6,7,7
+CUST_0675,Boomer,Female,Midwest,Vegetarian,Hot,Carnitas Salad,10.97,620,4,5,3,2,5,7
+CUST_0676,Millennial,Male,Midwest,Flexitarian,Hot,Chicken Burrito,11.48,740,5,8,4,3,6,6
+CUST_0677,Millennial,Male,Midwest,Flexitarian,Hot,Steak Bowl,11.04,710,4,2,4,3,10,9
+CUST_0678,Millennial,Male,Midwest,Flexitarian,Hot,Veggie Bowl,9.25,590,8,6,6,5,3,7
+CUST_0679,Millennial,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),11.32,650,6,8,10,9,7,3
+CUST_0680,Millennial,Male,Midwest,Flexitarian,Hot,Carnitas Salad,10.89,620,5,4,5,4,4,7
+CUST_0681,Millennial,Male,Northeast,Omnivore,Medium,Chicken Burrito,9.72,740,2,5,10,9,10,7
+CUST_0682,Millennial,Male,Northeast,Omnivore,Medium,Steak Bowl,11.81,710,7,6,3,2,10,6
+CUST_0683,Millennial,Male,Northeast,Omnivore,Medium,Veggie Bowl,9.22,590,6,6,7,6,6,6
+CUST_0684,Millennial,Male,Northeast,Omnivore,Medium,Barbacoa Tacos (3),11.78,650,2,8,9,8,8,8
+CUST_0685,Millennial,Male,Northeast,Omnivore,Medium,Carnitas Salad,10.81,620,4,8,3,2,8,8
+CUST_0686,Millennial,Male,West,Vegetarian,Medium,Chicken Burrito,10.28,740,6,7,4,3,9,3
+CUST_0687,Millennial,Male,West,Vegetarian,Medium,Steak Bowl,11.94,710,7,3,7,6,5,4
+CUST_0688,Millennial,Male,West,Vegetarian,Medium,Veggie Bowl,10.6,590,2,4,5,4,3,3
+CUST_0689,Millennial,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),11.56,650,5,3,10,9,6,7
+CUST_0690,Millennial,Male,West,Vegetarian,Medium,Carnitas Salad,10.36,620,8,7,9,8,7,7
+CUST_0691,Boomer,Male,Midwest,Flexitarian,Hot,Chicken Burrito,9.62,740,5,2,8,7,5,4
+CUST_0692,Boomer,Male,Midwest,Flexitarian,Hot,Steak Bowl,12.03,710,4,5,5,4,4,9
+CUST_0693,Boomer,Male,Midwest,Flexitarian,Hot,Veggie Bowl,9.76,590,3,3,7,6,3,3
+CUST_0694,Boomer,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),12.79,650,8,7,8,7,3,4
+CUST_0695,Boomer,Male,Midwest,Flexitarian,Hot,Carnitas Salad,12.06,620,7,6,7,6,10,4
+CUST_0696,Gen X,Female,Northeast,Omnivore,Hot,Chicken Burrito,11.37,740,2,4,5,4,8,9
+CUST_0697,Gen X,Female,Northeast,Omnivore,Hot,Steak Bowl,11.71,710,2,8,9,8,5,4
+CUST_0698,Gen X,Female,Northeast,Omnivore,Hot,Veggie Bowl,9.21,590,4,4,6,5,6,9
+CUST_0699,Gen X,Female,Northeast,Omnivore,Hot,Barbacoa Tacos (3),10.88,650,6,7,8,7,8,9
+CUST_0700,Gen X,Female,Northeast,Omnivore,Hot,Carnitas Salad,11.04,620,6,4,4,3,3,6
+CUST_0701,Millennial,Female,Midwest,Omnivore,Medium,Chicken Burrito,11.53,740,7,6,8,7,4,4
+CUST_0702,Millennial,Female,Midwest,Omnivore,Medium,Steak Bowl,12.31,710,7,8,6,5,4,5
+CUST_0703,Millennial,Female,Midwest,Omnivore,Medium,Veggie Bowl,9,590,8,4,10,9,7,3
+CUST_0704,Millennial,Female,Midwest,Omnivore,Medium,Barbacoa Tacos (3),11.15,650,4,3,7,6,3,10
+CUST_0705,Millennial,Female,Midwest,Omnivore,Medium,Carnitas Salad,10.34,620,2,2,7,6,6,7
+CUST_0706,Millennial,Male,West,Omnivore,Medium,Chicken Burrito,10.44,740,5,6,6,5,4,8
+CUST_0707,Millennial,Male,West,Omnivore,Medium,Steak Bowl,11.85,710,2,8,7,6,9,3
+CUST_0708,Millennial,Male,West,Omnivore,Medium,Veggie Bowl,9.73,590,8,4,8,7,5,10
+CUST_0709,Millennial,Male,West,Omnivore,Medium,Barbacoa Tacos (3),10.85,650,2,2,4,3,10,10
+CUST_0710,Millennial,Male,West,Omnivore,Medium,Carnitas Salad,11.26,620,8,8,4,3,10,8
+CUST_0711,Boomer,Male,South,Vegan,Medium,Chicken Burrito,11.03,740,7,7,10,9,7,5
+CUST_0712,Boomer,Male,South,Vegan,Medium,Steak Bowl,11.1,710,7,8,5,4,8,5
+CUST_0713,Boomer,Male,South,Vegan,Medium,Veggie Bowl,9.5,590,7,2,7,6,7,5
+CUST_0714,Boomer,Male,South,Vegan,Medium,Barbacoa Tacos (3),12.81,650,6,7,10,9,9,8
+CUST_0715,Boomer,Male,South,Vegan,Medium,Carnitas Salad,11.24,620,3,5,3,2,5,10
+CUST_0716,Boomer,Female,West,Vegetarian,Medium,Chicken Burrito,9.59,740,2,5,4,3,10,7
+CUST_0717,Boomer,Female,West,Vegetarian,Medium,Steak Bowl,10.46,710,8,7,3,2,10,7
+CUST_0718,Boomer,Female,West,Vegetarian,Medium,Veggie Bowl,9.92,590,8,3,10,9,9,6
+CUST_0719,Boomer,Female,West,Vegetarian,Medium,Barbacoa Tacos (3),11.09,650,4,5,4,3,4,3
+CUST_0720,Boomer,Female,West,Vegetarian,Medium,Carnitas Salad,11.43,620,6,3,8,7,7,9
+CUST_0721,Gen X,Male,West,Omnivore,Mild,Chicken Burrito,9.9,740,6,6,7,6,10,4
+CUST_0722,Gen X,Male,West,Omnivore,Mild,Steak Bowl,11.36,710,3,8,4,3,4,9
+CUST_0723,Gen X,Male,West,Omnivore,Mild,Veggie Bowl,10.38,590,3,6,3,2,10,10
+CUST_0724,Gen X,Male,West,Omnivore,Mild,Barbacoa Tacos (3),13.07,650,2,4,6,5,8,6
+CUST_0725,Gen X,Male,West,Omnivore,Mild,Carnitas Salad,10.53,620,2,6,6,5,7,4
+CUST_0726,Boomer,Male,West,Omnivore,Hot,Chicken Burrito,11.1,740,8,3,9,8,6,9
+CUST_0727,Boomer,Male,West,Omnivore,Hot,Steak Bowl,11.57,710,6,3,6,5,8,5
+CUST_0728,Boomer,Male,West,Omnivore,Hot,Veggie Bowl,10.22,590,7,6,5,4,10,8
+CUST_0729,Boomer,Male,West,Omnivore,Hot,Barbacoa Tacos (3),12.81,650,3,6,8,7,3,5
+CUST_0730,Boomer,Male,West,Omnivore,Hot,Carnitas Salad,11.02,620,8,5,3,2,9,10
+CUST_0731,Gen Z,Male,West,Vegetarian,Medium,Chicken Burrito,10.94,740,7,6,9,8,7,6
+CUST_0732,Gen Z,Male,West,Vegetarian,Medium,Steak Bowl,12.23,710,2,6,9,8,3,7
+CUST_0733,Gen Z,Male,West,Vegetarian,Medium,Veggie Bowl,10.14,590,7,8,9,8,6,8
+CUST_0734,Gen Z,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),11.72,650,2,4,4,3,7,4
+CUST_0735,Gen Z,Male,West,Vegetarian,Medium,Carnitas Salad,10.18,620,7,7,3,2,6,7
+CUST_0736,Millennial,Male,Northeast,Flexitarian,Medium,Chicken Burrito,11.23,740,4,5,6,5,8,10
+CUST_0737,Millennial,Male,Northeast,Flexitarian,Medium,Steak Bowl,10.8,710,7,7,6,5,10,8
+CUST_0738,Millennial,Male,Northeast,Flexitarian,Medium,Veggie Bowl,10.58,590,7,6,9,8,9,3
+CUST_0739,Millennial,Male,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.06,650,8,4,8,7,8,8
+CUST_0740,Millennial,Male,Northeast,Flexitarian,Medium,Carnitas Salad,10.47,620,2,7,8,7,8,5
+CUST_0741,Boomer,Male,South,Omnivore,Mild,Chicken Burrito,10.06,740,6,3,5,4,9,3
+CUST_0742,Boomer,Male,South,Omnivore,Mild,Steak Bowl,10.7,710,4,4,10,9,4,3
+CUST_0743,Boomer,Male,South,Omnivore,Mild,Veggie Bowl,10.87,590,3,6,4,3,7,6
+CUST_0744,Boomer,Male,South,Omnivore,Mild,Barbacoa Tacos (3),12.77,650,8,5,6,5,7,8
+CUST_0745,Boomer,Male,South,Omnivore,Mild,Carnitas Salad,10.76,620,8,5,6,5,4,4
+CUST_0746,Gen X,Male,Northeast,Omnivore,Medium,Chicken Burrito,11.35,740,4,4,7,6,6,6
+CUST_0747,Gen X,Male,Northeast,Omnivore,Medium,Steak Bowl,12.61,710,8,8,5,4,3,9
+CUST_0748,Gen X,Male,Northeast,Omnivore,Medium,Veggie Bowl,9.71,590,6,2,4,3,10,6
+CUST_0749,Gen X,Male,Northeast,Omnivore,Medium,Barbacoa Tacos (3),11.48,650,6,2,6,5,10,7
+CUST_0750,Gen X,Male,Northeast,Omnivore,Medium,Carnitas Salad,11.26,620,3,7,10,9,8,4
+CUST_0751,Gen X,Male,West,Vegetarian,Medium,Chicken Burrito,9.5,740,5,4,9,8,4,6
+CUST_0752,Gen X,Male,West,Vegetarian,Medium,Steak Bowl,11.49,710,6,3,10,9,3,7
+CUST_0753,Gen X,Male,West,Vegetarian,Medium,Veggie Bowl,9.6,590,6,3,9,8,6,6
+CUST_0754,Gen X,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),10.92,650,4,5,8,7,5,5
+CUST_0755,Gen X,Male,West,Vegetarian,Medium,Carnitas Salad,11.9,620,8,7,8,7,6,6
+CUST_0756,Millennial,Male,South,Flexitarian,Hot,Chicken Burrito,10.54,740,7,8,3,2,7,8
+CUST_0757,Millennial,Male,South,Flexitarian,Hot,Steak Bowl,11.14,710,7,5,3,2,3,6
+CUST_0758,Millennial,Male,South,Flexitarian,Hot,Veggie Bowl,10.65,590,4,4,10,9,9,9
+CUST_0759,Millennial,Male,South,Flexitarian,Hot,Barbacoa Tacos (3),11.56,650,4,7,7,6,9,5
+CUST_0760,Millennial,Male,South,Flexitarian,Hot,Carnitas Salad,11.33,620,8,4,8,7,8,6
+CUST_0761,Gen X,Female,Midwest,Omnivore,Mild,Chicken Burrito,10.29,740,2,2,6,5,6,3
+CUST_0762,Gen X,Female,Midwest,Omnivore,Mild,Steak Bowl,10.4,710,5,6,9,8,6,6
+CUST_0763,Gen X,Female,Midwest,Omnivore,Mild,Veggie Bowl,10.48,590,3,4,6,5,5,10
+CUST_0764,Gen X,Female,Midwest,Omnivore,Mild,Barbacoa Tacos (3),11.58,650,8,5,6,5,7,7
+CUST_0765,Gen X,Female,Midwest,Omnivore,Mild,Carnitas Salad,10.08,620,4,3,7,6,6,6
+CUST_0766,Boomer,Female,Midwest,Flexitarian,Mild,Chicken Burrito,10.46,740,8,6,5,4,4,7
+CUST_0767,Boomer,Female,Midwest,Flexitarian,Mild,Steak Bowl,12.52,710,3,8,3,2,8,9
+CUST_0768,Boomer,Female,Midwest,Flexitarian,Mild,Veggie Bowl,10.33,590,8,6,7,6,3,9
+CUST_0769,Boomer,Female,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),10.92,650,4,2,8,7,8,7
+CUST_0770,Boomer,Female,Midwest,Flexitarian,Mild,Carnitas Salad,10.46,620,8,4,7,6,6,5
+CUST_0771,Gen Z,Male,Midwest,Vegetarian,Mild,Chicken Burrito,11.07,740,4,5,3,2,7,9
+CUST_0772,Gen Z,Male,Midwest,Vegetarian,Mild,Steak Bowl,11.3,710,8,5,8,7,10,10
+CUST_0773,Gen Z,Male,Midwest,Vegetarian,Mild,Veggie Bowl,9.25,590,6,4,10,9,5,5
+CUST_0774,Gen Z,Male,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),11.39,650,8,5,3,2,8,7
+CUST_0775,Gen Z,Male,Midwest,Vegetarian,Mild,Carnitas Salad,10.06,620,8,4,5,4,9,5
+CUST_0776,Boomer,Female,West,Vegan,Medium,Chicken Burrito,10.79,740,6,6,5,4,7,10
+CUST_0777,Boomer,Female,West,Vegan,Medium,Steak Bowl,11.96,710,6,7,8,7,3,10
+CUST_0778,Boomer,Female,West,Vegan,Medium,Veggie Bowl,10.88,590,8,6,10,9,4,7
+CUST_0779,Boomer,Female,West,Vegan,Medium,Barbacoa Tacos (3),11.67,650,2,5,3,2,4,7
+CUST_0780,Boomer,Female,West,Vegan,Medium,Carnitas Salad,10.9,620,3,6,7,6,6,10
+CUST_0781,Gen X,Female,Midwest,Omnivore,Mild,Chicken Burrito,11.19,740,6,6,7,6,6,9
+CUST_0782,Gen X,Female,Midwest,Omnivore,Mild,Steak Bowl,11.78,710,7,4,10,9,9,3
+CUST_0783,Gen X,Female,Midwest,Omnivore,Mild,Veggie Bowl,10.37,590,5,8,9,8,8,4
+CUST_0784,Gen X,Female,Midwest,Omnivore,Mild,Barbacoa Tacos (3),12.92,650,3,7,3,2,8,3
+CUST_0785,Gen X,Female,Midwest,Omnivore,Mild,Carnitas Salad,10.17,620,7,6,4,3,6,10
+CUST_0786,Millennial,Male,Northeast,Flexitarian,Mild,Chicken Burrito,11.23,740,3,5,7,6,8,9
+CUST_0787,Millennial,Male,Northeast,Flexitarian,Mild,Steak Bowl,11.17,710,5,8,4,3,9,6
+CUST_0788,Millennial,Male,Northeast,Flexitarian,Mild,Veggie Bowl,10.55,590,7,8,3,2,4,6
+CUST_0789,Millennial,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),11.38,650,7,6,5,4,8,7
+CUST_0790,Millennial,Male,Northeast,Flexitarian,Mild,Carnitas Salad,9.93,620,6,4,8,7,5,4
+CUST_0791,Gen Z,Female,West,Flexitarian,Medium,Chicken Burrito,9.48,740,6,6,7,6,3,6
+CUST_0792,Gen Z,Female,West,Flexitarian,Medium,Steak Bowl,10.68,710,3,4,5,4,8,5
+CUST_0793,Gen Z,Female,West,Flexitarian,Medium,Veggie Bowl,10.77,590,3,7,6,5,3,5
+CUST_0794,Gen Z,Female,West,Flexitarian,Medium,Barbacoa Tacos (3),11.29,650,8,5,6,5,7,9
+CUST_0795,Gen Z,Female,West,Flexitarian,Medium,Carnitas Salad,10.67,620,7,7,4,3,10,6
+CUST_0796,Gen Z,Male,West,Flexitarian,Mild,Chicken Burrito,11.53,740,3,2,9,8,5,3
+CUST_0797,Gen Z,Male,West,Flexitarian,Mild,Steak Bowl,11.22,710,3,6,4,3,7,4
+CUST_0798,Gen Z,Male,West,Flexitarian,Mild,Veggie Bowl,9.96,590,8,8,8,7,4,4
+CUST_0799,Gen Z,Male,West,Flexitarian,Mild,Barbacoa Tacos (3),10.91,650,6,7,6,5,9,6
+CUST_0800,Gen Z,Male,West,Flexitarian,Mild,Carnitas Salad,11.93,620,5,5,6,5,3,10
+CUST_0801,Boomer,Male,West,Omnivore,Medium,Chicken Burrito,10.55,740,6,5,6,5,4,5
+CUST_0802,Boomer,Male,West,Omnivore,Medium,Steak Bowl,10.57,710,3,2,9,8,10,10
+CUST_0803,Boomer,Male,West,Omnivore,Medium,Veggie Bowl,10.89,590,2,5,9,8,8,3
+CUST_0804,Boomer,Male,West,Omnivore,Medium,Barbacoa Tacos (3),12.57,650,2,2,6,5,9,10
+CUST_0805,Boomer,Male,West,Omnivore,Medium,Carnitas Salad,9.94,620,6,5,3,2,10,10
+CUST_0806,Gen X,Male,Midwest,Vegetarian,Hot,Chicken Burrito,10.63,740,6,3,5,4,4,3
+CUST_0807,Gen X,Male,Midwest,Vegetarian,Hot,Steak Bowl,12.04,710,2,7,10,9,4,7
+CUST_0808,Gen X,Male,Midwest,Vegetarian,Hot,Veggie Bowl,10.55,590,5,5,10,9,6,8
+CUST_0809,Gen X,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),11.8,650,4,8,10,9,5,3
+CUST_0810,Gen X,Male,Midwest,Vegetarian,Hot,Carnitas Salad,9.98,620,6,5,9,8,6,7
+CUST_0811,Gen X,Male,South,Vegetarian,Mild,Chicken Burrito,9.57,740,8,6,7,6,5,8
+CUST_0812,Gen X,Male,South,Vegetarian,Mild,Steak Bowl,12,710,7,7,9,8,9,9
+CUST_0813,Gen X,Male,South,Vegetarian,Mild,Veggie Bowl,9.78,590,7,8,4,3,7,9
+CUST_0814,Gen X,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),11.36,650,5,2,7,6,9,9
+CUST_0815,Gen X,Male,South,Vegetarian,Mild,Carnitas Salad,11.9,620,6,2,7,6,3,6
+CUST_0816,Gen Z,Male,Northeast,Omnivore,Mild,Chicken Burrito,10.04,740,4,2,4,3,7,5
+CUST_0817,Gen Z,Male,Northeast,Omnivore,Mild,Steak Bowl,12.07,710,4,8,8,7,5,6
+CUST_0818,Gen Z,Male,Northeast,Omnivore,Mild,Veggie Bowl,9.95,590,7,7,4,3,5,6
+CUST_0819,Gen Z,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),12.24,650,5,6,8,7,10,8
+CUST_0820,Gen Z,Male,Northeast,Omnivore,Mild,Carnitas Salad,11.4,620,6,6,3,2,4,6
+CUST_0821,Boomer,Male,West,Vegan,Mild,Chicken Burrito,11.36,740,6,3,5,4,8,7
+CUST_0822,Boomer,Male,West,Vegan,Mild,Steak Bowl,11.95,710,3,6,8,7,9,5
+CUST_0823,Boomer,Male,West,Vegan,Mild,Veggie Bowl,10.69,590,2,2,7,6,3,10
+CUST_0824,Boomer,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.63,650,4,8,8,7,7,3
+CUST_0825,Boomer,Male,West,Vegan,Mild,Carnitas Salad,10.47,620,4,3,4,3,3,7
+CUST_0826,Gen X,Male,South,Vegan,Medium,Chicken Burrito,10.36,740,5,5,3,2,9,3
+CUST_0827,Gen X,Male,South,Vegan,Medium,Steak Bowl,12.21,710,7,3,4,3,3,9
+CUST_0828,Gen X,Male,South,Vegan,Medium,Veggie Bowl,10.53,590,6,3,4,3,9,7
+CUST_0829,Gen X,Male,South,Vegan,Medium,Barbacoa Tacos (3),12.58,650,8,5,3,2,3,8
+CUST_0830,Gen X,Male,South,Vegan,Medium,Carnitas Salad,9.97,620,6,7,10,9,7,4
+CUST_0831,Gen X,Male,South,Flexitarian,Mild,Chicken Burrito,11.02,740,4,3,5,4,4,9
+CUST_0832,Gen X,Male,South,Flexitarian,Mild,Steak Bowl,11.5,710,2,6,4,3,4,6
+CUST_0833,Gen X,Male,South,Flexitarian,Mild,Veggie Bowl,10.63,590,7,4,7,6,3,4
+CUST_0834,Gen X,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),11.92,650,8,5,7,6,6,3
+CUST_0835,Gen X,Male,South,Flexitarian,Mild,Carnitas Salad,10.59,620,6,6,3,2,5,7
+CUST_0836,Gen X,Male,Midwest,Flexitarian,Hot,Chicken Burrito,10.94,740,2,2,3,2,7,7
+CUST_0837,Gen X,Male,Midwest,Flexitarian,Hot,Steak Bowl,11.76,710,6,8,9,8,3,6
+CUST_0838,Gen X,Male,Midwest,Flexitarian,Hot,Veggie Bowl,9.55,590,2,2,7,6,9,8
+CUST_0839,Gen X,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),12.2,650,6,7,10,9,3,3
+CUST_0840,Gen X,Male,Midwest,Flexitarian,Hot,Carnitas Salad,11.23,620,5,2,7,6,5,10
+CUST_0841,Gen X,Male,Northeast,Vegetarian,Mild,Chicken Burrito,9.69,740,7,7,9,8,3,9
+CUST_0842,Gen X,Male,Northeast,Vegetarian,Mild,Steak Bowl,11.65,710,6,2,10,9,9,9
+CUST_0843,Gen X,Male,Northeast,Vegetarian,Mild,Veggie Bowl,10.34,590,2,6,7,6,5,4
+CUST_0844,Gen X,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.03,650,2,7,6,5,9,9
+CUST_0845,Gen X,Male,Northeast,Vegetarian,Mild,Carnitas Salad,10.15,620,7,4,9,8,4,3
+CUST_0846,Millennial,Male,Northeast,Omnivore,Mild,Chicken Burrito,10.05,740,4,3,4,3,3,10
+CUST_0847,Millennial,Male,Northeast,Omnivore,Mild,Steak Bowl,11.73,710,5,5,5,4,10,4
+CUST_0848,Millennial,Male,Northeast,Omnivore,Mild,Veggie Bowl,10.84,590,2,4,3,2,4,10
+CUST_0849,Millennial,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),11.13,650,5,7,7,6,6,4
+CUST_0850,Millennial,Male,Northeast,Omnivore,Mild,Carnitas Salad,9.91,620,7,7,3,2,4,10
+CUST_0851,Millennial,Female,Midwest,Flexitarian,Hot,Chicken Burrito,9.78,740,8,3,6,5,9,3
+CUST_0852,Millennial,Female,Midwest,Flexitarian,Hot,Steak Bowl,12.16,710,8,2,3,2,8,10
+CUST_0853,Millennial,Female,Midwest,Flexitarian,Hot,Veggie Bowl,10.72,590,6,6,3,2,6,3
+CUST_0854,Millennial,Female,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),12.57,650,3,6,9,8,5,6
+CUST_0855,Millennial,Female,Midwest,Flexitarian,Hot,Carnitas Salad,12.01,620,4,5,9,8,8,5
+CUST_0856,Boomer,Male,South,Vegetarian,Hot,Chicken Burrito,10.08,740,6,8,9,8,3,4
+CUST_0857,Boomer,Male,South,Vegetarian,Hot,Steak Bowl,12.54,710,4,7,6,5,6,9
+CUST_0858,Boomer,Male,South,Vegetarian,Hot,Veggie Bowl,10.22,590,4,7,10,9,5,6
+CUST_0859,Boomer,Male,South,Vegetarian,Hot,Barbacoa Tacos (3),12.84,650,3,5,8,7,9,5
+CUST_0860,Boomer,Male,South,Vegetarian,Hot,Carnitas Salad,11.08,620,4,6,7,6,6,9
+CUST_0861,Gen Z,Male,South,Omnivore,Medium,Chicken Burrito,10.64,740,2,3,7,6,4,4
+CUST_0862,Gen Z,Male,South,Omnivore,Medium,Steak Bowl,11.65,710,2,3,3,2,3,4
+CUST_0863,Gen Z,Male,South,Omnivore,Medium,Veggie Bowl,10.21,590,6,5,10,9,4,5
+CUST_0864,Gen Z,Male,South,Omnivore,Medium,Barbacoa Tacos (3),13.18,650,3,3,8,7,9,3
+CUST_0865,Gen Z,Male,South,Omnivore,Medium,Carnitas Salad,12.04,620,5,2,8,7,5,10
+CUST_0866,Gen X,Female,Midwest,Vegetarian,Medium,Chicken Burrito,11.21,740,7,7,3,2,10,3
+CUST_0867,Gen X,Female,Midwest,Vegetarian,Medium,Steak Bowl,11.89,710,5,8,9,8,8,3
+CUST_0868,Gen X,Female,Midwest,Vegetarian,Medium,Veggie Bowl,10.87,590,7,4,9,8,7,6
+CUST_0869,Gen X,Female,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),12.32,650,4,5,5,4,6,8
+CUST_0870,Gen X,Female,Midwest,Vegetarian,Medium,Carnitas Salad,10.27,620,7,4,7,6,4,6
+CUST_0871,Millennial,Male,Midwest,Omnivore,Medium,Chicken Burrito,10.52,740,7,5,5,4,7,4
+CUST_0872,Millennial,Male,Midwest,Omnivore,Medium,Steak Bowl,11.49,710,7,3,5,4,10,6
+CUST_0873,Millennial,Male,Midwest,Omnivore,Medium,Veggie Bowl,10.29,590,4,3,3,2,6,4
+CUST_0874,Millennial,Male,Midwest,Omnivore,Medium,Barbacoa Tacos (3),12.77,650,8,5,3,2,7,8
+CUST_0875,Millennial,Male,Midwest,Omnivore,Medium,Carnitas Salad,11.9,620,7,8,8,7,5,3
+CUST_0876,Gen Z,Male,West,Omnivore,Medium,Chicken Burrito,10.53,740,8,5,7,6,8,3
+CUST_0877,Gen Z,Male,West,Omnivore,Medium,Steak Bowl,12.25,710,2,7,5,4,3,9
+CUST_0878,Gen Z,Male,West,Omnivore,Medium,Veggie Bowl,10.68,590,5,7,6,5,4,6
+CUST_0879,Gen Z,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.14,650,3,8,9,8,7,3
+CUST_0880,Gen Z,Male,West,Omnivore,Medium,Carnitas Salad,10.84,620,4,2,9,8,8,4
+CUST_0881,Boomer,Male,Northeast,Vegan,Mild,Chicken Burrito,11.27,740,5,6,5,4,4,3
+CUST_0882,Boomer,Male,Northeast,Vegan,Mild,Steak Bowl,12.22,710,6,8,3,2,10,5
+CUST_0883,Boomer,Male,Northeast,Vegan,Mild,Veggie Bowl,10.67,590,7,6,4,3,5,8
+CUST_0884,Boomer,Male,Northeast,Vegan,Mild,Barbacoa Tacos (3),12.03,650,2,6,5,4,4,10
+CUST_0885,Boomer,Male,Northeast,Vegan,Mild,Carnitas Salad,10.2,620,3,6,8,7,10,5
+CUST_0886,Gen Z,Male,South,Flexitarian,Mild,Chicken Burrito,10.62,740,8,3,7,6,9,8
+CUST_0887,Gen Z,Male,South,Flexitarian,Mild,Steak Bowl,11.64,710,3,2,4,3,8,6
+CUST_0888,Gen Z,Male,South,Flexitarian,Mild,Veggie Bowl,10.57,590,6,5,8,7,4,10
+CUST_0889,Gen Z,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),11.96,650,8,2,8,7,9,7
+CUST_0890,Gen Z,Male,South,Flexitarian,Mild,Carnitas Salad,11.75,620,7,7,10,9,3,10
+CUST_0891,Boomer,Male,Northeast,Vegan,Mild,Chicken Burrito,9.61,740,8,7,4,3,3,7
+CUST_0892,Boomer,Male,Northeast,Vegan,Mild,Steak Bowl,10.97,710,4,4,8,7,7,10
+CUST_0893,Boomer,Male,Northeast,Vegan,Mild,Veggie Bowl,10.45,590,4,7,7,6,4,3
+CUST_0894,Boomer,Male,Northeast,Vegan,Mild,Barbacoa Tacos (3),12.77,650,4,3,7,6,9,7
+CUST_0895,Boomer,Male,Northeast,Vegan,Mild,Carnitas Salad,9.91,620,4,2,7,6,10,8
+CUST_0896,Gen X,Female,West,Flexitarian,Mild,Chicken Burrito,10.92,740,4,4,8,7,9,10
+CUST_0897,Gen X,Female,West,Flexitarian,Mild,Steak Bowl,10.84,710,3,6,9,8,10,9
+CUST_0898,Gen X,Female,West,Flexitarian,Mild,Veggie Bowl,10,590,3,2,10,9,3,5
+CUST_0899,Gen X,Female,West,Flexitarian,Mild,Barbacoa Tacos (3),11.51,650,5,6,4,3,5,3
+CUST_0900,Gen X,Female,West,Flexitarian,Mild,Carnitas Salad,10.53,620,2,7,10,9,9,7
+CUST_0901,Gen X,Male,Midwest,Vegan,Medium,Chicken Burrito,9.8,740,3,3,5,4,8,4
+CUST_0902,Gen X,Male,Midwest,Vegan,Medium,Steak Bowl,11.55,710,3,2,6,5,6,7
+CUST_0903,Gen X,Male,Midwest,Vegan,Medium,Veggie Bowl,9.36,590,8,5,7,6,3,10
+CUST_0904,Gen X,Male,Midwest,Vegan,Medium,Barbacoa Tacos (3),11.01,650,7,5,9,8,3,8
+CUST_0905,Gen X,Male,Midwest,Vegan,Medium,Carnitas Salad,11.98,620,8,7,5,4,3,3
+CUST_0906,Gen X,Male,West,Vegetarian,Medium,Chicken Burrito,10.4,740,7,5,8,7,7,4
+CUST_0907,Gen X,Male,West,Vegetarian,Medium,Steak Bowl,12.44,710,2,3,9,8,4,3
+CUST_0908,Gen X,Male,West,Vegetarian,Medium,Veggie Bowl,10.66,590,6,8,7,6,7,3
+CUST_0909,Gen X,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),11.08,650,4,3,8,7,9,6
+CUST_0910,Gen X,Male,West,Vegetarian,Medium,Carnitas Salad,10.31,620,5,8,9,8,3,7
+CUST_0911,Millennial,Male,South,Omnivore,Mild,Chicken Burrito,11.42,740,4,7,5,4,7,8
+CUST_0912,Millennial,Male,South,Omnivore,Mild,Steak Bowl,11.18,710,6,5,9,8,10,7
+CUST_0913,Millennial,Male,South,Omnivore,Mild,Veggie Bowl,9.87,590,4,5,7,6,8,4
+CUST_0914,Millennial,Male,South,Omnivore,Mild,Barbacoa Tacos (3),10.87,650,2,4,9,8,9,9
+CUST_0915,Millennial,Male,South,Omnivore,Mild,Carnitas Salad,10.66,620,4,3,10,9,6,3
+CUST_0916,Boomer,Female,West,Vegetarian,Mild,Chicken Burrito,11.17,740,8,2,7,6,7,4
+CUST_0917,Boomer,Female,West,Vegetarian,Mild,Steak Bowl,10.72,710,4,8,8,7,6,3
+CUST_0918,Boomer,Female,West,Vegetarian,Mild,Veggie Bowl,9.44,590,8,5,10,9,4,5
+CUST_0919,Boomer,Female,West,Vegetarian,Mild,Barbacoa Tacos (3),11.44,650,5,8,8,7,3,10
+CUST_0920,Boomer,Female,West,Vegetarian,Mild,Carnitas Salad,10.93,620,7,2,8,7,6,6
+CUST_0921,Millennial,Female,Midwest,Vegetarian,Mild,Chicken Burrito,10.41,740,7,8,4,3,4,7
+CUST_0922,Millennial,Female,Midwest,Vegetarian,Mild,Steak Bowl,12.43,710,4,5,5,4,8,6
+CUST_0923,Millennial,Female,Midwest,Vegetarian,Mild,Veggie Bowl,9.5,590,3,8,10,9,4,5
+CUST_0924,Millennial,Female,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),12.75,650,2,7,8,7,4,4
+CUST_0925,Millennial,Female,Midwest,Vegetarian,Mild,Carnitas Salad,10.23,620,2,3,7,6,7,3
+CUST_0926,Millennial,Male,West,Vegan,Mild,Chicken Burrito,11.07,740,4,5,3,2,8,6
+CUST_0927,Millennial,Male,West,Vegan,Mild,Steak Bowl,11.45,710,8,5,3,2,5,10
+CUST_0928,Millennial,Male,West,Vegan,Mild,Veggie Bowl,9.29,590,6,7,4,3,3,9
+CUST_0929,Millennial,Male,West,Vegan,Mild,Barbacoa Tacos (3),11.87,650,3,6,7,6,10,9
+CUST_0930,Millennial,Male,West,Vegan,Mild,Carnitas Salad,12.01,620,3,3,8,7,3,5
+CUST_0931,Boomer,Female,South,Vegetarian,Hot,Chicken Burrito,11.37,740,2,6,10,9,8,9
+CUST_0932,Boomer,Female,South,Vegetarian,Hot,Steak Bowl,11.97,710,4,5,3,2,3,3
+CUST_0933,Boomer,Female,South,Vegetarian,Hot,Veggie Bowl,9.49,590,3,3,5,4,7,6
+CUST_0934,Boomer,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),11.34,650,8,5,8,7,10,7
+CUST_0935,Boomer,Female,South,Vegetarian,Hot,Carnitas Salad,11.24,620,8,5,7,6,7,6
+CUST_0936,Gen Z,Female,South,Flexitarian,Mild,Chicken Burrito,11.34,740,8,3,8,7,6,4
+CUST_0937,Gen Z,Female,South,Flexitarian,Mild,Steak Bowl,12.04,710,4,5,6,5,8,5
+CUST_0938,Gen Z,Female,South,Flexitarian,Mild,Veggie Bowl,9.5,590,3,5,7,6,9,5
+CUST_0939,Gen Z,Female,South,Flexitarian,Mild,Barbacoa Tacos (3),12.93,650,8,4,6,5,3,4
+CUST_0940,Gen Z,Female,South,Flexitarian,Mild,Carnitas Salad,11.4,620,8,3,7,6,10,6
+CUST_0941,Gen Z,Female,West,Vegan,Mild,Chicken Burrito,10.88,740,5,6,7,6,9,5
+CUST_0942,Gen Z,Female,West,Vegan,Mild,Steak Bowl,12.43,710,8,8,5,4,6,9
+CUST_0943,Gen Z,Female,West,Vegan,Mild,Veggie Bowl,9.96,590,6,4,5,4,6,5
+CUST_0944,Gen Z,Female,West,Vegan,Mild,Barbacoa Tacos (3),11.57,650,7,2,9,8,7,3
+CUST_0945,Gen Z,Female,West,Vegan,Mild,Carnitas Salad,11.45,620,8,7,6,5,5,4
+CUST_0946,Gen X,Male,West,Omnivore,Medium,Chicken Burrito,10.95,740,4,7,4,3,6,3
+CUST_0947,Gen X,Male,West,Omnivore,Medium,Steak Bowl,11.51,710,5,6,6,5,5,9
+CUST_0948,Gen X,Male,West,Omnivore,Medium,Veggie Bowl,10.25,590,7,2,10,9,9,4
+CUST_0949,Gen X,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.34,650,6,8,6,5,6,8
+CUST_0950,Gen X,Male,West,Omnivore,Medium,Carnitas Salad,11.71,620,2,3,7,6,9,4
+CUST_0951,Gen Z,Male,West,Omnivore,Hot,Chicken Burrito,9.7,740,8,2,7,6,10,8
+CUST_0952,Gen Z,Male,West,Omnivore,Hot,Steak Bowl,11.83,710,5,8,3,2,9,3
+CUST_0953,Gen Z,Male,West,Omnivore,Hot,Veggie Bowl,10.32,590,8,4,10,9,9,3
+CUST_0954,Gen Z,Male,West,Omnivore,Hot,Barbacoa Tacos (3),12.28,650,3,2,7,6,3,7
+CUST_0955,Gen Z,Male,West,Omnivore,Hot,Carnitas Salad,12.06,620,7,3,8,7,3,10
+CUST_0956,Millennial,Female,West,Omnivore,Medium,Chicken Burrito,9.84,740,4,6,5,4,3,5
+CUST_0957,Millennial,Female,West,Omnivore,Medium,Steak Bowl,12.52,710,8,8,7,6,8,4
+CUST_0958,Millennial,Female,West,Omnivore,Medium,Veggie Bowl,10.83,590,2,5,10,9,4,6
+CUST_0959,Millennial,Female,West,Omnivore,Medium,Barbacoa Tacos (3),12.61,650,7,3,10,9,9,6
+CUST_0960,Millennial,Female,West,Omnivore,Medium,Carnitas Salad,11.34,620,7,8,4,3,5,4
+CUST_0961,Millennial,Male,South,Vegan,Medium,Chicken Burrito,10.84,740,7,3,10,9,5,6
+CUST_0962,Millennial,Male,South,Vegan,Medium,Steak Bowl,12.61,710,7,4,10,9,9,4
+CUST_0963,Millennial,Male,South,Vegan,Medium,Veggie Bowl,10.39,590,7,4,3,2,3,6
+CUST_0964,Millennial,Male,South,Vegan,Medium,Barbacoa Tacos (3),11.3,650,7,6,7,6,3,4
+CUST_0965,Millennial,Male,South,Vegan,Medium,Carnitas Salad,10.47,620,6,4,7,6,4,4
+CUST_0966,Gen X,Male,Midwest,Flexitarian,Hot,Chicken Burrito,11.03,740,6,4,10,9,6,4
+CUST_0967,Gen X,Male,Midwest,Flexitarian,Hot,Steak Bowl,11.49,710,6,3,9,8,8,3
+CUST_0968,Gen X,Male,Midwest,Flexitarian,Hot,Veggie Bowl,10.43,590,5,6,5,4,4,3
+CUST_0969,Gen X,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),12.32,650,8,8,8,7,9,5
+CUST_0970,Gen X,Male,Midwest,Flexitarian,Hot,Carnitas Salad,11.13,620,7,7,8,7,3,3
+CUST_0971,Boomer,Male,South,Vegan,Hot,Chicken Burrito,10.1,740,2,8,5,4,9,6
+CUST_0972,Boomer,Male,South,Vegan,Hot,Steak Bowl,11.14,710,6,2,5,4,3,3
+CUST_0973,Boomer,Male,South,Vegan,Hot,Veggie Bowl,10.07,590,2,2,9,8,9,8
+CUST_0974,Boomer,Male,South,Vegan,Hot,Barbacoa Tacos (3),10.96,650,6,4,10,9,10,5
+CUST_0975,Boomer,Male,South,Vegan,Hot,Carnitas Salad,11.81,620,3,3,6,5,3,5
+CUST_0976,Gen Z,Female,Northeast,Vegetarian,Mild,Chicken Burrito,11.53,740,6,4,6,5,5,10
+CUST_0977,Gen Z,Female,Northeast,Vegetarian,Mild,Steak Bowl,10.94,710,7,6,9,8,6,4
+CUST_0978,Gen Z,Female,Northeast,Vegetarian,Mild,Veggie Bowl,10.23,590,4,2,3,2,9,9
+CUST_0979,Gen Z,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.72,650,3,2,8,7,4,5
+CUST_0980,Gen Z,Female,Northeast,Vegetarian,Mild,Carnitas Salad,10.46,620,2,3,9,8,7,8
+CUST_0981,Millennial,Female,West,Vegan,Mild,Chicken Burrito,9.76,740,6,5,8,7,10,10
+CUST_0982,Millennial,Female,West,Vegan,Mild,Steak Bowl,11.15,710,4,8,3,2,7,8
+CUST_0983,Millennial,Female,West,Vegan,Mild,Veggie Bowl,10.17,590,7,6,3,2,3,6
+CUST_0984,Millennial,Female,West,Vegan,Mild,Barbacoa Tacos (3),13.01,650,6,2,8,7,9,9
+CUST_0985,Millennial,Female,West,Vegan,Mild,Carnitas Salad,10.31,620,6,4,7,6,9,3
+CUST_0986,Boomer,Female,South,Omnivore,Medium,Chicken Burrito,9.56,740,8,8,5,4,3,8
+CUST_0987,Boomer,Female,South,Omnivore,Medium,Steak Bowl,11.03,710,7,7,10,9,8,10
+CUST_0988,Boomer,Female,South,Omnivore,Medium,Veggie Bowl,9.18,590,3,6,3,2,7,5
+CUST_0989,Boomer,Female,South,Omnivore,Medium,Barbacoa Tacos (3),11.15,650,6,2,5,4,4,8
+CUST_0990,Boomer,Female,South,Omnivore,Medium,Carnitas Salad,10.64,620,4,8,5,4,6,10
+CUST_0991,Boomer,Male,South,Vegan,Mild,Chicken Burrito,10.51,740,6,4,3,2,3,5
+CUST_0992,Boomer,Male,South,Vegan,Mild,Steak Bowl,12.62,710,5,2,3,2,10,3
+CUST_0993,Boomer,Male,South,Vegan,Mild,Veggie Bowl,9.5,590,8,8,7,6,4,3
+CUST_0994,Boomer,Male,South,Vegan,Mild,Barbacoa Tacos (3),11.59,650,6,5,5,4,8,8
+CUST_0995,Boomer,Male,South,Vegan,Mild,Carnitas Salad,10.19,620,7,7,3,2,9,8
+CUST_0996,Gen X,Male,Midwest,Vegetarian,Hot,Chicken Burrito,11.39,740,7,8,3,2,4,6
+CUST_0997,Gen X,Male,Midwest,Vegetarian,Hot,Steak Bowl,11.17,710,7,2,9,8,4,6
+CUST_0998,Gen X,Male,Midwest,Vegetarian,Hot,Veggie Bowl,9.81,590,7,6,10,9,7,5
+CUST_0999,Gen X,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),12.82,650,3,7,6,5,8,7
+CUST_1000,Gen X,Male,Midwest,Vegetarian,Hot,Carnitas Salad,11.11,620,7,3,6,5,10,7
+CUST_1001,Boomer,Male,West,Flexitarian,Hot,Chicken Burrito,10.92,740,7,5,4,3,4,5
+CUST_1002,Boomer,Male,West,Flexitarian,Hot,Steak Bowl,12.24,710,5,6,7,6,3,3
+CUST_1003,Boomer,Male,West,Flexitarian,Hot,Veggie Bowl,9.97,590,5,4,4,3,3,8
+CUST_1004,Boomer,Male,West,Flexitarian,Hot,Barbacoa Tacos (3),11.66,650,5,3,6,5,8,8
+CUST_1005,Boomer,Male,West,Flexitarian,Hot,Carnitas Salad,10.18,620,7,2,8,7,3,10
+CUST_1006,Gen Z,Male,Midwest,Flexitarian,Hot,Chicken Burrito,10.01,740,7,2,4,3,9,8
+CUST_1007,Gen Z,Male,Midwest,Flexitarian,Hot,Steak Bowl,12.27,710,8,2,10,9,3,4
+CUST_1008,Gen Z,Male,Midwest,Flexitarian,Hot,Veggie Bowl,9.07,590,5,2,9,8,9,4
+CUST_1009,Gen Z,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),11.02,650,3,5,10,9,4,4
+CUST_1010,Gen Z,Male,Midwest,Flexitarian,Hot,Carnitas Salad,10.35,620,5,5,9,8,7,8
+CUST_1011,Gen Z,Male,Midwest,Vegetarian,Hot,Chicken Burrito,10.64,740,6,5,5,4,9,8
+CUST_1012,Gen Z,Male,Midwest,Vegetarian,Hot,Steak Bowl,10.37,710,6,6,3,2,5,10
+CUST_1013,Gen Z,Male,Midwest,Vegetarian,Hot,Veggie Bowl,10.25,590,2,7,7,6,8,8
+CUST_1014,Gen Z,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),12.86,650,4,2,4,3,10,3
+CUST_1015,Gen Z,Male,Midwest,Vegetarian,Hot,Carnitas Salad,11.59,620,4,8,7,6,7,6
+CUST_1016,Gen Z,Male,South,Omnivore,Medium,Chicken Burrito,10.25,740,7,7,6,5,4,4
+CUST_1017,Gen Z,Male,South,Omnivore,Medium,Steak Bowl,11.67,710,6,2,10,9,10,3
+CUST_1018,Gen Z,Male,South,Omnivore,Medium,Veggie Bowl,10.75,590,8,7,8,7,4,8
+CUST_1019,Gen Z,Male,South,Omnivore,Medium,Barbacoa Tacos (3),12.33,650,3,6,6,5,7,6
+CUST_1020,Gen Z,Male,South,Omnivore,Medium,Carnitas Salad,11.77,620,8,2,9,8,3,7
+CUST_1021,Gen Z,Male,West,Omnivore,Medium,Chicken Burrito,9.75,740,6,8,6,5,4,9
+CUST_1022,Gen Z,Male,West,Omnivore,Medium,Steak Bowl,11.38,710,6,5,5,4,10,4
+CUST_1023,Gen Z,Male,West,Omnivore,Medium,Veggie Bowl,10.28,590,7,5,7,6,9,9
+CUST_1024,Gen Z,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.7,650,7,7,5,4,8,10
+CUST_1025,Gen Z,Male,West,Omnivore,Medium,Carnitas Salad,11.29,620,3,5,5,4,10,8
+CUST_1026,Gen Z,Male,Northeast,Vegetarian,Medium,Chicken Burrito,10,740,8,2,4,3,9,7
+CUST_1027,Gen Z,Male,Northeast,Vegetarian,Medium,Steak Bowl,11.52,710,7,3,10,9,10,9
+CUST_1028,Gen Z,Male,Northeast,Vegetarian,Medium,Veggie Bowl,9.68,590,5,4,9,8,3,4
+CUST_1029,Gen Z,Male,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),11.9,650,2,2,9,8,7,3
+CUST_1030,Gen Z,Male,Northeast,Vegetarian,Medium,Carnitas Salad,11.99,620,3,7,3,2,3,6
+CUST_1031,Boomer,Male,South,Omnivore,Hot,Chicken Burrito,10.09,740,3,7,7,6,3,3
+CUST_1032,Boomer,Male,South,Omnivore,Hot,Steak Bowl,11.31,710,7,8,4,3,8,7
+CUST_1033,Boomer,Male,South,Omnivore,Hot,Veggie Bowl,9.68,590,5,3,5,4,5,7
+CUST_1034,Boomer,Male,South,Omnivore,Hot,Barbacoa Tacos (3),12.22,650,5,2,8,7,9,5
+CUST_1035,Boomer,Male,South,Omnivore,Hot,Carnitas Salad,10.85,620,8,2,4,3,7,8
+CUST_1036,Millennial,Male,Midwest,Vegan,Mild,Chicken Burrito,10.87,740,7,5,5,4,4,6
+CUST_1037,Millennial,Male,Midwest,Vegan,Mild,Steak Bowl,10.44,710,8,4,4,3,6,7
+CUST_1038,Millennial,Male,Midwest,Vegan,Mild,Veggie Bowl,9.24,590,8,7,7,6,10,7
+CUST_1039,Millennial,Male,Midwest,Vegan,Mild,Barbacoa Tacos (3),13.02,650,8,8,9,8,4,6
+CUST_1040,Millennial,Male,Midwest,Vegan,Mild,Carnitas Salad,9.96,620,4,2,6,5,7,9
+CUST_1041,Boomer,Female,West,Flexitarian,Medium,Chicken Burrito,10.78,740,4,7,6,5,9,7
+CUST_1042,Boomer,Female,West,Flexitarian,Medium,Steak Bowl,11.08,710,2,8,10,9,9,8
+CUST_1043,Boomer,Female,West,Flexitarian,Medium,Veggie Bowl,9.39,590,4,4,3,2,7,10
+CUST_1044,Boomer,Female,West,Flexitarian,Medium,Barbacoa Tacos (3),12.82,650,4,7,9,8,4,3
+CUST_1045,Boomer,Female,West,Flexitarian,Medium,Carnitas Salad,11.21,620,6,6,10,9,3,5
+CUST_1046,Gen X,Female,South,Vegetarian,Medium,Chicken Burrito,10.38,740,8,8,10,9,7,8
+CUST_1047,Gen X,Female,South,Vegetarian,Medium,Steak Bowl,10.42,710,3,5,7,6,10,10
+CUST_1048,Gen X,Female,South,Vegetarian,Medium,Veggie Bowl,10.57,590,8,4,5,4,4,8
+CUST_1049,Gen X,Female,South,Vegetarian,Medium,Barbacoa Tacos (3),12.51,650,8,6,9,8,5,9
+CUST_1050,Gen X,Female,South,Vegetarian,Medium,Carnitas Salad,11.03,620,4,5,8,7,6,4
+CUST_1051,Gen Z,Female,South,Omnivore,Mild,Chicken Burrito,10.49,740,3,6,9,8,3,10
+CUST_1052,Gen Z,Female,South,Omnivore,Mild,Steak Bowl,10.85,710,2,2,6,5,4,7
+CUST_1053,Gen Z,Female,South,Omnivore,Mild,Veggie Bowl,9.92,590,8,3,5,4,4,7
+CUST_1054,Gen Z,Female,South,Omnivore,Mild,Barbacoa Tacos (3),11.85,650,2,5,6,5,8,5
+CUST_1055,Gen Z,Female,South,Omnivore,Mild,Carnitas Salad,10.16,620,4,2,3,2,3,6
+CUST_1056,Gen X,Female,Midwest,Omnivore,Medium,Chicken Burrito,9.97,740,7,3,10,9,7,10
+CUST_1057,Gen X,Female,Midwest,Omnivore,Medium,Steak Bowl,11.05,710,8,5,5,4,3,5
+CUST_1058,Gen X,Female,Midwest,Omnivore,Medium,Veggie Bowl,9.28,590,8,4,9,8,9,3
+CUST_1059,Gen X,Female,Midwest,Omnivore,Medium,Barbacoa Tacos (3),10.8,650,8,8,10,9,3,5
+CUST_1060,Gen X,Female,Midwest,Omnivore,Medium,Carnitas Salad,10.78,620,7,3,7,6,10,8
+CUST_1061,Gen Z,Male,South,Omnivore,Mild,Chicken Burrito,10.66,740,3,5,7,6,6,3
+CUST_1062,Gen Z,Male,South,Omnivore,Mild,Steak Bowl,10.52,710,2,4,8,7,8,3
+CUST_1063,Gen Z,Male,South,Omnivore,Mild,Veggie Bowl,10.96,590,4,2,6,5,4,10
+CUST_1064,Gen Z,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.66,650,6,6,4,3,4,9
+CUST_1065,Gen Z,Male,South,Omnivore,Mild,Carnitas Salad,11.09,620,6,5,4,3,7,6
+CUST_1066,Gen Z,Female,Northeast,Vegan,Mild,Chicken Burrito,10.58,740,2,8,10,9,4,10
+CUST_1067,Gen Z,Female,Northeast,Vegan,Mild,Steak Bowl,10.5,710,3,8,6,5,10,5
+CUST_1068,Gen Z,Female,Northeast,Vegan,Mild,Veggie Bowl,9.24,590,5,3,8,7,7,9
+CUST_1069,Gen Z,Female,Northeast,Vegan,Mild,Barbacoa Tacos (3),13.14,650,2,2,4,3,4,8
+CUST_1070,Gen Z,Female,Northeast,Vegan,Mild,Carnitas Salad,9.92,620,6,6,5,4,10,5
+CUST_1071,Gen Z,Female,West,Flexitarian,Mild,Chicken Burrito,10.25,740,4,4,7,6,7,10
+CUST_1072,Gen Z,Female,West,Flexitarian,Mild,Steak Bowl,11.39,710,2,7,3,2,3,10
+CUST_1073,Gen Z,Female,West,Flexitarian,Mild,Veggie Bowl,9.14,590,3,5,10,9,3,9
+CUST_1074,Gen Z,Female,West,Flexitarian,Mild,Barbacoa Tacos (3),11.22,650,6,8,3,2,7,3
+CUST_1075,Gen Z,Female,West,Flexitarian,Mild,Carnitas Salad,10.03,620,2,3,4,3,7,10
+CUST_1076,Millennial,Female,South,Vegan,Mild,Chicken Burrito,9.51,740,3,6,10,9,5,5
+CUST_1077,Millennial,Female,South,Vegan,Mild,Steak Bowl,11.81,710,8,5,8,7,9,10
+CUST_1078,Millennial,Female,South,Vegan,Mild,Veggie Bowl,10.26,590,4,7,8,7,8,9
+CUST_1079,Millennial,Female,South,Vegan,Mild,Barbacoa Tacos (3),11.36,650,5,3,8,7,7,7
+CUST_1080,Millennial,Female,South,Vegan,Mild,Carnitas Salad,11.61,620,6,5,8,7,8,3
+CUST_1081,Gen Z,Male,Northeast,Omnivore,Medium,Chicken Burrito,10.55,740,5,8,8,7,9,3
+CUST_1082,Gen Z,Male,Northeast,Omnivore,Medium,Steak Bowl,11.52,710,5,4,5,4,7,6
+CUST_1083,Gen Z,Male,Northeast,Omnivore,Medium,Veggie Bowl,9.39,590,2,8,6,5,4,10
+CUST_1084,Gen Z,Male,Northeast,Omnivore,Medium,Barbacoa Tacos (3),11.95,650,8,2,5,4,7,7
+CUST_1085,Gen Z,Male,Northeast,Omnivore,Medium,Carnitas Salad,10.16,620,2,7,8,7,6,10
+CUST_1086,Gen X,Male,Midwest,Omnivore,Mild,Chicken Burrito,11.39,740,2,7,8,7,10,6
+CUST_1087,Gen X,Male,Midwest,Omnivore,Mild,Steak Bowl,11.59,710,3,3,5,4,9,7
+CUST_1088,Gen X,Male,Midwest,Omnivore,Mild,Veggie Bowl,9.22,590,2,7,5,4,4,4
+CUST_1089,Gen X,Male,Midwest,Omnivore,Mild,Barbacoa Tacos (3),12.33,650,8,6,5,4,4,6
+CUST_1090,Gen X,Male,Midwest,Omnivore,Mild,Carnitas Salad,11.38,620,6,4,10,9,10,8
+CUST_1091,Gen X,Male,Northeast,Vegan,Medium,Chicken Burrito,11.44,740,6,8,3,2,8,5
+CUST_1092,Gen X,Male,Northeast,Vegan,Medium,Steak Bowl,10.62,710,7,6,6,5,5,7
+CUST_1093,Gen X,Male,Northeast,Vegan,Medium,Veggie Bowl,9.42,590,5,4,9,8,8,3
+CUST_1094,Gen X,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),11.41,650,6,4,4,3,10,9
+CUST_1095,Gen X,Male,Northeast,Vegan,Medium,Carnitas Salad,11.55,620,6,2,4,3,6,4
+CUST_1096,Millennial,Male,Midwest,Flexitarian,Mild,Chicken Burrito,10.57,740,5,8,8,7,9,5
+CUST_1097,Millennial,Male,Midwest,Flexitarian,Mild,Steak Bowl,12.36,710,2,6,8,7,5,9
+CUST_1098,Millennial,Male,Midwest,Flexitarian,Mild,Veggie Bowl,9.71,590,7,7,10,9,5,4
+CUST_1099,Millennial,Male,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),12.23,650,5,2,10,9,7,9
+CUST_1100,Millennial,Male,Midwest,Flexitarian,Mild,Carnitas Salad,11.89,620,8,6,3,2,10,6
+CUST_1101,Boomer,Male,West,Vegan,Hot,Chicken Burrito,11.01,740,6,3,5,4,8,7
+CUST_1102,Boomer,Male,West,Vegan,Hot,Steak Bowl,12.17,710,8,7,8,7,6,10
+CUST_1103,Boomer,Male,West,Vegan,Hot,Veggie Bowl,9.41,590,8,7,3,2,3,7
+CUST_1104,Boomer,Male,West,Vegan,Hot,Barbacoa Tacos (3),11.04,650,6,6,3,2,10,5
+CUST_1105,Boomer,Male,West,Vegan,Hot,Carnitas Salad,11.81,620,8,2,10,9,6,6
+CUST_1106,Boomer,Male,South,Vegetarian,Hot,Chicken Burrito,10.73,740,6,2,3,2,4,8
+CUST_1107,Boomer,Male,South,Vegetarian,Hot,Steak Bowl,11.58,710,4,6,10,9,6,4
+CUST_1108,Boomer,Male,South,Vegetarian,Hot,Veggie Bowl,9.36,590,4,8,9,8,3,10
+CUST_1109,Boomer,Male,South,Vegetarian,Hot,Barbacoa Tacos (3),11.85,650,5,2,3,2,8,5
+CUST_1110,Boomer,Male,South,Vegetarian,Hot,Carnitas Salad,10.87,620,8,3,9,8,6,7
+CUST_1111,Boomer,Male,Northeast,Vegan,Mild,Chicken Burrito,11.36,740,6,8,7,6,7,10
+CUST_1112,Boomer,Male,Northeast,Vegan,Mild,Steak Bowl,12.23,710,8,2,7,6,8,10
+CUST_1113,Boomer,Male,Northeast,Vegan,Mild,Veggie Bowl,9.26,590,4,6,10,9,8,3
+CUST_1114,Boomer,Male,Northeast,Vegan,Mild,Barbacoa Tacos (3),12.31,650,4,6,9,8,4,10
+CUST_1115,Boomer,Male,Northeast,Vegan,Mild,Carnitas Salad,11.82,620,8,5,9,8,4,3
+CUST_1116,Millennial,Male,South,Flexitarian,Hot,Chicken Burrito,9.49,740,6,5,5,4,9,10
+CUST_1117,Millennial,Male,South,Flexitarian,Hot,Steak Bowl,10.7,710,2,8,8,7,10,10
+CUST_1118,Millennial,Male,South,Flexitarian,Hot,Veggie Bowl,9.42,590,3,7,7,6,5,7
+CUST_1119,Millennial,Male,South,Flexitarian,Hot,Barbacoa Tacos (3),12.13,650,6,4,7,6,9,3
+CUST_1120,Millennial,Male,South,Flexitarian,Hot,Carnitas Salad,10.41,620,7,4,4,3,9,9
+CUST_1121,Boomer,Male,Northeast,Flexitarian,Hot,Chicken Burrito,10.88,740,4,3,4,3,6,4
+CUST_1122,Boomer,Male,Northeast,Flexitarian,Hot,Steak Bowl,11.08,710,5,3,9,8,4,7
+CUST_1123,Boomer,Male,Northeast,Flexitarian,Hot,Veggie Bowl,9.03,590,8,7,9,8,6,7
+CUST_1124,Boomer,Male,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),12.52,650,4,5,9,8,6,8
+CUST_1125,Boomer,Male,Northeast,Flexitarian,Hot,Carnitas Salad,11.63,620,6,7,4,3,6,3
+CUST_1126,Gen Z,Female,South,Vegan,Hot,Chicken Burrito,10.07,740,3,8,9,8,3,6
+CUST_1127,Gen Z,Female,South,Vegan,Hot,Steak Bowl,11.3,710,6,4,5,4,9,8
+CUST_1128,Gen Z,Female,South,Vegan,Hot,Veggie Bowl,9.48,590,6,5,6,5,10,6
+CUST_1129,Gen Z,Female,South,Vegan,Hot,Barbacoa Tacos (3),11.77,650,7,8,8,7,8,4
+CUST_1130,Gen Z,Female,South,Vegan,Hot,Carnitas Salad,11.38,620,5,6,8,7,3,4
+CUST_1131,Millennial,Female,West,Vegetarian,Medium,Chicken Burrito,10.23,740,3,8,10,9,3,9
+CUST_1132,Millennial,Female,West,Vegetarian,Medium,Steak Bowl,10.91,710,7,3,10,9,7,3
+CUST_1133,Millennial,Female,West,Vegetarian,Medium,Veggie Bowl,9.86,590,4,8,6,5,7,4
+CUST_1134,Millennial,Female,West,Vegetarian,Medium,Barbacoa Tacos (3),11.92,650,6,6,8,7,10,8
+CUST_1135,Millennial,Female,West,Vegetarian,Medium,Carnitas Salad,11.7,620,8,2,7,6,3,8
+CUST_1136,Gen X,Male,Northeast,Vegetarian,Mild,Chicken Burrito,9.5,740,3,5,7,6,10,8
+CUST_1137,Gen X,Male,Northeast,Vegetarian,Mild,Steak Bowl,12.01,710,6,3,3,2,4,9
+CUST_1138,Gen X,Male,Northeast,Vegetarian,Mild,Veggie Bowl,9.65,590,7,2,9,8,9,4
+CUST_1139,Gen X,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.06,650,7,8,5,4,6,7
+CUST_1140,Gen X,Male,Northeast,Vegetarian,Mild,Carnitas Salad,10,620,7,5,5,4,9,5
+CUST_1141,Millennial,Male,West,Flexitarian,Medium,Chicken Burrito,11.48,740,6,2,5,4,8,3
+CUST_1142,Millennial,Male,West,Flexitarian,Medium,Steak Bowl,10.34,710,8,7,9,8,6,6
+CUST_1143,Millennial,Male,West,Flexitarian,Medium,Veggie Bowl,10.64,590,7,2,7,6,10,8
+CUST_1144,Millennial,Male,West,Flexitarian,Medium,Barbacoa Tacos (3),12.19,650,3,5,3,2,4,10
+CUST_1145,Millennial,Male,West,Flexitarian,Medium,Carnitas Salad,11.13,620,5,8,10,9,9,9
+CUST_1146,Gen X,Male,West,Vegetarian,Mild,Chicken Burrito,10.69,740,5,6,8,7,3,5
+CUST_1147,Gen X,Male,West,Vegetarian,Mild,Steak Bowl,11.61,710,5,8,7,6,3,4
+CUST_1148,Gen X,Male,West,Vegetarian,Mild,Veggie Bowl,10.01,590,8,4,4,3,8,8
+CUST_1149,Gen X,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),13,650,2,2,9,8,8,4
+CUST_1150,Gen X,Male,West,Vegetarian,Mild,Carnitas Salad,11.77,620,5,4,9,8,3,4
+CUST_1151,Boomer,Male,Northeast,Vegetarian,Hot,Chicken Burrito,10.72,740,6,7,7,6,5,5
+CUST_1152,Boomer,Male,Northeast,Vegetarian,Hot,Steak Bowl,10.92,710,6,7,10,9,7,3
+CUST_1153,Boomer,Male,Northeast,Vegetarian,Hot,Veggie Bowl,9.82,590,4,6,3,2,3,3
+CUST_1154,Boomer,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),12.81,650,5,8,6,5,9,5
+CUST_1155,Boomer,Male,Northeast,Vegetarian,Hot,Carnitas Salad,10.61,620,7,4,9,8,6,10
+CUST_1156,Millennial,Female,West,Vegetarian,Medium,Chicken Burrito,10.37,740,5,7,4,3,6,8
+CUST_1157,Millennial,Female,West,Vegetarian,Medium,Steak Bowl,11.74,710,7,4,9,8,5,4
+CUST_1158,Millennial,Female,West,Vegetarian,Medium,Veggie Bowl,10.96,590,5,5,4,3,6,7
+CUST_1159,Millennial,Female,West,Vegetarian,Medium,Barbacoa Tacos (3),11.98,650,8,3,10,9,8,8
+CUST_1160,Millennial,Female,West,Vegetarian,Medium,Carnitas Salad,10.26,620,4,8,4,3,8,7
+CUST_1161,Millennial,Male,West,Flexitarian,Hot,Chicken Burrito,11.13,740,5,6,7,6,7,3
+CUST_1162,Millennial,Male,West,Flexitarian,Hot,Steak Bowl,12.49,710,2,8,8,7,6,7
+CUST_1163,Millennial,Male,West,Flexitarian,Hot,Veggie Bowl,10.86,590,8,6,9,8,10,7
+CUST_1164,Millennial,Male,West,Flexitarian,Hot,Barbacoa Tacos (3),12.52,650,8,8,3,2,5,7
+CUST_1165,Millennial,Male,West,Flexitarian,Hot,Carnitas Salad,10.2,620,5,7,7,6,5,8
+CUST_1166,Gen X,Female,South,Vegetarian,Mild,Chicken Burrito,11.43,740,3,5,9,8,6,7
+CUST_1167,Gen X,Female,South,Vegetarian,Mild,Steak Bowl,12.33,710,2,5,9,8,7,3
+CUST_1168,Gen X,Female,South,Vegetarian,Mild,Veggie Bowl,9.86,590,6,5,6,5,10,10
+CUST_1169,Gen X,Female,South,Vegetarian,Mild,Barbacoa Tacos (3),12.44,650,7,2,3,2,7,7
+CUST_1170,Gen X,Female,South,Vegetarian,Mild,Carnitas Salad,11.63,620,5,7,4,3,8,6
+CUST_1171,Millennial,Male,Northeast,Vegan,Hot,Chicken Burrito,10.5,740,4,5,3,2,6,10
+CUST_1172,Millennial,Male,Northeast,Vegan,Hot,Steak Bowl,11.44,710,8,6,8,7,10,10
+CUST_1173,Millennial,Male,Northeast,Vegan,Hot,Veggie Bowl,9.38,590,3,4,3,2,5,5
+CUST_1174,Millennial,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),12.22,650,8,3,9,8,3,7
+CUST_1175,Millennial,Male,Northeast,Vegan,Hot,Carnitas Salad,11.16,620,5,2,8,7,8,5
+CUST_1176,Millennial,Female,Northeast,Omnivore,Medium,Chicken Burrito,11,740,5,3,5,4,5,5
+CUST_1177,Millennial,Female,Northeast,Omnivore,Medium,Steak Bowl,10.88,710,3,8,8,7,3,5
+CUST_1178,Millennial,Female,Northeast,Omnivore,Medium,Veggie Bowl,10.78,590,3,7,10,9,6,10
+CUST_1179,Millennial,Female,Northeast,Omnivore,Medium,Barbacoa Tacos (3),12.17,650,3,2,8,7,4,8
+CUST_1180,Millennial,Female,Northeast,Omnivore,Medium,Carnitas Salad,11.58,620,3,6,7,6,6,10
+CUST_1181,Boomer,Male,Midwest,Vegan,Medium,Chicken Burrito,10.76,740,7,4,3,2,5,10
+CUST_1182,Boomer,Male,Midwest,Vegan,Medium,Steak Bowl,11.62,710,2,2,5,4,3,5
+CUST_1183,Boomer,Male,Midwest,Vegan,Medium,Veggie Bowl,10.16,590,4,3,10,9,4,6
+CUST_1184,Boomer,Male,Midwest,Vegan,Medium,Barbacoa Tacos (3),12.63,650,4,2,3,2,3,10
+CUST_1185,Boomer,Male,Midwest,Vegan,Medium,Carnitas Salad,9.95,620,2,5,8,7,6,5
+CUST_1186,Gen X,Male,West,Flexitarian,Medium,Chicken Burrito,9.57,740,5,8,6,5,8,8
+CUST_1187,Gen X,Male,West,Flexitarian,Medium,Steak Bowl,11.07,710,8,8,5,4,9,3
+CUST_1188,Gen X,Male,West,Flexitarian,Medium,Veggie Bowl,9.19,590,5,5,10,9,5,7
+CUST_1189,Gen X,Male,West,Flexitarian,Medium,Barbacoa Tacos (3),11.97,650,6,5,9,8,7,4
+CUST_1190,Gen X,Male,West,Flexitarian,Medium,Carnitas Salad,10.59,620,7,4,8,7,6,10
+CUST_1191,Millennial,Male,Northeast,Flexitarian,Mild,Chicken Burrito,10.84,740,2,7,6,5,4,8
+CUST_1192,Millennial,Male,Northeast,Flexitarian,Mild,Steak Bowl,10.91,710,4,2,7,6,8,5
+CUST_1193,Millennial,Male,Northeast,Flexitarian,Mild,Veggie Bowl,9.22,590,8,8,5,4,6,4
+CUST_1194,Millennial,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),13.01,650,3,7,10,9,7,6
+CUST_1195,Millennial,Male,Northeast,Flexitarian,Mild,Carnitas Salad,11.69,620,6,3,3,2,5,10
+CUST_1196,Millennial,Male,West,Flexitarian,Mild,Chicken Burrito,11.48,740,5,3,3,2,5,9
+CUST_1197,Millennial,Male,West,Flexitarian,Mild,Steak Bowl,11.65,710,7,8,4,3,10,3
+CUST_1198,Millennial,Male,West,Flexitarian,Mild,Veggie Bowl,10.59,590,8,8,10,9,8,6
+CUST_1199,Millennial,Male,West,Flexitarian,Mild,Barbacoa Tacos (3),12.38,650,5,2,8,7,6,9
+CUST_1200,Millennial,Male,West,Flexitarian,Mild,Carnitas Salad,10.58,620,7,3,7,6,3,10
+CUST_1201,Gen X,Female,Northeast,Vegan,Hot,Chicken Burrito,9.95,740,7,3,4,3,6,9
+CUST_1202,Gen X,Female,Northeast,Vegan,Hot,Steak Bowl,10.6,710,4,4,4,3,3,3
+CUST_1203,Gen X,Female,Northeast,Vegan,Hot,Veggie Bowl,9.92,590,7,7,5,4,3,7
+CUST_1204,Gen X,Female,Northeast,Vegan,Hot,Barbacoa Tacos (3),11.96,650,4,6,7,6,4,3
+CUST_1205,Gen X,Female,Northeast,Vegan,Hot,Carnitas Salad,10.66,620,2,5,3,2,3,9
+CUST_1206,Gen Z,Male,South,Omnivore,Medium,Chicken Burrito,9.91,740,2,8,4,3,8,5
+CUST_1207,Gen Z,Male,South,Omnivore,Medium,Steak Bowl,12.43,710,2,4,8,7,5,10
+CUST_1208,Gen Z,Male,South,Omnivore,Medium,Veggie Bowl,9.95,590,8,5,7,6,5,4
+CUST_1209,Gen Z,Male,South,Omnivore,Medium,Barbacoa Tacos (3),13.03,650,5,3,9,8,3,3
+CUST_1210,Gen Z,Male,South,Omnivore,Medium,Carnitas Salad,11.76,620,3,4,3,2,8,7
+CUST_1211,Millennial,Female,Midwest,Vegetarian,Mild,Chicken Burrito,9.7,740,5,2,9,8,5,6
+CUST_1212,Millennial,Female,Midwest,Vegetarian,Mild,Steak Bowl,10.95,710,5,6,4,3,9,3
+CUST_1213,Millennial,Female,Midwest,Vegetarian,Mild,Veggie Bowl,9.24,590,6,8,10,9,3,9
+CUST_1214,Millennial,Female,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),11.79,650,2,7,8,7,8,10
+CUST_1215,Millennial,Female,Midwest,Vegetarian,Mild,Carnitas Salad,11.22,620,3,5,5,4,7,5
+CUST_1216,Gen X,Male,South,Omnivore,Medium,Chicken Burrito,10.56,740,8,7,4,3,8,10
+CUST_1217,Gen X,Male,South,Omnivore,Medium,Steak Bowl,12.39,710,5,7,6,5,8,7
+CUST_1218,Gen X,Male,South,Omnivore,Medium,Veggie Bowl,9.02,590,3,8,7,6,4,4
+CUST_1219,Gen X,Male,South,Omnivore,Medium,Barbacoa Tacos (3),12.3,650,2,8,7,6,5,5
+CUST_1220,Gen X,Male,South,Omnivore,Medium,Carnitas Salad,10.07,620,5,6,5,4,5,5
+CUST_1221,Gen X,Male,West,Vegan,Mild,Chicken Burrito,10.39,740,2,7,8,7,8,9
+CUST_1222,Gen X,Male,West,Vegan,Mild,Steak Bowl,10.56,710,6,5,5,4,5,8
+CUST_1223,Gen X,Male,West,Vegan,Mild,Veggie Bowl,9.9,590,4,5,4,3,3,6
+CUST_1224,Gen X,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.86,650,2,5,7,6,7,9
+CUST_1225,Gen X,Male,West,Vegan,Mild,Carnitas Salad,10.7,620,2,5,10,9,6,8
+CUST_1226,Gen X,Male,Northeast,Omnivore,Hot,Chicken Burrito,10.56,740,6,4,4,3,6,8
+CUST_1227,Gen X,Male,Northeast,Omnivore,Hot,Steak Bowl,10.85,710,3,7,3,2,5,8
+CUST_1228,Gen X,Male,Northeast,Omnivore,Hot,Veggie Bowl,9.63,590,6,4,4,3,3,3
+CUST_1229,Gen X,Male,Northeast,Omnivore,Hot,Barbacoa Tacos (3),12.12,650,3,3,8,7,3,5
+CUST_1230,Gen X,Male,Northeast,Omnivore,Hot,Carnitas Salad,11.54,620,8,6,4,3,9,5
+CUST_1231,Boomer,Female,Midwest,Vegan,Medium,Chicken Burrito,11.09,740,7,3,6,5,10,9
+CUST_1232,Boomer,Female,Midwest,Vegan,Medium,Steak Bowl,11.13,710,5,6,6,5,9,9
+CUST_1233,Boomer,Female,Midwest,Vegan,Medium,Veggie Bowl,10.88,590,6,7,10,9,5,9
+CUST_1234,Boomer,Female,Midwest,Vegan,Medium,Barbacoa Tacos (3),12.3,650,8,8,10,9,3,3
+CUST_1235,Boomer,Female,Midwest,Vegan,Medium,Carnitas Salad,11.44,620,8,6,6,5,8,3
+CUST_1236,Gen X,Male,West,Vegan,Mild,Chicken Burrito,10.01,740,4,2,9,8,6,7
+CUST_1237,Gen X,Male,West,Vegan,Mild,Steak Bowl,11.66,710,4,2,3,2,9,9
+CUST_1238,Gen X,Male,West,Vegan,Mild,Veggie Bowl,10.74,590,3,7,3,2,10,5
+CUST_1239,Gen X,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.12,650,4,4,9,8,9,4
+CUST_1240,Gen X,Male,West,Vegan,Mild,Carnitas Salad,11.73,620,8,8,3,2,4,7
+CUST_1241,Gen X,Male,Midwest,Vegan,Hot,Chicken Burrito,11.49,740,8,8,10,9,8,10
+CUST_1242,Gen X,Male,Midwest,Vegan,Hot,Steak Bowl,12.36,710,7,4,9,8,10,9
+CUST_1243,Gen X,Male,Midwest,Vegan,Hot,Veggie Bowl,10.76,590,5,6,6,5,3,10
+CUST_1244,Gen X,Male,Midwest,Vegan,Hot,Barbacoa Tacos (3),12.59,650,4,2,7,6,10,3
+CUST_1245,Gen X,Male,Midwest,Vegan,Hot,Carnitas Salad,11.04,620,6,6,6,5,9,3
+CUST_1246,Millennial,Male,West,Flexitarian,Medium,Chicken Burrito,11.41,740,4,6,9,8,9,6
+CUST_1247,Millennial,Male,West,Flexitarian,Medium,Steak Bowl,10.89,710,4,8,5,4,5,4
+CUST_1248,Millennial,Male,West,Flexitarian,Medium,Veggie Bowl,10.79,590,4,5,10,9,4,3
+CUST_1249,Millennial,Male,West,Flexitarian,Medium,Barbacoa Tacos (3),11.2,650,8,5,3,2,6,4
+CUST_1250,Millennial,Male,West,Flexitarian,Medium,Carnitas Salad,10.64,620,3,4,10,9,7,4
+CUST_1251,Gen X,Male,Northeast,Vegan,Hot,Chicken Burrito,9.89,740,6,2,10,9,3,10
+CUST_1252,Gen X,Male,Northeast,Vegan,Hot,Steak Bowl,10.61,710,7,2,4,3,4,3
+CUST_1253,Gen X,Male,Northeast,Vegan,Hot,Veggie Bowl,10.73,590,4,2,3,2,4,10
+CUST_1254,Gen X,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),12.76,650,8,8,4,3,10,6
+CUST_1255,Gen X,Male,Northeast,Vegan,Hot,Carnitas Salad,11.78,620,5,4,5,4,3,8
+CUST_1256,Gen X,Female,West,Flexitarian,Hot,Chicken Burrito,11.38,740,7,7,8,7,9,3
+CUST_1257,Gen X,Female,West,Flexitarian,Hot,Steak Bowl,10.43,710,2,6,4,3,5,5
+CUST_1258,Gen X,Female,West,Flexitarian,Hot,Veggie Bowl,10.23,590,3,8,9,8,9,6
+CUST_1259,Gen X,Female,West,Flexitarian,Hot,Barbacoa Tacos (3),12.12,650,5,6,5,4,6,4
+CUST_1260,Gen X,Female,West,Flexitarian,Hot,Carnitas Salad,11.19,620,2,5,10,9,4,10
+CUST_1261,Gen X,Male,Midwest,Omnivore,Hot,Chicken Burrito,10.59,740,6,8,10,9,6,6
+CUST_1262,Gen X,Male,Midwest,Omnivore,Hot,Steak Bowl,11.94,710,3,4,8,7,9,3
+CUST_1263,Gen X,Male,Midwest,Omnivore,Hot,Veggie Bowl,9.91,590,6,5,10,9,6,8
+CUST_1264,Gen X,Male,Midwest,Omnivore,Hot,Barbacoa Tacos (3),11.55,650,5,5,6,5,10,8
+CUST_1265,Gen X,Male,Midwest,Omnivore,Hot,Carnitas Salad,11.74,620,5,2,3,2,4,10
+CUST_1266,Gen Z,Female,South,Flexitarian,Hot,Chicken Burrito,10.07,740,8,4,3,2,9,9
+CUST_1267,Gen Z,Female,South,Flexitarian,Hot,Steak Bowl,11.07,710,5,4,4,3,4,5
+CUST_1268,Gen Z,Female,South,Flexitarian,Hot,Veggie Bowl,10.38,590,3,4,3,2,9,4
+CUST_1269,Gen Z,Female,South,Flexitarian,Hot,Barbacoa Tacos (3),12.44,650,4,8,8,7,7,5
+CUST_1270,Gen Z,Female,South,Flexitarian,Hot,Carnitas Salad,9.99,620,8,3,10,9,6,9
+CUST_1271,Millennial,Male,Midwest,Flexitarian,Mild,Chicken Burrito,10.14,740,6,3,3,2,4,9
+CUST_1272,Millennial,Male,Midwest,Flexitarian,Mild,Steak Bowl,10.87,710,2,6,9,8,6,6
+CUST_1273,Millennial,Male,Midwest,Flexitarian,Mild,Veggie Bowl,10.64,590,7,5,6,5,5,5
+CUST_1274,Millennial,Male,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),11.57,650,3,4,4,3,7,4
+CUST_1275,Millennial,Male,Midwest,Flexitarian,Mild,Carnitas Salad,11.75,620,6,7,9,8,3,10
+CUST_1276,Gen Z,Female,South,Flexitarian,Medium,Chicken Burrito,11.07,740,6,2,10,9,5,4
+CUST_1277,Gen Z,Female,South,Flexitarian,Medium,Steak Bowl,11.1,710,8,2,5,4,9,6
+CUST_1278,Gen Z,Female,South,Flexitarian,Medium,Veggie Bowl,10.5,590,5,4,8,7,10,7
+CUST_1279,Gen Z,Female,South,Flexitarian,Medium,Barbacoa Tacos (3),11.91,650,8,4,7,6,4,4
+CUST_1280,Gen Z,Female,South,Flexitarian,Medium,Carnitas Salad,11.44,620,3,2,4,3,4,5
+CUST_1281,Gen X,Female,West,Vegan,Medium,Chicken Burrito,9.79,740,8,7,9,8,3,3
+CUST_1282,Gen X,Female,West,Vegan,Medium,Steak Bowl,11.85,710,6,4,5,4,5,4
+CUST_1283,Gen X,Female,West,Vegan,Medium,Veggie Bowl,10.08,590,4,5,4,3,5,6
+CUST_1284,Gen X,Female,West,Vegan,Medium,Barbacoa Tacos (3),12.36,650,5,4,8,7,6,4
+CUST_1285,Gen X,Female,West,Vegan,Medium,Carnitas Salad,10.4,620,2,7,9,8,6,3
+CUST_1286,Boomer,Male,Midwest,Vegetarian,Hot,Chicken Burrito,9.65,740,8,8,5,4,9,8
+CUST_1287,Boomer,Male,Midwest,Vegetarian,Hot,Steak Bowl,12.12,710,6,3,10,9,8,10
+CUST_1288,Boomer,Male,Midwest,Vegetarian,Hot,Veggie Bowl,10.79,590,5,2,6,5,6,6
+CUST_1289,Boomer,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),11.35,650,5,5,7,6,3,3
+CUST_1290,Boomer,Male,Midwest,Vegetarian,Hot,Carnitas Salad,11.22,620,3,3,8,7,4,4
+CUST_1291,Millennial,Male,Northeast,Omnivore,Medium,Chicken Burrito,9.94,740,8,8,9,8,4,10
+CUST_1292,Millennial,Male,Northeast,Omnivore,Medium,Steak Bowl,10.45,710,6,4,3,2,9,4
+CUST_1293,Millennial,Male,Northeast,Omnivore,Medium,Veggie Bowl,9.27,590,8,7,5,4,6,5
+CUST_1294,Millennial,Male,Northeast,Omnivore,Medium,Barbacoa Tacos (3),12.55,650,6,8,3,2,3,6
+CUST_1295,Millennial,Male,Northeast,Omnivore,Medium,Carnitas Salad,12.06,620,5,5,5,4,9,9
+CUST_1296,Gen Z,Female,South,Flexitarian,Mild,Chicken Burrito,9.85,740,4,3,6,5,5,8
+CUST_1297,Gen Z,Female,South,Flexitarian,Mild,Steak Bowl,12.64,710,3,7,4,3,7,5
+CUST_1298,Gen Z,Female,South,Flexitarian,Mild,Veggie Bowl,9.98,590,6,3,5,4,9,6
+CUST_1299,Gen Z,Female,South,Flexitarian,Mild,Barbacoa Tacos (3),11.45,650,5,2,6,5,9,8
+CUST_1300,Gen Z,Female,South,Flexitarian,Mild,Carnitas Salad,11.56,620,6,5,10,9,8,6
+CUST_1301,Gen Z,Female,West,Flexitarian,Medium,Chicken Burrito,11.22,740,7,5,9,8,10,7
+CUST_1302,Gen Z,Female,West,Flexitarian,Medium,Steak Bowl,12.58,710,8,6,8,7,3,7
+CUST_1303,Gen Z,Female,West,Flexitarian,Medium,Veggie Bowl,9.89,590,2,5,9,8,3,5
+CUST_1304,Gen Z,Female,West,Flexitarian,Medium,Barbacoa Tacos (3),11.12,650,4,3,5,4,6,6
+CUST_1305,Gen Z,Female,West,Flexitarian,Medium,Carnitas Salad,11.13,620,6,2,6,5,8,5
+CUST_1306,Gen X,Male,Midwest,Omnivore,Hot,Chicken Burrito,10.18,740,6,6,3,2,7,7
+CUST_1307,Gen X,Male,Midwest,Omnivore,Hot,Steak Bowl,10.62,710,4,8,7,6,5,10
+CUST_1308,Gen X,Male,Midwest,Omnivore,Hot,Veggie Bowl,10.2,590,6,3,6,5,5,10
+CUST_1309,Gen X,Male,Midwest,Omnivore,Hot,Barbacoa Tacos (3),11.3,650,5,5,7,6,6,3
+CUST_1310,Gen X,Male,Midwest,Omnivore,Hot,Carnitas Salad,10.52,620,8,8,9,8,7,3
+CUST_1311,Gen X,Male,Midwest,Flexitarian,Medium,Chicken Burrito,10.4,740,6,8,7,6,3,3
+CUST_1312,Gen X,Male,Midwest,Flexitarian,Medium,Steak Bowl,11.64,710,6,5,3,2,7,7
+CUST_1313,Gen X,Male,Midwest,Flexitarian,Medium,Veggie Bowl,9.6,590,7,7,8,7,5,10
+CUST_1314,Gen X,Male,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),11.96,650,6,2,6,5,4,3
+CUST_1315,Gen X,Male,Midwest,Flexitarian,Medium,Carnitas Salad,9.9,620,7,4,9,8,8,8
+CUST_1316,Millennial,Male,Midwest,Vegan,Hot,Chicken Burrito,10.44,740,6,4,10,9,3,5
+CUST_1317,Millennial,Male,Midwest,Vegan,Hot,Steak Bowl,10.85,710,3,7,7,6,10,9
+CUST_1318,Millennial,Male,Midwest,Vegan,Hot,Veggie Bowl,9.38,590,4,8,4,3,10,5
+CUST_1319,Millennial,Male,Midwest,Vegan,Hot,Barbacoa Tacos (3),12.65,650,2,5,10,9,3,7
+CUST_1320,Millennial,Male,Midwest,Vegan,Hot,Carnitas Salad,11.03,620,8,4,10,9,6,5
+CUST_1321,Millennial,Male,South,Flexitarian,Medium,Chicken Burrito,10.46,740,7,6,8,7,10,5
+CUST_1322,Millennial,Male,South,Flexitarian,Medium,Steak Bowl,12.6,710,4,4,5,4,9,6
+CUST_1323,Millennial,Male,South,Flexitarian,Medium,Veggie Bowl,10.17,590,7,3,8,7,8,7
+CUST_1324,Millennial,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),12.99,650,2,4,9,8,8,4
+CUST_1325,Millennial,Male,South,Flexitarian,Medium,Carnitas Salad,10.73,620,4,8,7,6,7,9
+CUST_1326,Gen Z,Female,South,Vegetarian,Mild,Chicken Burrito,10.51,740,6,4,3,2,5,4
+CUST_1327,Gen Z,Female,South,Vegetarian,Mild,Steak Bowl,10.36,710,3,7,3,2,7,5
+CUST_1328,Gen Z,Female,South,Vegetarian,Mild,Veggie Bowl,9.18,590,6,7,6,5,10,5
+CUST_1329,Gen Z,Female,South,Vegetarian,Mild,Barbacoa Tacos (3),11.52,650,8,3,7,6,8,9
+CUST_1330,Gen Z,Female,South,Vegetarian,Mild,Carnitas Salad,10.77,620,2,2,4,3,3,8
+CUST_1331,Millennial,Female,West,Flexitarian,Mild,Chicken Burrito,10.65,740,3,6,5,4,4,9
+CUST_1332,Millennial,Female,West,Flexitarian,Mild,Steak Bowl,12.59,710,8,8,8,7,6,7
+CUST_1333,Millennial,Female,West,Flexitarian,Mild,Veggie Bowl,9.81,590,8,4,8,7,7,4
+CUST_1334,Millennial,Female,West,Flexitarian,Mild,Barbacoa Tacos (3),10.96,650,8,3,5,4,9,7
+CUST_1335,Millennial,Female,West,Flexitarian,Mild,Carnitas Salad,10.09,620,8,5,9,8,9,6
+CUST_1336,Boomer,Male,Midwest,Vegetarian,Hot,Chicken Burrito,10.75,740,6,5,5,4,7,7
+CUST_1337,Boomer,Male,Midwest,Vegetarian,Hot,Steak Bowl,11.31,710,4,2,5,4,3,7
+CUST_1338,Boomer,Male,Midwest,Vegetarian,Hot,Veggie Bowl,9.69,590,3,2,8,7,8,9
+CUST_1339,Boomer,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),13.07,650,3,2,10,9,3,7
+CUST_1340,Boomer,Male,Midwest,Vegetarian,Hot,Carnitas Salad,10.19,620,2,2,5,4,9,10
+CUST_1341,Boomer,Male,West,Flexitarian,Hot,Chicken Burrito,9.64,740,6,2,9,8,6,7
+CUST_1342,Boomer,Male,West,Flexitarian,Hot,Steak Bowl,10.87,710,2,2,3,2,7,5
+CUST_1343,Boomer,Male,West,Flexitarian,Hot,Veggie Bowl,10.43,590,4,5,7,6,7,5
+CUST_1344,Boomer,Male,West,Flexitarian,Hot,Barbacoa Tacos (3),12.02,650,7,7,4,3,8,6
+CUST_1345,Boomer,Male,West,Flexitarian,Hot,Carnitas Salad,11.52,620,8,8,3,2,3,3
+CUST_1346,Millennial,Female,South,Flexitarian,Hot,Chicken Burrito,10.35,740,5,8,7,6,3,8
+CUST_1347,Millennial,Female,South,Flexitarian,Hot,Steak Bowl,12.56,710,6,2,8,7,6,8
+CUST_1348,Millennial,Female,South,Flexitarian,Hot,Veggie Bowl,10.8,590,4,4,4,3,6,6
+CUST_1349,Millennial,Female,South,Flexitarian,Hot,Barbacoa Tacos (3),12.37,650,8,4,4,3,7,10
+CUST_1350,Millennial,Female,South,Flexitarian,Hot,Carnitas Salad,10.04,620,4,7,10,9,5,10
+CUST_1351,Millennial,Female,West,Vegan,Hot,Chicken Burrito,9.86,740,4,6,3,2,8,7
+CUST_1352,Millennial,Female,West,Vegan,Hot,Steak Bowl,10.91,710,5,7,5,4,4,8
+CUST_1353,Millennial,Female,West,Vegan,Hot,Veggie Bowl,9.96,590,3,6,8,7,8,7
+CUST_1354,Millennial,Female,West,Vegan,Hot,Barbacoa Tacos (3),11.81,650,6,4,4,3,9,10
+CUST_1355,Millennial,Female,West,Vegan,Hot,Carnitas Salad,10.31,620,7,8,4,3,3,8
+CUST_1356,Gen Z,Female,Northeast,Omnivore,Medium,Chicken Burrito,11.03,740,4,7,9,8,9,8
+CUST_1357,Gen Z,Female,Northeast,Omnivore,Medium,Steak Bowl,10.88,710,7,3,3,2,6,4
+CUST_1358,Gen Z,Female,Northeast,Omnivore,Medium,Veggie Bowl,10.18,590,3,8,7,6,6,6
+CUST_1359,Gen Z,Female,Northeast,Omnivore,Medium,Barbacoa Tacos (3),13,650,7,2,3,2,8,4
+CUST_1360,Gen Z,Female,Northeast,Omnivore,Medium,Carnitas Salad,11.04,620,8,8,6,5,3,10
+CUST_1361,Boomer,Male,South,Omnivore,Medium,Chicken Burrito,9.68,740,7,5,4,3,4,5
+CUST_1362,Boomer,Male,South,Omnivore,Medium,Steak Bowl,11.25,710,6,3,8,7,9,8
+CUST_1363,Boomer,Male,South,Omnivore,Medium,Veggie Bowl,9.17,590,2,2,3,2,10,10
+CUST_1364,Boomer,Male,South,Omnivore,Medium,Barbacoa Tacos (3),11.22,650,7,8,5,4,5,4
+CUST_1365,Boomer,Male,South,Omnivore,Medium,Carnitas Salad,11.3,620,5,8,10,9,3,6
+CUST_1366,Gen X,Male,South,Vegan,Mild,Chicken Burrito,11.28,740,3,5,8,7,8,3
+CUST_1367,Gen X,Male,South,Vegan,Mild,Steak Bowl,11.53,710,4,3,7,6,4,3
+CUST_1368,Gen X,Male,South,Vegan,Mild,Veggie Bowl,9.85,590,4,6,3,2,6,10
+CUST_1369,Gen X,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.26,650,6,4,4,3,6,5
+CUST_1370,Gen X,Male,South,Vegan,Mild,Carnitas Salad,10.16,620,5,6,7,6,8,7
+CUST_1371,Boomer,Male,West,Vegetarian,Mild,Chicken Burrito,10.75,740,3,2,7,6,7,4
+CUST_1372,Boomer,Male,West,Vegetarian,Mild,Steak Bowl,10.76,710,4,5,10,9,6,10
+CUST_1373,Boomer,Male,West,Vegetarian,Mild,Veggie Bowl,9.3,590,7,7,10,9,8,5
+CUST_1374,Boomer,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),12.28,650,8,2,6,5,3,7
+CUST_1375,Boomer,Male,West,Vegetarian,Mild,Carnitas Salad,10.81,620,3,6,3,2,3,8
+CUST_1376,Gen X,Male,South,Vegetarian,Medium,Chicken Burrito,10.14,740,8,8,5,4,4,6
+CUST_1377,Gen X,Male,South,Vegetarian,Medium,Steak Bowl,12.36,710,5,8,7,6,7,8
+CUST_1378,Gen X,Male,South,Vegetarian,Medium,Veggie Bowl,9.21,590,3,4,5,4,7,8
+CUST_1379,Gen X,Male,South,Vegetarian,Medium,Barbacoa Tacos (3),10.84,650,7,7,7,6,5,8
+CUST_1380,Gen X,Male,South,Vegetarian,Medium,Carnitas Salad,10.31,620,2,5,8,7,10,9
+CUST_1381,Gen X,Male,Northeast,Vegan,Medium,Chicken Burrito,10.54,740,6,2,7,6,10,10
+CUST_1382,Gen X,Male,Northeast,Vegan,Medium,Steak Bowl,12.26,710,4,7,9,8,6,6
+CUST_1383,Gen X,Male,Northeast,Vegan,Medium,Veggie Bowl,9.61,590,6,2,10,9,8,9
+CUST_1384,Gen X,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),12.83,650,5,3,5,4,7,8
+CUST_1385,Gen X,Male,Northeast,Vegan,Medium,Carnitas Salad,10.88,620,3,7,8,7,10,4
+CUST_1386,Gen X,Male,West,Vegan,Mild,Chicken Burrito,10.41,740,8,8,4,3,6,5
+CUST_1387,Gen X,Male,West,Vegan,Mild,Steak Bowl,10.77,710,3,4,5,4,3,5
+CUST_1388,Gen X,Male,West,Vegan,Mild,Veggie Bowl,9.37,590,2,8,3,2,3,5
+CUST_1389,Gen X,Male,West,Vegan,Mild,Barbacoa Tacos (3),12.52,650,4,5,5,4,7,3
+CUST_1390,Gen X,Male,West,Vegan,Mild,Carnitas Salad,10.1,620,2,6,7,6,10,8
+CUST_1391,Gen X,Female,Northeast,Vegan,Medium,Chicken Burrito,11.23,740,7,2,3,2,3,4
+CUST_1392,Gen X,Female,Northeast,Vegan,Medium,Steak Bowl,10.96,710,8,3,7,6,8,5
+CUST_1393,Gen X,Female,Northeast,Vegan,Medium,Veggie Bowl,9.18,590,2,4,5,4,8,9
+CUST_1394,Gen X,Female,Northeast,Vegan,Medium,Barbacoa Tacos (3),11.56,650,3,4,7,6,9,10
+CUST_1395,Gen X,Female,Northeast,Vegan,Medium,Carnitas Salad,11.26,620,3,8,3,2,3,10
+CUST_1396,Gen X,Male,South,Omnivore,Mild,Chicken Burrito,11.09,740,5,4,9,8,5,8
+CUST_1397,Gen X,Male,South,Omnivore,Mild,Steak Bowl,12.53,710,5,7,7,6,10,9
+CUST_1398,Gen X,Male,South,Omnivore,Mild,Veggie Bowl,10.84,590,3,3,5,4,3,7
+CUST_1399,Gen X,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.39,650,7,8,5,4,5,3
+CUST_1400,Gen X,Male,South,Omnivore,Mild,Carnitas Salad,11.48,620,3,4,5,4,10,5
+CUST_1401,Gen X,Male,West,Vegan,Medium,Chicken Burrito,10.33,740,3,4,6,5,4,4
+CUST_1402,Gen X,Male,West,Vegan,Medium,Steak Bowl,11.43,710,8,5,9,8,3,3
+CUST_1403,Gen X,Male,West,Vegan,Medium,Veggie Bowl,10.13,590,4,4,6,5,6,10
+CUST_1404,Gen X,Male,West,Vegan,Medium,Barbacoa Tacos (3),12.21,650,8,5,6,5,3,6
+CUST_1405,Gen X,Male,West,Vegan,Medium,Carnitas Salad,12,620,3,8,9,8,3,7
+CUST_1406,Millennial,Male,South,Omnivore,Medium,Chicken Burrito,10.29,740,6,6,9,8,9,7
+CUST_1407,Millennial,Male,South,Omnivore,Medium,Steak Bowl,10.72,710,4,2,7,6,3,4
+CUST_1408,Millennial,Male,South,Omnivore,Medium,Veggie Bowl,10.71,590,4,6,7,6,6,5
+CUST_1409,Millennial,Male,South,Omnivore,Medium,Barbacoa Tacos (3),12.3,650,6,4,6,5,8,9
+CUST_1410,Millennial,Male,South,Omnivore,Medium,Carnitas Salad,10.49,620,3,2,9,8,8,7
+CUST_1411,Gen Z,Female,West,Vegan,Medium,Chicken Burrito,9.82,740,2,8,3,2,4,10
+CUST_1412,Gen Z,Female,West,Vegan,Medium,Steak Bowl,11.89,710,8,4,8,7,3,9
+CUST_1413,Gen Z,Female,West,Vegan,Medium,Veggie Bowl,9.83,590,5,6,10,9,3,8
+CUST_1414,Gen Z,Female,West,Vegan,Medium,Barbacoa Tacos (3),12.15,650,3,2,4,3,8,5
+CUST_1415,Gen Z,Female,West,Vegan,Medium,Carnitas Salad,10.72,620,6,3,5,4,9,6
+CUST_1416,Gen Z,Male,South,Omnivore,Mild,Chicken Burrito,10,740,6,7,4,3,8,10
+CUST_1417,Gen Z,Male,South,Omnivore,Mild,Steak Bowl,12.57,710,6,2,10,9,9,7
+CUST_1418,Gen Z,Male,South,Omnivore,Mild,Veggie Bowl,10.42,590,8,5,6,5,7,7
+CUST_1419,Gen Z,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.48,650,5,8,5,4,4,7
+CUST_1420,Gen Z,Male,South,Omnivore,Mild,Carnitas Salad,11.09,620,7,4,8,7,3,8
+CUST_1421,Millennial,Male,Northeast,Vegan,Medium,Chicken Burrito,9.99,740,8,4,8,7,5,10
+CUST_1422,Millennial,Male,Northeast,Vegan,Medium,Steak Bowl,11.6,710,2,2,9,8,9,3
+CUST_1423,Millennial,Male,Northeast,Vegan,Medium,Veggie Bowl,10.27,590,8,5,3,2,7,10
+CUST_1424,Millennial,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),11.2,650,2,6,10,9,10,6
+CUST_1425,Millennial,Male,Northeast,Vegan,Medium,Carnitas Salad,11.57,620,3,7,5,4,5,5
+CUST_1426,Millennial,Male,South,Vegetarian,Medium,Chicken Burrito,10.61,740,4,7,9,8,3,7
+CUST_1427,Millennial,Male,South,Vegetarian,Medium,Steak Bowl,12.47,710,4,7,7,6,3,4
+CUST_1428,Millennial,Male,South,Vegetarian,Medium,Veggie Bowl,10.9,590,3,2,8,7,6,3
+CUST_1429,Millennial,Male,South,Vegetarian,Medium,Barbacoa Tacos (3),12.36,650,8,7,4,3,4,4
+CUST_1430,Millennial,Male,South,Vegetarian,Medium,Carnitas Salad,10.17,620,4,7,9,8,3,10
+CUST_1431,Boomer,Male,West,Vegan,Medium,Chicken Burrito,11.42,740,4,4,7,6,10,4
+CUST_1432,Boomer,Male,West,Vegan,Medium,Steak Bowl,12.61,710,6,5,8,7,5,8
+CUST_1433,Boomer,Male,West,Vegan,Medium,Veggie Bowl,9.88,590,8,4,5,4,10,10
+CUST_1434,Boomer,Male,West,Vegan,Medium,Barbacoa Tacos (3),11.59,650,5,8,6,5,10,6
+CUST_1435,Boomer,Male,West,Vegan,Medium,Carnitas Salad,11.95,620,7,8,10,9,9,5
+CUST_1436,Millennial,Female,South,Vegetarian,Medium,Chicken Burrito,9.83,740,4,5,8,7,5,4
+CUST_1437,Millennial,Female,South,Vegetarian,Medium,Steak Bowl,12.48,710,3,4,6,5,9,7
+CUST_1438,Millennial,Female,South,Vegetarian,Medium,Veggie Bowl,10.64,590,6,2,5,4,10,4
+CUST_1439,Millennial,Female,South,Vegetarian,Medium,Barbacoa Tacos (3),11.61,650,5,6,10,9,9,7
+CUST_1440,Millennial,Female,South,Vegetarian,Medium,Carnitas Salad,11.4,620,7,8,8,7,4,8
+CUST_1441,Millennial,Male,Midwest,Flexitarian,Mild,Chicken Burrito,10.53,740,3,8,7,6,8,9
+CUST_1442,Millennial,Male,Midwest,Flexitarian,Mild,Steak Bowl,12.64,710,3,8,3,2,6,6
+CUST_1443,Millennial,Male,Midwest,Flexitarian,Mild,Veggie Bowl,9.35,590,3,8,3,2,4,4
+CUST_1444,Millennial,Male,Midwest,Flexitarian,Mild,Barbacoa Tacos (3),13.07,650,6,4,3,2,5,9
+CUST_1445,Millennial,Male,Midwest,Flexitarian,Mild,Carnitas Salad,10.3,620,6,7,9,8,5,10
+CUST_1446,Gen X,Male,West,Flexitarian,Mild,Chicken Burrito,9.78,740,7,6,8,7,10,4
+CUST_1447,Gen X,Male,West,Flexitarian,Mild,Steak Bowl,10.66,710,6,7,9,8,9,10
+CUST_1448,Gen X,Male,West,Flexitarian,Mild,Veggie Bowl,9.39,590,6,3,7,6,4,10
+CUST_1449,Gen X,Male,West,Flexitarian,Mild,Barbacoa Tacos (3),12.51,650,4,4,10,9,7,10
+CUST_1450,Gen X,Male,West,Flexitarian,Mild,Carnitas Salad,11.31,620,3,7,6,5,10,9
+CUST_1451,Gen Z,Female,Northeast,Omnivore,Medium,Chicken Burrito,9.53,740,3,5,4,3,5,6
+CUST_1452,Gen Z,Female,Northeast,Omnivore,Medium,Steak Bowl,11.47,710,7,2,8,7,9,8
+CUST_1453,Gen Z,Female,Northeast,Omnivore,Medium,Veggie Bowl,9.71,590,6,6,8,7,5,3
+CUST_1454,Gen Z,Female,Northeast,Omnivore,Medium,Barbacoa Tacos (3),10.79,650,5,5,10,9,9,5
+CUST_1455,Gen Z,Female,Northeast,Omnivore,Medium,Carnitas Salad,11.93,620,4,8,8,7,3,7
+CUST_1456,Boomer,Female,Midwest,Vegan,Mild,Chicken Burrito,11.41,740,5,2,9,8,3,7
+CUST_1457,Boomer,Female,Midwest,Vegan,Mild,Steak Bowl,11.29,710,8,6,10,9,6,8
+CUST_1458,Boomer,Female,Midwest,Vegan,Mild,Veggie Bowl,9.27,590,4,7,3,2,9,8
+CUST_1459,Boomer,Female,Midwest,Vegan,Mild,Barbacoa Tacos (3),11.93,650,5,4,8,7,9,3
+CUST_1460,Boomer,Female,Midwest,Vegan,Mild,Carnitas Salad,12.07,620,5,2,10,9,5,8
+CUST_1461,Boomer,Male,Northeast,Vegetarian,Mild,Chicken Burrito,9.56,740,4,4,4,3,6,4
+CUST_1462,Boomer,Male,Northeast,Vegetarian,Mild,Steak Bowl,12.09,710,7,4,3,2,4,4
+CUST_1463,Boomer,Male,Northeast,Vegetarian,Mild,Veggie Bowl,9.92,590,2,2,6,5,5,5
+CUST_1464,Boomer,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.96,650,7,7,3,2,8,5
+CUST_1465,Boomer,Male,Northeast,Vegetarian,Mild,Carnitas Salad,10.44,620,4,8,10,9,5,6
+CUST_1466,Gen Z,Male,West,Vegan,Hot,Chicken Burrito,9.71,740,4,6,7,6,6,10
+CUST_1467,Gen Z,Male,West,Vegan,Hot,Steak Bowl,11.83,710,3,8,3,2,10,7
+CUST_1468,Gen Z,Male,West,Vegan,Hot,Veggie Bowl,9.5,590,6,4,3,2,9,10
+CUST_1469,Gen Z,Male,West,Vegan,Hot,Barbacoa Tacos (3),12.69,650,8,6,4,3,6,5
+CUST_1470,Gen Z,Male,West,Vegan,Hot,Carnitas Salad,10.34,620,5,6,7,6,3,4
+CUST_1471,Gen X,Female,Northeast,Omnivore,Mild,Chicken Burrito,10.99,740,3,5,9,8,10,6
+CUST_1472,Gen X,Female,Northeast,Omnivore,Mild,Steak Bowl,10.87,710,2,4,5,4,5,5
+CUST_1473,Gen X,Female,Northeast,Omnivore,Mild,Veggie Bowl,10.81,590,2,2,6,5,10,7
+CUST_1474,Gen X,Female,Northeast,Omnivore,Mild,Barbacoa Tacos (3),10.9,650,4,3,5,4,6,4
+CUST_1475,Gen X,Female,Northeast,Omnivore,Mild,Carnitas Salad,11.91,620,2,8,10,9,9,4
+CUST_1476,Gen Z,Male,West,Vegetarian,Medium,Chicken Burrito,10.78,740,7,5,5,4,4,5
+CUST_1477,Gen Z,Male,West,Vegetarian,Medium,Steak Bowl,11.92,710,3,8,3,2,8,6
+CUST_1478,Gen Z,Male,West,Vegetarian,Medium,Veggie Bowl,9.27,590,4,4,3,2,5,3
+CUST_1479,Gen Z,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),11.82,650,7,3,9,8,3,7
+CUST_1480,Gen Z,Male,West,Vegetarian,Medium,Carnitas Salad,10.99,620,8,8,9,8,3,10
+CUST_1481,Gen Z,Female,Midwest,Omnivore,Medium,Chicken Burrito,9.87,740,7,3,5,4,8,3
+CUST_1482,Gen Z,Female,Midwest,Omnivore,Medium,Steak Bowl,11.41,710,4,5,5,4,8,6
+CUST_1483,Gen Z,Female,Midwest,Omnivore,Medium,Veggie Bowl,10.08,590,6,5,9,8,10,5
+CUST_1484,Gen Z,Female,Midwest,Omnivore,Medium,Barbacoa Tacos (3),12.17,650,4,2,6,5,6,10
+CUST_1485,Gen Z,Female,Midwest,Omnivore,Medium,Carnitas Salad,10.37,620,6,3,4,3,9,9
+CUST_1486,Gen Z,Male,Northeast,Vegan,Hot,Chicken Burrito,10.23,740,8,2,7,6,4,10
+CUST_1487,Gen Z,Male,Northeast,Vegan,Hot,Steak Bowl,10.64,710,2,2,8,7,3,3
+CUST_1488,Gen Z,Male,Northeast,Vegan,Hot,Veggie Bowl,9.37,590,4,5,5,4,10,4
+CUST_1489,Gen Z,Male,Northeast,Vegan,Hot,Barbacoa Tacos (3),10.98,650,4,7,6,5,10,8
+CUST_1490,Gen Z,Male,Northeast,Vegan,Hot,Carnitas Salad,11.8,620,5,6,4,3,7,5
+CUST_1491,Gen Z,Female,West,Vegetarian,Mild,Chicken Burrito,10.8,740,6,4,8,7,6,5
+CUST_1492,Gen Z,Female,West,Vegetarian,Mild,Steak Bowl,10.91,710,7,7,8,7,9,3
+CUST_1493,Gen Z,Female,West,Vegetarian,Mild,Veggie Bowl,9.92,590,3,8,7,6,6,5
+CUST_1494,Gen Z,Female,West,Vegetarian,Mild,Barbacoa Tacos (3),12.42,650,6,6,4,3,7,10
+CUST_1495,Gen Z,Female,West,Vegetarian,Mild,Carnitas Salad,10,620,6,8,9,8,7,9
+CUST_1496,Gen X,Female,South,Vegetarian,Hot,Chicken Burrito,9.65,740,6,7,7,6,3,9
+CUST_1497,Gen X,Female,South,Vegetarian,Hot,Steak Bowl,11.46,710,6,7,9,8,7,6
+CUST_1498,Gen X,Female,South,Vegetarian,Hot,Veggie Bowl,10.25,590,2,5,7,6,9,5
+CUST_1499,Gen X,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),12.51,650,3,8,8,7,6,10
+CUST_1500,Gen X,Female,South,Vegetarian,Hot,Carnitas Salad,12,620,7,4,5,4,7,4
+CUST_1501,Gen X,Male,West,Vegetarian,Medium,Chicken Burrito,10.46,740,2,4,5,4,5,10
+CUST_1502,Gen X,Male,West,Vegetarian,Medium,Steak Bowl,11.03,710,3,6,3,2,10,6
+CUST_1503,Gen X,Male,West,Vegetarian,Medium,Veggie Bowl,10.61,590,4,5,7,6,5,3
+CUST_1504,Gen X,Male,West,Vegetarian,Medium,Barbacoa Tacos (3),10.92,650,7,5,8,7,9,10
+CUST_1505,Gen X,Male,West,Vegetarian,Medium,Carnitas Salad,11.15,620,2,4,9,8,10,6
+CUST_1506,Gen X,Female,South,Vegetarian,Hot,Chicken Burrito,10.93,740,3,5,10,9,7,10
+CUST_1507,Gen X,Female,South,Vegetarian,Hot,Steak Bowl,11.29,710,2,4,7,6,6,6
+CUST_1508,Gen X,Female,South,Vegetarian,Hot,Veggie Bowl,9.86,590,7,7,9,8,9,10
+CUST_1509,Gen X,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),12.16,650,6,2,4,3,6,8
+CUST_1510,Gen X,Female,South,Vegetarian,Hot,Carnitas Salad,11.32,620,7,5,5,4,4,4
+CUST_1511,Gen X,Female,West,Vegetarian,Medium,Chicken Burrito,11.46,740,4,8,9,8,3,9
+CUST_1512,Gen X,Female,West,Vegetarian,Medium,Steak Bowl,10.34,710,3,2,8,7,4,3
+CUST_1513,Gen X,Female,West,Vegetarian,Medium,Veggie Bowl,9.7,590,2,8,4,3,5,4
+CUST_1514,Gen X,Female,West,Vegetarian,Medium,Barbacoa Tacos (3),11.44,650,5,7,6,5,4,6
+CUST_1515,Gen X,Female,West,Vegetarian,Medium,Carnitas Salad,11.33,620,2,8,6,5,5,6
+CUST_1516,Millennial,Female,Midwest,Vegetarian,Mild,Chicken Burrito,9.77,740,7,8,4,3,7,9
+CUST_1517,Millennial,Female,Midwest,Vegetarian,Mild,Steak Bowl,11.12,710,6,4,6,5,6,4
+CUST_1518,Millennial,Female,Midwest,Vegetarian,Mild,Veggie Bowl,9.23,590,8,4,5,4,8,6
+CUST_1519,Millennial,Female,Midwest,Vegetarian,Mild,Barbacoa Tacos (3),11.21,650,2,3,9,8,9,6
+CUST_1520,Millennial,Female,Midwest,Vegetarian,Mild,Carnitas Salad,11.61,620,4,7,8,7,3,4
+CUST_1521,Boomer,Male,Northeast,Vegetarian,Hot,Chicken Burrito,9.59,740,4,2,6,5,9,3
+CUST_1522,Boomer,Male,Northeast,Vegetarian,Hot,Steak Bowl,11.85,710,6,5,9,8,3,6
+CUST_1523,Boomer,Male,Northeast,Vegetarian,Hot,Veggie Bowl,10.13,590,3,3,3,2,5,3
+CUST_1524,Boomer,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),11.65,650,2,4,5,4,8,7
+CUST_1525,Boomer,Male,Northeast,Vegetarian,Hot,Carnitas Salad,10.94,620,5,2,8,7,3,5
+CUST_1526,Gen Z,Male,Northeast,Flexitarian,Hot,Chicken Burrito,11.11,740,4,7,8,7,6,3
+CUST_1527,Gen Z,Male,Northeast,Flexitarian,Hot,Steak Bowl,12.6,710,2,5,7,6,3,5
+CUST_1528,Gen Z,Male,Northeast,Flexitarian,Hot,Veggie Bowl,9.81,590,2,8,7,6,8,3
+CUST_1529,Gen Z,Male,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),12.48,650,7,6,9,8,5,8
+CUST_1530,Gen Z,Male,Northeast,Flexitarian,Hot,Carnitas Salad,11.48,620,2,7,7,6,4,7
+CUST_1531,Gen Z,Female,South,Vegan,Mild,Chicken Burrito,11.5,740,4,4,8,7,5,6
+CUST_1532,Gen Z,Female,South,Vegan,Mild,Steak Bowl,10.59,710,6,6,5,4,5,6
+CUST_1533,Gen Z,Female,South,Vegan,Mild,Veggie Bowl,9.55,590,3,5,7,6,5,7
+CUST_1534,Gen Z,Female,South,Vegan,Mild,Barbacoa Tacos (3),11.65,650,2,6,4,3,10,9
+CUST_1535,Gen Z,Female,South,Vegan,Mild,Carnitas Salad,11.51,620,3,8,8,7,4,3
+CUST_1536,Millennial,Male,Midwest,Flexitarian,Hot,Chicken Burrito,10.51,740,2,7,5,4,8,8
+CUST_1537,Millennial,Male,Midwest,Flexitarian,Hot,Steak Bowl,10.59,710,3,3,4,3,4,3
+CUST_1538,Millennial,Male,Midwest,Flexitarian,Hot,Veggie Bowl,10.15,590,4,7,3,2,8,8
+CUST_1539,Millennial,Male,Midwest,Flexitarian,Hot,Barbacoa Tacos (3),11.98,650,5,3,9,8,6,5
+CUST_1540,Millennial,Male,Midwest,Flexitarian,Hot,Carnitas Salad,9.92,620,4,4,4,3,9,9
+CUST_1541,Millennial,Female,Northeast,Vegetarian,Medium,Chicken Burrito,10.34,740,3,2,8,7,10,6
+CUST_1542,Millennial,Female,Northeast,Vegetarian,Medium,Steak Bowl,12.52,710,6,7,6,5,8,10
+CUST_1543,Millennial,Female,Northeast,Vegetarian,Medium,Veggie Bowl,10.16,590,7,5,8,7,5,8
+CUST_1544,Millennial,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),10.9,650,4,8,7,6,5,6
+CUST_1545,Millennial,Female,Northeast,Vegetarian,Medium,Carnitas Salad,10.33,620,4,4,3,2,8,7
+CUST_1546,Millennial,Male,West,Vegan,Medium,Chicken Burrito,11.26,740,5,7,10,9,5,8
+CUST_1547,Millennial,Male,West,Vegan,Medium,Steak Bowl,11.61,710,8,7,6,5,7,5
+CUST_1548,Millennial,Male,West,Vegan,Medium,Veggie Bowl,10.92,590,7,6,7,6,3,9
+CUST_1549,Millennial,Male,West,Vegan,Medium,Barbacoa Tacos (3),11.71,650,7,7,5,4,3,10
+CUST_1550,Millennial,Male,West,Vegan,Medium,Carnitas Salad,12.03,620,8,3,7,6,3,8
+CUST_1551,Gen X,Male,West,Vegetarian,Mild,Chicken Burrito,9.6,740,6,5,5,4,5,5
+CUST_1552,Gen X,Male,West,Vegetarian,Mild,Steak Bowl,10.64,710,5,3,4,3,10,8
+CUST_1553,Gen X,Male,West,Vegetarian,Mild,Veggie Bowl,9.06,590,3,2,8,7,8,3
+CUST_1554,Gen X,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),11.77,650,2,2,7,6,6,10
+CUST_1555,Gen X,Male,West,Vegetarian,Mild,Carnitas Salad,11.13,620,2,4,4,3,5,8
+CUST_1556,Millennial,Female,South,Vegetarian,Hot,Chicken Burrito,9.61,740,6,5,5,4,5,6
+CUST_1557,Millennial,Female,South,Vegetarian,Hot,Steak Bowl,12.48,710,8,3,3,2,5,8
+CUST_1558,Millennial,Female,South,Vegetarian,Hot,Veggie Bowl,10.05,590,3,4,8,7,6,8
+CUST_1559,Millennial,Female,South,Vegetarian,Hot,Barbacoa Tacos (3),12.76,650,3,7,5,4,9,4
+CUST_1560,Millennial,Female,South,Vegetarian,Hot,Carnitas Salad,10.01,620,3,6,10,9,7,7
+CUST_1561,Boomer,Female,Northeast,Flexitarian,Medium,Chicken Burrito,9.88,740,7,2,10,9,5,3
+CUST_1562,Boomer,Female,Northeast,Flexitarian,Medium,Steak Bowl,11.41,710,2,8,4,3,6,10
+CUST_1563,Boomer,Female,Northeast,Flexitarian,Medium,Veggie Bowl,10.78,590,4,8,6,5,7,7
+CUST_1564,Boomer,Female,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.65,650,2,5,6,5,7,5
+CUST_1565,Boomer,Female,Northeast,Flexitarian,Medium,Carnitas Salad,11.53,620,8,3,10,9,5,3
+CUST_1566,Boomer,Male,Midwest,Vegetarian,Medium,Chicken Burrito,11.33,740,6,7,3,2,9,5
+CUST_1567,Boomer,Male,Midwest,Vegetarian,Medium,Steak Bowl,11.92,710,5,4,6,5,5,7
+CUST_1568,Boomer,Male,Midwest,Vegetarian,Medium,Veggie Bowl,10.95,590,6,3,10,9,10,3
+CUST_1569,Boomer,Male,Midwest,Vegetarian,Medium,Barbacoa Tacos (3),11.75,650,2,4,3,2,6,10
+CUST_1570,Boomer,Male,Midwest,Vegetarian,Medium,Carnitas Salad,11.45,620,7,4,5,4,8,6
+CUST_1571,Gen X,Male,Northeast,Vegetarian,Hot,Chicken Burrito,10.11,740,4,2,6,5,5,5
+CUST_1572,Gen X,Male,Northeast,Vegetarian,Hot,Steak Bowl,11.88,710,8,4,5,4,3,8
+CUST_1573,Gen X,Male,Northeast,Vegetarian,Hot,Veggie Bowl,10.1,590,8,7,7,6,9,4
+CUST_1574,Gen X,Male,Northeast,Vegetarian,Hot,Barbacoa Tacos (3),12.58,650,6,8,8,7,9,10
+CUST_1575,Gen X,Male,Northeast,Vegetarian,Hot,Carnitas Salad,10.6,620,2,8,5,4,6,7
+CUST_1576,Boomer,Male,South,Vegan,Mild,Chicken Burrito,9.55,740,3,4,4,3,10,3
+CUST_1577,Boomer,Male,South,Vegan,Mild,Steak Bowl,10.79,710,7,3,5,4,8,7
+CUST_1578,Boomer,Male,South,Vegan,Mild,Veggie Bowl,9.74,590,2,6,7,6,3,10
+CUST_1579,Boomer,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.91,650,4,5,3,2,4,6
+CUST_1580,Boomer,Male,South,Vegan,Mild,Carnitas Salad,11.88,620,3,5,5,4,4,5
+CUST_1581,Gen Z,Male,South,Flexitarian,Mild,Chicken Burrito,11.51,740,5,2,4,3,10,10
+CUST_1582,Gen Z,Male,South,Flexitarian,Mild,Steak Bowl,10.93,710,5,2,7,6,6,9
+CUST_1583,Gen Z,Male,South,Flexitarian,Mild,Veggie Bowl,10.1,590,7,3,8,7,7,7
+CUST_1584,Gen Z,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),12.32,650,5,3,10,9,3,5
+CUST_1585,Gen Z,Male,South,Flexitarian,Mild,Carnitas Salad,11.26,620,8,6,5,4,9,4
+CUST_1586,Gen X,Male,South,Vegan,Mild,Chicken Burrito,11.11,740,4,4,4,3,6,8
+CUST_1587,Gen X,Male,South,Vegan,Mild,Steak Bowl,11.64,710,7,8,10,9,7,3
+CUST_1588,Gen X,Male,South,Vegan,Mild,Veggie Bowl,9.7,590,5,6,10,9,3,5
+CUST_1589,Gen X,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.96,650,5,7,6,5,6,7
+CUST_1590,Gen X,Male,South,Vegan,Mild,Carnitas Salad,10.09,620,2,8,5,4,8,6
+CUST_1591,Gen X,Male,Northeast,Flexitarian,Mild,Chicken Burrito,9.64,740,6,5,8,7,8,5
+CUST_1592,Gen X,Male,Northeast,Flexitarian,Mild,Steak Bowl,12.52,710,3,5,3,2,7,6
+CUST_1593,Gen X,Male,Northeast,Flexitarian,Mild,Veggie Bowl,9.41,590,6,4,10,9,9,3
+CUST_1594,Gen X,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),11.98,650,5,5,10,9,3,8
+CUST_1595,Gen X,Male,Northeast,Flexitarian,Mild,Carnitas Salad,11.64,620,3,4,10,9,7,7
+CUST_1596,Boomer,Female,South,Vegetarian,Medium,Chicken Burrito,10.61,740,7,5,10,9,4,6
+CUST_1597,Boomer,Female,South,Vegetarian,Medium,Steak Bowl,11.6,710,6,7,5,4,6,6
+CUST_1598,Boomer,Female,South,Vegetarian,Medium,Veggie Bowl,9.2,590,4,7,10,9,3,8
+CUST_1599,Boomer,Female,South,Vegetarian,Medium,Barbacoa Tacos (3),11.2,650,3,7,6,5,10,3
+CUST_1600,Boomer,Female,South,Vegetarian,Medium,Carnitas Salad,10.51,620,2,4,8,7,9,7
+CUST_1601,Boomer,Female,West,Vegetarian,Medium,Chicken Burrito,10.3,740,7,4,7,6,3,4
+CUST_1602,Boomer,Female,West,Vegetarian,Medium,Steak Bowl,10.92,710,5,8,10,9,8,6
+CUST_1603,Boomer,Female,West,Vegetarian,Medium,Veggie Bowl,10.17,590,6,4,5,4,5,10
+CUST_1604,Boomer,Female,West,Vegetarian,Medium,Barbacoa Tacos (3),12.6,650,6,8,4,3,4,9
+CUST_1605,Boomer,Female,West,Vegetarian,Medium,Carnitas Salad,10.2,620,8,5,4,3,6,10
+CUST_1606,Gen X,Male,South,Omnivore,Mild,Chicken Burrito,9.65,740,5,6,4,3,3,5
+CUST_1607,Gen X,Male,South,Omnivore,Mild,Steak Bowl,10.7,710,2,4,6,5,6,9
+CUST_1608,Gen X,Male,South,Omnivore,Mild,Veggie Bowl,9,590,7,3,7,6,7,8
+CUST_1609,Gen X,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.85,650,5,5,7,6,5,6
+CUST_1610,Gen X,Male,South,Omnivore,Mild,Carnitas Salad,11.5,620,5,7,5,4,5,9
+CUST_1611,Gen Z,Male,South,Vegan,Medium,Chicken Burrito,10.42,740,2,6,5,4,8,7
+CUST_1612,Gen Z,Male,South,Vegan,Medium,Steak Bowl,12.03,710,4,3,4,3,5,7
+CUST_1613,Gen Z,Male,South,Vegan,Medium,Veggie Bowl,10.2,590,4,8,9,8,5,5
+CUST_1614,Gen Z,Male,South,Vegan,Medium,Barbacoa Tacos (3),10.85,650,4,7,6,5,5,6
+CUST_1615,Gen Z,Male,South,Vegan,Medium,Carnitas Salad,10.02,620,3,5,8,7,8,7
+CUST_1616,Gen Z,Female,Midwest,Vegan,Mild,Chicken Burrito,10.56,740,7,4,3,2,8,7
+CUST_1617,Gen Z,Female,Midwest,Vegan,Mild,Steak Bowl,12.5,710,8,4,8,7,4,6
+CUST_1618,Gen Z,Female,Midwest,Vegan,Mild,Veggie Bowl,9.24,590,3,2,5,4,7,6
+CUST_1619,Gen Z,Female,Midwest,Vegan,Mild,Barbacoa Tacos (3),12.17,650,4,8,9,8,5,5
+CUST_1620,Gen Z,Female,Midwest,Vegan,Mild,Carnitas Salad,11.06,620,5,3,8,7,6,3
+CUST_1621,Boomer,Male,West,Vegetarian,Mild,Chicken Burrito,10.29,740,7,5,3,2,10,8
+CUST_1622,Boomer,Male,West,Vegetarian,Mild,Steak Bowl,12.4,710,6,2,9,8,3,8
+CUST_1623,Boomer,Male,West,Vegetarian,Mild,Veggie Bowl,10.21,590,8,2,6,5,3,3
+CUST_1624,Boomer,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),12.66,650,6,7,6,5,7,6
+CUST_1625,Boomer,Male,West,Vegetarian,Mild,Carnitas Salad,10.67,620,8,6,7,6,4,6
+CUST_1626,Gen Z,Female,Northeast,Vegetarian,Mild,Chicken Burrito,10.22,740,5,2,5,4,7,4
+CUST_1627,Gen Z,Female,Northeast,Vegetarian,Mild,Steak Bowl,11.35,710,4,7,5,4,9,8
+CUST_1628,Gen Z,Female,Northeast,Vegetarian,Mild,Veggie Bowl,9.04,590,6,8,5,4,9,3
+CUST_1629,Gen Z,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.94,650,3,2,6,5,7,9
+CUST_1630,Gen Z,Female,Northeast,Vegetarian,Mild,Carnitas Salad,12.04,620,4,8,3,2,7,8
+CUST_1631,Boomer,Male,Midwest,Vegan,Medium,Chicken Burrito,11.3,740,3,4,3,2,10,6
+CUST_1632,Boomer,Male,Midwest,Vegan,Medium,Steak Bowl,11.61,710,7,2,8,7,4,6
+CUST_1633,Boomer,Male,Midwest,Vegan,Medium,Veggie Bowl,10.46,590,3,8,7,6,10,4
+CUST_1634,Boomer,Male,Midwest,Vegan,Medium,Barbacoa Tacos (3),12.74,650,8,8,9,8,3,6
+CUST_1635,Boomer,Male,Midwest,Vegan,Medium,Carnitas Salad,10.31,620,3,6,3,2,4,8
+CUST_1636,Boomer,Male,Midwest,Flexitarian,Medium,Chicken Burrito,11.36,740,5,7,7,6,3,3
+CUST_1637,Boomer,Male,Midwest,Flexitarian,Medium,Steak Bowl,11.94,710,4,4,8,7,5,9
+CUST_1638,Boomer,Male,Midwest,Flexitarian,Medium,Veggie Bowl,10.57,590,8,2,10,9,7,8
+CUST_1639,Boomer,Male,Midwest,Flexitarian,Medium,Barbacoa Tacos (3),13.04,650,4,2,4,3,8,6
+CUST_1640,Boomer,Male,Midwest,Flexitarian,Medium,Carnitas Salad,11.09,620,3,8,8,7,5,3
+CUST_1641,Millennial,Male,West,Omnivore,Medium,Chicken Burrito,10.83,740,4,2,3,2,7,6
+CUST_1642,Millennial,Male,West,Omnivore,Medium,Steak Bowl,10.9,710,4,8,7,6,3,5
+CUST_1643,Millennial,Male,West,Omnivore,Medium,Veggie Bowl,10.92,590,5,3,5,4,10,6
+CUST_1644,Millennial,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.55,650,3,6,7,6,6,8
+CUST_1645,Millennial,Male,West,Omnivore,Medium,Carnitas Salad,10.51,620,6,4,8,7,7,5
+CUST_1646,Gen Z,Male,West,Flexitarian,Mild,Chicken Burrito,10.71,740,3,5,8,7,8,7
+CUST_1647,Gen Z,Male,West,Flexitarian,Mild,Steak Bowl,10.49,710,2,7,8,7,9,3
+CUST_1648,Gen Z,Male,West,Flexitarian,Mild,Veggie Bowl,9.2,590,4,8,10,9,9,10
+CUST_1649,Gen Z,Male,West,Flexitarian,Mild,Barbacoa Tacos (3),11.01,650,2,2,9,8,9,3
+CUST_1650,Gen Z,Male,West,Flexitarian,Mild,Carnitas Salad,10.48,620,2,2,6,5,10,10
+CUST_1651,Millennial,Male,South,Vegetarian,Mild,Chicken Burrito,10.6,740,3,3,10,9,6,8
+CUST_1652,Millennial,Male,South,Vegetarian,Mild,Steak Bowl,11.41,710,4,4,4,3,10,8
+CUST_1653,Millennial,Male,South,Vegetarian,Mild,Veggie Bowl,9.63,590,8,2,3,2,5,8
+CUST_1654,Millennial,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),12.34,650,3,6,8,7,9,3
+CUST_1655,Millennial,Male,South,Vegetarian,Mild,Carnitas Salad,10.03,620,2,2,4,3,3,6
+CUST_1656,Boomer,Male,West,Omnivore,Hot,Chicken Burrito,10.83,740,4,6,7,6,7,8
+CUST_1657,Boomer,Male,West,Omnivore,Hot,Steak Bowl,10.62,710,6,7,10,9,5,7
+CUST_1658,Boomer,Male,West,Omnivore,Hot,Veggie Bowl,10.14,590,6,7,5,4,3,5
+CUST_1659,Boomer,Male,West,Omnivore,Hot,Barbacoa Tacos (3),12.97,650,4,5,4,3,8,5
+CUST_1660,Boomer,Male,West,Omnivore,Hot,Carnitas Salad,9.99,620,7,6,3,2,6,9
+CUST_1661,Millennial,Male,West,Vegan,Hot,Chicken Burrito,10.3,740,6,8,10,9,7,5
+CUST_1662,Millennial,Male,West,Vegan,Hot,Steak Bowl,11.14,710,2,3,6,5,4,8
+CUST_1663,Millennial,Male,West,Vegan,Hot,Veggie Bowl,10.86,590,5,7,4,3,3,4
+CUST_1664,Millennial,Male,West,Vegan,Hot,Barbacoa Tacos (3),11.69,650,6,5,4,3,8,10
+CUST_1665,Millennial,Male,West,Vegan,Hot,Carnitas Salad,10.66,620,2,8,7,6,9,7
+CUST_1666,Boomer,Female,Northeast,Vegetarian,Medium,Chicken Burrito,11.35,740,4,7,8,7,3,5
+CUST_1667,Boomer,Female,Northeast,Vegetarian,Medium,Steak Bowl,11.68,710,2,2,9,8,3,6
+CUST_1668,Boomer,Female,Northeast,Vegetarian,Medium,Veggie Bowl,10.79,590,6,4,3,2,4,3
+CUST_1669,Boomer,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),13.04,650,5,2,4,3,10,4
+CUST_1670,Boomer,Female,Northeast,Vegetarian,Medium,Carnitas Salad,11.1,620,5,8,5,4,4,6
+CUST_1671,Gen Z,Female,Northeast,Vegetarian,Medium,Chicken Burrito,11.21,740,4,3,8,7,9,9
+CUST_1672,Gen Z,Female,Northeast,Vegetarian,Medium,Steak Bowl,10.73,710,4,5,8,7,8,8
+CUST_1673,Gen Z,Female,Northeast,Vegetarian,Medium,Veggie Bowl,9.39,590,6,5,3,2,5,6
+CUST_1674,Gen Z,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),11.34,650,5,7,10,9,5,7
+CUST_1675,Gen Z,Female,Northeast,Vegetarian,Medium,Carnitas Salad,11.85,620,3,2,4,3,3,8
+CUST_1676,Boomer,Female,West,Vegetarian,Hot,Chicken Burrito,11.08,740,4,8,3,2,10,5
+CUST_1677,Boomer,Female,West,Vegetarian,Hot,Steak Bowl,12.53,710,5,5,6,5,10,7
+CUST_1678,Boomer,Female,West,Vegetarian,Hot,Veggie Bowl,9.68,590,3,3,9,8,3,7
+CUST_1679,Boomer,Female,West,Vegetarian,Hot,Barbacoa Tacos (3),12.04,650,3,5,8,7,7,7
+CUST_1680,Boomer,Female,West,Vegetarian,Hot,Carnitas Salad,11.53,620,7,8,10,9,7,6
+CUST_1681,Gen Z,Female,West,Vegetarian,Hot,Chicken Burrito,11.48,740,2,2,5,4,3,3
+CUST_1682,Gen Z,Female,West,Vegetarian,Hot,Steak Bowl,10.71,710,6,5,10,9,6,6
+CUST_1683,Gen Z,Female,West,Vegetarian,Hot,Veggie Bowl,10.36,590,8,3,4,3,4,10
+CUST_1684,Gen Z,Female,West,Vegetarian,Hot,Barbacoa Tacos (3),12.59,650,5,2,6,5,3,8
+CUST_1685,Gen Z,Female,West,Vegetarian,Hot,Carnitas Salad,11.76,620,4,8,8,7,9,4
+CUST_1686,Gen X,Male,South,Omnivore,Mild,Chicken Burrito,9.8,740,8,8,10,9,4,7
+CUST_1687,Gen X,Male,South,Omnivore,Mild,Steak Bowl,10.99,710,3,5,6,5,8,7
+CUST_1688,Gen X,Male,South,Omnivore,Mild,Veggie Bowl,9.45,590,8,5,6,5,9,8
+CUST_1689,Gen X,Male,South,Omnivore,Mild,Barbacoa Tacos (3),11.41,650,2,8,9,8,8,3
+CUST_1690,Gen X,Male,South,Omnivore,Mild,Carnitas Salad,10.06,620,6,6,6,5,8,10
+CUST_1691,Boomer,Female,South,Omnivore,Mild,Chicken Burrito,10.65,740,3,4,8,7,3,8
+CUST_1692,Boomer,Female,South,Omnivore,Mild,Steak Bowl,12.15,710,6,3,7,6,7,3
+CUST_1693,Boomer,Female,South,Omnivore,Mild,Veggie Bowl,10.26,590,2,3,3,2,10,5
+CUST_1694,Boomer,Female,South,Omnivore,Mild,Barbacoa Tacos (3),12,650,2,5,8,7,8,7
+CUST_1695,Boomer,Female,South,Omnivore,Mild,Carnitas Salad,10.55,620,4,8,3,2,9,8
+CUST_1696,Millennial,Male,Northeast,Omnivore,Mild,Chicken Burrito,10.55,740,3,4,9,8,6,3
+CUST_1697,Millennial,Male,Northeast,Omnivore,Mild,Steak Bowl,11.7,710,8,4,9,8,7,5
+CUST_1698,Millennial,Male,Northeast,Omnivore,Mild,Veggie Bowl,10.52,590,2,3,10,9,10,8
+CUST_1699,Millennial,Male,Northeast,Omnivore,Mild,Barbacoa Tacos (3),13.06,650,2,5,5,4,10,9
+CUST_1700,Millennial,Male,Northeast,Omnivore,Mild,Carnitas Salad,11.33,620,7,5,4,3,4,9
+CUST_1701,Gen X,Male,South,Vegan,Medium,Chicken Burrito,10.71,740,5,6,7,6,9,7
+CUST_1702,Gen X,Male,South,Vegan,Medium,Steak Bowl,11.58,710,5,6,3,2,7,5
+CUST_1703,Gen X,Male,South,Vegan,Medium,Veggie Bowl,9.27,590,2,3,9,8,3,4
+CUST_1704,Gen X,Male,South,Vegan,Medium,Barbacoa Tacos (3),11.38,650,8,7,6,5,7,9
+CUST_1705,Gen X,Male,South,Vegan,Medium,Carnitas Salad,10.85,620,6,3,4,3,7,10
+CUST_1706,Gen X,Male,Northeast,Vegan,Medium,Chicken Burrito,10.32,740,3,5,9,8,8,3
+CUST_1707,Gen X,Male,Northeast,Vegan,Medium,Steak Bowl,10.91,710,2,8,10,9,5,7
+CUST_1708,Gen X,Male,Northeast,Vegan,Medium,Veggie Bowl,9.06,590,7,5,3,2,6,10
+CUST_1709,Gen X,Male,Northeast,Vegan,Medium,Barbacoa Tacos (3),11.04,650,2,4,9,8,6,8
+CUST_1710,Gen X,Male,Northeast,Vegan,Medium,Carnitas Salad,10.42,620,5,7,9,8,7,8
+CUST_1711,Millennial,Female,Northeast,Vegetarian,Mild,Chicken Burrito,11.21,740,4,4,6,5,6,6
+CUST_1712,Millennial,Female,Northeast,Vegetarian,Mild,Steak Bowl,12.42,710,3,3,10,9,4,5
+CUST_1713,Millennial,Female,Northeast,Vegetarian,Mild,Veggie Bowl,9.76,590,6,4,6,5,4,8
+CUST_1714,Millennial,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.54,650,2,3,5,4,3,8
+CUST_1715,Millennial,Female,Northeast,Vegetarian,Mild,Carnitas Salad,12.08,620,5,2,8,7,9,4
+CUST_1716,Boomer,Male,South,Vegan,Mild,Chicken Burrito,10.87,740,2,2,5,4,3,7
+CUST_1717,Boomer,Male,South,Vegan,Mild,Steak Bowl,11.25,710,2,3,7,6,7,6
+CUST_1718,Boomer,Male,South,Vegan,Mild,Veggie Bowl,10.69,590,4,4,3,2,10,6
+CUST_1719,Boomer,Male,South,Vegan,Mild,Barbacoa Tacos (3),12.2,650,5,5,5,4,5,7
+CUST_1720,Boomer,Male,South,Vegan,Mild,Carnitas Salad,12.09,620,8,8,10,9,5,3
+CUST_1721,Gen X,Male,South,Vegetarian,Mild,Chicken Burrito,10.12,740,4,4,10,9,10,9
+CUST_1722,Gen X,Male,South,Vegetarian,Mild,Steak Bowl,10.72,710,5,7,7,6,10,4
+CUST_1723,Gen X,Male,South,Vegetarian,Mild,Veggie Bowl,9.99,590,8,8,4,3,6,8
+CUST_1724,Gen X,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),11.01,650,3,3,7,6,4,8
+CUST_1725,Gen X,Male,South,Vegetarian,Mild,Carnitas Salad,11.09,620,4,4,9,8,4,8
+CUST_1726,Gen Z,Male,Northeast,Vegetarian,Mild,Chicken Burrito,10.33,740,3,2,10,9,6,9
+CUST_1727,Gen Z,Male,Northeast,Vegetarian,Mild,Steak Bowl,11.09,710,7,5,4,3,6,5
+CUST_1728,Gen Z,Male,Northeast,Vegetarian,Mild,Veggie Bowl,10.19,590,3,6,5,4,9,4
+CUST_1729,Gen Z,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.95,650,8,6,3,2,8,6
+CUST_1730,Gen Z,Male,Northeast,Vegetarian,Mild,Carnitas Salad,11.79,620,5,8,8,7,7,8
+CUST_1731,Millennial,Male,Northeast,Vegetarian,Medium,Chicken Burrito,10.57,740,8,4,9,8,8,6
+CUST_1732,Millennial,Male,Northeast,Vegetarian,Medium,Steak Bowl,10.5,710,8,8,8,7,6,3
+CUST_1733,Millennial,Male,Northeast,Vegetarian,Medium,Veggie Bowl,10.89,590,6,4,8,7,4,8
+CUST_1734,Millennial,Male,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),11.38,650,2,8,6,5,9,9
+CUST_1735,Millennial,Male,Northeast,Vegetarian,Medium,Carnitas Salad,11.2,620,7,6,6,5,7,6
+CUST_1736,Gen Z,Male,Northeast,Flexitarian,Mild,Chicken Burrito,10.53,740,3,6,10,9,4,5
+CUST_1737,Gen Z,Male,Northeast,Flexitarian,Mild,Steak Bowl,10.69,710,7,3,4,3,10,7
+CUST_1738,Gen Z,Male,Northeast,Flexitarian,Mild,Veggie Bowl,10.12,590,3,5,8,7,3,9
+CUST_1739,Gen Z,Male,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),11.22,650,7,6,6,5,3,9
+CUST_1740,Gen Z,Male,Northeast,Flexitarian,Mild,Carnitas Salad,10.1,620,5,4,6,5,4,4
+CUST_1741,Gen X,Female,South,Vegetarian,Mild,Chicken Burrito,9.71,740,8,8,4,3,5,7
+CUST_1742,Gen X,Female,South,Vegetarian,Mild,Steak Bowl,11.99,710,7,3,9,8,7,10
+CUST_1743,Gen X,Female,South,Vegetarian,Mild,Veggie Bowl,9.27,590,6,8,5,4,9,3
+CUST_1744,Gen X,Female,South,Vegetarian,Mild,Barbacoa Tacos (3),12.05,650,2,5,6,5,9,7
+CUST_1745,Gen X,Female,South,Vegetarian,Mild,Carnitas Salad,11.1,620,6,7,4,3,3,6
+CUST_1746,Millennial,Male,South,Vegan,Medium,Chicken Burrito,9.7,740,8,5,6,5,8,3
+CUST_1747,Millennial,Male,South,Vegan,Medium,Steak Bowl,10.67,710,3,4,5,4,4,8
+CUST_1748,Millennial,Male,South,Vegan,Medium,Veggie Bowl,10.72,590,2,3,3,2,10,4
+CUST_1749,Millennial,Male,South,Vegan,Medium,Barbacoa Tacos (3),12.61,650,4,7,10,9,3,8
+CUST_1750,Millennial,Male,South,Vegan,Medium,Carnitas Salad,11.67,620,8,2,10,9,4,9
+CUST_1751,Gen Z,Male,South,Flexitarian,Medium,Chicken Burrito,10.61,740,4,7,3,2,7,6
+CUST_1752,Gen Z,Male,South,Flexitarian,Medium,Steak Bowl,11.12,710,7,2,3,2,9,3
+CUST_1753,Gen Z,Male,South,Flexitarian,Medium,Veggie Bowl,9.52,590,8,2,8,7,7,6
+CUST_1754,Gen Z,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),11.58,650,5,4,6,5,10,8
+CUST_1755,Gen Z,Male,South,Flexitarian,Medium,Carnitas Salad,10.15,620,6,6,8,7,3,9
+CUST_1756,Boomer,Female,Midwest,Omnivore,Hot,Chicken Burrito,11.43,740,6,5,5,4,5,4
+CUST_1757,Boomer,Female,Midwest,Omnivore,Hot,Steak Bowl,10.83,710,5,4,5,4,7,6
+CUST_1758,Boomer,Female,Midwest,Omnivore,Hot,Veggie Bowl,10.79,590,4,8,5,4,7,7
+CUST_1759,Boomer,Female,Midwest,Omnivore,Hot,Barbacoa Tacos (3),11.75,650,4,4,4,3,5,9
+CUST_1760,Boomer,Female,Midwest,Omnivore,Hot,Carnitas Salad,10.42,620,3,8,6,5,10,8
+CUST_1761,Gen Z,Female,South,Flexitarian,Mild,Chicken Burrito,10.01,740,3,8,8,7,9,6
+CUST_1762,Gen Z,Female,South,Flexitarian,Mild,Steak Bowl,10.9,710,6,5,5,4,8,7
+CUST_1763,Gen Z,Female,South,Flexitarian,Mild,Veggie Bowl,9.56,590,2,7,6,5,4,6
+CUST_1764,Gen Z,Female,South,Flexitarian,Mild,Barbacoa Tacos (3),11.85,650,5,4,8,7,5,4
+CUST_1765,Gen Z,Female,South,Flexitarian,Mild,Carnitas Salad,10.11,620,3,7,6,5,4,3
+CUST_1766,Gen X,Male,West,Vegan,Mild,Chicken Burrito,10.58,740,4,8,6,5,8,4
+CUST_1767,Gen X,Male,West,Vegan,Mild,Steak Bowl,11.76,710,5,5,3,2,3,4
+CUST_1768,Gen X,Male,West,Vegan,Mild,Veggie Bowl,10.3,590,2,4,8,7,6,8
+CUST_1769,Gen X,Male,West,Vegan,Mild,Barbacoa Tacos (3),11.82,650,6,2,7,6,10,6
+CUST_1770,Gen X,Male,West,Vegan,Mild,Carnitas Salad,11.61,620,2,7,4,3,10,9
+CUST_1771,Millennial,Female,Midwest,Vegan,Mild,Chicken Burrito,10.76,740,4,4,6,5,8,9
+CUST_1772,Millennial,Female,Midwest,Vegan,Mild,Steak Bowl,12.2,710,3,8,5,4,7,7
+CUST_1773,Millennial,Female,Midwest,Vegan,Mild,Veggie Bowl,10.98,590,2,7,5,4,10,9
+CUST_1774,Millennial,Female,Midwest,Vegan,Mild,Barbacoa Tacos (3),10.94,650,3,6,5,4,3,4
+CUST_1775,Millennial,Female,Midwest,Vegan,Mild,Carnitas Salad,10.5,620,2,8,4,3,3,9
+CUST_1776,Boomer,Male,South,Vegetarian,Mild,Chicken Burrito,11.43,740,7,2,8,7,5,7
+CUST_1777,Boomer,Male,South,Vegetarian,Mild,Steak Bowl,11.83,710,3,5,3,2,6,5
+CUST_1778,Boomer,Male,South,Vegetarian,Mild,Veggie Bowl,9.41,590,7,4,5,4,10,3
+CUST_1779,Boomer,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),12.45,650,3,4,6,5,3,9
+CUST_1780,Boomer,Male,South,Vegetarian,Mild,Carnitas Salad,12.01,620,4,7,8,7,10,4
+CUST_1781,Millennial,Female,Northeast,Flexitarian,Medium,Chicken Burrito,10.63,740,2,8,3,2,8,4
+CUST_1782,Millennial,Female,Northeast,Flexitarian,Medium,Steak Bowl,12.44,710,5,6,5,4,10,5
+CUST_1783,Millennial,Female,Northeast,Flexitarian,Medium,Veggie Bowl,10.2,590,4,6,3,2,3,9
+CUST_1784,Millennial,Female,Northeast,Flexitarian,Medium,Barbacoa Tacos (3),12.38,650,5,2,8,7,9,5
+CUST_1785,Millennial,Female,Northeast,Flexitarian,Medium,Carnitas Salad,10.2,620,8,8,6,5,4,5
+CUST_1786,Boomer,Female,South,Vegan,Medium,Chicken Burrito,10.46,740,7,3,4,3,7,4
+CUST_1787,Boomer,Female,South,Vegan,Medium,Steak Bowl,10.49,710,6,6,5,4,7,8
+CUST_1788,Boomer,Female,South,Vegan,Medium,Veggie Bowl,10.51,590,6,5,7,6,9,7
+CUST_1789,Boomer,Female,South,Vegan,Medium,Barbacoa Tacos (3),10.84,650,8,2,4,3,7,10
+CUST_1790,Boomer,Female,South,Vegan,Medium,Carnitas Salad,10.91,620,3,5,4,3,8,7
+CUST_1791,Gen Z,Male,South,Omnivore,Mild,Chicken Burrito,9.48,740,8,7,6,5,8,4
+CUST_1792,Gen Z,Male,South,Omnivore,Mild,Steak Bowl,10.73,710,6,4,5,4,4,3
+CUST_1793,Gen Z,Male,South,Omnivore,Mild,Veggie Bowl,9.59,590,5,6,9,8,5,4
+CUST_1794,Gen Z,Male,South,Omnivore,Mild,Barbacoa Tacos (3),12.86,650,2,8,8,7,5,4
+CUST_1795,Gen Z,Male,South,Omnivore,Mild,Carnitas Salad,11.88,620,2,3,8,7,4,6
+CUST_1796,Boomer,Male,Northeast,Flexitarian,Hot,Chicken Burrito,10.58,740,2,6,4,3,8,3
+CUST_1797,Boomer,Male,Northeast,Flexitarian,Hot,Steak Bowl,12.14,710,6,4,9,8,6,4
+CUST_1798,Boomer,Male,Northeast,Flexitarian,Hot,Veggie Bowl,9.98,590,8,6,3,2,9,9
+CUST_1799,Boomer,Male,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),11.67,650,4,2,7,6,5,8
+CUST_1800,Boomer,Male,Northeast,Flexitarian,Hot,Carnitas Salad,11.77,620,5,7,5,4,8,8
+CUST_1801,Gen Z,Female,West,Vegan,Hot,Chicken Burrito,10.59,740,7,7,7,6,3,9
+CUST_1802,Gen Z,Female,West,Vegan,Hot,Steak Bowl,11.59,710,6,6,8,7,6,10
+CUST_1803,Gen Z,Female,West,Vegan,Hot,Veggie Bowl,10.94,590,5,6,8,7,8,10
+CUST_1804,Gen Z,Female,West,Vegan,Hot,Barbacoa Tacos (3),10.83,650,6,8,8,7,6,6
+CUST_1805,Gen Z,Female,West,Vegan,Hot,Carnitas Salad,11.81,620,5,8,10,9,3,8
+CUST_1806,Millennial,Female,Northeast,Flexitarian,Hot,Chicken Burrito,10.25,740,6,7,8,7,9,7
+CUST_1807,Millennial,Female,Northeast,Flexitarian,Hot,Steak Bowl,10.59,710,4,5,4,3,8,5
+CUST_1808,Millennial,Female,Northeast,Flexitarian,Hot,Veggie Bowl,10.46,590,8,6,9,8,4,3
+CUST_1809,Millennial,Female,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),12.55,650,4,4,5,4,5,3
+CUST_1810,Millennial,Female,Northeast,Flexitarian,Hot,Carnitas Salad,10.14,620,6,5,10,9,7,7
+CUST_1811,Millennial,Male,South,Vegan,Medium,Chicken Burrito,9.52,740,8,5,3,2,4,7
+CUST_1812,Millennial,Male,South,Vegan,Medium,Steak Bowl,11.84,710,4,3,6,5,3,7
+CUST_1813,Millennial,Male,South,Vegan,Medium,Veggie Bowl,10.85,590,5,8,6,5,8,5
+CUST_1814,Millennial,Male,South,Vegan,Medium,Barbacoa Tacos (3),11.82,650,7,2,5,4,3,7
+CUST_1815,Millennial,Male,South,Vegan,Medium,Carnitas Salad,9.94,620,5,6,4,3,6,4
+CUST_1816,Gen Z,Male,South,Omnivore,Hot,Chicken Burrito,9.61,740,5,4,6,5,9,10
+CUST_1817,Gen Z,Male,South,Omnivore,Hot,Steak Bowl,11.23,710,2,4,5,4,5,4
+CUST_1818,Gen Z,Male,South,Omnivore,Hot,Veggie Bowl,9.01,590,3,4,8,7,4,8
+CUST_1819,Gen Z,Male,South,Omnivore,Hot,Barbacoa Tacos (3),12.61,650,4,8,5,4,8,8
+CUST_1820,Gen Z,Male,South,Omnivore,Hot,Carnitas Salad,10.83,620,7,3,5,4,3,8
+CUST_1821,Boomer,Male,Northeast,Vegetarian,Mild,Chicken Burrito,10.53,740,2,6,5,4,3,5
+CUST_1822,Boomer,Male,Northeast,Vegetarian,Mild,Steak Bowl,10.57,710,8,8,9,8,8,8
+CUST_1823,Boomer,Male,Northeast,Vegetarian,Mild,Veggie Bowl,10.08,590,5,7,7,6,8,6
+CUST_1824,Boomer,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.89,650,8,5,5,4,4,10
+CUST_1825,Boomer,Male,Northeast,Vegetarian,Mild,Carnitas Salad,10.27,620,3,7,3,2,4,3
+CUST_1826,Gen X,Female,West,Vegan,Mild,Chicken Burrito,11.06,740,4,8,10,9,6,3
+CUST_1827,Gen X,Female,West,Vegan,Mild,Steak Bowl,11.12,710,4,5,4,3,6,8
+CUST_1828,Gen X,Female,West,Vegan,Mild,Veggie Bowl,9.05,590,2,5,6,5,4,8
+CUST_1829,Gen X,Female,West,Vegan,Mild,Barbacoa Tacos (3),13.04,650,3,5,10,9,5,3
+CUST_1830,Gen X,Female,West,Vegan,Mild,Carnitas Salad,10.06,620,2,7,7,6,6,8
+CUST_1831,Gen Z,Female,Northeast,Omnivore,Medium,Chicken Burrito,9.89,740,5,7,9,8,10,10
+CUST_1832,Gen Z,Female,Northeast,Omnivore,Medium,Steak Bowl,12.52,710,5,4,5,4,5,3
+CUST_1833,Gen Z,Female,Northeast,Omnivore,Medium,Veggie Bowl,10.12,590,4,2,4,3,7,5
+CUST_1834,Gen Z,Female,Northeast,Omnivore,Medium,Barbacoa Tacos (3),12.65,650,8,4,3,2,3,8
+CUST_1835,Gen Z,Female,Northeast,Omnivore,Medium,Carnitas Salad,11.63,620,7,6,9,8,5,5
+CUST_1836,Millennial,Male,West,Vegan,Mild,Chicken Burrito,10.53,740,3,8,8,7,3,3
+CUST_1837,Millennial,Male,West,Vegan,Mild,Steak Bowl,11.27,710,3,7,6,5,6,3
+CUST_1838,Millennial,Male,West,Vegan,Mild,Veggie Bowl,9.3,590,5,2,3,2,8,3
+CUST_1839,Millennial,Male,West,Vegan,Mild,Barbacoa Tacos (3),11.59,650,6,8,10,9,10,4
+CUST_1840,Millennial,Male,West,Vegan,Mild,Carnitas Salad,10.31,620,8,7,4,3,7,6
+CUST_1841,Boomer,Male,South,Vegan,Hot,Chicken Burrito,9.53,740,5,2,3,2,5,9
+CUST_1842,Boomer,Male,South,Vegan,Hot,Steak Bowl,10.42,710,6,4,8,7,7,10
+CUST_1843,Boomer,Male,South,Vegan,Hot,Veggie Bowl,10.02,590,8,8,10,9,9,6
+CUST_1844,Boomer,Male,South,Vegan,Hot,Barbacoa Tacos (3),12.8,650,6,6,6,5,7,4
+CUST_1845,Boomer,Male,South,Vegan,Hot,Carnitas Salad,10.95,620,8,2,8,7,9,6
+CUST_1846,Gen X,Female,South,Omnivore,Mild,Chicken Burrito,11.31,740,5,8,3,2,3,6
+CUST_1847,Gen X,Female,South,Omnivore,Mild,Steak Bowl,11.89,710,7,5,5,4,4,8
+CUST_1848,Gen X,Female,South,Omnivore,Mild,Veggie Bowl,9.88,590,6,8,4,3,8,10
+CUST_1849,Gen X,Female,South,Omnivore,Mild,Barbacoa Tacos (3),11.14,650,8,8,8,7,5,8
+CUST_1850,Gen X,Female,South,Omnivore,Mild,Carnitas Salad,11.67,620,6,2,5,4,7,7
+CUST_1851,Gen Z,Female,South,Omnivore,Hot,Chicken Burrito,10.13,740,8,2,3,2,4,6
+CUST_1852,Gen Z,Female,South,Omnivore,Hot,Steak Bowl,11.88,710,5,8,7,6,3,3
+CUST_1853,Gen Z,Female,South,Omnivore,Hot,Veggie Bowl,10.34,590,2,2,9,8,10,8
+CUST_1854,Gen Z,Female,South,Omnivore,Hot,Barbacoa Tacos (3),13.16,650,2,7,3,2,4,9
+CUST_1855,Gen Z,Female,South,Omnivore,Hot,Carnitas Salad,9.98,620,4,8,10,9,5,10
+CUST_1856,Gen X,Male,Midwest,Vegan,Mild,Chicken Burrito,11.11,740,8,6,6,5,10,9
+CUST_1857,Gen X,Male,Midwest,Vegan,Mild,Steak Bowl,11.6,710,8,4,6,5,5,10
+CUST_1858,Gen X,Male,Midwest,Vegan,Mild,Veggie Bowl,10.54,590,6,4,9,8,9,6
+CUST_1859,Gen X,Male,Midwest,Vegan,Mild,Barbacoa Tacos (3),12.33,650,7,4,3,2,3,6
+CUST_1860,Gen X,Male,Midwest,Vegan,Mild,Carnitas Salad,12.02,620,3,8,8,7,5,7
+CUST_1861,Boomer,Male,South,Flexitarian,Medium,Chicken Burrito,10.43,740,6,3,6,5,3,4
+CUST_1862,Boomer,Male,South,Flexitarian,Medium,Steak Bowl,12.06,710,6,2,6,5,8,4
+CUST_1863,Boomer,Male,South,Flexitarian,Medium,Veggie Bowl,9.98,590,4,6,8,7,4,8
+CUST_1864,Boomer,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),12.88,650,2,7,7,6,4,6
+CUST_1865,Boomer,Male,South,Flexitarian,Medium,Carnitas Salad,11.1,620,7,6,5,4,3,9
+CUST_1866,Gen X,Female,Northeast,Flexitarian,Mild,Chicken Burrito,11.36,740,8,5,10,9,4,10
+CUST_1867,Gen X,Female,Northeast,Flexitarian,Mild,Steak Bowl,10.36,710,4,4,7,6,7,6
+CUST_1868,Gen X,Female,Northeast,Flexitarian,Mild,Veggie Bowl,10.43,590,6,7,9,8,3,5
+CUST_1869,Gen X,Female,Northeast,Flexitarian,Mild,Barbacoa Tacos (3),12.15,650,7,6,3,2,8,6
+CUST_1870,Gen X,Female,Northeast,Flexitarian,Mild,Carnitas Salad,10.79,620,2,8,8,7,8,6
+CUST_1871,Millennial,Male,South,Vegetarian,Mild,Chicken Burrito,10.18,740,4,4,7,6,3,10
+CUST_1872,Millennial,Male,South,Vegetarian,Mild,Steak Bowl,12.43,710,8,3,7,6,10,7
+CUST_1873,Millennial,Male,South,Vegetarian,Mild,Veggie Bowl,9.3,590,7,3,3,2,6,8
+CUST_1874,Millennial,Male,South,Vegetarian,Mild,Barbacoa Tacos (3),11.91,650,8,7,6,5,7,8
+CUST_1875,Millennial,Male,South,Vegetarian,Mild,Carnitas Salad,10.41,620,5,7,6,5,10,7
+CUST_1876,Millennial,Male,West,Flexitarian,Hot,Chicken Burrito,11.23,740,3,4,3,2,6,9
+CUST_1877,Millennial,Male,West,Flexitarian,Hot,Steak Bowl,10.73,710,7,6,3,2,10,10
+CUST_1878,Millennial,Male,West,Flexitarian,Hot,Veggie Bowl,10.61,590,4,5,8,7,7,4
+CUST_1879,Millennial,Male,West,Flexitarian,Hot,Barbacoa Tacos (3),12.11,650,5,7,9,8,9,9
+CUST_1880,Millennial,Male,West,Flexitarian,Hot,Carnitas Salad,11.49,620,7,2,7,6,10,3
+CUST_1881,Millennial,Female,Midwest,Omnivore,Hot,Chicken Burrito,10.86,740,3,4,10,9,7,7
+CUST_1882,Millennial,Female,Midwest,Omnivore,Hot,Steak Bowl,11.01,710,5,2,5,4,7,10
+CUST_1883,Millennial,Female,Midwest,Omnivore,Hot,Veggie Bowl,9.37,590,4,2,10,9,4,9
+CUST_1884,Millennial,Female,Midwest,Omnivore,Hot,Barbacoa Tacos (3),12.75,650,2,6,10,9,6,9
+CUST_1885,Millennial,Female,Midwest,Omnivore,Hot,Carnitas Salad,10.1,620,8,5,3,2,8,6
+CUST_1886,Gen X,Male,Midwest,Vegan,Mild,Chicken Burrito,9.69,740,5,3,10,9,4,10
+CUST_1887,Gen X,Male,Midwest,Vegan,Mild,Steak Bowl,10.77,710,5,6,5,4,3,4
+CUST_1888,Gen X,Male,Midwest,Vegan,Mild,Veggie Bowl,9.14,590,2,4,6,5,8,8
+CUST_1889,Gen X,Male,Midwest,Vegan,Mild,Barbacoa Tacos (3),11.29,650,7,6,3,2,3,6
+CUST_1890,Gen X,Male,Midwest,Vegan,Mild,Carnitas Salad,11.37,620,5,6,10,9,5,9
+CUST_1891,Gen X,Male,West,Omnivore,Medium,Chicken Burrito,9.67,740,3,5,10,9,7,6
+CUST_1892,Gen X,Male,West,Omnivore,Medium,Steak Bowl,11.82,710,7,8,7,6,10,4
+CUST_1893,Gen X,Male,West,Omnivore,Medium,Veggie Bowl,9.81,590,7,7,4,3,8,7
+CUST_1894,Gen X,Male,West,Omnivore,Medium,Barbacoa Tacos (3),11.88,650,8,8,9,8,5,3
+CUST_1895,Gen X,Male,West,Omnivore,Medium,Carnitas Salad,10.43,620,5,4,5,4,9,9
+CUST_1896,Gen Z,Male,South,Flexitarian,Mild,Chicken Burrito,11,740,2,3,4,3,6,3
+CUST_1897,Gen Z,Male,South,Flexitarian,Mild,Steak Bowl,11.61,710,8,8,7,6,3,4
+CUST_1898,Gen Z,Male,South,Flexitarian,Mild,Veggie Bowl,9,590,6,4,4,3,6,5
+CUST_1899,Gen Z,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),11.15,650,3,5,3,2,7,6
+CUST_1900,Gen Z,Male,South,Flexitarian,Mild,Carnitas Salad,10.64,620,6,2,10,9,8,4
+CUST_1901,Boomer,Female,Northeast,Vegetarian,Medium,Chicken Burrito,11.49,740,8,5,7,6,7,6
+CUST_1902,Boomer,Female,Northeast,Vegetarian,Medium,Steak Bowl,11.15,710,5,5,4,3,6,9
+CUST_1903,Boomer,Female,Northeast,Vegetarian,Medium,Veggie Bowl,10.42,590,6,3,8,7,9,4
+CUST_1904,Boomer,Female,Northeast,Vegetarian,Medium,Barbacoa Tacos (3),11.11,650,4,6,7,6,9,6
+CUST_1905,Boomer,Female,Northeast,Vegetarian,Medium,Carnitas Salad,10.03,620,3,2,10,9,6,9
+CUST_1906,Gen Z,Male,South,Omnivore,Hot,Chicken Burrito,10.11,740,3,5,7,6,8,7
+CUST_1907,Gen Z,Male,South,Omnivore,Hot,Steak Bowl,12.13,710,3,3,10,9,10,6
+CUST_1908,Gen Z,Male,South,Omnivore,Hot,Veggie Bowl,9.38,590,4,3,7,6,5,10
+CUST_1909,Gen Z,Male,South,Omnivore,Hot,Barbacoa Tacos (3),12.55,650,2,8,5,4,4,5
+CUST_1910,Gen Z,Male,South,Omnivore,Hot,Carnitas Salad,11.3,620,2,6,4,3,6,7
+CUST_1911,Millennial,Male,South,Flexitarian,Mild,Chicken Burrito,11.37,740,6,6,10,9,7,9
+CUST_1912,Millennial,Male,South,Flexitarian,Mild,Steak Bowl,11.4,710,2,2,6,5,10,8
+CUST_1913,Millennial,Male,South,Flexitarian,Mild,Veggie Bowl,10.9,590,5,8,10,9,10,9
+CUST_1914,Millennial,Male,South,Flexitarian,Mild,Barbacoa Tacos (3),11.4,650,3,5,4,3,4,4
+CUST_1915,Millennial,Male,South,Flexitarian,Mild,Carnitas Salad,11.08,620,7,4,8,7,9,5
+CUST_1916,Gen Z,Male,South,Vegetarian,Medium,Chicken Burrito,10.07,740,6,2,9,8,7,9
+CUST_1917,Gen Z,Male,South,Vegetarian,Medium,Steak Bowl,10.44,710,5,5,9,8,7,8
+CUST_1918,Gen Z,Male,South,Vegetarian,Medium,Veggie Bowl,9.03,590,8,2,9,8,6,3
+CUST_1919,Gen Z,Male,South,Vegetarian,Medium,Barbacoa Tacos (3),11.91,650,5,7,3,2,7,10
+CUST_1920,Gen Z,Male,South,Vegetarian,Medium,Carnitas Salad,12.06,620,8,4,9,8,6,10
+CUST_1921,Gen Z,Female,Northeast,Vegetarian,Mild,Chicken Burrito,11.31,740,4,6,10,9,7,3
+CUST_1922,Gen Z,Female,Northeast,Vegetarian,Mild,Steak Bowl,11.74,710,7,8,8,7,9,4
+CUST_1923,Gen Z,Female,Northeast,Vegetarian,Mild,Veggie Bowl,9.05,590,5,2,4,3,6,5
+CUST_1924,Gen Z,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.86,650,3,2,9,8,5,3
+CUST_1925,Gen Z,Female,Northeast,Vegetarian,Mild,Carnitas Salad,10.35,620,4,5,8,7,4,8
+CUST_1926,Gen X,Female,Northeast,Flexitarian,Hot,Chicken Burrito,11.15,740,8,6,3,2,7,9
+CUST_1927,Gen X,Female,Northeast,Flexitarian,Hot,Steak Bowl,10.71,710,7,4,4,3,10,4
+CUST_1928,Gen X,Female,Northeast,Flexitarian,Hot,Veggie Bowl,10.51,590,2,7,4,3,6,9
+CUST_1929,Gen X,Female,Northeast,Flexitarian,Hot,Barbacoa Tacos (3),11.43,650,8,3,4,3,3,8
+CUST_1930,Gen X,Female,Northeast,Flexitarian,Hot,Carnitas Salad,11.2,620,6,7,10,9,7,5
+CUST_1931,Gen X,Male,South,Flexitarian,Medium,Chicken Burrito,10.48,740,3,8,9,8,3,9
+CUST_1932,Gen X,Male,South,Flexitarian,Medium,Steak Bowl,10.58,710,5,2,3,2,9,10
+CUST_1933,Gen X,Male,South,Flexitarian,Medium,Veggie Bowl,10.31,590,4,7,8,7,9,4
+CUST_1934,Gen X,Male,South,Flexitarian,Medium,Barbacoa Tacos (3),12.12,650,6,8,4,3,6,4
+CUST_1935,Gen X,Male,South,Flexitarian,Medium,Carnitas Salad,10.22,620,2,6,5,4,6,3
+CUST_1936,Gen Z,Male,Northeast,Vegetarian,Mild,Chicken Burrito,10.89,740,2,6,10,9,4,4
+CUST_1937,Gen Z,Male,Northeast,Vegetarian,Mild,Steak Bowl,11.72,710,4,7,10,9,9,8
+CUST_1938,Gen Z,Male,Northeast,Vegetarian,Mild,Veggie Bowl,9.79,590,5,8,10,9,3,7
+CUST_1939,Gen Z,Male,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),12.35,650,6,4,8,7,3,4
+CUST_1940,Gen Z,Male,Northeast,Vegetarian,Mild,Carnitas Salad,11.23,620,5,3,5,4,10,3
+CUST_1941,Boomer,Male,Northeast,Omnivore,Hot,Chicken Burrito,9.62,740,2,8,3,2,9,3
+CUST_1942,Boomer,Male,Northeast,Omnivore,Hot,Steak Bowl,10.66,710,2,7,7,6,6,7
+CUST_1943,Boomer,Male,Northeast,Omnivore,Hot,Veggie Bowl,10.72,590,5,5,4,3,7,5
+CUST_1944,Boomer,Male,Northeast,Omnivore,Hot,Barbacoa Tacos (3),13.16,650,7,8,7,6,7,4
+CUST_1945,Boomer,Male,Northeast,Omnivore,Hot,Carnitas Salad,10.57,620,6,7,8,7,3,8
+CUST_1946,Boomer,Female,Northeast,Vegetarian,Mild,Chicken Burrito,10.51,740,5,8,8,7,6,4
+CUST_1947,Boomer,Female,Northeast,Vegetarian,Mild,Steak Bowl,11.96,710,2,4,9,8,9,8
+CUST_1948,Boomer,Female,Northeast,Vegetarian,Mild,Veggie Bowl,10.22,590,4,7,5,4,4,7
+CUST_1949,Boomer,Female,Northeast,Vegetarian,Mild,Barbacoa Tacos (3),11.87,650,6,6,4,3,4,5
+CUST_1950,Boomer,Female,Northeast,Vegetarian,Mild,Carnitas Salad,9.93,620,3,8,5,4,10,6
+CUST_1951,Boomer,Female,West,Vegan,Hot,Chicken Burrito,9.5,740,7,5,7,6,9,4
+CUST_1952,Boomer,Female,West,Vegan,Hot,Steak Bowl,12.08,710,2,5,3,2,5,8
+CUST_1953,Boomer,Female,West,Vegan,Hot,Veggie Bowl,10.85,590,5,3,5,4,3,6
+CUST_1954,Boomer,Female,West,Vegan,Hot,Barbacoa Tacos (3),10.89,650,3,7,5,4,5,8
+CUST_1955,Boomer,Female,West,Vegan,Hot,Carnitas Salad,11,620,4,2,9,8,6,7
+CUST_1956,Boomer,Female,South,Omnivore,Medium,Chicken Burrito,10.75,740,7,2,5,4,3,8
+CUST_1957,Boomer,Female,South,Omnivore,Medium,Steak Bowl,12.1,710,8,7,7,6,9,10
+CUST_1958,Boomer,Female,South,Omnivore,Medium,Veggie Bowl,9.33,590,5,5,6,5,6,6
+CUST_1959,Boomer,Female,South,Omnivore,Medium,Barbacoa Tacos (3),11.85,650,3,5,6,5,4,6
+CUST_1960,Boomer,Female,South,Omnivore,Medium,Carnitas Salad,10.43,620,3,2,9,8,3,9
+CUST_1961,Gen X,Male,West,Vegetarian,Mild,Chicken Burrito,9.98,740,2,2,3,2,6,10
+CUST_1962,Gen X,Male,West,Vegetarian,Mild,Steak Bowl,12.48,710,7,2,3,2,4,9
+CUST_1963,Gen X,Male,West,Vegetarian,Mild,Veggie Bowl,9.55,590,3,6,3,2,7,5
+CUST_1964,Gen X,Male,West,Vegetarian,Mild,Barbacoa Tacos (3),13.06,650,3,7,8,7,6,7
+CUST_1965,Gen X,Male,West,Vegetarian,Mild,Carnitas Salad,11.1,620,5,5,8,7,4,6
+CUST_1966,Boomer,Male,West,Flexitarian,Hot,Chicken Burrito,10.07,740,5,5,6,5,7,7
+CUST_1967,Boomer,Male,West,Flexitarian,Hot,Steak Bowl,11.47,710,5,2,10,9,5,8
+CUST_1968,Boomer,Male,West,Flexitarian,Hot,Veggie Bowl,10.35,590,4,3,3,2,7,5
+CUST_1969,Boomer,Male,West,Flexitarian,Hot,Barbacoa Tacos (3),11.62,650,6,8,5,4,5,10
+CUST_1970,Boomer,Male,West,Flexitarian,Hot,Carnitas Salad,10.24,620,7,2,9,8,9,5
+CUST_1971,Boomer,Male,Northeast,Omnivore,Hot,Chicken Burrito,10.1,740,4,6,3,2,8,4
+CUST_1972,Boomer,Male,Northeast,Omnivore,Hot,Steak Bowl,11.29,710,6,6,3,2,4,5
+CUST_1973,Boomer,Male,Northeast,Omnivore,Hot,Veggie Bowl,9.74,590,2,5,6,5,5,8
+CUST_1974,Boomer,Male,Northeast,Omnivore,Hot,Barbacoa Tacos (3),13.1,650,8,2,8,7,10,5
+CUST_1975,Boomer,Male,Northeast,Omnivore,Hot,Carnitas Salad,12.07,620,3,5,4,3,5,4
+CUST_1976,Boomer,Female,South,Omnivore,Medium,Chicken Burrito,9.83,740,3,7,10,9,7,8
+CUST_1977,Boomer,Female,South,Omnivore,Medium,Steak Bowl,11.22,710,3,4,8,7,5,7
+CUST_1978,Boomer,Female,South,Omnivore,Medium,Veggie Bowl,9.82,590,6,4,9,8,8,9
+CUST_1979,Boomer,Female,South,Omnivore,Medium,Barbacoa Tacos (3),10.91,650,2,2,10,9,6,7
+CUST_1980,Boomer,Female,South,Omnivore,Medium,Carnitas Salad,11.76,620,4,8,3,2,10,9
+CUST_1981,Boomer,Male,Midwest,Vegetarian,Hot,Chicken Burrito,9.84,740,7,5,6,5,8,10
+CUST_1982,Boomer,Male,Midwest,Vegetarian,Hot,Steak Bowl,10.43,710,7,7,3,2,3,3
+CUST_1983,Boomer,Male,Midwest,Vegetarian,Hot,Veggie Bowl,10.39,590,4,5,8,7,7,7
+CUST_1984,Boomer,Male,Midwest,Vegetarian,Hot,Barbacoa Tacos (3),12.59,650,5,3,8,7,3,3
+CUST_1985,Boomer,Male,Midwest,Vegetarian,Hot,Carnitas Salad,10.79,620,4,8,3,2,9,5

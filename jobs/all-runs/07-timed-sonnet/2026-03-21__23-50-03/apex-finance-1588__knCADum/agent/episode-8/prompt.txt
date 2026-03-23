@@ -1,0 +1,38 @@
+New Terminal Output:
+
+root@bde608470cc5:/app# cat > /app/extract_data_fixed.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+> from openpyxl import load_workbook
+>
+> # Load the workbook
+> wb = load_workbook('/app/data/ConSup Inc Financial Model_PROMPT.xlsx', data_only=True)
+>
+> print("Available worksheets:", wb.sheetnames)
+>
+> # Read Transaction Structure
+> ts_sheet = wb['Transaction Structure']
+> print("\n=== Transaction Structure Data ===")
+> for row in range(1, 20):
+>     row_data = []
+>     for col in range(1, 8):
+>         cell_value = ts_sheet.cell(row=row, column=col).value
+>         if cell_value is not None:
+>             row_data.append(str(cell_value))
+>     if row_data:
+>         print(f"Row {row}: {' | '.join(row_data)}")
+>
+> # Read Historicals for baseline data
+> hist_sheet = wb['Historicals']
+> print("\n=== Historical Data ===")
+> for row in range(1, 15):
+>     row_data = []
+>     for col in range(1, 8):
+>         cell_value = hist_sheet.cell(row=row, column=col).value
+>         if cell_value is not None:
+>             row_data.append(str(cell_value))
+>     if row_data:
+>         print(f"Row {row}: {' | '.join(row_data)}")
+>
+> EOF
+root@bde608470cc5:/app#

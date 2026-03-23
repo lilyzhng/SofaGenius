@@ -1,0 +1,91 @@
+{
+  "criterion 1": {
+    "description": "Identifies that Erika can raise the defense of entrapment against the charge of unlawful sale of alcohol.",
+    "sources": "BUS_23300; BUS_23025; BUS_25607; People v. Barraza",
+    "justification": "Under California's Business Code \u00a723300, 'No person shall exercise the privilege or perform any act which a licensee may exercise or perform under the authority of a license unless the person is authorized to do so by a license issued pursuant to this division,' where 'sale' is defined as '...any transaction whereby, for any consideration, title to alcoholic beverages is transferred from one person to another, and includes the delivery of alcoholic beverages pursuant to an order placed for the purchase of such beverages and soliciting or receiving an order for such beverages.' (Cal. Bus. Code \u00a723025) Here, by accepting $50 for a beer, Erika engaged in a transaction for value. Her tips might also be construed as a sale if they were consistently part of an exchange for alcohol. Since 'Erika's Place' was unlicensed, Erika can be charged with violation of \u00a723300 for the unlicensed sale of alcohol \u2014 a misdemeanor. [See \u00a725607(a): 'Except as provided in subdivisions (b), (c), (d), (e), and (f), it is unlawful for any person or licensee to have upon any premises for which a license has been issued any alcoholic beverages other than the alcoholic beverage that the licensee is authorized to sell at the premises under their license. It shall be presumed that all alcoholic beverages found or located upon premises for which licenses have been issued belong to the person or persons to whom the licenses were issued. Any person who violates the provisions of this section is guilty of a misdemeanor.'] Erika can argue that she did not sell alcohol unlawfully, because the only time she ever exchanged beer for money was when the plainclothes officer entrapped her into doing so, which should be inadmissible as evidence. The city's charge hinges on the evidence of her exchange with the plainclothes officer, whereby she traded a beer for $50, but Erika can argue that this evidence should be disregarded due to police entrapment. California defines entrapment when 'conduct of the law enforcement agent is likely to induce a normally law-abiding person to commit the offense.' [People v. Barraza (1979) 23 Cal.3d 690] Erika must persuade the court that she - normally a law-abiding citizen - would not typically have engaged in the unlawful sale of alcohol, were it not for the officer's inducement.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Concludes that the entrapment defense against the unlawful sale of alcohol will be successful.",
+    "sources": "People v. Barraza",
+    "justification": "California defines entrapment when 'conduct of the law enforcement agent is likely to induce a normally law-abiding person to commit the offense.' [People v. Barraza (1979) 23 Cal.3d 690] There are two distinguishable factors to consider: first, whether the 'person would normally resist the temptation to commit a crime presented by the simple opportunity to act unlawfully;' and second, whether the officer acted in such a way as to 'make commission of the crime unusually attractive to a normally law-abiding person.' (Id.) Here, the officer initially offered Erika $20 for a beer and she declined; this speaks to the first part of the test, where Erika did indeed resist the temptation to commit the crime. In spite of Erika's refusal, the officer then offered $50, which can be viewed as an 'unusually attractive' enticement. The court in People v Barraza gives examples of types of affirmative police conduct that would make an offer unusually attractive, including 'an offer of exorbitant consideration.' (Id.) Fifty dollars for a beer is by most accounts, at least ten times its value, and qualifies as an offer of exorbitant consideration. Erika's defense of entrapment is therefore likely to succeed against the unlawful sale of alcohol charge.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Identifies that Erika can raise the defense of entrapment against the charge of operating an unpermitted business.",
+    "sources": "GOV_51039; People v. Barraza",
+    "justification": "California's Government Code lays out regulations by which a local authority can regulate sidewalk vendors; Violations of these rules are punishable under \u00a751039: 'If a local authority requires a sidewalk vendor to obtain a sidewalk vending permit from the local authority, vending without a sidewalk vending permit may be punishable by the following... [Cal. Gov. Code \u00a751039(a)(3)(A)]', which details a list of administrative fees for subsequent offenses. 'Erika's Place' is a cart with signage, alcohol service, and a tip jar - by all appearances it looks like an enterprise with commercial activity. Since Erika does not have a permit, she can be charged with a violation of any local ordinances drawn under \u00a751039 for unpermitted business operation on public lands, and faces potential citations and fees. Erika can argue that she did not violate permitting regulations, because 'Erika's Place' is not a business. Part of the city's charge hinges on the evidence of her exchange with the plainclothes officer, whereby she traded a beer for $50, but Erika can argue that this evidence should be disregarded due to police entrapment. California defines entrapment as when 'conduct of the law enforcement agent is likely to induce a normally law-abiding person to commit the offense.' [People v. Barraza (1979) 23 Cal.3d 690] Erika must persuade the court that she - normally a law-abiding citizen - would not typically have engaged in operating an unpermitted business, were it not for the officer's inducement.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Identifies that Erika did not intend to make a profit from Erika's Place.",
+    "sources": "GOV_51039",
+    "justification": "California's Government Code lays out regulations by which a local authority can regulate sidewalk vendors; Violations of these rules are punishable under \u00a751039: 'If a local authority requires a sidewalk vendor to obtain a sidewalk vending permit from the local authority, vending without a sidewalk vending permit may be punishable by the following... [Cal. Gov. Code \u00a751039(a)(3)(A)]', which details a list of administrative fees for subsequent offenses. In relation to the unpermitted business operation charge, Erika can argue that Erika's Place cannot be categorized as a business because she did not intend to engage in commerce or make a profit; she was acting as a social host, providing alcohol for friends at a private social gathering, rather than conducting a business operation While this argument is futile against the unlicensed sale of alcohol (since \u00a7 23300 imposes strict liablity), it may hold some weight against statutes that require intent to profit for commercial purpose. She can point to sections of the code that define business with the intent to profit (See Cal. Bus. Code \u00a7 82005: ' 'Business entity' means any organization or enterprise operated for profit, including but not limited to a proprietorship, partnership, firm, business trust, joint venture, syndicate, corporation or association'); or to the tax code, where ''Doing business' means actively engaging in any transaction for the purpose of financial or pecuniary gain or profit.' [Cal. Rev. Code \u00a7 23101(a)]",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Concludes that Erika will likely be found guilty of operating an unpermitted business.",
+    "sources": "Prompt",
+    "justification": "Even if Erika succeeds in proving entrapment regarding the actual sale of beer to the officer, this is only one piece of evidence in a larger picture. The city can point to many other business-like features of 'Erika's Place,' including the rented cart, the frequency and duration of operation (seemingly often and routinely over a long period of time, rather than just once or twice), the signage and name, the stocked inventory (beyond personal use), and the tip jar. They might even consider the fact that news of the beer cart spread to other sections of the park to equate to word-of-mouth advertising. The bulk of the evidence is in favor of Erika's Place being classified as a business, and an unauthorized one at that. Erika's argument that she did not intend to operate a business may be somewhat persuasive to the court. Her argument relies on semantic definitions that a business is related to profit, as distinguished from her intent - which is to serve her friends, not to turn a profit. Erika's lack of criminal intent is not a full defense to the charge of unpermitted business operation, as intent is not an explicit factor of the statute, but it may be useful for mitigation or dismissal in the interests of justice.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3,
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "Identifies that Erika can argue the city violated the Equal Protection Clause by selectively enforcing the rules relating to possession of alcohol in public spaces.",
+    "sources": "BUS_25620",
+    "justification": "California Business Code \u00a7 25620 prohibits possession or consumption of open alcoholic beverages in public parks or other public spaces without a city permit. Erika and her friends openly consumed alcohol in the public park without a permit, so she may also be charged with an 'infraction' under the city code. ('Any person possessing any can, bottle, or other receptacle containing any alcoholic beverage that has been opened, or a seal broken, or the contents of which have been partially removed, in any city, county, or city and county owned park or other city, county, or city and county owned public place, or any recreation and park district, or any regional park or open-space district shall be guilty of an infraction if the city, county, or city and county has enacted an ordinance that prohibits the possession of those containers in those areas or the consumption of alcoholic beverages in those areas.' [Cal. Bus. Code \u00a7 25620(a)]) Erika can raise a constitutional defense, arguing that the city violated the Equal Protection Clause of the 14th amendment by selectively enforcing the rules related to public possession or consumption of open alcohol. The facts state that the yoga group routinely brought wine to evening classes at the park; Erika can argue that the yogis were similarly situated (and not prosecuted), and that the decision to prosecute her was based on an arbitrary classification (as a dog owner). This is a weak argument, as there is nothing in the facts to suggest that the officer here chose to target Erika with a discriminatory motive, and her distinction from the yogis is not a constitutionally-protected class (e.g., gender, viewpoint, ethnicity, etc.)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Identifies that Erika can raise equitable estoppel against the leash law violation.",
+    "sources": "PEN_597.1; City of Long Beach v Mansell",
+    "justification": "There is no uniform leash law in California, as the state defers to local municipalities to establish their own regulations. For example, California's Penal Code authorizes the seizure and citation of owners whose animals are not restrained as required by local ordinance. 'Every owner, driver, or keeper of any animal who permits the animal to be in any building, enclosure, lane, street, square, or lot of any city, county, city and county, or judicial district without proper care and attention is guilty of a misdemeanor.' [Cal. Pen. Code \u00a7 597.1(a)(1)] The facts indicate that Erika's city has clearly established laws in place, as shown by the various signs around the community park that require dogs to be leashed. Erika can be charged with a violation per the details of the local ordinance, though the specifics of this ordinance are not made clear by the prompt. Erika can argue that the city, through long-standing non-enforcement of the leash laws, created a de facto public custom amounting to implied consent. However, municipal nonfeasance does not equate to an authorization of unlawful conduct, and it does not estop future government enforcement. [See City of Long Beach v. Mansell (1970) 3 Cal.3d 493: 'It is settled that '[t]he doctrine of equitable estoppel may be applied against the government where justice and right require it. (See generally 28 Am. Jur.2d, Estoppel and Waiver, \u00a7\u00a7 122-133, pp. 782-802; 31 C.J.S., Estoppel, \u00a7\u00a7 138-147, pp. 675-733.) Correlative to this general rule, however, is the well-established proposition that an estoppel will not be applied against the government if to do so would effectively nullify 'a strong rule of policy, adopted for the benefit of the public'] Here, leash laws are in place to protect the public, and so the court would not be likely to impose the doctrine of estoppel against the city. Estoppel is therefore not a viable full legal defense, but it might be persuasive in seeking dismissal or diversion.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

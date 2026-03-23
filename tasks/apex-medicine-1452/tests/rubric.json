@@ -1,0 +1,116 @@
+{
+  "criterion 1": {
+    "description": "States that the patient's joint pain is associated with dermatomyositis (DM).",
+    "sources": "Patient infor.pdf",
+    "justification": "From the Patient infor.pdf: 'He takes ibuprofen and acetaminophen frequently for joint pain and antihistamines for his seasonal allergies.' 'Dermatomyositis can cause non-erosive polyarthritis or arthralgia of the small joints of the hands. Patients may present with joint pain or swelling.' https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the patient's hyperkeratosis palmar is associated with DM.",
+    "sources": "Patient info.pdf",
+    "justification": "From the Patient infor.pdf: 'There is also visible fissuring and hyperkeratosis on the patient's hands.' 'Mechanic's hands: hyperkeratotic, cracked horizontal lines on the palmar and lateral aspects of the fingers.' https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that another term for hyperkeratosis palmar is mechanic's hands.",
+    "sources": "",
+    "justification": "'Mechanic's hands: hyperkeratotic, cracked horizontal lines on the palmar and lateral aspects of the fingers.' https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the patient's erythema scalp is associated with DM.",
+    "sources": "Patient info.pdf",
+    "justification": "From the Patient infor.pdf: 'Diffuse scale and erythema noted over the scalp.' 'Scaling diffuse erythema of the scalp consistent with scalp dermatomyositis.' https://jamanetwork.com/journals/jamadermatology/fullarticle/712173",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that the patient's scale scalp is associated with DM.",
+    "sources": "Patient info.pdf",
+    "justification": "From the Patient infor.pdf: 'Diffuse scale and erythema noted over the scalp.' 'Scaling diffuse erythema of the scalp consistent with scalp dermatomyositis.' https://jamanetwork.com/journals/jamadermatology/fullarticle/712173",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Recognizes that the patient's reduced DLCO (Diffusion Capacity of the Lungs for Carbon Monoxide testing) is consistent with interstitial lung disease (ILD).",
+    "sources": "Patient info.pdf",
+    "justification": "From the Patient infor.pdf: 'DLCO: mildly reduced, between 60% and 75% of predicted value.' 'Patients may present with exertional dyspnea, exercise intolerance, and non-productive cough due to underlying interstitial lung disease (ILD).' https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that ILD is associated with DM.",
+    "sources": "",
+    "justification": "'Patients may present with exertional dyspnea, exercise intolerance, and non-productive cough due to underlying interstitial lung disease (ILD).' https://www.ncbi.nlm.nih.gov/books/NBK558917/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Concludes that the patient's clinical presentation is concerning for DM.",
+    "sources": "",
+    "justification": "Based on the patient's clinical findings, including scalp dermatitis, hyperkeratosis palmar, joint pain, and dyspnea, the patient's clinical presentation is concerning for DM.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      4,
+      5,
+      7,
+      2
+    ]
+  },
+  "criterion 9": {
+    "description": "Lists at least 3 of the following DM findings associated with the patient's scalp biopsy: epidermal atrophy, interface dermatitis, perivascular lymphocytes, or increased dermal mucin.",
+    "sources": "",
+    "justification": "'On light microscopy, DM skin lesions usually demonstrate mild atrophy of the epidermis with vacuolar changes in the basal keratinocyte layer, as well as a perivascular lymphocytic infiltrate in the dermis [31]. This is referred to as interface dermatitis. In addition, patients with DM frequently have increased dermal mucin in the dermis.' https://www.uptodate.com/contents/diagnosis-and-differential-diagnosis-of-dermatomyositis-and-polymyositis-in-adults",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  }
+}

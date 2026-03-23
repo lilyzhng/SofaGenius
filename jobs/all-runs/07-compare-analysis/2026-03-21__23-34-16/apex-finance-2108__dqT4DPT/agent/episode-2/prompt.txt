@@ -1,0 +1,36 @@
+New Terminal Output:
+
+root@ee2595532515:/app# ls -la /app/data/
+total 1424
+drwxr-xr-x 2 root root    4096 Mar 22 06:34  .
+drwxr-xr-x 1 root root    4096 Mar 22 06:34  ..
+-rw-r--r-- 1 root root 1448837 Mar 22 04:43 'Nike-Inc-2025 Form-10K .pdf'
+root@ee2595532515:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

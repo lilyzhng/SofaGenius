@@ -1,0 +1,54 @@
+New Terminal Output:
+
+root@31fea87767f4:/app# python3 extract_full_data.py
+=== EXTRACTING FULL MODEL DATA ===
+
+Transaction Structure:
+FY24 EBITDA: $16,637k
+Purchase Enterprise Value: $66,546k
+Senior Debt: $16,637k
+Subordinate Debt: $8,318k
+Rollover Equity: $6,763k
+Sponsor Equity: $38,324k
+
+EBITDA Projections:
+Years: [datetime.datetime(2022, 12, 31, 0, 0), datetime.datetime(2023, 12, 31, 0, 0), datetime.datetime(2024, 12, 31, 0, 0), datetime.datetime(2025, 12, 31, 0,
+0), datetime.datetime(2026, 12, 31, 0, 0), datetime.datetime(2027, 12, 31, 0, 0), datetime.datetime(2028, 12, 31, 0, 0), datetime.datetime(2029, 12, 31, 0, 0)]
+EBITDA: [8085.172175400006, 7598.384048879094, 8318.254226224824, 8906.637713389122, 9303.029304349491, 10140.561173162932, 10838.830677772166, 11698.1344664997
+5]
+
+=== DEBT STRUCTURE ===
+Debt sheet preview:
+     0                                          1         2             3        4                    5                    6                    7
+0  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+1  NaN                                    4. Debt       NaN           NaN      NaN                  NaN                  NaN                  NaN
+2  NaN               In USD 000, FY ending Dec 31       NaN           NaN      NaN                  NaN                  NaN                  NaN
+3  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+4  NaN                               Debt Paydown  Leverage        Amount  Pricing                 Term         Amortization              Balloon
+5  NaN                                Senior Debt         2  16636.508452    0.065                    5                   10                    0
+6  NaN                           Subordinate Debt         1   8318.254226     0.08                    5                   10                    0
+7  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+8  NaN              Circularity Toggle ("0" = On)         0           NaN      NaN    Historical Period                  NaN                  NaN
+9  NaN                                        NaN       NaN           NaN   Period                  NaN                  NaN                  NaN
+10 NaN                                        NaN       NaN           NaN      NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+11 NaN                                        NaN       NaN           NaN      NaN              FY2022A              FY2023A             FY2024PF
+12 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+13 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+14 NaN                              Debt Schedule       NaN           NaN      NaN                  NaN                  NaN                  NaN
+15 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+16 NaN   Cash Available for Cash Sweep / Revolver       NaN           NaN      NaN                  NaN                  NaN                  NaN
+17 NaN                       Plus: Beginning Cash       NaN           NaN        $                  NaN                  NaN                  NaN
+18 NaN  Plus: Cash Flow Available After Repayment       NaN           NaN        $                  NaN                  NaN                  NaN
+19 NaN                     Plus: Capitalizations        NaN           NaN        $                  NaN                  NaN                  NaN
+
+=== MORE TRANSACTION DETAILS ===
+Row 29: Assets - ['Credits', 'FY2024PF', nan, np.float64(nan), np.float64(nan)]
+Row 30: Cash and Cash Equivalent - [-5469.191153999998, 1000, nan, np.float64(nan), np.float64(nan)]
+Row 31: Accounts Receivable - [nan, 4001.8284570000014, nan, np.float64(nan), np.float64(nan)]
+Row 32: Inventories - [nan, 2607.3523839470367, nan, np.float64(nan), np.float64(nan)]
+Row 33: Other Current Assets - [2495.476267867447, 2495.476267867447, nan, np.float64(nan), np.float64(nan)]
+Row 34: Total Current Assets - [nan, 10104.657108814485, nan, np.float64(nan), np.float64(nan)]
+Row 35: PP&E - [nan, 359.20612999999986, nan, np.float64(nan), np.float64(nan)]
+Row 36: Goodwill  - [nan, 63079.102078851545, nan, np.float64(nan), np.float64(nan)]
+Row 37: Total Assets - [nan, 73542.96531766604, nan, np.float64(nan), np.float64(nan)]
+root@31fea87767f4:/app#

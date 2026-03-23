@@ -1,0 +1,10 @@
+{
+  "analysis": "I can see there are several legal documents available: Virginia Code Ann. § 18.2-47 (which likely contains the statutory definition of abduction) and four case law documents (Cardwell, Hoyt, Pritchard, and Walker cases). These will provide the legal framework for analyzing Jim's potential abduction charges. Let me start by examining the Virginia Code section first, as it will contain the statutory elements.",
+  "plan": "I'll first read the Virginia Code section 18.2-47 to understand the statutory definition and elements of abduction. Then I'll examine the case law to understand how courts have interpreted these elements. Finally, I'll apply this legal framework to the facts involving Jim's actions toward Bobby and the bank tellers.",
+  "commands": [
+    {
+      "keystrokes": "file \"data/Va. Code Ann. _ 18.2-47.pdf\"\n",
+      "duration": 0.1
+    }
+  ]
+}

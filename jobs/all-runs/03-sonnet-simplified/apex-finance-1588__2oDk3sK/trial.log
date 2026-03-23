@@ -1,0 +1,14 @@
+max_turns (f.k.a. max_episodes) artificially limited to 10. Consider removing this limit for better task completion.
+Overriding memory to 2048 MB alters the task from its intended configuration. This could disqualify you from leaderboard submissions for some benchmarks.
+Parser warnings: - Extra text detected before JSON object
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json
+Trajectory dumped to jobs/smoke-test-v2/2026-03-21__22-26-34/apex-finance-1588__2oDk3sK/agent/trajectory.json

@@ -1,0 +1,254 @@
+{
+  "criterion 1": {
+    "description": "Mentions the patient is 5 years old.",
+    "sources": "",
+    "justification": "From the prompt: 'A 5-year-old previously healthy male is admitted to the hospital.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Mentions the physical exam finding of pubic hair.",
+    "sources": "Attachement 1495.pdf",
+    "justification": "From the Attachment 1495.pdf: 'GU: circumcised. Testicles down bilaterally, slightly full, symmetric. 1+ pubic hair.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Mentions the physical exam finding of full testicles.",
+    "sources": "Attachement 1495.pdf",
+    "justification": "From the Attachment 1495.pdf: 'GU: circumcised. Testicles down bilaterally, slightly full, symmetric. 1+ pubic hair.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Concludes the patient has a physical exam consistent with precocious puberty.",
+    "sources": "",
+    "justification": "Pubic hair and enlarged testicles in a 5 year old male are consistent with precocious puberty. 'Precocious puberty \u2013 Precocious puberty is usually defined as breast development prior to eight years of age in assigned females and testicular enlargement before the age of nine years in assigned males. Secondary sex characteristics (Tanner stages) \u2014 The development of secondary sex characteristics consists of a series of events that usually proceed in a predictable order, with some variation in timing of onset, sequence, and tempo (figure 2A-B). Sexual maturity ratings are the staging system used most frequently. These are also known as 'Tanner stages' because they were popularized by Marshall and Tanner [49,50]. Tanner stages describe the development of secondary sex characteristics, consisting of breast changes in children with a predominantly estradiol-driven puberty, genital changes in children with a predominantly testosterone-driven puberty, and pubic hair changes in both. Sexual maturity ratings for pubic hair, breasts, and male genitalia each consist of five stages, with stage 1 representing prepuberty and stage 5 representing full adult development (table 1). The various stages are illustrated in the figures (figure 3 and figure 4 and figure 5).' UpToDate - Normal Puberty https://www.uptodate.com/contents/normal-puberty?sectionName=Secondary%20sex%20characteristics%20%28Tanner%20stages%29&search=precocious%20puberty&topicRef=5812&anchor=H4&source=see_link#H1595675304",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      19
+    ]
+  },
+  "criterion 5": {
+    "description": "Mentions the elevated DHEAS on labs.",
+    "sources": "",
+    "justification": "From the prompt: 'Labs showed elevated DHEAS.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Concludes the most likely underlying diagnosis is an adrenocortical tumor.",
+    "sources": "",
+    "justification": "Precocious puberty in a 5 year old male with elevated DHEAS on lab work is most likely caused by an adrenocortical tumor. 'Children usually present with virilization (84 percent), while isolated glucocorticoid excess (Cushing's syndrome) is much less common (6 percent) [51,87].' UpToDate, Clinical Presentation and Evaluation of Adrenocortical Tumors. https://www.uptodate.com/contents/clinical-presentation-and-evaluation-of-adrenocortical-tumors?search=premature%20adrenarche&topicRef=5812&source=see_link#H16 'Adrenocortical carcinoma (ACC) is a rare malignant tumor which is more common in women and hirsutism may be an early sign of the disease. High DHEAS level is considered as the hallmark of the disease.' Turkish Journal of Endocrinology and Metabolism https://www.endocrinolrespract.org/Content/files/sayilar/54/6-1-0_25-29.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "Mentions that the Children's Oncology Group staging for adrenocortical tumors is 4 stages.",
+    "sources": "",
+    "justification": "'Although the AJCC TNM staging system is widely used in ACCs, a clinical staging scheme has been proposed by the Children's Oncology Group (COG), according to tumor weight, completeness of resection and presence of metastases [156\u2013158] (Table 7). When present, the brain, liver, lungs, and bone are the organs most frequently affected by metastases [159]. In addition to the role of Ki67 immunohistochemistry, meta-analyses have also confirmed the prognostic significance of the following parameters: age, stage, tumor weight\u2009>\u2009200 g, extra-adrenal extension, incomplete resection, metastatic disease, and cortisol secretion [152, 155, 157]. Table 7: The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation.' Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      20
+    ]
+  },
+  "criterion 8": {
+    "description": "Mentions that stage 1 for COG staging of adrenocortical tumors includes complete resection.",
+    "sources": "",
+    "justification": "'The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation.' Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Mentions that stage 1 for COG staging of adrenocortical tumors includes negative margins.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 10": {
+    "description": "Mentions that stage 1 for COG staging of adrenocortical tumors includes tumor weight < 200 grams.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 11": {
+    "description": "Mentions that stage 1 for COG staging of adrenocortical tumors includes no metastasis.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 12": {
+    "description": "Mentions that stage 2 for COG staging of adrenocortical tumors includes complete resection.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 13": {
+    "description": "Mentions that stage 2 for COG staging of adrenocortical tumors includes negative margins.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 14": {
+    "description": "Mentions that stage 2 for COG staging of adrenocortical tumors includes tumor weight > 200 grams.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 15": {
+    "description": "Mentions that stage 2 for COG staging of adrenocortical tumors includes no metastasis.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 16": {
+    "description": "Mentions that stage 3 for COG staging of adrenocortical tumors includes residual disease post-operatively.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 17": {
+    "description": "Mentions that stage 3 for COG staging of adrenocortical tumors includes inoperable tumors.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 18": {
+    "description": "Mentions that stage 4 for COG staging of adrenocortical tumors includes metastasis at presentation.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors: Stage 1: Tumor completely excised with negative margins, tumor weight < 200 grams, no metastases Stage 2: Tumor completely excised with negative margins, tumor weight > 200 grams, no metastases Stage 3: Microscopic or gross incomplete resection or inoperable tumor. Stage 4: Hematogenous metastases at clinical presentation. Overview of the 2022 WHO Classification of Adrenal Cortical Tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 19": {
+    "description": "Mentions the patient's gender is male.",
+    "sources": "",
+    "justification": "From the prompt: 'A 5-year-old previously healthy male is admitted to the hospital.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 20": {
+    "description": "Utilizes the Children's Oncology Group for adrenocortical tumor staging.",
+    "sources": "",
+    "justification": "The Children's Oncology Group (COG) staging system for pediatric adrenal cortical tumors. https://pmc.ncbi.nlm.nih.gov/articles/PMC8920443/#Sec8",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  }
+}

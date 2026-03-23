@@ -1,0 +1,224 @@
+{
+  "criterion 1": {
+    "description": "Requires that continuing royalty payments apply only for a fixed term following execution of the Agreement.",
+    "sources": "Prompt",
+    "justification": "The prompt specifies that royalties are to continue only for a limited period, so the Agreement must include a clear end date or duration, and defining a fixed term prevents open-ended obligations and ensures that the arrangement functions as a transitional license rather than an ongoing revenue-sharing relationship.\u00a0 This also provides a natural cutoff that aligns with the parties' intent to resolve the dispute fully.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Requires that royalties apply only to licensed hemp activities conducted in compliance with applicable hemp regulations.",
+    "sources": "4115A.pdf",
+    "justification": "Limiting royalty accrual to lawful hemp activity ensures that Company does not profit from or appear to facilitate violations of hemp law, without forfeiting payment for compliant production. Virginia law prohibits any person from growing, handling, or processing hemp without registration from the Virginia Department of Agriculture and Consumer Services (Va. Code \u00a7 3.2-4115(A)), and this clause keeps the Agreement enforceable under federal law (7 U.S.C. \u00a7 1639p) while complementing Company's separate right to suspend Friend's license upon evidence of noncompliance. https://law.lis.virginia.gov/vacode/title3.2/chapter41.1/section3.2-4115/ https://www.law.cornell.edu/uscode/text/7/1639p",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Requires Friend to make a one-time lump-sum settlement payment to Company as part of the overall resolution.",
+    "sources": "Prompt",
+    "justification": "The prompt explicitly states that Friend will pay a lump-sum to settle the dispute, so the Agreement must include that obligation to ensure the release is supported by consideration and provides immediate compensation for past use of Company's Genetics, which resolves prior claims cleanly and distinguishes the settlement payment from future royalties.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Defines New Genetics by requiring it to include at least five of the following elements: Company's proprietary parental Genetics; derived material; reference DNA or genotypic data; deposited reference sample; or identifiable breeding technology.",
+    "sources": "Prompt",
+    "justification": "The prompt makes clear that Friend's 'new' strain looks identical to Company's missing plants, so the definition of New Genetics needs to be expansive.\u00a0 Listing concrete markers such as parental lines, DNA sequences, and a lab-held reference sample creates a measurable boundary for what is licensed and mirrors the evidentiary framework for distinct plant varieties under 7 U.S.C. \u00a7 2321 et seq. and the infringement provisions of 7 U.S.C. \u00a7 2541, which together define how genetic distinctness and ownership are proven under federal law.\u00a0 Failing to precisely define the scope of the New Genetics could allow Friend to easily rebrand under another name. https://www.law.cornell.edu/uscode/text/7/2321 https://www.law.cornell.edu/uscode/text/7/2541",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that Company retains ownership of all genetic material related to the New Genetics.",
+    "sources": "Prompt",
+    "justification": "Stating that Company keeps ownership of all genetic material is a basic but critical safeguard because it clarifies that Company is providing Friend with only a temporary license, not an ownership interest. This type of license is routine in seed-technology and biotech collaboration agreements because it blocks any implied assignment of intellectual property rights and keeps control with the original developer.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that Friend must maintain a current hemp producer registration issued by the Virginia Department of Agriculture and Consumer Services.",
+    "sources": "4115A.pdf",
+    "justification": "Virginia law prohibits growing or processing hemp without a Virginia Department of Agriculture and Consumer Services (VDACS) registration and permit (Va. Code \u00a7 3.2-4115(A)). The Agreement should require Friend to keep its registration current so that every plant grown or sold under the deal is legal, and doing so provides a simple way for Company to confirm compliance during audits without having to monitor Friend's daily operations. https://law.lis.virginia.gov/vacode/title3.2/chapter41.1/section3.2-4115/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that the license grant to Friend to use the New Genetics includes at least three of the following restrictions: limited, non-exclusive, non-transferable, time-bound to the royalty period, or revocable upon noncompliance.",
+    "sources": "Prompt",
+    "justification": "The prompt implies that Company will allow Friend to continue using the New Genetics through a settlement involving royalty payments, which requires a clearly defined license. To keep Company's rights protected, the license must include explicit limitations, such as being limited in scope, non-exclusive, non-transferable, time-bound to the royalty period, and revocable for breach or noncompliance, which ensure Friend's use remains within the narrow purpose of resolving the dispute while preserving Company's ownership and control over the Genetics.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Authorizes Company to suspend Friend's license upon at least three of the following occurrences: receipt of a regulator violation notice, failure to provide a current registration, failure to supply certificates of analysis, failure to remit royalties, or credible evidence of noncompliance.",
+    "sources": "Prompt",
+    "justification": "A suspension right gives Company a quick, low-conflict way to stop Friend's operations if there's a red flag, such as a failed THC test, a missing certificate, or a late royalty report. Because hemp is a regulated crop under 7 C.F.R. Part 990 and regulators expect license holders to act immediately when compliance issues surface, having a clear list of triggers for suspension lets Company freeze activity before the situation escalates into an enforcement problem. https://www.ecfr.gov/current/title-7/subtitle-B/chapter-IX/part-990",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Requires Friend to indemnify Company for at least five of the following categories of loss: fines, penalties, tax assessments, product seizure costs, destruction costs, investigation expenses, defense expenses, or regulator-mandated remediation.",
+    "sources": "",
+    "justification": "If Friend violates hemp rules and gets fined or sued, indemnity ensures that Friend pays, not Company. This allocation mirrors how agribusiness contracts handle field-level risk under Virginia common law, where the operator carries the liability because it controls compliance (see Estes Express Lines v. Chopper Express, Inc., 273 Va. 358, 365-367 (2007)), and it also protects Company if regulators claim that its royalties were profits from illegal conduct. https://www.casemine.com/judgement/us/59146ee0add7b0493433eac2",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "States that Friend must report royalty data to Company at least monthly.",
+    "sources": "Prompt",
+    "justification": "Monthly royalty reports let Company spot trends or shortfalls quickly, keep the numbers aligned with payments, and make sure revenue comes from compliant seed sales. This process follows standard accounting practice in royalty-based licensing.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 11": {
+    "description": "Grants Company the right to audit Friend's records concerning New Genetics at least quarterly.",
+    "sources": "Prompt",
+    "justification": "Quarterly audits balance control and practicality, and because the prompt says Company wants audit rights, this provision gives it enough access to check Friend's sales and compliance records without micromanaging. Regular audits discourage underreporting and are standard in licensing deals where royalties depend on self-reported sales data.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 12": {
+    "description": "Prohibits Friend from at least five of the following actions without Company's written consent: breeding new lines from New Genetics, backcrossing, introgression, rebranding derived material, exporting seed for replication, or sublicensing to third parties.",
+    "sources": "Prompt",
+    "justification": "Friend already rebranded Company's strain once by producing the New Genetics, so the Agreement needs clear guardrails to prevent continued misuse of the Genetics. Prohibiting derivative work, such as backcrossing, relabeling, or sublicensing, closes the loopholes that allow someone to commercialize the same genetics under another name. These restrictions also mirror the limits in the Plant Variety Protection Act (7 U.S.C. \u00a7 2541(1)-(2)), which prohibit reproducing or selling protected seed without the owner's consent. https://www.law.cornell.edu/uscode/text/7/2541",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 13": {
+    "description": "Requires Friend to provide written certification of destruction of all New Genetics within 30 days after termination of the license (acceptable range: 15 to 30 days).",
+    "sources": "",
+    "justification": "Once the deal terminates and license ends, Friend must confirm that every plant, seed, or tissue sample is destroyed within a set period, and setting a timeframe of fifteen to thirty days is typical, and documentation gives Company proof that the Genetics are out of circulation and helps prevent them from resurfacing later in commerce or research.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 14": {
+    "description": "Limits the license to jurisdictions where the licensed activity is lawful.",
+    "sources": "",
+    "justification": "This clause prevents Friend from producing or selling hemp in areas where such activities remain restricted. Under 7 U.S.C. \u00a7 1639p(a)(2), only states and tribes with approved plans can regulate hemp, so tying the license to jurisdictions where producing or selling hemp is lawful ensures neither party steps outside a recognized program and helps avoid federal preemption or state-law conflicts. https://www.law.cornell.edu/uscode/text/7/1639p",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7
+    ]
+  },
+  "criterion 15": {
+    "description": "States that at least four of the following obligations survive termination of the Agreement: confidentiality, nonuse of New Genetics, cooperation with post-termination audits, destruction certification, or indemnification.",
+    "sources": "",
+    "justification": "Even after termination, risks to Company can arise if Friend keeps data or material. The Agreement should ensure that confidentiality, nonuse of New Genetics, cooperation with post-termination audits, destruction certification, and indemnification obligations survive so that Company's Genetics remain protected and it can still audit or recover losses from pre-termination conduct. These survival clauses are standard in biotech settlements because proprietary materials retain value long after a license ends.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9,
+      11,
+      12,
+      13
+    ]
+  },
+  "criterion 16": {
+    "description": "Requires that the Agreement include a mutual release of past claims arising from the dispute over the Genetics.",
+    "sources": "Prompt",
+    "justification": "Because the prompt states that the parties 'wish to resolve the dispute privately to avoid litigation,' the Agreement must include a release clause that settles all prior claims relating to the Genetics. A clear release confirms that the lump-sum payment and royalty structure constitute full consideration for resolving the dispute and prevent either party from reopening past infringement or ownership claims. A mutual release is standard practice in intellectual property settlements where prior conduct is disputed and both parties seek finality.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 17": {
+    "description": "Requires that the settlement release expressly exclude any waiver of any penalties from its scope.",
+    "sources": "Prompt",
+    "justification": "The prompt explicitly states that Company 'insists that any release exclude regulatory or tax penalties,' so the Agreement should require that the release not waive liability for government-imposed penalties or taxes. This carveout prevents the release from being construed as shielding unlawful conduct or unpaid tax obligations. It makes the release enforceable and consistent with the parties' intent to resolve only private claims, not regulatory or statutory liabilities.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  }
+}

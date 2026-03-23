@@ -1,0 +1,479 @@
+[?2004hroot@31fea87767f4:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@31fea87767f4:/app# clear
+[?2004l[H[J[3J[?2004hroot@31fea87767f4:/app# ls -la /app/data/
+[?2004ltotal 132
+drwxr-xr-x 2 root root   4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root   4096 Mar 22 05:19  ..
+-rw-r--r-- 1 root root 124255 Mar 22 04:43 'ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004hroot@31fea87767f4:/app# python3 -c "import pandas as pd; xl = pd.ExcelFile('/app/data/ConSup Inc Financial Model_PROMPT.xlsx'); print('Sheets:', xl.sheet_names)"
+[?2004lSheets: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+[?2004hroot@31fea87767f4:/app# python3 -c "import pandas as pd; df = pd.read_excel('/app/data/ConSup Inc Financial Model_PROMPT.xlsx', sheet_name='Transaction Structure'); print('Transaction Structure:'); print(df.head(20))"
+[?2004lTransaction Structure:
+    Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0          NaN            1. Transaction Structure         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+1          NaN        In USD 000, FY ending Dec 31         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+2          NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+3          NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+4          NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+5          NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+6          NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+7          NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+8          NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+9          NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+10         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+11         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+12         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+13         NaN                    Transaction Date         NaN       Date  ...        NaN                        NaN         NaN           NaN
+14         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+15         NaN               Closing Balance Sheet         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+16         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+17         NaN                Goodwill Calculation         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+18         NaN           Purchase Enterprise Value         NaN          $  ...        NaN                        NaN         NaN           NaN
+19         NaN                          Less: Debt         NaN          $  ...        NaN                        NaN         NaN           NaN
+
+[20 rows x 13 columns]
+[?2004hroot@31fea87767f4:/app# cat > analyze_model.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Excel file
+[?2004l[?2004h> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Transaction Structure
+[?2004l[?2004h> print("=== TRANSACTION STRUCTURE ===")
+[?2004l[?2004h> trans_df = pd.read_excel(xl_file, sheet_name='Transaction Structure', header=None)
+[?2004l[?2004h> print(trans_df.iloc[0:25, 0:4].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== FINANCIAL STATEMENTS ===")
+[?2004l[?2004h> financial_df = pd.read_excel(xl_file, sheet_name='Financial Statements', header=None)
+[?2004l[?2004h> print(financial_df.iloc[0:20, 0:8].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== ASSUMPTIONS ===")
+[?2004l[?2004h> assumptions_df = pd.read_excel(xl_file, sheet_name='Assumptions', header=None)
+[?2004l[?2004h> print(assumptions_df.iloc[0:20, 0:4].to_string())
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@31fea87767f4:/app# python3 analyze_model.py
+[?2004l=== TRANSACTION STRUCTURE ===
+     0                                   1   2      3
+0  NaN                                 NaN NaN    NaN
+1  NaN            1. Transaction Structure NaN    NaN
+2  NaN        In USD 000, FY ending Dec 31 NaN    NaN
+3  NaN                                 NaN NaN    NaN
+4  NaN                         Assumptions NaN    NaN
+5  NaN                         FY24 EBITDA NaN      $
+6  NaN                   Purchase Multiple NaN      x
+7  NaN                Senior Debt / EBITDA NaN      x
+8  NaN           Subordinate Debt / EBITDA NaN      x
+9  NaN                     Rollover Equity NaN      %
+10 NaN                         Cash to B/S NaN      $
+11 NaN                    Transaction Fees NaN      %
+12 NaN                      Financing Fees NaN      %
+13 NaN  Financing Fees Amortization Period NaN  Years
+14 NaN                    Transaction Date NaN   Date
+15 NaN                                 NaN NaN    NaN
+16 NaN               Closing Balance Sheet NaN    NaN
+17 NaN                                 NaN NaN    NaN
+18 NaN                Goodwill Calculation NaN    NaN
+19 NaN           Purchase Enterprise Value NaN      $
+20 NaN                          Less: Debt NaN      $
+21 NaN                          Plus: Cash NaN      $
+22 NaN               Purchase Equity Value NaN      $
+23 NaN          Less: Book Value of Equity NaN      $
+24 NaN             Plus: Existing Goodwill NaN      $
+
+=== FINANCIAL STATEMENTS ===
+      0                             1    2   3    4                    5                    6                    7
+0   NaN                           NaN  NaN NaN  NaN                    0                    0                -0.15
+1   NaN       3. Financial Statements  NaN NaN  NaN                  NaN                  NaN                  NaN
+2   NaN  In USD 000, FY ending Dec 31  NaN NaN  NaN                  NaN                  NaN                  NaN
+3   NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+4   NaN                           NaN  NaN NaN  NaN    Historical Period                  NaN                  NaN
+5   NaN                           NaN  NaN NaN  NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+6   NaN                           NaN  NaN NaN  NaN              FY2022A              FY2023A             FY2024PF
+7   NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+8   NaN                         Check    . NaN  NaN                    0                    0                    0
+9     X              Income Statement  NaN NaN  NaN                  NaN                  NaN                  NaN
+10  NaN                           NaN  NaN NaN  NaN                  NaN                  NaN                  NaN
+11  NaN                       Revenue  NaN NaN    $         30571.118162         30347.674004         31378.902996
+12  NaN                    Growth (%)  NaN NaN    %                  NaN            -0.007309              0.03398
+13  NaN                 Core Business  NaN NaN    $         30571.118162         30347.674004         31378.902996
+14  NaN  New Construction (Expansion)  NaN NaN    $                    0                    0                    0
+15  NaN                  Hospitality   NaN NaN    $                    0                    0                    0
+16  NaN                U.S. Expansion  NaN NaN    $                    0                    0                    0
+17  NaN            Cost Of Goods Sold  NaN NaN    $         17512.269986         17843.689955          17937.42077
+18  NaN                    Growth (%)  NaN NaN    %                  NaN             0.018925             0.005253
+19  NaN                 Core Business  NaN NaN    $         17512.269986         17843.689955          17937.42077
+
+=== ASSUMPTIONS ===
+     0                             1                    2          3
+0  NaN                           NaN                  NaN        NaN
+1  NaN               2. Assumptions                   NaN        NaN
+2  NaN  In USD 000, FY ending Dec 31                  NaN        NaN
+3  NaN                           NaN                  NaN        NaN
+4  NaN                 Growth Levers        Growth Timing  Selection
+5  NaN              New Construction  2025-12-31 00:00:00        Yes
+6  NaN                   Hospitality  2026-12-31 00:00:00        Yes
+7  NaN                U.S. Expansion  2027-12-31 00:00:00        Yes
+8  NaN                           NaN                  NaN        NaN
+9  NaN                           NaN                  NaN        NaN
+10 NaN              Income Statement                  NaN        NaN
+11 NaN                           NaN                  NaN        NaN
+12 NaN                       Revenue                  NaN        NaN
+13 NaN                    Growth (%)                  NaN        NaN
+14 NaN                           NaN                  NaN        NaN
+15 NaN                 Core Business                  NaN        NaN
+16 NaN                    Growth (%)                  NaN       0.02
+17 NaN                           NaN                  NaN        NaN
+18 NaN  New Construction (Expansion)                  NaN        NaN
+19 NaN        Initial Assumption ($)                  NaN       2000
+[?2004hroot@31fea87767f4:/app# cat > analyze_model2.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Excel file
+[?2004l[?2004h> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Transaction Structure - look at more columns for values
+[?2004l[?2004h> print("=== TRANSACTION STRUCTURE VALUES ===")
+[?2004l[?2004h> trans_df = pd.read_excel(xl_file, sheet_name='Transaction Structure', header=None)
+[?2004l[?2004h> # Look for actual values in columns beyond the labels
+[?2004l[?2004h> for i in range(5, min(13, trans_df.shape[1])):
+[?2004l[?2004h>     print(f"\nColumn {i}:")
+[?2004l[?2004h>     print(trans_df.iloc[4:15, [1, i]].dropna().to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Financial Statements - look at more years
+[?2004l[?2004h> print("\n=== FINANCIAL PROJECTIONS ===")
+[?2004l[?2004h> financial_df = pd.read_excel(xl_file, sheet_name='Financial Statements', header=None)
+[?2004l[?2004h> # Look at the year headers
+[?2004l[?2004h> print("Year headers:")
+[?2004l[?2004h> print(financial_df.iloc[5:7, 5:12].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> # Look for EBITDA rows
+[?2004l[?2004h> print("\nLooking for EBITDA and key metrics:")
+[?2004l[?2004h> for i in range(50):
+[?2004l[?2004h>     if i < financial_df.shape[0]:
+[?2004l[?2004h>         row_label = str(financial_df.iloc[i, 1]).lower() if pd.notna(financial_df.iloc[i, 1]) else ""
+[?2004l[?2004h>         if 'ebitda' in row_label or 'ebit' in row_label:
+[?2004l[?2004h>             print(f"Row {i}: {financial_df.iloc[i, 1]} - Values:")
+[?2004l[?2004h>             print(financial_df.iloc[i, 5:12].to_string())
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@31fea87767f4:/app# python3 analyze_model2.py
+[?2004l=== TRANSACTION STRUCTURE VALUES ===
+
+Column 5:
+Empty DataFrame
+Columns: [1, 5]
+Index: []
+
+Column 6:
+                            1                 6
+4                 Assumptions           Sources
+5                 FY24 EBITDA       Senior Debt
+6           Purchase Multiple  Subordinate Debt
+7        Senior Debt / EBITDA  Rollover Equity 
+8   Subordinate Debt / EBITDA   Sponsor Equity 
+10                Cash to B/S            Total 
+
+Column 7:
+Empty DataFrame
+Columns: [1, 7]
+Index: []
+
+Column 8:
+                            1             8
+5                 FY24 EBITDA  16636.508452
+6           Purchase Multiple   8318.254226
+7        Senior Debt / EBITDA    6763.01211
+8   Subordinate Debt / EBITDA  38323.735289
+10                Cash to B/S  70041.510078
+
+Column 9:
+Empty DataFrame
+Columns: [1, 9]
+Index: []
+
+Column 10:
+                           1                          10
+4                 Assumptions                       Uses
+5                 FY24 EBITDA  Purchase Enterprise Value
+6           Purchase Multiple                Cash to B/S
+7        Senior Debt / EBITDA           Transaction Fees
+8   Subordinate Debt / EBITDA             Financing Fees
+10                Cash to B/S                     Total 
+11           Transaction Fees                     Check 
+
+Column 11:
+Empty DataFrame
+Columns: [1, 11]
+Index: []
+
+Column 12:
+                           1             12
+5                 FY24 EBITDA  66546.033810
+6           Purchase Multiple   1000.000000
+7        Senior Debt / EBITDA   1996.381014
+8   Subordinate Debt / EBITDA    499.095254
+10                Cash to B/S  70041.510078
+11           Transaction Fees      0.000000
+
+=== FINANCIAL PROJECTIONS ===
+Year headers:
+                    5                    6                    7                    8                    9                    10                   11
+5  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00  2025-12-31 00:00:00  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00
+6              FY2022A              FY2023A             FY2024PF              FY2025F              FY2026F              FY2027F              FY2028F
+
+Looking for EBITDA and key metrics:
+Row 30: EBITDA - Values:
+5      8085.172175
+6      7598.384049
+7      8318.254226
+8      8906.637713
+9      9303.029304
+10    10140.561173
+11    10838.830678
+[?2004hroot@31fea87767f4:/app# cat > extract_full_data.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> 
+[?2004l[?2004h> # Read Excel file
+[?2004l[?2004h> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004l[?2004h> 
+[?2004l[?2004h> print("=== EXTRACTING FULL MODEL DATA ===")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Transaction Structure
+[?2004l[?2004h> trans_df = pd.read_excel(xl_file, sheet_name='Transaction Structure', header=None)
+[?2004l[?2004h> 
+[?2004l[?2004h> # Key transaction metrics
+[?2004l[?2004h> print("\nTransaction Structure:")
+[?2004l[?2004h> print(f"FY24 EBITDA: ${trans_df.iloc[5, 8]:,.0f}k")
+[?2004l[?2004h> print(f"Purchase Enterprise Value: ${trans_df.iloc[5, 12]:,.0f}k")
+[?2004l[?2004h> print(f"Senior Debt: ${trans_df.iloc[5, 8]:,.0f}k")
+[?2004l[?2004h> print(f"Subordinate Debt: ${trans_df.iloc[6, 8]:,.0f}k")
+[?2004l[?2004h> print(f"Rollover Equity: ${trans_df.iloc[7, 8]:,.0f}k")
+[?2004l[?2004h> print(f"Sponsor Equity: ${trans_df.iloc[8, 8]:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Financial projections
+[?2004l[?2004h> financial_df = pd.read_excel(xl_file, sheet_name='Financial Statements', header=None)
+[?2004l[?2004h> 
+[?2004l[?2004h> # Get EBITDA projections - extend to see if FY2029 exists
+[?2004l[?2004h> print("\nEBITDA Projections:")
+[?2004l[?2004h> ebitda_row = 30  # Found earlier
+[?2004l[?2004h> print("Years:", financial_df.iloc[5, 5:15].tolist())
+[?2004l[?2004h> print("EBITDA:", financial_df.iloc[ebitda_row, 5:15].tolist())
+[?2004l[?2004h> 
+[?2004l[?2004h> # Check Debt sheet
+[?2004l[?2004h> print("\n=== DEBT STRUCTURE ===")
+[?2004l[?2004h> debt_df = pd.read_excel(xl_file, sheet_name='Debt', header=None)
+[?2004l[?2004h> print("Debt sheet preview:")
+[?2004l[?2004h> print(debt_df.iloc[0:20, 0:8].to_string())
+[?2004l[?2004h> 
+[?2004l[?2004h> # Look for more transaction details
+[?2004l[?2004h> print("\n=== MORE TRANSACTION DETAILS ===")
+[?2004l[?2004h> for i in range(20, 40):
+[?2004l[?2004h>     if i < trans_df.shape[0]:
+[?2004l[?2004h>         if pd.notna(trans_df.iloc[i, 1]):
+[?2004l[?2004h>             row_vals = trans_df.iloc[i, 8:13].tolist()
+[?2004l[?2004h>             if any(pd.notna(val) and val != 0 for val in row_vals):
+[?2004l[?2004h>                 print(f"Row {i}: {trans_df.iloc[i, 1]} - {row_vals}")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@31fea87767f4:/app# python3 extract_full_data.py
+[?2004l=== EXTRACTING FULL MODEL DATA ===
+
+Transaction Structure:
+FY24 EBITDA: $16,637k
+Purchase Enterprise Value: $66,546k
+Senior Debt: $16,637k
+Subordinate Debt: $8,318k
+Rollover Equity: $6,763k
+Sponsor Equity: $38,324k
+
+EBITDA Projections:
+Years: [datetime.datetime(2022, 12, 31, 0, 0), datetime.datetime(2023, 12, 31, 0, 0), datetime.datetime(2024, 12, 31, 0, 0), datetime.datetime(2025, 12, 31, 0, 0), datetime.datetime(2026, 12, 31, 0, 0), datetime.datetime(2027, 12, 31, 0, 0), datetime.datetime(2028, 12, 31, 0, 0), datetime.datetime(2029, 12, 31, 0, 0)]
+EBITDA: [8085.172175400006, 7598.384048879094, 8318.254226224824, 8906.637713389122, 9303.029304349491, 10140.561173162932, 10838.830677772166, 11698.13446649975]
+
+=== DEBT STRUCTURE ===
+Debt sheet preview:
+     0                                          1         2             3        4                    5                    6                    7
+0  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+1  NaN                                    4. Debt       NaN           NaN      NaN                  NaN                  NaN                  NaN
+2  NaN               In USD 000, FY ending Dec 31       NaN           NaN      NaN                  NaN                  NaN                  NaN
+3  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+4  NaN                               Debt Paydown  Leverage        Amount  Pricing                 Term         Amortization              Balloon
+5  NaN                                Senior Debt         2  16636.508452    0.065                    5                   10                    0
+6  NaN                           Subordinate Debt         1   8318.254226     0.08                    5                   10                    0
+7  NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+8  NaN              Circularity Toggle ("0" = On)         0           NaN      NaN    Historical Period                  NaN                  NaN
+9  NaN                                        NaN       NaN           NaN   Period                  NaN                  NaN                  NaN
+10 NaN                                        NaN       NaN           NaN      NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+11 NaN                                        NaN       NaN           NaN      NaN              FY2022A              FY2023A             FY2024PF
+12 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+13 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+14 NaN                              Debt Schedule       NaN           NaN      NaN                  NaN                  NaN                  NaN
+15 NaN                                        NaN       NaN           NaN      NaN                  NaN                  NaN                  NaN
+16 NaN   Cash Available for Cash Sweep / Revolver       NaN           NaN      NaN                  NaN                  NaN                  NaN
+17 NaN                       Plus: Beginning Cash       NaN           NaN        $                  NaN                  NaN                  NaN
+18 NaN  Plus: Cash Flow Available After Repayment       NaN           NaN        $                  NaN                  NaN                  NaN
+19 NaN                     Plus: Capitalizations        NaN           NaN        $                  NaN                  NaN                  NaN
+
+=== MORE TRANSACTION DETAILS ===
+Row 29: Assets - ['Credits', 'FY2024PF', nan, np.float64(nan), np.float64(nan)]
+Row 30: Cash and Cash Equivalent - [-5469.191153999998, 1000, nan, np.float64(nan), np.float64(nan)]
+Row 31: Accounts Receivable - [nan, 4001.8284570000014, nan, np.float64(nan), np.float64(nan)]
+Row 32: Inventories - [nan, 2607.3523839470367, nan, np.float64(nan), np.float64(nan)]
+Row 33: Other Current Assets - [2495.476267867447, 2495.476267867447, nan, np.float64(nan), np.float64(nan)]
+Row 34: Total Current Assets - [nan, 10104.657108814485, nan, np.float64(nan), np.float64(nan)]
+Row 35: PP&E - [nan, 359.20612999999986, nan, np.float64(nan), np.float64(nan)]
+Row 36: Goodwill  - [nan, 63079.102078851545, nan, np.float64(nan), np.float64(nan)]
+Row 37: Total Assets - [nan, 73542.96531766604, nan, np.float64(nan), np.float64(nan)]
+[?2004hroot@31fea87767f4:/app# cat > lbo_analysis.py << 'EOF'
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> from datetime import datetime
+[?2004l[?2004h> 
+[?2004l[?2004h> # Key data from the model
+[?2004l[?2004h> fy24_ebitda = 8318.254226224824
+[?2004l[?2004h> ebitda_projections = [8085.172175400006, 7598.384048879094, 8318.254226224824, 
+[?2004l[?2004h>                      8906.637713389122, 9303.029304349491, 10140.561173162932, 
+[?2004l[?2004h>                      10838.830677772166, 11698.1344664997]
+[?2004ll[?2004h> 
+[?2004l_[?2004h> # Transaction structure (in $000s)
+[?2004l[?2004h> senior_debt = 16636.508452
+[?2004l[?2004h> subordinate_debt = 8318.254226
+[?2004l[?2004h> total_debt = senior_debt + subordinate_debt
+[?2004l[?2004h> rollover_equity = 6763.01211
+[?2004l[?2004h> sponsor_equity = 38323.735289
+[?2004l[?2004h> total_equity = rollover_equity + sponsor_equity
+[?2004l[?2004h> entry_equity = total_equity
+[?2004lce[?2004h> 
+[?2004ln[?2004h> print("=== TPG LBO ANALYSIS ===")
+[?2004l[?2004h> print(f"Entry Equity Investment: ${total_equity:,.0f}k")
+[?2004l[?2004h> print(f"Entry Debt: ${total_debt:,.0f}k")
+[?2004l[?2004h> print(f"FY24 EBITDA: ${fy24_ebitda:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Adjust EBITDA projections for 7% vs 5% payroll growth
+[?2004l[?2004h> # Need to estimate payroll impact - assume payroll is ~30% of revenue
+[?2004l[?2004h> # Revenue in FY24 was ~$31,379k, so payroll might be ~$9,400k
+[?2004l[?2004h> # 2% additional growth on $9,400k = $188k impact growing each year
+[?2004l[?2004h> payroll_base = 9400  # Estimated
+[?2004l[?2004h> additional_payroll_impact = payroll_base * 0.02  # 2% additional growth
+[?2004l[?2004h> 
+[?2004lr[?2004h> # Adjust EBITDA projections (reduce EBITDA for higher payroll costs)
+[?2004l[?2004h> adjusted_ebitda = ebitda_projections.copy()
+[?2004l[?2004h> for i in range(4, len(adjusted_ebitda)):  # Start from FY25 (index 3)
+[?2004lf equity value from Multiple[?2004h>     years_from_fy25 = i - 3
+[?2004l[?2004h>     cumulative_impact = additional_payroll_impact * years_from_fy25 * (1.07 ** years_from_fy25)
+[?2004l[?2004h>     adjusted_ebitda[i] -= cumulative_impact
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\nAdjusted EBITDA Projections (7% vs 5% payroll growth):")
+[?2004le[?2004h> years = ['FY22A', 'FY23A', 'FY24PF', 'FY25F', 'FY26F', 'FY27F', 'FY28F', 'FY29F']
+[?2004l[?2004h> for i, year in enumerate(years):
+[?2004l[?2004h>     print(f"{year}: ${adjusted_ebitda[i]:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Debt paydown assumptions - assume debt pays down based on cash flow
+[?2004l[?2004h> # Simplified: assume 50% of excess cash flow goes to debt paydown
+[?2004l[?2004h> debt_balances = [total_debt]
+[?2004l[?2004h> for i in range(4, 8):  # FY25 to FY28
+[?2004l[?2004h>     # Assume 50% of EBITDA above maintenance capex goes to debt paydown
+[?2004l[?2004h>     cash_flow = adjusted_ebitda[i] * 0.6  # After taxes, capex, working capital
+[?2004l[?2004h>     debt_paydown = cash_flow * 0.4
+[?2004l[?2004h>     new_debt = max(0, debt_balances[-1] - debt_paydown)
+[?2004l[?2004h>     debt_balances.append(new_debt)
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\nDebt Balance Projections:")
+[?2004l[?2004h> for i, year in enumerate(['Entry', 'FY25F', 'FY26F', 'FY27F', 'FY28F']):
+[?2004l[?2004h>     print(f"{year}: ${debt_balances[i]:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Scenario 1: Exit FY28 at 15.0x EBITDA
+[?2004l[?2004h> fy28_ebitda = adjusted_ebitda[6]
+[?2004l[?2004h> fy28_exit_ev = fy28_ebitda * 15.0
+[?2004l[?2004h> fy28_exit_debt = debt_balances[4]
+[?2004l[?2004h> fy28_exit_equity = fy28_exit_ev - fy28_exit_debt
+[?2004l[?2004h> 
+[?2004l[?2004h> print(f"\n=== SCENARIO 1: FY28 EXIT AT 15.0x ===")
+[?2004l[?2004h> print(f"FY28 EBITDA: ${fy28_ebitda:,.0f}k")
+[?2004l[?2004h> print(f"Exit Enterprise Value: ${fy28_exit_ev:,.0f}k")
+[?2004l[?2004h> print(f"Exit Debt: ${fy28_exit_debt:,.0f}k")
+[?2004l[?2004h> print(f"Exit Equity Value: ${fy28_exit_equity:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Scenario 2: Exit FY29 at 16.0x EBITDA  
+[?2004l[?2004h> fy29_ebitda = adjusted_ebitda[7]
+[?2004l[?2004h> # Extend debt paydown to FY29
+[?2004l[?2004h> fy29_cash_flow = fy29_ebitda * 0.6
+[?2004l[?2004h> fy29_debt_paydown = fy29_cash_flow * 0.4
+[?2004l[?2004h> fy29_exit_debt = max(0, debt_balances[4] - fy29_debt_paydown)
+[?2004l[?2004h> fy29_exit_ev = fy29_ebitda * 16.0
+[?2004l[?2004h> fy29_exit_equity = fy29_exit_ev - fy29_exit_debt
+[?2004l[?2004h> 
+[?2004l[?2004h> print(f"\n=== SCENARIO 2: FY29 EXIT AT 16.0x ===")
+[?2004l[?2004h> print(f"FY29 EBITDA: ${fy29_ebitda:,.0f}k")
+[?2004l[?2004h> print(f"Exit Enterprise Value: ${fy29_exit_ev:,.0f}k")
+[?2004l[?2004h> print(f"Exit Debt: ${fy29_exit_debt:,.0f}k")
+[?2004l[?2004h> print(f"Exit Equity Value: ${fy29_exit_equity:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Calculate returns for both scenarios
+[?2004l[?2004h> def calculate_returns(exit_equity, years_held, entry_equity):
+[?2004l[?2004h>     # Waterfall: 8% preferred return, 5% management option pool, 20% carry
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Step 1: Return invested equity
+[?2004l[?2004h>     remaining_proceeds = exit_equity - entry_equity
+[?2004l[?2004h>     
+[?2004l[?2004h>     if remaining_proceeds <= 0:
+[?2004l[?2004h>         return 0, 0, 0, 0, 0  # No returns
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Step 2: 8% preferred return (compounded annually)
+[?2004l[?2004h>     preferred_return = entry_equity * ((1.08 ** years_held) - 1)
+[?2004l[?2004h>     remaining_after_pref = remaining_proceeds - preferred_return
+[?2004l[?2004h>     
+[?2004l[?2004h>     if remaining_after_pref <= 0:
+[?2004l[?2004h>         irr = ((exit_equity / entry_equity) ** (1/years_held)) - 1
+[?2004l[?2004h>         moic = exit_equity / entry_equity
+[?2004l[?2004h>         return irr, moic, 0, 0, 0
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Step 3: 5% management option pool
+[?2004l[?2004h>     mgmt_options = remaining_after_pref * 0.05
+[?2004l[?2004h>     profit_for_carry_calc = remaining_after_pref - mgmt_options
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Step 4: 20% carry to GP
+[?2004l[?2004h>     gp_carry = profit_for_carry_calc * 0.20
+[?2004l[?2004h>     lp_profit = profit_for_carry_calc * 0.80
+[?2004l[?2004h>     
+[?2004l[?2004h>     # LP returns
+[?2004l[?2004h>     lp_total_return = entry_equity + preferred_return + lp_profit
+[?2004l[?2004h>     lp_irr = ((lp_total_return / entry_equity) ** (1/years_held)) - 1
+[?2004l[?2004h>     lp_moic = lp_total_return / entry_equity
+[?2004l[?2004h>     
+[?2004l[?2004h>     return lp_irr, lp_moic, gp_carry, mgmt_options, profit_for_carry_calc
+[?2004l[?2004h> 
+[?2004l[?2004h> # Calculate for both scenarios
+[?2004l[?2004h> print("\n=== SCENARIO 1 RETURNS (FY28 EXIT) ===")
+[?2004l[?2004h> s1_irr, s1_moic, s1_carry, s1_mgmt, s1_profit = calculate_returns(fy28_exit_equity, 4, entry_equity)
+[?2004l[?2004h> print(f"Net IRR for LPs: {s1_irr:.2%}")
+[?2004l[?2004h> print(f"Net MOIC for LPs: {s1_moic:.2f}x")
+[?2004l[?2004h> print(f"Carry for GP: ${s1_carry:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Equity value creation analysis
+[?2004l[?2004h> entry_ev = fy24_ebitda * (66546.033810 / fy24_ebitda)  # Entry multiple
+[?2004l[?2004h> ebitda_growth_value = (fy28_ebitda - fy24_ebitda) * 15.0
+[?2004l[?2004h> multiple_expansion_value = fy28_ebitda * (15.0 - (66546.033810 / fy24_ebitda))
+[?2004l[?2004h> total_equity_created = s1_profit  # Net of mgmt options
+[?2004l[?2004h> 
+[?2004l[?2004h> print(f"% of equity value from EBITDA growth: {(ebitda_growth_value/total_equity_created)*100:.2f}%")
+[?2004l[?2004h> print(f"% of equity value from Multiple Expansion: {(multiple_expansion_value/total_equity_created)*100:.2f}%")
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== SCENARIO 2 RETURNS (FY29 EXIT) ===")
+[?2004l[?2004h> s2_irr, s2_moic, s2_carry, s2_mgmt, s2_profit = calculate_returns(fy29_exit_equity, 5, entry_equity)
+[?2004l[?2004h> print(f"Net IRR for LPs: {s2_irr:.2%}")
+[?2004l[?2004h> print(f"Net MOIC for LPs: {s2_moic:.2f}x")
+[?2004l[?2004h> print(f"Carry for GP: ${s2_carry:,.0f}k")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Equity value creation analysis for scenario 2
+[?2004l[?2004h> ebitda_growth_value_s2 = (fy29_ebitda - fy24_ebitda) * 16.0
+[?2004l[?2004h> multiple_expansion_value_s2 = fy29_ebitda * (16.0 - (66546.033810 / fy24_ebitda))
+[?2004l[?2004h> total_equity_created_s2 = s2_profit
+[?2004l[?2004h> 
+[?2004l[?2004h> print(f"% of equity value from EBITDA growth: {(ebitda_growth_value_s2/total_equity_created_s2)*100:.2f}%")
+[?2004l[?2004h> print(f"% of equity value from Multiple Expansion: {(multiple_expansion_value_s2/total_equity_created_s2)*100:.2f}%")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@31fea87767f4:/app# 

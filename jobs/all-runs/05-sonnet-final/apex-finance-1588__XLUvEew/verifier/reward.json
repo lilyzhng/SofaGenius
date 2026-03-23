@@ -1,0 +1,77 @@
+{
+  "reward": 1.0,
+  "reason": "criteria 10/10",
+  "file_exists": true,
+  "correctness": 1.0,
+  "criteria_met": 10,
+  "criteria_total": 10,
+  "tool_engaged": true,
+  "files_created": [
+    "analyze_model.py",
+    "lbo_model.py",
+    "get_ebitda.py",
+    "extract_data.py"
+  ],
+  "criteria_details": [
+    {
+      "criterion": "criterion 1",
+      "description": "For Scenario 1 (FY28 exit), calculates the Net IRR for LPs as 29.79% (acceptable range is 29.49% to 30.09%)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 2",
+      "description": "For Scenario 1 (FY28 exit), calculates the Net MOIC for LPs as 2.84x (acceptable range is 2.81x to 2.87x)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 3",
+      "description": "For Scenario 1 (FY28 exit), calculates the Carry for the GP as $16,671K (acceptable range is $16,505K to $16,838K)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 4",
+      "description": "For Scenario 1 (FY28 exit), calculates that 17.64% of total value is generated due to EBITDA growth (acceptable range is 17.46% to 17.81%)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 5",
+      "description": "For Scenario 1 (FY28 exit), calculates that 73.88% of total value is generated due to Multiple Expansion (acceptable range is 73.14% to 74.62%)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 6",
+      "description": "For Scenario 2 (FY29 exit), calculates the Net IRR for LPs as 27.36% (acceptable range is 27.09% to 27.63%)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 7",
+      "description": "For Scenario 2 (FY29 exit), calculates the Net MOIC for LPs as 3.35x (acceptable range is 3.32x to 3.39x)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 8",
+      "description": "For Scenario 2 (FY29 exit), calculates the Carry for the GP as $21,228K (acceptable range is $21,016K to $21,441K)",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 9",
+      "description": "For Scenario 2 (FY29 exit), calculates that 18.54% of total value is generated due to EBITDA growth (acceptable range is 18.35% to 18.72%)",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 10",
+      "description": "For Scenario 2 (FY29 exit), calculates that 70.81% of total value is generated due to Multiple Expansion (acceptable range is 70.10% to 71.52%)",
+      "passed": true,
+      "method": "keyword_match"
+    }
+  ]
+}

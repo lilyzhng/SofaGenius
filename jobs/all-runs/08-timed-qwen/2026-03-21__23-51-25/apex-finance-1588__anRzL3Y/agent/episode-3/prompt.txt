@@ -1,0 +1,35 @@
+New Terminal Output:
+
+root@dd06356d1acd:/app# python3 -c "import pandas as pd; import openpyxl; print('Required libraries are available')"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

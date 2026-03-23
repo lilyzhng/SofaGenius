@@ -1,0 +1,79 @@
+[?2004hroot@dd06356d1acd:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@dd06356d1acd:/app# clear
+[?2004l[H[J[3J[?2004hroot@dd06356d1acd:/app# ls -la /app/data/
+[?2004ltotal 132
+drwxr-xr-x 2 root root   4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root   4096 Mar 22 05:19  ..
+-rw-r--r-- 1 root root 124255 Mar 22 04:43 'ConSup Inc Financial Model_PROMPT.xlsx'
+[?2004hroot@dd06356d1acd:/app# python3 --version
+[?2004lPython 3.11.15
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; import openpyxl; print('Required libraries are available')"
+[?2004lRequired libraries are available
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; sheets = pd.ExcelFile(file_path).sheet_names; print('Available sheets:', sheets)"
+[?2004lAvailable sheets: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_name='Transaction Structure'); print('Transaction Structure:'); print(df.head(10))"
+[?2004lTransaction Structure:
+   Unnamed: 0                    Unnamed: 1  Unnamed: 2 Unnamed: 3   Unnamed: 4  ...    Unnamed: 8 Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0         NaN      1. Transaction Structure         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           NaN
+1         NaN  In USD 000, FY ending Dec 31         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           NaN
+2         NaN                           NaN         NaN        NaN          NaN  ...           NaN        NaN                        NaN         NaN           NaN
+3         NaN                   Assumptions         NaN        NaN          NaN  ...           NaN        NaN                       Uses         NaN           NaN
+4         NaN                   FY24 EBITDA         NaN          $  8318.254226  ...  16636.508452        NaN  Purchase Enterprise Value         NaN  66546.033810
+5         NaN             Purchase Multiple         NaN          x            8  ...   8318.254226        NaN                Cash to B/S         NaN   1000.000000
+6         NaN          Senior Debt / EBITDA         NaN          x            2  ...    6763.01211        NaN           Transaction Fees         NaN   1996.381014
+7         NaN     Subordinate Debt / EBITDA         NaN          x            1  ...  38323.735289        NaN             Financing Fees         NaN    499.095254
+8         NaN               Rollover Equity         NaN          %         0.15  ...           NaN        NaN                        NaN         NaN           NaN
+9         NaN                   Cash to B/S         NaN          $         1000  ...  70041.510078        NaN                     Total          NaN  70041.510078
+
+[10 rows x 13 columns]
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_name='Assumptions'); print('Assumptions:'); print(df.head(10))"
+[?2004lAssumptions:
+   Unnamed: 0                    Unnamed: 1           Unnamed: 2 Unnamed: 3  ...           Unnamed: 9          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0         NaN               2. Assumptions                   NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+1         NaN  In USD 000, FY ending Dec 31                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+2         NaN                           NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+3         NaN                 Growth Levers        Growth Timing  Selection  ...                  NaN                  NaN                  NaN                  NaN
+4         NaN              New Construction  2025-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+5         NaN                   Hospitality  2026-12-31 00:00:00        Yes  ...                  NaN                  NaN                  NaN                  NaN
+6         NaN                U.S. Expansion  2027-12-31 00:00:00        Yes  ...  2026-12-31 00:00:00  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+7         NaN                           NaN                  NaN        NaN  ...              FY2026A              FY2027A              FY2028A              FY2029A
+8         NaN                           NaN                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+9         NaN              Income Statement                  NaN        NaN  ...                  NaN                  NaN                  NaN                  NaN
+
+[10 rows x 13 columns]
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_name='Financial Statements'); print('Financial Statements (first 15 rows):'); print(df.head(15))"
+[?2004lFinancial Statements (first 15 rows):
+   Unnamed: 0                    Unnamed: 1 Unnamed: 2  ...  -0.46173999999882653.1 -0.46173999999882653.2 -0.46174000001337845.1
+0         NaN       3. Financial Statements        NaN  ...                     NaN                    NaN                    NaN
+1         NaN  In USD 000, FY ending Dec 31        NaN  ...                     NaN                    NaN                    NaN
+2         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+3         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+4         NaN                           NaN        NaN  ...     2027-12-31 00:00:00    2028-12-31 00:00:00    2029-12-31 00:00:00
+5         NaN                           NaN        NaN  ...                 FY2027F                FY2028F                FY2029F
+6         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+7         NaN                         Check          .  ...                       0                      0                      0
+8           X              Income Statement        NaN  ...                     NaN                    NaN                    NaN
+9         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+10        NaN                       Revenue        NaN  ...            40779.542891           43104.533748           45849.794423
+11        NaN                    Growth (%)        NaN  ...                0.140795               0.057014               0.063688
+12        NaN                 Core Business        NaN  ...            33299.542891           33965.533748           34644.844423
+13        NaN  New Construction (Expansion)        NaN  ...                    3380                   4394                 5712.2
+14        NaN                  Hospitality         NaN  ...                     600                    720                    864
+
+[15 rows x 13 columns]
+[?2004hroot@dd06356d1acd:/app# python3 -c "import pandas as pd; file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'; df = pd.read_excel(file_path, sheet_name='Historicals', header=3); print('Historicals (first 10 rows):'); print(df.head(10))"
+[?2004lHistoricals (first 10 rows):
+  Unnamed: 0            Unnamed: 1  Unnamed: 2  Unnamed: 3 Unnamed: 4           Unnamed: 5           Unnamed: 6           Unnamed: 7
+0        NaN                   NaN         NaN         NaN        NaN    Historical Period                  NaN                  NaN
+1        NaN                   NaN         NaN         NaN        NaN  2022-12-31 00:00:00  2023-12-31 00:00:00  2024-12-31 00:00:00
+2          X      Income Statement         NaN         NaN        NaN              FY2022A              FY2023A              FY2024A
+3        NaN               Revenue         NaN         NaN          $         30571.118162         30347.674004         31378.902996
+4        NaN                  COGS         NaN         NaN          $         17512.269986         17843.689955          17937.42077
+5        NaN          Gross Profit         NaN         NaN          $         13058.848175         12503.984049         13441.482226
+6        NaN               Payroll         NaN         NaN          $              3391.79              3308.76              3401.06
+7        NaN                 Rent          NaN         NaN          $              528.736               575.82              589.968
+8        NaN  Other Administrative         NaN         NaN          $              1053.15              1021.02               1132.2
+9        NaN                EBITDA         NaN         NaN          $          8085.172175          7598.384049          8318.254226
+[?2004hroot@dd06356d1acd:/app# 

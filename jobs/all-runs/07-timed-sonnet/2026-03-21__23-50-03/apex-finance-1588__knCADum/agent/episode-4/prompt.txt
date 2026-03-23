@@ -1,0 +1,27 @@
+New Terminal Output:
+
+root@bde608470cc5:/app# cat > /app/lbo_analysis.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read the Excel file
+> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+>
+> # Read all sheets
+> sheets = {}
+> sheet_names = ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+>
+> for sheet in sheet_names:
+>     try:
+>         sheets[sheet] = pd.read_excel(xl_file, sheet_name=sheet)
+>         print(f"\n=== {sheet} ===")
+>         print(f"Shape: {sheets[sheet].shape}")
+>         print(sheets[sheet].head(10))
+>     except Exception as e:
+>         print(f"Error reading {sheet}: {e}")
+>
+> EOF
+root@bde608470cc5:/app#
+
+
+

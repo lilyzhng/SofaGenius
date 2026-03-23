@@ -1,0 +1,29 @@
+New Terminal Output:
+
+root@ee2595532515:/app# pdftotext '/app/data/Nike-Inc-2025 Form-10K .pdf' /app/data/nike_10k.txt
+root@ee2595532515:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,36 @@
+New Terminal Output:
+
+root@6fe3d9edcffb:/app# ls -la data/
+total 224
+drwxr-xr-x 2 root root   4096 Mar 22 04:46  .
+drwxr-xr-x 1 root root   4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 217873 Mar 22 04:43 'Document A.pdf'
+root@6fe3d9edcffb:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

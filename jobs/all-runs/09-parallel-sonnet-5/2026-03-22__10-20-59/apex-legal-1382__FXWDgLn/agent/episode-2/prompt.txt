@@ -1,0 +1,36 @@
+New Terminal Output:
+
+root@fb0478b90c9e:/app# ls -la data/
+total 348
+drwxr-xr-x 2 root root   4096 Mar 22 17:21  .
+drwxr-xr-x 1 root root   4096 Mar 22 17:21  ..
+-rw-r--r-- 1 root root 345851 Mar 22 04:43 'Convention on Conduct of Fishing Operations in the North Atlantic.pdf'
+root@fb0478b90c9e:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

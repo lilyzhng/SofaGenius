@@ -1,0 +1,130 @@
+{
+  "criterion 1": {
+    "description": "Calculates that Coupang's beta is 0.61 (acceptable range is 0.60 to 0.62)",
+    "sources": "Beta.pdf",
+    "justification": "Based on the 'Beta.pdf' source file, we can calculate CPNG stock returns and SPY returns as below. CPNG returns -1.6% 0.5% 1.2% . . . -1.3% -1.3% -1.1% SPY returns -0.8% -0.3% 0.1% . . . -1.1% -1.1% -0.4% Calculating slope using CPNG returns as the dependent variable and SPY returns as the independent variable, you get Coupang's beta of 0.608.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Calculates that Coupang's 2024 total debt amount is $1.53 billion (acceptable range is $1.51 billion to $1.55 billion)",
+    "sources": "Online Search (10-K)",
+    "justification": "The prompt asks for Coupang's debt amount that went into the WACC calculation. As provided in https://d18rn0p25nwr6d.cloudfront.net/CIK-0001834584/6f1355c4-a540-48c5-8285-c3b3ba6ca592.pdf (pg 66), Coupang's 2024 Coupang's total debt amount = $479 million Short-term borrowings + $66 million Current portion of long-term debt + $988 million Long-term debt = $1.53 billion",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Determines that Coupang's market capitalization as of 12/31/2024 is $40.51 billion (acceptable range is $40.10 billion to $40.92 billion)",
+    "sources": "Online Search",
+    "justification": "The prompt asks for Coupang's market capitalization as of 12/31/2024. Coupang's market cap is $40.51 billion at the end of 2024 as stated in https://companiesmarketcap.com/coupang/marketcap/#google_vignette.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Calculates that Coupang's Debt to Total Capitalization is 3.6% (acceptable range is 3.5% to 3.7%)",
+    "sources": "",
+    "justification": "The prompt asks for Coupang's Debt to Total Capitalization. Debt to Total Capitalization = Debt / (Debt + Equity) = $1.53 / ($1.53 + $40.51) = 3.6% (acceptable range is 3.5% to 3.7%)",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "Calculates that Coupang's Equity to Total Capitalization is 96.4% (acceptable range is 95.4% to 97.4%)",
+    "sources": "",
+    "justification": "The prompt asks for Coupang's Equity to Total Capitalization. Equity to Total Capitalization = Equity / (Debt + Equity) = $40.51 / ($1.53 + $40.51) = 96.4%",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      3
+    ]
+  },
+  "criterion 6": {
+    "description": "Determines that the Risk-Free Rate is 4.3% (acceptable value is 4.3%)",
+    "sources": "Treasury.pdf",
+    "justification": "The prompt asks for the Risk-Free Rate used in the WACC Calculation. From the 'Treasury.pdf' source file, we can figure out that the Risk-Free Rate = 4.281% which is 4.3% (acceptable value is 4.3%) when rounded based on prompt's ask.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Calculates that Coupang's Cost of Equity is 8.9% (acceptable range is 8.8% to 9.0%)",
+    "sources": "",
+    "justification": "The prompt asks for Coupang's Cost of Equity. Cost of Equity = Risk Free Rate + (Equity Risk Premium x Beta) = 4.281% + (7.5% per prompt x 0.61) = 8.9%",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      6
+    ]
+  },
+  "criterion 8": {
+    "description": "Determines that Coupang's Cost of Debt is 6.8% (acceptable value is 6.8%)",
+    "sources": "Online Search (10-K)",
+    "justification": "The prompt asks for Coupang's Cost of Debt. Coupang's April 2023 Term Loan interest rate is 6.76% as stated in https://d18rn0p25nwr6d.cloudfront.net/CIK-0001834584/6f1355c4-a540-48c5-8285-c3b3ba6ca592.pdf (pg 85).",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "Calculates that Coupang's After-Tax Cost of Debt is 5.1% (acceptable range is 5.0% to 5.2%)",
+    "sources": "",
+    "justification": "After-Tax Cost of Debt = Cost of Debt x (1 \u2013 Tax Rate) = 6.8% x (1 \u2013 25%) = 5.1%",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      8
+    ]
+  },
+  "criterion 10": {
+    "description": "Calculates that Coupang's WACC is 8.8% (acceptable range is 8.7% to 8.9%)",
+    "sources": "",
+    "justification": "The prompt asks for Coupang's WACC. WACC = (Cost of Equity x Equity to Total Capitalization %) + (After-Tax Cost of Debt x Debt to Total Capitalization %) = (8.9% x 96.4%) + (5.1% x 3.6%) = 8.8%",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      4,
+      5,
+      7,
+      9
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# which pdftotext
+/usr/bin/pdftotext
+root@78f1db70b96f:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

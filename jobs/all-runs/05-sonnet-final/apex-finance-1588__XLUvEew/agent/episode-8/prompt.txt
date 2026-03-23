@@ -1,0 +1,44 @@
+New Terminal Output:
+
+root@d471ed93970f:/app# cat > get_ebitda.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read the Excel file
+> file_path = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+>
+> # Read financial statements
+> financials_df = pd.read_excel(file_path, sheet_name='Financial Statements', header=None)
+>
+> print("Looking for EBITDA data...")
+> for i in range(len(financials_df)):
+>     row_data = list(financials_df.iloc[i])
+>     row_str = ' '.join([str(cell) for cell in row_data if pd.notna(cell)])
+>     if 'EBITDA' in row_str.upper() and ('$' in row_str or any(isinstance(cell, (int, float)) and cell > 1000 for cell in row_data)):
+>         print(f"Row {i}: {row_data}")
+>
+> print("\nLooking for Payroll data...")
+> for i in range(len(financials_df)):
+>     row_data = list(financials_df.iloc[i])
+>     row_str = ' '.join([str(cell) for cell in row_data if pd.notna(cell)])
+>     if 'PAYROLL' in row_str.upper() or 'CORE BUSINESS' in row_str.upper():
+>         print(f"Row {i}: {row_data}")
+>
+> print("\nExtracting key transaction data:")
+> trans_df = pd.read_excel(file_path, sheet_name='Transaction Structure', header=None)
+>
+> # Extract key values
+> fy24_ebitda = 8318.254226224823
+> purchase_multiple = 8
+> rollover_equity_pct = 0.15
+> rollover_equity = 6763.012109848733
+> sponsor_equity = 38323.73528914282
+> total_equity = rollover_equity + sponsor_equity
+>
+> print(f"FY24 EBITDA: ${fy24_ebitda:,.0f}k")
+> print(f"Purchase Multiple: {purchase_multiple}x")
+> print(f"Rollover Equity: ${rollover_equity:,.0f}k")
+> print(f"Sponsor Equity: ${sponsor_equity:,.0f}k")
+> print(f"Total Equity: ${total_equity:,.0f}k")
+> EOF
+root@d471ed93970f:/app#

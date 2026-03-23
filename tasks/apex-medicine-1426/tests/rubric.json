@@ -1,0 +1,175 @@
+{
+  "criterion 1": {
+    "description": "States that the patient's diarrhea is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "From the prompt: 'Upon presentation to the emergency department one week later, she reports several days of watery diarrhea, occurring up to four times daily.' 'The following signs and symptoms can be seen with hyperinfection syndrome and disseminated strongyloidiasis: Gastrointestinal manifestations Abdominal pain, nausea, vomiting, diarrhea Ileus, bowel edema, intestinal obstruction Mucosal ulceration, massive hemorrhage, and subsequent peritonitis or bacterial sepsis Pulmonary manifestations and findings Cough, wheezing, dyspnea, hoarseness Pneumonitis Hemoptysis Respiratory failure Diffuse interstitial infiltrates or consolidation on chest radiographs Neurologic findings Aseptic or gram-negative meningitis Larvae have been reported in the CSF, meningeal vessels, dura, epidural, subdural, and subarachnoid spaces Systemic signs and symptoms Peripheral edema and ascites secondary to hypoalbuminemia from protein losing enteropathy Recurrent gram negative bacteremia or sepsis from larvae carrying bacteria that penetrate mucosal walls Syndrome of inappropriate secretion of anti-diuretic hormone (SIADH) Peripheral eosinophilia is frequently absent Cutaneous manifestations Recurrent maculopapular or urticarial rash that can be found anywhere on the skin but is most commonly found along the buttocks, perineum, and thighs due to repeated auto-infection Larva currens\u2014serpiginous or urticarial rash that advances as rapidly as 10cm/hr.' https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the patient's dry cough is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "From the prompt: 'Review of systems reveals joint pain in the wrists (which has improved since her previous hospitalization), dry cough, malaise, generalized urticaria, and headache.' 'The following signs and symptoms can be seen with hyperinfection syndrome and disseminated strongyloidiasis: Gastrointestinal manifestations Abdominal pain, nausea, vomiting, diarrhea Ileus, bowel edema, intestinal obstruction Mucosal ulceration, massive hemorrhage, and subsequent peritonitis or bacterial sepsis Pulmonary manifestations and findings Cough, wheezing, dyspnea, hoarseness Pneumonitis Hemoptysis Respiratory failure Diffuse interstitial infiltrates or consolidation on chest radiographs Neurologic findings Aseptic or gram-negative meningitis Larvae have been reported in the CSF, meningeal vessels, dura, epidural, subdural, and subarachnoid spaces Systemic signs and symptoms Peripheral edema and ascites secondary to hypoalbuminemia from protein losing enteropathy Recurrent gram negative bacteremia or sepsis from larvae carrying bacteria that penetrate mucosal walls Syndrome of inappropriate secretion of anti-diuretic hormone (SIADH) Peripheral eosinophilia is frequently absent Cutaneous manifestations Recurrent maculopapular or urticarial rash that can be found anywhere on the skin but is most commonly found along the buttocks, perineum, and thighs due to repeated auto-infection Larva currens\u2014serpiginous or urticarial rash that advances as rapidly as 10cm/hr.' https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that the patient's eosinophilia is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "Patient Case Task 1426.pdf",
+    "justification": "From the Patient Case Task 1426.pdf: 'Eosinophils: 1.0x10^9/L.' 'A count is higher than normal with results of more than 500 cells per microliter of blood.' https://my.clevelandclinic.org/health/body/23402-eosinophils 'A meta-analysis aiming to describe the pattern and frequency of clinical and laboratory characteristics associated with S. stercoralis infection showed that symptoms were reported in 50.4 percent of cases, more often in nonendemic than endemic areas (58 versus 36 percent), and almost 70 percent had eosinophilia' https://www.uptodate.com/contents/strongyloidiasis?search=strongyloides%20hyperinfection",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the patient's erythematous rash is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "Patient Case Task 1426.pdf",
+    "justification": "From the Patient Case Task 1426.pdf: 'An erythematous rash is noted on the thighs and buttocks.' 'Recurrent maculopapular or urticarial rash that can be found anywhere on the skin but is most commonly found along the buttocks, perineum, and thighs due to repeated auto-infection' https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that the patient's urticaria is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "From the prompt: 'Review of systems reveals joint pain in the wrists (which has improved since her previous hospitalization), dry cough, malaise, generalized urticaria, and headache.' 'Recurrent maculopapular or urticarial rash that can be found anywhere on the skin but is most commonly found along the buttocks, perineum, and thighs due to repeated auto-infection' https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Recognizes that the patient is from Puerto Rico.",
+    "sources": "",
+    "justification": "From the prompt: 'A 32-year-old woman from Puerto Rico with a history of systemic lupus erythematosus (previously treated with hydroxychloroquine) presents to the emergency department complaining of diarrhea.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Recognizes that Strongyloides infection is endemic in Puerto Rico.",
+    "sources": "",
+    "justification": "'In the United States, it is found in warm and moist, rural, and agricultural areas, particularly Puerto Rico, Appalachia, and the Southeastern United States.' https://pmc.ncbi.nlm.nih.gov/articles/PMC7253084/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States that the patient's origin is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "'In the United States, it is found in warm and moist, rural, and agricultural areas, particularly Puerto Rico, Appalachia, and the Southeastern United States.' https://pmc.ncbi.nlm.nih.gov/articles/PMC7253084/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      7
+    ]
+  },
+  "criterion 9": {
+    "description": "Recognizes that the patient recently received steroids.",
+    "sources": "",
+    "justification": "From the prompt: 'She was treated with intravenous methylprednisolone and cyclophosphamide due to concern for lupus nephritis. She was discharged with a prednisone taper and a plan to continue cyclophosphamide infusions.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "Recognizes that the patient recently received cyclophosphamide.",
+    "sources": "",
+    "justification": "From the prompt: 'She was treated with intravenous methylprednisolone and cyclophosphamide due to concern for lupus nephritis. She was discharged with a prednisone taper and a plan to continue cyclophosphamide infusions.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "Recognizes that at least one of the following medications is immunosuppressive: steroid or cyclophosphamide.",
+    "sources": "",
+    "justification": "'Glucocorticoids are predominantly involved in metabolism and have immunosuppressive, anti-inflammatory, and vasoconstrictive effects.' https://www.ncbi.nlm.nih.gov/books/NBK554612/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 12": {
+    "description": "States that the patient is immunosuppressed.",
+    "sources": "",
+    "justification": "The patient recently received both cyclophosphamide and steroids. 'Glucocorticoids are predominantly involved in metabolism and have immunosuppressive, anti-inflammatory, and vasoconstrictive effects.' https://www.ncbi.nlm.nih.gov/books/NBK554612/ 'As an effective immunosuppressive agent, cyclophosphamide multiple studies have found cyclophosphamide useful in the treatment of autoimmune diseases.' https://www.ncbi.nlm.nih.gov/books/NBK553087/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9,
+      10,
+      11
+    ]
+  },
+  "criterion 13": {
+    "description": "States that the patient's immunosuppressed status is associated with the diagnosis of Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "'Hyperinfection syndrome and disseminated strongyloidiasis are most frequently associated with subclinical infection in patients receiving high-dose corticosteroids.' https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 14": {
+    "description": "Concludes that the most likely cause of the patient's symptoms is Strongyloides hyperinfection syndrome.",
+    "sources": "",
+    "justification": "The patient's combination of immunosuppression, urticaria, rash, dry cough, eosinophilia, and diarrhea makes Strongyloides the most likely diagnosis. https://www.cdc.gov/strongyloides/hcp/clinical-overview/index.html",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      4,
+      5,
+      8,
+      13,
+      3
+    ]
+  }
+}

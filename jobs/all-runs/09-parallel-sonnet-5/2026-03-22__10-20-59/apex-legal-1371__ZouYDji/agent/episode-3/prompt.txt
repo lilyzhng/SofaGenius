@@ -1,0 +1,27 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# file "data/Va. Code Ann. _ 18.2-47.pdf"
+bash: file: command not found
+root@78f1db70b96f:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

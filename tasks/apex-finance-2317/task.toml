@@ -1,0 +1,19 @@
+[metadata]
+author = "APEX-v1-extended (Mercor)"
+difficulty = "hard"
+category = "finance"
+tags = ["professional", "finance", "tool-use"]
+num_criteria = 10
+license = "CC-BY-4.0"
+
+[verifier]
+timeout_sec = 120
+
+[agent]
+timeout_sec = 600
+
+[environment]
+build_timeout_sec = 300
+cpus = 2
+memory = "2048m"
+storage = "4g"

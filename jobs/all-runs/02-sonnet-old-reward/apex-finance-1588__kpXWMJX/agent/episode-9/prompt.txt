@@ -1,0 +1,8 @@
+New Terminal Output:
+
+root@7cd6440d93ae:/app# python3 lbo_analysis_full.py
+  File "/app/lbo_analysis_full.py", line 46
+    print(f"Row {idx}: {[row.iloc[i] for i in range(min(8, len(row)))]")
+                                                                       ^
+SyntaxError: f-string: expecting '}'
+root@7cd6440d93ae:/app#

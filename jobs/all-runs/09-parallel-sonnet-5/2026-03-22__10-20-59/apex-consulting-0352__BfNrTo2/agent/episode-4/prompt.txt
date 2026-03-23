@@ -1,0 +1,24 @@
+New Terminal Output:
+
+root@5d6e4bbfe24a:/app# mkdir -p /app/output
+root@5d6e4bbfe24a:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,379 @@
+[?2004hroot@b1534533e1cb:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@b1534533e1cb:/app# clear
+[?2004l[H[J[3J[?2004hroot@b1534533e1cb:/app# ls -la /app/data/
+[?2004ltotal 48
+drwxr-xr-x 2 root root  4096 Mar 22 17:21 .
+drwxr-xr-x 1 root root  4096 Mar 22 17:21 ..
+-rw-r--r-- 1 root root 37716 Mar 22 04:43 Data.csv
+[?2004hroot@b1534533e1cb:/app# head -10 /app/data/Data.csv
+[?2004lEmployee ID,Date of Joining,Grade,Basic,HRA,Base Pay,Car Expenses,Bonus,Variable Pay,Total Pay,Zone,Lifetime Revenue
+1,12/18/2022,M2,1000000,400000,1400000,20000,101882,121882,1521882,North,54787753
+2,10/23/2024,M1,500000,200000,700000,0,49814,49814,749814,East,26993304
+3,2/15/2012,M2,1000000,400000,1400000,20000,159745,179745,1579745,South,23696176
+4,9/23/2021,M1,500000,200000,700000,0,40525,40525,740525,East,14810500
+5,4/14/2012,M2,1000000,400000,1400000,20000,192500,212500,1612500,East,51600001
+6,3/15/2020,M1,500000,200000,700000,0,93196,93196,793196,East,23795880
+7,4/2/2012,M1,500000,200000,700000,0,44717,44717,744717,West,3723585
+8,2/18/2023,M3,1500000,600000,2100000,40000,298616,338616,2438616,South,24386160
+9,11/9/2020,M2,1000000,400000,1400000,20000,125197,145197,1545197,East,49446304
+[?2004hroot@b1534533e1cb:/app# wc -l /app/data/Data.csv
+[?2004l481 /app/data/Data.csv
+[?2004hroot@b1534533e1cb:/app# cut -d',' -f3 /app/data/Data.csv | sort | uniq -c
+[?2004l      1 Grade
+    272 M1
+    101 M2
+     99 M3
+      4 M4
+      5 M5
+[?2004hroot@b1534533e1cb:/app# python3 -c "
+[?2004l[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> from datetime import datetime
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the data
+[?2004l[?2004h> df = pd.read_csv('/app/data/Data.csv')
+[?2004l[?2004h> print('Data loaded successfully')
+[?2004l[?2004h> print('Shape:', df.shape)
+[?2004l[?2004h> print('Columns:', df.columns.tolist())
+[?2004l[?2004h> print('\nFirst few rows:')
+[?2004l[?2004h> print(df.head())
+[?2004l[?2004h> "
+[?2004lData loaded successfully
+Shape: (481, 12)
+Columns: ['Employee ID', 'Date of Joining', 'Grade', 'Basic', 'HRA', 'Base Pay', 'Car Expenses', 'Bonus', 'Variable Pay', 'Total Pay', 'Zone', 'Lifetime Revenue']
+
+First few rows:
+   Employee ID Date of Joining Grade    Basic     HRA  Base Pay  Car Expenses   Bonus  Variable Pay  Total Pay   Zone  Lifetime Revenue
+0            1      12/18/2022    M2  1000000  400000   1400000         20000  101882        121882    1521882  North          54787753
+1            2      10/23/2024    M1   500000  200000    700000             0   49814         49814     749814   East          26993304
+2            3       2/15/2012    M2  1000000  400000   1400000         20000  159745        179745    1579745  South          23696176
+3            4       9/23/2021    M1   500000  200000    700000             0   40525         40525     740525   East          14810500
+4            5       4/14/2012    M2  1000000  400000   1400000         20000  192500        212500    1612500   East          51600001
+[?2004hroot@b1534533e1cb:/app# cat > /app/analysis.py << 'EOF'
+[?2004lwrite("- Al[?2004h> import pandas as pd
+[?2004l[?2004h> import numpy as np
+[?2004l[?2004h> from datetime import datetime
+[?2004l[?2004h> 
+[?2004l[?2004h> # Load the data
+[?2004l[?2004h> df = pd.read_csv('/app/data/Data.csv')
+[?2004lr [?2004h> 
+[?2004l[?2004h> # Clean column names
+[?2004lf.i[?2004h> df.columns = df.columns.str.strip()
+[?2004l[?2004h> 
+[?2004l[?2004h> print("=== EMPLOYEE GRADE ANALYSIS ===")
+[?2004l[?2004h> print(f"Total employees: {len(df)}")
+[?2004lployee_Co[?2004h> print(f"Grade distribution:")
+[?2004l[?2004h> for grade in sorted(df['Grade'].unique()):
+[?2004l[?2004h>     count = len(df[df['Grade'] == grade])
+[?2004l[?2004h>     print(f"  {grade}: {count} employees")
+[?2004lfetime[?2004h> 
+[?2004l[?2004h> # Convert Date of Joining to datetime
+[?2004l[?2004h> df['Date of Joining'] = pd.to_datetime(df['Date of Joining'])
+[?2004l[?2004h> 
+[?2004lw[?2004h> # Define end date (10/25/2025)
+[?2004l[?2004h> end_date = datetime(2025, 10, 25)
+[?2004l[?2004h> 
+[?2004l[?2004h> # Calculate lifetime in years for each employee
+[?2004l[?2004h> df['Lifetime_Years'] = (end_date - df['Date of Joining']).dt.days / 365.25
+[?2004l[?2004h> 
+[?2004l[?2004h> # Calculate lifetime revenue and lifetime pay for each employee
+[?2004l[?2004h> df['Lifetime_Pay'] = df['Total Pay'] * df['Lifetime_Years']
+[?2004l[?2004h> 
+[?2004lt[?2004h> print("\n=== CALCULATIONS BY GRADE ===")
+[?2004lrow[?2004h> 
+[?2004ls[?2004h> results = []
+[?2004l[?2004h> for grade in sorted(df['Grade'].unique()):
+[?2004l[?2004h>     grade_data = df[df['Grade'] == grade]
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Calculate averages
+[?2004l[?2004h>     avg_lifetime_revenue = grade_data['Lifetime Revenue'].mean()
+[?2004l)
+[?2004h>     avg_lifetime_pay = grade_data['Lifetime_Pay'].mean()
+[?2004l[?2004h>     avg_annual_pay = grade_data['Total Pay'].mean()
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Calculate ratio
+[?2004l[?2004h>     ratio = avg_lifetime_revenue / avg_lifetime_pay
+[?2004l[?2004h>     
+[?2004l[?2004h>     # Count employees
+[?2004l[?2004h>     employee_count = len(grade_data)
+[?2004le[?2004h>     
+[?2004l[?2004h>     results.append({
+[?2004l[?2004h>         'Grade': grade,
+[?2004l.writ[?2004h>         'Employee_Count': employee_count,
+[?2004l{a[?2004h>         'Avg_Lifetime_Revenue': avg_lifetime_revenue,
+[?2004l Additional[?2004h>         'Avg_Lifetime_Pay': avg_lifetime_pay,
+[?2004l[?2004h>         'Avg_Annual_Pay': avg_annual_pay,
+[?2004l[?2004h>         'Ratio': ratio
+[?2004l:,.0f}[?2004h>     })
+[?2004l\n")
+  [?2004h>     
+[?2004l[?2004h>     print(f"\nGrade {grade}:")
+[?2004l[?2004h>     print(f"  Employees: {employee_count}")
+[?2004l[?2004h>     print(f"  Average Lifetime Revenue: ${avg_lifetime_revenue:,.2f}")
+[?2004l[?2004h>     print(f"  Average Lifetime Pay: ${avg_lifetime_pay:,.2f}")
+[?2004l[?2004h>     print(f"  Average Annual Pay: ${avg_annual_pay:,.2f}")
+[?2004l[?2004h>     print(f"  Ratio (Revenue/Pay): {ratio:.2f}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Convert to DataFrame for easier manipulation
+[?2004l[?2004h> results_df = pd.DataFrame(results)
+[?2004l[?2004h> 
+[?2004la[?2004h> # Calculate weighted average ratio for each grade
+[?2004l[?2004h> print("\n=== WEIGHTED AVERAGE RATIOS ===")
+[?2004l[?2004h> for _, row in results_df.iterrows():
+[?2004l[?2004h>     grade = row['Grade']
+[?2004lse ")
+    f.write(f"would[?2004h>     ratio = row['Ratio']
+[?2004l[?2004h>     employee_count = row['Employee_Count']
+[?2004l[?2004h>     print(f"Grade {grade}: {ratio:.2f} (weight: {employee_count} employees)")
+[?2004lu[?2004h> 
+[?2004l[?2004h> # Sort by ratio to find top 2 grades
+[?2004l[?2004h> top_grades = results_df.nlargest(2, 'Ratio')
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== TOP 2 GRADES WITH BEST RATIOS ===")
+[?2004l[?2004h> for i, (_, row) in enumerate(top_grades.iterrows(), 1):
+[?2004l[?2004h>     print(f"{i}. Grade {row['Grade']}: {row['Ratio']:.2f}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Calculate additional cost for 20% increase
+[?2004l[?2004h> print("\n=== COST ANALYSIS FOR 20% EMPLOYEE INCREASE ===")
+[?2004l[?2004h> total_additional_cost = 0
+[?2004l[?2004h> 
+[?2004l[?2004h> for _, row in top_grades.iterrows():
+[?2004l[?2004h>     grade = row['Grade']
+[?2004l[?2004h>     current_employees = row['Employee_Count']
+[?2004l[?2004h>     avg_annual_pay = row['Avg_Annual_Pay']
+[?2004l[?2004h>     
+[?2004l[?2004h>     additional_employees = round(current_employees * 0.20)
+[?2004l[?2004h>     additional_annual_cost = additional_employees * avg_annual_pay
+[?2004l[?2004h>     total_additional_cost += additional_annual_cost
+[?2004l[?2004h>     
+[?2004l[?2004h>     print(f"\nGrade {grade}:")
+[?2004l[?2004h>     print(f"  Current employees: {current_employees}")
+[?2004l[?2004h>     print(f"  Additional employees (20%): {additional_employees}")
+[?2004l[?2004h>     print(f"  Average annual pay: ${avg_annual_pay:,.0f}")
+[?2004l[?2004h>     print(f"  Additional annual cost: ${additional_annual_cost:,.0f}")
+[?2004l[?2004h> 
+[?2004l[?2004h> print(f"\nTotal additional annual cost: ${total_additional_cost:,.0f}")
+[?2004l[?2004h> 
+[?2004l[?2004h> # Write detailed results to output file
+[?2004l[?2004h> with open('/app/output/answer.txt', 'w') as f:
+[?2004l[?2004h>     f.write("EMPLOYEE GRADE ANALYSIS REPORT\n")
+[?2004l[?2004h>     f.write("=" * 50 + "\n\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("DATASET OVERVIEW:\n")
+[?2004l[?2004h>     f.write(f"Total employees analyzed: {len(df)}\n")
+[?2004l[?2004h>     f.write("Grade distribution:\n")
+[?2004l[?2004h>     for grade in sorted(df['Grade'].unique()):
+[?2004l[?2004h>         count = len(df[df['Grade'] == grade])
+[?2004l[?2004h>         f.write(f"  {grade}: {count} employees\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("\nMETHODOLOGY:\n")
+[?2004l[?2004h>     f.write("- Employee lifetime calculated from joining date to 10/25/2025\n")
+[?2004l[?2004h>     f.write("- Lifetime pay = Total annual pay × Lifetime in years\n")
+[?2004l[?2004h>     f.write("- Ratio = Average lifetime revenue ÷ Average lifetime pay\n")
+[?2004l[?2004h>     f.write("- All calculations performed without rounding interim values\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("\nDETAILED CALCULATIONS BY GRADE:\n")
+[?2004l[?2004h>     for _, row in results_df.iterrows():
+[?2004l[?2004h>         f.write(f"\nGrade {row['Grade']}:\n")
+[?2004l[?2004h>         f.write(f"  Number of employees: {row['Employee_Count']}\n")
+[?2004l[?2004h>         f.write(f"  Average lifetime revenue: ${row['Avg_Lifetime_Revenue']:,.2f}\n")
+[?2004l[?2004h>         f.write(f"  Average lifetime pay: ${row['Avg_Lifetime_Pay']:,.2f}\n")
+[?2004l[?2004h>         f.write(f"  Average annual pay: ${row['Avg_Annual_Pay']:,.0f}\n")
+[?2004l[?2004h>         f.write(f"  Revenue-to-pay ratio: {row['Ratio']:.2f}\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("\nTOP TWO GRADES WITH BEST RATIOS:\n")
+[?2004l[?2004h>     for i, (_, row) in enumerate(top_grades.iterrows(), 1):
+[?2004l[?2004h>         f.write(f"{i}. Grade {row['Grade']}: {row['Ratio']:.2f}\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("\nCOST IMPACT OF 20% EMPLOYEE INCREASE:\n")
+[?2004l[?2004h>     total_cost = 0
+[?2004l[?2004h>     for _, row in top_grades.iterrows():
+[?2004l[?2004h>         grade = row['Grade']
+[?2004l[?2004h>         current_employees = row['Employee_Count']
+[?2004l[?2004h>         avg_annual_pay = row['Avg_Annual_Pay']
+[?2004l[?2004h>         additional_employees = round(current_employees * 0.20)
+[?2004l[?2004h>         additional_cost = additional_employees * avg_annual_pay
+[?2004l[?2004h>         total_cost += additional_cost
+[?2004l[?2004h>         
+[?2004l[?2004h>         f.write(f"\nGrade {grade}:\n")
+[?2004l[?2004h>         f.write(f"  Current employees: {current_employees}\n")
+[?2004l[?2004h>         f.write(f"  Additional employees (20%): {additional_employees}\n")
+[?2004l[?2004h>         f.write(f"  Average annual pay per employee: ${avg_annual_pay:,.0f}\n")
+[?2004l[?2004h>         f.write(f"  Additional annual cost: ${additional_cost:,.0f}\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write(f"\nTotal additional annual cost: ${total_cost:,.0f}\n")
+[?2004l[?2004h>     
+[?2004l[?2004h>     f.write("\nRECOMMENDAIONS:\n")
+[?2004l[?2004h>     f.write(f"Based on the analysis, I recommend focusing expansion on grades ")
+[?2004l[?2004h>     f.write(f"{top_grades.iloc[0]['Grade']} and {top_grades.iloc[1]['Grade']} as they provide ")
+[?2004l[?2004h>     f.write(f"the highest revenue-to-pay ratios of {top_grades.iloc[0]['Ratio']:.2f} ")
+[?2004l[?2004h>     f.write(f"and {top_grades.iloc[1]['Ratio']:.2f} respectively. ")
+[?2004l[?2004h>     f.write(f"These grades generate the most revenue per dollar of compensation, ")
+[?2004l[?2004h>     f.write(f"making them the most cost-effective for expansion. The 20% increase ")
+[?2004l[?2004h>     f.write(f"would require an additional annual investment of ${total_cost:,.0f}.")
+[?2004l[?2004h> 
+[?2004l[?2004h> print("\n=== ANALYSIS COMPLETE ===")
+[?2004l[?2004h> print("Detailed results written to /app/output/answer.txt")
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@b1534533e1cb:/app# mkdir -p /app/output
+[?2004l[?2004hroot@b1534533e1cb:/app# python3 /app/analysis.py
+[?2004l=== EMPLOYEE GRADE ANALYSIS ===
+Total employees: 481
+Grade distribution:
+  M1: 272 employees
+  M2: 101 employees
+  M3: 99 employees
+  M4: 4 employees
+  M5: 5 employees
+
+=== CALCULATIONS BY GRADE ===
+
+Grade M1:
+  Employees: 272
+  Average Lifetime Revenue: $17,381,898.29
+  Average Lifetime Pay: $6,374,085.68
+  Average Annual Pay: $780,461.00
+  Ratio (Revenue/Pay): 2.73
+
+Grade M2:
+  Employees: 101
+  Average Lifetime Revenue: $38,506,630.96
+  Average Lifetime Pay: $11,833,674.95
+  Average Annual Pay: $1,572,508.23
+  Ratio (Revenue/Pay): 3.25
+
+Grade M3:
+  Employees: 99
+  Average Lifetime Revenue: $55,288,168.26
+  Average Lifetime Pay: $18,048,691.41
+  Average Annual Pay: $2,380,928.51
+  Ratio (Revenue/Pay): 3.06
+
+Grade M4:
+  Employees: 4
+  Average Lifetime Revenue: $72,124,499.00
+  Average Lifetime Pay: $25,426,912.80
+  Average Annual Pay: $3,935,879.00
+  Ratio (Revenue/Pay): 2.84
+
+Grade M5:
+  Employees: 5
+  Average Lifetime Revenue: $103,850,108.40
+  Average Lifetime Pay: $59,770,771.50
+  Average Annual Pay: $6,397,731.60
+  Ratio (Revenue/Pay): 1.74
+
+=== WEIGHTED AVERAGE RATIOS ===
+Grade M1: 2.73 (weight: 272 employees)
+Grade M2: 3.25 (weight: 101 employees)
+Grade M3: 3.06 (weight: 99 employees)
+Grade M4: 2.84 (weight: 4 employees)
+Grade M5: 1.74 (weight: 5 employees)
+
+=== TOP 2 GRADES WITH BEST RATIOS ===
+1. Grade M2: 3.25
+2. Grade M3: 3.06
+
+=== COST ANALYSIS FOR 20% EMPLOYEE INCREASE ===
+
+Grade M2:
+  Current employees: 101
+  Additional employees (20%): 20
+  Average annual pay: $1,572,508
+  Additional annual cost: $31,450,165
+
+Grade M3:
+  Current employees: 99
+  Additional employees (20%): 20
+  Average annual pay: $2,380,929
+  Additional annual cost: $47,618,570
+
+Total additional annual cost: $79,068,735
+
+=== ANALYSIS COMPLETE ===
+Detailed results written to /app/output/answer.txt
+[?2004hroot@b1534533e1cb:/app# ls -la /app/output/
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 22 17:22 .
+drwxr-xr-x 1 root root 4096 Mar 22 17:22 ..
+-rw-r--r-- 1 root root 2259 Mar 22 17:22 answer.txt
+[?2004hroot@b1534533e1cb:/app# cat /app/output/answer.txt
+[?2004lEMPLOYEE GRADE ANALYSIS REPORT
+==================================================
+
+DATASET OVERVIEW:
+Total employees analyzed: 481
+Grade distribution:
+  M1: 272 employees
+  M2: 101 employees
+  M3: 99 employees
+  M4: 4 employees
+  M5: 5 employees
+
+METHODOLOGY:
+- Employee lifetime calculated from joining date to 10/25/2025
+- Lifetime pay = Total annual pay × Lifetime in years
+- Ratio = Average lifetime revenue ÷ Average lifetime pay
+- All calculations performed without rounding interim values
+
+DETAILED CALCULATIONS BY GRADE:
+
+Grade M1:
+  Number of employees: 272
+  Average lifetime revenue: $17,381,898.29
+  Average lifetime pay: $6,374,085.68
+  Average annual pay: $780,461
+  Revenue-to-pay ratio: 2.73
+
+Grade M2:
+  Number of employees: 101
+  Average lifetime revenue: $38,506,630.96
+  Average lifetime pay: $11,833,674.95
+  Average annual pay: $1,572,508
+  Revenue-to-pay ratio: 3.25
+
+Grade M3:
+  Number of employees: 99
+  Average lifetime revenue: $55,288,168.26
+  Average lifetime pay: $18,048,691.41
+  Average annual pay: $2,380,929
+  Revenue-to-pay ratio: 3.06
+
+Grade M4:
+  Number of employees: 4
+  Average lifetime revenue: $72,124,499.00
+  Average lifetime pay: $25,426,912.80
+  Average annual pay: $3,935,879
+  Revenue-to-pay ratio: 2.84
+
+Grade M5:
+  Number of employees: 5
+  Average lifetime revenue: $103,850,108.40
+  Average lifetime pay: $59,770,771.50
+  Average annual pay: $6,397,732
+  Revenue-to-pay ratio: 1.74
+
+TOP TWO GRADES WITH BEST RATIOS:
+1. Grade M2: 3.25
+2. Grade M3: 3.06
+
+COST IMPACT OF 20% EMPLOYEE INCREASE:
+
+Grade M2:
+  Current employees: 101
+  Additional employees (20%): 20
+  Average annual pay per employee: $1,572,508
+  Additional annual cost: $31,450,165
+
+Grade M3:
+  Current employees: 99
+  Additional employees (20%): 20
+  Average annual pay per employee: $2,380,929
+  Additional annual cost: $47,618,570
+
+Total additional annual cost: $79,068,735
+
+RECOMMENDAIONS:
+Based on the analysis, I recommend focusing expansion on grades M2 and M3 as they provide the highest revenue-to-pay ratios of 3.25 and 3.06 respectively. These grades generate the most revenue per dollar of compensation, making them the most cost-effective for expansion. The 20% increase would require an additional annual investment of $79,068,735.[?2004hroot@b1534533e1cb:/app# 

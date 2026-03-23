@@ -1,0 +1,105 @@
+New Terminal Output:
+
+root@78f1db70b96f:/app# pdftotext "data/1371_Cardwell v. Commonwealth_248 Va. 501.pdf" - | head -100
+11/14/25, 10:26 PM
+
+Cardwell v. Commonwealth – CourtListener.com
+
+Nov. 4, 1994
+
+Cardwell v. Commonwealth
+Supreme Court of Virginia
+Citations: 450 S.E.2d 146, 248 Va. 501, 1994 Va. LEXIS 149
+Docket Number: Record 940345 and 940346
+Judges: Stephenson
+
+Headmatter
+Kevin DeWayne Cardwell v. Commonwealth of Virginia
+Record Nos. 940345 and 940346 November 4, 1994
+Present: All the Justices
+*503 Robert P. Geary (John F. McGarvey, on brief), for appellant. John H. McLees, Jr., Assistant Attorney General (James S.
+Gilmore, III, Attorney General, on brief), for appellee.
+
+Combined Opinion by Roscoe B. Stephenson Jr.
+(/person/5949/roscoe-b-stephenson-jr/)
+JUSTICE STEPHENSON
+delivered the opinion of the Court.
+In these appeals, we review two capital murder convictions and a sentence of death imposed upon Kevin DeWayne Cardwell
+(Record No. 940345) and other related convictions (Record No. 940346).
+*504 I
+PROCEEDINGS
+In the first phase of a bifurcated jury trial conducted pursuant to Code §§ 19.2-264.3 and -264.4, Cardwell was found guilty of
+two charges of capital murder, i.e., the willful, deliberate, and premeditated killing of Anthony Brown (1) in the commission of
+abduction with intent to extort money or pecuniary benefit, in violation of Code § 18.2-31(1), and (2) in the commission of
+robbery while armed with a deadly weapon, in violation of Code § 18.2-31(4). The jury also found Cardwell guilty of (1)
+abduction; (2) robbery; (3) using a firearm while committing murder; (4) using a firearm while committing abduction; and (5) using
+a firearm in the commission of robbery. The jury then fixed Cardwell’s punishment at (1) life imprisonment for the abduction; (2)
+20 years’ imprisonment for the robbery; and (3) 10 years’ imprisonment for the firearms charges. The jury also imposed a fine of
+$100,000 for the abduction.
+In the second phase of the trial, the jury fixed Cardwell’s punishment at death for capital murder, based upon the “vileness”
+predicate. Code § 19.2-264.2. After considering a post sentence report, prepared by a probation officer pursuant to Code §
+19.2-264.5, the trial court sentenced Cardwell in accord with the jury verdicts.
+Pursuant to Code § 17-110.1(F), we have consolidated the automatic review of Cardwell’s death sentence with his appeal of the
+capital murder convictions. By order entered March 4, 1994, Cardwell’s appeals of his other convictions were certified from the
+Court of Appeals, and we have consolidated those appeals with the capital murder appeal. Code § 17-116.06. We have given all
+the appeals priority on our docket. Code § 17-110.2.
+II
+THE CRIMES
+On November 20, 1991, 15-year-old Anthony Brown travelled by bus from New York City to Richmond, ostensibly to visit Tina
+Poindexter. Poindexter told Cardwell that she was going to meet Brown at the bus station and that Brown would be carrying
+drugs. Cardwell related this information to his friends, Jermaine Jones, Richard Claiborne, and Craig Coles.
+*505 Shortly before the bus was to arrive, Poindexter drove her car to the bus station. Claiborne drove Cardwell, Coles, and
+Jones to the bus station in Coles’ car. After Poindexter met Brown and the two got into Poindexter’s car, Cardwell, Coles, and
+Jones got into the back seat of the car. While Coles held Brown, Cardwell, armed with both his inoperable .25 caliber pistol and
+https://www.courtlistener.com/opinion/1305815/cardwell-v-commonwealth/?q=cardwell+v.+commonwealth&type=o&order_by=score+desc&stat_Published=on
+
+1/8
+
+
+11/14/25, 10:26 PM
+
+Cardwell v. Commonwealth – CourtListener.com
+
+Claiborne’s operable .380 caliber automatic pistol, took Brown’s duffle bag. The robbers also took Brown’s shoes in order to
+make any flight difficult. They then fled to an apartment shared by Cardwell and Jones where Cardwell discovered that Brown’s
+duffle bag contained no drugs.
+A short time later, Cardwell received a telephone call from Poindexter, informing him that Brown had the drugs strapped to the
+inside of his thigh and that she was bringing Brown to the apartment. When Cardwell announced that he planned to rob Brown
+again and either knock him out or kill him, Jones and Coles wanted nothing to do with the plan and left the apartment.
+Poindexter brought Brown to Cardwell’s apartment on the pretext of helping Brown retrieve his duffle bag. Soon after their
+arrival, Cardwell threatened Brown with a pistol and demanded the drugs. Claiborne then pulled down Brown’s pants and took
+the drugs that were strapped to Brown’s thigh.
+Cardwell, holding Brown at gunpoint, forced Brown to lie facedown on the floor of the back seat of Poindexter’s car. Poindexter
+drove, Cardwell rode in the back seat, and Claiborne rode in the front, passenger seat. They intended to take Brown to
+Goochland County.
+Brown repeatedly begged for his life, and Cardwell told him to “shut up.” Poindexter realized that she did not have enough
+gasoline to drive to Goochland County, so Cardwell told her to drive behind a shopping center at the intersection of Patterson
+Avenue and Pump Road in Henrico County.
+Once behind the shopping center, Cardwell demanded Claiborne’s pistol. Claiborne believed that Cardwell intended to use the
+larger handgun to knock Brown unconscious. After obtaining Claiborne’s pistol, Cardwell led Brown into woods behind the
+shopping center, and Claiborne followed.
+From a distance of approximately 10 feet, Claiborne heard Brown beg, “Please don’t kill me,” and Cardwell say, “Shut up.” Then
+Claiborne heard a “gargling noise” which he recognized “[f]rom the movies” as the sound of someone’s throat being cut. *506
+Cardwell told Claiborne, “I’m going to shoot him and he’s going to die,” and Claiborne said, “No.” As Claiborne started back
+toward the car, he heard two gunshots, and, a minute or so later, Cardwell arrived at the car. Claiborne asked for the. pistol, and
+Cardwell returned it.
+Back at Cardwell’s apartment, Cardwell asked for the gun in order to dispose of it. Claiborne unloaded the weapon so Cardwell
+could not use it against him and gave the pistol to Cardwell. Cardwell then put the pistol and a steak knife with a six-inch blade
+into a bag. Later, Cardwell threw the bag containing the pistol and knife into a dumpster at his apartment complex.
+On January 26, 1992, Brown’s decomposed body was discovered in the woods behind the shopping center. The body was
+identified by using dental records. It was determined, from the age of insects found on the body, that death had occurred in
+November 1991.
+An autopsy revealed that Brown had sustained injuries in the throat area and on one wrist. Brown also had sustained two
+gunshot wounds to the back of the head, both of which passed through the right temple. Instantaneous unconsciousness and
+death would have resulted from either gunshot wound.
+Ill
+PRETRIAL MATTERS
+A
+Constitutionality of the Death Penalty
+In a pretrial written motion, Cardwell asserted certain constitutional challenges to the death penalty statutes. The trial court
+rejected all the challenges, and Cardwell makes the same claims on appeal.
+First, Cardwell claims that the death penalty statutes “on their face and as applied violate the Eighth Amendment prohibition
+against cruel and unusual punishment, the Sixth Amendment guarantee to a fair trial, and the Fourteenth Amendment guarantee
+that no person shall be deprived of life, liberty or property without due process of law.” Next, he contends that the death penalty
+statutory scheme is unconstitutional because “it fails to guide the jury’s discretion.” Finally, Cardwell asserts that the death
+root@78f1db70b96f:/app#

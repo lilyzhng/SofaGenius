@@ -1,0 +1,36 @@
+New Terminal Output:
+
+root@bde608470cc5:/app# python3 /app/extract_data_fixed.py
+Available worksheets: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+
+=== Transaction Structure Data ===
+Row 2: 1. Transaction Structure
+Row 3: In USD 000, FY ending Dec 31
+Row 5: Assumptions | Sources
+Row 6: FY24 EBITDA | $ | 8318.254226224823 | Senior Debt
+Row 7: Purchase Multiple | x | 8 | Subordinate Debt
+Row 8: Senior Debt / EBITDA | x | 2 | Rollover Equity
+Row 9: Subordinate Debt / EBITDA | x | 1 | Sponsor Equity
+Row 10: Rollover Equity | % | 0.15
+Row 11: Cash to B/S | $ | 1000 | Total
+Row 12: Transaction Fees | % | 0.03
+Row 13: Financing Fees | % | 0.02
+Row 14: Financing Fees Amortization Period | Years | 7
+Row 15: Transaction Date | Date | 2024-12-31 00:00:00
+Row 17: Closing Balance Sheet
+Row 19: Goodwill Calculation
+
+=== Historical Data ===
+Row 2: 7. Historicals
+Row 3: In USD 000, FY ending Dec 31
+Row 5: Historical Period
+Row 6: 2022-12-31 00:00:00 | 2023-12-31 00:00:00
+Row 7: X | Income Statement | FY2022A | FY2023A
+Row 8: Revenue | $ | 30571.118161500002 | 30347.6740035
+Row 9: COGS | $ | 17512.269986099996 | 17843.689954620906
+Row 10: Gross Profit | $ | 13058.848175400006 | 12503.984048879094
+Row 11: Payroll | $ | 3391.79 | 3308.76
+Row 12: Rent  | $ | 528.736 | 575.82
+Row 13: Other Administrative | $ | 1053.15 | 1021.02
+Row 14: EBITDA | $ | 8085.172175400005 | 7598.384048879094
+root@bde608470cc5:/app#

@@ -1,0 +1,62 @@
+{
+  "reward": 1.0,
+  "reason": "criteria 8/8",
+  "file_exists": true,
+  "correctness": 1.0,
+  "criteria_met": 8,
+  "criteria_total": 8,
+  "tool_engaged": true,
+  "files_created": [
+    "convention.txt"
+  ],
+  "criteria_details": [
+    {
+      "criterion": "criterion 1",
+      "description": "Recognizes that Spain is subject to the terms set forth in the Convention.",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 2",
+      "description": "Identifies that under Article 5 of the Convention, lines anchored in the sea shall be marked in order to indicate their position.",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 3",
+      "description": "Identifies that under Article 9(5) of the Convention, if an authorized officer has reason to believe that a vessel of any Contracting Party is not complying with the provisions of the convention, he m",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 4",
+      "description": "Notes that the Belgian officers had reason to believe that the Spanish vessel was not complying with the Convention.",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 5",
+      "description": "Notes that the Belgian officers were acting in accordance with Article 9(5) of the Convention.",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 6",
+      "description": "Identifies that under Article 14(3) of the Convention, a Contracting Party may reserve the right to not apply the terms set forth in Article 9(5).",
+      "passed": true,
+      "method": "number_match"
+    },
+    {
+      "criterion": "criterion 7",
+      "description": "Identifies that Spain reserved the right to not apply the terms set forth in Article 9(5) with respect to all Contracting Parties.",
+      "passed": true,
+      "method": "keyword_match"
+    },
+    {
+      "criterion": "criterion 8",
+      "description": "Concludes that the review board will likely side with Spain.",
+      "passed": true,
+      "method": "keyword_match"
+    }
+  ]
+}

@@ -1,0 +1,574 @@
+Loan ID,City,State,Property Type,Square Feet,Strategy,Purchase Price,Rehab Cost,Total Basis,ARV,Initial Funding,Rehab Holdback,Total Loan,Interest,Closing,Repaid,Status,Maturity,Product
+1,San Antonio,TX,Single Family,999,Light Rehab,"$172,748","$12,000","$184,748","$220,000","$143,000","$12,000","$155,000",10.50%,5/31/2024,,Performing,6/1/2025,Standard
+2,Kirby,TX,Single Family,1080,Light Rehab,"$157,045","$10,000","$167,045","$200,000","$130,000","$10,000","$140,000",10.50%,5/31/2024,,Performing,6/1/2025,Standard
+3,San Antonio,TX,Single Family,1104,Light Rehab,"$157,045","$10,000","$167,045","$200,000","$130,000","$10,000","$140,000",10.75%,5/31/2024,,Performing,6/1/2025,Standard
+4,San Antonio,TX,Single Family,1267,Light Rehab,"$160,970","$5,000","$165,970","$200,000","$133,000","$5,000","$138,000",10.50%,5/31/2024,,Performing,6/1/2025,Standard
+5,San Antonio,TX,Single Family,1400,Light Rehab,"$192,378","$10,000","$202,378","$250,000","$159,000","$10,000","$169,000",10.75%,5/31/2024,,Performing,6/1/2025,Standard
+6,Kirby,TX,Single Family,1300,Light Rehab,"$172,748","$12,000","$184,748","$210,000","$143,000","$12,000","$155,000",10.75%,5/31/2024,,Performing,6/1/2025,Standard
+7,Kirby,TX,Single Family,1200,Light Rehab,"$168,822","$12,000","$180,822","$210,000","$140,000","$12,000","$152,000",10.50%,5/31/2024,,Performing,6/1/2025,Standard
+8,Kirby,TX,Single Family,1433,Light Rehab,"$184,525","$5,000","$189,525","$230,000","$153,000","$5,000","$158,000",10.75%,5/31/2024,,Performing,6/1/2025,Standard
+9,Atlanta,GA,Single Family,650,Light Rehab,"$125,000","$65,000","$190,000","$275,000","$92,000","$65,000","$157,000",11.50%,5/31/2024,,Performing,6/1/2025,Standard
+10,Atlanta,GA,Single Family,1439,Moderate Rehab,"$155,000","$75,000","$230,000","$375,000","$136,000","$100,000","$236,000",11.50%,5/31/2024,,Performing,6/1/2025,Double Double
+11,Cleburne,TX,Single Family,1182,Light Rehab,"$155,000","$55,000","$210,000","$265,000","$143,696","$55,000","$198,696",12.00%,5/31/2024,,Performing,12/1/2024,Zero Gravity
+12,Cleburne,TX,Single Family,1936,Light Rehab,"$155,000","$65,000","$220,000","$280,000","$145,000","$65,000","$210,000",12.00%,5/31/2024,,Performing,12/1/2024,Zero Gravity
+13,Corpus Christi,TX,Single Family,1452,Light Rehab,"$121,000","$11,260","$132,260","$184,000","$96,740","$11,260","$108,000",12.00%,5/31/2024,,Performing,6/1/2025,Standard
+14,Montgomery,AL,Single Family,3250,Light Rehab,"$225,000","$80,000","$305,000","$390,000","$202,000","$80,000","$282,000",13.00%,5/31/2024,,Performing,6/1/2025,Double Double
+15,Kelso,WA,Single Family,3900,Moderate Rehab,"$249,900","$50,000","$424,900","$675,000","$225,000","$50,000","$275,000",10.50%,5/31/2024,,Performing,6/1/2025,Standard
+16,Russellville,AL,Single Family,2859,Moderate Rehab,"$110,000","$75,000","$230,000","$350,000","$143,000","$75,000","$218,000",12.00%,5/31/2024,,Performing,6/1/2025,Standard
+17,San Antonio,TX,Single Family,1486,Moderate Rehab,"$99,000","$56,000","$155,000","$220,000","$74,200","$56,000","$130,200",11.50%,5/31/2024,,Performing,6/1/2025,Standard
+18,St. Louis,MO,Single Family,7583,Light Rehab,"$1,200,000","$220,000","$1,420,000","$2,000,000","$1,080,000","$220,000","$1,300,000",12.50%,5/31/2024,,Performing,6/1/2025,Double Double
+19,Baltimore,MD,Single Family,1170,Light Rehab,"$72,000","$50,800","$122,800","$230,000","$53,200","$50,800","$104,000",11.00%,5/31/2024,,Performing,6/1/2025,Standard
+20,Indian Rocks Beach,FL,Single Family,1512,Light Rehab,"$900,000","$200,000","$1,100,000","$1,400,000","$810,000","$200,000","$1,010,000",12.75%,5/31/2024,,Performing,6/1/2025,Double Double
+21,Temple Terrace,FL,Single Family,2113,Light Rehab,"$405,000","$51,000","$456,000","$527,000","$336,000","$51,000","$387,000",11.00%,5/31/2024,,Performing,6/1/2025,Standard
+22,Richfield,MN,Single Family,1176,Light Rehab,"$264,000","$60,000","$324,000","$400,000","$215,000","$60,000","$275,000",10.25%,5/30/2024,,Performing,6/1/2025,Standard
+23,Dallas,TX,Single Family,1732,Light Rehab,"$150,888","$50,000","$200,888","$310,000","$135,000","$50,000","$185,000",13.00%,5/30/2024,,Performing,6/1/2025,Double Double
+24,Newport,KY,Single Family,1750,Light Rehab,"$115,000","$35,000","$150,000","$225,000","$103,000","$35,000","$138,000",13.00%,5/29/2024,,Performing,6/1/2025,Double Double
+25,Greenwood,IN,Single Family,1188,Light Rehab,"$230,000","$49,000","$279,000","$400,000","$207,000","$49,000","$256,000",12.75%,5/29/2024,,Performing,6/1/2025,Double Double
+26,Huntington,NY,Single Family,2000,Light Rehab,"$410,000","$125,000","$535,000","$700,000","$360,000","$125,000","$485,000",12.75%,5/29/2024,,Performing,6/1/2025,Double Double
+27,Saint Louis,MO,Single Family,6010,Moderate Rehab,"$135,000","$135,000","$272,000","$300,000","$64,000","$135,000","$199,000",11.75%,5/28/2024,,Performing,6/1/2025,Standard
+28,Birmingham,AL,Single Family,2743,Moderate Rehab,"$98,500","$75,000","$173,500","$256,000","$69,000","$75,000","$144,000",13.00%,5/28/2024,,Performing,6/1/2025,Standard
+29,Waxhaw,NC,Single Family,1372,Moderate Rehab,"$300,000","$40,000","$440,000","$480,000","$260,000","$40,000","$300,000",11.50%,5/28/2024,,Performing,6/1/2025,Standard
+30,Longmont,CO,Single Family,2601,Heavy Rehab,"$1,286,000","$300,000","$1,646,000","$2,020,000","$934,000","$300,000","$1,234,000",11.50%,5/24/2024,,Performing,6/1/2025,Standard
+31,Tyler,TX,Single Family,1232,Moderate Rehab,"$90,000","$57,733","$147,733","$170,000","$63,267","$57,733","$121,000",12.75%,5/24/2024,,Performing,6/1/2025,Standard
+32,San Antonio,TX,Single Family,6483,Light Rehab,"$585,000","$150,000","$735,000","$750,000","$526,000","$150,000","$676,000",13.00%,5/24/2024,,Performing,6/1/2025,Double Double
+33,Lake Charles,LA,Single Family,2002,Light Rehab,"$79,000","$45,000","$124,000","$190,000","$60,000","$45,000","$105,000",11.75%,5/23/2024,,Performing,6/1/2025,Standard
+34,Winston-Salem,NC,Single Family,1100,Moderate Rehab,"$85,000","$92,800","$177,800","$220,000","$51,200","$92,800","$144,000",12.00%,5/23/2024,,Performing,6/1/2025,Standard
+35,Port Royal,SC,Single Family,2194,Light Rehab,"$705,000","$60,000","$765,000","$1,000,000","$585,000","$60,000","$645,000",10.50%,5/23/2024,,Performing,6/1/2025,Standard
+36,Midland,TX,Single Family,1488,Light Rehab,"$180,000","$48,000","$228,000","$285,000","$145,000","$48,000","$193,000",11.00%,5/23/2024,,Performing,6/1/2025,Standard
+37,New Orleans,LA,Single Family,4074,Moderate Rehab,"$150,000","$198,000","$363,000","$650,000","$215,000","$198,000","$413,000",11.50%,5/22/2024,,Performing,6/1/2025,Standard
+38,Chambersburg,PA,Single Family,1050,Light Rehab,"$157,000",$0,"$172,000","$175,000","$129,000",$0,"$129,000",11.50%,5/22/2024,,Performing,6/1/2025,Standard
+39,Tampa,FL,Single Family,988,Light Rehab,"$325,000",$0,"$325,000","$325,000","$243,000",$0,"$243,000",12.00%,5/21/2024,,Performing,6/1/2025,Standard
+40,Cape Canaveral,FL,Condo,405,Light Rehab,"$95,000",$0,"$100,000","$250,000","$94,000",$0,"$94,000",12.25%,5/21/2024,,Performing,6/1/2025,Standard
+41,Cape Coral,FL,Single Family,1756,Light Rehab,"$299,000","$75,000","$374,000","$458,000","$242,000","$75,000","$317,000",11.50%,5/20/2024,,Performing,6/1/2025,Standard
+42,Saint Paul,MN,Single Family,1023,Light Rehab,"$195,000","$90,000","$285,000","$360,000","$140,000","$90,000","$230,000",12.00%,5/20/2024,,Performing,6/1/2025,Standard
+43,Grand Rapids,MI,Single Family,1888,Light Rehab,"$240,000","$40,000","$280,000","$400,000","$213,000","$40,000","$253,000",13.00%,5/20/2024,,Performing,6/1/2025,Double Double
+44,Columbus,OH,Single Family,2100,Moderate Rehab,"$135,000","$105,205","$240,205","$295,000","$93,795","$105,205","$199,000",12.00%,5/20/2024,,Performing,6/1/2025,Standard
+45,Tyler,TX,Single Family,1956,Light Rehab,"$165,000","$70,000","$235,000","$320,000","$159,838","$70,000","$229,838",12.00%,5/20/2024,,Performing,12/1/2024,Zero Gravity
+46,Hudson,NY,Single Family,2342,Moderate Rehab,"$415,000","$465,000","$880,000","$1,100,000","$353,000","$465,000","$818,000",13.50%,5/20/2024,,Performing,6/1/2025,Double Double
+47,Sedalia,MO,Single Family,1618,Light Rehab,"$100,000","$40,000","$140,000","$165,000","$79,000","$40,000","$119,000",12.75%,5/17/2024,,Performing,6/1/2025,Standard
+48,Austin,TX,Single Family,1227,Light Rehab,"$365,000","$75,000","$440,000","$600,000","$328,000","$75,000","$403,000",13.00%,5/17/2024,,Performing,6/1/2025,Double Double
+49,Ponca City,OK,Single Family,2744,Large Rehab,"$17,500","$150,000","$252,500","$280,000","$60,000","$150,000","$210,000",13.00%,5/17/2024,,Performing,6/1/2025,Standard
+50,Ponca City,OK,Single Family,2744,Large Rehab,"$17,500","$150,000","$252,500","$280,000","$60,000","$150,000","$210,000",13.00%,5/17/2024,,Performing,6/1/2025,Standard
+51,Cleveland Heights,OH,Single Family,1500,Light Rehab,"$125,000","$25,000","$150,000","$215,000","$102,000","$25,000","$127,000",11.25%,5/17/2024,,Performing,6/1/2025,Standard
+52,Phoenix,AZ,Single Family,2893,Light Rehab,"$425,000","$200,000","$625,000","$823,000","$381,000","$200,000","$581,000",13.00%,5/16/2024,,Performing,6/1/2025,Double Double
+53,Dayton,OH,Single Family,2512,Moderate Rehab,"$85,000","$75,951","$160,951","$210,000","$54,049","$75,951","$130,000",12.00%,5/16/2024,,Performing,6/1/2025,Standard
+54,Kansas City,KS,Single Family,1700,Light Rehab,"$120,000","$86,000","$206,000","$243,000","$105,000","$86,000","$191,000",13.00%,5/16/2024,,Performing,6/1/2025,Double Double
+55,Westminster,CO,Single Family,1850,Light Rehab,"$390,000","$15,000","$405,000","$485,000","$323,000","$15,000","$338,000",10.25%,5/15/2024,,Performing,6/1/2025,Standard
+56,New Orleans,LA,Single Family,1740,Light Rehab,"$285,000","$35,500","$320,500","$390,000","$241,500","$35,500","$277,000",13.00%,5/15/2024,,Performing,6/1/2025,Double Double
+57,Lexington,KY,Single Family,2794,Light Rehab,"$148,000","$25,500","$173,500","$240,000","$132,500","$25,500","$158,000",12.75%,5/15/2024,,Performing,6/1/2025,Double Double
+58,Hanover Township,PA,Single Family,2394,Light Rehab,"$115,000","$40,000","$155,000","$220,000","$91,000","$40,000","$131,000",10.75%,5/13/2024,,Performing,6/1/2025,Standard
+59,Fort Worth,TX,Single Family,1602,Light Rehab,"$255,000","$25,000","$280,000","$350,000","$224,000","$25,000","$249,000",13.00%,5/13/2024,,Performing,6/1/2025,Double Double
+60,Dallas,TX,Single Family,2786,Light Rehab,"$500,000","$130,000","$630,000","$900,000","$450,000","$130,000","$580,000",13.00%,5/13/2024,,Performing,6/1/2025,Double Double
+61,Arlington,TX,Single Family,1379,Light Rehab,"$139,896","$70,000","$209,896","$315,000","$125,000","$70,000","$195,000",12.75%,5/13/2024,,Performing,6/1/2025,Double Double
+62,Dallas,TX,Single Family,1392,Moderate Rehab,"$200,000","$105,000","$305,000","$420,000","$178,000","$105,000","$283,000",12.50%,5/13/2024,,Performing,6/1/2025,Double Double
+63,Columbus,OH,Single Family,1380,Light Rehab,"$301,500","$45,000","$346,500","$445,000","$271,000","$45,000","$316,000",13.00%,5/13/2024,,Performing,6/1/2025,Double Double
+64,Azle,TX,Single Family,1052,Light Rehab,"$137,000","$40,000","$177,000","$225,000","$123,000","$40,000","$163,000",12.75%,5/9/2024,,Performing,6/1/2025,Double Double
+65,Columbus,OH,Single Family,2745,Light Rehab,"$205,000","$45,000","$250,000","$350,000","$180,000","$45,000","$225,000",13.00%,5/9/2024,,Performing,6/1/2025,Double Double
+66,Syracuse,NY,Single Family,3305,Moderate Rehab,"$98,000","$79,000","$177,000","$225,000","$85,000","$79,000","$164,000",13.00%,5/8/2024,,Performing,6/1/2025,Double Double
+67,Metairie,LA,Single Family,1715,Light Rehab,"$170,000","$30,000","$200,000","$340,000","$144,000","$30,000","$174,000",12.75%,5/8/2024,,Performing,6/1/2025,Double Double
+68,Golden,CO,Single Family,1332,Light Rehab,"$611,000","$75,000","$686,000","$825,000","$433,000","$75,000","$508,000",10.50%,5/8/2024,,Performing,6/1/2025,Standard
+69,St Louis,MO,Single Family,2042,Light Rehab,"$109,000","$138,000","$247,000","$315,000","$91,000","$138,000","$229,000",13.00%,5/8/2024,,Performing,6/1/2025,Double Double
+70,Cleburne,TX,Single Family,1916,Light Rehab,"$145,000","$60,000","$205,000","$290,000","$141,739","$60,000","$201,739",12.00%,5/7/2024,,Performing,12/1/2024,Zero Gravity
+71,Lauderhill,FL,Single Family,912,Light Rehab,"$237,000","$75,000","$312,000","$440,000","$228,044","$75,000","$303,044",12.00%,5/7/2024,,Performing,12/1/2024,Zero Gravity
+72,Birmingham,AL,Single Family,1548,Moderate Rehab,"$61,000","$50,000","$111,000","$200,000","$44,000","$50,000","$94,000",12.00%,5/6/2024,,Performing,6/1/2025,Standard
+73,Syracuse,NY,Single Family,2462,Light Rehab,"$110,000","$41,000","$151,000","$200,000","$99,000","$41,000","$140,000",13.00%,5/3/2024,,Performing,6/1/2025,Double Double
+74,Dover,DE,Single Family,2200,Light Rehab,"$240,000","$30,000","$270,000","$340,000","$188,000","$30,000","$218,000",12.00%,5/3/2024,,Performing,6/1/2025,Standard
+75,Conroe,TX,Single Family,1048,Light Rehab,"$127,500","$25,000","$152,500","$230,000","$112,200","$25,000","$137,200",12.75%,5/2/2024,,Performing,6/1/2025,Double Double
+76,Largo,FL,Single Family,2038,Light Rehab,"$388,000","$90,000","$478,000","$615,000","$368,913","$90,000","$458,913",12.00%,5/1/2024,,Performing,12/1/2024,Zero Gravity
+77,McAllen,TX,Single Family,3486,Moderate Rehab,"$210,000","$180,000","$390,000","$525,000","$128,000","$180,000","$308,000",12.00%,5/1/2024,,Performing,6/1/2025,Standard
+78,Simpsonville,SC,Single Family,2260,Light Rehab,"$225,000","$40,000","$265,000","$365,000","$202,000","$40,000","$242,000",13.00%,4/30/2024,,Performing,5/1/2025,Double Double
+79,Mansfield,OH,Single Family,1920,Light Rehab,"$67,250","$28,000","$95,250","$120,000","$52,000","$28,000","$80,000",11.50%,4/30/2024,,Performing,5/1/2025,Standard
+80,Oregon,OH,Single Family,1792,Light Rehab,"$123,834","$60,000","$183,834","$320,000","$107,000","$60,000","$167,000",13.00%,4/30/2024,,Performing,5/1/2025,Double Double
+81,Dallas,TX,Single Family,1068,Moderate Rehab,"$85,000","$50,000","$145,000","$210,000","$73,000","$50,000","$123,000",12.00%,4/30/2024,,Performing,5/1/2025,Standard
+82,Biloxi,MS,Single Family,2100,Moderate Rehab,"$183,000","$100,000","$318,000","$355,000","$152,000","$100,000","$252,000",12.25%,4/30/2024,,Performing,5/1/2025,Standard
+83,Valley Stream,NY,Single Family,1400,Light Rehab,"$675,000","$125,000","$800,000","$975,000","$587,000","$125,000","$712,000",13.00%,4/30/2024,,Performing,5/1/2025,Double Double
+84,Somers,CT,Single Family,2514,Moderate Rehab,"$130,000","$129,950","$259,950","$430,000","$111,050","$129,950","$241,000",14.00%,4/29/2024,,Performing,5/1/2025,Double Double
+85,Chicago,IL,Single Family,2910,Moderate Rehab,"$161,000","$100,000","$261,000","$362,000","$131,000","$100,000","$231,000",13.00%,4/29/2024,,Performing,5/1/2025,Double Double
+86,Houston,TX,Single Family,1826,Light Rehab,"$360,000","$135,000","$495,000","$624,900","$324,000","$135,000","$459,000",13.00%,4/26/2024,,Performing,5/1/2025,Double Double
+87,Port Huron,MI,Single Family,1636,Moderate Rehab,"$52,000","$47,250","$99,250","$145,000","$32,750","$47,250","$80,000",13.00%,4/26/2024,,Performing,5/1/2025,Standard
+88,Cleburne,TX,Single Family,1470,Light Rehab,"$225,000","$100,000","$325,000","$550,000","$219,131","$100,000","$319,131",12.00%,4/26/2024,,Performing,11/1/2024,Zero Gravity
+89,Syracuse,NY,Single Family,2960,Moderate Rehab,"$85,000","$55,000","$140,000","$160,000","$61,000","$55,000","$116,000",13.00%,4/26/2024,,Performing,5/1/2025,Standard
+90,Cleveland,OH,Single Family,1840,Light Rehab,"$88,500","$20,500","$109,000","$135,000","$71,500","$20,500","$92,000",12.00%,4/26/2024,,Performing,5/1/2025,Standard
+91,Chicago,IL,Single Family,2528,Light Rehab,"$260,000","$74,607","$334,607","$418,000","$196,393","$74,607","$271,000",12.00%,4/25/2024,,Performing,5/1/2025,Standard
+92,Biloxi,MS,Single Family,2486,Light Rehab,"$190,000","$55,000","$245,000","$332,000","$171,000","$55,000","$226,000",13.00%,4/25/2024,,Performing,5/1/2025,Double Double
+93,Largo,FL,Single Family,1292,Light Rehab,"$355,000","$85,000","$440,000","$570,000","$337,935","$85,000","$422,935",12.00%,4/25/2024,,Performing,11/1/2024,Zero Gravity
+94,New Orleans,LA,Single Family,1710,Light Rehab,"$140,000","$50,000","$190,000","$250,000","$119,000","$50,000","$169,000",13.00%,4/25/2024,,Performing,5/1/2025,Double Double
+95,Tuscaloosa,AL,Single Family,1508,Light Rehab,"$135,000","$55,000","$190,000","$240,000","$114,000","$55,000","$169,000",13.00%,4/25/2024,,Performing,5/1/2025,Double Double
+96,Wadsworth,OH,Single Family,1283,Light Rehab,"$100,000","$58,605","$158,605","$200,000","$75,395","$58,605","$134,000",10.75%,4/24/2024,,Performing,5/1/2025,Standard
+97,Tyler,TX,Single Family,1500,Light Rehab,"$169,500","$55,000","$224,500","$300,000","$162,730","$55,000","$217,730",12.00%,4/24/2024,,Performing,11/1/2024,Zero Gravity
+98,Indianapolis,IN,Single Family,1810,Light Rehab,"$320,000","$80,000","$400,000","$520,000","$276,000","$80,000","$356,000",13.00%,4/23/2024,,Performing,5/1/2025,Double Double
+99,Houston,TX,Single Family,1174,Light Rehab,"$145,000","$67,400","$212,400","$310,000","$121,600","$67,400","$189,000",12.75%,4/22/2024,,Performing,5/1/2025,Double Double
+100,Lithia,FL,Single Family,1652,Light Rehab,"$311,000","$85,000","$396,000","$495,000","$279,000","$85,000","$364,000",13.00%,4/22/2024,,Performing,5/1/2025,Double Double
+101,Boca Raton,FL,Single Family,2185,Light Rehab,"$655,000","$35,000","$690,000","$875,000","$589,000","$35,000","$624,000",13.00%,4/19/2024,,Performing,5/1/2025,Double Double
+102,Salem,NJ,Single Family,1568,Light Rehab,"$185,000","$44,000","$229,000","$285,000","$166,000","$44,000","$210,000",14.50%,4/19/2024,,Performing,5/1/2025,Double Double
+103,Salem,NJ,Single Family,1652,Light Rehab,"$185,000","$46,000","$231,000","$290,000","$166,000","$46,000","$212,000",14.50%,4/19/2024,,Performing,5/1/2025,Double Double
+104,London,KY,Single Family,1711,Light Rehab,"$79,000",$0,"$99,000","$240,000","$168,000",$0,"$168,000",13.50%,4/19/2024,,Performing,5/1/2025,Standard
+105,Irving,TX,Single Family,1061,Light Rehab,"$220,000","$35,000","$255,000","$350,000","$181,000","$35,000","$216,000",10.50%,4/19/2024,,Performing,5/1/2025,Standard
+106,Franklin,NY,Single Family,2448,Moderate Rehab,"$150,000","$25,000","$235,000","$275,000","$129,000","$25,000","$154,000",12.00%,4/18/2024,,Performing,5/1/2025,Standard
+107,Jacksonville,FL,Single Family,1102,Light Rehab,"$120,000","$33,000","$153,000","$229,000","$103,304","$33,000","$136,304",12.00%,4/18/2024,,Performing,11/1/2024,Zero Gravity
+108,Plymouth,PA,Single Family,2300,Light Rehab,"$46,000","$130,000","$301,000","$340,000","$120,000","$130,000","$250,000",11.00%,4/18/2024,,Performing,5/1/2025,Standard
+109,Richardson,TX,Single Family,2706,Light Rehab,"$389,000","$86,000","$475,000","$680,000","$350,000","$86,000","$436,000",13.00%,4/18/2024,,Performing,5/1/2025,Double Double
+110,Newton,NJ,Single Family,1000,Moderate Rehab,"$110,000","$74,000","$184,000","$275,000","$75,000","$74,000","$149,000",12.00%,4/18/2024,,Performing,5/1/2025,Standard
+111,Tampa,FL,Single Family,1206,Light Rehab,"$345,000","$100,000","$445,000","$557,000","$310,000","$100,000","$410,000",13.00%,4/18/2024,,Performing,5/1/2025,Double Double
+112,Fishers,IN,Single Family,7352,Light Rehab,"$1,000,000","$400,000","$1,400,000","$1,850,000","$900,000","$400,000","$1,300,000",13.00%,4/18/2024,,Performing,5/1/2025,Double Double
+113,Columbus,OH,Single Family,1768,Light Rehab,"$160,000","$70,250","$230,250","$300,000","$115,750","$70,250","$186,000",12.00%,4/18/2024,,Performing,5/1/2025,Standard
+114,Eustis,FL,Single Family,1400,Light Rehab,"$220,000","$42,790","$262,790","$400,000","$180,210","$42,790","$223,000",11.00%,4/17/2024,,Performing,5/1/2025,Standard
+115,Chehalis,WA,Single Family,730,Light Rehab,"$180,000","$30,000","$210,000","$250,000","$140,000","$30,000","$170,000",13.00%,4/17/2024,,Performing,5/1/2025,Standard
+116,Chicago,IL,Single Family,2457,Moderate Rehab,"$120,000","$133,000","$253,000","$505,000","$90,000","$133,000","$223,000",11.00%,4/16/2024,,Performing,5/1/2025,Standard
+117,Rowlett,TX,Single Family,2293,Light Rehab,"$235,000","$79,465","$314,465","$390,000","$187,535","$79,465","$267,000",10.50%,4/16/2024,,Performing,5/1/2025,Standard
+118,Ridgefield,WA,Single Family,1491,Light Rehab,"$385,000",$0,"$385,000","$385,000","$288,000",$0,"$288,000",10.50%,4/16/2024,,Performing,5/1/2025,Standard
+119,Detroit,MI,Single Family,1268,Light Rehab,"$85,000","$33,000","$118,000","$145,000","$62,000","$33,000","$95,000",11.50%,4/15/2024,,Performing,5/1/2025,Standard
+120,Jacksonville,FL,Single Family,1360,Light Rehab,"$190,000","$20,000","$210,000","$295,000","$159,239","$20,000","$179,239",12.00%,4/15/2024,,Performing,11/1/2024,Zero Gravity
+121,Hankins,NY,Single Family,1476,Light Rehab,"$199,000","$15,000","$224,000","$255,000","$151,000","$15,000","$166,000",12.00%,4/15/2024,,Performing,5/1/2025,Standard
+122,Jacksonville,FL,Single Family,924,Light Rehab,"$180,000","$20,000","$200,000","$290,000","$151,087","$20,000","$171,087",12.00%,4/15/2024,,Performing,11/1/2024,Zero Gravity
+123,St. Louis,MO,Single Family,2400,Moderate Rehab,"$100,000","$70,000","$170,000","$196,000","$64,000","$70,000","$134,000",12.00%,4/15/2024,,Performing,5/1/2025,Standard
+124,Elgin,TX,Single Family,1050,Light Rehab,"$225,000","$15,700","$240,700","$390,000","$202,300","$15,700","$218,000",13.00%,4/12/2024,,Performing,5/1/2025,Double Double
+125,Birmingham,AL,Single Family,1260,Moderate Rehab,"$80,000","$50,000","$130,000","$190,000","$57,000","$50,000","$107,000",13.00%,4/12/2024,,Performing,5/1/2025,Standard
+126,Pilot Point,TX,Single Family,1421,Light Rehab,"$200,000","$25,000","$225,000","$350,000","$189,565","$25,000","$214,565",12.00%,4/11/2024,,Performing,10/1/2024,Zero Gravity
+127,Jackson,MS,Condo,1323,Light Rehab,"$85,000","$30,000","$115,000","$149,816","$63,000","$30,000","$93,000",13.00%,4/11/2024,,Performing,5/1/2025,Standard
+128,Coconut Creek,FL,Townhouse,1065,Light Rehab,"$295,000","$20,000","$315,000","$395,000","$244,000","$20,000","$264,000",10.50%,4/10/2024,,Performing,5/1/2025,Standard
+129,Anderson,IN,Single Family,4396,Light Rehab,"$15,747",$0,"$290,747","$375,000","$251,000",$0,"$251,000",11.75%,4/10/2024,,Performing,5/1/2025,Standard
+130,Anderson,IN,Single Family,4629,Light Rehab,"$41,400",$0,"$179,400","$380,000","$114,000",$0,"$114,000",11.75%,4/10/2024,,Performing,5/1/2025,Standard
+131,Shelby,NC,Single Family,1552,Light Rehab,"$140,000","$60,000","$200,000","$237,000","$112,000","$60,000","$172,000",12.00%,4/10/2024,,Performing,5/1/2025,Standard
+132,Detroit,MI,Single Family,1364,Light Rehab,"$125,000","$5,000","$130,000","$145,000","$97,000","$5,000","$102,000",12.00%,4/9/2024,,Performing,5/1/2025,Standard
+133,Jacksonville,FL,Single Family,1114,Moderate Rehab,"$130,000","$88,440","$218,440","$284,000","$114,560","$88,440","$203,000",13.00%,4/8/2024,,Performing,5/1/2025,Double Double
+134,Libby,MT,Single Family,1574,Light Rehab,"$250,000","$50,000","$300,000","$350,000","$150,000","$50,000","$200,000",12.00%,4/8/2024,,Performing,5/1/2025,Standard
+135,Tyler,TX,Single Family,1800,Light Rehab,"$155,000","$59,640","$214,640","$230,000","$120,360","$59,640","$180,000",11.00%,4/5/2024,,Performing,5/1/2025,Standard
+136,Shreveport,LA,Single Family,1475,Light Rehab,"$92,138","$56,500","$148,638","$190,000","$63,500","$56,500","$120,000",12.00%,4/5/2024,,Performing,5/1/2025,Standard
+137,Mountain Grove,MO,Single Family,1979,Light Rehab,"$190,000","$60,000","$250,000","$300,000","$152,000","$60,000","$212,000",11.50%,4/5/2024,,Performing,5/1/2025,Standard
+138,Dallas,TX,Single Family,1000,Light Rehab,"$200,000","$90,000","$290,000","$370,000","$179,000","$90,000","$269,000",13.25%,4/5/2024,,Performing,5/1/2025,Double Double
+139,Corning,OH,Single Family,1820,Moderate Rehab,"$130,200","$75,915","$206,115","$275,000","$115,085","$75,915","$191,000",13.00%,4/5/2024,,Performing,5/1/2025,Double Double
+140,Cleveland,OH,Single Family,2361,Light Rehab,"$86,000","$15,000","$101,000","$120,000","$66,000","$15,000","$81,000",13.00%,4/4/2024,,Performing,5/1/2025,Standard
+141,Dunn,NC,Single Family,2072,Light Rehab,"$184,500","$50,000","$234,500","$350,000","$166,000","$50,000","$216,000",14.50%,4/3/2024,,Performing,5/1/2025,Double Double
+142,Littleton,CO,Single Family,4572,Light Rehab,"$1,190,000","$330,000","$1,520,000","$1,900,000","$962,000","$330,000","$1,292,000",10.50%,4/3/2024,,Performing,5/1/2025,Standard
+143,Fort Worth,TX,Single Family,1730,Light Rehab,"$192,000","$51,857","$243,857","$320,000","$145,143","$51,857","$197,000",12.25%,4/3/2024,,Performing,5/1/2025,Standard
+144,Washington,IL,Single Family,1020,Light Rehab,"$165,000","$30,000","$205,000","$272,000","$46,000","$30,000","$76,000",12.50%,4/3/2024,,Performing,5/1/2025,Standard
+145,Greenwood,IN,Single Family,2403,Light Rehab,"$195,000","$87,000","$282,000","$400,000","$141,000","$87,000","$228,000",12.00%,4/1/2024,,Performing,5/1/2025,Standard
+146,Clearwater,FL,Single Family,1910,Light Rehab,"$415,000","$110,000","$525,000","$620,000","$385,000","$110,000","$495,000",12.00%,4/1/2024,,Performing,11/1/2024,Zero Gravity
+147,North Charleston,SC,Single Family,1694,Light Rehab,"$400,000","$60,000","$460,000","$600,000","$320,000","$60,000","$380,000",11.75%,4/1/2024,,Performing,5/1/2025,Standard
+148,South Bend,IN,Single Family,2310,Light Rehab,"$185,000","$55,000","$240,000","$290,000","$162,000","$55,000","$217,000",13.00%,3/29/2024,,Performing,4/1/2025,Double Double
+149,Indianapolis,IN,Single Family,3360,Light Rehab,"$410,000","$165,000","$575,000","$720,000","$312,000","$165,000","$477,000",11.50%,3/29/2024,,Performing,4/1/2025,Standard
+150,Casper,WY,Single Family,1820,Moderate Rehab,"$135,000","$83,000","$218,000","$280,000","$93,000","$83,000","$176,000",12.00%,3/29/2024,,Performing,4/1/2025,Standard
+151,McKinney,TX,Single Family,1604,Light Rehab,"$295,850","$51,605","$347,455","$430,000","$212,395","$51,605","$264,000",12.00%,3/29/2024,,Performing,4/1/2025,Standard
+152,St. Petersburg,FL,Single Family,1366,Light Rehab,"$265,000","$165,000","$430,000","$551,000","$234,000","$165,000","$399,000",13.00%,3/28/2024,,Performing,4/1/2025,Double Double
+153,Belding,MI,Single Family,2344,Light Rehab,"$130,000","$50,000","$180,000","$240,000","$117,000","$50,000","$167,000",14.00%,3/27/2024,,Performing,4/1/2025,Double Double
+154,Whitesboro,TX,Single Family,1220,Light Rehab,"$106,000","$50,000","$156,000","$210,000","$95,000","$50,000","$145,000",13.00%,3/27/2024,,Performing,4/1/2025,Double Double
+155,Minneapolis,MN,Townhouse,1223,Moderate Rehab,"$137,500","$125,000","$262,500","$420,000","$119,000","$125,000","$244,000",13.00%,3/27/2024,,Performing,4/1/2025,Double Double
+156,Minneapolis,MN,Townhouse,2200,Moderate Rehab,"$137,500","$125,000","$262,500","$420,000","$119,000","$125,000","$244,000",13.00%,3/27/2024,,Performing,4/1/2025,Double Double
+157,Brookhaven,PA,Single Family,1680,Light Rehab,"$180,000","$48,000","$228,000","$306,000","$162,000","$48,000","$210,000",13.00%,3/27/2024,,Performing,4/1/2025,Double Double
+158,Wilmington,DE,Single Family,875,Moderate Rehab,"$90,000","$84,698","$174,698","$242,000","$53,302","$84,698","$138,000",12.00%,3/27/2024,,Performing,4/1/2025,Standard
+159,Dallas,TX,Single Family,1398,Light Rehab,"$85,000","$15,000","$100,000","$175,000","$66,000","$15,000","$81,000",13.25%,3/27/2024,,Performing,4/1/2025,Standard
+160,Birmingham,AL,Single Family,3577,Light Rehab,"$375,000","$152,000","$527,000","$675,000","$354,200","$152,000","$506,200",11.50%,3/27/2024,,Performing,10/1/2024,Zero Gravity
+161,Baltimore,MD,Single Family,1300,Moderate Rehab,"$72,500","$80,000","$152,500","$230,000","$48,000","$80,000","$128,000",11.50%,3/26/2024,,Performing,4/1/2025,Standard
+162,Lake in the Hills,IL,Single Family,1083,Light Rehab,"$160,000","$25,000","$185,000","$240,000","$140,000","$25,000","$165,000",13.00%,3/25/2024,,Performing,4/1/2025,Double Double
+163,Wichita Falls,TX,Single Family,1375,Light Rehab,"$110,000","$10,000","$120,000","$135,000","$88,000","$10,000","$98,000",12.50%,3/25/2024,,Performing,4/1/2025,Standard
+164,Omaha,NE,Single Family,1167,Light Rehab,"$125,000",$0,"$140,000","$170,000","$126,000",$0,"$126,000",11.75%,3/25/2024,,Performing,4/1/2025,Standard
+165,Jacksonville,FL,Single Family,2662,Light Rehab,"$146,000","$70,000","$216,000","$280,000","$127,717","$70,000","$197,717",12.00%,3/22/2024,,Performing,10/1/2024,Zero Gravity
+166,Pharr,TX,Single Family,2280,Light Rehab,"$120,000","$25,000","$145,000","$215,000","$108,000","$25,000","$133,000",13.00%,3/22/2024,,Performing,4/1/2025,Double Double
+167,Boca Raton,FL,Condo,972,Light Rehab,"$236,250","$20,000","$256,250","$323,000","$212,000","$20,000","$232,000",13.00%,3/22/2024,,Performing,4/1/2025,Double Double
+168,Benzonia,MI,Single Family,1098,Light Rehab,"$185,000","$100,000","$285,000","$345,000","$142,000","$100,000","$242,000",12.25%,3/22/2024,,Performing,4/1/2025,Standard
+169,Cedar Rapids,IA,Single Family,959,Moderate Rehab,"$56,500","$42,500","$99,000","$135,000","$41,500","$42,500","$84,000",10.50%,3/22/2024,,Performing,4/1/2025,Standard
+170,Sedalia,MO,Single Family,1920,Light Rehab,"$120,000","$30,000","$150,000","$209,000","$97,000","$30,000","$127,000",11.00%,3/22/2024,,Performing,4/1/2025,Standard
+171,Indianapolis,IN,Single Family,3640,Moderate Rehab,"$260,000","$140,000","$400,000","$465,000","$186,000","$140,000","$326,000",12.00%,3/22/2024,,Performing,4/1/2025,Standard
+172,Covington,KY,Single Family,2601,Moderate Rehab,"$50,000","$57,445","$257,445","$425,000","$159,555","$57,445","$217,000",12.25%,3/22/2024,,Performing,4/1/2025,Standard
+173,Owenton,KY,Single Family,1144,Light Rehab,"$115,000","$46,358","$161,358","$215,000","$86,642","$46,358","$133,000",12.50%,3/21/2024,,Performing,4/1/2025,Standard
+174,Jacksonville,FL,Single Family,1126,Light Rehab,"$120,000","$50,670","$170,670","$235,000","$104,841","$50,670","$155,511",12.00%,3/21/2024,,Performing,10/1/2024,Zero Gravity
+175,Elkhart,IN,Single Family,1523,Light Rehab,"$145,000","$59,895","$204,895","$260,000","$130,105","$59,895","$190,000",13.00%,3/21/2024,,Performing,4/1/2025,Double Double
+176,Dallas,TX,Single Family,1474,Light Rehab,"$175,000","$55,000","$230,000","$300,000","$157,000","$55,000","$212,000",13.00%,3/20/2024,,Performing,4/1/2025,Double Double
+177,Dallas,TX,Single Family,1523,Light Rehab,"$178,000","$50,000","$228,000","$290,000","$160,000","$50,000","$210,000",13.00%,3/20/2024,,Performing,4/1/2025,Double Double
+178,Indianapolis,IN,Single Family,1152,Moderate Rehab,"$140,000","$140,000","$280,000","$350,000","$86,000","$140,000","$226,000",12.00%,3/20/2024,,Performing,4/1/2025,Standard
+179,Schenectady,NY,Single Family,2200,Moderate Rehab,"$145,000","$105,000","$250,000","$330,000","$107,000","$105,000","$212,000",10.75%,3/19/2024,,Performing,4/1/2025,Standard
+180,Wadsworth,OH,Single Family,1473,Light Rehab,"$135,000","$44,425","$179,425","$225,000","$120,575","$44,425","$165,000",13.00%,3/18/2024,,Performing,4/1/2025,Double Double
+181,Dallas,TX,Single Family,2100,Light Rehab,"$243,500","$45,000","$288,500","$375,000","$219,000","$45,000","$264,000",13.25%,3/15/2024,,Performing,4/1/2025,Double Double
+182,Logan,OH,Single Family,1788,Light Rehab,"$140,000","$48,600","$188,600","$300,000","$125,400","$48,600","$174,000",14.00%,3/15/2024,,Performing,4/1/2025,Double Double
+183,McAllen,TX,Single Family,4000,Light Rehab,"$425,000","$10,000","$435,000","$550,000","$382,000","$10,000","$392,000",13.00%,3/15/2024,,Performing,4/1/2025,Double Double
+184,Crooksville,OH,Single Family,1340,Light Rehab,"$117,900","$50,000","$167,900","$250,000","$89,000","$50,000","$139,000",12.50%,3/15/2024,,Performing,4/1/2025,Standard
+185,Spicewood,TX,Single Family,2726,Moderate Rehab,"$504,900","$100,000","$1,054,900","$1,700,000","$792,000","$100,000","$892,000",11.00%,3/14/2024,,Performing,4/1/2025,Standard
+186,Denver,CO,Single Family,3025,Moderate Rehab,"$870,000","$400,000","$1,270,000","$1,600,000","$799,946","$400,000","$1,199,946",12.00%,3/14/2024,,Performing,10/1/2024,Zero Gravity
+187,Tonopah,AZ,Single Family,2045,Light Rehab,"$380,000","$20,000","$400,000","$495,000","$292,000","$20,000","$312,000",12.00%,3/14/2024,,Performing,4/1/2025,Standard
+188,St. Louis,MO,Single Family,3800,Moderate Rehab,"$235,000","$161,283","$396,283","$600,000","$206,717","$161,283","$368,000",13.00%,3/12/2024,,Performing,4/1/2025,Double Double
+189,Jacksonville,FL,Single Family,926,Light Rehab,"$130,000","$32,410","$162,410","$216,000","$111,405","$32,410","$143,815",12.00%,3/11/2024,,Performing,10/1/2024,Zero Gravity
+190,Asheville,NC,Single Family,862,Light Rehab,"$185,000","$70,000","$255,000","$355,493","$136,000","$70,000","$206,000",13.50%,3/11/2024,,Performing,4/1/2025,Standard
+191,Chicago,IL,Single Family,1438,Light Rehab,"$190,000","$80,000","$270,000","$340,000","$157,000","$80,000","$237,000",13.00%,3/11/2024,,Performing,4/1/2025,Double Double
+192,Palestine,TX,Single Family,2349,Light Rehab,"$256,000","$111,582","$367,582","$495,000","$200,418","$111,582","$312,000",11.00%,3/8/2024,,Performing,4/1/2025,Standard
+193,Decatur,AL,Single Family,2020,Light Rehab,"$156,000","$37,000","$193,000","$237,000","$127,000","$37,000","$164,000",10.50%,3/8/2024,,Performing,4/1/2025,Standard
+194,Knoxville,TN,Single Family,1167,Light Rehab,"$86,000","$55,000","$141,000","$285,000","$64,000","$55,000","$119,000",11.50%,3/8/2024,,Performing,4/1/2025,Standard
+195,Westminster,CO,Single Family,2100,Light Rehab,"$360,000","$50,000","$410,000","$534,000","$298,000","$50,000","$348,000",10.75%,3/8/2024,,Performing,4/1/2025,Standard
+196,Dallas,TX,Single Family,1244,Moderate Rehab,"$128,000","$95,000","$223,000","$300,000","$85,000","$95,000","$180,000",12.00%,3/8/2024,,Performing,4/1/2025,Standard
+197,Edinburg,TX,Single Family,2437,Light Rehab,"$300,000","$25,000","$325,000","$410,000","$267,000","$25,000","$292,000",13.00%,3/8/2024,,Performing,4/1/2025,Double Double
+198,New Orleans,LA,Single Family,2900,Light Rehab,"$700,000","$100,000","$800,000","$925,000","$580,000","$100,000","$680,000",10.50%,3/7/2024,,Performing,4/1/2025,Standard
+199,Omaha,NE,Single Family,800,Light Rehab,"$105,000","$15,000","$120,000","$143,000","$87,000","$15,000","$102,000",11.50%,3/7/2024,,Performing,4/1/2025,Standard
+200,Omaha,NE,Single Family,600,Light Rehab,"$95,000","$15,000","$115,000","$154,000","$82,000","$15,000","$97,000",11.50%,3/7/2024,,Performing,4/1/2025,Standard
+201,Omaha,NE,Single Family,1100,Light Rehab,"$125,000","$15,000","$145,000","$190,000","$87,000","$15,000","$102,000",11.50%,3/7/2024,,Performing,4/1/2025,Standard
+202,Arlington,TX,Single Family,1256,Light Rehab,"$278,000","$30,000","$308,000","$405,000","$225,000","$30,000","$255,000",10.50%,3/6/2024,,Performing,4/1/2025,Standard
+203,Cleveland,OH,Single Family,2708,Light Rehab,"$116,000","$30,000","$146,000","$200,000","$104,000","$30,000","$134,000",13.00%,3/6/2024,,Performing,4/1/2025,Double Double
+204,Hastings,MI,Single Family,1000,Light Rehab,"$124,900","$40,000","$164,900","$213,000","$112,000","$40,000","$152,000",13.00%,3/6/2024,,Performing,4/1/2025,Double Double
+205,St. Louis,MO,Single Family,1473,Light Rehab,"$139,000","$20,000","$159,000","$205,000","$122,000","$20,000","$142,000",14.50%,3/5/2024,,Performing,4/1/2025,Double Double
+206,Schenectady,NY,Single Family,2920,Light Rehab,"$230,000","$54,000","$284,000","$400,000","$187,000","$54,000","$241,000",10.75%,3/5/2024,,Performing,4/1/2025,Standard
+207,Denver,CO,Single Family,984,Light Rehab,"$269,000","$60,000","$329,000","$379,000","$203,000","$60,000","$263,000",10.75%,3/4/2024,,Performing,4/1/2025,Standard
+208,Long Beach,MS,Single Family,1607,Light Rehab,"$120,000","$25,000","$145,000","$204,000","$108,000","$25,000","$133,000",13.00%,3/1/2024,,Performing,4/1/2025,Double Double
+209,Shelbyville,MI,Single Family,1628,Moderate Rehab,"$125,000","$75,000","$200,000","$261,000","$111,000","$75,000","$186,000",13.00%,3/1/2024,,Performing,4/1/2025,Double Double
+210,Shelbyville,MI,Single Family,846,Moderate Rehab,"$85,000","$60,000","$145,000","$179,000","$63,000","$60,000","$123,000",11.50%,3/1/2024,,Performing,4/1/2025,Standard
+211,Farmers Branch,TX,Single Family,1963,Light Rehab,"$171,000","$100,000","$271,000","$440,000","$152,000","$100,000","$252,000",12.50%,3/1/2024,,Performing,4/1/2025,Double Double
+212,Youngstown,OH,Single Family,2592,,"$40,000","$150,000","$230,000","$325,000","$45,000","$150,000","$195,000",11.00%,2/29/2024,,Performing,3/1/2025,Standard
+213,Mesquite,TX,Single Family,3611,Light Rehab,"$475,000","$25,000","$500,000","$625,000","$395,000","$25,000","$420,000",13.00%,2/29/2024,,Performing,3/1/2025,Double Double
+214,Austin,TX,Single Family,2002,Light Rehab,"$380,000","$115,000","$495,000","$600,000","$304,000","$115,000","$419,000",11.50%,2/29/2024,,Performing,3/1/2025,Standard
+215,Philadelphia,PA,Single Family,1500,Moderate Rehab,"$295,000","$215,000","$510,000","$680,000","$293,858","$215,000","$508,858",12.00%,2/29/2024,,Performing,9/1/2024,Zero Gravity
+216,Montclair,NJ,Single Family,2200,Light Rehab,"$705,000","$150,000","$855,000","$1,050,000","$568,000","$150,000","$718,000",11.50%,2/29/2024,,Performing,3/1/2025,Standard
+217,Bellevue,KY,Single Family,1116,Light Rehab,"$190,000","$15,000","$205,000","$265,000","$171,000","$15,000","$186,000",13.00%,2/29/2024,,Performing,3/1/2025,Double Double
+218,Dallas,TX,Single Family,960,Light Rehab,"$152,000","$48,000","$200,000","$250,000","$136,000","$48,000","$184,000",13.00%,2/29/2024,,Performing,3/1/2025,Double Double
+219,Forney,TX,Single Family,1798,Light Rehab,"$225,000","$30,000","$255,000","$390,000","$202,000","$30,000","$232,000",13.00%,2/28/2024,,Performing,3/1/2025,Double Double
+220,Iverness,FL,Single Family,992,Light Rehab,"$104,500","$35,000","$139,500","$210,000","$86,000","$35,000","$121,000",11.00%,2/28/2024,,Performing,3/1/2025,Standard
+221,Harrisburg,PA,Single Family,1920,Moderate Rehab,"$185,000","$42,650","$252,650","$320,000","$152,350","$42,650","$195,000",12.00%,2/28/2024,,Performing,3/1/2025,Standard
+222,Denver,CO,Single Family,579,Light Rehab,"$219,000","$12,000","$231,000","$290,000","$197,000","$12,000","$209,000",14.50%,2/28/2024,,Performing,3/1/2025,Double Double
+223,Petal,MS,Single Family,2160,Light Rehab,"$245,000","$39,975","$284,975","$330,000","$202,025","$39,975","$242,000",11.00%,2/27/2024,,Performing,3/1/2025,Standard
+224,Lancaster,SC,Single Family,2100,Light Rehab,"$208,500","$65,000","$273,500","$332,000","$156,000","$65,000","$221,000",12.00%,2/26/2024,,Performing,3/1/2025,Standard
+225,North Charleston,SC,Single Family,904,Light Rehab,"$120,000","$45,000","$165,000","$245,000","$112,000","$45,000","$157,000",13.00%,2/23/2024,,Performing,3/1/2025,Double Double
+226,Myrtle Beach,SC,Single Family,4286,Light Rehab,"$665,000","$235,000","$900,000","$1,200,000","$597,000","$235,000","$832,000",14.50%,2/23/2024,,Performing,3/1/2025,Double Double
+227,Dallas,TX,Single Family,1402,Light Rehab,"$155,000","$30,000","$185,000","$305,000","$139,000","$30,000","$169,000",13.00%,2/23/2024,,Performing,3/1/2025,Double Double
+228,Dallas,TX,Single Family,3754,Light Rehab,"$950,000","$80,000","$1,030,000","$1,315,000","$855,000","$80,000","$935,000",13.00%,2/23/2024,,Performing,3/1/2025,Double Double
+229,Livingston,MT,Single Family,1125,Moderate Rehab,"$325,000","$121,120","$616,120","$600,000","$295,880","$121,120","$417,000",11.50%,2/23/2024,,Performing,3/1/2025,Standard
+230,Cleveland,TX,Single Family,1768,Moderate Rehab,"$105,500","$100,000","$205,500","$265,000","$91,000","$100,000","$191,000",13.00%,2/23/2024,,Performing,3/1/2025,Double Double
+231,St. Louis,MO,Single Family,2112,Light Rehab,"$30,000","$80,000","$130,000","$196,000","$15,000","$80,000","$95,000",12.50%,2/22/2024,,Performing,3/1/2025,Standard
+233,Olive Branch,MS,Single Family,1220,Light Rehab,"$300,000","$45,000","$345,000","$460,000","$252,000","$45,000","$297,000",13.00%,2/21/2024,,Performing,3/1/2025,Double Double
+234,Carrollton,TX,Single Family,1319,Light Rehab,"$347,000",$0,"$347,000","$347,000","$270,000",$0,"$270,000",11.00%,2/21/2024,,Performing,3/1/2025,Standard
+235,Okemos,MI,Single Family,1866,Light Rehab,"$259,900","$10,000","$269,900","$345,000","$233,000","$10,000","$243,000",13.00%,2/20/2024,,Performing,3/1/2025,Double Double
+236,Chicago,IL,Single Family,1500,Moderate Rehab,"$150,000","$87,000","$237,000","$282,000","$132,000","$87,000","$219,000",13.00%,2/20/2024,,Performing,3/1/2025,Double Double
+237,Birmingham,AL,Single Family,2642,Light Rehab,"$215,000","$84,144","$299,144","$450,000","$206,985","$84,144","$291,129",12.00%,2/20/2024,,Performing,9/1/2024,Zero Gravity
+238,Alachua,FL,Single Family,2492,Light Rehab,"$305,000","$51,000","$356,000","$480,000","$274,000","$51,000","$325,000",13.00%,2/20/2024,,Performing,3/1/2025,Double Double
+239,Little Compton,RI,Single Family,4182,Light Rehab,"$762,668","$100,000","$862,668","$1,235,000","$686,000","$100,000","$786,000",14.00%,2/16/2024,,Performing,3/1/2025,Double Double
+240,Sheffield Lake,OH,Single Family,1600,Light Rehab,"$143,500","$53,000","$196,500","$250,000","$129,000","$53,000","$182,000",13.00%,2/16/2024,,Performing,3/1/2025,Double Double
+241,Banner Elk,NC,Single Family,2698,Moderate Rehab,"$338,000","$180,000","$518,000","$855,000","$260,000","$180,000","$440,000",11.00%,2/16/2024,,Performing,3/1/2025,Standard
+242,Tampa,FL,Single Family,1632,Light Rehab,"$300,000","$75,000","$375,000","$500,000","$264,000","$75,000","$339,000",13.00%,2/16/2024,,Performing,3/1/2025,Double Double
+243,Richland Hills,TX,Single Family,1102,Light Rehab,"$143,500","$50,000","$193,500","$270,000","$129,000","$50,000","$179,000",13.00%,2/15/2024,,Performing,3/1/2025,Double Double
+244,Kalamazoo,MI,Single Family,2160,Light Rehab,"$167,000","$42,000","$209,000","$266,000","$150,000","$42,000","$192,000",13.00%,2/15/2024,,Performing,3/1/2025,Double Double
+245,Fairfield,TX,Single Family,1452,Light Rehab,"$96,000","$15,000","$111,000","$160,000","$74,000","$15,000","$89,000",14.00%,2/15/2024,,Performing,3/1/2025,Standard
+246,Plymouth,MN,Single Family,3000,Light Rehab,"$382,000","$100,000","$482,000","$650,000","$343,000","$100,000","$443,000",13.00%,2/14/2024,,Performing,3/1/2025,Double Double
+247,Eastlake,OH,Single Family,1076,Light Rehab,"$100,000","$25,000","$125,000","$160,000","$76,000","$25,000","$101,000",13.25%,2/14/2024,,Performing,3/1/2025,Standard
+248,Detroit,MI,Single Family,2038,Light Rehab,"$160,000","$20,775","$180,775","$215,000","$127,925","$20,775","$148,700",12.50%,2/13/2024,,Performing,3/1/2025,Standard
+249,Casper,WY,Single Family,1968,Moderate Rehab,"$85,000","$90,000","$175,000","$250,000","$43,000","$90,000","$133,000",12.00%,2/13/2024,,Performing,3/1/2025,Standard
+250,Chattanooga,TN,Single Family,2000,Light Rehab,"$175,000","$73,500","$248,500","$300,000","$132,500","$73,500","$206,000",11.50%,2/13/2024,,Performing,3/1/2025,Standard
+251,Conroe,TX,Single Family,3075,Light Rehab,"$381,000","$30,000","$411,000","$540,000","$342,000","$30,000","$372,000",13.00%,2/12/2024,,Performing,3/1/2025,Double Double
+252,Galena Park,TX,Single Family,1690,Light Rehab,"$106,000","$42,975","$148,975","$225,000","$80,025","$42,975","$123,000",12.50%,2/12/2024,,Performing,3/1/2025,Standard
+253,Indianapolis,IN,Single Family,2417,Light Rehab,"$369,000","$135,950","$504,950","$650,000","$332,050","$135,950","$468,000",13.00%,2/9/2024,,Performing,3/1/2025,Double Double
+254,Pensacola,FL,Single Family,1248,Light Rehab,"$115,000","$50,000","$165,000","$230,000","$103,000","$50,000","$153,000",13.00%,2/9/2024,,Performing,3/1/2025,Double Double
+255,Chicago,IL,Single Family,1320,Light Rehab,"$165,000","$40,000","$205,000","$340,000","$130,000","$40,000","$170,000",11.50%,2/9/2024,,Performing,3/1/2025,Standard
+256,Louisville,KY,Single Family,2926,Light Rehab,"$100,000","$30,000","$130,000","$170,000","$80,000","$30,000","$110,000",12.00%,2/9/2024,,Performing,3/1/2025,Standard
+257,Philadelphia,PA,Single Family,1546,Light Rehab,"$139,000","$50,000","$189,000","$295,000","$135,381","$50,000","$185,381",12.00%,2/9/2024,,Performing,9/1/2024,Zero Gravity
+258,Austin,TX,Single Family,3668,Light Rehab,"$1,599,000","$200,000","$1,799,000","$2,300,000","$1,439,000","$200,000","$1,639,000",12.50%,2/9/2024,,Performing,3/1/2025,Double Double
+259,Dallas,TX,Single Family,960,Light Rehab,"$169,000","$70,000","$239,000","$300,000","$134,000","$70,000","$204,000",12.25%,2/9/2024,,Performing,3/1/2025,Standard
+260,New Lexington,OH,Single Family,1484,Moderate Rehab,"$48,000","$80,000","$128,000","$230,000","$26,000","$80,000","$106,000",12.50%,2/8/2024,,Performing,3/1/2025,Standard
+261,Missouri City,TX,Single Family,2261,Light Rehab,"$275,000","$30,000","$305,000","$350,000","$228,000","$30,000","$258,000",10.50%,2/8/2024,,Performing,3/1/2025,Standard
+262,Dallas,TX,Single Family,1812,Light Rehab,"$500,000","$130,000","$630,000","$770,000","$450,000","$130,000","$580,000",13.00%,2/8/2024,,Performing,3/1/2025,Double Double
+263,Chicago,IL,Single Family,1794,Moderate Rehab,"$165,000","$105,000","$270,000","$338,000","$140,000","$105,000","$245,000",13.00%,2/7/2024,,Performing,3/1/2025,Double Double
+264,Elmer,NJ,Single Family,1898,Light Rehab,"$51,000","$75,000","$251,000","$400,000","$138,000","$75,000","$213,000",12.00%,2/7/2024,,Performing,3/1/2025,Standard
+265,St. Augustine,FL,Single Family,1260,Light Rehab,"$196,000","$37,800","$233,800","$300,000","$176,200","$37,800","$214,000",13.00%,2/6/2024,,Performing,3/1/2025,Double Double
+266,Montclair,NJ,Single Family,1200,Light Rehab,"$450,000","$100,000","$550,000","$645,000","$367,000","$100,000","$467,000",10.50%,2/6/2024,,Performing,3/1/2025,Standard
+267,Boaz,AL,Single Family,2483,Light Rehab,"$180,000","$50,000","$230,000","$368,000","$136,000","$50,000","$186,000",13.00%,2/6/2024,,Performing,3/1/2025,Standard
+268,Amenia,NY,Single Family,3487,Light Rehab,"$875,000","$464,200","$1,339,200","$1,675,000","$780,800","$464,200","$1,245,000",14.00%,2/5/2024,,Performing,3/1/2025,Double Double
+269,St. Louis,MO,Single Family,1175,Light Rehab,"$267,500","$20,000","$287,500","$370,000","$251,495","$20,000","$271,495",12.00%,2/2/2024,,Performing,9/1/2024,Zero Gravity
+270,Philadelphia,PA,Single Family,1600,Moderate Rehab,"$155,000","$185,000","$340,000","$415,000","$126,000","$185,000","$311,000",13.00%,2/1/2024,,Performing,3/1/2025,Double Double
+271,Lehigh Acres,FL,Single Family,1601,Large Rehab,"$18,540","$185,000","$313,540","$375,000","$6,000","$185,000","$191,000",11.00%,1/31/2024,,Performing,2/1/2025,Standard
+272,Barberton,OH,Single Family,2392,Moderate Rehab,"$115,000","$80,000","$195,000","$250,000","$77,000","$80,000","$157,000",12.00%,1/31/2024,,Performing,2/1/2025,Standard
+273,Chicago,IL,Single Family,2090,Moderate Rehab,"$165,000","$100,000","$265,000","$332,000","$138,000","$100,000","$238,000",13.00%,1/31/2024,,Performing,2/1/2025,Double Double
+275,Bucksport,ME,Single Family,2016,Moderate Rehab,"$105,000","$100,000","$205,000","$300,000","$90,000","$100,000","$190,000",14.00%,1/30/2024,,Performing,2/1/2025,Double Double
+276,Porter,TX,Single Family,1936,Light Rehab,"$277,000","$25,000","$302,000","$340,000","$229,000","$25,000","$254,000",10.50%,1/30/2024,,Performing,2/1/2025,Standard
+277,Lafayette,LA,Single Family,1390,Light Rehab,"$90,000","$34,000","$124,000","$160,000","$66,000","$34,000","$100,000",13.25%,1/29/2024,,Performing,2/1/2025,Standard
+278,Fort Worth,TX,Single Family,1500,Light Rehab,"$265,000","$35,000","$300,000","$365,000","$212,000","$35,000","$247,000",11.50%,1/29/2024,,Performing,2/1/2025,Standard
+279,St. Louis,MO,Single Family,3480,Heavy Rehab,"$14,100","$250,000","$414,100","$617,000","$81,000","$250,000","$331,000",12.00%,1/26/2024,,Performing,2/1/2025,Standard
+280,Detroit,MI,Single Family,1088,Light Rehab,"$135,000","$21,750","$156,750","$175,000","$103,250","$21,750","$125,000",11.00%,1/26/2024,,Performing,2/1/2025,Standard
+281,Lowell,MA,Single Family,2775,Light Rehab,"$395,000","$119,175","$514,175","$615,000","$341,825","$119,175","$461,000",13.00%,1/26/2024,,Performing,2/1/2025,Double Double
+282,Lancaster,OH,Single Family,768,Light Rehab,"$80,000","$7,500","$87,500","$180,000","$118,500","$7,500","$126,000",11.00%,1/24/2024,,Performing,2/1/2025,Standard
+283,Arlington,TX,Single Family,1943,Light Rehab,"$225,000","$35,945","$260,945","$400,000","$213,615","$35,945","$249,560",12.00%,1/24/2024,,Performing,8/1/2024,Zero Gravity
+285,Hebron,CT,Single Family,941,Light Rehab,"$195,000","$55,000","$250,000","$290,000","$147,000","$55,000","$202,000",12.00%,1/19/2024,,Performing,2/1/2025,Standard
+286,Holbrook,MA,Single Family,2611,Light Rehab,"$280,000","$150,000","$1,030,000","$1,150,000","$272,000","$150,000","$422,000",11.50%,1/19/2024,,Performing,2/1/2025,Standard
+287,Detroit,MI,Single Family,1777,Light Rehab,"$135,000","$10,000","$145,000","$175,000","$105,000","$10,000","$115,000",12.00%,1/18/2024,,Performing,2/1/2025,Standard
+288,Pittsburgh,PA,Single Family,1400,Light Rehab,"$103,000","$38,000","$141,000","$190,000","$76,000","$38,000","$114,000",13.00%,1/16/2024,,Performing,2/1/2025,Standard
+289,Columbus,OH,Single Family,5376,Light Rehab,"$331,000","$174,000","$505,000","$725,000","$285,000","$174,000","$459,000",13.25%,1/15/2024,,Performing,2/1/2025,Double Double
+290,Laurelton,NY,Single Family,1280,Light Rehab,"$545,475","$45,000","$590,475","$806,000","$433,000","$45,000","$478,000",13.00%,1/12/2024,,Performing,2/1/2025,Standard
+291,Burlington,WI,Single Family,2464,Light Rehab,"$290,000","$15,000","$305,000","$400,000","$235,000","$15,000","$250,000",12.00%,1/12/2024,,Performing,2/1/2025,Standard
+292,Kalamazoo,MI,Single Family,2779,Light Rehab,"$195,000","$50,000","$245,000","$403,000","$175,000","$50,000","$225,000",13.00%,1/12/2024,,Performing,2/1/2025,Double Double
+293,Fort Collins,CO,Single Family,2320,Light Rehab,"$625,000","$60,000","$685,000","$860,000","$518,000","$60,000","$578,000",11.00%,1/10/2024,,Performing,2/1/2025,Standard
+294,Ensley,AL,Single Family,2160,Light Rehab,"$113,550","$25,000","$138,550","$190,000","$102,000","$25,000","$127,000",13.00%,1/10/2024,,Performing,2/1/2025,Double Double
+295,Metairie,LA,Single Family,1668,Light Rehab,"$240,000","$83,675","$323,675","$375,000","$184,325","$83,675","$268,000",11.75%,1/9/2024,,Performing,2/1/2025,Standard
+296,Aberdeen,WA,Single Family,1356,Moderate Rehab,"$110,000","$100,000","$210,000","$275,000","$74,000","$100,000","$174,000",11.50%,1/9/2024,,Performing,2/1/2025,Standard
+297,Austin,TX,Single Family,2132,Light Rehab,"$400,000","$210,000","$610,000","$805,000","$390,435","$210,000","$600,435",12.00%,1/8/2024,,Performing,8/1/2024,Zero Gravity
+298,Springfield,MA,Single Family,3595,Moderate Rehab,"$120,000","$180,000","$300,000","$400,000","$113,479","$180,000","$293,479",12.00%,1/8/2024,,Performing,8/1/2024,Zero Gravity
+299,Kaufman,TX,Single Family,1436,Light Rehab,"$202,000","$40,000","$242,000","$350,000","$160,000","$40,000","$200,000",11.00%,1/8/2024,,Performing,2/1/2025,Standard
+300,Clearwater,FL,Condo,997,Light Rehab,"$155,000","$10,000","$165,000","$250,000","$123,000","$10,000","$133,000",12.25%,1/5/2024,,Performing,2/1/2025,Standard
+301,St. Louis,MO,Single Family,912,Moderate Rehab,"$45,000","$45,000","$90,000","$140,000","$31,000","$45,000","$76,000",12.00%,1/4/2024,,Performing,2/1/2025,Standard
+302,St. Louis,MO,Single Family,800,Moderate Rehab,"$35,000","$54,000","$89,000","$115,000","$21,000","$54,000","$75,000",12.50%,1/4/2024,,Performing,2/1/2025,Standard
+303,St. Louis,MO,Single Family,1315,Moderate Rehab,"$40,000","$60,000","$100,000","$135,000","$23,000","$60,000","$83,000",12.50%,1/4/2024,,Performing,2/1/2025,Standard
+304,St. Louis,MO,Single Family,1232,Moderate Rehab,"$42,000","$47,000","$89,000","$135,000","$28,000","$47,000","$75,000",12.00%,1/4/2024,,Performing,2/1/2025,Standard
+305,Jacksonville,FL,Single Family,1768,Light Rehab,"$157,000","$60,000","$217,000","$280,000","$141,000","$60,000","$201,000",13.00%,1/4/2024,,Performing,2/1/2025,Double Double
+306,Dallas,TX,Single Family,2168,Light Rehab,"$560,000","$130,000","$690,000","$900,000","$534,000","$130,000","$664,000",13.50%,1/4/2024,,Performing,2/1/2025,Standard
+307,Terrell,TX,Single Family,1288,Light Rehab,"$115,000","$55,000","$170,000","$260,000","$103,000","$55,000","$158,000",13.00%,1/4/2024,,Performing,2/1/2025,Double Double
+308,Bridgeport,CT,Single Family,1906,Light Rehab,"$183,750","$90,000","$273,750","$365,000","$164,000","$90,000","$254,000",13.00%,1/4/2024,,Performing,2/1/2025,Double Double
+309,Cleburne,TX,Single Family,752,Light Rehab,"$120,000","$31,000","$151,000","$215,000","$116,175","$31,000","$147,175",12.00%,1/4/2024,,Performing,8/1/2024,Zero Gravity
+310,Richardson,TX,Single Family,2550,Light Rehab,"$515,000","$150,000","$665,000","$840,000","$480,000","$150,000","$630,000",12.00%,1/2/2024,,Performing,8/1/2024,Zero Gravity
+311,New Orleans,LA,Single Family,3532,Light Rehab,"$750,000",$0,"$950,000","$1,187,000","$807,500",$0,"$807,500",10.50%,1/2/2024,,Performing,2/1/2025,Standard
+312,Watervliet,NY,Single Family,2184,Moderate Rehab,"$90,000","$55,000","$145,000","$195,000","$62,000","$55,000","$117,000",11.50%,12/29/2023,,Performing,1/1/2025,Standard
+313,St. Louis,MO,Single Family,1714,Moderate Rehab,"$76,900","$70,000","$146,900","$220,000","$48,000","$70,000","$118,000",13.00%,12/29/2023,,Performing,1/1/2025,Standard
+314,North Ridgeville,OH,Single Family,1400,Light Rehab,"$140,000","$40,000","$180,000","$229,000","$123,000","$40,000","$163,000",13.00%,12/29/2023,,Performing,1/1/2025,Double Double
+315,Highlands,NC,Single Family,4000,Light Rehab,"$550,000","$85,630","$635,630","$835,000","$494,370","$85,630","$580,000",13.00%,12/29/2023,,Performing,1/1/2025,Double Double
+316,North Port,FL,Single Family,1790,Light Rehab,"$325,000","$30,000","$355,000","$535,000","$292,000","$30,000","$322,000",13.00%,12/29/2023,,Performing,1/1/2025,Double Double
+317,Baltimore,MD,Single Family,1838,Light Rehab,"$186,500","$75,000","$261,500","$330,000","$140,000","$75,000","$215,000",12.00%,12/28/2023,,Performing,1/1/2025,Standard
+318,Roswell,NM,Single Family,1941,Moderate Rehab,"$85,000","$85,000","$170,000","$290,000","$59,000","$85,000","$144,000",11.50%,12/28/2023,,Performing,1/1/2025,Standard
+319,Farmersville,TX,Single Family,3056,Light Rehab,"$385,000","$115,000","$500,000","$785,000","$346,000","$115,000","$461,000",13.00%,12/28/2023,,Performing,1/1/2025,Double Double
+320,Antwerp,NY,Single Family,4159,Light Rehab,"$40,000","$136,450","$176,450","$210,000","$5,550","$136,450","$142,000",13.50%,12/28/2023,,Performing,1/1/2025,Standard
+321,Philadelphia,PA,Single Family,2928,Light Rehab,"$140,000","$30,000","$170,000","$300,000","$104,000","$30,000","$134,000",12.00%,12/28/2023,,Performing,1/1/2025,Standard
+322,Philadelphia,PA,Single Family,1494,Light Rehab,"$286,000","$120,000","$406,000","$640,000","$277,283","$120,000","$397,283",12.00%,12/28/2023,,Performing,7/1/2024,Zero Gravity
+323,Muskegon,MI,Single Family,844,Light Rehab,"$83,000","$25,320","$108,320","$150,000","$64,680","$25,320","$90,000",12.00%,12/27/2023,,Performing,1/1/2025,Standard
+324,Rockford,TN,Single Family,2464,Light Rehab,"$382,000","$70,000","$467,000","$575,000","$326,000","$70,000","$396,000",11.50%,12/27/2023,,Performing,1/1/2025,Standard
+325,Jacksonville,FL,Single Family,1314,Light Rehab,"$224,770","$60,000","$284,770","$350,000","$179,000","$60,000","$239,000",11.50%,12/27/2023,,Performing,1/1/2025,Standard
+326,Port Charlotte,FL,Single Family,1183,Light Rehab,"$153,000","$30,000","$183,000","$275,000","$145,621","$30,000","$175,621",12.00%,12/22/2023,,Performing,7/1/2024,Zero Gravity
+327,Cleveland,OH,Single Family,1176,Moderate Rehab,"$75,000","$40,000","$115,000","$150,000","$55,000","$40,000","$95,000",12.50%,12/22/2023,,Performing,1/1/2025,Standard
+328,Port Richey,FL,Single Family,1345,Light Rehab,"$135,000","$50,000","$185,000","$270,000","$139,892","$50,000","$189,892",12.00%,12/21/2023,,Performing,7/1/2024,Zero Gravity
+329,Syracuse,NY,Single Family,1080,Moderate Rehab,"$78,000","$50,000","$128,000","$170,000","$51,000","$50,000","$101,000",12.50%,12/21/2023,,Performing,1/1/2025,Standard
+330,Birmingham,AL,Single Family,1648,Light Rehab,"$180,000","$25,000","$205,000","$280,000","$162,000","$25,000","$187,000",13.00%,12/21/2023,,Performing,1/1/2025,Double Double
+331,Chicago,IL,Single Family,1091,Light Rehab,"$165,000","$75,000","$240,000","$305,000","$153,750","$75,000","$228,750",12.00%,12/21/2023,,Performing,7/1/2024,Zero Gravity
+332,San Antonio,TX,Single Family,1067,Light Rehab,"$141,000","$41,556","$182,556","$245,000","$142,194","$41,556","$183,750",12.00%,12/21/2023,,Performing,7/1/2024,Zero Gravity
+333,Sarasota,FL,Single Family,1715,Light Rehab,"$310,000","$100,000","$410,000","$527,000","$295,250","$100,000","$395,250",12.00%,12/19/2023,,Performing,7/1/2024,Zero Gravity
+334,Richmond,KY,Single Family,1080,Light Rehab,"$110,000",$0,"$110,000","$110,000","$82,000",$0,"$82,000",10.50%,12/19/2023,,Performing,1/1/2025,Standard
+335,Cleveland,OH,Single Family,2465,Light Rehab,"$40,000",$0,"$40,000","$130,000","$98,000",$0,"$98,000",11.50%,12/19/2023,,Performing,1/1/2025,Standard
+336,Danville,KY,Single Family,1107,Moderate Rehab,"$125,000","$60,000","$185,000","$230,000","$97,000","$60,000","$157,000",10.50%,12/19/2023,,Performing,1/1/2025,Standard
+337,Tampa,FL,Single Family,1698,Light Rehab,"$245,000","$25,000","$270,000","$350,000","$217,827","$25,000","$242,827",12.00%,12/18/2023,,Performing,7/1/2024,Zero Gravity
+338,Amarillo,TX,Single Family,1260,Light Rehab,"$90,000","$15,000","$105,000","$160,000","$74,000","$15,000","$89,000",10.50%,12/18/2023,,Performing,1/1/2025,Standard
+339,Baltimore,MD,Single Family,996,Light Rehab,"$124,000","$70,000","$194,000","$300,000","$89,000","$70,000","$159,000",12.00%,12/18/2023,,Performing,1/1/2025,Standard
+340,Amarillo,TX,Single Family,1646,Light Rehab,"$115,000","$8,000","$123,000","$145,000","$95,000","$8,000","$103,000",10.50%,12/18/2023,,Performing,1/1/2025,Standard
+341,Amarillo,TX,Single Family,2160,Light Rehab,"$155,000","$17,000","$172,000","$165,000","$110,000","$17,000","$127,000",10.50%,12/18/2023,,Performing,1/1/2025,Standard
+342,Montclair,NJ,Single Family,3070,Light Rehab,"$725,000","$296,500","$1,021,500","$1,600,000","$652,500","$296,500","$949,000",13.00%,12/17/2023,,Performing,1/1/2025,Double Double
+343,North Port,FL,Single Family,1844,Light Rehab,"$277,000","$33,000","$310,000","$459,000","$227,000","$33,000","$260,000",11.50%,12/15/2023,,Performing,1/1/2025,Standard
+345,New Orleans,LA,Single Family,1754,Moderate Rehab,"$70,000","$95,000","$165,000","$200,000","$38,000","$95,000","$133,000",12.50%,12/15/2023,,Performing,1/1/2025,Standard
+346,Cleveland Heights,OH,Single Family,1700,Light Rehab,"$132,000","$85,000","$217,000","$285,000","$90,000","$85,000","$175,000",11.50%,12/15/2023,,Performing,1/1/2025,Standard
+347,Fort Walton Beach,FL,Single Family,1142,Moderate Rehab,"$156,000","$100,000","$256,000","$400,000","$107,000","$100,000","$207,000",11.50%,12/15/2023,,Performing,1/1/2025,Standard
+348,Fort Worth,TX,Single Family,4292,Light Rehab,"$360,000","$30,000","$390,000","$625,000","$324,000","$30,000","$354,000",13.00%,12/14/2023,,Performing,1/1/2025,Double Double
+350,Philadelphia,PA,Single Family,1350,Moderate Rehab,"$132,500","$160,000","$292,500","$389,721","$88,000","$160,000","$248,000",10.50%,12/14/2023,,Performing,1/1/2025,Standard
+351,St. Louis,MO,Single Family,1200,Moderate Rehab,"$21,200","$80,000","$101,200","$220,000","$10,000","$80,000","$90,000",12.00%,12/14/2023,,Performing,1/1/2025,Standard
+352,Norfolk,VA,Single Family,3900,Light Rehab,"$510,000","$125,000","$635,000","$870,000","$414,000","$125,000","$539,000",11.00%,12/14/2023,,Performing,1/1/2025,Standard
+353,Columbus,OH,Single Family,2016,Light Rehab,"$212,500","$65,000","$277,500","$347,000","$170,000","$65,000","$235,000",10.50%,12/14/2023,,Performing,1/1/2025,Standard
+354,Rockdale,TX,Single Family,884,Moderate Rehab,"$55,000","$80,000","$135,000","$200,000","$29,000","$80,000","$109,000",12.00%,12/13/2023,,Performing,1/1/2025,Standard
+355,Thackerville,OK,Single Family,1008,Light Rehab,"$175,000","$30,000","$205,000","$230,000","$142,000","$30,000","$172,000",11.50%,12/13/2023,,Performing,1/1/2025,Standard
+357,Spring Lake,MI,Single Family,826,Light Rehab,"$156,000","$25,000","$181,000","$250,000","$140,000","$25,000","$165,000",13.00%,12/12/2023,,Performing,1/1/2025,Double Double
+358,Smithfield,ME,Single Family,1872,Light Rehab,"$245,000","$35,000","$280,000","$325,000","$186,000","$35,000","$221,000",11.50%,12/12/2023,,Performing,1/1/2025,Standard
+359,Kansas City,MO,Single Family,2136,Moderate Rehab,"$82,000","$44,000","$126,000","$175,000","$63,000","$44,000","$107,000",12.50%,12/12/2023,,Performing,1/1/2025,Standard
+360,Albuquerque,NM,Single Family,1923,Light Rehab,"$250,000","$65,000","$315,000","$355,000","$201,000","$65,000","$266,000",13.00%,12/12/2023,,Performing,1/1/2025,Standard
+361,St. Louis,MO,Single Family,1300,Light Rehab,"$84,000","$45,000","$129,000","$180,000","$64,000","$45,000","$109,000",11.50%,12/12/2023,,Performing,1/1/2025,Standard
+362,San Antonio,TX,Single Family,996,Light Rehab,"$165,000","$43,995","$208,995","$300,000","$158,879","$43,995","$202,874",12.00%,12/11/2023,,Performing,7/1/2024,Zero Gravity
+363,Lancaster,SC,Single Family,1842,Light Rehab,"$80,000",$0,"$80,000","$220,000","$154,000",$0,"$154,000",11.50%,12/11/2023,,Performing,1/1/2025,Standard
+364,Vestavia Hills,AL,Single Family,2800,Light Rehab,"$295,000","$125,000","$420,000","$570,000","$286,033","$125,000","$411,033",12.00%,12/11/2023,,Performing,7/1/2024,Zero Gravity
+365,Rockford,IL,Single Family,1004,Moderate Rehab,"$53,500","$50,000","$103,500","$118,000","$33,000","$50,000","$83,000",12.50%,12/8/2023,,Performing,1/1/2025,Standard
+366,Nokomis,FL,Single Family,913,Light Rehab,"$290,000","$77,340","$367,340","$460,000","$267,660","$77,340","$345,000",12.00%,12/8/2023,,Performing,7/1/2024,Zero Gravity
+367,Louisville,KY,Single Family,1827,Moderate Rehab,"$85,000","$135,000","$220,000","$300,000","$52,000","$135,000","$187,000",10.50%,12/8/2023,,Performing,1/1/2025,Standard
+368,Morgantown,WV,Single Family,1922,Light Rehab,"$115,000","$35,000","$150,000","$250,000","$100,000","$35,000","$135,000",13.00%,12/8/2023,,Performing,1/1/2025,Double Double
+369,Bainbridge,GA,Single Family,4174,Light Rehab,"$260,000","$80,000","$340,000","$430,000","$234,000","$80,000","$314,000",14.00%,12/7/2023,,Performing,1/1/2025,Double Double
+370,McDermott,OH,Single Family,877,Light Rehab,"$70,000","$45,000","$115,000","$200,000","$48,000","$45,000","$93,000",13.50%,12/6/2023,,Performing,1/1/2025,Standard
+371,Denver,CO,Condo,1141,Moderate Rehab,"$205,000","$130,000","$335,000","$420,000","$190,670","$130,000","$320,670",12.00%,12/6/2023,,Performing,7/1/2024,Zero Gravity
+372,Ocala,FL,Single Family,2621,Light Rehab,"$220,000","$100,000","$320,000","$427,000","$214,565","$100,000","$314,565",12.00%,12/5/2023,,Performing,7/1/2024,Zero Gravity
+373,Farmville,NC,Single Family,1291,Moderate Rehab,"$92,500","$58,000","$150,500","$200,000","$81,000","$58,000","$139,000",13.00%,12/5/2023,,Performing,1/1/2025,Double Double
+374,Newark,OH,Single Family,1739,Heavy Rehab,"$46,000","$130,000","$176,000","$250,000","$12,000","$130,000","$142,000",12.50%,12/4/2023,,Performing,1/1/2025,Standard
+375,Dallas,TX,Single Family,2806,Light Rehab,"$595,000","$168,500","$763,500","$955,000","$547,750","$168,500","$716,250",12.00%,12/1/2023,,Performing,7/1/2024,Zero Gravity
+376,Exmore,VA,Single Family,1322,Light Rehab,"$199,900","$22,500","$222,400","$282,000","$179,500","$22,500","$202,000",14.00%,12/1/2023,,Performing,1/1/2025,Double Double
+377,Memphis,TN,Single Family,1900,Light Rehab,"$250,000","$85,000","$335,000","$380,000","$199,000","$85,000","$284,000",10.50%,11/30/2023,,Performing,12/1/2024,Standard
+378,Holland,MI,Single Family,1300,Light Rehab,"$85,000","$55,000","$140,000","$232,000","$64,000","$55,000","$119,000",10.50%,11/30/2023,,Performing,12/1/2024,Standard
+380,Memphis,TN,Single Family,1248,Light Rehab,"$239,160",$0,"$239,160","$300,000","$179,000",$0,"$179,000",10.50%,11/30/2023,,Performing,12/1/2024,Standard
+381,Cross Lanes,WV,Single Family,1860,Moderate Rehab,"$76,500","$67,000","$143,500","$200,000","$54,000","$67,000","$121,000",11.50%,11/30/2023,,Performing,12/1/2024,Standard
+382,Hazleton,PA,Single Family,2158,Light Rehab,"$134,900","$15,000","$149,900","$190,000","$125,616","$15,000","$140,616",12.00%,11/30/2023,,Performing,6/1/2024,Zero Gravity
+383,Farmersville,TX,Single Family,1860,Light Rehab,"$278,000","$60,000","$338,000","$400,000","$227,000","$60,000","$287,000",10.50%,11/30/2023,,Performing,12/1/2024,Standard
+384,Old Orchard Beach,ME,Single Family,586,Light Rehab,"$205,000","$35,000","$240,000","$325,000","$159,000","$35,000","$194,000",12.50%,11/29/2023,,Performing,12/1/2024,Standard
+385,Cincinnati,OH,Single Family,1462,Light Rehab,"$215,000","$14,790","$229,790","$290,000","$193,210","$14,790","$208,000",13.00%,11/28/2023,,Performing,12/1/2024,Double Double
+386,Dallas,TX,Condo,1171,Light Rehab,"$92,500",$0,"$92,500","$135,000","$76,000",$0,"$76,000",11.00%,11/28/2023,,Performing,12/1/2024,Standard
+387,Buffalo,NY,Single Family,2398,Moderate Rehab,"$105,000","$185,000","$290,000","$403,000","$61,000","$185,000","$246,000",10.50%,11/28/2023,,Performing,12/1/2024,Standard
+388,Baltimore,MD,Single Family,756,Light Rehab,"$108,000","$15,000","$123,000","$170,000","$89,000","$15,000","$104,000",10.50%,11/27/2023,,Performing,12/1/2024,Standard
+389,Hallieford,VA,Single Family,2493,Light Rehab,"$188,333","$30,000","$218,333","$380,000","$169,000","$30,000","$199,000",14.00%,11/22/2023,,Performing,12/1/2024,Double Double
+390,Maggie Valley,NC,Single Family,1460,Light Rehab,"$202,650","$87,000","$289,650","$425,000","$166,000","$87,000","$253,000",11.50%,11/22/2023,,Performing,12/1/2024,Standard
+391,Rockwall,TX,Single Family,2917,Light Rehab,"$448,000","$30,000","$478,000","$525,000","$371,000","$30,000","$401,000",10.50%,11/22/2023,,Performing,12/1/2024,Standard
+392,Norwich,CT,Single Family,1584,Moderate Rehab,"$150,000","$100,000","$250,000","$290,000","$112,000","$100,000","$212,000",10.50%,11/21/2023,,Performing,12/1/2024,Standard
+393,San Antonio,TX,Single Family,1630,Light Rehab,"$180,000","$28,500","$208,500","$220,000","$117,500","$28,500","$146,000",10.50%,11/20/2023,,Performing,12/1/2024,Standard
+394,Dalton,GA,Single Family,1503,Moderate Rehab,"$86,000","$50,000","$156,000","$225,000","$82,000","$50,000","$132,000",10.50%,11/20/2023,,Performing,12/1/2024,Standard
+395,Rossville,GA,Single Family,1196,Light Rehab,"$30,000","$60,000","$125,000","$172,000","$51,350","$60,000","$111,350",11.50%,11/20/2023,,Performing,12/1/2024,Standard
+396,Newport News,VA,Single Family,2371,Moderate Rehab,"$150,000","$120,000","$270,000","$340,000","$109,000","$120,000","$229,000",10.50%,11/20/2023,,Performing,12/1/2024,Standard
+397,Garfield Heights,OH,Single Family,2792,Moderate Rehab,"$94,000","$65,000","$159,000","$200,000","$70,000","$65,000","$135,000",10.50%,11/20/2023,,Performing,12/1/2024,Standard
+398,Lynwood,IL,Single Family,1043,Light Rehab,"$89,500",$0,"$149,500","$245,000","$183,000",$0,"$183,000",10.50%,11/17/2023,,Performing,12/1/2024,Standard
+399,Tampa,FL,Single Family,2055,Light Rehab,"$310,000","$123,871","$433,871","$535,000","$262,129","$123,871","$386,000",13.00%,11/17/2023,,Performing,12/1/2024,Double Double
+400,Boerne,TX,Single Family,4013,Light Rehab,"$700,000",$0,"$700,000","$700,000","$100,000",$0,"$100,000",11.00%,11/17/2023,,Performing,12/1/2024,Standard
+401,Hattiesburg,MS,Single Family,2022,Light Rehab,"$180,500","$55,000","$235,500","$350,000","$174,157","$55,000","$229,157",12.00%,11/17/2023,,Performing,6/1/2024,Zero Gravity
+402,Hazleton,PA,Single Family,1228,Light Rehab,"$205,000","$17,000","$222,000","$260,000","$166,000","$17,000","$183,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+404,Humboldt,TN,Single Family,1080,Light Rehab,"$105,480",$0,"$105,480","$105,480","$78,000",$0,"$78,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+406,Trenton,TN,Single Family,1071,Light Rehab,"$88,810",$0,"$88,810","$89,000","$66,000",$0,"$66,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+409,Trenton,TN,Single Family,1134,Light Rehab,"$100,000",$0,"$100,000","$100,000","$75,000",$0,"$75,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+410,Milan,TN,Single Family,984,Light Rehab,"$101,844",$0,"$101,844","$102,000","$76,000",$0,"$76,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+411,Trenton,TN,Single Family,1402,Light Rehab,"$113,595",$0,"$113,595","$113,100","$84,000",$0,"$84,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+412,Trenton,TN,Single Family,975,Light Rehab,"$102,375",$0,"$102,375","$102,375","$76,000",$0,"$76,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+413,Trenton,TN,Single Family,1170,Light Rehab,"$118,463",$0,"$118,463","$118,450","$88,000",$0,"$88,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+415,Trenton,TN,Single Family,944,Light Rehab,"$113,595",$0,"$113,595","$113,500","$85,000",$0,"$85,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+417,Trenton,TN,Single Family,1168,Light Rehab,"$137,135",$0,"$137,135","$137,000","$102,000",$0,"$102,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+419,Trenton,TN,Single Family,2014,Light Rehab,"$155,000",$0,"$155,000","$155,000","$116,000",$0,"$116,000",10.50%,11/16/2023,,Performing,12/1/2024,Standard
+420,Baytown,TX,Single Family,2649,Light Rehab,"$210,000","$58,473","$268,473","$336,000","$188,527","$58,473","$247,000",13.00%,11/15/2023,,Performing,12/1/2024,Double Double
+421,Greenville,SC,Single Family,1594,Light Rehab,"$160,138","$60,250","$220,388","$322,000","$155,801","$60,250","$216,051",12.00%,11/15/2023,,Performing,6/1/2024,Zero Gravity
+422,Louisville,KY,Single Family,1472,Light Rehab,"$95,000","$30,000","$125,000","$160,000","$76,000","$30,000","$106,000",10.50%,11/15/2023,,Performing,12/1/2024,Standard
+423,Odessa,WA,Single Family,1063,Moderate Rehab,"$75,000","$44,500","$129,500","$200,000","$57,500","$44,500","$102,000",12.50%,11/15/2023,,Performing,12/1/2024,Standard
+424,Benton,KY,Single Family,2372,Moderate Rehab,"$52,500","$127,000","$179,500","$235,000","$25,000","$127,000","$152,000",12.50%,11/15/2023,,Performing,12/1/2024,Standard
+425,Huntsville,AL,Single Family,2305,Light Rehab,"$340,000","$40,000","$380,000","$427,000","$280,000","$40,000","$320,000",10.50%,11/15/2023,,Performing,12/1/2024,Standard
+426,Philadelphia,PA,Single Family,2036,Light Rehab,"$340,000","$120,000","$460,000","$625,000","$330,164","$120,000","$450,164",13.00%,11/14/2023,,Performing,6/1/2024,Zero Gravity
+427,Denver,CO,Single Family,2000,Moderate Rehab,"$683,000","$376,000","$1,059,000","$1,400,000","$666,337","$376,000","$1,042,337",12.00%,11/13/2023,,Performing,6/1/2024,Zero Gravity
+428,Urbana,OH,Single Family,542,Light Rehab,"$60,000","$80,000","$140,000","$185,000","$45,000","$80,000","$125,000",12.50%,11/10/2023,,Performing,12/1/2024,Standard
+429,Kingsville,TX,Single Family,1543,Moderate Rehab,"$70,000","$74,400","$144,400","$226,661","$42,600","$74,400","$117,000",13.50%,11/10/2023,,Performing,12/1/2024,Standard
+430,Chicago,IL,Single Family,1100,Moderate Rehab,"$68,500","$51,500","$120,000","$166,000","$44,500","$51,500","$96,000",11.50%,11/9/2023,,Performing,12/1/2024,Standard
+431,Conneaut,OH,Single Family,1581,Light Rehab,"$57,200","$35,000","$92,200","$160,000","$42,000","$35,000","$77,000",13.50%,11/8/2023,,Performing,12/1/2024,Standard
+432,Amarillo,TX,Single Family,1792,Moderate Rehab,"$125,000","$90,000","$215,000","$280,000","$109,000","$90,000","$199,000",13.00%,11/7/2023,,Performing,12/1/2024,Double Double
+433,Beckley,WV,Single Family,1853,Light Rehab,"$97,000","$45,400","$142,400","$189,000","$75,600","$45,400","$121,000",10.50%,11/7/2023,,Performing,12/1/2024,Standard
+434,Augusta,GA,Single Family,1134,Moderate Rehab,"$80,000","$51,000","$131,000","$159,000","$55,000","$51,000","$106,000",12.50%,11/7/2023,,Performing,12/1/2024,Standard
+435,Youngstown,OH,Single Family,3060,Light Rehab,"$150,000","$30,000","$200,000","$250,000","$124,000","$30,000","$154,000",10.50%,11/6/2023,,Performing,12/1/2024,Standard
+436,Terre Haute,IN,Single Family,1248,Moderate Rehab,"$132,000","$70,000","$202,000","$315,000","$93,000","$70,000","$163,000",11.50%,11/6/2023,,Performing,12/1/2024,Standard
+437,St. Albans,MO,Single Family,2412,Light Rehab,"$585,000","$89,435","$724,435","$850,000","$536,815","$89,435","$626,250",12.00%,11/6/2023,,Performing,6/1/2024,Zero Gravity
+438,Cleveland,OH,Single Family,1804,Light Rehab,"$108,000","$5,000","$113,000","$158,000","$80,000","$5,000","$85,000",11.50%,11/3/2023,,Performing,12/1/2024,Standard
+439,Clute,TX,Single Family,1118,Moderate Rehab,"$75,000","$55,476","$130,476","$200,000","$54,524","$55,476","$110,000",11.50%,11/3/2023,,Performing,12/1/2024,Standard
+441,Chicago,IL,Single Family,2500,Light Rehab,"$250,000","$81,455","$331,455","$475,000","$186,545","$81,455","$268,000",11.50%,10/31/2023,,Performing,11/1/2024,Standard
+442,Waxahachie,TX,Single Family,2368,Light Rehab,"$348,900","$20,000","$368,900","$465,000","$326,701","$20,000","$346,701",12.00%,10/31/2023,,Performing,5/1/2024,Zero Gravity
+443,Cleveland,OH,Single Family,3896,Light Rehab,"$95,000","$48,445","$143,445","$175,000","$67,555","$48,445","$116,000",11.50%,10/31/2023,,Performing,11/1/2024,Standard
+444,Louisville,OH,Single Family,1224,Moderate Rehab,"$143,800","$73,500","$217,300","$287,000","$128,500","$73,500","$202,000",13.00%,10/31/2023,,Performing,11/1/2024,Double Double
+445,Fort Worth,TX,Single Family,1796,Light Rehab,"$170,000","$25,000","$195,000","$240,000","$140,000","$25,000","$165,000",10.50%,10/31/2023,,Performing,11/1/2024,Standard
+446,Philadelphia,PA,Single Family,2290,Moderate Rehab,"$190,000","$160,850","$350,850","$415,000","$135,150","$160,850","$296,000",11.00%,10/31/2023,,Performing,11/1/2024,Standard
+447,Leavenworth,KS,Single Family,1388,Light Rehab,"$90,000","$33,800","$123,800","$161,000","$69,200","$33,800","$103,000",11.50%,10/31/2023,,Performing,11/1/2024,Standard
+448,Forest Hill,TX,Single Family,1592,Moderate Rehab,"$115,000","$86,000","$201,000","$225,000","$84,000","$86,000","$170,000",10.50%,10/31/2023,,Performing,11/1/2024,Standard
+449,Cleveland Heights,OH,Single Family,1472,Moderate Rehab,"$102,000",$0,"$179,960","$294,500","$220,000",$0,"$220,000",10.50%,10/30/2023,,Performing,11/1/2024,Standard
+450,Cape May,NJ,Single Family,2016,Light Rehab,"$1,050,000","$190,000","$1,240,000","$1,600,000","$864,000","$190,000","$1,054,000",10.50%,10/30/2023,,Performing,11/1/2024,Standard
+451,Baltimore,MD,Single Family,2940,Light Rehab,"$245,000","$106,000","$351,000","$440,000","$202,000","$106,000","$308,000",13.00%,10/30/2023,,Performing,11/1/2024,Double Double
+452,Thackerville,OK,Single Family,4892,Light Rehab,"$650,000","$38,100","$688,100","$850,000","$503,900","$38,100","$542,000",11.50%,10/30/2023,,Performing,11/1/2024,Standard
+453,Denver,CO,Single Family,2466,Light Rehab,"$713,000","$100,000","$813,000","$1,061,000","$591,000","$100,000","$691,000",10.50%,10/30/2023,,Performing,11/1/2024,Standard
+454,Quitman,TX,Single Family,1464,Light Rehab,"$78,757","$50,000","$128,757","$209,000","$60,000","$50,000","$110,000",12.50%,10/27/2023,,Performing,11/1/2024,Standard
+455,Detroit,MI,Single Family,3572,Light Rehab,"$200,000","$96,600","$296,600","$427,000","$195,791","$96,600","$292,391",12.00%,10/27/2023,,Performing,5/1/2024,Zero Gravity
+456,Philadelphia,PA,Single Family,840,Moderate Rehab,"$67,000","$75,950","$142,950","$180,000","$36,050","$75,950","$112,000",12.50%,10/27/2023,,Performing,11/1/2024,Standard
+457,Houston,TX,Condo,1036,Light Rehab,"$100,000","$20,000","$120,000","$160,000","$83,000","$20,000","$103,000",10.50%,10/27/2023,,Performing,11/1/2024,Standard
+458,Tyler,TX,Single Family,812,Light Rehab,"$125,000","$50,000","$175,000","$235,000","$122,446","$50,000","$172,446",12.00%,10/26/2023,,Performing,5/1/2024,Zero Gravity
+459,Crystal River,FL,Single Family,1672,Light Rehab,"$365,000","$55,000","$420,000","$575,000","$344,619","$55,000","$399,619",12.00%,10/26/2023,,Performing,5/1/2024,Zero Gravity
+460,Austin,TX,Single Family,1957,Light Rehab,"$365,000","$75,000","$440,000","$525,000","$318,000","$75,000","$393,000",13.00%,10/25/2023,,Performing,11/1/2024,Double Double
+461,Anderson,SC,Single Family,1594,Moderate Rehab,"$105,000","$75,000","$180,000","$250,000","$78,000","$75,000","$153,000",10.50%,10/23/2023,,Performing,11/1/2024,Standard
+462,Dallas,TX,Single Family,128,Light Rehab,"$285,000","$60,000","$345,000","$525,000","$271,141","$60,000","$331,141",12.00%,10/20/2023,,Performing,5/1/2024,Zero Gravity
+463,St. Louis,MO,Single Family,1600,Light Rehab,"$125,000","$32,450","$157,450","$200,000","$117,550","$32,450","$150,000",12.00%,10/20/2023,,Performing,5/1/2024,Zero Gravity
+464,Bradyville,TN,Single Family,1128,Light Rehab,"$160,000","$70,000","$230,000","$266,000","$125,000","$70,000","$195,000",10.50%,10/20/2023,,Performing,11/1/2024,Standard
+465,Tampa,FL,Single Family,1409,Light Rehab,"$313,900","$60,000","$373,900","$440,000","$246,000","$60,000","$306,000",10.50%,10/17/2023,,Performing,11/1/2024,Standard
+466,Chicago,IL,Single Family,1455,Heavy Rehab,"$100,000","$180,000","$280,000","$350,500","$58,000","$180,000","$238,000",10.50%,10/16/2023,,Performing,11/1/2024,Standard
+467,Birmingham,AL,Single Family,1278,Moderate Rehab,"$42,000","$38,100","$105,500","$148,000","$51,224","$38,100","$89,324",11.50%,10/16/2023,,Performing,11/1/2024,Standard
+468,Kalamazoo,MI,Single Family,2800,Light Rehab,"$130,000","$114,000","$244,000","$337,000","$93,000","$114,000","$207,000",10.50%,10/16/2023,,Performing,11/1/2024,Standard
+469,Chicago,IL,Single Family,900,Light Rehab,"$186,500","$20,800","$207,300","$266,000","$175,660","$20,800","$196,460",12.00%,10/13/2023,,Performing,5/1/2024,Zero Gravity
+470,Pensacola,FL,Single Family,2250,Light Rehab,"$202,000","$45,000","$247,000","$330,000","$193,152","$45,000","$238,152",12.00%,10/13/2023,,Performing,5/1/2024,Zero Gravity
+471,Sarasota,FL,Single Family,1290,Moderate Rehab,"$165,000","$140,000","$305,000","$400,000","$160,000","$140,000","$300,000",12.00%,10/11/2023,,Performing,5/1/2024,Zero Gravity
+472,Waxahachie,TX,Single Family,1827,Light Rehab,"$345,000","$30,000","$375,000","$445,000","$303,000","$30,000","$333,000",13.00%,10/11/2023,,Performing,11/1/2024,Standard
+473,Danville,VA,Single Family,2336,Moderate Rehab,"$130,000","$90,000","$220,000","$250,000","$88,000","$90,000","$178,000",12.50%,10/11/2023,,Performing,11/1/2024,Standard
+474,Columbus,OH,Single Family,1560,Light Rehab,"$255,000",$0,"$255,000","$250,000","$191,000",$0,"$191,000",10.50%,10/11/2023,,Performing,11/1/2024,Standard
+475,Fort Worth,TX,Single Family,1334,Light Rehab,"$230,000","$33,650","$263,650","$300,000","$179,350","$33,650","$213,000",11.50%,10/10/2023,,Performing,11/1/2024,Standard
+476,Fort Worth,TX,Single Family,1508,Light Rehab,"$200,000","$40,000","$240,000","$300,000","$180,000","$40,000","$220,000",13.00%,10/10/2023,,Performing,11/1/2024,Double Double
+477,Covington,KY,Single Family,1452,Light Rehab,"$120,000","$51,464","$171,464","$230,000","$86,536","$51,464","$138,000",11.50%,10/9/2023,,Performing,11/1/2024,Standard
+478,St. Petersburg,FL,Single Family,1232,Light Rehab,"$316,000","$85,000","$401,000","$465,000","$116,000","$85,000","$201,000",10.50%,10/6/2023,,Performing,11/1/2024,Standard
+479,Memphis,TN,Single Family,1100,Light Rehab,"$95,000","$30,000","$125,000","$165,000","$71,000","$30,000","$101,000",11.50%,10/6/2023,,Performing,11/1/2024,Standard
+480,Charleston,SC,Single Family,3681,Moderate Rehab,"$185,000","$115,000","$300,000","$451,000","$183,533","$115,000","$298,533",12.00%,10/4/2023,,Performing,5/1/2024,Zero Gravity
+481,Perry,FL,Single Family,1252,Moderate Rehab,"$75,000","$40,000","$115,000","$185,000","$67,000","$40,000","$107,000",12.50%,10/4/2023,,Performing,11/1/2024,Standard
+482,West Haven,CT,Single Family,1408,Light Rehab,"$202,500","$67,000","$269,500","$340,000","$162,000","$67,000","$229,000",10.50%,10/4/2023,,Performing,11/1/2024,Standard
+483,Irving,TX,Single Family,1819,Light Rehab,"$262,000","$35,000","$297,000","$355,000","$247,717","$35,000","$282,717",12.00%,9/28/2023,,Performing,4/1/2024,Zero Gravity
+484,Red Hook,NY,Single Family,3885,Moderate Rehab,"$689,000","$670,500","$1,359,500","$1,695,000","$484,500","$670,500","$1,155,000",11.50%,9/28/2023,,Performing,10/1/2024,Standard
+485,Heath,TX,Single Family,4200,Light Rehab,"$1,450,000","$400,000","$2,218,000","$3,000,000","$1,485,000","$400,000","$1,885,000",10.50%,9/28/2023,,Performing,10/1/2024,Standard
+486,Indianapolis,IN,Single Family,1365,Light Rehab,"$118,965","$60,000","$178,965","$260,000","$122,000","$60,000","$182,000",11.50%,9/28/2023,,Performing,10/1/2024,Standard
+487,Taneytown,MD,Single Family,2844,Light Rehab,"$215,000","$70,000","$285,000","$370,000","$158,000","$70,000","$228,000",11.50%,9/27/2023,,Performing,10/1/2024,Standard
+488,Kansas City,MO,Single Family,1042,Moderate Rehab,"$90,000","$60,000","$150,000","$231,000","$67,000","$60,000","$127,000",10.50%,9/27/2023,,Performing,10/1/2024,Standard
+490,Dolton,IL,Single Family,1028,Moderate Rehab,"$105,001","$60,000","$165,001","$229,000","$93,000","$60,000","$153,000",13.00%,9/27/2023,,Performing,10/1/2024,Double Double
+491,Savannah,GA,Single Family,1210,Light Rehab,"$135,000","$40,000","$175,000","$230,000","$101,000","$40,000","$141,000",11.50%,9/26/2023,,Performing,10/1/2024,Standard
+492,Jacksonville,FL,Single Family,2136,Light Rehab,"$150,000","$45,000","$195,000","$320,000","$120,000","$45,000","$165,000",11.50%,9/26/2023,,Performing,10/1/2024,Standard
+493,Indianapolis,IN,Single Family,2000,Moderate Rehab,"$150,000","$140,000","$490,000","$490,000","$222,000","$140,000","$362,000",10.50%,9/25/2023,,Performing,10/1/2024,Standard
+494,Benton Harbor,MI,Single Family,1476,Light Rehab,"$65,000","$86,900","$151,900","$150,000","$25,100","$86,900","$112,000",12.50%,9/22/2023,,Performing,10/1/2024,Standard
+495,Columbus,GA,Single Family,3090,Light Rehab,"$188,000","$30,000","$218,000","$278,000","$146,000","$30,000","$176,000",11.50%,9/20/2023,,Performing,10/1/2024,Standard
+496,Norwich,CT,Single Family,2113,Moderate Rehab,"$125,500","$100,000","$225,500","$300,000","$87,000","$100,000","$187,000",11.50%,9/18/2023,,Performing,10/1/2024,Standard
+497,Charlotte,NC,Single Family,1157,Light Rehab,"$216,500","$30,000","$246,500","$300,000","$164,000","$30,000","$194,000",11.50%,9/15/2023,,Performing,10/1/2024,Standard
+498,Houston,TX,Single Family,1942,Light Rehab,"$1,600,000","$112,050","$1,712,050","$2,400,000","$1,349,950","$112,050","$1,462,000",12.75%,9/15/2023,,Performing,10/1/2024,Double Double
+499,Rowlett,TX,Single Family,4400,Light Rehab,"$688,000","$69,800","$757,800","$850,000","$570,200","$69,800","$640,000",10.50%,9/14/2023,,Performing,10/1/2024,Standard
+500,Amarillo,TX,Single Family,2320,Light Rehab,"$150,000","$100,000","$250,000","$400,000","$149,900","$100,000","$249,900",12.00%,9/14/2023,,Performing,4/1/2024,Zero Gravity
+501,Rotterdam,NY,Single Family,2531,Moderate Rehab,"$132,000","$76,000","$208,000","$275,000","$127,706","$76,000","$203,706",12.00%,9/14/2023,,Performing,4/1/2024,Zero Gravity
+503,Cleveland,OH,Single Family,1620,Light Rehab,"$140,000","$25,000","$165,000","$175,000","$106,000","$25,000","$131,000",10.50%,9/12/2023,,Performing,10/1/2024,Standard
+504,Abilene,TX,Single Family,1876,Light Rehab,"$79,999","$50,000","$129,999","$220,000","$61,000","$50,000","$111,000",11.50%,9/12/2023,,Performing,10/1/2024,Standard
+505,Schenectady,NY,Single Family,3084,Moderate Rehab,"$186,000","$96,000","$282,000","$355,000","$170,250","$96,000","$266,250",12.00%,9/12/2023,,Performing,4/1/2024,Zero Gravity
+506,Abilene,TX,Single Family,8260,Moderate Rehab,"$950,000","$761,900","$1,711,900","$2,200,000","$830,100","$761,900","$1,592,000",12.50%,9/12/2023,,Performing,10/1/2024,Double Double
+507,Dunwoody,GA,Single Family,5250,Light Rehab,"$692,000","$198,925","$890,925","$1,150,000","$622,075","$198,925","$821,000",13.00%,9/11/2023,,Performing,10/1/2024,Double Double
+508,McKinney,TX,Single Family,3664,Light Rehab,"$593,000","$60,000","$653,000","$850,000","$555,706","$60,000","$615,706",12.00%,9/11/2023,,Performing,4/1/2024,Zero Gravity
+509,Camden,SC,Single Family,4330,Heavy Rehab,"$400,000","$780,000","$1,180,000","$1,300,000","$165,000","$780,000","$945,000",11.50%,9/8/2023,,Performing,10/1/2024,Standard
+510,Baton Rouge,LA,Single Family,1700,Light Rehab,"$110,000","$31,950","$141,950","$200,000","$98,050","$31,950","$130,000",13.00%,9/8/2023,,Performing,10/1/2024,Double Double
+511,Horn Lake,MS,Single Family,1204,Light Rehab,"$237,000",$0,"$237,000","$237,000","$177,000",$0,"$177,000",10.50%,9/7/2023,,Performing,10/1/2024,Standard
+512,Memphis,TN,Single Family,1358,Light Rehab,"$198,000",$0,"$198,000","$198,000","$148,000",$0,"$148,000",10.50%,9/5/2023,,Performing,10/1/2024,Standard
+513,Omaha,NE,Single Family,1234,Moderate Rehab,"$85,000","$55,000","$140,000","$195,000","$64,000","$55,000","$119,000",10.50%,9/1/2023,,Performing,10/1/2024,Standard
+514,Dallas,TX,Single Family,910,Light Rehab,"$123,000","$45,000","$168,000","$225,000","$110,000","$45,000","$155,000",13.00%,9/1/2023,,Performing,10/1/2024,Double Double
+517,Hartford,CT,Single Family,1762,Light Rehab,"$207,000","$60,650","$267,650","$350,000","$166,350","$60,650","$227,000",10.50%,8/30/2023,,Performing,9/1/2024,Standard
+518,Columbus,OH,Single Family,1976,Light Rehab,"$182,500","$20,000","$202,500","$240,000","$147,000","$20,000","$167,000",10.50%,8/30/2023,,Performing,9/1/2024,Standard
+519,Elizabethtown,KY,Single Family,2464,Light Rehab,"$108,004","$70,000","$178,004","$299,000","$93,000","$70,000","$163,000",13.00%,8/30/2023,,Performing,9/1/2024,Double Double
+521,Memphis,TN,Single Family,1472,Light Rehab,"$207,615",$0,"$207,615","$215,000","$155,000",$0,"$155,000",10.50%,8/29/2023,,Performing,9/1/2024,Standard
+522,Grand Prairie,TX,Single Family,1402,Light Rehab,"$206,000","$5,000","$211,000","$270,000","$185,000","$5,000","$190,000",13.00%,8/29/2023,,Performing,9/1/2024,Double Double
+523,Kalamazoo,MI,Single Family,700,Light Rehab,"$275,000","$80,000","$355,000","$355,000","$201,000","$80,000","$281,000",10.50%,8/28/2023,,Performing,9/1/2024,Standard
+524,Kalamazoo,MI,Single Family,750,Light Rehab,"$170,000","$25,000","$195,000","$350,000","$140,000","$25,000","$165,000",10.50%,8/28/2023,,Performing,9/1/2024,Standard
+526,Cincinnati,OH,Single Family,1620,Light Rehab,"$252,000","$75,000","$327,000","$400,000","$202,000","$75,000","$277,000",10.50%,8/25/2023,,Performing,9/1/2024,Standard
+527,Philadelphia,PA,Townhouse,1176,Light Rehab,"$155,000","$53,380","$208,380","$274,000","$114,620","$53,380","$168,000",11.50%,8/24/2023,,Performing,9/1/2024,Standard
+528,Bloomington,IN,Single Family,1906,Moderate Rehab,"$240,000","$130,000","$370,000","$500,000","$230,526","$130,000","$360,526",12.00%,8/23/2023,,Performing,3/1/2024,Zero Gravity
+529,Nashville,TN,Single Family,1196,Light Rehab,"$700,000",$0,"$700,000","$545,000","$392,000",$0,"$392,000",10.50%,8/21/2023,,Performing,9/1/2024,Standard
+530,Spartanburg,SC,Single Family,1608,Light Rehab,"$140,000","$42,000","$182,000","$250,000","$135,673","$42,000","$177,673",12.00%,8/18/2023,,Performing,3/1/2024,Zero Gravity
+531,Tyler,TX,Single Family,792,Moderate Rehab,"$45,000","$55,000","$100,000","$145,000","$30,000","$55,000","$85,000",13.00%,8/18/2023,,Performing,9/1/2024,Standard
+533,Columbus,GA,Single Family,1363,Light Rehab,"$120,000",$0,"$120,000","$120,000","$90,000",$0,"$90,000",10.50%,8/17/2023,,Performing,9/1/2024,Standard
+534,Columbus,GA,Single Family,1527,Light Rehab,"$124,000",$0,"$124,000","$124,000","$93,000",$0,"$93,000",10.50%,8/17/2023,,Performing,9/1/2024,Standard
+536,Hendersonville,TN,Single Family,1224,Light Rehab,"$142,283","$225,000","$367,283","$500,000","$116,000","$225,000","$341,000",14.50%,8/17/2023,,Performing,9/1/2024,Double Double
+537,Dallas,TX,Single Family,1518,Light Rehab,"$160,000","$20,000","$180,000","$275,000","$132,000","$20,000","$152,000",10.50%,8/15/2023,,Performing,9/1/2024,Standard
+538,Farmington,ME,Single Family,2290,Light Rehab,"$159,500","$65,000","$224,500","$300,000","$156,890","$65,000","$221,890",12.00%,8/11/2023,,Performing,3/1/2024,Zero Gravity
+539,Palestine,TX,Single Family,2144,Moderate Rehab,"$90,000","$75,000","$168,300","$250,000","$78,000","$75,000","$153,000",11.50%,8/10/2023,,Performing,9/1/2024,Standard
+540,Dallas,TX,Single Family,1054,Moderate Rehab,"$132,000","$60,000","$192,000","$235,000","$103,000","$60,000","$163,000",11.50%,8/9/2023,,Performing,9/1/2024,Standard
+542,Pettus,TX,Single Family,1488,Light Rehab,"$17,500","$48,000","$138,000","$175,000","$69,000","$48,000","$117,000",11.50%,8/8/2023,,Performing,9/1/2024,Standard
+543,St. Louis,MO,Single Family,1400,Moderate Rehab,"$67,500","$40,000","$107,500","$175,000","$44,000","$40,000","$84,000",11.50%,8/8/2023,,Performing,9/1/2024,Standard
+544,Newport News,VA,Single Family,1450,Light Rehab,"$122,000","$45,000","$167,000","$230,000","$120,634","$45,000","$165,634",12.00%,8/7/2023,,Performing,3/1/2024,Zero Gravity
+545,Plymouth,PA,Single Family,2498,Light Rehab,"$65,000","$35,000","$100,000","$150,000","$46,000","$35,000","$81,000",12.50%,8/4/2023,,Performing,9/1/2024,Standard
+546,Virginia Beach,VA,Single Family,928,Light Rehab,"$320,000","$190,000","$510,000","$790,000","$256,000","$190,000","$446,000",13.00%,8/4/2023,,Performing,9/1/2024,Double Double
+547,Dolton,IL,Single Family,1600,Moderate Rehab,"$82,000","$90,000","$172,000","$230,000","$56,000","$90,000","$146,000",12.50%,8/2/2023,,Performing,9/1/2024,BNPL
+550,Cincinnati,OH,Single Family,3600,Moderate Rehab,"$130,000","$160,125","$290,125","$350,000","$85,875","$160,125","$246,000",10.50%,7/31/2023,,Performing,8/1/2024,Standard
+551,Martins Ferry,OH,Single Family,1440,Moderate Rehab,"$59,000","$35,000","$94,000","$150,000","$41,000","$35,000","$76,000",12.50%,7/31/2023,,Performing,8/1/2024,Standard
+552,Chicago,IL,Single Family,1500,Moderate Rehab,"$135,000","$125,000","$260,000","$380,000","$96,000","$125,000","$221,000",10.50%,7/31/2023,,Performing,8/1/2024,Standard
+555,Dallas,TX,Single Family,1815,Light Rehab,"$172,500","$80,000","$252,500","$330,000","$154,000","$80,000","$234,000",15.00%,7/27/2023,,Performing,8/1/2024,Double Double
+556,Buffalo,NY,Single Family,2089,Moderate Rehab,"$85,000","$87,300","$172,300","$286,000","$72,700","$87,300","$160,000",13.00%,7/25/2023,,Performing,8/1/2024,Double Double
+557,Denver,CO,Single Family,700,Light Rehab,"$200,000","$100,000","$300,000","$500,000","$155,000","$100,000","$255,000",10.50%,7/21/2023,,Performing,8/1/2024,Standard
+558,Fort Worth,TX,Single Family,2484,Moderate Rehab,"$141,000","$100,000","$241,000","$350,000","$124,000","$100,000","$224,000",13.00%,7/20/2023,,Performing,8/1/2024,Double Double
+559,Richmond,VA,Single Family,2202,Light Rehab,"$185,000","$50,000","$235,000","$460,000","$166,000","$50,000","$216,000",13.00%,7/19/2023,,Performing,8/1/2024,Double Double
+560,Dayton,OH,Single Family,2341,Moderate Rehab,"$36,000","$100,000","$136,000","$220,000","$15,000","$100,000","$115,000",10.50%,7/19/2023,,Performing,8/1/2024,Standard
+561,Maple Heights,OH,Single Family,2760,Light Rehab,"$143,000","$30,000","$173,000","$220,000","$128,000","$30,000","$158,000",13.00%,7/18/2023,,Performing,8/1/2024,Double Double
+562,Nashville,TN,Single Family,1249,Light Rehab,"$400,000","$35,000","$435,000","$495,000","$332,000","$35,000","$367,000",10.50%,7/14/2023,,Performing,8/1/2024,Standard
+563,Milwaukee,WI,Single Family,2474,Moderate Rehab,"$80,000","$65,000","$145,000","$230,000","$58,000","$65,000","$123,000",10.50%,7/14/2023,,Performing,8/1/2024,Standard
+564,Grand Prairie,TX,Single Family,888,Light Rehab,"$129,999","$36,000","$165,999","$230,000","$116,000","$36,000","$152,000",13.00%,7/12/2023,,Performing,8/1/2024,Double Double
+566,Natchitoches,LA,Single Family,1800,Light Rehab,"$173,500","$49,800","$223,300","$340,000","$138,800","$49,800","$188,600",11.50%,7/3/2023,,Performing,8/1/2024,Standard
+567,San Antonio,TX,Single Family,3135,Light Rehab,"$369,900",$0,"$369,900","$450,000","$332,000",$0,"$332,000",12.50%,6/30/2023,,Performing,7/1/2024,Double Double
+568,Midland,TX,Single Family,1242,Light Rehab,"$68,000","$50,000","$118,000","$200,000","$50,000","$50,000","$100,000",12.50%,6/30/2023,,Performing,7/1/2024,BNPL
+569,Ocala,FL,Single Family,2504,Light Rehab,"$268,000","$35,000","$303,000","$430,000","$241,000","$35,000","$276,000",13.00%,6/30/2023,,Performing,7/1/2024,Double Double
+575,Homewood,IL,Single Family,1656,Light Rehab,"$173,900","$59,000","$232,900","$325,000","$156,000","$59,000","$215,000",14.50%,6/27/2023,,Performing,7/1/2024,Double Double
+576,Palatka,FL,Single Family,2849,Moderate Rehab,"$177,000","$250,000","$427,000","$700,000","$95,000","$250,000","$345,000",11.50%,6/26/2023,,Performing,7/1/2024,Standard
+577,Thornton,IL,Single Family,1914,Light Rehab,"$123,950","$60,000","$183,950","$260,000","$96,000","$60,000","$156,000",10.50%,6/23/2023,,Performing,7/1/2024,Standard
+578,Lebanon,TN,Single Family,1491,Light Rehab,"$160,000","$70,000","$230,000","$300,000","$116,000","$70,000","$186,000",11.50%,6/23/2023,,Performing,7/1/2024,Standard
+579,Shelby,OH,Single Family,1172,Light Rehab,"$120,000","$40,000","$160,000","$230,000","$108,000","$40,000","$148,000",13.00%,6/20/2023,,Performing,7/1/2024,Double Double
+580,Austin,TX,Single Family,1362,Light Rehab,"$317,000","$50,000","$367,000","$475,000","$253,000","$50,000","$303,000",11.50%,6/16/2023,,Performing,7/1/2024,Standard
+581,The Colony,TX,Single Family,1335,Light Rehab,"$265,333","$20,000","$285,333","$338,832","$238,000",$0,"$238,000",12.50%,6/14/2023,,Performing,7/1/2024,Double Double
+583,Wheat Ridge,CO,Single Family,3200,Light Rehab,"$260,000","$120,000","$380,000","$1,750,000","$630,000","$120,000","$750,000",10.50%,6/7/2023,,Performing,7/1/2024,Standard
+584,Baltimore,MD,Single Family,900,Moderate Rehab,"$105,000","$70,000","$175,000","$285,000","$92,000","$70,000","$162,000",13.00%,6/5/2023,,Performing,7/1/2024,Double Double
+585,Orlando,FL,Single Family,2142,Light Rehab,"$330,000","$25,000","$355,000","$445,000","$273,000","$25,000","$298,000",11.50%,6/2/2023,,Performing,7/1/2024,BNPL
+586,Denver,CO,Single Family,2100,Light Rehab,"$670,000","$210,000","$880,000","$1,200,000","$538,000","$210,000","$748,000",10.50%,5/31/2023,,Performing,6/1/2024,Standard
+587,Denton,TX,Single Family,3892,Light Rehab,"$290,000","$35,000","$325,000","$475,000","$261,000",$0,"$261,000",14.50%,5/31/2023,,Performing,6/1/2024,Double Double
+588,Cape Coral,FL,Single Family,2099,Light Rehab,"$527,500","$90,000","$617,500","$825,000","$470,000","$90,000","$560,000",14.00%,5/26/2023,,Performing,6/1/2024,Double Double
+590,Dallas,TX,Single Family,2564,Light Rehab,"$195,000","$24,190","$219,190","$300,000","$155,810","$24,190","$180,000",11.50%,5/25/2023,,Performing,6/1/2024,Standard
+592,Rockwall,TX,Single Family,3041,Light Rehab,"$325,000","$69,000","$394,000","$500,000","$292,000","$69,000","$361,000",13.00%,5/24/2023,,Performing,6/1/2024,Double Double
+594,Baltimore,MD,Single Family,960,Moderate Rehab,"$85,000","$45,000","$130,000","$175,000","$60,000","$45,000","$105,000",11.50%,5/19/2023,,Performing,6/1/2024,Standard
+595,Kalamazoo,MI,Single Family,1630,Light Rehab,"$85,000","$31,000","$116,000","$165,000","$76,000","$31,000","$107,000",13.00%,5/17/2023,,Performing,6/1/2024,Double Double
+596,New Port Richey,FL,Single Family,3365,Light Rehab,"$570,000","$106,500","$676,500","$900,000","$512,500","$106,500","$619,000",13.00%,5/12/2023,,Performing,6/1/2024,Double Double
+597,Marietta,GA,Single Family,2040,Light Rehab,"$280,000","$37,740","$317,740","$403,000","$237,260","$37,740","$275,000",13.00%,5/11/2023,,Performing,6/1/2024,Double Double
+598,Atlanta,GA,Single Family,3775,Moderate Rehab,"$205,000","$230,000","$435,000","$600,000","$139,000","$230,000","$369,000",10.50%,5/1/2023,,Performing,6/1/2024,Standard
+599,Fort Worth,TX,Single Family,1995,Light Rehab,"$215,000","$100,000","$315,000","$385,000","$156,000","$100,000","$256,000",11.50%,4/28/2023,,Performing,5/1/2024,BNPL
+601,Jacksonville,FL,Single Family,1425,Moderate Rehab,"$259,000","$80,000","$419,000","$375,000","$279,000",$0,"$279,000",10.50%,3/17/2023,,Performing,4/1/2024,Standard
+602,Atlanta,GA,Single Family,1251,Moderate Rehab,"$175,000","$165,000","$340,000","$525,000","$124,000","$165,000","$289,000",11.50%,3/14/2023,,Performing,4/1/2024,BNPL
+606,Baltimore,MD,Single Family,1364,Moderate Rehab,"$85,000","$45,000","$130,000","$150,000","$60,000","$45,000","$105,000",11.50%,2/7/2023,,Performing,3/1/2024,Standard
+607,Omaha,NE,Single Family,1488,Moderate Rehab,"$95,000","$82,150","$177,150","$240,000","$81,850","$82,150","$164,000",13.00%,2/3/2023,,Performing,3/1/2024,Double Double
+608,Philadelphia,PA,Single Family,1854,Moderate Rehab,"$90,000","$142,000","$232,000","$350,000","$73,000","$142,000","$215,000",13.00%,1/30/2023,,Performing,2/1/2024,Double Double
+609,Atlanta,GA,Single Family,1075,Light Rehab,"$260,000","$20,000","$280,000","$300,000","$149,000",$0,"$149,000",10.50%,1/26/2023,,Performing,2/1/2024,Standard
+610,Omaha,NE,Single Family,1490,Moderate Rehab,"$90,000","$120,000","$210,000","$300,000","$72,000","$120,000","$192,000",12.00%,12/30/2022,,Performing,1/1/2024,BNPL
+613,Denver,CO,Single Family,2356,Light Rehab,"$350,000","$20,000","$430,000","$500,000","$348,000","$20,000","$368,000",9.75%,10/28/2022,,Performing,2/1/2024,Standard
+615,Denver,CO,Single Family,1700,Moderate Rehab,"$450,000","$125,000","$825,000","$950,000","$560,000","$125,000","$685,000",8.50%,9/23/2022,,Performing,10/1/2023,Standard
+616,Philadelphia,PA,Single Family,1227,Moderate Rehab,"$105,000","$81,500","$186,500","$230,584","$76,500","$81,500","$158,000",10.50%,9/14/2022,,Performing,1/1/2024,Standard
+618,Columbus,OH,Single Family,1019,Moderate Rehab,"$95,000","$50,000","$145,000","$190,000","$80,000","$50,000","$130,000",12.00%,5/31/2022,,Performing,12/1/2023,Standard
+619,Mansfield,OH,Single Family,2892,Heavy Rehab,"$45,000","$70,000","$115,000","$140,000","$19,000","$70,000","$89,000",12.00%,5/4/2022,,Performing,12/1/2023,Standard

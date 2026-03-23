@@ -1,0 +1,12 @@
+New Terminal Output:
+
+root@bde608470cc5:/app# python3 /app/extract_data.py
+Available worksheets: ['Transaction Structure', 'Assumptions', 'Financial Statements', 'Debt', 'PP&E', 'NWC', 'Historicals']
+
+=== Transaction Structure Data ===
+Traceback (most recent call last):
+  File "/app/extract_data.py", line 16, in <module>
+    cell_value = ts_sheet.cell(row=row, col=col).value
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Worksheet.cell() got an unexpected keyword argument 'col'
+root@bde608470cc5:/app#

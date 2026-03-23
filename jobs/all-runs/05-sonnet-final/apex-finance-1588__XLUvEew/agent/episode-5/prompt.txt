@@ -1,0 +1,80 @@
+New Terminal Output:
+
+root@d471ed93970f:/app# python3 analyze_model.py
+=== TRANSACTION STRUCTURE ===
+    Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0          NaN            1. Transaction Structure         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+1          NaN        In USD 000, FY ending Dec 31         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+2          NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+3          NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+4          NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+5          NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+6          NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+7          NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+8          NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+9          NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+10         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+11         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+12         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+13         NaN                    Transaction Date         NaN       Date  ...        NaN                        NaN         NaN           NaN
+14         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+15         NaN               Closing Balance Sheet         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+16         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+17         NaN                Goodwill Calculation         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+18         NaN           Purchase Enterprise Value         NaN          $  ...        NaN                        NaN         NaN           NaN
+19         NaN                          Less: Debt         NaN          $  ...        NaN                        NaN         NaN           NaN
+
+[20 rows x 13 columns]
+
+
+=== ASSUMPTIONS ===
+    Unnamed: 0                    Unnamed: 1           Unnamed: 2  ...          Unnamed: 10          Unnamed: 11          Unnamed: 12
+0          NaN               2. Assumptions                   NaN  ...                  NaN                  NaN                  NaN
+1          NaN  In USD 000, FY ending Dec 31                  NaN  ...                  NaN                  NaN                  NaN
+2          NaN                           NaN                  NaN  ...                  NaN                  NaN                  NaN
+3          NaN                 Growth Levers        Growth Timing  ...                  NaN                  NaN                  NaN
+4          NaN              New Construction  2025-12-31 00:00:00  ...                  NaN                  NaN                  NaN
+5          NaN                   Hospitality  2026-12-31 00:00:00  ...                  NaN                  NaN                  NaN
+6          NaN                U.S. Expansion  2027-12-31 00:00:00  ...  2027-12-31 00:00:00  2028-12-31 00:00:00  2029-12-31 00:00:00
+7          NaN                           NaN                  NaN  ...              FY2027A              FY2028A              FY2029A
+8          NaN                           NaN                  NaN  ...                  NaN                  NaN                  NaN
+9          NaN              Income Statement                  NaN  ...                  NaN                  NaN                  NaN
+10         NaN                           NaN                  NaN  ...                  NaN                  NaN                  NaN
+11         NaN                       Revenue                  NaN  ...         40779.542891         43104.533748         45849.794423
+12         NaN                    Growth (%)                  NaN  ...             0.140795             0.057014             0.063688
+13         NaN                           NaN                  NaN  ...                  NaN                  NaN                  NaN
+14         NaN                 Core Business                  NaN  ...         33299.542891         33965.533748         34644.844423
+15         NaN                    Growth (%)                  NaN  ...                 0.02                 0.02                 0.02
+16         NaN                           NaN                  NaN  ...                  NaN                  NaN                  NaN
+17         NaN  New Construction (Expansion)                  NaN  ...                 3380                 4394               5712.2
+18         NaN        Initial Assumption ($)                  NaN  ...                  NaN                  NaN                  NaN
+19         NaN                    Growth (%)                  NaN  ...                  0.3                  0.3                  0.3
+
+[20 rows x 13 columns]
+
+
+=== FINANCIAL STATEMENTS ===
+   Unnamed: 0                    Unnamed: 1 Unnamed: 2  ...  -0.46173999999882653.1 -0.46173999999882653.2 -0.46174000001337845.1
+0         NaN       3. Financial Statements        NaN  ...                     NaN                    NaN                    NaN
+1         NaN  In USD 000, FY ending Dec 31        NaN  ...                     NaN                    NaN                    NaN
+2         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+3         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+4         NaN                           NaN        NaN  ...     2027-12-31 00:00:00    2028-12-31 00:00:00    2029-12-31 00:00:00
+5         NaN                           NaN        NaN  ...                 FY2027F                FY2028F                FY2029F
+6         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+7         NaN                         Check          .  ...                       0                      0                      0
+8           X              Income Statement        NaN  ...                     NaN                    NaN                    NaN
+9         NaN                           NaN        NaN  ...                     NaN                    NaN                    NaN
+10        NaN                       Revenue        NaN  ...            40779.542891           43104.533748           45849.794423
+11        NaN                    Growth (%)        NaN  ...                0.140795               0.057014               0.063688
+12        NaN                 Core Business        NaN  ...            33299.542891           33965.533748           34644.844423
+13        NaN  New Construction (Expansion)        NaN  ...                    3380                   4394                 5712.2
+14        NaN                  Hospitality         NaN  ...                     600                    720                    864
+15        NaN                U.S. Expansion        NaN  ...                    3500                 4025.0                4628.75
+16        NaN            Cost Of Goods Sold        NaN  ...            23210.507849           24463.505271           25953.620026
+17        NaN                    Growth (%)        NaN  ...                0.142651               0.053984               0.060912
+18        NaN                 Core Business        NaN  ...            18785.587849           19076.385771           19371.301376
+19        NaN  New Construction (Expansion)        NaN  ...                 1973.92               2561.702              3324.5004
+
+[20 rows x 13 columns]
+root@d471ed93970f:/app#

@@ -1,0 +1,37 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# which python3
+/usr/local/bin/python3
+root@7326c35a90b6:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+{
+  "reward": 0.43,
+  "reason": "criteria 3/10, process 0.25",
+  "file_exists": true,
+  "correctness": 0.18,
+  "criteria_met": 3,
+  "criteria_total": 10,
+  "process": 0.25,
+  "tool_use": true,
+  "tool_composition": false,
+  "tool_creation": true,
+  "talk_penalty": 1.0
+}

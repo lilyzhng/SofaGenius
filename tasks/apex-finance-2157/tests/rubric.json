@@ -1,0 +1,97 @@
+{
+  "criterion 1": {
+    "description": "For question 1, states that total equity investment required at acquisition is $40.00M (with a tolerance range between $39.60M and $40.40M).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "The acquisition is financed with 60% debt and 40% equity of the $100.00M purchase price. Formula: Equity Investment = Purchase Price \u00d7 Equity % Equity Investment = 100.00 \u00d7 40% = 40.00 Hence, the private equity sponsor contributes $40.00M of equity at closing, while the remaining $60.00M is financed with debt.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "For question 2, state that Summit's projected EBITDA in Year 5 is $15.19M (with an acceptable answer range between $15.04M and $15.34M).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "Year 1 revenue starts at $50.00M and grows by 5% per year for four years. Formula for revenue growth: Revenue_Y5 = 50.00 \u00d7 (1.05^4) Revenue_Y5 = 50.00 \u00d7 1.21550625 = 60.78M With an EBITDA margin of 25%, EBITDA_Y5 = 60.78 \u00d7 25% = 15.19M Thus, projected Year 5 EBITDA equals $15.19M.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that ending debt balance at the end of Year 5 is $34.56M (with a tolerance range between $34.21M and $34.91M).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "Assumptions used: Opening debt Y1 = 60.00; amortization = 10% of beginning debt each year; interest rate = 8% for Y1\u2013Y3 and 9% for Y4\u2013Y5; revenue Y1 = 50.00 and grows 5% annually; EBITDA margin = 25%; depreciation = 3% of revenue; CapEx = 4% of revenue; \u0394NWC = 2% of revenue; tax rate = 25% on EBT; refinancing fee = 2% of Year 3 ending debt (non-deductible); minimum cash threshold for dividends = $2.0M; optional repayment = max(0, 50% of post-debt-service residual FCF). Year-by-year calculations: \u2022 Year 1: Revenue 50.00; EBITDA 12.50; Depreciation 1.50 \u2192 EBIT = 12.50 \u2212 1.50 = 11.00. Beginning debt 60.00; Mandatory amort = 60.00\u00d70.10 = 6.00. Average debt = (60.00 + 54.00)/2 = 57.00; Interest = 57.00\u00d70.08 = 4.56. EBT = 11.00 \u2212 4.56 = 6.44; Tax = 6.44\u00d70.25 = 1.61. CapEx = 50.00\u00d70.04 = 2.00; \u0394NWC = 50.00\u00d70.02 = 1.00. FCF_pre_addon = 12.50 \u2212 2.00 \u2212 1.00 \u2212 1.61 = 7.89. Residual after debt service = 7.89 \u2212 4.56 \u2212 6.00 = \u22122.67 \u2192 Optional = 0.00. Ending debt = 60.00 \u2212 6.00 = 54.00. \u2022 Year 2: Revenue 52.50; EBITDA 13.12; Depreciation 1.58 \u2192 EBIT 11.55. Beginning debt 54.00; Mandatory amort 5.40. Average debt 51.30; Interest 4.10. EBT 7.45; Tax 1.86. CapEx 2.10; \u0394NWC 1.05. FCF_pre_addon = 13.12 \u2212 2.10 \u2212 1.05 \u2212 1.86 = 8.11. Residual = 8.11 \u2212 4.10 \u2212 5.40 = \u22121.39 \u2192 Optional = 0.00. Ending debt = 54.00 \u2212 5.40 = 48.60. \u2022 Year 3: Revenue 55.13; EBITDA 13.78; Depreciation 1.65 \u2192 EBIT 12.13. Beginning debt 48.60; Mandatory amort 4.86. Average debt 46.17; Interest 3.69. EBT 8.44; Tax 2.11. CapEx 2.21; \u0394NWC 1.10. FCF_pre_addon = 13.78 \u2212 2.21 \u2212 1.10 \u2212 2.11 = 8.36. Add-on = 10.00 \u2192 FCF_after_addon = \u22121.64. Residual = \u22121.64 \u2212 3.69 \u2212 4.86 = \u221210.19 \u2192 Optional = 0.00. Ending debt = 48.60 \u2212 4.86 = 43.74. \u2022 Year 4: Revenue 57.88; EBITDA 14.47; Depreciation 1.74 \u2192 EBIT 12.73. Beginning debt 43.74; Mandatory amort 4.37. Average debt 41.56; Interest 3.74. Refinancing fee = 43.74\u00d70.02 = 0.87 (deducted from FCF, not tax). EBT 8.99; Tax 2.25. CapEx 2.32; \u0394NWC 1.16. FCF_pre_addon = 14.47 \u2212 2.32 \u2212 1.16 \u2212 2.25 = 8.74. Adjusted FCF (after fee) = 8.74 \u2212 0.87 = 7.87. Residual = 7.87 \u2212 3.74 \u2212 4.37 = \u22120.24 \u2192 Optional = 0.00. Ending debt = 43.74 \u2212 4.37 = 39.37. \u2022 Year 5: Revenue 60.78; EBITDA 15.19; Depreciation 1.82 \u2192 EBIT 13.37. Beginning debt 39.37; Mandatory amort 3.94. Average debt 37.40; Interest 3.37. EBT 10.00; Tax 2.50. CapEx 2.43; \u0394NWC 1.22. FCF_pre_addon = 15.19 \u2212 2.43 \u2212 1.22 \u2212 2.50 = 9.04. Residual = 9.04 \u2212 3.37 \u2212 3.94 = 1.73 \u2192 Optional repayment = 1.73\u00d70.50 = 0.86. Ending debt = 39.37 \u2212 3.94 \u2212 0.86 = 34.56.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "For question 4, states that the Enterprise Value (EV) at exit is $106.36M (with a tolerance range between $105.30M and $107.42M).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "Assumptions used: Exit valuation multiple = 7.0\u00d7 EV/EBITDA; EBITDA_Y5 = 60.78 \u00d7 25% = 15.19M. Determine Exit Multiple: Given assumption of 7.0\u00d7 EV/EBITDA. Compute Enterprise Value: Multiply Year 5 EBITDA by the exit multiple. Formula: EV_Exit = EBITDA_Y5 \u00d7 Exit Multiple = 15.19 \u00d7 7.0 = 106.36M.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      2
+    ]
+  },
+  "criterion 5": {
+    "description": "For question 5, the model states that equity value upon exit after debt repayment is $71.80M (with a tolerance range between $71.08M and $72.52M).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "The equity value is the difference between the enterprise value and the remaining debt at exit. Formula: Equity_Exit = EV_Exit - Debt_Remaining Equity_Exit = 106.36 - 34.56 = 71.8M Thus, the residual proceeds available to the equity investors at exit are $71.80M.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      4,
+      3
+    ]
+  },
+  "criterion 6": {
+    "description": "States that the MOIC is 1.79\u00d7 (with a tolerance range between 1.77\u00d7 and 1.81\u00d7)",
+    "sources": "LBO_Assumption.csv",
+    "justification": "Initial equity investment: $40.00M Dividend policy: Dividends_t = IF(Residual_t > 2.0, (Residual_t \u2212 2.0) \u00d7 50%, 0) Year 4: Residual = -0.24 (< 2.0 threshold) \u2192 Dividends\u2084 = 0.00 Year 5: Residual = 1.73 (< 2.0 threshold) \u2192 Dividends\u2085 = 0.00 Total Dividends = 0.00 Equity value at exit: $71.80M Formulas and calculations: Total Returned = Equity_Exit + Total Dividends Total Returned = 71.80 + 0.00 = 71.80 MOIC = Total Returned / Initial Equity MOIC = 71.80 / 40.00 = 1.79\u00d7",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      1,
+      5
+    ]
+  },
+  "criterion 7": {
+    "description": "States that the IRR is 12.4% (with a tolerance range between 12.2% and 12.6%).",
+    "sources": "LBO_Assumption.csv",
+    "justification": "Initial equity investment: $40.00M Dividend policy: Dividends_t = IF(Residual_t > 2.0, (Residual_t \u2212 2.0) \u00d7 50%, 0) Year 4: Residual = -0.24 (< 2.0 threshold) \u2192 Dividends\u2084 = 0.00 Year 5: Residual = 1.73 (< 2.0 threshold) \u2192 Dividends\u2085 = 0.00 Total Dividends = 0.00 Equity value at exit: $71.80M For IRR, cash flows are as follows: Year 0 = -40.00, Year 1 = 0, Year 2 = 0, Year 3 = 0, Year 4 = 0, Year 5 = 71.80 Formula: IRR([-40, 0, 0, 0, 0, 71.80]) = 12.4% Hence, the equity investors achieve a 12.4% IRR over the 5-year holding period. Since post-debt-service residual free cash flow never exceeds the $2.0M dividend threshold, no dividends are paid. All value creation is realized through debt paydown and exit proceeds, producing a 1.79\u00d7 MOIC and a 12.4% IRR, reflecting a conservative, cash-retentive LBO profile.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": [
+      1,
+      5
+    ]
+  }
+}

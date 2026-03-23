@@ -1,0 +1,63 @@
+Reward: 0.0526 — criteria 1/19
+
+Files created: answer.txt
+
+Per-criterion breakdown:
+  [FAIL] criterion 1 (failed)
+         States that the patient's rash is painless
+         → Matched 0/1 keywords
+  [FAIL] criterion 2 (failed)
+         Notes that the location of the patient's rash is characteristic of syphilis
+         → Matched 0/1 keywords
+  [FAIL] criterion 3 (failed)
+         States syphilis is the most probable diagnosis.
+         → Matched 0/1 keywords
+  [FAIL] criterion 4 (failed)
+         States that a rash is the most characteristic finding of secondary syphilis
+         → Matched 0/1 keywords
+  [FAIL] criterion 5 (failed)
+         States the initial diagnostic test for secondary syphilis is a nontreponemal test.
+         → Matched 0/1 keywords
+  [FAIL] criterion 6 (failed)
+         States that rapid plasma reagin (RPR) is a type of nontreponemal test.
+         → Matched 0/3 keywords
+  [FAIL] criterion 7 (failed)
+         States that Venereal Disease Research Laboratory (VDRL) is a type of nontreponemal test.
+         → Matched 1/7 keywords
+  [FAIL] criterion 8 (failed)
+         States that Toluidine Red Unheated Serum Test (TRUST) is a type of nontreponemal test.
+         → Matched 1/8 keywords
+  [FAIL] criterion 9 (failed)
+         States the test to confirm the diagnosis of syphilis is a treponemal test.
+         → Matched 0/1 keywords
+  [FAIL] criterion 10 (failed)
+         States that Fluorescent treponemal antibody absorption (FTA-ABS) is a type of treponemal test.
+         → Matched 0/6 keywords
+  [FAIL] criterion 11 (failed)
+         States that Microhemagglutination test for antibodies to T. pallidum (MHA-TP) is a type of treponemal test.
+         → Matched 0/5 keywords
+  [FAIL] criterion 12 (failed)
+         States that T. pallidum particle agglutination assay (TPPA) is a type of treponemal test.
+         → Matched 0/3 keywords
+  [FAIL] criterion 13 (failed)
+         States that T. pallidum enzyme immunoassay (TP-EIA) is a type of treponemal test.
+         → Matched 0/4 keywords
+  [PASS] criterion 14 (keyword_match)
+         States that Chemiluminescence immunoassay (CIA) is a type of treponemal test.
+  [FAIL] criterion 15 (failed)
+         States that syphilis is a sexually transmitted infection.
+         → Matched 0/1 keywords
+  [FAIL] criterion 16 (failed)
+         Recommends treatment of secondary syphilis with antibiotics.
+         → Matched 0/1 keywords
+  [FAIL] criterion 17 (failed)
+         Recommends the patient be screened for other sexually transmitted infections.
+         → Matched 0/1 keywords
+  [FAIL] criterion 18 (failed)
+         Recommends safe sex practices to prevent transmission of sexually transmitted infections.
+         → Matched 0/1 keywords
+  [FAIL] criterion 19 (failed)
+         Recommends informing all sexual partners within the past 6 months of the diagnosis of syphilis.
+         → Expected 6.0, closest agent value: 45.0 (650.0% off)
+
+Summary: 1 passed, 18 failed

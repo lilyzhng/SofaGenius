@@ -1,0 +1,60 @@
+﻿Acquirer,Mariner Cloud plc
+Target ,Orion Metrics AG
+Close date,1/1/2025
+Offer price per target share (EUR),52.5
+Target basic  shares outstanding," 240,000,000 "
+% purchased at close,70%
+Consideration mix - Cash,0.5
+Consideration mix - Stock,0.5
+Target net debt to be repaid at close (in EUR millions),1200
+EUR/ USD FX rate (for all translations),1.1
+Acquirer average share price (USD),40
+Acquirer share price at issuance (USD),25
+Acquirer blended tax rate,0.25
+,
+Financing structure,
+Debt instrument ,Convertible notes
+Convertible notes coupon,0.005
+Convertible notes tenor (in years),7
+Convertible notes conversion price (USD),31.25
+Underwriting discount (as a % of gross principal),0.02
+Other issuance fees (in USD millions),31.25
+Purchased call cap (USD per share),45
+Assume convert issued at par (Issue price = 100% of principal),
+,
+Target,
+Target forecast year 1 net income (in EUR million),300
+Target NOL carryforwards (in EUR million),400
+Section 382 annual limitation ( in EUR million),50
+Technology IP useful life (in years),10
+Pre-close deferred revenue (in EUR millions),180
+Fair value haircut rate,0.3
+Recognition schedule (in months) - recognize evenly over 12 months post-close as revenue reduction,12
+,
+Tech IP,
+Royalty rate on revenue,0.025
+Discount rate (WACC),0.12
+Tax rate for after-tax royalty savings,0.25
+Year 1 forecasted revenue (in EUR millions),1150
+Year 2 forecasted revenue (in EUR millions),1230
+Year 3 forecasted revenue (in EUR millions),1315
+Year 4 forecasted revenue (in EUR millions),1405
+Year 5 forecasted revenue (in EUR millions),1500
+Year 6 forecasted revenue (in EUR millions),1590
+Year 7 forecasted revenue (in EUR millions),1675
+Year 8 forecasted revenue (in EUR millions),1755
+Year 9 forecasted revenue (in EUR millions),1830
+Year 10 forecasted revenue (in EUR millions),1900
+,
+Acquirer details,
+Acquirer year 1 net income to common (in USD million),1200
+Acquirer basic weighted average shares (in millions),1000
+Interest expense tax rate,0.25
+,
+Purchase price allocation,
+"FV of identifiable net asserts (excluding Tech IP, Customer relationship, inventory and deferred revenue haircut) (in EUR million)",550
+Customer relationship FV (in EUR million),900
+Customer relationship useful life (in years),12
+Inventory step-up balance (in EUR millions),150
+Inventory step-up recognition period (in months),6
+Deferred revenue haircut tax rate,0.25

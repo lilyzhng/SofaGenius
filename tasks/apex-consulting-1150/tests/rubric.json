@@ -1,0 +1,130 @@
+{
+  "criterion 1": {
+    "description": "States that the total score for the Clothing product category is 4.78 (acceptable range is 4.76 to 4.80).",
+    "sources": "General_sales_data.csv",
+    "justification": "To calculate the impact on profits, impact on revenues, and corresponding scores, we first need to calculate the profits and revenues with discount, and without discount. To do so, we need to add 4 columns: - Profits (Post-Discount): [Unit_Price x (1-Discount) - Unit_Cost] x Quantity_Sold - Profits (Pre-Discount): [Unit_Price - Unit_Cost] x Quantity_Sold - Revenue (Post-discount): Unit_Price x (1-Discount) x Quantity_Sold - Revenue (Pre-discount): Unit_Price x Quantity_Sold Once we have these new fields, we can summarize revenues and profits using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Post-Discount), sum of Profits (Pre-Discount), sum of Total Revenue (Post-discount), and sum of Total Revenue (Pre-discount) This gives us the following values: Row Labels Profits (Post-Discount) Profits (Pre-Discount) Revenue (Post-discount) Revenue (Pre-discount) Clothing $981,485 $1,712,958 $18,555,262 $19,286,734 Electronics $969,866 $1,574,320 $16,966,587 $17,571,041 Food $837,718 $1,421,108 $14,558,496 $15,141,886 Furniture $1,037,835 $1,779,461 $17,588,655 $18,330,281 Once we have this, we can calculate the % decrease in profits and % decrease in revenue as follows: - Decrease in Profits: [Profits (Pre-Discount) - Profits (Post-Discount)] / Profits (Pre-Discount) - Decrease in Revenue: [Revenue (Pre-Discount) - Revenue (Post-Discount)] / Revenue (Pre-Discount) Lastly, the score can be calculated as = 'Decrease in Profits' - 10 x 'Decrease in Revenue' x 100% The impact on profits, impact on revenues, and corresponding scores for each category can then be calculated as follows: Category Decrease in Profits Decrease in Revenue Score Clothing 42.70% 3.79% = 42.70 - 3.79 x 10 = 42.70 - 37.92 = 4.776 = 4.78 \u00a0 Electronics 38.39% 3.44% = 38.39 - 3.44 x 10 = 38.39 - 34.40 = 3.994 = 3.99 \u00a0 Food 41.05% 3.85% = 41.05 - 3.85 x 10 = 41.05 - 38.53 = 2.524 = 2.52 \u00a0 Furniture 41.68% 4.05% = 41.68 - 4.05 x 10 = 41.68 - 40.46 = 1.218 = 1.22 Please note, provided scores deviate from stated formulas given that unrounded inputs were used. Reported scores are to be rounded to 2 decimal places per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the total score for the Electronics product category is 3.99 (acceptable range is 3.97 to 4.01).",
+    "sources": "General_sales_data.csv",
+    "justification": "To calculate the impact on profits, impact on revenues, and corresponding scores, we first need to calculate the profits and revenues with discount, and without discount. To do so, we need to add 4 columns: - Profits (Post-Discount): [Unit_Price x (1-Discount) - Unit_Cost] x Quantity_Sold - Profits (Pre-Discount): [Unit_Price - Unit_Cost] x Quantity_Sold - Revenue (Post-discount): Unit_Price x (1-Discount) x Quantity_Sold - Revenue (Pre-discount): Unit_Price x Quantity_Sold Once we have these new fields, we can summarize revenues and profits using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Post-Discount), sum of Profits (Pre-Discount), sum of Total Revenue (Post-discount), and sum of Total Revenue (Pre-discount) This gives us the following values: Row Labels Profits (Post-Discount) Profits (Pre-Discount) Revenue (Post-discount) Revenue (Pre-discount) Clothing $981,485 $1,712,958 $18,555,262 $19,286,734 Electronics $969,866 $1,574,320 $16,966,587 $17,571,041 Food $837,718 $1,421,108 $14,558,496 $15,141,886 Furniture $1,037,835 $1,779,461 $17,588,655 $18,330,281 Once we have this, we can calculate the % decrease in profits and % decrease in revenue as follows: - Decrease in Profits: [Profits (Pre-Discount) - Profits (Post-Discount)] / Profits (Pre-Discount) - Decrease in Revenue: [Revenue (Pre-Discount) - Revenue (Post-Discount)] / Revenue (Pre-Discount) Lastly, the score can be calculated as = 'Decrease in Profits' - 10 x 'Decrease in Revenue' x 100% The impact on profits, impact on revenues, and corresponding scores for each category can then be calculated as follows: Category Decrease in Profits Decrease in Revenue Score Clothing 42.70% 3.79% = 42.70 - 3.79 x 10 = 42.70 - 37.92 = 4.776 = 4.78 \u00a0 Electronics 38.39% 3.44% = 38.39 - 3.44 x 10 = 38.39 - 34.40 = 3.994 = 3.99 \u00a0 Food 41.05% 3.85% = 41.05 - 3.85 x 10 = 41.05 - 38.53 = 2.524 = 2.52 \u00a0 Furniture 41.68% 4.05% = 41.68 - 4.05 x 10 = 41.68 - 40.46 = 1.218 = 1.22 Please note, provided scores deviate from stated formulas given that unrounded inputs were used. Reported scores are to be rounded to 2 decimal places per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that the total score for the Food product category is 2.52 (acceptable range is 2.50 to 2.54).",
+    "sources": "General_sales_data.csv",
+    "justification": "To calculate the impact on profits, impact on revenues, and corresponding scores, we first need to calculate the profits and revenues with discount, and without discount. To do so, we need to add 4 columns: - Profits (Post-Discount): [Unit_Price x (1-Discount) - Unit_Cost] x Quantity_Sold - Profits (Pre-Discount): [Unit_Price - Unit_Cost] x Quantity_Sold - Revenue (Post-discount): Unit_Price x (1-Discount) x Quantity_Sold - Revenue (Pre-discount): Unit_Price x Quantity_Sold Once we have these new fields, we can summarize revenues and profits using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Post-Discount), sum of Profits (Pre-Discount), sum of Total Revenue (Post-discount), and sum of Total Revenue (Pre-discount) This gives us the following values: Row Labels Profits (Post-Discount) Profits (Pre-Discount) Revenue (Post-discount) Revenue (Pre-discount) Clothing $981,485 $1,712,958 $18,555,262 $19,286,734 Electronics $969,866 $1,574,320 $16,966,587 $17,571,041 Food $837,718 $1,421,108 $14,558,496 $15,141,886 Furniture $1,037,835 $1,779,461 $17,588,655 $18,330,281 Once we have this, we can calculate the % decrease in profits and % decrease in revenue as follows: - Decrease in Profits: [Profits (Pre-Discount) - Profits (Post-Discount)] / Profits (Pre-Discount) - Decrease in Revenue: [Revenue (Pre-Discount) - Revenue (Post-Discount)] / Revenue (Pre-Discount) Lastly, the score can be calculated as = 'Decrease in Profits' - 10 x 'Decrease in Revenue' x 100% The impact on profits, impact on revenues, and corresponding scores for each category can then be calculated as follows: Category Decrease in Profits Decrease in Revenue Score Clothing 42.70% 3.79% = 42.70 - 3.79 x 10 = 42.70 - 37.92 = 4.776 = 4.78 \u00a0 Electronics 38.39% 3.44% = 38.39 - 3.44 x 10 = 38.39 - 34.40 = 3.994 = 3.99 \u00a0 Food 41.05% 3.85% = 41.05 - 3.85 x 10 = 41.05 - 38.53 = 2.524 = 2.52 \u00a0 Furniture 41.68% 4.05% = 41.68 - 4.05 x 10 = 41.68 - 40.46 = 1.218 = 1.22 Please note, provided scores deviate from stated formulas given that unrounded inputs were used. Reported scores are to be rounded to 2 decimal places per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the total score for the Furniture product category is 1.22 (acceptable range is 1.20 to 1.24).",
+    "sources": "General_sales_data.csv",
+    "justification": "To calculate the impact on profits, impact on revenues, and corresponding scores, we first need to calculate the profits and revenues with discount, and without discount. To do so, we need to add 4 columns: - Profits (Post-Discount): [Unit_Price x (1-Discount) - Unit_Cost] x Quantity_Sold - Profits (Pre-Discount): [Unit_Price - Unit_Cost] x Quantity_Sold - Revenue (Post-discount): Unit_Price x (1-Discount) x Quantity_Sold - Revenue (Pre-discount): Unit_Price x Quantity_Sold Once we have these new fields, we can summarize revenues and profits using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Post-Discount), sum of Profits (Pre-Discount), sum of Total Revenue (Post-discount), and sum of Total Revenue (Pre-discount) This gives us the following values: Row Labels Profits (Post-Discount) Profits (Pre-Discount) Revenue (Post-discount) Revenue (Pre-discount) Clothing $981,485 $1,712,958 $18,555,262 $19,286,734 Electronics $969,866 $1,574,320 $16,966,587 $17,571,041 Food $837,718 $1,421,108 $14,558,496 $15,141,886 Furniture $1,037,835 $1,779,461 $17,588,655 $18,330,281 Once we have this, we can calculate the % decrease in profits and % decrease in revenue as follows: - Decrease in Profits: [Profits (Pre-Discount) - Profits (Post-Discount)] / Profits (Pre-Discount) - Decrease in Revenue: [Revenue (Pre-Discount) - Revenue (Post-Discount)] / Revenue (Pre-Discount) Lastly, the score can be calculated as = 'Decrease in Profits' - 10 x 'Decrease in Revenue' x 100 % The impact on profits, impact on revenues, and corresponding scores for each category can then be calculated as follows: Category Decrease in Profits Decrease in Revenue Score Clothing 42.70% 3.79% = 42.70 - 3.79 x 10 = 42.70 - 37.92 = 4.776 = 4.78 \u00a0 Electronics 38.39% 3.44% = 38.39 - 3.44 x 10 = 38.39 - 34.40 = 3.994 = 3.99 \u00a0 Food 41.05% 3.85% = 41.05 - 3.85 x 10 = 41.05 - 38.53 = 2.524 = 2.52 \u00a0 Furniture 41.68% 4.05% = 41.68 - 4.05 x 10 = 41.68 - 40.46 = 1.218 = 1.22 Please note, provided scores deviate from stated formulas given that unrounded inputs were used. Reported scores are to be rounded to 2 decimal places per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Recommends the Furniture product category for BudgetBuy's promotional campaign.",
+    "sources": "",
+    "justification": "Based on criteria 1 to 4 (IDs 12171, 12172, 12173, and 12174), we know the scores for each category are as follows: Clothing 4.78 Electronics 3.99 Food 2.52 Furniture 1.22 Per the prompt, the category with the lowest score should be prioritized. The Furniture category has the lowest total score, and should therefore be selected for the promotional campaign.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "States that the expected reduction in profits from implementing the promotional campaign on the Furniture category next year is $778,707 (acceptable range is $778,600 to $778,800).",
+    "sources": "",
+    "justification": "We know from criteria 7 and 8 (IDs 12185 and 12206): - Furniture Profits - next yr: $1,868,434 - Furniture Profits - next yr w/ discount: $1,089,727 Therefore the Reduction in Profits = $778,707 ['Furniture Profits - next yr' - 'Furniture Profits - next yr w/ discount'] No rounding is required given that data is provided in whole dollars per prompt.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      7,
+      8
+    ]
+  },
+  "criterion 7": {
+    "description": "States that the profits associated with the Furniture product category next year without a promotional campaign will be $1,868,434 (acceptable range is $1,867,434 to $1,869,434).",
+    "sources": "General_sales_data.csv",
+    "justification": "We know from category 5 (ID 12175) that the impact on BudgetBuy's bottom-line will only come from the Furniture product category sales. Per the prompt, we will focus all subsequent calculations on the Furniture product category. To calculate BudgetBuy's profits next year, if they do not run a promotional campaign on Furniture, we first need to add at least one column: - Profits (Pre-Discount): [Unit_Price - Unit_Cost] x Quantity_Sold Once we have this new field, we can summarize profits without a promotional campaign by using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Pre-Discount) - Filter: Product_Category = 'Furniture' This gives us the follow value for the Furniture category: Profits (Pre-Discount) = $1,779,461 We know from the prompt that volumes will increase by 5% while all other values remain the same. This means that profits will also increase by 5%. Therefore, we can calculate the profits associated with the Furniture category next as follows: - Furniture Profits - last yr: $1,779,461 - Furniture Profits - next yr: $1,868,434.05, rounded to $1,868,434 per prompt ['Furniture Profits - last yr' x (1 + 5%)] Output should be rounded to the nearest whole number.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 8": {
+    "description": "States that the profits associated with the Furniture product category next year with a promotional campaign will be $1,089,727 (acceptable range is $1,088,727 to $1,090,727).",
+    "sources": "General_sales_data.csv",
+    "justification": "We know from category 5 (ID 12175) that the impact on BudgetBuy's bottom-line will only come from the Furniture product category sales. Per the prompt, we will focus all subsequent calculations on the Furniture product category.\u00a0 To calculate BudgetBuy's profits next year, if they do run a promotional campaign on Furniture, we first need to add at least one column: - Profits (Post-Discount): [Unit_Price x (1-Discount) - Unit_Cost] x Quantity_Sold Once we have this new field, we can summarize revenues and profits using a pivot table using the following: - Rows: Product_Category - Values: Sum of Profits (Post-Discount) - Filter: Product_Category = 'Furniture' This gives us the following values for the Furniture category: Profits (Post-Discount) $1,037,835 We know from the prompt that volumes will increase by 5% while all other values remain the same. This means that profits will also increase by 5% Therefore, we can calculate the profits associated with the Furniture category next year as follows: - Furniture Profits - last yr w/ discount: $1,037,835 - Furniture Profits - next yr w/ discount: $1,089,726.75 = $1,089,727 rounded per prompt ['Furniture Profits - last yr w/ discount' x (1 + 5%)] Output should be rounded to the nearest whole number.",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5
+    ]
+  },
+  "criterion 9": {
+    "description": "States that the promotional campaign might bolster the sales of all categories for one or more of the following reasons: - The campaign may drive more new customers to the client's stores - The campaign may drive existing customers to visit the client's stores more frequently - The campaign may drive customers to spend more overall (e.g., because they believe they are getting a good value)",
+    "sources": "",
+    "justification": "A consultant would readily state that the promotional campaign might bolster the sales of other categories for one or more of the following reasons: - The campaign may drive more new customers to the client's stores - The campaign may drive existing customers to visit the client's stores more frequently - The campaign may drive customers to spend more overall (e.g., because they believe they are getting a good value)",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "Presents the answers in a memo",
+    "sources": "Prompt",
+    "justification": "The prompt had explicitly asked for the answers to be presented in a memo.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Style"
+    ],
+    "dependent_criteria": []
+  }
+}

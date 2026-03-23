@@ -1,0 +1,322 @@
+{
+  "criterion 1": {
+    "description": "States that Pulmicort Flexhaler is difficult to administer for a young child.",
+    "sources": "",
+    "justification": "'Research indicates that poor inhaler technique is common among children. Specifically, observational studies have found that only 8\u201322% of children with asthma use their inhalers correctly' 'Further, proper technique varies according to patients' age and abilities. For instance, younger patients require both a mask and spacers with MDIs, while older patients can effectively use just a spacer with MDIs.' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that Pulmicort Flexhaler is an inhaled steroid.",
+    "sources": "",
+    "justification": "'Pulmicort Flexhaler (budesonide) is an inhaled corticosteroid. It's used in adults and children for the maintenance treatment of asthma.' https://www.goodrx.com/pulmicort/what-is?srsltid=AfmBOopbf_YCQlL_bC7vuvxIPkqgQvp_Z0XcjxwZrA21cE-VgRpRnvKw",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "States that a difficult Pulmicort Flexhaler administration can lead to inadequate medication delivery to the lungs.",
+    "sources": "",
+    "justification": "'However, for inhaled medications to be effective, their fine particles must be delivered directly into the airways. It is critical that each person with a respiratory condition is able to use their inhaler correctly to support disease management. Improper inhaler technique (also termed inhaler misuse) is a key reason that inhaled medicines are not effective, as the medicine does not reach the airways' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that inadequate inhaled steroid delivery can lead to poor asthma control.",
+    "sources": "",
+    "justification": "'However, for inhaled medications to be effective, their fine particles must be delivered directly into the airways. It is critical that each person with a respiratory condition is able to use their inhaler correctly to support disease management. Improper inhaler technique (also termed inhaler misuse) is a key reason that inhaled medicines are not effective, as the medicine does not reach the airways' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that difficult Pulmicort Flexhaler administration likely caused the patient's poor asthma control.",
+    "sources": "",
+    "justification": "'Research indicates that poor inhaler technique is common among children. Specifically, observational studies have found that only 8\u201322% of children with asthma use their inhalers correctly' 'Further, proper technique varies according to patients' age and abilities. For instance, younger patients require both a mask and spacers with MDIs, while older patients can effectively use just a spacer with MDIs.' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "criterion 6": {
+    "description": "States that a Pulmicort Flexhaler is the maintenance component of the patient's current combination inhaler therapy.",
+    "sources": "History details.pdf",
+    "justification": "From the History details.pdf: the patient is currently using Pulmicort Flexhaler. 'Pulmicort Flexhaler (budesonide) is an inhaled corticosteroid. It's used in adults and children for the maintenance treatment of asthma.' https://www.goodrx.com/pulmicort/what-is?srsltid=AfmBOopbf_YCQlL_bC7vuvxIPkqgQvp_Z0XcjxwZrA21cE-VgRpRnvKw",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that an albuterol inhaler is the reliever component of the patient's current combination inhaler therapy.",
+    "sources": "History details.pdf",
+    "justification": "From the History details.pdf: the patient is currently using an albuterol inhaler. 'Drug Name: Albuterol Sulfate Brand Name: ProAir\u00ae HFA Medicine Use: Quick-relief Type of Medicine: Short-acting beta agonist' https://aafa.org/asthma-medicine/albuterol-sulfate-proair-hfa/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States that the patient's asthma is uncontrolled with the current combination inhaler therapy.",
+    "sources": "History details.pdf",
+    "justification": "From the History details.pdf: the patient is currently using both a Pulmicort Flexhaler and an albuterol inhaler. In addition, the patient has frequent wheezing with activity, daily symptoms, and nightly symptoms affecting sleep, despite daily inhaled corticosteroids and short-acting beta2-agonist relievers. This is uncontrolled asthma. 'Uncontrolled: Asthma is classified as uncontrolled if there are 3 or more of the features of partially controlled asthma at least 3 times a week and asthma attacks are occurring weekly.' 'Partly controlled: At this level, daytime symptoms are occurring more than twice a week, sometimes at night and occasionally they limit activity. Quick relief medicines are needed more than twice a week. Peak flow rate is less than 80 percent of the personal best and asthma attacks occur at least once a year.' 'Individuals whose asthma is uncontrolled on maintenance ICS-LABA with SABA as quick-relief therapy should receive the preferred SMART if possible before moving to a higher step of therapy.' https://www.nhlbi.nih.gov/sites/default/files/publications/Asthma%20Clinicians%20Guide%20508_02-03-21.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "States that the patient's asthma is categorized as moderate persistent asthma due to the patient's daily symptoms.",
+    "sources": "History details.pdf",
+    "justification": "From the History details.pdf: the patient is having a cough every night. A patient having daily asthma symptoms has moderate persistent asthma. See table 3 from asthma severity.pdf 'Asthma is classified as moderate persistent if symptoms occur daily. Flare-ups occur and usually last several days. Coughing and wheezing may disrupt the child's normal activities and make it difficult to sleep. Nighttime flare-ups may occur more than once a week. In moderate persistent asthma, lung function is roughly between 60% and 80% of normal, without treatment.' https://www.healthychildren.org/English/health-issues/conditions/allergies-asthma/Pages/Mild-Moderate-Severe-Asthma-What-Do-Grades-Mean.aspx",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning",
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "Recommends switching the patient to SMART therapy (single maintenance and reliever therapy).",
+    "sources": "",
+    "justification": "'In individuals ages 4 years and older with moderate to severe persistent asthma, the Expert Panel recommends ICS-formoterol in a single inhaler used as both daily controller and reliever therapy compared to either a higher dose ICS as daily controller therapy and SABA for quick relief therapy or the same dose ICS-LABA as daily controller therapy and SABA for quick-relief therapy.' https://www.nhlbi.nih.gov/sites/default/files/publications/Asthma%20Clinicians%20Guide%20508_02-03-21.pdf 'For individuals with moderate to severe persistent asthma already taking low- or medium-dose ICS, the preferred treatment is a single inhaler with ICS-formoterol (referred to as single maintenance and reliever therapy, or 'SMART') used both daily and as needed.' https://www.nhlbi.nih.gov/sites/default/files/publications/Asthma%20Clinicians%20Guide%20508_02-03-21.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  },
+  "criterion 11": {
+    "description": "Recommends using Symbicort as SMART therapy.",
+    "sources": "",
+    "justification": "'For US clinicians, although the combination of budesonide-formoterol is approved for daily use by the US Food and Drug Administration (FDA) for individuals aged 4 years and older (marketed as Symbicort), SMART regimens are not FDA-approved for any age group.' https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      10
+    ]
+  },
+  "criterion 12": {
+    "description": "States that Symbicort is a single metered dose inhaler.",
+    "sources": "",
+    "justification": "'SYMBICORT is available as a metered-dose inhaler containing a combination of budesonide (80 or 160 mcg) and formoterol (4.5 mcg) as an inhalation aerosol in the following two strengths: 80/4.5 and 160/4.5.' https://www.accessdata.fda.gov/drugsatfda_docs/label/2010/021929s021lbl.pdf",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 13": {
+    "description": "States that an inhaled corticosteroid (ICS) is the maintenance component of Symbicort.",
+    "sources": "",
+    "justification": "'Target population: Individuals 4 years and older with a severe exacerbation in the prior year are particularly good candidates for SMART to reduce exacerbations. \u2022 Treatment: Inhaled ICS-formoterol in a single inhaler. This form of therapy has only been studied with formoterol as the long-acting beta2-agonist (LABA).' https://www.nhlbi.nih.gov/sites/default/files/publications/Asthma%20Clinicians%20Guide%20508_02-03-21.pdf",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 14": {
+    "description": "States that a long acting beta2 agonist (LABA) is the reliever component of Symbicort.",
+    "sources": "",
+    "justification": "'Target population: Individuals 4 years and older with a severe exacerbation in the prior year are particularly good candidates for SMART to reduce exacerbations. \u2022 Treatment: Inhaled ICS-formoterol in a single inhaler. This form of therapy has only been studied with formoterol as the long-acting beta2-agonist (LABA).' https://www.nhlbi.nih.gov/sites/default/files/publications/Asthma%20Clinicians%20Guide%20508_02-03-21.pdf",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 15": {
+    "description": "States that a metered dose inhaler (MDI) is used with a spacer.",
+    "sources": "",
+    "justification": "'Further, proper technique varies according to patients' age and abilities. For instance, younger patients require both a mask and spacers with MDIs, while older patients can effectively use just a spacer with MDIs.' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12
+    ]
+  },
+  "criterion 16": {
+    "description": "States that an MDI with spacer is easier to administer to a young child.",
+    "sources": "",
+    "justification": "'Further, proper technique varies according to patients' age and abilities. For instance, younger patients require both a mask and spacers with MDIs, while older patients can effectively use just a spacer with MDIs.' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      15
+    ]
+  },
+  "criterion 17": {
+    "description": "Concludes that Symbicort with a spacer is easier to administer than Pulmicort Flexhaler in a young child.",
+    "sources": "",
+    "justification": "'Further, proper technique varies according to patients' age and abilities. For instance, younger patients require both a mask and spacers with MDIs, while older patients can effectively use just a spacer with MDIs.' https://pmc.ncbi.nlm.nih.gov/articles/PMC8018416/",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 18": {
+    "description": "States that Symbicort dose is 80/4.5 mcg.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template, for daily maintenance therapy in the green zone, 1 to 2 puffs of Symbicort may be used once or twice a day to achieve control of asthma based on clinical judgement. In this patient, based on severity of clinical symptoms, 2 puffs twice a day was chosen. It can be titrated down as he improves. See the approved asthma action plan template in figure one below. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 19": {
+    "description": "States that 2 puffs of Symbicort should be given per dose in the green zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template, for daily maintenance therapy in the green zone, 1 to 2 puffs of Symbicort may be used once or twice a day to achieve control of asthma based on clinical judgement. In this patient, based on severity of clinical symptoms, 2 puffs twice a day was chosen. It can be titrated down as he improves. See the approved asthma action plan template in figure one below. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 20": {
+    "description": "States that Symbicort should be given twice a day in the green zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template, for daily maintenance therapy in the green zone, 1 to 2 puffs of Symbicort may be used once or twice a day to achieve control of asthma based on clinical judgement. In this patient, based on severity of clinical symptoms, 2 puffs twice a day was chosen. It can be titrated down as he improves. See the approved asthma action plan template in figure one below. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11
+    ]
+  },
+  "criterion 21": {
+    "description": "States that the green zone dosing of Symbicort should be continued in the yellow zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template in figure one below, the green zone medications should be continued in the yellow zone. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      19,
+      20
+    ]
+  },
+  "criterion 22": {
+    "description": "States that additional dosing of Symbicort should be given in the yellow zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template in figure one below, '1 puff of inhaled Symbicort may be added whenever needed to relieve symptoms' in the yellow zone. The direction of every 4 hours was added to limit confusion and overdosing of the medication. This would not be contradictory to the recommendations. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 23": {
+    "description": "States that 1 additional puff per dose of Symbicort may be given in the yellow zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template in figure one below, '1 puff of inhaled Symbicort may be added whenever needed to relieve symptoms' in the yellow zone. The direction of every 4 hours was added to limit confusion and overdosing of the medication. This would not be contradictory to the recommendations. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      22
+    ]
+  },
+  "criterion 24": {
+    "description": "States that additional Symbicort should be given every 4 hours as needed in the yellow zone.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template in figure one below, '1 puff of inhaled Symbicort may be added whenever needed to relieve symptoms' in the yellow zone. The direction of every 4 hours was added to limit confusion and overdosing of the medication. This would not be contradictory to the recommendations. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      22
+    ]
+  },
+  "criterion 25": {
+    "description": "States that the maximum daily dose of Symbicort in the yellow zone is 8 puffs.",
+    "sources": "",
+    "justification": "Per the recommended SMART asthma action plan template in figure one below, the maximum daily dose of Symbicort is 8 puffs. https://www.jaci-inpractice.org/cms/10.1016/j.jaip.2021.10.011/asset/a4913515-c42e-4096-ab9d-1dd931d7be76/main.assets/gr1_lrg.jpg https://www.jaci-inpractice.org/article/S2213-2198(21)01128-4/fulltext",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      21,
+      22
+    ]
+  }
+}

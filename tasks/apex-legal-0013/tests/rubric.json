@@ -1,0 +1,123 @@
+{
+  "criterion 1": {
+    "description": "Drafts the response in the format of a legal opinion or memorandum, which includes at least three of the following: a factual summary, analysis, conclusion, references to relevant statutory and legal authority.",
+    "sources": "Prompt",
+    "justification": "The prompt explicitly asks the model to 'Draft a legal opinion,' which should include a factual summary, analysis, and conclusion, with reference to relevant statutory and legal authority.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Style"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Identifies the jurisdiction for the legal analysis as the State of Florida.",
+    "sources": "Prompt",
+    "justification": "The prompt specifies that all parties reside in Florida and the accident occurred there, making Florida law the basis for the entire analysis.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Explains that diminution of value claims are recognized in the State of Florida.",
+    "sources": "Airtechv.MacDonald.pdf McHalev.FarmBureau.pdf Sieglev.Progressive.pdf",
+    "justification": "As noted in Airtech Services, Inc. v. MacDonald Construction Company, diminished value claims are recognized in the State of Florida. Citing the Restatement of Torts 928, the court noted that the rule of damages applicable to the case at bar is succinctly stated in Restatement, Torts, \u00a7 928 (1939) as follows: 'Where a person is entitled to a judgment for harm to chattels not amounting to a total destruction in value, the damages include compensation for the difference between the value of the chattel before the harm and the value after the harm or, at the plaintiff's election, the reasonable cost of repair or restoration where feasible, with due allowance for any difference between the original value and the value after repairs. (150 So.2d at 465).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Specifically addresses whether diminution of value applies to 1st party claims, 3rd party claims, or both.",
+    "sources": "Sieglev.Progressive.pdf McHalev.FarmBureau.pdf",
+    "justification": "Regarding 1st Party Claims - The Florida Supreme Court held in Siegle v. Progressive, noted that the policy definition of 'repair' did not require the insurer to pay for the diminished value of the vehicle. (819 So.2d at 736, 738). As noted by the Supreme Court of Florida, 'proper interpretation of the policy language at hand requires that we deem diminished value a loss not covered by this policy. Acceptance of the petitioner's position that the proper definition of 'repair' includes compensation for lost value would negate the insurer's choice of remedy explicitly contained in the contractual text.' (819 So.2d at 739). Regarding 3rd Party Claims - Florida courts have held that the cost of repairs plus diminution of value are the proper measure of damages. (McHale v. Farm Bureau Mut. Ins. Co., 409 So.2d at 239).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 5": {
+    "description": "States that diminution of value is generally NOT recoverable in a first-party claim in Florida.",
+    "sources": "Sieglev.Progressive.pdf",
+    "justification": "In Siegle v. Progressive, the Florida Supreme Court held that the insurance policy was not ambiguous in defining 'repair' and did not require the insurer to pay for the diminished value of the vehicle. (819 So.2d at 736, 738). As noted by the Supreme Court of Florida, 'proper interpretation of the policy language at hand requires that we deem diminished value a loss not covered by this policy. Acceptance of the petitioner's position that the proper definition of 'repair' includes compensation for lost value would negate the insurer's choice of remedy explicitly contained in the contractual text.' (819 So.2d at 739).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 6": {
+    "description": "States that diminution of value is recoverable in a third-party claim in Florida.",
+    "sources": "McHalev.FarmBureau.pdf",
+    "justification": "Florida courts have held that the proper measure of damages for third party claimants is the cost of repairs plus diminution of value, where it is shown that the repairs do not put the property in as good as position as it was before. McHale v. Farm Bureau Mut. Ins. Co. 409 So. 2d 238, 239 (Fla. 3d DCA 1982). 'The proper interpretation of the Restatement of Torts Rule ... is that damages are not limited to the cost of repairs actually made where plaintiff shows that the repairs did not put the property in as good a condition as it was before the injury. In such cases, the cost of the repairs made plus the diminution in value will ordinarily be the proper measure of damages, with the burden on the plaintiff to prove in addition to the cost of repairs, that he suffered the additional damage of diminution of value by virtue of the vehicle having been involved in the accident.' McHale v. Farm Bureau Mut. Ins. Co. 409 So. 2d 238, 239 (Fla. 3d DCA 1982).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 7": {
+    "description": "List the elements required to prove diminution of value in Florida.",
+    "sources": "Airtechv.MacDonald.pdf McHalev.FarmBureau.pdf Sieglev.Progressive.pdf FlaStat.319.30.pdf FlaStat.626.9743.pdf",
+    "justification": "A DV claimant must prove: (1) the vehicle's pre-loss value, (2) the vehicle's post-repair fair market value after proper repairs, and (3) that repairs did not fully restore value, with causation linking the diminution to the loss. See McHale v. Farm Bureau Mut. Ins. Co., 409 So.2d 238, 239 (Fla. 3d DCA 1982); Restatement (First) of Torts \u00a7 928 as applied in Airtech Services, Inc. v. MacDonald Constr. Co., 150 So.2d 465. A party claiming diminished value must show that they were not at fault in causing the accident. As noted in Siegle v. Progressive, DV is only available to liability claimants. (819 So.2d at 739). As noted in McHale v. Farm Bureau Mut. Ins. Co., the party must prove that the value of the vehicle has been diminished, the party must also provide the pre-accident value and an appraisal showing the post-repair value. 'Compensation for repairs is an alternative method of proving damages which purpose is to restore the defendant to same position he was in prior to the injury. The phrase 'due allowance for ... difference in value...' in application insures that the costs of repair will neither enhance nor diminish the value of the property. The proper interpretation of the Restatement of Torts Rule, quoted above, is that damages are not limited to the cost of repairs actually made where plaintiff shows that the repairs did not put the property in as good a condition as it was before the injury. In such cases, the cost of the repairs made plus the diminution in value will ordinarily be the proper measure of damages, with the burden on the plaintiff to prove in addition to the cost of repairs, that he suffered the additional damage of diminution of value by virtue of the vehicle having been involved in the accident. (409 So. 2d at 239). Exceptions - As noted in Siegle v. Progressive, DV is not applicable to 1st party claims. (819 So.2d at 739). DV is not available if the vehicle is non-repairable and deemed a total loss. (See Florida Statute 319.30 (1)(t) for definition of total loss vehicle), (See Florida Statute 627.9743 (Section 5) for the measure of damages - When a vehicle is a total loss, the insurer may offer a cash settlement based on the replacement of the vehicle's ACV or a replacement vehicle).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3
+    ]
+  },
+  "criterion 8": {
+    "description": "Identifies Mr. Jones' claim against XYZ Insurance as a third-party claim.",
+    "sources": "Prompt FlaStat.626.9743.pdf",
+    "justification": "The prompt states that the client is pursuing a liability claim against the other driver, and, therefore, the client is a third-party claimant. Per Florida Statute 626.9743 (2), '[a]n insurer may not, when liability and damages owed under the policy are reasonably clear, recommend that a third-party claimant make a claim under his or her own policy solely to avoid paying the claim under the policy issued by that insurer. However, the insurer may identify options to a third-party claimant relative to the repair of his or her vehicle. The statute notes that a third party claimant is a party filing the claim against the other party's policy, not his/her own policy. As Mr. Jones is also filing the claim on the other party's policy, he is a third party claimant. Relevant case law in this context defining 'third party claimant' was not found.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "Correctly identifies that Mr. Jones' vehicle is a total loss (it is acceptable to state 'likely' or 'pending' based on the available estimate).",
+    "sources": "FlaStat.319.30.pdf Prompt",
+    "justification": "Per Florida Statute 319.30 (1)(t), a 'salvage' vehicle is defined as a motor vehicle or mobile home which is a total loss as defined in paragraph (3)(a). Per Florida Statute 319.30 (3)(a), a vehicle is a total loss if the cost to repair the vehicle is 80% or more of the replacement cost. The total-loss determination is made by the insurer and may involve supplements and salvage considerations. The response should explain the standard and, if undetermined, characterize the status as likely or pending without asserting definitively.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)",
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "States that diminution of value is not applicable if the vehicle is determined to be a total loss under \u00a7 319.30 and that, in such case, settlement follows \u00a7 626.9743(5); if not a total loss, DV analysis may apply.",
+    "sources": "FlaStat.319.30.pdf FlaStat.626.9743.pdf",
+    "justification": "Per Florida Statute 319.30 (1)(t), a 'salvage' vehicle is defined as a motor vehicle or mobile home which is a total loss as defined in paragraph (3)(a). Per Florida Statute 319.30 (3)(a), a vehicle is a total loss if the cost to repair the vehicle is 80% or more of the replacement cost. Per Florida Statute 627.9743, when a vehicle is a total loss, the insurer may offer a cash settlement based on the replacement of the vehicle's ACV or a replacement vehicle. (Section 5).",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  }
+}

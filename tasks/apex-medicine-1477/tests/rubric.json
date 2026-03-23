@@ -1,0 +1,318 @@
+{
+  "criterion 1": {
+    "description": "Recognizes that the patient is 48-years-old.",
+    "sources": "",
+    "justification": "The prompt states: 'H&E sections of a brain tumour from a 48 year old man are submitted for pathological examination.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "Recognizes that the patient presented with seizures.",
+    "sources": "",
+    "justification": "The prompt states: 'The patient presents with a 5-year history of seizures.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 3": {
+    "description": "Recognizes that the tumor is in the temporal lobe on MRI.",
+    "sources": "",
+    "justification": "The prompt states: 'MRI brain revealed a left temporal subcortical T2-high, T1-low lesion.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "Recognizes that the tumor is subcortically based on MRI.",
+    "sources": "",
+    "justification": "The prompt states: 'MRI brain revealed a left temporal subcortical T2-high, T1-low lesion.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "Recognizes that the tumor is T2-high on MRI.",
+    "sources": "",
+    "justification": "The prompt states: 'MRI brain revealed a left temporal subcortical T2-high, T1-low lesion.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "Recognizes vacuolated tumor cells on histology.",
+    "sources": "Attached document - Patient_B.pdf",
+    "justification": "The attached document states: 'Microscopy reveals a circumscribed moderately cellular tumour composed of medium sized cells with prominent cytoplasmic vacuolations.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "Recognizes vacuolated tumor matrix on histology.",
+    "sources": "Attached document - Patient_B.pdf",
+    "justification": "The attached document states: 'The tumour matrix also appears vacuolated.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "Recognizes that the tumor shows no high-grade histological features.",
+    "sources": "Attached document - Patient_B.pdf",
+    "justification": "The attached document states: 'The tumour shows no high-grade histological features.'",
+    "weight": "Not primary objective",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "States that the most likely diagnosis is multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "There are several clinical, radiological and histological features that point to a diagnosis of multinodular vacuolating neuronal tumour. These are summarised. The patient age of 48-years is in keeping with MVNT. 'Although this tumor predominantly develops in adults (with a median age of 43 years, ranging from 21 to 71 years) [10,29], rare pediatric and adolescent cases have been reported (with a median age of 11.5 years, ranging from 6 to 19 years) [8,9,10,11,24,30].' Calandrelli, R.; Mallio, C.A.; Bernetti, C.; Pilato, F. Multinodular and Vacuolating Neuronal Tumors: Imaging Features, Diagnosis, and Management Challenges. Diagnostics 2025, 15, 334. https://doi.org/10.3390/diagnostics15030334 The clinical presentation with seizures is common in MVNT. 'Seizures or their equivalents, along with non-focal headaches such as hypoesthesia, loss of postural tone, contact rupture, cognitive impairment, history of migraine, multiple sclerosis, paresthesia, and vertigo, are the most common neurological complaints for which an MRI is requested [21,29]. Calandrelli, R.; Mallio, C.A.; Bernetti, C.; Pilato, F. Multinodular and Vacuolating Neuronal Tumors: Imaging Features, Diagnosis, and Management Challenges. Diagnostics 2025, 15, 334. https://doi.org/10.3390/diagnostics15030334 'The primary site of tumor onset is focused in the cerebral hemispheres, most commonly affecting the temporal and parietal lobes, with less frequent involvement of the frontal and occipital lobes [2,11]. ' 'The lesions are located along the subcortical ribbon and the superficial subcortical white matter, following the gyral contour [10,31]. Cortical involvement has been observed in only 10% of MVNT [38]. ' 'The lesions may appear iso- to hypointense relative to the cortex on T1-weighted images and hyperintense to markedly hyperintense on T2-weighted images' World Health Organization, issuing body, et al. Central Nervous System Tumours. 5th edition., International Agency for Research on Cancer, World Health Organization, 2021. 'Histopathologically, MVNTs are characterized by multiple discrete and coalescing islands or nodules of immature neuron-like cells with large eosinophilic vacuolated cytoplasms and prominent round nucleoli [2,3,4,36]. These cells lack a specific orientation and display a ganglionic morphology, with occasional binucleated cells [29]. Among these ambiguous tumor cells, some glial features can also be observed, resembling oligodendroglial and astrocytic cells [6,9,43]; moreover, peri-cellular vacuolation and glial reaction around the nodules may also be present [2,3,4,17].' World Health Organization, issuing body, et al. Central Nervous System Tumours. 5th edition., International Agency for Research on Cancer, World Health Organization, 2021.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      11,
+      12,
+      13
+    ]
+  },
+  "criterion 10": {
+    "description": "States that mutinodular and vacuolating neuronal tumor (MVNT) is a CNS WHO Grade 1 tumor.",
+    "sources": "",
+    "justification": "In the 2021 WHO revision of CNS tumors, these tumors were considered grade 1 neoplasms in the 'Neuronal and Glioneuronal Tumors' section. World Health Organization, issuing body, et al. Central Nervous System Tumours. 5th edition., International Agency for Research on Cancer, World Health Organization, 2021.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 11": {
+    "description": "Explains that the clinical findings are consistent with multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "The patient age of 48-years is in keeping with MVNT. 'Although this tumor predominantly develops in adults (with a median age of 43 years, ranging from 21 to 71 years) [10,29], rare pediatric and adolescent cases have been reported (with a median age of 11.5 years, ranging from 6 to 19 years) [8,9,10,11,24,30].' Calandrelli, R.; Mallio, C.A.; Bernetti, C.; Pilato, F. Multinodular and Vacuolating Neuronal Tumors: Imaging Features, Diagnosis, and Management Challenges. Diagnostics 2025, 15, 334. https://doi.org/10.3390/diagnostics15030334 The clinical presentation with seizures is common in MVNT. 'Seizures or their equivalents, along with non-focal headaches such as hypoesthesia, loss of postural tone, contact rupture, cognitive impairment, history of migraine, multiple sclerosis, paresthesia, and vertigo, are the most common neurological complaints for which an MRI is requested [21,29]. Calandrelli, R.; Mallio, C.A.; Bernetti, C.; Pilato, F. Multinodular and Vacuolating Neuronal Tumors: Imaging Features, Diagnosis, and Management Challenges. Diagnostics 2025, 15, 334. https://doi.org/10.3390/diagnostics15030334",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1,
+      2
+    ]
+  },
+  "criterion 12": {
+    "description": "Explains that the radiological findings are consistent with multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'The primary site of tumor onset is focused in the cerebral hemispheres, most commonly affecting the temporal and parietal lobes, with less frequent involvement of the frontal and occipital lobes [2,11]. ' 'The lesions are located along the subcortical ribbon and the superficial subcortical white matter, following the gyral contour [10,31]. Cortical involvement has been observed in only 10% of MVNT [38]. ' 'The lesions may appear iso- to hypointense relative to the cortex on T1-weighted images and hyperintense to markedly hyperintense on T2-weighted images' World Health Organization, issuing body, et al. Central Nervous System Tumours. 5th edition., International Agency for Research on Cancer, World Health Organization, 2021.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      3,
+      4,
+      5
+    ]
+  },
+  "criterion 13": {
+    "description": "Explains that the histological findings are consistent with multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Histopathologically, MVNTs are characterized by multiple discrete and coalescing islands or nodules of immature neuron-like cells with large eosinophilic vacuolated cytoplasms and prominent round nucleoli [2,3,4,36]. These cells lack a specific orientation and display a ganglionic morphology, with occasional binucleated cells [29]. Among these ambiguous tumor cells, some glial features can also be observed, resembling oligodendroglial and astrocytic cells [6,9,43]; moreover, peri-cellular vacuolation and glial reaction around the nodules may also be present [2,3,4,17].' World Health Organization, issuing body, et al. Central Nervous System Tumours. 5th edition., International Agency for Research on Cancer, World Health Organization, 2021.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      6,
+      7,
+      8
+    ]
+  },
+  "criterion 14": {
+    "description": "Identifies Olig2 as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 15": {
+    "description": "States that Olig2 is positive in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      14
+    ]
+  },
+  "criterion 16": {
+    "description": "Identifies synaptophysin as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 17": {
+    "description": "States that synaptophysin is positive in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 18": {
+    "description": "Identifies GFAP as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 19": {
+    "description": "States that GFAP is negative in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      18
+    ]
+  },
+  "criterion 20": {
+    "description": "Identifies NeuN as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 21": {
+    "description": "States that NeuN is negative in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      20
+    ]
+  },
+  "criterion 22": {
+    "description": "Identifies HuC/HuD as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 23": {
+    "description": "States that HuC/HuD is positive in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      22
+    ]
+  },
+  "criterion 24": {
+    "description": "Identifies internexin as part of the expected immunoprofile.",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      9
+    ]
+  },
+  "criterion 25": {
+    "description": "States that internexin is positive in multinodular and vacuolating glioneuronal tumor (MVNT).",
+    "sources": "",
+    "justification": "'Vacuolated tumor cells were robustly positive for \u03b1-INA and Olig2 and at least partly positive for synaptophysin and MAP2, but negative for Neu-N, nestin and CD34. GFAP and vimentin were expressed in reactive astrocytes but not in tumor cells.' Choi, Euno et al. 'Clinicopathological and molecular analysis of multinodular and vacuolating neuronal tumors of the cerebrum.' Human pathology vol. 86 (2019): 203-212. doi:10.1016/j.humpath.2018.11.028",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      24
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+New Terminal Output:
+
+root@31fea87767f4:/app# cat > analyze_model.py << 'EOF'
+> import pandas as pd
+> import numpy as np
+>
+> # Read Excel file
+> xl_file = '/app/data/ConSup Inc Financial Model_PROMPT.xlsx'
+>
+> # Read Transaction Structure
+> print("=== TRANSACTION STRUCTURE ===")
+> trans_df = pd.read_excel(xl_file, sheet_name='Transaction Structure', header=None)
+> print(trans_df.iloc[0:25, 0:4].to_string())
+>
+> print("\n=== FINANCIAL STATEMENTS ===")
+> financial_df = pd.read_excel(xl_file, sheet_name='Financial Statements', header=None)
+> print(financial_df.iloc[0:20, 0:8].to_string())
+>
+> print("\n=== ASSUMPTIONS ===")
+> assumptions_df = pd.read_excel(xl_file, sheet_name='Assumptions', header=None)
+> print(assumptions_df.iloc[0:20, 0:4].to_string())
+> EOF
+root@31fea87767f4:/app#

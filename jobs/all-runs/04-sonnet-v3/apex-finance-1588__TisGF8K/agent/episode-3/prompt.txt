@@ -1,0 +1,34 @@
+New Terminal Output:
+
+root@31fea87767f4:/app# python3 -c "import pandas as pd; df = pd.read_excel('/app/data/ConSup Inc Financial Model_PROMPT.xlsx', sheet_name='Transaction Structur
+e'); print('Transaction Structure:'); print(df.head(20))"
+Transaction Structure:
+    Unnamed: 0                          Unnamed: 1  Unnamed: 2 Unnamed: 3  ... Unnamed: 9                Unnamed: 10 Unnamed: 11   Unnamed: 12
+0          NaN            1. Transaction Structure         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+1          NaN        In USD 000, FY ending Dec 31         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+2          NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+3          NaN                         Assumptions         NaN        NaN  ...        NaN                       Uses         NaN           NaN
+4          NaN                         FY24 EBITDA         NaN          $  ...        NaN  Purchase Enterprise Value         NaN  66546.033810
+5          NaN                   Purchase Multiple         NaN          x  ...        NaN                Cash to B/S         NaN   1000.000000
+6          NaN                Senior Debt / EBITDA         NaN          x  ...        NaN           Transaction Fees         NaN   1996.381014
+7          NaN           Subordinate Debt / EBITDA         NaN          x  ...        NaN             Financing Fees         NaN    499.095254
+8          NaN                     Rollover Equity         NaN          %  ...        NaN                        NaN         NaN           NaN
+9          NaN                         Cash to B/S         NaN          $  ...        NaN                     Total          NaN  70041.510078
+10         NaN                    Transaction Fees         NaN          %  ...        NaN                     Check          NaN      0.000000
+11         NaN                      Financing Fees         NaN          %  ...        NaN                        NaN         NaN           NaN
+12         NaN  Financing Fees Amortization Period         NaN      Years  ...        NaN                        NaN         NaN           NaN
+13         NaN                    Transaction Date         NaN       Date  ...        NaN                        NaN         NaN           NaN
+14         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+15         NaN               Closing Balance Sheet         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+16         NaN                                 NaN         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+17         NaN                Goodwill Calculation         NaN        NaN  ...        NaN                        NaN         NaN           NaN
+18         NaN           Purchase Enterprise Value         NaN          $  ...        NaN                        NaN         NaN           NaN
+19         NaN                          Less: Debt         NaN          $  ...        NaN                        NaN         NaN           NaN
+
+[20 rows x 13 columns]
+root@31fea87767f4:/app#
+
+
+
+
+

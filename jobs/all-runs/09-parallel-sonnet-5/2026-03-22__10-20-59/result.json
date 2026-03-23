@@ -1,0 +1,41 @@
+{
+    "id": "f39fab4c-d921-4280-acd0-b5a8b2b1fbc4",
+    "started_at": "2026-03-22T10:20:59.681008",
+    "finished_at": "2026-03-22T10:23:40.072889",
+    "n_total_trials": 5,
+    "stats": {
+        "n_trials": 5,
+        "n_errors": 0,
+        "evals": {
+            "terminus-2__anthropic-claude-sonnet-4__tasks": {
+                "n_trials": 5,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.61732
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0526": [
+                            "apex-medicine-1494__aAi2aVE"
+                        ],
+                        "0.8462": [
+                            "apex-consulting-1242__A6RnMaC"
+                        ],
+                        "1.0": [
+                            "apex-legal-1382__FXWDgLn"
+                        ],
+                        "0.4545": [
+                            "apex-consulting-0352__BfNrTo2"
+                        ],
+                        "0.7333": [
+                            "apex-legal-1371__ZouYDji"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

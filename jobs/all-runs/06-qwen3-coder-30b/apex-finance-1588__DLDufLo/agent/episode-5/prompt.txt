@@ -1,0 +1,33 @@
+New Terminal Output:
+
+root@7326c35a90b6:/app# python3 -c "import openpyxl; print('openpyxl available')"
+openpyxl available
+root@7326c35a90b6:/app# mkdir -p /app/scripts
+root@7326c35a90b6:/app#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

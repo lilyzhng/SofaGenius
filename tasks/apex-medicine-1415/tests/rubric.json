@@ -1,0 +1,197 @@
+{
+  "criterion 1": {
+    "description": "States that the patient's non-bloody diarrhea has lasted for 4 weeks.",
+    "sources": "",
+    "justification": "From the prompt: 'A 45-year-old man presents with 4 weeks of non-bloody, watery diarrhea, occurring 4 to 5 times daily.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 2": {
+    "description": "States that the patient has chronic diarrhea.",
+    "sources": "",
+    "justification": "'Chronic diarrhea is defined as a persistent alteration of stool consistency from the norm with loose stools\u2026and increased stool frequency of greater than three stools daily of at least four weeks' duration.' https://www.uptodate.com/contents/approach-to-the-adult-with-chronic-diarrhea-in-resource-abundant-settings",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      1
+    ]
+  },
+  "criterion 3": {
+    "description": "Identifies microscopic colitis as a cause of chronic diarrhea.",
+    "sources": "",
+    "justification": "'Microscopic colitis is a chronic inflammatory disease of the colon that is characterized by chronic, watery, non-bloody diarrhea.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 4": {
+    "description": "States that the patient is 45 years old.",
+    "sources": "",
+    "justification": "From the prompt: 'A 45-year-old man presents with 4 weeks of non-bloody, watery diarrhea, occurring 4 to 5 times daily.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 5": {
+    "description": "States that middle age is a risk factor for microscopic colitis.",
+    "sources": "",
+    "justification": "'Microscopic colitis should be suspected in patients with chronic diarrhea, particularly in middle-aged and older adults.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 6": {
+    "description": "States that the patient has Hashimoto's thyroiditis.",
+    "sources": "",
+    "justification": "From the prompt: 'He takes levothyroxine for hypothyroidism due to Hashimoto's thyroiditis and denies recent antibiotic use.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 7": {
+    "description": "States that Hashimoto's thyroiditis is associated with microscopic colitis.",
+    "sources": "",
+    "justification": "'Microscopic colitis has also been associated with several other diseases with autoimmune background (eg, autoimmune thyroiditis, type 1 diabetes mellitus, and nonerosive, oligoarticular arthritis).' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 8": {
+    "description": "States that the patient smokes cigarettes.",
+    "sources": "Patient Info.pdf",
+    "justification": "From the Patient Infor.pdf: 'Social History: Occasionally drinks alcohol; smokes cigarettes.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 9": {
+    "description": "States that smoking is a risk factor for microscopic colitis.",
+    "sources": "",
+    "justification": "'Smoking may play a role in the development of microscopic colitis and the clinical outcome. In a case-control study that included 340 patients with microscopic colitis, cigarette smoking (past or present) was associated with an increased risk of microscopic colitis (odds ratio 2.1, 95% CI 1.6-2.9). On average, smokers also develop microscopic colitis more than 10 years earlier than non-smokers.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 10": {
+    "description": "States that the patient has normal colonic mucosa on colonoscopy.",
+    "sources": "Patient Info.pdf",
+    "justification": "From the Patient Infor.pdf: 'Colonoscopy: normal appearing mucosa throughout, no polyps, no biopsies taken.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 11": {
+    "description": "States that the colon appears normal on colonoscopy in microscopic colitis.",
+    "sources": "",
+    "justification": "'The colon appears typically normal or almost normal on colonoscopy in patients with microscopic colitis.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 12": {
+    "description": "States that the patient did not have a colonic mucosa biopsy.",
+    "sources": "Patient Infor.pdf",
+    "justification": "From the Patient Infor.pdf: 'Colonoscopy: normal appearing mucosa throughout, no polyps, no biopsies taken.'",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Extraction (recall)"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 13": {
+    "description": "States that a colonic mucosa biopsy is required for diagnosis of microscopic colitis.",
+    "sources": "",
+    "justification": "'Endoscopic evaluation of the colon with mucosal biopsies is necessary to establish the diagnosis of microscopic colitis.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": []
+  },
+  "criterion 14": {
+    "description": "Recommends a repeat colonoscopy.",
+    "sources": "",
+    "justification": "'Endoscopic evaluation of the colon with mucosal biopsies is necessary to establish the diagnosis of microscopic colitis.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      16
+    ]
+  },
+  "criterion 15": {
+    "description": "Recommends obtaining a colonic mucosa biopsy.",
+    "sources": "",
+    "justification": "'Endoscopic evaluation of the colon with mucosal biopsies is necessary to establish the diagnosis of microscopic colitis.' https://www.uptodate.com/contents/microscopic-lymphocytic-and-collagenous-colitis-clinical-manifestations-diagnosis-and-management",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      12,
+      13,
+      16
+    ]
+  },
+  "criterion 16": {
+    "description": "Concludes that the patient's clinical symptoms suggest microscopic colitis.",
+    "sources": "",
+    "justification": "The patient has chronic diarrhea, defined as diarrhea of at least 4 weeks duration. Microscopic colitis should be suspected as a cause of chronic non-bloody diarrhea, particularly among middle-aged adults; and the patient also has associated risk factors of autoimmune thyroiditis and smoking. Furthermore, the patient has not been adequately evaluated for microscopic colitis.",
+    "weight": "Primary objective(s)",
+    "human_rating": false,
+    "criterion_type": [
+      "Reasoning"
+    ],
+    "dependent_criteria": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  }
+}
