@@ -1,0 +1,137 @@
+---
+name: raise-pr
+description: Create a pull request following the org's PR workflow — branch, commit, push, create PR, announce in `#feature-release` with correct reviewer tags, and handle bot review comments inline.
+argument-hint: [optional: PR title]
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__react
+---
+
+# Raise PR — Full Workflow
+
+Follow these steps **in order**. Do not skip any step.
+
+## Step 1: Prepare the branch
+
+- Verify you are on a feature branch, NOT `main`. If on main, stop and create a branch first.
+- Run `git status` to see all changes (staged, unstaged, untracked).
+- Run `git diff` to review unstaged changes and `git diff --cached` to review already-staged changes.
+- Ensure no secrets (`.env`, API keys, tokens) are staged. If found, unstage them immediately.
+
+## Step 2: Commit
+
+- Stage only the relevant files. Never use `git add -A` or `git add .`.
+- Write a clear commit message: what changed and why.
+- Use your agent's git identity — verify both are set:
+  - `git config user.name` (e.g. `genius-builder`)
+  - `git config user.email` (e.g. `lilyzen.ml@gmail.com`)
+- Ensure `GH_TOKEN` is set to your agent's bot token (from `.env`), not another agent's or Lily's.
+
+## Step 3: Push
+
+- Push the branch with `-u` flag: `git push -u origin <branch-name>`
+
+## Step 4: Create the PR
+
+- Use `gh pr create` with:
+  - A title under 70 characters describing what the PR does
+  - A body with this format:
+
+```
+## Summary
+<1-3 bullet points explaining what changed and why>
+
+## Test plan
+<Bulleted checklist of how to verify the changes>
+```
+
+- The PR must have a **single, clear scope**. If you're mixing unrelated changes, split into separate PRs.
+
+**Good scope:**
+- "Add PR review rules for agent org" — one doc, one purpose
+- "Migrate agent CLAUDE.md configs to SofaGenius" — one migration step
+
+**Bad scope:**
+- "Migration spec + PR review rules + onboarding updates" — three unrelated things
+- "Various fixes" — vague, hard to review
+
+## Step 5: Announce in #feature-release
+
+This is the most important step. **Post a NEW message in the #feature-release channel** (ID: `1484388088087052478`). Do NOT post inside an existing thread.
+
+The message must include:
+1. PR title and number
+2. Link to the PR
+3. Brief description (1-2 sentences)
+4. **Tag all reviewers** using `<@user_id>`:
+   - `<@1413733041842421800>` — Lily (must always be tagged)
+   - `<@1484459231624302673>` — Genius CEO
+   - `<@1485446312798457866>` — Genius Researcher
+   - `<@1484381532201156658>` — Genius Builder
+
+**Never tag Jackie (`<@1477895765698547844>`)** — she is the digest bot, not a reviewer.
+
+Example:
+```
+**PR #25: Add PR workflow skills**
+https://github.com/lilyzhng/SofaGenius/pull/25
+
+Adds /raise-pr and /review-pr skills so agents follow the PR workflow automatically.
+
+<@1413733041842421800> <@1484459231624302673> <@1485446312798457866> <@1484381532201156658> — requesting review.
+```
+
+## Step 6: Respond to ALL review comments
+
+**MANDATORY: A PR is NOT done until every comment — from any source — has an inline reply.**
+
+This applies to ALL comments: Augment bot, Vercel, other agents, Lily, anyone. No exceptions. Unaddressed comments block the PR.
+
+**Before considering your PR work complete, you MUST:**
+1. Check for ALL comments on the PR:
+
+```bash
+# Inline review comments (from Augment, agents, Lily)
+gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments
+# Non-inline PR comments (from Vercel, other bots)
+gh api repos/lilyzhng/SofaGenius/issues/{PR_NUMBER}/comments
+```
+
+2. **Reply inline to every single comment.** Use:
+```bash
+gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments \
+  -f body="Your reply here" \
+  -F in_reply_to={COMMENT_ID}
+```
+
+Do NOT post a general PR comment as a substitute for inline replies. Never address feedback only in code without replying — reviewers need to see their comment was acknowledged.
+
+For each comment:
+- If you fixed it: reply with what you changed (e.g. "Fixed in `abc1234` — changed path to repo-relative")
+- If you disagree: reply with your reasoning. Don't silently ignore.
+- If it's a nit you're accepting: a simple "Done" or "Fixed" is fine.
+- For bot comments: acknowledge and explain whether the issue was addressed or why it's not applicable.
+
+## Step 7: Push fixes, then notify
+
+When addressing review feedback:
+- Fix issues in a **new commit** (don't amend — keep the review trail)
+- Reply to each inline comment confirming the fix
+- Post a summary comment tagging reviewers when all feedback is addressed:
+```bash
+gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @reviewer1 @reviewer2 ready for re-review."
+```
+
+## Step 8: After merge
+
+Once Lily approves and you merge (at least one agent must also approve before Lily):
+1. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
+2. React with 💜 on your original announcement message
+
+## Anti-patterns
+
+- **Don't review your own PR** — get another agent to review
+- **Don't merge without Lily's explicit approval**
+- **Don't post PR announcements inside existing threads** — always a new channel message
+- **Don't tag Jackie as a reviewer**
+- **Don't ignore any review comments** — reply inline to every one (bot and human)
+- **Don't use general PR comments instead of inline replies**
+- **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead

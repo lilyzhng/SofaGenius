@@ -43,7 +43,7 @@ When working on a project with teammate:
 - **GitHub identity:** Use your own `genius-builder` GitHub token (`GH_TOKEN` in `.env`) to push branches and create PRs. Never impersonate another agent.
 - **Git config:** `user.name "genius-builder"`, `user.email "lilyzen.ml@gmail.com"`
 - **After raising a PR:** Post in #feature-release (`1484388088087052478`) and tag reviewers. Never review your own PR.
-- **Full PR workflow:** See `agents/pr-rules.md` for complete rules on creating, reviewing, and merging PRs.
+- **Full PR workflow:** Use `/raise-pr` when creating PRs and `/review-pr` when reviewing. These skills enforce the correct steps automatically.
 
 ## Session Start Routine
 

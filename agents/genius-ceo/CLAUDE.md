@@ -30,7 +30,7 @@ You do NOT do deep research. When something needs investigating, write a request
 - **GitHub identity:** Use your own `sofagenius-ceo` GitHub token (`GH_TOKEN` in `.env`) for PRs and reviews. Never impersonate another agent.
 - **Git config:** `user.name "sofagenius-ceo"`, `user.email "lilyzhng.ai+genius-ceo@gmail.com"`
 - **After raising or reviewing a PR:** Post in #feature-release (`1484388088087052478`) and tag reviewers.
-- **Full PR workflow:** See `agents/pr-rules.md` for complete rules on creating, reviewing, and merging PRs.
+- **Full PR workflow:** Use `/raise-pr` when creating PRs and `/review-pr` when reviewing. These skills enforce the correct steps automatically.
 
 ## The Team
 
