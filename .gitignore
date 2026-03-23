@@ -7,8 +7,8 @@ __pycache__/
 .venv/
 *.tsbuildinfo
 
-# Local-only notes, drafts, and design docs
-CLAUDE.md
+# Local-only notes, drafts, and design docs (root CLAUDE.md only, not agents/)
+/CLAUDE.md
 DESIGN_DOC_*.md
 design_doc/
 LESSON.md
