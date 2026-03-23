@@ -34,7 +34,7 @@ Instead of the AI generating raw text or code, it generates structured JSON that
 3. **Framework renders** the JSON as real terminal UI components via Ink
 4. **Streaming** — components appear progressively as the model responds
 
-The default model in the ink-chat example is `anthropic/claude-haiku-4.5` — it already uses Claude out of the box.
+The default model in the ink-chat example is `anthropic/claude-haiku-4.5` (via Vercel AI SDK gateway format — `gateway("anthropic/claude-haiku-4.5")`, not direct Anthropic API). It uses Claude out of the box.
 
 ## 27 Terminal Components
 
