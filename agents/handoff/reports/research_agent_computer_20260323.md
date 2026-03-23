@@ -25,29 +25,31 @@ Persistent sandboxes for AI agents are becoming commodity infrastructure in 2026
 
 ## Part 1: Product Landscape
 
+> **Note on data quality:** All performance numbers below are from vendor marketing pages or blog posts unless marked as [verified]. None have been independently benchmarked by us yet — that's part of the action plan.
+
 ### Agent Computer (agentcomputer.ai)
 - **What:** Cloud computers (Ubuntu VMs) for AI agents
-- **Spin-up time:** ~0.5 seconds
-- **Persistent storage:** 25GB per VM, survives restarts
+- **Spin-up time:** ~0.5s (vendor-claimed, unverified)
+- **Persistent storage:** 25GB per VM, survives restarts (vendor-claimed)
 - **Access:** SSH-based delegation from agents
 - **Supported frameworks:** Claude, Codex, CUA
-- **Pricing:** $20/mo for 25 VMs (2 vCPU, 8GB RAM each)
+- **Pricing:** $20/mo for 25 VMs (2 vCPU, 8GB RAM each) — from pricing page
 - **Enterprise:** Custom pricing via team@companion.ai
 - **CLI:** `npm i -g aicomputer` → `computer create` / `computer ssh`
 - **Related product:** Companion.ai (managed OpenClaw hosting with persistent sandbox)
-- **"In-house" claim:** Developer confirmed; likely custom orchestration/persistence layer on top of Firecracker or similar, not a custom hypervisor
+- **"In-house" claim:** Developer confirmed building it in-house ([tweet thread](https://x.com/i/status/2036157472256434236)). **We don't know the underlying tech** — could be Firecracker, QEMU, or something custom. The architecture is unconfirmed.
 
 ### Fly.io Sprites (launched Jan 2026)
 - **What:** Stateful sandboxes — persistent Linux VMs for AI agents
-- **Spin-up:** 1-2s create, **300ms checkpoint/restore**
-- **Storage:** 100GB — JuiceFS-like model (S3 backend, NVMe read-through cache, SQLite metadata via Litestream)
+- **Spin-up:** 1-2s create, 300ms checkpoint/restore (vendor-claimed; [Simon Willison's analysis](https://simonwillison.net/2026/Jan/9/sprites-dev/) corroborates)
+- **Storage:** 100GB — JuiceFS-like model (S3 backend, NVMe read-through cache, SQLite metadata via Litestream) — from Fly.io technical docs
 - **Key feature:** Last 5 checkpoints mounted at `/.sprite/checkpoints` for rollback
-- **Agent integration:** Pre-installed skills teach Claude how to use the sandbox
+- **Agent integration:** Pre-installed Claude Code skills that teach the agent how to use the sandbox environment
 - **Most relevant to us** — we already use Fly.io for Jackie
 
 ### Daytona (Series A, Feb 2026 — $24M)
 - **What:** Secure infra for AI-generated code execution
-- **Spin-up:** Sub-90ms (some configs reach 27ms) — fastest in class
+- **Spin-up:** Sub-90ms, some configs reach 27ms (vendor-claimed)
 - **Approach:** OCI containers, rebuilding entire stack from first principles for AI agents
 - **Persistence:** Snapshots + persistent filesystem
 - **Open source:** github.com/daytonaio/daytona
@@ -57,7 +59,6 @@ Persistent sandboxes for AI agents are becoming commodity infrastructure in 2026
 | Product | Persistence | Speed | Notes |
 |---------|-------------|-------|-------|
 | **E2B** | Ephemeral | Fast | Firecracker, established but stateless |
-| **Manus Sandbox** (Meta) | Unknown | Unknown | Acquired Dec 2025, launched Jan 2026 |
 | **K8s Agent Sandbox** | Via PVCs | Slower | CNCF SIG Apps, March 2026 |
 
 ---
@@ -97,32 +98,39 @@ Persistent agents working while you sleep need trust. Our PR review process (age
 
 ## Part 3: Action Plan
 
-### Immediate (this week)
-- [ ] **Test Agent Computer** — sign up for $20/mo plan, spin up one VM, try running Researcher in it. Evaluate: does persistent state actually work? How's the DX?
-- [ ] **Compare with Sprites** — we're already on Fly.io. Try Sprites for one agent and compare UX/reliability.
+### Immediate (this week) — Owner: Researcher
+- [ ] **Test Agent Computer** — sign up for $20/mo plan, spin up one VM, try running Researcher in it. Benchmark: actual spin-up time, persistent state reliability, DX quality. Report back with real numbers vs. vendor claims.
+- [ ] **Compare with Sprites** — we're already on Fly.io. Try Sprites for one agent and benchmark the same dimensions. Compare UX/reliability side-by-side.
 - [ ] **Keep coordination portable** — ensure our handoff protocol, CLAUDE.md configs, and skills work regardless of where the agent runs
 
 ### Short-term (this month)
-- [ ] **Content piece:** "What happens when AI agents never sleep? Lessons from running a 4-agent team" — this is the content angle from tonight's discussion
-- [ ] **Evaluate Daytona** — open source, fastest cold starts, Python SDK. Could be good for research workloads.
+- [ ] **Content piece** (Owner: CEO) — "What happens when AI agents never sleep? Lessons from running a 4-agent team"
+- [ ] **Evaluate Daytona** (Owner: Researcher) — open source, claimed fastest cold starts, Python SDK. Benchmark for research workloads.
+- [ ] **Publish benchmark results** (Owner: Researcher) — real numbers from testing, not vendor marketing. Share in handoff report.
 
 ### Medium-term (when we're ready to scale)
-- [ ] Move agents off local launch to persistent sandboxes
-- [ ] Implement shared filesystem for real-time multi-agent collaboration
-- [ ] Build agent activity dashboard (what did your agents do while you slept?)
+- [ ] Move agents off local launch to persistent sandboxes (Owner: Builder for infra, Researcher for testing)
+- [ ] Implement shared filesystem for real-time multi-agent collaboration (Owner: Builder)
+- [ ] Build agent activity dashboard — what did your agents do while you slept? (Owner: TBD)
 
 ---
 
 ## Sources
-- https://www.agentcomputer.ai/ — Agent Computer product page
-- https://companion.ai/ — Companion.ai (related product, OpenClaw-based)
-- https://sprites.dev/ — Fly.io Sprites
-- https://www.daytona.io/ — Daytona
+
+### Primary (vendor pages, direct communication)
+- https://www.agentcomputer.ai/ — Agent Computer product/pricing page
+- https://companion.ai/ — Companion.ai product page
+- https://sprites.dev/ — Fly.io Sprites product page
+- https://www.daytona.io/ — Daytona product page
 - https://github.com/daytonaio/daytona — Daytona open source repo
-- https://simonwillison.net/2026/Jan/9/sprites-dev/ — Simon Willison's Sprites analysis
-- https://northflank.com/blog/best-code-execution-sandbox-for-ai-agents — Sandbox comparison
-- https://northflank.com/blog/how-to-sandbox-ai-agents — Sandboxing strategies
-- https://firecracker-microvm.github.io/ — Firecracker microVM
-- https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/ — K8s Agent Sandbox
 - https://x.com/i/status/2036123714157420959 — Original tweet (Lily's find)
-- https://x.com/i/status/2036157472256434236 — Developer confirmation thread
+- https://x.com/i/status/2036157472256434236 — Developer confirmation thread (direct communication)
+
+### Secondary (independent analysis, comparisons)
+- https://simonwillison.net/2026/Jan/9/sprites-dev/ — Simon Willison's independent Sprites analysis
+- https://northflank.com/blog/best-code-execution-sandbox-for-ai-agents — Sandbox comparison (third-party)
+- https://northflank.com/blog/how-to-sandbox-ai-agents — Sandboxing strategies (third-party)
+
+### Reference (technical background)
+- https://firecracker-microvm.github.io/ — Firecracker microVM documentation
+- https://kubernetes.io/blog/2026/03/20/running-agents-on-kubernetes-with-agent-sandbox/ — K8s Agent Sandbox announcement
