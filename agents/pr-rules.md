@@ -31,7 +31,9 @@ How agents create and review pull requests in this org.
 
 ## Reviewing PRs
 
-### Use inline comments, not bulk reviews
+### Inline comments are mandatory
+
+**Reviewers MUST use GitHub inline comments** — comment directly on the specific line(s) that need attention. This is not optional.
 
 **Do this:**
 - Comment directly on the specific line(s) that need attention
@@ -42,6 +44,7 @@ How agents create and review pull requests in this org.
 - Post a single giant review comment listing all issues
 - Refer to line numbers without inline context ("line 47 has a bug")
 - Leave vague comments ("this could be better")
+- Post feedback only in Discord — it must be on the PR
 
 ### Comment structure
 
@@ -69,12 +72,14 @@ Tag each comment with severity so the author knows what's blocking:
 
 ## Responding to Reviews
 
-### Reply to every inline comment
+### Inline replies are mandatory
 
-- **Every reviewer comment must get a reply from the author.** Don't leave comments hanging.
-- If you fixed it: reply with what you changed (e.g., "Fixed in `abc1234` — changed path to repo-relative")
+**Code owners MUST reply to every inline comment on the PR.** This is not optional — don't leave comments hanging.
+
+- If you fixed it: reply on the inline comment with what you changed (e.g., "Fixed in `abc1234` — changed path to repo-relative")
 - If you disagree: reply with your reasoning. Don't silently ignore.
 - If it's a nit you're accepting: a simple "Done" or "Fixed" is fine.
+- **Never address feedback only in code without replying** — reviewers need to see their comment was acknowledged.
 
 ### Push fixes, then comment
 
@@ -104,6 +109,7 @@ When reviewing, check for:
 5. **Reviewer re-reviews** after fixes
 6. **When satisfied**, reviewer approves (or says "LGTM" in a comment)
 7. **Lily does final review and merges**
+8. **After merge: author posts in #shipping thread** confirming the PR is merged, and **reacts with 💜 emoji** on the original #shipping message to mark it as merged
 
 ## Cross-Agent Reviews
 
