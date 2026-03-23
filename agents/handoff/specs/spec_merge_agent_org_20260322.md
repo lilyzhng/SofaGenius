@@ -93,6 +93,6 @@ SofaGenius/
 - [x] Handoff directory fully migrated (PR #20)
 - [x] Launch scripts work from SofaGenius (PR #20)
 - [x] AutoResearch merged as top-level folder with own venv (PR 2 — in progress)
-- [ ] Local `claude/` folder deleted from vault
+- [x] Local `claude/` folder deleted from vault
 - [ ] All agents can start sessions from SofaGenius repo
 - [ ] No broken path references
