@@ -19,7 +19,7 @@ Lily found Agent Computer (agentcomputer.ai) via Twitter and asked the developer
 
 ## TL;DR
 
-Persistent sandboxes for AI agents are becoming commodity infrastructure in 2026. Multiple well-funded players (Fly.io Sprites, Daytona, Agent Computer, Manus/Meta) are converging on the same solution: VMs with persistent state that survive restarts. **The infrastructure layer will be solved — our opportunity is the coordination and trust layer above it.**
+Persistent sandboxes for AI agents are becoming commodity infrastructure in 2026. Multiple well-funded players (Fly.io Sprites, Daytona, Agent Computer) are converging on the same solution: VMs with persistent state that survive restarts. **The infrastructure layer will be solved — our opportunity is the coordination and trust layer above it.**
 
 ---
 
@@ -59,7 +59,7 @@ Persistent sandboxes for AI agents are becoming commodity infrastructure in 2026
 | Product | Persistence | Speed | Notes |
 |---------|-------------|-------|-------|
 | **E2B** | Ephemeral | Fast | Firecracker, established but stateless |
-| **K8s Agent Sandbox** | Via PVCs | Slower | CNCF SIG Apps, March 2026 |
+| **K8s Agent Sandbox** | Via PVCs | Slower | CNCF SIG Apps, March 2026 — early stage, not production-ready |
 
 ---
 
@@ -80,7 +80,7 @@ Everyone will have persistent VMs. Not everyone will have a working multi-agent 
 - Agent-reviews-agent quality control
 - Human-in-the-loop trust framework
 
-**We're building this right now.** The 18-PR session, the PR review workflow, the handoff files — these are the coordination patterns that become 10x more valuable when agents run 24/7.
+**We're building this right now.** The PR review workflow, the handoff protocol, the scope split — these are the coordination patterns that become 10x more valuable when agents run 24/7.
 
 **3. "How do I supervise autonomous agents?" becomes the key question**
 Persistent agents working while you sleep need trust. Our PR review process (agent reviews agent, human approves) is an early answer. This is both a **product opportunity** (tooling for agent supervision) and a **content opportunity** (we have real experience to share).
@@ -92,7 +92,7 @@ Persistent agents working while you sleep need trust. Our PR review process (age
 | Keep coordination protocol portable (not coupled to Fly.io) | Move all agents to persistent sandboxes |
 | Document multi-agent patterns (content) | Productize the coordination layer |
 | Test one product (Agent Computer or Sprites) with a single agent | Scale to full team on persistent infra |
-| Build agent evaluation/trust metrics | Sell/share the trust framework |
+| Build agent evaluation/trust metrics (Owner: Researcher) | Sell/share the trust framework |
 
 ---
 
