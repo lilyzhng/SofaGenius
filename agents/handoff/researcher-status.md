@@ -1,5 +1,5 @@
 ---
-agent: genius-researcher
+agent: researcher
 updated: 2026-03-22 14:55 PT
 status: idle
 ---

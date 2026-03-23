@@ -2,5 +2,6 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 caffeinate -dims &
+CAFFEINATE_PID=$!
 cd "$SCRIPT_DIR/../ceo" && source .env && claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
-kill %1 2>/dev/null
+kill $CAFFEINATE_PID 2>/dev/null

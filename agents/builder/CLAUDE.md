@@ -67,7 +67,7 @@ When working on a project with Lily:
 
 ```markdown
 ---
-agent: cc-builder
+agent: builder
 updated: YYYY-MM-DD HH:MM PT
 status: active | blocked | idle
 ---

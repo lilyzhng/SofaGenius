@@ -75,7 +75,7 @@ This gives you the full picture before you do anything.
 
 ```markdown
 ---
-agent: cc-ceo
+agent: ceo
 updated: YYYY-MM-DD HH:MM PT
 status: active | blocked | idle
 ---

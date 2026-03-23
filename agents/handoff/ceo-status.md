@@ -1,5 +1,5 @@
 ---
-agent: genius-ceo
+agent: ceo
 updated: 2026-03-22 14:55 PT
 status: active
 ---
