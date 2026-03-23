@@ -7,20 +7,18 @@ Multi-agent coordination layer. Each agent is a separate Claude Code session wit
 ```
 agents/
 ├── genius-ceo/           # Genius CEO — coordination + growth
-│   └── CLAUDE.md
+│   ├── CLAUDE.md
+│   └── launch.sh
 ├── genius-builder/       # Genius Builder — ships code and tools
-│   └── CLAUDE.md
+│   ├── CLAUDE.md
+│   └── launch.sh
 ├── genius-researcher/    # Genius Researcher — data + research
-│   └── CLAUDE.md
+│   ├── CLAUDE.md
+│   └── launch.sh
 ├── handoff/              # Inter-agent coordination
 │   ├── status/           # Agent status files (read every session)
 │   ├── specs/            # Build/research specs (CEO → agents)
 │   └── reports/          # Completed work summaries (agents → CEO)
-├── scripts/              # Launch scripts
-│   ├── launch-ceo.sh
-│   ├── launch-builder.sh
-│   ├── launch-researcher.sh
-│   └── launch.sh
 ├── onboarding.md         # Checklist for adding a new agent
 ├── pr-rules.md           # PR creation and review rules
 ├── github-to-discord.json # GitHub username → Discord bot ID mapping
@@ -37,11 +35,8 @@ agents/
 ## Launching Agents
 
 ```bash
-# Single agent
-bash agents/scripts/launch-builder.sh
-
-# All agents (run in separate terminal tabs)
-bash agents/scripts/launch.sh
+# Launch from the agent's own directory
+cd agents/genius-builder && bash launch.sh
 ```
 
 Each agent needs a `.env` file in their directory (not checked into git). See `onboarding.md` for setup.
