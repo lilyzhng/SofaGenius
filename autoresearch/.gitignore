@@ -1,4 +1,4 @@
-# Python
+# Python-generated files
 __pycache__/
 *.py[oc]
 build/
@@ -6,55 +6,18 @@ dist/
 wheels/
 *.egg-info
 
-# Secrets
-.env
-.env.*
-
 # Virtual environments
 .venv
+worktrees/
+results/
+queue/
 
-# Agent prompt files (generated per-session)
+# Agent prompt files (generated per-session by launchers)
 CLAUDE.md
 AGENTS.md
 
 # Experimental code/artifacts
 dev/
-worktrees/
 
-# Large/regenerable artifacts
-results/
+# Results file
 results.tsv
-queue/
-jobs/
-datasets/
-*.parquet
-*.pt
-*.ckpt
-*.safetensors
-*.bin
-*.tar.gz
-checkpoints/
-outputs/
-wandb/
-
-# Submodules (external deps — clone separately)
-submodules/
-
-# OS / editor
-.DS_Store
-.vscode/
-*.swp
-
-# Notebooks
-*.ipynb
-.ipynb_checkpoints
-
-# Local-only session artifacts
-brainstorm/
-scratchpad*.md
-build_*.md
-
-# Large local data (Harbor tasks, pipeline runs, scripts)
-harbor_pipeline/
-tasks/
-scripts/
