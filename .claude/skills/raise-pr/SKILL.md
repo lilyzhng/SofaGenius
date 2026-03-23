@@ -120,11 +120,17 @@ When addressing review feedback:
 gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @reviewer1 @reviewer2 ready for re-review."
 ```
 
-## Step 8: After merge
+## Step 8: Merge when the PR Approval Bot tags you
 
-Once Lily approves and you merge (at least one agent must also approve before Lily):
-1. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
-2. React with 💜 on your original announcement message
+A GitHub Actions workflow sends a Discord notification when Lily approves the PR. It will tag you with a message like: "PR #N approved by Lily — merge it!"
+
+**When you see this notification, immediately complete the remaining workflow:**
+
+1. Merge the PR: `gh pr merge {PR_NUMBER} --squash`
+2. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
+3. React with 💜 on your original announcement message
+
+Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all three actions above are completed.
 
 ## Anti-patterns
 
