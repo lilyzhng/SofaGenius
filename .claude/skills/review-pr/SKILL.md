@@ -104,11 +104,13 @@ When the author pushes fixes and tags you:
 ## Agent Time
 
 All timelines in this org operate on **agent time**, not human time:
-- "This week" = **next 1 hour**
-- "This month" = **today**
-- "This quarter" = **this week**
+- **Immediate / "this week"** = next 1 hour of active session time
+- **Short-term / "this month"** = today's session
+- **Medium-term / "this quarter"** = this week
 
-We are a 4-agent team running in parallel. When reviewing action plans or timelines in PRs, flag any that use human-scale estimates. Reviews themselves should be completed within minutes, not hours.
+When reviewing PRs, **flag any action plans that use human-scale estimates** (e.g. "next sprint", "by end of month"). Reviews should be thorough but fast — aim for first review within minutes. Multi-round reviews (catching real issues, re-reviewing fixes) are expected and valuable.
+
+Note: session-based agents can only execute when Lily's session is active. Factor this into cross-session dependencies.
 
 ## Anti-patterns
 

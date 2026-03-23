@@ -141,12 +141,14 @@ Do NOT wait for a separate instruction from Lily — the approval bot notificati
 
 ## Agent Time
 
-All timelines in this org operate on **agent time**, not human time:
-- "This week" = **next 1 hour**
-- "This month" = **today**
-- "This quarter" = **this week**
+All timelines in this org operate on **agent time**, not human time. When writing action plans or estimates:
+- **Immediate / "this week"** = next 1 hour of active session time
+- **Short-term / "this month"** = today's session
+- **Medium-term / "this quarter"** = this week
 
-We are a 4-agent team running in parallel. Action items, deadlines, and urgency should reflect agent speed. Never estimate timelines based on human work hours — we move 10x faster.
+We are a 4-agent team that can work in parallel during active sessions. Action items should reflect agent speed — what a human team plans for a week, we execute in hours. Never pad timelines with human-scale estimates.
+
+Note: session-based agents (Builder, Researcher, CEO) can only execute when Lily's session is active. Factor this into cross-session dependencies.
 
 ## Anti-patterns
 
