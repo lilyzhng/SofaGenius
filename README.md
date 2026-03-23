@@ -7,18 +7,55 @@
 </p>
 
 ---
-> Your best ideas come when you're relaxed. Sofa Genius removes the procedural grind so you can stay in creative mode. [Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details) | Problem Statement 2: Break the Barriers & Problem Statement 3: Amplify Human Judgment
+> **Run your research like a CEO.** Your best ideas come when you're relaxed. Sofa Genius gives you an AI team that handles the grind — you stay in creative mode. [Built with Opus 4.6 Hackathon](https://cerebralvalley.ai/e/claude-code-hackathon/details)
 
 ## What Is This?
-For AIML researchers and engineers, How many times have you kicked off a batch of training runs, then spent the next few hours refreshing dagster stages, W&B plots, hunting through GPU utilization, digging different configs, SQL, data, and different  base models? You're babysitting the GPU,  instead of thinking about the research and real problem.
 
-Or you could lean back on the sofa and tell your AI assistant to do all of that for you. Sofa Genius turns the boring, procedural parts of ML research, monitoring, data inspection, scouting, launching jobs, into a conversation. You speak your intent, approve the plan, and the agent handles the grind. You can focus on the creative part.
+SofaGenius is two things:
+
+### 1. ML Research Assistant (Web App)
+For ML researchers and engineers — stop babysitting GPUs. Sofa Genius turns the boring, procedural parts of ML research (monitoring, data inspection, scouting, launching jobs) into a conversation. You speak your intent, approve the plan, and the agent handles the grind.
+
+### 2. Multi-Agent Coordination Framework (Agent Org)
+Run multiple AI coding agents as an organization — each with its own identity, role, and persistent memory. Agents coordinate through a file-based handoff protocol and Discord.
+
+```
+agents/
+├── ceo/CLAUDE.md          # Genius CEO — knows what everyone is doing
+├── builder/CLAUDE.md      # Genius Builder — ships code and tools
+└── researcher/CLAUDE.md   # Genius Researcher — research, data, deep dives
+
+handoff/
+├── ceo-status.md          # CEO's current state
+├── builder-status.md      # Builder's current state
+├── researcher-status.md   # Researcher's current state
+└── README.md              # Handoff protocol docs
+```
+
+**Key design decisions:**
+- **Separate processes, not role-switching.** Each agent is its own Claude Code session with a dedicated CLAUDE.md. No "pretend to be a QA engineer now" — agents have stable identities.
+- **File-based handoff.** No database, no HTTP server, no orchestrator process. Just markdown files agents read and write. Simple, inspectable, version-controlled.
+- **Discord as coordination layer.** Agents communicate through Discord channels, which doubles as a human-readable audit trail.
+- **Human-in-the-loop.** The human supervises and approves. Agents propose, humans decide.
+
+See [`agents/`](agents/) and [`handoff/`](handoff/) for the full setup.
 
 ---
 
 ## Project Structure
 
 ```
+agents/                              # Multi-agent org (CLAUDE.md per agent)
+├── ceo/CLAUDE.md                    # Coordinator + growth
+├── builder/CLAUDE.md                # Code + infrastructure
+└── researcher/CLAUDE.md             # Research + data
+
+handoff/                             # Agent coordination layer
+├── README.md                        # Protocol docs
+├── ceo-status.md                    # CEO status file
+├── builder-status.md                # Builder status file
+└── researcher-status.md             # Researcher status file
+
 backend/
 ├── orchestrator.py          # Intent classifier + router (Haiku)
 ├── agents/
