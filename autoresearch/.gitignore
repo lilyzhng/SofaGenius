@@ -54,6 +54,7 @@ brainstorm/
 scratchpad*.md
 build_*.md
 
-# Large local data (Harbor tasks, pipeline runs)
+# Large local data (Harbor tasks, pipeline runs, scripts)
 harbor_pipeline/
 tasks/
+scripts/
