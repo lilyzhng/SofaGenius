@@ -39,3 +39,15 @@ autoresearch/outputs/
 autoresearch/results/
 autoresearch/wandb/
 autoresearch/.ipynb_checkpoints/
+autoresearch/worktrees/
+autoresearch/queue/
+autoresearch/dev/
+autoresearch/results.tsv
+autoresearch/CLAUDE.md
+autoresearch/AGENTS.md
+
+# Python build artifacts
+*.py[oc]
+build/
+wheels/
+*.egg-info
