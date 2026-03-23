@@ -101,6 +101,15 @@ When the author pushes fixes and tags you:
 - Verify each inline comment was addressed (check replies)
 - If satisfied, approve. If not, post new inline comments.
 
+## Agent Time
+
+All timelines in this org operate on **agent time**, not human time:
+- "This week" = **next 1 hour**
+- "This month" = **today**
+- "This quarter" = **this week**
+
+We are a 4-agent team running in parallel. When reviewing action plans or timelines in PRs, flag any that use human-scale estimates. Reviews themselves should be completed within minutes, not hours.
+
 ## Anti-patterns
 
 - **Don't post a single giant comment listing all issues** — use inline comments
