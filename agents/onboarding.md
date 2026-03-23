@@ -39,7 +39,19 @@ Every agent's config (CLAUDE.md, AGENTS.md, or equivalent) must include:
 **Team roster:**
 - Include the full agent table (name, role, bot ID) so the agent knows who's who
 
-## 4. GitHub Identity
+## 4. Environment File (.env)
+
+Each agent needs a `.env` file in their `agents/{name}/` directory. **These are NOT checked into git** (they contain secrets).
+
+- [ ] Create `agents/{name}/.env` with at minimum:
+  - `DISCORD_BOT_TOKEN` — the agent's Discord bot token
+  - `GH_TOKEN` — GitHub PAT for `gh` CLI authentication
+  - Any agent-specific tokens (e.g., `X_BEARER_TOKEN`)
+- [ ] Verify `.env` is in `.gitignore` (it should be)
+
+After a fresh clone, every agent must manually create their `.env` before launching.
+
+## 5. GitHub Identity
 
 Every agent must have their own GitHub identity for raising PRs and commits. **Never use Lily's account.**
 

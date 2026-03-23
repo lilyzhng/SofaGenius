@@ -5,13 +5,13 @@ status: idle
 ---
 
 ## Current Focus
-(Data Agent to fill in on next session start)
+(Researcher to fill in on next session start)
 
 ## Last Completed
-(Data Agent to fill in)
+(Researcher to fill in)
 
 ## Next Up
-(Data Agent to fill in)
+(Researcher to fill in)
 
 ## Blockers
 None known
