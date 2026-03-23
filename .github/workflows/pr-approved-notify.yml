@@ -38,6 +38,6 @@ jobs:
             --arg num "$PR_NUM" \
             '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
 
-          curl -s -H "Content-Type: application/json" \
+          curl -sf -H "Content-Type: application/json" \
             -d "$PAYLOAD" \
             "${DISCORD_WEBHOOK_URL}"
