@@ -1,5 +1,5 @@
 ---
-agent: data-agent
+agent: researcher
 updated:
 status: idle
 ---

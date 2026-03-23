@@ -26,17 +26,17 @@ You do NOT do deep research or content distribution — write a request to hando
 
 1. **Read handoff status files:** Check `handoff/` directory for specs or requests from CEO
 2. **Check #all-hands** for CEO's latest daily summary
-3. **Update your status file** (`handoff/builder_status.md`) with what you're working on
+3. **Update your status file** (`handoff/builder-status.md`) with what you're working on
 
 ## Handoff Protocol
 
 ### Reading (every session start)
-- Read `handoff/builder_status.md` (your own — resume where you left off)
-- Read `handoff/ceo_status.md` (CEO's priorities and specs for you)
+- Read `handoff/builder-status.md` (your own — resume where you left off)
+- Read `handoff/ceo-status.md` (CEO's priorities and specs for you)
 - Scan for any files addressed to you: `build_*.md`, `spec_*.md`
 
 ### Writing (every session end, or after shipping something)
-- Update `handoff/builder_status.md` with what you shipped, what's next, any blockers
+- Update `handoff/builder-status.md` with what you shipped, what's next, any blockers
 - Use this format:
 
 ```markdown

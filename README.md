@@ -23,12 +23,12 @@ Run multiple AI coding agents as an organization — each with its own identity,
 agents/
 ├── ceo/CLAUDE.md          # Genius CEO — knows what everyone is doing
 ├── builder/CLAUDE.md      # Genius Builder — ships code and tools
-└── data-agent/CLAUDE.md   # Genius Researcher — research, data, deep dives
+└── researcher/CLAUDE.md   # Genius Researcher — research, data, deep dives
 
 handoff/
-├── ceo_status.md          # CEO's current state
-├── builder_status.md      # Builder's current state
-├── data_agent_status.md   # Data Agent's current state
+├── ceo-status.md          # CEO's current state
+├── builder-status.md      # Builder's current state
+├── researcher-status.md   # Researcher's current state
 └── README.md              # Handoff protocol docs
 ```
 
@@ -48,13 +48,13 @@ See [`agents/`](agents/) and [`handoff/`](handoff/) for the full setup.
 agents/                              # Multi-agent org (CLAUDE.md per agent)
 ├── ceo/CLAUDE.md                    # Coordinator + growth
 ├── builder/CLAUDE.md                # Code + infrastructure
-└── data-agent/CLAUDE.md             # Research + data
+└── researcher/CLAUDE.md             # Research + data
 
 handoff/                             # Agent coordination layer
 ├── README.md                        # Protocol docs
-├── ceo_status.md                    # CEO status file
-├── builder_status.md                # Builder status file
-└── data_agent_status.md             # Data Agent status file
+├── ceo-status.md                    # CEO status file
+├── builder-status.md                # Builder status file
+└── researcher-status.md             # Researcher status file
 
 backend/
 ├── orchestrator.py          # Intent classifier + router (Haiku)
