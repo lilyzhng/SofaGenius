@@ -13,7 +13,8 @@ jobs:
 
       - name: Send Discord notification
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          FEATURE_RELEASE_CHANNEL: "1484388088087052478"
         run: |
           AUTHOR="${{ github.event.pull_request.user.login }}"
           PR_NUM="${{ github.event.pull_request.number }}"
@@ -38,6 +39,8 @@ jobs:
             --arg num "$PR_NUM" \
             '{content: "\($mention) PR #\($num) approved by Lily — merge it!\n**\($title)**\n\($url)"}')
 
+          # Post via Discord Bot API (not webhook) so mentions actually ping
           curl -sf -H "Content-Type: application/json" \
+            -H "Authorization: Bot ${DISCORD_BOT_TOKEN}" \
             -d "$PAYLOAD" \
-            "${DISCORD_WEBHOOK_URL}"
+            "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
