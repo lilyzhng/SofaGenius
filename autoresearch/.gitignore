@@ -53,3 +53,7 @@ submodules/
 brainstorm/
 scratchpad*.md
 build_*.md
+
+# Large local data (Harbor tasks, pipeline runs)
+harbor_pipeline/
+tasks/
