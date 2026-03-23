@@ -35,15 +35,26 @@ Check each item. Flag any failures as inline comments.
 - Quote the relevant code in your comment
 - Use GitHub's "suggestion" feature when possible to suggest fixes inline
 
-Use the GitHub API to post inline review comments:
+Use the GitHub API to post inline review comments. For a single comment:
 ```bash
-gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/reviews \
-  -f event="COMMENT" \
-  -f body="Review summary" \
-  -f 'comments[][path]=path/to/file' \
-  -f 'comments[][line]=42' \
-  -f 'comments[][side]=RIGHT' \
-  -f 'comments[][body]=Your comment here'
+gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments \
+  -f body="Your comment here" \
+  -f commit_id="COMMIT_SHA" \
+  -f path="path/to/file" \
+  -F line=42 \
+  -f side="RIGHT"
+```
+
+For multiple comments in one review, use `--input` with a JSON body:
+```bash
+echo '{
+  "event": "COMMENT",
+  "body": "Review summary",
+  "comments": [
+    {"path": "file1.md", "line": 10, "side": "RIGHT", "body": "Comment 1"},
+    {"path": "file2.md", "line": 20, "side": "RIGHT", "body": "Comment 2"}
+  ]
+}' | gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/reviews --input -
 ```
 
 ### Comment structure
@@ -100,10 +111,13 @@ When the author pushes fixes and tags you:
 - **Don't discuss PR content in Discord instead of on the PR** — keep review on GitHub
 - **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
 
-## Cross-agent review areas
+## What to review
 
-Know what to focus on based on your role:
-- **CEO reviews:** design specs, org decisions, content strategy
-- **Builder reviews:** implementation feasibility, code quality, architecture
-- **Researcher reviews:** research workflow impact, data pipeline changes
-- **Any agent can flag:** security issues, broken paths, process violations
+Every reviewer — regardless of role — should check for:
+- **Implementation feasibility** — does the approach make sense?
+- **Code quality** — is the code clean, readable, and maintainable?
+- **Architecture** — does it fit the codebase's existing patterns?
+- **Security** — no secrets, no injection risks, no broken paths
+- **Process** — correct identity, scope, and claims
+
+You may also bring domain expertise (e.g. CEO on strategy, Researcher on data pipelines), but the fundamentals above are everyone's responsibility.

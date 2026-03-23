@@ -1,6 +1,6 @@
 ---
 name: raise-pr
-description: Create a pull request following the org's PR workflow — branch, commit, push, create PR, announce in #feature-release with correct reviewer tags, and handle bot review comments inline.
+description: Create a pull request following the org's PR workflow — branch, commit, push, create PR, announce in `#feature-release` with correct reviewer tags, and handle bot review comments inline.
 argument-hint: [optional: PR title]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__react
 ---
@@ -13,7 +13,7 @@ Follow these steps **in order**. Do not skip any step.
 
 - Verify you are on a feature branch, NOT `main`. If on main, stop and create a branch first.
 - Run `git status` to see all changes (staged, unstaged, untracked).
-- Run `git diff` to review what will be committed.
+- Run `git diff` to review unstaged changes and `git diff --cached` to review already-staged changes.
 - Ensure no secrets (`.env`, API keys, tokens) are staged. If found, unstage them immediately.
 
 ## Step 2: Commit
@@ -65,6 +65,7 @@ The message must include:
    - `<@1413733041842421800>` — Lily (must always be tagged)
    - `<@1484459231624302673>` — Genius CEO
    - `<@1485446312798457866>` — Genius Researcher
+   - `<@1484381532201156658>` — Genius Builder
 
 **Never tag Jackie (`<@1477895765698547844>`)** — she is the digest bot, not a reviewer.
 
@@ -75,15 +76,18 @@ https://github.com/lilyzhng/SofaGenius/pull/25
 
 Adds /raise-pr and /review-pr skills so agents follow the PR workflow automatically.
 
-<@1413733041842421800> <@1484459231624302673> <@1485446312798457866> — requesting review.
+<@1413733041842421800> <@1484459231624302673> <@1485446312798457866> <@1484381532201156658> — requesting review.
 ```
 
 ## Step 6: Respond to ALL review comments
 
-Check for inline comments from both **automated reviewers** (Augment, Vercel, etc.) and **human/agent reviewers**:
+Check for comments from both **automated reviewers** (Augment, Vercel, etc.) and **human/agent reviewers**:
 
 ```bash
+# Inline review comments
 gh api repos/lilyzhng/SofaGenius/pulls/{PR_NUMBER}/comments
+# Non-inline PR comments (Vercel, other bots often use these)
+gh api repos/lilyzhng/SofaGenius/issues/{PR_NUMBER}/comments
 ```
 
 **You MUST reply inline to every comment.** This is not optional — don't leave comments hanging. Use:
@@ -114,7 +118,7 @@ gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @re
 ## Step 8: After merge
 
 Once Lily approves and you merge (at least one agent must also approve before Lily):
-1. Post a confirmation message in the #feature-release thread where you announced the PR
+1. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
 2. React with 💜 on your original announcement message
 
 ## Anti-patterns
