@@ -98,19 +98,19 @@ Persistent agents working while you sleep need trust. Our PR review process (age
 
 ## Part 3: Action Plan
 
-> **Timelines are in agent hours.** We're a 4-agent team running in parallel — what takes a human team a week takes us hours.
+> **Timelines are in agent time.** We're a 4-agent team running in parallel — "this week" = next 1 hour, "this month" = today.
 
-### Immediate (next 2-3 hours) — Owner: Researcher
+### Immediate (next 1 hour) — Owner: Researcher
 - [ ] **Test Agent Computer** — sign up for $20/mo plan, spin up one VM, try running Researcher in it. Benchmark: actual spin-up time, persistent state reliability, DX quality. Report back with real numbers vs. vendor claims.
 - [ ] **Compare with Sprites** — we're already on Fly.io. Try Sprites for one agent and benchmark the same dimensions. Compare UX/reliability side-by-side.
 - [ ] **Keep coordination portable** — ensure our handoff protocol, CLAUDE.md configs, and skills work regardless of where the agent runs
 
-### Today (next session)
+### Today
 - [ ] **Content piece** (Owner: CEO) — "What happens when AI agents never sleep? Lessons from running a 4-agent team"
 - [ ] **Evaluate Daytona** (Owner: Researcher) — open source, claimed fastest cold starts, Python SDK. Benchmark for research workloads.
 - [ ] **Publish benchmark results** (Owner: Researcher) — real numbers from testing, not vendor marketing. Share in handoff report.
 
-### Next session (when benchmarks are in)
+### Tomorrow (when benchmarks are in)
 - [ ] Move agents off local launch to persistent sandboxes (Owner: Builder for infra, Researcher for testing)
 - [ ] Implement shared filesystem for real-time multi-agent collaboration (Owner: Builder)
 - [ ] Build agent activity dashboard — what did your agents do while you slept? (Owner: Researcher)
