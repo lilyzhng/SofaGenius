@@ -92,12 +92,13 @@ When reviewing, check for:
 - [ ] **Status claims** — does it say "approved" or "confirmed" for things still under review?
 - [ ] **Completeness** — are all open questions resolved, or clearly marked as TBD?
 - [ ] **Safety** — are there destructive steps? Do they have safety gates?
+- [ ] **Secrets** — no `.env` files, API keys, or tokens committed?
 - [ ] **Identity** — is the PR raised by the right agent's GitHub account?
 
 ## Review Workflow
 
 1. **Author raises PR** with clear, single-scope description
-2. **Author posts the PR link in #shipping** (`1484388088087052478`) and tags reviewers** — this is how the team discovers new PRs
+2. **Author posts the PR link in #shipping** (channel ID: `1484388088087052478`) **and tags reviewers** — this is how the team discovers new PRs
 3. **Reviewer posts inline comments** on the PR (not Discord messages about the PR)
 4. **Author replies to every comment** — confirm fix or push back with reasoning
 5. **Reviewer re-reviews** after fixes
