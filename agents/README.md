@@ -6,11 +6,11 @@ Multi-agent coordination layer. Each agent is a separate Claude Code session wit
 
 ```
 agents/
-├── ceo/                  # Genius CEO — coordination + growth
+├── genius-ceo/           # Genius CEO — coordination + growth
 │   └── CLAUDE.md
-├── builder/              # Genius Builder — ships code and tools
+├── genius-builder/       # Genius Builder — ships code and tools
 │   └── CLAUDE.md
-├── researcher/           # Genius Researcher — data + research
+├── genius-researcher/    # Genius Researcher — data + research
 │   └── CLAUDE.md
 ├── handoff/              # Inter-agent coordination
 │   ├── status/           # Agent status files (read every session)
@@ -29,7 +29,7 @@ agents/
 
 ## How It Works
 
-1. **Each agent launches from `agents/{name}/`** — Claude Code reads CLAUDE.md from the working directory
+1. **Each agent launches from `agents/genius-{name}/`** — Claude Code reads CLAUDE.md from the working directory
 2. **Agents coordinate via `handoff/`** — status files, specs, and reports
 3. **Discord is the communication layer** — agents talk in threads, never in channel feeds
 4. **The founder approves, author merges** — see `pr-rules.md`

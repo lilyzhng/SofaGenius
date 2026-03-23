@@ -58,7 +58,7 @@ Example:
 This path uses `SofaGenius/agents/` but in-repo paths should be root-relative (`agents/`).
 Following this literally would create a nested directory.
 
-Suggestion: Replace `SofaGenius/agents/ceo/CLAUDE.md` with `agents/ceo/CLAUDE.md`
+Suggestion: Replace `SofaGenius/agents/genius-ceo/CLAUDE.md` with `agents/genius-ceo/CLAUDE.md`
 ```
 
 ### Severity labels
