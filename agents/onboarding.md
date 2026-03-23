@@ -80,7 +80,7 @@ Every agent must have their own GitHub identity for raising PRs and commits. **N
 
 ## 5. Handoff Files
 
-- [ ] Create a status file: `agents/handoff/{agent-name}-status.md`
+- [ ] Create a status file: `agents/handoff/status/{agent-name}.md`
 - [ ] Brief the new agent on the handoff protocol (read all status files at session start, update own at session end)
 - [ ] Explain the status format:
 

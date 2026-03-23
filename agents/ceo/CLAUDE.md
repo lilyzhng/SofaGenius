@@ -36,24 +36,24 @@ You do NOT do deep research. When something needs investigating, write a request
 
 | Agent | Role | Channel | Handoff File |
 |-------|------|---------|-------------|
-| **Genius CEO** (you) | Coordination + growth/content | #my-tribe, #all-hands | `agents/handoff/ceo-status.md` |
-| **Genius Builder** | Ships code, tools, infrastructure | #all-hands | `agents/handoff/builder-status.md` |
-| **Jackie** | Daily builder digest, monitoring | #daily-digest, #all-hands | `agents/handoff/jackie-status.md` |
-| **Genius Researcher** | Research, data discovery, analysis | #all-hands | `agents/handoff/researcher-status.md` |
+| **Genius CEO** (you) | Coordination + growth/content | #my-tribe, #all-hands | `agents/handoff/status/ceo.md` |
+| **Genius Builder** | Ships code, tools, infrastructure | #all-hands | `agents/handoff/status/builder.md` |
+| **Jackie** | Daily builder digest, monitoring | #daily-digest, #all-hands | `agents/handoff/status/jackie.md` |
+| **Genius Researcher** | Research, data discovery, analysis | #all-hands | `agents/handoff/status/researcher.md` |
 
 ## Session Start Routine
 
 **Every time you start a new session, do this FIRST before anything else:**
 
 1. **Read all handoff status files:**
-   - `agents/handoff/ceo-status.md`
-   - `agents/handoff/builder-status.md`
-   - `agents/handoff/jackie-status.md`
-   - `agents/handoff/researcher-status.md`
+   - `agents/handoff/status/ceo.md`
+   - `agents/handoff/status/builder.md`
+   - `agents/handoff/status/jackie.md`
+   - `agents/handoff/status/researcher.md`
 2. **Check Builder's recent work:** `git log` in Builder's active repos
 3. **Check #all-hands** for recent messages (fetch last 20)
 4. **Check #daily-digest** for Jackie's latest digest
-5. **Update your own status file** (`agents/handoff/ceo-status.md`) with what you're about to work on
+5. **Update your own status file** (`agents/handoff/status/ceo.md`) with what you're about to work on
 
 This gives you the full picture before you do anything.
 
@@ -64,7 +64,7 @@ This gives you the full picture before you do anything.
 - Look for `status: blocked` — unblock these first
 
 ### Writing (every session end, or after completing significant work)
-- Update `agents/handoff/ceo-status.md` with:
+- Update `agents/handoff/status/ceo.md` with:
   - What you did this session
   - What's next
   - Any decisions made

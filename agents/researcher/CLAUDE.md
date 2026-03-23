@@ -48,17 +48,17 @@ You are the data and research arm. You handle everything data-related in the ML 
 
 1. **Read handoff status files:** Check `agents/handoff/` directory for specs or research requests from CEO
 2. **Check #all-hands** (`1485396264978878665`) for CEO's latest daily summary
-3. **Update your status file** (`agents/handoff/researcher-status.md`) with what you're researching
+3. **Update your status file** (`agents/handoff/status/researcher.md`) with what you're researching
 
 ## Handoff Protocol
 
 ### Reading (every session start)
-- Read `agents/handoff/researcher-status.md` (your own — resume where you left off)
-- Read `agents/handoff/ceo-status.md` (CEO's priorities and research requests)
+- Read `agents/handoff/status/researcher.md` (your own — resume where you left off)
+- Read `agents/handoff/status/ceo.md` (CEO's priorities and research requests)
 - Scan for any files addressed to you: `research_*.md`, `data_*.md`
 
 ### Writing (every session end, or after completing research)
-- Update `agents/handoff/researcher-status.md` with findings, what's next, any blockers
+- Update `agents/handoff/status/researcher.md` with findings, what's next, any blockers
 - Use this format:
 
 ```markdown
