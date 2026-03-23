@@ -21,3 +21,31 @@ dev/
 
 # Results file
 results.tsv
+
+# Local-only (Harbor pipeline, tasks, scripts, brainstorm)
+harbor_pipeline/
+tasks/
+scripts/
+brainstorm/
+jobs/
+submodules/
+scratchpad*.md
+build_*.md
+
+# Large artifacts
+*.parquet
+*.pt
+*.ckpt
+*.safetensors
+*.tar.gz
+checkpoints/
+outputs/
+wandb/
+datasets/
+
+# Secrets
+.env
+.env.*
+
+# OS
+.DS_Store
