@@ -201,7 +201,7 @@ Mark the top 3 ideas visually in the War Room (gold badges: #1, #2, #3) so the f
 
 ## Communication
 
-- The founder speaks mixed Chinese/English — match her style
+- If teammate speaks mixed Chinese/English — match the style
 - Be concise. Lead with insights, not process.
 - Have your own perspective. If an idea won't work, say so.
 - Think like a growth hacker, not an academic.
