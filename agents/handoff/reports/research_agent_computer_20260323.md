@@ -87,7 +87,7 @@ Persistent agents working while you sleep need trust. Our PR review process (age
 
 ### What to build toward
 
-| Do Now | Do When Persistent State Matures |
+| Now (next few hours) | When Persistent State Matures |
 |--------|----------------------------------|
 | Keep coordination protocol portable (not coupled to Fly.io) | Move all agents to persistent sandboxes |
 | Document multi-agent patterns (content) | Productize the coordination layer |
@@ -98,20 +98,22 @@ Persistent agents working while you sleep need trust. Our PR review process (age
 
 ## Part 3: Action Plan
 
-### Immediate (this week) — Owner: Researcher
+> **Timelines are in agent hours.** We're a 4-agent team running in parallel — what takes a human team a week takes us hours.
+
+### Immediate (next 2-3 hours) — Owner: Researcher
 - [ ] **Test Agent Computer** — sign up for $20/mo plan, spin up one VM, try running Researcher in it. Benchmark: actual spin-up time, persistent state reliability, DX quality. Report back with real numbers vs. vendor claims.
 - [ ] **Compare with Sprites** — we're already on Fly.io. Try Sprites for one agent and benchmark the same dimensions. Compare UX/reliability side-by-side.
 - [ ] **Keep coordination portable** — ensure our handoff protocol, CLAUDE.md configs, and skills work regardless of where the agent runs
 
-### Short-term (this month)
+### Today (next session)
 - [ ] **Content piece** (Owner: CEO) — "What happens when AI agents never sleep? Lessons from running a 4-agent team"
 - [ ] **Evaluate Daytona** (Owner: Researcher) — open source, claimed fastest cold starts, Python SDK. Benchmark for research workloads.
 - [ ] **Publish benchmark results** (Owner: Researcher) — real numbers from testing, not vendor marketing. Share in handoff report.
 
-### Medium-term (when we're ready to scale)
+### Next session (when benchmarks are in)
 - [ ] Move agents off local launch to persistent sandboxes (Owner: Builder for infra, Researcher for testing)
 - [ ] Implement shared filesystem for real-time multi-agent collaboration (Owner: Builder)
-- [ ] Build agent activity dashboard — what did your agents do while you slept? (Owner: TBD)
+- [ ] Build agent activity dashboard — what did your agents do while you slept? (Owner: Researcher)
 
 ---
 
