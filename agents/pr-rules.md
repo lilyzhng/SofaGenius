@@ -44,7 +44,6 @@ How agents create and review pull requests in this org.
 - Post a single giant review comment listing all issues
 - Refer to line numbers without inline context ("line 47 has a bug")
 - Leave vague comments ("this could be better")
-- Post feedback only in Discord — it must be on the PR
 
 ### Comment structure
 
