@@ -44,6 +44,18 @@ All paths are relative to the repo root.
 
 **Jackie** stays in his own repo (`lilyzhng/jackie`) — different platform (OpenClaw). His handoff status file lives in `agents/handoff/` so the org can read it.
 
+## Launch Directory
+
+**Each agent launches from `agents/{name}/`.** Claude Code reads CLAUDE.md from the working directory, so each agent's CLAUDE.md lives in their launch directory.
+
+Launch scripts handle this:
+```bash
+# Example: launch-ceo.sh
+cd "$(dirname "$0")/../ceo" && claude
+```
+
+For cross-directory access (e.g., Researcher accessing `autoresearch/`), use absolute paths or paths relative to the repo root. The launch script can set a `REPO_ROOT` env var for convenience.
+
 ## Migration Steps
 
 ### PR 1: Agent Configs + Handoff (config only, low risk)
@@ -62,31 +74,30 @@ All paths are relative to the repo root.
 
 3. **Launch scripts**
    - Move `claude/launch-*.sh` and `claude/launch.sh` → `agents/scripts/`
-   - Update paths inside scripts to point to repo structure
+   - Update paths inside scripts to `cd` into `agents/{name}/` before launching
+   - Set `REPO_ROOT` env var for cross-directory access
 
 ### PR 2: AutoResearch
 
 1. **Move autoresearch into repo as top-level folder**
    - Copy contents of `lilyzhng/autoresearch` → `autoresearch/`
    - Keep `pyproject.toml`, `uv.lock` — Researcher runs `cd autoresearch && uv sync` for their own venv
-   - `.gitignore` model artifacts, large data files (use HF Hub / DVC for those)
+   - Add `.gitignore` for autoresearch: `*.pt`, `*.safetensors`, `*.ckpt`, `__pycache__/`, `.venv/`, `data/raw/`, `wandb/`, `outputs/`
 
-2. **Update Researcher's CLAUDE.md** to reference `autoresearch/` as their workspace
+2. **Update Researcher's CLAUDE.md** to reference `autoresearch/` as their workspace (accessed via absolute paths from `agents/researcher/`)
 
-### PR 3: Builder Work Files
+### Cleanup (after ALL agents verified)
 
-1. **Builder's code** — decide per item:
-   - `LaunchAngel/` → stays if it's a SofaGenius feature, or becomes its own repo if it's a separate product
-   - `scripts/` → `scripts/` or `agents/builder/scripts/`
-   - `data/`, `jobs/`, `tasks/`, `tasks-eval/` → appropriate locations
-   - `dashboard.html` → check if still needed
+**Safety gate:** Do NOT delete `claude/` until all agents have completed at least one full session from SofaGenius and verified:
+- Session start routine works (read handoff files, check channels)
+- Can read/write to handoff directory
+- Launch scripts work correctly
+- Cross-directory access works (e.g., Researcher can access `autoresearch/`)
 
-### Cleanup (after all PRs merged)
-
-- Delete `claude/` from the vault repo
+Only after verification:
+- Archive `claude/` from the vault repo
 - Update global CLAUDE.md if it references old `claude/` paths
 - Update memory files that reference old paths
-- Each agent verifies they can start sessions from SofaGenius
 
 ## Key Decisions (direction confirmed by Lily, details under review)
 
@@ -95,14 +106,14 @@ All paths are relative to the repo root.
 - Separate venvs per directory (autoresearch has own `pyproject.toml`)
 - `.gitignore` heavy files, use HF Hub for large artifacts
 - Jackie stays in own repo (different platform)
-- Symlink CLAUDE.md for agents that work outside SofaGenius (e.g. if Researcher needs to `cd autoresearch`)
+- Each agent launches from `agents/{name}/` — CLAUDE.md is in the working directory
 
 ## Completion Criteria
 
 - [ ] All CLAUDE.md files in SofaGenius are the complete local versions
 - [ ] Handoff directory fully migrated to `agents/handoff/`
-- [ ] Launch scripts work from SofaGenius
-- [ ] AutoResearch merged as top-level folder with own venv
-- [ ] Local `claude/` folder deleted from vault
-- [ ] All agents can start sessions from SofaGenius repo
+- [ ] Launch scripts work from `agents/scripts/`, launching into `agents/{name}/`
+- [ ] AutoResearch merged as top-level folder with own venv and `.gitignore`
+- [ ] All agents verified working from SofaGenius (at least one full session each)
+- [ ] Local `claude/` folder archived from vault (only after verification)
 - [ ] No broken path references
