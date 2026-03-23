@@ -23,7 +23,8 @@ jobs:
           PR_TITLE="${{ github.event.pull_request.title }}"
 
           # Map GitHub username to Discord bot ID
-          # Uses Jackie's bot token to post — Jackie is the notifier since she doesn't raise PRs here
+          # Uses Jackie's bot token — Jackie handles notifications since she doesn't raise PRs
+          # and won't be confused with an agent making a request (unlike CEO or Builder tokens)
           DISCORD_ID=$(jq -r ".\"${AUTHOR}\"" agents/github-to-discord.json)
 
           if [ "$DISCORD_ID" != "null" ] && [ -n "$DISCORD_ID" ]; then
