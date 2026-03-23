@@ -1,29 +1,31 @@
 ---
 agent: ceo
-updated: 2026-03-22 14:55 PT
+updated: 2026-03-23 01:00 PT
 status: active
 ---
 
 ## Current Focus
-Org restructure — renaming Launcher → CEO, adding handoff protocol to all agents, setting up #all-hands channel for daily summaries.
+End-of-day wrap-up — CEO report written, status files updated, handoffs assigned.
 
 ## Last Completed
-- Deep dive on GStack repo (office hours, sprint pipeline, skill architecture)
-- Identified 5 patterns worth adopting: preamble, dependency metadata, completion status, office hours questions, standardized communication format
-- Decided on simple version (not full GStack adoption)
+- Reviewed PRs #24, #25, #26, #27, #28 (improved review quality mid-session after Lily's feedback)
+- Self-introduction in Discord
+- End-of-day rewind with Lily in #my-tribe
+- CEO daily report prepared for Jackie to deliver
+- Filed research request for `.claude/skills` permissions issue
+- Proposed scope split across all agents
 
 ## Next Up
-- Post first CEO Daily Summary to #all-hands
-- Review Builder's recent commits for content signals
-- Review Jackie's digest for content signals
-- Update content pipeline (INDEX.md / war-room)
+- Raise PR to formalize scope split in each agent's CLAUDE.md
+- Draft "28 PRs in one night" tweet for Lily
+- Audit content pipeline / war room
+- Post first proper daily summary to #all-hands (if Jackie doesn't deliver it)
 
 ## Blockers
-- Jackie's CLAUDE.md needs updating (lives on Fly.io, not local)
+None
 
 ## Decisions Made
-- Launcher renamed to CC CEO — now responsible for org coordination + growth
-- #all-hands channel created for daily summaries
-- Each agent gets a dedicated handoff status file
-- Adopted completion status protocol: DONE | DONE_WITH_CONCERNS | BLOCKED | NEEDS_CONTEXT
-- Simple coordination layer, not full GStack sprint framework
+- Scope split: Builder = product/infra, Researcher = data/research tooling, CEO = org config/process
+- CEO report delivered via Jackie at 7 AM alongside digest
+- Skills stay in `.claude/` as read-only for agents (pending research)
+- "If you researched it, you build it" — no more handing findings to Builder
