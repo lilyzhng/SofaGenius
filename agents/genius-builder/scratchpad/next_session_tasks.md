@@ -20,8 +20,10 @@
 - Missing .env sourcing in launch script template (Jackie's review)
 
 ### Task 4: Fix digest cron trigger on new VM (jackie-chan)
-- Old trigger used Builder's token on isolated VM — need to redo on shared VM
-- No sudo for cron — need alternative (ask Hari about cron without sudo)
+- [x] Updated trigger script to use Builder's bot token
+- [x] Added BUILDER_BOT_TOKEN to Jackie's .env
+- [ ] Need scheduler — no sudo for cron on Agent Computer
+- Options: ask Hari about cron, GitHub Action, or CEO's remote cron
 
 ### Task 5: Update scratchpad after each task ✅
 

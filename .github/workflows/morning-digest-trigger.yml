@@ -1,0 +1,23 @@
+name: Morning Digest Trigger
+
+on:
+  schedule:
+    # 6:55 AM PT = 13:55 UTC (PT is UTC-7)
+    - cron: '55 13 * * *'
+  workflow_dispatch: # manual trigger for testing
+
+jobs:
+  trigger-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Jackie's morning digest
+        env:
+          BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
+        run: |
+          DAILY_DIGEST_CHANNEL="1485075381613760603"
+          JACKIE_BOT_ID="1477895765698547844"
+
+          curl -sf -H "Content-Type: application/json" \
+            -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            -d "{\"content\": \"<@${JACKIE_BOT_ID}> Run the morning builder digest now. Follow the builder-digest skill in your skills/ directory.\"}" \
+            "https://discord.com/api/v10/channels/${DAILY_DIGEST_CHANNEL}/messages"
