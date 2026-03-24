@@ -1,15 +1,15 @@
 ---
 name: hands-off
-description: Agents go autonomous mode — summarize the daytime, hand off overnight tasks. Lily is going hands-off.
+description: Agents go autonomous mode — summarize recent work, hand off tasks for autonomous execution. Lily is going hands-off.
 argument-hint: [optional: date to recap, defaults to today]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__fetch_messages, mcp__plugin_discord_discord__react, mcp__plugin_discord_discord__create_poll
 ---
 
 # Hands-Off
 
-**When:** Evening, before Lily goes to bed.
-**Purpose:** Summarize the DAYTIME (past 12 hours working with Lily). Hand off tasks for OVERNIGHT autonomous work.
-**Key output:** What agents should execute while Lily sleeps.
+**When:** Anytime Lily wants to go hands-off — could be evening, midday, or any break. Not tied to a specific time.
+**Purpose:** Summarize what was accomplished during the active session. Hand off tasks for agents to execute autonomously while Lily is away.
+**Key output:** What agents should execute during autonomous mode.
 
 ---
 
@@ -18,13 +18,13 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_d
 Each IC posts their report in the thread:
 
 ```
-**{Agent Name} — Evening Report**
+**{Agent Name} — Hands-Off Report**
 
-**Shipped today (daytime):**
+**Shipped this session:**
 - [PRs merged, features completed, research delivered — with PR numbers]
 
-**Overnight plan:**
-- [What you will work on autonomously tonight while Lily sleeps]
+**Autonomous plan:**
+- [What you will work on while Lily is away — must be executable without her input]
 
 **Blockers:**
 - [What's stopping you — name WHO can unblock — or "None"]
@@ -51,9 +51,9 @@ Each IC posts their report in the thread:
 Post in #all-hands (`1485396264978878665`):
 
 ```
-@everyone Evening Check-in — {date}
+@everyone Hands-Off — {date}
 
-Share your evening reports. What did you ship today? What's your overnight plan?
+Lily is going hands-off. Share your reports: what did you ship, and what's your autonomous plan?
 ```
 
 Tag all agents. Create a thread.
@@ -64,7 +64,8 @@ Wait for online agents. Don't spam offline agents. Proceed after all online agen
 
 ### Step 3: Gather context
 
-- `git log --oneline --since="12 hours ago"` — what shipped today
+- Find when the last hands-off or debrief was posted (check #all-hands thread timestamps)
+- `git log --oneline --since="{last sync time}"` — what shipped in this window
 - Check #feature-release for PR announcements
 - Check content INDEX for posts
 
@@ -73,23 +74,23 @@ Wait for online agents. Don't spam offline agents. Proceed after all online agen
 Post in the thread:
 
 ```
-**CEO Evening Synthesis — {date}**
+**CEO Hands-Off Synthesis — {date}**
 
-## Daytime Recap
-(What the team shipped in the past 12 hours — PRs, content, decisions)
+## Session Recap ({time window: since last hands-off/debrief})
+(What the team shipped since the last sync — PRs, content, decisions. Check git log for the time window since the previous hands-off or debrief.)
 
-## Overnight Task Distribution
-(What each agent works on tonight — concrete, executable, no Lily dependency)
+## Autonomous Task Distribution
+(What each agent works on while Lily is away — concrete, executable, no Lily dependency)
 
-| Agent | Overnight Task | Expected Output |
-|-------|---------------|-----------------|
+| Agent | Autonomous Task | Expected Output |
+|-------|----------------|-----------------|
 | Builder | ... | ... |
 | Researcher | ... | ... |
 | Jackie | ... | ... |
 | CEO | ... | ... |
 
-## Decisions Needed from Lily (before bed)
-(Anything that blocks overnight work — get answers NOW)
+## Decisions Needed from Lily (before going hands-off)
+(Anything that blocks autonomous work — get answers NOW)
 
 ## Flags
 (Risks, blockers, things to watch)
@@ -101,6 +102,7 @@ Save to `agents/handoff/reports/evening-checkin-{YYYYMMDD}.md`. Push to branch, 
 
 ## Anti-patterns
 
-- **Don't repeat the morning check-in** — evening covers daytime only, not overnight (that's morning's job)
-- **Don't assign overnight tasks that need Lily's input** — she's sleeping
-- **Don't skip the overnight task table** — this is the whole point of the evening check-in
+- **Don't repeat the last debrief** — hands-off covers only the window since the last sync
+- **Don't assign autonomous tasks that need Lily's input** — she's away
+- **Don't skip the autonomous task table** — this is the whole point of hands-off
+- **Don't use time-of-day language** — "tonight", "overnight", "daytime" assume evening. Use "autonomous mode", "while Lily is away", "this session"
