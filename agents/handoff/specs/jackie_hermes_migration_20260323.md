@@ -11,7 +11,7 @@ author: genius-researcher
 
 ## Why Migrate
 
-On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** from a single context compaction call. Root cause: OpenClaw's token-based compaction triggered when vault loading filled the 200K context window, and each tool call in the flush re-sent the full context (5 calls × 180K = 900K tokens). Additionally, Jackie's health-monitor is stuck in a restart loop, burning tokens every 15 minutes.
+On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** at 14:41 UTC. The spike occurred during a context compaction/memory flush cycle. Session logs show 259 API calls over 38 hours with cacheWrite growing to 144K per turn — the spike was likely a compaction flush where accumulated context was re-sent across multiple tool calls. The exact multiplier is unverified, but the pattern (growing context + compaction trigger + multi-tool flush) is confirmed. Additionally, Jackie's health-monitor is stuck in a restart loop, burning tokens every 15 minutes.
 
 **Decision:** Shut down Jackie on OpenClaw, migrate to Hermes Agent (open-source, by Nous Research).
 
@@ -28,7 +28,7 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** f
 | Deployment | Fly.io only | Docker, Modal, SSH, Daytona, $5 VPS |
 | Self-improvement | None | Learns from experience, creates reusable skills |
 | Open source | Yes | Yes (github.com/NousResearch/hermes-agent) |
-| Token cost control | No budget limits — caused the spike | Session isolation prevents context bloat |
+| Token cost control | No budget limits — caused the spike | Session isolation (claimed — **must verify in Phase 1**) |
 
 ## Jackie's Current Jobs — Priority Matrix
 
@@ -90,14 +90,15 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** f
 
 > Timelines in agent time. "1 hour" = 1 hour of active session.
 
-### Phase 1: Core setup (1 hour)
+### Phase 1: Core setup + token verification (1.5 hours)
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
 | 1.1 | Install Hermes locally, verify Claude Sonnet 4.6 works | Researcher | 15 min |
-| 1.2 | Configure Discord bot with Jackie's existing bot token | Builder | 15 min |
-| 1.3 | Set up Firecrawl web browsing | Builder | 15 min |
-| 1.4 | Test: Jackie responds in Discord with web browsing | All | 15 min |
+| 1.2 | **Verify token management** — run a long conversation, check if Hermes has hard token limits or if context grows unbounded like OpenClaw. This is the go/no-go gate for the migration. | Researcher | 30 min |
+| 1.3 | Configure Discord bot with Jackie's existing bot token (confirmed reusable) | Builder | 15 min |
+| 1.4 | Set up Firecrawl web browsing | Builder | 15 min |
+| 1.5 | Test: Jackie responds in Discord with web browsing | All | 15 min |
 
 ### Phase 2: Cron + GitHub (1 hour)
 
@@ -107,12 +108,14 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** f
 | 2.2 | Configure morning digest cron (7 AM PT → #daily-digest) | Builder | 15 min |
 | 2.3 | Set up `gh` CLI access for GitHub operations | Builder | 15 min |
 
-### Phase 3: Voice call (1 hour)
+### Phase 3: Voice call (2-3 hours) — P0 per Lily, but can launch Phases 1-2 without it
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
 | 3.1 | Research Hermes + Twilio integration options | Researcher | 30 min |
-| 3.2 | Build custom Twilio voice bridge skill | Builder | 30 min |
+| 3.2 | Build custom Twilio voice bridge skill | Builder | 2 hours |
+
+Note: Voice is P0 (Lily needs demo soon) but Phases 1-2 can ship independently. If voice blocks, fallback: keep OpenClaw running just for voice calls while Hermes handles everything else.
 
 ### Phase 4: Deploy + test (1 hour)
 
@@ -136,7 +139,7 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** f
 ## Rollback Plan
 
 If Hermes doesn't work:
-1. Restart OpenClaw on Fly.io: `fly ssh console -a openclaw-sofagenius -C "supervisorctl start openclaw-gateway"`
+1. Restart OpenClaw on Fly.io — **Builder to provide exact restart command** since supervisor config was modified during shutdown
 2. Apply Builder's fixes (#1 trim skill, #2 remove duplicate, #3 fix restart loop) to prevent another 911K spike
 3. Re-evaluate migration target
 
