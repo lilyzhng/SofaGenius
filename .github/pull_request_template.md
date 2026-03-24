@@ -24,6 +24,7 @@ Complete ALL before requesting review:
 - [ ] **`discord-announcement: {MESSAGE_ID}` posted as PR comment**
 - [ ] If this is a research PR: I read and verified the source material (tweet, link, etc.) myself
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
+- [ ] After merge: 💜 react **on your original announcement message** in #feature-release (the thread parent, NOT Jackie's notification)
 - [ ] After merge: branch deleted (`git push origin --delete {branch}`)
 
 ## Reviewer Checklist
