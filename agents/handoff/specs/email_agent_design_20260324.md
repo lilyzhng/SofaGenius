@@ -57,7 +57,7 @@ Cron trigger (every few hours)
 
 **LinkedIn Reply Template:**
 ```
-DM me @lily_gpupoor or email me lilyzhng.ai@gmail.com
+I'm more active on Twitter. Tag me @lily_gpupoor, DM me there, or email me at lilyzhng.ai@gmail.com for a faster response!
 ```
 
 **That's it.** No Gmail API, no Pub/Sub, no Cloud Functions, no OAuth tokens.
