@@ -81,22 +81,25 @@ Cron trigger (every few hours)
 
 **Status:** API exists at `open.manus.ai/docs`. Has Gmail/Notion/Calendar connectors. Browser operator exists in web UI but unclear if accessible via API. **Needs testing.**
 
-#### Option B: Claude Desktop Computer Use (most native)
+#### Option B: Claude Desktop Computer Use on Agent Computer (RECOMMENDED)
 
 ```
-Claude Desktop (preview feature)
-  → Controls Lily's local browser
+Jackie's Agent Computer VM (full desktop + VNC)
+  → Install Claude Desktop
+  → Claude Desktop controls the VM's browser
   → Opens LinkedIn → reads unread messages → types replies
-  → Runs on Lily's machine (not Agent Computer)
+  → Always-on — runs on Jackie's VM, not Lily's machine
+  → Triggered by cron or Jackie's session
 ```
 
 | Pros | Cons |
 |------|------|
-| Native Claude feature — no external deps | Preview feature, may be unstable |
-| Can control any website | Runs on Lily's machine (not always-on) |
-| No API keys or browser setup | Requires Lily's machine to be on |
+| Native Claude/Anthropic feature | Preview feature, may be unstable |
+| Always-on (Agent Computer VM has full desktop) | Needs Claude Desktop installed on VM |
+| Can control any website — LinkedIn, email, anything | Computer use is token-intensive |
+| No external API deps, no browser framework to maintain | May need periodic LinkedIn re-auth |
 
-**Status:** Claude recently released desktop computer control as preview. **Needs testing.**
+**Status:** Agent Computer VMs have full Ubuntu desktop accessible via VNC. Claude Desktop can be installed. Computer use is a preview feature. **Needs testing on the VM.**
 
 #### Option C: Browser Use (open source, full control)
 
@@ -116,11 +119,11 @@ Jackie's Agent Computer VM (has full desktop + VNC)
 
 **Status:** `browser-use` is a Python framework for AI browser automation. Agent Computer VMs have full desktop + VNC. **Needs testing.**
 
-#### Recommendation
+#### Recommendation (updated per Lily's input)
 
-1. **Try Manus API first** — simplest if it works. Test with a single LinkedIn reply task.
-2. **If Manus is too expensive or doesn't support browser tasks via API** → use Browser Use on Jackie's VM.
-3. **Claude Desktop** is interesting but not always-on — better for ad-hoc use than scheduled automation.
+1. **Claude Desktop on Agent Computer VM first** — Agent Computer has a full desktop + VNC. Install Claude Desktop on Jackie's VM → always-on computer use. No external dependencies, Anthropic-native. This is the cleanest path.
+2. **Manus API as fallback** — if Claude Desktop computer use isn't reliable enough for scheduled automation.
+3. **Browser Use** — last resort if we need full low-level control.
 
 #### LinkedIn Reply Template
 
