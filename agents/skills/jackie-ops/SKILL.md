@@ -7,6 +7,8 @@ allowed-tools: Bash
 
 # Jackie Ops — Manage Jackie's Fly.io Deployment
 
+> **⚠️ DEPRECATION NOTICE (2026-03-23):** Jackie is shut down on OpenClaw/Fly.io and migrating to Hermes Agent. These commands reference the OpenClaw deployment which is no longer active. This skill will be rewritten for Hermes once migration is complete. See PR #33 for migration spec.
+
 Jackie runs on Fly.io as a supervised process. Use this skill to manage the deployment.
 
 ## Infrastructure Details
