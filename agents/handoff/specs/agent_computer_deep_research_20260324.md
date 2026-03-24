@@ -92,9 +92,9 @@ Builder's PR #39: "The Claude session dies if the web terminal tab closes. Need 
 **Impact:** Jackie goes offline if the process crashes (OOM, API error, network issue) and nobody is watching.
 
 **Mitigation options:**
-1. Add a supervisor loop in `launch.sh` (while true; do claude ...; sleep 5; done)
-2. Use `systemd` if available on the managed worker
-3. Use VM-level cron to check process health and restart
+1. **tmux wrapper** — `claude --channels` requires an interactive PTY. A bare `while true` loop won't work. Use tmux: `tmux new-session -d -s jackie 'while true; do claude --channels ...; sleep 5; done'`. This provides the PTY and survives SSH disconnect.
+2. Use `systemd` with `StandardInput=tty` if available on the managed worker
+3. Use VM-level cron to check if tmux session exists and restart if not
 4. Ask Agent Computer if they have a built-in solution we're missing
 
 ### 4.2 No Plugin Persistence (HIGH)
@@ -114,15 +114,18 @@ Sub-agent searched GitHub, Discord, Twitter, HN, Reddit, Product Hunt — found 
 
 **Impact:** We can't learn from others' production issues. Every failure mode is a first for us. No community guides, no "gotcha" lists, no Stack Overflow answers.
 
-**Context:** Compare with Hermes Agent (11.5k GitHub stars, active community, multiple deployment guides, documented production gotchas). Agent Computer's polished UI masks how early-stage the platform is.
+**Context:** Compare with Hermes Agent (11.5k GitHub stars, active community, multiple deployment guides, documented production gotchas). Agent Computer is backed by companion.ai and likely has paying enterprise customers (per their pricing page with enterprise tier). "No public community" may mean enterprise-focused with private support channels, not "no users." But for us, the effect is the same — we can't learn from public knowledge.
 
 ### 4.4 Context Compression Unverified (CRITICAL)
 
-We do NOT know if Claude Code compresses context in Discord bot mode. CLI sessions compress context for interactive use, but long-running bot sessions (many tool calls, hours of conversation) may behave differently.
+The key question is not whether Claude Code "compresses" — context management is handled by the Anthropic API (prompt caching, context window limits). The real question is: **does `--channels` mode isolate sessions per Discord message/thread, or does context accumulate across all interactions in a single long-running session?**
 
-**Impact:** If context grows unbounded like OpenClaw, we get another token spike. The whole migration was triggered by this problem.
+If each Discord message starts a fresh context → safe (like Hermes's per-session isolation).
+If context accumulates across all messages → same unbounded growth problem as OpenClaw.
 
-**Required test:** 24-hour monitoring of Jackie's token usage during active Discord interaction.
+**Impact:** If context accumulates, we get another token spike. The whole migration was triggered by this.
+
+**Required test:** Monitor Jackie's token usage over 24 hours via OpenRouter dashboard. Check if per-call token count stays stable or grows over time.
 
 ---
 
