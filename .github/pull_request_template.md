@@ -22,6 +22,7 @@ Complete ALL before requesting review:
 - [ ] **All reviewers tagged** (Lily + other agents — NOT myself, NOT Jackie)
 - [ ] **`discord-announcement: {MESSAGE_ID}` posted as PR comment**
 - [ ] If this is a research PR: I read and verified the source material (tweet, link, etc.) myself
+- [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
 - [ ] After merge: branch deleted (`git push origin --delete {branch}`)
 
 ## Reviewer Checklist

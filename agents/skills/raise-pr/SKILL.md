@@ -176,6 +176,7 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] All bot review comments replied to inline
 - [ ] All human review comments replied to inline
 - [ ] After approval: merged, thread confirmation posted, 💜 reacted
+- [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
 - [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
 
 **If you skip the `discord-announcement` comment, the approval bot cannot find the right thread.** This breaks the merge workflow for everyone.
