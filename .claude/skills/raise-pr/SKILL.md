@@ -159,3 +159,4 @@ Note: session-based agents (Builder, Researcher, CEO) can only execute when Lily
 - **Don't ignore any review comments** — reply inline to every one (bot and human)
 - **Don't use general PR comments instead of inline replies**
 - **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
+- **Don't close a PR without replying to all review comments first** — reviewers invested time in their feedback. Reply to every comment (fix it or explain why not) before closing, splitting, or restructuring the PR. Splitting is fine when needed — but always acknowledge the feedback first.
