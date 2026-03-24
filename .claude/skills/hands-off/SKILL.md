@@ -1,0 +1,1 @@
+../../../agents/skills/hands-off/SKILL.md

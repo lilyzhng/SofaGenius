@@ -141,6 +141,17 @@ This ensures:
 - The `discord-announcement` comment gets posted
 - Reviews happen in the right thread
 
+## How to Find the Review Thread
+
+The PR author is responsible for creating the thread. You should NEVER need to create one yourself. Here's how to find it:
+
+1. **Check the PR on GitHub** — look for a comment that says `discord-announcement: {ID}`
+2. **That ID is the thread ID** — use it as `thread_id` when posting your review summary on Discord
+3. **If no `discord-announcement` comment exists** — tell the author: "Please add the `discord-announcement` comment per the `/raise-pr` checklist."
+4. **NEVER post in the main #feature-release channel** — always use `thread_id`
+
+The thread ID = the announcement message ID. One ID for everything.
+
 ## Review Completion Checklist
 
 Before submitting your review, verify:
@@ -154,4 +165,4 @@ Before submitting your review, verify:
 - [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
 - [ ] If all comments are 🟢 nits only → **approve**
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
-- [ ] **Review summary posted in the PR's #feature-release thread** (create thread on the announcement message if none exists). NEVER post reviews in the main channel feed.
+- [ ] **Review summary posted in the PR's #feature-release thread** (use `thread_id` from the `discord-announcement` comment on the PR). NEVER post in the main channel feed. NEVER create your own thread — the author already made one.
