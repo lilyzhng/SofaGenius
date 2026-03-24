@@ -61,10 +61,9 @@ echo '{
 
 Each inline comment must include:
 
-1. **Severity label** (first line):
-   - **🔴 Blocking** — must fix before merge (bugs, security, broken functionality)
-   - **🟡 Should fix** — important but not a blocker (inconsistency, unclear spec, missing edge case)
-   - **🟢 Nit** — minor style/wording preference, author's call
+1. **Severity label** (first line) — only two levels:
+   - **🔴 Must fix** — must fix before merge. Anything that should change = 🔴. Bugs, security, inconsistency, unclear spec, missing edge case — all red.
+   - **🟢 Nit** — cosmetic, minor style/wording preference, author's call. Does not block approval.
 
 2. **What's the issue** — one sentence
 3. **Why it matters** — impact if not fixed
@@ -72,7 +71,7 @@ Each inline comment must include:
 
 Example:
 ```
-🟡 Should fix
+🔴 Must fix
 
 This path uses `SofaGenius/agents/` but in-repo paths should be root-relative (`agents/`).
 Following this literally would create a nested directory.
@@ -132,3 +131,27 @@ Every reviewer — regardless of role — should check for:
 - **Process** — correct identity, scope, and claims
 
 You may also bring domain expertise (e.g. CEO on strategy, Researcher on data pipelines), but the fundamentals above are everyone's responsibility.
+
+## Pre-Review Gate
+
+**Only review PRs that are announced in #feature-release (`1484388088087052478`).** If someone shares a PR link in a random channel (e.g. #all-hands, #my-tribe, DMs), do NOT start reviewing it there. Instead reply: "Please announce this in #feature-release first using the `/raise-pr` workflow."
+
+This ensures:
+- All PRs go through the proper announcement flow
+- The `discord-announcement` comment gets posted
+- Reviews happen in the right thread
+
+## Review Completion Checklist
+
+Before submitting your review, verify:
+
+- [ ] PR was announced in #feature-release (not a random channel)
+- [ ] You read the full diff (`gh pr diff`)
+- [ ] You verified the PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)
+- [ ] Every piece of feedback is an **inline comment** (not a summary blob)
+- [ ] Each comment has a **severity label** (🔴 must fix / 🟢 nit)
+- [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
+- [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
+- [ ] If all comments are 🟢 nits only → **approve**
+- [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
+- [ ] **Review summary posted in the PR's #feature-release thread** (create thread on the announcement message if none exists). NEVER post reviews in the main channel feed.

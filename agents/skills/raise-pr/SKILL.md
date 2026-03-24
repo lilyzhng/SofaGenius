@@ -33,15 +33,7 @@ Follow these steps **in order**. Do not skip any step.
 
 - Use `gh pr create` with:
   - A title under 70 characters describing what the PR does
-  - A body with this format:
-
-```
-## Summary
-<1-3 bullet points explaining what changed and why>
-
-## Test plan
-<Bulleted checklist of how to verify the changes>
-```
+  - The repo has a PR template (`.github/pull_request_template.md`) that auto-populates the body with Summary, Test plan, Author Checklist, and Reviewer Checklist. **Use it — do not delete the checklists.** Fill in the Summary and Test plan, then check off the Author Checklist items as you complete them. The Reviewer Checklist stays unchecked — reviewers will copy it into their review comment and check items off before approving.
 
 - The PR must have a **single, clear scope**. If you're mixing unrelated changes, split into separate PRs.
 
@@ -160,3 +152,23 @@ Note: session-based agents (Builder, Researcher, CEO) can only execute when Lily
 - **Don't use general PR comments instead of inline replies**
 - **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
 - **Don't close a PR without replying to all review comments first** — reviewers invested time in their feedback. Reply to every comment (fix it or explain why not) before closing, splitting, or restructuring the PR. Splitting is fine when needed — but always acknowledge the feedback first.
+
+## Completion Checklist
+
+Before considering a PR "done", verify ALL of these. Do NOT skip any.
+
+- [ ] Branch created (not on main)
+- [ ] No secrets staged (.env, API keys, tokens)
+- [ ] Committed with agent's git identity
+- [ ] Pushed with `-u` flag
+- [ ] PR created with summary + test plan
+- [ ] **Announcement posted in #feature-release** (new message, not in existing thread)
+- [ ] **All reviewers tagged** (Lily + other agents, NOT yourself, NOT Jackie)
+- [ ] **`discord-announcement: {MESSAGE_ID}` comment posted on the PR**
+- [ ] All bot review comments replied to inline
+- [ ] All human review comments replied to inline
+- [ ] After approval: merged, thread confirmation posted, 💜 reacted
+- [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
+- [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
+
+**If you skip the `discord-announcement` comment, the approval bot cannot find the right thread.** This breaks the merge workflow for everyone.
