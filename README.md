@@ -21,15 +21,20 @@ Run multiple AI coding agents as an organization — each with its own identity,
 
 ```
 agents/
-├── ceo/CLAUDE.md          # Genius CEO — knows what everyone is doing
-├── builder/CLAUDE.md      # Genius Builder — ships code and tools
-└── researcher/CLAUDE.md   # Genius Researcher — research, data, deep dives
+├── genius-ceo/CLAUDE.md        # Genius CEO — knows what everyone is doing
+├── genius-builder/CLAUDE.md    # Genius Builder — ships code and tools
+├── genius-researcher/CLAUDE.md # Genius Researcher — research, data, deep dives
+├── handoff/                    # Agent coordination (status, specs, reports)
+├── pr-rules.md                 # PR workflow rules
+└── onboarding.md               # New agent onboarding guide
 
-handoff/
-├── ceo-status.md          # CEO's current state
-├── builder-status.md      # Builder's current state
-├── researcher-status.md   # Researcher's current state
-└── README.md              # Handoff protocol docs
+autoresearch/                   # ML research workspace (own venv)
+├── pyproject.toml              # Python deps — run `cd autoresearch && uv sync`
+├── scripts/                    # Data processing and conversion
+├── tasks/                      # Harbor benchmark tasks (100 APEX tasks)
+├── harbor_pipeline/            # Harbor training pipeline
+├── reward/                     # Reward functions
+└── brainstorm/                 # Research design docs
 ```
 
 **Key design decisions:**
@@ -46,15 +51,22 @@ See [`agents/`](agents/) and [`handoff/`](handoff/) for the full setup.
 
 ```
 agents/                              # Multi-agent org (CLAUDE.md per agent)
-├── ceo/CLAUDE.md                    # Coordinator + growth
-├── builder/CLAUDE.md                # Code + infrastructure
-└── researcher/CLAUDE.md             # Research + data
+├── genius-ceo/CLAUDE.md             # Coordinator + growth
+├── genius-builder/CLAUDE.md         # Code + infrastructure
+├── genius-researcher/CLAUDE.md      # Research + data
+├── handoff/                         # Agent coordination (status, specs, reports)
+│   ├── status/                      # Per-agent status files
+│   ├── specs/                       # Implementation specs
+│   └── reports/                     # Research and build reports
+├── pr-rules.md                      # PR workflow rules
+└── onboarding.md                    # New agent onboarding guide
 
-handoff/                             # Agent coordination layer
-├── README.md                        # Protocol docs
-├── ceo-status.md                    # CEO status file
-├── builder-status.md                # Builder status file
-└── researcher-status.md             # Researcher status file
+autoresearch/                        # ML research workspace (own pyproject.toml + venv)
+├── scripts/                         # Data processing and conversion
+├── tasks/                           # Harbor benchmark tasks (100 APEX tasks)
+├── harbor_pipeline/                 # Harbor training pipeline
+├── reward/                          # Reward functions
+└── brainstorm/                      # Research design docs
 
 backend/
 ├── orchestrator.py          # Intent classifier + router (Haiku)

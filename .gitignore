@@ -23,3 +23,31 @@ Qwen3-Coder/
 SofaGenius_v2.png
 SofaGenius_v3.png
 SofaGenius_v4.png
+
+# Local experiment artifacts (not committed)
+experiments/
+
+# Autoresearch local artifacts (large/regenerable)
+autoresearch/tasks/
+autoresearch/harbor_pipeline/
+autoresearch/scripts/
+autoresearch/submodules/
+autoresearch/jobs/
+autoresearch/datasets/
+autoresearch/checkpoints/
+autoresearch/outputs/
+autoresearch/results/
+autoresearch/wandb/
+autoresearch/.ipynb_checkpoints/
+autoresearch/worktrees/
+autoresearch/queue/
+autoresearch/dev/
+autoresearch/results.tsv
+autoresearch/CLAUDE.md
+autoresearch/AGENTS.md
+
+# Python build artifacts
+*.py[oc]
+build/
+wheels/
+*.egg-info
