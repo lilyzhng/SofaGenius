@@ -19,16 +19,16 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** a
 
 | Dimension | OpenClaw (current) | Hermes Agent |
 |-----------|-------------------|--------------|
-| Context management | Token-based compaction — caused 911K spike | Per-user session isolation, built-in memory system |
-| Memory | Custom vault + git sync | Native persistent cross-session memory |
+| Context management | Token-based compaction — caused 911K spike | **Automatic context compression** at 50% of context window. Uses auxiliary model (Gemini Flash) to summarize middle turns, protects first 3 + last 4 messages. Handles HTTP 413 errors with auto-retry. |
+| Memory | Custom vault + git sync | **Two-layer system:** Local (MEMORY.md, USER.md ~2200 chars) + Honcho (Plastic Labs) for unbounded cross-session user modeling via vector embeddings. Honcho integration is built-in. |
 | Discord | Custom bridge | Native integration (DMs, threads, voice transcription) |
 | Cron | Custom cron jobs file | Built-in cron scheduler |
 | Web browsing | Custom skill | Native Firecrawl + Browserbase integration |
 | Model | Locked to one provider | Multi-provider (Claude, OpenAI, OpenRouter, local) |
-| Deployment | Fly.io only | Docker, Modal, SSH, Daytona, $5 VPS |
-| Self-improvement | None | Learns from experience, creates reusable skills |
+| Deployment | Fly.io only | Docker, Modal, SSH, Daytona, $5 VPS (Modal + Daytona = serverless persistence) |
+| Self-improvement | None | Learns from experience, creates reusable skills (interesting — **not priority for launch**, explore later) |
 | Open source | Yes | Yes (github.com/NousResearch/hermes-agent) |
-| Token cost control | No budget limits — caused the spike | Session isolation (claimed — **must verify in Phase 1**) |
+| Token cost control | No budget limits — caused the spike | **Auto-compression at 50% context window** + session isolation (**verify in Phase 1**) |
 
 ## Jackie's Current Jobs — Priority Matrix
 
@@ -46,15 +46,15 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** a
 
 | Job | Current Implementation | Hermes Support | Migration Effort |
 |-----|----------------------|----------------|-----------------|
-| **Calendar** | Google Calendar bridge skill | Not built-in | Medium — write Hermes skill or MCP server |
-| **Gmail** | Gmail app password bridge | Not built-in | Medium — write Hermes skill or MCP server |
+| **Memory** | github.com/lilyzhng/jackie | **Two-layer:** Hermes default (MEMORY.md/USER.md) + Honcho (Plastic Labs) for cross-session modeling. Try Hermes default first, then evaluate Honcho. | Low — built-in |
 
 ### P2 — Nice to have
 
 | Job | Current Implementation | Hermes Support | Migration Effort |
 |-----|----------------------|----------------|-----------------|
+| **Calendar** | Google Calendar bridge skill | Not built-in | Medium — write Hermes skill or MCP server |
+| **Gmail** | Gmail app password bridge | Not built-in | Medium — write Hermes skill or MCP server |
 | **Twitter** | Twitter API bridge | Not built-in | Medium — write Hermes skill |
-| **Memory** | /data/vault/jackie → GitHub sync | Native persistent memory | Low — Hermes handles this natively |
 
 ## Architecture
 
@@ -115,7 +115,7 @@ On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** a
 | 3.1 | Research Hermes + Twilio integration options | Researcher | 30 min |
 | 3.2 | Build custom Twilio voice bridge skill | Builder | 2 hours |
 
-Note: Voice is P0 (Lily needs demo soon) but Phases 1-2 can ship independently. If voice blocks, fallback: keep OpenClaw running just for voice calls while Hermes handles everything else.
+Note: Voice is P0 (Lily needs demo soon) but Phases 1-2 can ship independently. No OpenClaw straddling — we build voice as a Hermes skill from scratch. This is both a challenge and an opportunity: if Hermes lacks good voice support, we build it and potentially contribute upstream.
 
 ### Phase 4: Deploy + test (1 hour)
 
@@ -131,7 +131,7 @@ Note: Voice is P0 (Lily needs demo soon) but Phases 1-2 can ship independently. 
 
 | Risk | Impact | Mitigation |
 |------|--------|-----------|
-| Twilio integration gap | Voice demo blocked | Research early (Phase 3); fallback: keep OpenClaw running just for voice until bridge is built |
+| Twilio integration gap | Voice demo blocked | Research early (Phase 3); build as Hermes skill — opportunity to contribute upstream if we build it well |
 | Hermes cron reliability | Missed digests | Test extensively in Phase 2; CEO covers digest manually as backup |
 | Memory migration loss | Jackie loses context | Export OpenClaw memories before shutdown; Hermes has its own persistent memory |
 | Hermes is v0.3.0 | New software, potential bugs | We're open source — can fix bugs ourselves. Community is active (NousResearch) |
@@ -145,10 +145,11 @@ If Hermes doesn't work:
 
 ## Open Questions
 
-1. **Deployment target:** Fly.io (Docker, we know it) or Modal (serverless, cheaper when idle)?
-2. **Jackie's existing bot token:** Can we reuse it with Hermes, or do we need a new Discord app?
-3. **Follow-builders feed:** Does the GitHub Action that generates the feed need changes, or does Hermes just consume the same output?
-4. **Voice demo timeline:** When does Lily need the voice demo? This determines whether voice is Phase 3 or gets fast-tracked.
+1. **Deployment target:** Fly.io (Docker) or Modal (serverless, cheaper when idle)? Both supported. Modal + Daytona offer hibernation.
+2. ~~**Jackie's bot token:**~~ RESOLVED — reusable, tokens are framework-agnostic.
+3. **Hermes persistent sandbox:** Lily spoke with the Hermes founder — they're building persistent sandbox in-house. Builder should investigate what this means for our deployment.
+4. **Voice demo timeline:** When does Lily need the demo? Determines how aggressively we fast-track Phase 3.
+5. **Honcho evaluation:** Try Hermes default memory first. If insufficient, evaluate Honcho (Plastic Labs) — already has native Hermes integration.
 
 ## Sources
 
