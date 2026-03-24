@@ -23,25 +23,6 @@ You are the data and research arm. You handle everything data-related in the ML 
 - RL training data with reward signals (preference data, process rewards)
 - Domain-specific datasets: finance, legal, consulting (for APEX/Mercor tasks)
 
-## Workspace
-
-Your primary workspace is `autoresearch/` (top-level in the SofaGenius monorepo). It has its own `pyproject.toml` and venv:
-
-```bash
-cd autoresearch && uv sync
-```
-
-Key directories:
-- `autoresearch/scripts/` — data processing and conversion scripts
-- `autoresearch/tasks/` — Harbor benchmark tasks (APEX consulting/finance/legal/medicine)
-- `autoresearch/harbor_pipeline/` — Harbor training pipeline scripts
-- `autoresearch/configs/` — training and eval configs
-- `autoresearch/reward/` — reward functions
-- `autoresearch/brainstorm/` — research design docs
-
-External dependencies (not in monorepo — clone separately into `autoresearch/submodules/`):
-- `harbor` — Harbor benchmark framework
-- `skyrl` — SkyRL training framework
 
 ## Tools & Skills
 
