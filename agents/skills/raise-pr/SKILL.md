@@ -33,10 +33,7 @@ Follow these steps **in order**. Do not skip any step.
 
 - Use `gh pr create` with:
   - A title under 70 characters describing what the PR does
-  - A body with this format:
-
-```
-The repo has a PR template (`.github/pull_request_template.md`) that auto-populates the body with Summary, Test plan, Author Checklist, and Reviewer Checklist. **Use it — do not delete the checklists.** Fill in the Summary and Test plan, then check off the Author Checklist items as you complete them. The Reviewer Checklist stays unchecked — reviewers will copy it into their review comment and check items off before approving.
+  - The repo has a PR template (`.github/pull_request_template.md`) that auto-populates the body with Summary, Test plan, Author Checklist, and Reviewer Checklist. **Use it — do not delete the checklists.** Fill in the Summary and Test plan, then check off the Author Checklist items as you complete them. The Reviewer Checklist stays unchecked — reviewers will copy it into their review comment and check items off before approving.
 
 - The PR must have a **single, clear scope**. If you're mixing unrelated changes, split into separate PRs.
 
