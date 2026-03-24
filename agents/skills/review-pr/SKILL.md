@@ -155,3 +155,4 @@ Before submitting your review, verify:
 - [ ] **🔴 Any 🟡 should-fix = REQUEST CHANGES** (don't approve with 🟡s noted)
 - [ ] **🟢 nits only = approve**
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
+- [ ] **Review summary posted in the PR's #feature-release thread** (create thread on the announcement message if none exists). NEVER post reviews in the main channel feed.
