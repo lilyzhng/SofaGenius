@@ -46,14 +46,23 @@ Jackie runs on Agent Computer with a full desktop + VNC. Claude has computer use
 
 ### Phase 1: LinkedIn Auto-Reply
 
+**POC validated (March 24):** Claude Desktop (Cowork) successfully opened LinkedIn, read the full inbox, summarized messages with names/dates/content, and typed replies — all using Lily's existing Max subscription.
+
+**How it works:** Claude Desktop connects to a Chrome extension that has direct browser access — reading page content, navigating, and typing. Not screenshot-based computer use, but extension-based browser control. This is faster and more reliable than pixel-level control.
+
 ```
-Cron trigger (every few hours)
-  → Jackie's Claude session uses computer use
-  → Opens LinkedIn in the VM's browser
-  → Reads unread messages
-  → Replies to each with redirect template
-  → Logs results on Discord
+Claude Desktop / Cowork
+  → Connects to Chrome extension
+  → Extension reads/controls the browser directly (DOM access)
+  → Opens LinkedIn → reads inbox → types replies
+  → No screenshots, no mouse simulation — direct page interaction
 ```
+
+**Key finding:** The Chrome extension approach means:
+- ✅ Reads page content directly (fast, reliable)
+- ✅ Can type into input fields
+- ⚠️ Other Chrome extensions can interfere (disable overlays like Grammarly)
+- ❓ Needs Chrome extension installed — verify if this works on Agent Computer's browser
 
 **LinkedIn Reply Template:**
 ```
