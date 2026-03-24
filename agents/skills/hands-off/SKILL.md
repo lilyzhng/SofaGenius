@@ -5,7 +5,7 @@ argument-hint: [optional: date to recap, defaults to today]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__fetch_messages, mcp__plugin_discord_discord__react, mcp__plugin_discord_discord__create_poll
 ---
 
-# Evening Check-in
+# Hands-Off
 
 **When:** Evening, before Lily goes to bed.
 **Purpose:** Summarize the DAYTIME (past 12 hours working with Lily). Hand off tasks for OVERNIGHT autonomous work.

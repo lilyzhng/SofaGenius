@@ -5,7 +5,7 @@ argument-hint: [optional: date, defaults to today]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__fetch_messages, mcp__plugin_discord_discord__react
 ---
 
-# Morning Check-in
+# Debrief
 
 **When:** Morning, when Lily wakes up / starts her day.
 **Purpose:** Summarize the OVERNIGHT work (what agents shipped while Lily slept in autonomous mode). Sync Lily on progress.
