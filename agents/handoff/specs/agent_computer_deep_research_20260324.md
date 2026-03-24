@@ -168,11 +168,11 @@ If context accumulates across all messages → same unbounded growth problem as 
 
 | Risk | Likelihood | Impact | Mitigation | Status |
 |------|-----------|--------|-----------|--------|
-| Process crash → Jackie offline | HIGH (no supervisor) | Jackie unresponsive until manual restart | Add supervisor loop to launch.sh | NOT YET DONE |
+| **No public community or support channel** | **TRUE** | **No bug reporting, no community fixes, no shared knowledge. If platform breaks, we're alone.** | **Contact vendor directly (team@companion.ai). Document all issues ourselves. Maintain portability as escape hatch.** | **TOP RISK** |
+| Process crash → Jackie offline | HIGH (no supervisor) | Jackie unresponsive until manual restart | Add tmux supervisor loop to launch.sh | NOT YET DONE |
 | Token spike like OpenClaw | UNKNOWN | Cost spike, session breakdown | 24-hour monitoring test | NOT YET TESTED |
 | Plugin overwritten on update | MEDIUM | Lose custom Discord features | Script re-installation on startup | NOT YET DONE |
 | Platform is early-stage, vendor goes down | LOW-MEDIUM | Must migrate on short notice | Stack is portable — Claude Code + Discord on any Ubuntu VM | MITIGATED by portability |
-| No community knowledge | TRUE | Can't learn from others' mistakes | Document everything ourselves, share findings | ONGOING |
 
 ---
 
