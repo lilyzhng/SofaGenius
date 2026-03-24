@@ -29,7 +29,7 @@ Jackie is now running on Agent Computer after the OpenClaw shutdown (911K token 
 
 | Criteria | Measurement |
 |----------|-------------|
-| All 4 agents can run on Agent Computer | Verified by deploying CEO, Builder, Researcher |
+| Always-on agents (Jackie + Researcher) run on Agent Computer | Verified by deploying Researcher alongside Jackie. CEO/Builder stay local. |
 | Agents survive VM restarts | Test: restart VM, verify process resumes |
 | Context compression works (no 911K repeats) | Monitor token usage for 7 days |
 | Cost is predictable | $20/mo covers 25 VMs — verify no hidden overage |
@@ -132,16 +132,19 @@ Based on docs, CLI exploration, and Builder's hands-on deployment:
 | **Rate limits** | API calls, SSH connections — any limits? | Stress test |
 | **Data sovereignty** | Where are VMs hosted? Important for Lily's data. | Check docs or ask vendor |
 
-### 4.3 Context Compression — Critical Gap
+### 4.3 Context Compression — Critical Unknown (UNVERIFIED)
 
-Agent Computer runs **Claude Code**, not Hermes Agent. Claude Code has its own context management (automatic compression when approaching limits). This is different from Hermes's configurable 50% threshold compression.
+Agent Computer runs **Claude Code**, not Hermes Agent. Claude Code compresses conversation context for interactive CLI use, but **we do not know if it compresses context in Discord bot mode** (long-running sessions with many tool calls).
 
-**What we need to verify:**
-- Does Claude Code's built-in compression prevent the 911K spike pattern?
-- Can we configure compression aggressiveness?
-- What happens during very long Discord sessions?
+**This is unverified.** The 911K spike happened because OpenClaw had no compression in a long-running bot session. We cannot assume Claude Code handles this — Discord bot sessions behave differently from interactive CLI sessions.
 
-This is the #1 risk — the whole migration was triggered by token spikes. We need to confirm Agent Computer + Claude Code handles this better than OpenClaw did.
+**Required: 24-hour monitoring test before declaring this solved.**
+- Run Jackie on Agent Computer for 24 hours with active Discord interaction
+- Monitor token usage via OpenRouter dashboard
+- Check: does context grow unbounded, or does compression trigger?
+- If context grows unbounded → we have the same problem as OpenClaw and need a different solution
+
+**This test is the Phase 1.3 go/no-go gate.** Do not scale to additional agents until this passes.
 
 ### 4.4 Gotchas Discovered During Jackie's Setup (from Builder's PR #39)
 
@@ -189,15 +192,17 @@ This is the #1 risk — the whole migration was triggered by token spikes. We ne
 
 **Go/no-go:** All 3 tests pass → proceed to Phase 2.
 
-### Phase 2: Scale to all agents (next 1 hour)
+### Phase 2: Deploy Researcher as second always-on agent (next 1 hour)
+
+Only Jackie and Researcher are candidates for always-on Agent Computer VMs. CEO and Builder stay local/session-based per Lily's direction — they work best when launched during active sessions, not running 24/7.
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
-| 2.1 | Create VMs for CEO, Builder, Researcher | Builder | 15 min |
-| 2.2 | Deploy each agent using PR #39 guide | Builder | 30 min |
-| 2.3 | Test all 4 agents responding in Discord simultaneously | All | 15 min |
+| 2.1 | Create VM for Researcher | Builder | 10 min |
+| 2.2 | Deploy Researcher using PR #39 guide | Builder | 20 min |
+| 2.3 | Test Jackie + Researcher responding in Discord simultaneously | All | 15 min |
 
-**Go/no-go:** All agents respond correctly, no interference.
+**Go/no-go:** Both agents respond correctly, no interference. CEO/Builder deployment deferred — evaluate later if needed.
 
 ### Phase 3: Production hardening (today)
 
