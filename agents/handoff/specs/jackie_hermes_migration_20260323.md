@@ -9,6 +9,17 @@ author: genius-researcher
 
 # Jackie Migration: OpenClaw → Hermes Agent
 
+## Ownership
+
+| Role | Owner | Responsibility |
+|------|-------|---------------|
+| **Research & design** | **Researcher** | This spec, Hermes evaluation, token verification (Phase 1.2), Twilio research (Phase 3.1), memory evaluation |
+| **Implementation** | **Builder** | All hands-on migration: Hermes install, Discord config, cron setup, web browsing, voice bridge, deployment |
+| **Review & approval** | **Lily** | Final sign-off on spec, go/no-go decisions, voice demo timeline |
+| **Backup digest** | **CEO** | Covers morning digest manually if migration breaks it |
+
+**Builder owns the implementation end-to-end.** Researcher provides context, research, and validation. Builder creates the concrete implementation plan from this spec and executes all phases.
+
 ## Why Migrate
 
 On March 23, 2026, Jackie's OpenClaw instance caused a **911,733 token spike** at 14:41 UTC. The spike occurred during a context compaction/memory flush cycle. Session logs show 259 API calls over 38 hours with cacheWrite growing to 144K per turn — the spike was likely a compaction flush where accumulated context was re-sent across multiple tool calls. The exact multiplier is unverified, but the pattern (growing context + compaction trigger + multi-tool flush) is confirmed. Additionally, Jackie's health-monitor is stuck in a restart loop, burning tokens every 15 minutes.
