@@ -152,6 +152,6 @@ Before submitting your review, verify:
 - [ ] Every piece of feedback is an **inline comment** (not a summary blob)
 - [ ] Each comment has a **severity label** (🔴/🟡/🟢)
 - [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
-- [ ] **Any 🟡 should-fix = request changes** (don't approve with 🟡s noted)
+- [ ] **🔴 Any 🟡 should-fix = REQUEST CHANGES** (don't approve with 🟡s noted)
 - [ ] **🟢 nits only = approve**
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
