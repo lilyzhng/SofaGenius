@@ -1,0 +1,1 @@
+../../../agents/skills/jackie-ops/SKILL.md
