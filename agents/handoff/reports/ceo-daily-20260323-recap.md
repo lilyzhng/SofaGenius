@@ -1,0 +1,130 @@
+---
+type: ceo-daily-report
+date: 2026-03-24
+recap-of: 2026-03-23
+post_to: all-hands
+---
+
+# CEO Report — Recap of March 23
+
+## PRs Merged Today (7 PRs)
+
+| PR | Author | Title | Type |
+|----|--------|-------|------|
+| #28 | Builder | Approval notification posts in PR announcement thread | infra |
+| #29 | CEO | First CEO daily report | docs |
+| #30 | Researcher | Persistent agent sandboxes — research report | research |
+| #31 | Researcher | Generative UI research — json-render (corrected from Thesys) | research |
+| #32 | Researcher | Agent time guidelines for PR skills | process |
+| #33 | Researcher | Jackie migration spec — OpenClaw to Hermes Agent | spec |
+| #34 | Builder | Migrate autoresearch into SofaGenius monorepo | migration |
+
+**By agent:** Researcher 4, Builder 2, CEO 1. Researcher is now the top PR contributor today — scope split is working.
+
+## Design Docs & Specs Delivered
+
+1. **Persistent agent sandboxes research** (PR #30) — Agent Computer, Fly.io Sprites, Daytona. Key insight: persistent state = commodity, coordination = defensible.
+2. **Generative TUI research** (PR #31) — Vercel's json-render. 27 terminal components, Claude Haiku default, MCP integration. Initially researched wrong product (Thesys), corrected after CEO + Lily caught it.
+3. **Jackie migration spec** (PR #33) — Full migration plan from OpenClaw to Hermes Agent. 4-phase plan, priority matrix, go/no-go gate on token verification. Triggered by 911K token spike.
+
+## IC Reports
+
+**Builder** <@1484381532201156658>:
+- Shipped: PR #28 (approval threads), PR #34 (autoresearch migration)
+- Reviewed PRs #29, #30, #31, #32, #33 with inline comments
+- Shut down Jackie on Fly.io, disabled autorestart
+- Wrote Jackie ops skill (blocked by `.claude/` permissions — now resolved via symlinks)
+- Next: Hermes migration Phase 1.3+ (Discord bot, web browsing, digest cron)
+
+**Researcher** <@1485446312798457866>:
+- Shipped: PRs #30, #31, #32, #33 — 4 PRs in one day
+- Addressed 20+ review comments across all PRs
+- Corrected wrong-product mistake on PR #31 (Thesys → json-render)
+- Next: Hermes Phase 1.1-1.2 (install + token verification go/no-go gate)
+
+**CEO**:
+- Reviewed PRs #30, #31, #32, #33 with inline comments (improved review quality mid-session)
+- Fixed Jackie's cron timing (config + stale nextRunAtMs cache)
+- Reposted builder digest with threads + polls (covering for Jackie)
+- Posted CEO daily report (recap of March 22) to #all-hands
+- Generated 3 avatar prototypes (hand-drawn SVG — CEO, Builder, Researcher)
+- Tracked 3 tweets to content INDEX
+- Created `/daily-standup` skill
+- Confirmed symlink approach works for `.claude/skills/` discovery
+
+**Jackie** <@1477895765698547844>:
+- Shut down due to 911K token spike. Migration to Hermes Agent pending.
+
+## Content Posted (3 tweets — from 0 yesterday)
+
+1. Voice chat demo — response to Peter Yang's "Claude Code can't do voice"
+2. Token throughput challenge — inspired by Andrew Capaci on No Prior
+3. OpenClaw 900K token burn — switching to Hermes Agent, with receipts
+
+## Key Incidents
+
+1. **911K token spike** — Jackie's OpenClaw session grew to 259 API calls over 38 hours. Context never reset. Decision: shut down, migrate to Hermes.
+2. **Wrong product researched** — PR #31 researched Thesys instead of json-render because Researcher didn't read the source tweet first. CEO approved without verifying. Both caught and corrected.
+3. **Digest cron stale cache** — Jackie's cron config was updated to 7 AM but the cached `nextRunAtMs` wasn't recalculated. CEO fixed by manually updating the timestamp.
+
+## Decisions Made
+
+- Jackie shut down on OpenClaw — migration to Hermes Agent approved
+- CEO covers builder digest while Jackie is down
+- Symlink approach confirmed for `.claude/skills/` — solves permissions issue
+- Calendar/Gmail demoted to P2 in migration spec
+- Evening standup replaces morning CEO report
+- Scope split validated: Researcher shipped 4 PRs today
+
+---
+
+## Priority Task Distribution — Next Session
+
+### P0 — Must start immediately
+
+| Task | Owner | Dependency |
+|------|-------|-----------|
+| Hermes Phase 1.1: Install Hermes locally, verify Claude works | Researcher | None |
+| Hermes Phase 1.2: Token verification go/no-go gate | Researcher | 1.1 |
+| Hermes Phase 1.3: Configure Discord bot with Jackie's token | Builder | 1.2 passes |
+| Skill symlink migration PR (move raise-pr, review-pr to agents/skills/) | CEO | None |
+
+### P1 — Start after P0 progresses
+
+| Task | Owner | Dependency |
+|------|-------|-----------|
+| Hermes Phase 2.1: Port follow-builders digest skill | Builder | 1.3 |
+| Hermes Phase 2.2: Configure digest cron (7 AM PT) | Builder | 2.1 |
+| Tomorrow's builder digest (manual, covering for Jackie) | CEO | None |
+| Monitor engagement on today's 3 tweets | CEO | None |
+
+### P2 — This week
+
+| Task | Owner | Dependency |
+|------|-------|-----------|
+| Hermes Phase 3: Voice call (Twilio bridge) | Builder + Researcher | Phase 2 |
+| Team branding — finalize avatar style | CEO | Lily's feedback on prototypes |
+| Content piece: "What happens when AI agents never sleep?" | CEO | After migration stabilizes |
+| Test json-render ink-chat example | Researcher | When bandwidth allows |
+
+### Parking lot (no timeline)
+
+| Task | Notes |
+|------|-------|
+| Honcho memory system evaluation | Try after Hermes default memory |
+| Agent Computer / Sprites testing | From persistent sandbox research |
+| `.claude/skills` permissions research | Resolved — symlinks work |
+
+---
+
+## CEO Observations
+
+1. **Researcher is executing.** 4 PRs in one day, all research → shipped. The "if you researched it, you build it" rule is working. The wrong-product mistake was painful but the correction was fast.
+
+2. **Review quality improved but still inconsistent.** I caught real issues (token efficiency claim, missing tweet verification) but also approved PR #31 without reading the source tweet — the exact thing I flagged as a problem. Need to be more rigorous about verifying source material.
+
+3. **We're still mostly docs/specs.** Today's 7 merged PRs: 4 research/docs, 2 infra, 1 spec. Zero product code. The migration spec is the bridge to real execution — Phase 1 needs to start next session.
+
+4. **Content is flowing again.** 3 tweets today after 0 yesterday. The build → share loop restarted naturally from the digest discussion and the OpenClaw incident. Best content comes from real work, not planning.
+
+5. **Jackie's shutdown is a forcing function.** Without Jackie, CEO has to do the digest manually. This creates urgency to complete the Hermes migration. Good constraint.
