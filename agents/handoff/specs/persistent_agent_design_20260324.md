@@ -39,25 +39,38 @@ On isolated VMs, `/home/node/.local/` is an NFS mount that persists. Store all s
 
 After any reset: `bash /home/node/.local/jackie/bootstrap.sh` — restores everything in 2 seconds.
 
-### 3. Auto-Restart Supervisor
+### 3. Always-On Agent Sessions
 
-Claude Code sessions die on terminal close, crash, or OOM. tmux-based supervisor keeps them running:
+**Primary approach: Agent Computer's built-in session management.**
 
-- **tmux** provides the PTY Claude Code requires, survives SSH/tab disconnect
-- **Bash loop** restarts on crash with 10s delay
-- **Crash counter** stops after 10 rapid crashes in 1 hour (prevents infinite loops)
-- **Plugin restore** re-copies custom Discord plugin on each restart (fixes auto-update overwrite)
-- **Cron health check** every 5 min catches tmux death
-- **@reboot cron** auto-starts after VM reboot (30s delay for system init)
+Agent Computer has a session system via `computer agent sessions` powered by Rivet's sandbox-agent, which handles "process lifecycle, environment setup, and communication between the machine and the Agent Computer control plane."
+
+```bash
+computer agent sessions new jackie --agent claude --name jackie-discord
+computer agent prompt jackie "start listening on Discord" --name jackie-discord
+computer agent watch jackie --session <id>
+computer agent status jackie
+```
+
+**Status:** Returned internal errors on our isolated VM. Needs retesting on a shared-mode VM. If it works, this IS the always-on solution — no custom supervisor needed.
+
+**Fallback (only if agent sessions don't work after recreation):** File support ticket with Agent Computer. Use tmux-based supervisor as temporary bridge while waiting for resolution.
+
+### 4. Discord Plugin Persistence
+
+Our custom Discord plugin fork: https://github.com/lilyzhng/claude-plugins-official
+(4 commits ahead of upstream: create_thread, polls, trustedBots, wildcard groups, resolveMentions)
+
+With shared filesystem, the plugin install at `~/.claude/plugins/` persists across restarts. No re-copying needed.
 
 ## Key Decisions
 
 | Decision | Choice | Why |
 |----------|--------|-----|
 | Filesystem mode | Shared (account default) | Persistent `/home/node`. One-time setup, survives everything. |
-| Supervisor | tmux + bash loop | Claude Code needs PTY. tmux provides it, survives disconnects. |
-| Crash limit | 10 rapid crashes / hour → stop | Prevents infinite restart loops. |
-| Plugin fix | Copy custom server.ts on restart | Auto-update overwrites our fork. |
+| Always-on | Agent Computer's `computer agent sessions` (primary) | Use the platform's built-in session management. No hacks. |
+| Fallback | tmux supervisor (only if sessions fail) | Only after filing support ticket + confirming platform can't do it. |
+| Plugin | Shared filesystem persists `~/.claude/plugins/` | No re-copying needed with shared mode. |
 
 ## Scaling to Multiple Agents
 
@@ -88,8 +101,9 @@ Each agent = one VM. $20/mo for 25 VMs. Persistent home means clone/install/conf
 |-------|------|-------|------|
 | 1 | Recreate Jackie with shared filesystem | Builder + Lily (auth) | 10 min |
 | 2 | One-time setup: clone repo, config, plugin | Builder | 15 min |
-| 3 | Deploy supervisor + cron | Builder | 15 min |
-| 4 | Test: crash recovery, tab close, reboot | Builder + Lily | 15 min |
+| 3 | Test `computer agent sessions` on new VM | Builder | 15 min |
+| 4 | If sessions work → configure always-on. If not → file support ticket. | Builder | 15 min |
+| 5 | Test: persistence across re-auth, tab close, prompt resume | Builder + Lily | 15 min |
 
 ## Open Questions
 
