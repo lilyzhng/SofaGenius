@@ -84,6 +84,26 @@ computer claude-login --machine agent-name
 
 Each agent = one VM. $20/mo for 25 VMs. Persistent home means clone/install/configure once → persists forever.
 
+**One-time setup checklist (per agent):**
+
+1. `computer create agent-name --ssh-enabled` (shared mode inherits from account)
+2. `computer claude-login --machine agent-name` (Lily does this — browser OAuth)
+3. Clone repo: `git clone https://github.com/lilyzhng/SofaGenius.git`
+4. Set up `.env` with agent's Discord bot token + GitHub PAT
+5. Set up Discord config: `~/.claude/channels/discord/.env` + `access.json`
+6. **Install Discord plugin from inside a Claude session:**
+   ```
+   cd /home/node/SofaGenius/agents/genius-{name}
+   claude
+   # Inside Claude session:
+   /plugin install discord@claude-plugins-official
+   /exit
+   ```
+7. Copy our custom plugin fork's `server.ts` over the installed version (for create_thread, polls, etc.)
+8. Start with launch script: `bash launch.sh`
+
+Steps 1-7 are **one-time only** — everything persists on shared EFS. Step 8 is needed after each VM restart until we get Agent Computer's session management working.
+
 **Current:** 1/25 VMs (Jackie). Can add CEO, Researcher, or specialized agents.
 
 **Shared filesystem note:** All agents share `/home/node/`. Use per-agent subdirectories (`/home/node/workspace-jackie/`, `/home/node/workspace-researcher/`) for isolation.
