@@ -174,7 +174,7 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] **`discord-announcement: {MESSAGE_ID}` comment posted on the PR**
 - [ ] All bot review comments replied to inline
 - [ ] All human review comments replied to inline
-- [ ] After approval: merged, thread confirmation posted, 💜 reacted
+- [ ] After approval: merged, confirmation posted in thread, 💜 reacted **on the original announcement message** (the thread parent in #feature-release, NOT on Jackie's notification)
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
 - [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
 
