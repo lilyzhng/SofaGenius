@@ -57,7 +57,7 @@ Beyond LinkedIn, Lily spends time reading and responding to routine emails that 
 
 **Why email doesn't work:** LinkedIn sends notifications from `messages-noreply@linkedin.com`. Replying to the email goes nowhere — LinkedIn intentionally blocks this to keep users on their platform. The only way to auto-reply on LinkedIn is browser automation.
 
-**Lily's decision:** Accept the ToS risk. Browser automation it is.
+**Approach:** Use Claude Desktop computer use on Agent Computer's VM (native feature, no ToS risk with Anthropic's own tool). Browser automation via third-party tools is a fallback only.
 
 **Three approaches evaluated (in priority order):**
 
@@ -130,9 +130,7 @@ Jackie's Agent Computer VM (has full desktop + VNC)
 #### LinkedIn Reply Template
 
 ```
-Thanks for reaching out! I'm most active on X/Twitter —
-DM me @lily_gpupoor for the fastest response.
-Looking forward to connecting!
+DM me @lily_gpupoor or email me lilyzhng.ai@gmail.com
 ```
 
 ### 3.2 Phase 2: Full Email Agent
@@ -345,4 +343,4 @@ Lily reacts → Jackie sends or skips.
 - [Gmail API Push Notifications](https://developers.google.com/gmail/api/guides/push)
 - [Cloud Functions + Pub/Sub](https://cloud.google.com/functions/docs/calling/pubsub)
 - [Gmail API Python Quickstart](https://developers.google.com/gmail/api/quickstart/python)
-- Jackie's original OpenClaw Gmail skill: `jackie-gmail` in `/data/vault/jackie/skills/`
+- Jackie's original OpenClaw Gmail skill: `jackie-gmail` (archived — was at `/data/vault/jackie/skills/` on Fly.io, now shut down)
