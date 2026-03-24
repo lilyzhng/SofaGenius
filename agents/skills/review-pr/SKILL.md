@@ -61,10 +61,9 @@ echo '{
 
 Each inline comment must include:
 
-1. **Severity label** (first line):
-   - **🔴 Blocking** — must fix before merge (bugs, security, broken functionality)
-   - **🟡 Should fix** — important but not a blocker (inconsistency, unclear spec, missing edge case)
-   - **🟢 Nit** — minor style/wording preference, author's call
+1. **Severity label** (first line) — only two levels:
+   - **🔴 Must fix** — must fix before merge. Anything that should change = 🔴. Bugs, security, inconsistency, unclear spec, missing edge case — all red.
+   - **🟢 Nit** — cosmetic, minor style/wording preference, author's call. Does not block approval.
 
 2. **What's the issue** — one sentence
 3. **Why it matters** — impact if not fixed
@@ -72,7 +71,7 @@ Each inline comment must include:
 
 Example:
 ```
-🟡 Should fix
+🔴 Must fix
 
 This path uses `SofaGenius/agents/` but in-repo paths should be root-relative (`agents/`).
 Following this literally would create a nested directory.
@@ -150,9 +149,9 @@ Before submitting your review, verify:
 - [ ] You read the full diff (`gh pr diff`)
 - [ ] You verified the PR description explains what changed and why
 - [ ] Every piece of feedback is an **inline comment** (not a summary blob)
-- [ ] Each comment has a **severity label** (🔴/🟡/🟢)
+- [ ] Each comment has a **severity label** (🔴 must fix / 🟢 nit)
 - [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
-- [ ] **🔴 Any 🟡 should-fix = REQUEST CHANGES** (don't approve with 🟡s noted)
-- [ ] **🟢 nits only = approve**
+- [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
+- [ ] If all comments are 🟢 nits only → **approve**
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
 - [ ] **Review summary posted in the PR's #feature-release thread** (create thread on the announcement message if none exists). NEVER post reviews in the main channel feed.

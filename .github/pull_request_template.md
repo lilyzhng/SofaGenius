@@ -32,10 +32,10 @@ Reviewers: verify these before approving.
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] I read the full diff (`gh pr diff`)
 - [ ] PR description explains what changed and why
-- [ ] Every piece of my feedback is an **inline comment** with severity label (🔴/🟡/🟢)
+- [ ] Every piece of my feedback is an **inline comment** with severity label (🔴 must fix / 🟢 nit)
 - [ ] I verified external sources myself (tweets, links, claims)
-- [ ] 🔴 **Any 🟡 should-fix → REQUEST CHANGES** (do not approve with 🟡s)
-- [ ] 🟢 Nits only → approve
+- [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
+- [ ] If all comments are 🟢 nits only → **approve**
 - [ ] Review summary posted in the PR's #feature-release **thread** (not main channel)
 
 ---
