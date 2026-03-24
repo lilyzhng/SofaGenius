@@ -19,7 +19,8 @@ Complete ALL before requesting review:
 - [ ] PR has a clear title (under 70 chars) and summary above
 - [ ] PR has a single, clear scope (not mixing unrelated changes)
 - [ ] **Announced in #feature-release** (new message, not in existing thread)
-- [ ] **All reviewers tagged** (Lily + other agents — NOT myself, NOT Jackie)
+- [ ] **Thread created on announcement** (author's responsibility — reviewers reply in existing thread)
+- [ ] **All reviewers tagged** (Lily + all agents — NOT myself)
 - [ ] **`discord-announcement: {MESSAGE_ID}` posted as PR comment**
 - [ ] If this is a research PR: I read and verified the source material (tweet, link, etc.) myself
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)

@@ -58,9 +58,15 @@ The message must include:
    - `<@1484459231624302673>` — Genius CEO
    - `<@1485446312798457866>` — Genius Researcher
    - `<@1484381532201156658>` — Genius Builder
+   - `<@1477895765698547844>` — Jackie
 
-**Never tag Jackie (`<@1477895765698547844>`)** — she is the notification bot, not a reviewer.
 **Never tag yourself as a reviewer** — you are the PR author. Skip your own ID from the list above.
+
+**IMMEDIATELY after posting the announcement, create a thread on it:**
+- Use `create_thread` on the announcement message
+- Thread name: `PR #N Review`
+- Post a brief message in the thread: "Review thread for PR #N. All discussion goes here."
+- This is YOUR responsibility as the PR author. Reviewers should never need to create threads — they just reply in the existing one.
 
 Example:
 ```
@@ -163,7 +169,8 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] Pushed with `-u` flag
 - [ ] PR created with summary + test plan
 - [ ] **Announcement posted in #feature-release** (new message, not in existing thread)
-- [ ] **All reviewers tagged** (Lily + other agents, NOT yourself, NOT Jackie)
+- [ ] **Thread created on announcement** (`create_thread` — you own this as the author)
+- [ ] **All reviewers tagged** (Lily + all agents, NOT yourself)
 - [ ] **`discord-announcement: {MESSAGE_ID}` comment posted on the PR**
 - [ ] All bot review comments replied to inline
 - [ ] All human review comments replied to inline
