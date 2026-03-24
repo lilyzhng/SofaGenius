@@ -26,6 +26,10 @@ With shared mode, everything in `/home/node/` persists: repos, `.claude/` config
 
 **Important:** "Shared storage only affects **future** machines. Existing machines keep their original mode." — Agent Computer docs. Must recreate to pick up shared mode.
 
+**Root cause of state loss (March 24):** Jackie was created with isolated mode (the account default). `computer claude-login` wiped the entire `/home/node/` overlay including SofaGenius repo, Discord plugin, config, and memories. Switching to shared mode + recreating the VM fixed this permanently.
+
+**Warning:** On isolated VMs, `computer claude-login` wipes `~/.claude/` and the entire ephemeral overlay. Never use isolated mode for agents that need persistent state.
+
 ### 2. Persistent Storage Fallback (for isolated VMs)
 
 On isolated VMs, `/home/node/.local/` is an NFS mount that persists. Store all state there:
@@ -52,16 +56,28 @@ computer agent watch jackie --session <id>
 computer agent status jackie
 ```
 
-**Status:** Returned internal errors on our isolated VM. Needs retesting on a shared-mode VM. If it works, this IS the always-on solution — no custom supervisor needed.
+**Status (March 24):**
+- ❌ Internal errors on isolated VM
+- ✅ Works on shared VM — sessions create and respond to prompts
+- ❌ Does NOT support `--channels` flag — Discord MCP tools don't load in agent sessions
+- ⏳ Emailed Agent Computer support asking how to run `claude --channels` as a persistent session
 
-**Fallback (only if agent sessions don't work after recreation):** File support ticket with Agent Computer. Use tmux-based supervisor as temporary bridge while waiting for resolution.
+**Current workaround:** Start Jackie from web terminal with `bash launch.sh`. The process runs as long as the terminal session is active. Persistence (state/config) is solved via shared EFS; always-on (process lifecycle) is pending Agent Computer's response.
+
+**Startup lag:** Discord plugin takes 30-60 seconds to connect to Discord's gateway after launch. Not a bug — it's the WebSocket connection + guild cache warmup.
 
 ### 4. Discord Plugin Persistence
 
 Our custom Discord plugin fork: https://github.com/lilyzhng/claude-plugins-official
-(4 commits ahead of upstream: create_thread, polls, trustedBots, wildcard groups, resolveMentions)
+(4 commits ahead of Anthropic upstream: create_thread, polls, trustedBots, wildcard groups, resolveMentions)
 
-With shared filesystem, the plugin install at `~/.claude/plugins/` persists across restarts. No re-copying needed.
+**With shared filesystem:**
+- Plugin install at `~/.claude/plugins/` persists across restarts
+- Plugin cache at `~/.claude/plugins/cache/` persists (no re-download)
+- Discord config at `~/.claude/channels/discord/` persists (token + access.json)
+- Custom `server.ts` persists (our fork features survive)
+
+**Plugin auto-update risk:** Claude Code may auto-update the plugin on restart, overwriting our custom `server.ts`. Mitigation: keep a backup at `agents/genius-{name}/server.ts.custom` and re-copy if the plugin version changes. Long-term fix: get our fork features merged upstream.
 
 ## Key Decisions
 
