@@ -132,3 +132,26 @@ Every reviewer — regardless of role — should check for:
 - **Process** — correct identity, scope, and claims
 
 You may also bring domain expertise (e.g. CEO on strategy, Researcher on data pipelines), but the fundamentals above are everyone's responsibility.
+
+## Pre-Review Gate
+
+**Only review PRs that are announced in #feature-release (`1484388088087052478`).** If someone shares a PR link in a random channel (e.g. #all-hands, #my-tribe, DMs), do NOT start reviewing it there. Instead reply: "Please announce this in #feature-release first using the `/raise-pr` workflow."
+
+This ensures:
+- All PRs go through the proper announcement flow
+- The `discord-announcement` comment gets posted
+- Reviews happen in the right thread
+
+## Review Completion Checklist
+
+Before submitting your review, verify:
+
+- [ ] PR was announced in #feature-release (not a random channel)
+- [ ] You read the full diff (`gh pr diff`)
+- [ ] You verified the PR description explains what changed and why
+- [ ] Every piece of feedback is an **inline comment** (not a summary blob)
+- [ ] Each comment has a **severity label** (🔴/🟡/🟢)
+- [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
+- [ ] **Any 🟡 should-fix = request changes** (don't approve with 🟡s noted)
+- [ ] **🟢 nits only = approve**
+- [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
