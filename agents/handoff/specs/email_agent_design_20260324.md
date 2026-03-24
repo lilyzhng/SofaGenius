@@ -53,20 +53,27 @@ Beyond LinkedIn, Lily spends time reading and responding to routine emails that 
 
 ## 3. System Architecture
 
-### 3.1 Phase 1: LinkedIn Auto-Reply (event-driven)
+### 3.1 Phase 1: LinkedIn Auto-Reply
 
+**IMPORTANT: Replying to LinkedIn notification emails does NOT work.** LinkedIn sends from `messages-noreply@linkedin.com` — any reply goes to a noreply address, not to the person who messaged. LinkedIn notifications also don't include the sender's email address.
+
+**Revised Phase 1 approach — Apps Script (simple, proven):**
 ```
 LinkedIn user sends message
   → LinkedIn sends email notification to Lily's Gmail
-  → Gmail watch() pushes event to Google Pub/Sub
-  → Cloud Function triggers
-  → Reads email, confirms it's a LinkedIn notification
-  → Sends template reply via Gmail API
-  → Labels email as "LinkedIn Auto-Reply"
-  → (Optional) Notifies Jackie on Discord for logging
+  → Apps Script (15-min timer) detects new LinkedIn notification
+  → Labels email as "LinkedIn Message"
+  → (Cannot auto-reply to sender — LinkedIn blocks this)
 ```
 
-**No AI involved in Phase 1.** It's a deterministic template reply triggered by email pattern matching.
+**What Phase 1 actually delivers:**
+- Automatic labeling and archiving of LinkedIn notifications (inbox stays clean)
+- Jackie gets notified on Discord: "New LinkedIn message from [name] about [topic]"
+- Lily can batch-respond weekly via LinkedIn directly, or ignore
+
+**The honest answer:** There is no way to auto-reply to LinkedIn messages without LinkedIn Premium or browser automation (which violates ToS). Phase 1 is inbox management, not auto-reply.
+
+**Phase 2 (general email agent) is where the real value is** — it handles real emails from real senders where reply-to actually works.
 
 ### 3.2 Phase 2: Full Email Agent
 
