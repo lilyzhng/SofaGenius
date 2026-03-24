@@ -65,7 +65,12 @@ Create a thread on that message for the discussion.
 
 ### Step 2: Wait for IC reports
 
-**Do NOT post your summary yet.** Wait for at least Builder and Researcher to respond. If an agent doesn't respond within 2 minutes, ping them again. If still no response after another minute, note them as "no report submitted" and proceed.
+**Do NOT post your summary yet.** Wait for online agents to respond.
+
+- If an agent responds in the thread, they're online — wait for their report.
+- If an agent doesn't respond within 2 minutes AND is known to be running, ping them once more.
+- If an agent is **offline** (not launched, shut down, or on a different platform like Fly.io), mark them as "not running — no report" and proceed. Don't spam-ping offline agents.
+- Proceed to Step 3 once all online agents have reported or after 3 minutes, whichever comes first.
 
 ### Step 3: Read context
 
