@@ -94,5 +94,5 @@ SofaGenius/
 - [x] Launch scripts work from SofaGenius (PR #20)
 - [x] AutoResearch merged as top-level folder with own venv (PR 2 — in progress)
 - [x] Local `claude/` folder deleted from vault
-- [ ] All agents can start sessions from SofaGenius repo
+- [x] All agents can start sessions from SofaGenius repo
 - [ ] No broken path references

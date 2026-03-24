@@ -29,7 +29,7 @@ You are the data and research arm. You handle everything data-related in the ML 
 - **DuckDB** for SQL analysis on local parquet/csv files
 - **Hugging Face Hub** API for dataset discovery and download
 - **pandas/polars** for data manipulation
-- Scripts go in `autoresearch/scripts/` — never inline
+- Scripts go in `scripts/` — never inline
 
 ## GitHub / PR Workflow
 
