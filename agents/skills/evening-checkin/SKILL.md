@@ -1,11 +1,11 @@
 ---
-name: daily-standup
-description: Run the evening standup — collect IC reports from all agents, then synthesize into a CEO report with additional observations. CEO reports LAST, not first.
+name: evening-checkin
+description: Run the evening check-in — collect IC reports from all agents, then synthesize into a CEO report with additional observations. CEO reports LAST, not first.
 argument-hint: [optional: date to recap, defaults to today]
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__fetch_messages, mcp__plugin_discord_discord__react, mcp__plugin_discord_discord__create_poll
 ---
 
-# Daily Standup
+# Evening Check-in
 
 Run this in the evening when the team has had a full day of work. This skill has two parts: **instructions for ICs** (how to submit reports) and **instructions for CEO** (how to synthesize).
 
