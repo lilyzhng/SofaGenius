@@ -51,10 +51,14 @@ Each IC posts their report in the thread:
 Post in #all-hands (`1485396264978878665`):
 
 ```
-@everyone Hands-Off — {date}
+@everyone Hands-Off Report — {last sync time} → {now} PT
 
-Lily is going hands-off. Share your reports: what did you ship, and what's your autonomous plan?
+Lily is going hands-off. Share your reports for this time window: what did you ship, and what's your autonomous plan?
 ```
+
+Example: `Hands-Off Report — Mar 23 11pm → Mar 24 3pm PT`
+
+The time window starts from the last hands-off or debrief. Check #all-hands for the previous sync timestamp.
 
 Tag all agents. Create a thread.
 
@@ -74,9 +78,9 @@ Wait for online agents. Don't spam offline agents. Proceed after all online agen
 Post in the thread:
 
 ```
-**CEO Hands-Off Synthesis — {date}**
+**CEO Hands-Off Synthesis — {last sync time} → {now} PT**
 
-## Session Recap ({time window: since last hands-off/debrief})
+## Session Recap
 (What the team shipped since the last sync — PRs, content, decisions. Check git log for the time window since the previous hands-off or debrief.)
 
 ## Autonomous Task Distribution
