@@ -60,9 +60,31 @@ computer agent status jackie
 - ❌ Internal errors on isolated VM
 - ✅ Works on shared VM — sessions create and respond to prompts
 - ❌ Does NOT support `--channels` flag — Discord MCP tools don't load in agent sessions
-- ⏳ Emailed Agent Computer support asking how to run `claude --channels` as a persistent session
+- ✅ **Agent Computer team (Hari) recommended `nohup` approach** — works with `script -qc` wrapper
 
-**Current workaround:** Start Jackie from web terminal with `bash launch.sh`. The process runs as long as the terminal session is active. Persistence (state/config) is solved via shared EFS; always-on (process lifecycle) is pending Agent Computer's response.
+### Always-On Solution: `nohup` + `script` (VALIDATED)
+
+Agent Computer's Hari recommended `nohup` for background processes. Claude Code needs a PTY, so we wrap with `script -qc`:
+
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+cd /home/node/SofaGenius/agents/genius-jackie
+set -a && source .env && set +a
+nohup script -qc "claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions" /dev/null > discord.log 2>&1 &
+```
+
+**Validated (March 24):**
+- ✅ Claude Code starts with Discord plugin connected
+- ✅ Process survives SSH disconnect
+- ✅ Process survives closing all browser tabs / web terminal
+- ✅ Jackie responds to Discord messages while running in background
+- ⏳ 16-hour persistence test in progress (started 4:15 PM PT March 24)
+
+**Why `script -qc`:** Claude Code detects non-interactive stdin and falls back to `--print` mode with `nohup` alone. `script` provides a pseudo-TTY that Claude Code accepts. The `-q` flag suppresses `script`'s own output. `-c` passes the command.
+
+**Logs:** stdout/stderr go to `discord.log` in Jackie's directory.
+
+**Health check (future):** Hourly cron to verify process is alive. Needs cron installed — no sudo on Agent Computer, asking Hari about this.
 
 **Startup lag:** Discord plugin takes 30-60 seconds to connect to Discord's gateway after launch. Not a bug — it's the WebSocket connection + guild cache warmup.
 
