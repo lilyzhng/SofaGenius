@@ -15,13 +15,38 @@ A tmux-based supervisor wrapper around Jackie's launch script. tmux provides the
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export PATH="$HOME/.bun/bin:$PATH"
+MAX_RAPID_CRASHES=10
+RAPID_WINDOW=3600  # 1 hour
+CRASH_TIMES=()
 
 while true; do
     echo "[$(date)] Starting Jackie..."
     cd "$SCRIPT_DIR" && set -a && source .env && set +a
+    START_TIME=$(date +%s)
     claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
     EXIT_CODE=$?
-    echo "[$(date)] Jackie exited with code $EXIT_CODE. Restarting in 10s..."
+    END_TIME=$(date +%s)
+    RUNTIME=$((END_TIME - START_TIME))
+    echo "[$(date)] Jackie exited with code $EXIT_CODE after ${RUNTIME}s. Restarting in 10s..."
+
+    # Track rapid crashes (ran < 60s)
+    if [ "$RUNTIME" -lt 60 ]; then
+        CRASH_TIMES+=("$END_TIME")
+        # Count crashes within the window
+        CUTOFF=$((END_TIME - RAPID_WINDOW))
+        RECENT=0
+        for t in "${CRASH_TIMES[@]}"; do
+            [ "$t" -ge "$CUTOFF" ] && RECENT=$((RECENT + 1))
+        done
+        if [ "$RECENT" -ge "$MAX_RAPID_CRASHES" ]; then
+            echo "[$(date)] FATAL: $RECENT rapid crashes in 1 hour. Stopping supervisor."
+            echo "[$(date)] Manual intervention required. Check logs."
+            exit 1
+        fi
+        echo "[$(date)] Warning: rapid crash ($RECENT/$MAX_RAPID_CRASHES in window)"
+    else
+        CRASH_TIMES=()  # Reset counter on healthy run
+    fi
 
     # Re-copy our custom plugin if it was overwritten
     PLUGIN_DIR="$HOME/.claude/plugins/cache/claude-plugins-official/discord"
@@ -57,11 +82,16 @@ echo "Logs: tmux capture-pane -t $SESSION -p"
 4. On restart, re-copies our custom Discord plugin (fixes the overwrite issue)
 5. tmux session survives terminal close, SSH disconnect, browser tab close
 
-**Cron health check** (runs every 5 min):
+**Cron health check + reboot recovery:**
 ```bash
-# Check if tmux session exists, restart if not
+# Check every 5 min if tmux session exists, restart if not
 */5 * * * * tmux has-session -t jackie 2>/dev/null || bash /home/node/SofaGenius/agents/genius-jackie/start.sh
+
+# Auto-start on VM reboot
+@reboot sleep 30 && bash /home/node/SofaGenius/agents/genius-jackie/start.sh
 ```
+
+The `@reboot` entry waits 30s for the system to fully initialize, then starts Jackie.
 
 ## Key Decisions
 
