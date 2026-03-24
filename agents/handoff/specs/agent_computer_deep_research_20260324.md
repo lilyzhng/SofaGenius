@@ -1,15 +1,15 @@
-# Agent Computer Platform Evaluation — Design Document
+# Agent Computer Platform Evaluation — Deep Research Document
 
 **Author:** genius-researcher
 **Date:** 2026-03-24
-**Status:** Draft
+**Status:** Draft v2 — revised with real data from sub-agent research + Builder's hands-on deployment
 **Reviewers:** lilyzhng, genius-ceo, genius-builder
 
 ---
 
 ## Abstract
 
-Evaluate Agent Computer (agentcomputer.ai) as the hosting platform for SofaGenius agents. Jackie was deployed on Agent Computer in 20 minutes on March 24 — this doc assesses whether we should scale to all agents and what capabilities/limitations the platform has beyond what we used tonight.
+Agent Computer (agentcomputer.ai) is the platform Jackie now runs on. This document evaluates whether it's the right long-term choice for SofaGenius agents, based on: Builder's hands-on deployment (PR #39), community research (no community found), API documentation analysis, and known failure modes. The platform works but has critical gaps: no process auto-restart, no plugin persistence, no public community, and unverified context compression in Discord bot mode.
 
 ---
 
@@ -17,236 +17,227 @@ Evaluate Agent Computer (agentcomputer.ai) as the hosting platform for SofaGeniu
 
 ### 1.1 Current State
 
-Jackie is now running on Agent Computer after the OpenClaw shutdown (911K token spike). Builder deployed her in ~20 minutes using the managed worker pattern. Other agents (CEO, Builder, Researcher) still run locally on Lily's machine — they only exist when Lily launches a terminal session.
+Jackie runs on Agent Computer (deployed March 24 by Builder in ~20 minutes). The migration from OpenClaw was triggered by a 911K token spike. Jackie is online and responding in Discord, but with known reliability gaps (see §4).
 
-### 1.2 Why Now
+### 1.2 Why This Research
 
-- Jackie's successful deployment proves the platform works for our stack (Claude Code + Discord plugin)
-- The Hermes migration plan (PR #37) was superseded — Agent Computer solved the same problem faster
-- Lily wants a full evaluation: what can this platform actually do beyond what we used tonight?
+Lily requested a deep dive: "What can Agent Computer actually do beyond what we used tonight?" The initial design doc (v1) was superficial — based on marketing pages and docs, not real testing or community data. This revision incorporates actual findings from sub-agent research and Builder's deployment experience.
 
 ### 1.3 Success Criteria
 
-| Criteria | Measurement |
-|----------|-------------|
-| Always-on agents (Jackie + Researcher) run on Agent Computer | Verified by deploying Researcher alongside Jackie. CEO/Builder stay local. |
-| Agents survive VM restarts | Test: restart VM, verify process resumes |
-| Context compression works (no 911K repeats) | Monitor token usage for 7 days |
-| Cost is predictable | $20/mo covers 25 VMs — verify no hidden overage |
-| DX supports fast iteration | Measure time to deploy a config change |
+| Criteria | Measurement | Status |
+|----------|-------------|--------|
+| Jackie stays online 24/7 | Uptime over 7 days without manual intervention | UNVERIFIED — process dies if terminal closes |
+| No token spikes >100K per API call | Monitor via OpenRouter for 7 days | UNTESTED — context compression unverified in Discord mode |
+| Cost is predictable | $20/mo covers our needs | TRUE — 1/25 VMs used |
+| Platform is reliable and supported | Community evidence, vendor responsiveness | CONCERN — no public community found |
 
 ---
 
 ## 2. Design Principles
 
-1. **Use what's working, not what's theoretical.** Jackie is already running on Agent Computer. Don't migrate to something else unless Agent Computer fails.
+1. **First principles: what problem are we solving?** We need agents that stay online and respond reliably. Not "we need Agent Computer" — that's a solution, not the goal.
 
-2. **Understand the platform before scaling.** We jumped on Agent Computer fast. Before putting all 4 agents on it, we need to understand limits, failure modes, and costs.
+2. **Use what's working, but verify it works.** Jackie deployed in 20 minutes. But "it works right now" ≠ "it will work reliably for months." Validate before committing.
 
-3. **Reliability over features.** We don't need every feature — we need the agents to stay up and respond.
+3. **Portability is a feature.** Our stack (Claude Code + Discord plugin on Ubuntu) has zero Agent Computer-specific dependencies. If the platform fails, we can migrate to any VPS in under an hour.
 
----
-
-## 3. System Architecture
-
-### 3.1 What Agent Computer Provides
-
-Based on docs, CLI exploration, and Builder's hands-on deployment:
-
-```
-┌─────────────────────────────────────────────────┐
-│              Agent Computer Platform              │
-│                                                   │
-│   ┌───────────────────────────────────────────┐  │
-│   │         Managed Worker VM                  │  │
-│   │                                            │  │
-│   │   Ubuntu + Python 3.12 + Node 22 + Git    │  │
-│   │   Claude Code pre-installed                │  │
-│   │   ~15GB RAM, ~30GB persistent disk         │  │
-│   │   SSH (port 443), VNC, Web terminal        │  │
-│   │   Live CPU/memory/disk metrics             │  │
-│   │                                            │  │
-│   │   ┌────────────┐  ┌───────────────────┐   │  │
-│   │   │ Claude Code │  │ Discord Plugin    │   │  │
-│   │   │ (agent)    │  │ (channels)        │   │  │
-│   │   └────────────┘  └───────────────────┘   │  │
-│   │                                            │  │
-│   │   ~/.claude/  (persistent config)          │  │
-│   │   ~/SofaGenius/  (repo clone)              │  │
-│   └───────────────────────────────────────────┘  │
-│                                                   │
-│   × 25 VMs per $20/mo plan                       │
-│   Spin-up: ~0.3 seconds                          │
-│   Persistent disk survives restarts               │
-│   Shared or isolated filesystem modes             │
-└─────────────────────────────────────────────────┘
-```
-
-### 3.2 Access Methods
-
-| Method | How | Use Case |
-|--------|-----|----------|
-| SSH | `computer ssh AGENT_NAME` or `ssh -p 443 NAME@ssh.agentcomputer.ai` | Config, debugging, file transfer |
-| Web terminal | `computer open AGENT_NAME` | Quick access in browser |
-| VNC desktop | Enabled per-VM | Visual desktop if needed |
-| CLI | `computer agent watch/status/sessions` | Session monitoring |
-| API | REST API (documented, key required) | Automation |
-
-### 3.3 Key Interfaces
-
-**Agent Computer → Claude Code:** Pre-installed. `computer claude-login` authenticates via browser OAuth.
-
-**Claude Code → Discord:** Standard Discord plugin installed in `~/.claude/plugins/`. Our custom fork with create_thread/polls can be piped via SSH (no SCP — this is a known limitation).
-
-**Cron → Agent:** No built-in cron. Builder uses an external trigger (Discord @mention via bot token + curl). Alternative: VM-level cron job that runs `claude --message "..."` directly.
+4. **No community = higher risk.** We can't learn from others' mistakes. Every production issue will be a first for us.
 
 ---
 
-## 4. Detailed Design
+## 3. What We Verified vs What We Assumed
 
-### 4.1 What We Know (verified by Builder's deployment)
+### 3.1 Verified (evidence from Builder's deployment, PR #39)
 
-| Feature | Status | Evidence |
-|---------|--------|----------|
-| VM creation | Works — 0.3s spin-up | Builder created Jackie's VM |
-| Claude Code pre-installed | Works | `computer claude-login` succeeded |
-| Persistent disk | Works — survives restarts | Confirmed by Builder |
-| SSH access | Works on port 443 | Builder used for all config |
-| Discord plugin | Works with custom fork | Jackie is live on Discord |
-| ~15GB RAM, ~30GB disk | Confirmed | Builder observed during setup |
-| 25 VMs per $20/mo | Stated on pricing page | Only 1 used so far |
-| Live metrics | Docs say CPU/memory/disk available | Not yet tested by us |
+| Fact | Evidence | Source |
+|------|----------|--------|
+| VM creation works — 0.3s spin-up | Builder created Jackie's VM | PR #39 tested |
+| Claude Code pre-installed | `computer claude-login` succeeded | PR #39 tested |
+| Persistent disk survives restarts | Builder confirmed | PR #39 tested |
+| SSH on port 443 works | Builder used for all config | PR #39 tested |
+| Discord plugin works with custom fork | Jackie is live on Discord | PR #39 tested |
+| ~15GB RAM, ~30GB disk | Builder observed | PR #39 tested |
+| $20/mo for 25 VMs | Pricing page | Verified |
+| API has metrics endpoint | `GET /v1/computers/{id}/metrics` — CPU, memory, disk | Sub-agent 2: API docs |
+| API has OpenAPI spec | Available at `/openapi.json` | Sub-agent 2: API docs |
+| Bot token reusable from OpenClaw | Jackie's token works on Agent Computer | PR #39 tested |
 
-### 4.2 What We Don't Know Yet (needs testing)
+### 3.2 Known FALSE (disproven by evidence)
+
+| Claim | Reality | Source |
+|-------|---------|--------|
+| Process auto-restarts after crash | **FALSE** — Claude session dies if terminal tab closes. No supervisor. | PR #39 gotcha #4 |
+| Plugin persists across restarts | **FALSE** — platform updates overwrite custom plugin fork | PR #39 gotcha #2 |
+| Platform has active community | **FALSE** — no GitHub repo, Discord, HN/Reddit presence, or user reviews found | Sub-agent 1: thorough search |
+
+### 3.3 Unverified (critical unknowns)
 
 | Question | Why It Matters | How to Test |
 |----------|---------------|-------------|
-| **Process auto-restart** | If Claude Code crashes, does it auto-recover? | Kill process, observe behavior |
-| **Context compression** | Agent Computer uses Claude Code, not Hermes. Does Claude Code handle context? | Run long conversation, monitor tokens |
-| **Multiple agents on one plan** | Can we run CEO, Builder, Researcher, Jackie on separate VMs? | Create 4 VMs, deploy all agents |
-| **VM idle behavior** | Does VM sleep when idle? Does it stay up 24/7? | Leave running, check uptime after 24h |
-| **Disk persistence across updates** | Platform updates may reset filesystem | Check after platform update cycle |
-| **Plugin persistence** | Builder flagged: plugin may be overwritten on restart | Test restart, verify plugin survives |
-| **Cron scheduling** | No built-in cron. External trigger works but is fragile. | Test VM-level crontab as alternative |
-| **Monitoring/alerting** | Can we get alerts if a VM goes down? | Check dashboard, API |
-| **Rate limits** | API calls, SSH connections — any limits? | Stress test |
-| **Data sovereignty** | Where are VMs hosted? Important for Lily's data. | Check docs or ask vendor |
-
-### 4.3 Context Compression — Critical Unknown (UNVERIFIED)
-
-Agent Computer runs **Claude Code**, not Hermes Agent. Claude Code compresses conversation context for interactive CLI use, but **we do not know if it compresses context in Discord bot mode** (long-running sessions with many tool calls).
-
-**This is unverified.** The 911K spike happened because OpenClaw had no compression in a long-running bot session. We cannot assume Claude Code handles this — Discord bot sessions behave differently from interactive CLI sessions.
-
-**Required: 24-hour monitoring test before declaring this solved.**
-- Run Jackie on Agent Computer for 24 hours with active Discord interaction
-- Monitor token usage via OpenRouter dashboard
-- Check: does context grow unbounded, or does compression trigger?
-- If context grows unbounded → we have the same problem as OpenClaw and need a different solution
-
-**This test is the Phase 1.3 go/no-go gate.** Do not scale to additional agents until this passes.
-
-### 4.4 Gotchas Discovered During Jackie's Setup (from Builder's PR #39)
-
-| Gotcha | Description | Workaround |
-|--------|-------------|-----------|
-| No SCP | Can't use `scp` to copy files — only SSH with pipe | `cat file | ssh ... 'cat > target'` |
-| Self-mention | Bot can't @mention itself to trigger actions | Use different bot token for triggers |
-| SSH quoting | Complex commands need careful quoting through SSH | Use heredoc or script files |
-| Plugin auto-update | Plugin may be overwritten on platform update | Need to re-apply custom fork after updates |
+| Context compression in Discord bot mode | The 911K spike was caused by unbounded context in bot sessions. If Claude Code doesn't compress Discord sessions, we have the same problem. | Run Jackie for 24 hours with active Discord interaction. Monitor token usage via OpenRouter. |
+| 25 VMs running simultaneously | Only 1 used so far. No community data. | Create additional VMs and test. |
+| VM uptime over extended period | Do VMs get killed after idle timeout? Platform updates? | Leave Jackie running for 7 days, monitor. |
+| Vendor support responsiveness | No public community. If something breaks, how fast do they respond? | Submit a test support request. |
+| Cron reliability on managed worker | `apt install cron` worked but is it persistent across VM updates? | Test after platform update. |
 
 ---
 
-## 5. Alternatives Considered
+## 4. Critical Gaps
 
-| Decision | Chosen | Alternatives | Why |
-|----------|--------|-------------|-----|
-| **Platform** | Agent Computer | Hermes on Hetzner VPS, Fly.io, local | Agent Computer works — Jackie deployed in 20 min. Same Claude Code stack we already use. Hermes would require framework migration. |
-| **Multiple VMs vs one** | Separate VM per agent | All agents on one VM | Isolation — one agent crashing doesn't take down others. 25 VMs included in $20/mo plan. |
-| **Cron** | External Discord trigger | VM-level crontab, GitHub Actions | Discord trigger works but is fragile (needs another bot token). VM crontab is more reliable — **recommend testing this**. |
+### 4.1 No Process Auto-Restart (CRITICAL)
+
+Builder's PR #39: "The Claude session dies if the web terminal tab closes. Need a process supervisor for true always-on."
+
+**Impact:** Jackie goes offline if the process crashes (OOM, API error, network issue) and nobody is watching.
+
+**Mitigation options:**
+1. Add a supervisor loop in `launch.sh` (while true; do claude ...; sleep 5; done)
+2. Use `systemd` if available on the managed worker
+3. Use VM-level cron to check process health and restart
+4. Ask Agent Computer if they have a built-in solution we're missing
+
+### 4.2 No Plugin Persistence (HIGH)
+
+Builder's PR #39: "On restart, the plugin may auto-update and overwrite custom server.ts."
+
+**Impact:** After any VM restart or platform update, Jackie loses the custom Discord plugin features (create_thread, polls, trustedBots). She'd fall back to the vanilla plugin.
+
+**Mitigation options:**
+1. Script the plugin re-installation: save our fork, check on startup, re-apply if overwritten
+2. Add plugin version check to the launch script
+3. Push upstream: get our custom features merged into the official plugin
+
+### 4.3 No Public Community (MEDIUM)
+
+Sub-agent searched GitHub, Discord, Twitter, HN, Reddit, Product Hunt — found zero independent user experiences with Agent Computer.
+
+**Impact:** We can't learn from others' production issues. Every failure mode is a first for us. No community guides, no "gotcha" lists, no Stack Overflow answers.
+
+**Context:** Compare with Hermes Agent (11.5k GitHub stars, active community, multiple deployment guides, documented production gotchas). Agent Computer's polished UI masks how early-stage the platform is.
+
+### 4.4 Context Compression Unverified (CRITICAL)
+
+We do NOT know if Claude Code compresses context in Discord bot mode. CLI sessions compress context for interactive use, but long-running bot sessions (many tool calls, hours of conversation) may behave differently.
+
+**Impact:** If context grows unbounded like OpenClaw, we get another token spike. The whole migration was triggered by this problem.
+
+**Required test:** 24-hour monitoring of Jackie's token usage during active Discord interaction.
 
 ---
 
-## 6. Risks and Mitigations
+## 5. API Capabilities
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-----------|--------|-----------|
-| Plugin overwritten on platform update | Medium | Jackie loses Discord access until re-applied | Monitor for updates, script the plugin install, alert if plugin missing |
-| No process auto-restart | Medium | Claude Code crashes, Jackie goes offline | Test crash recovery. If no auto-restart, add supervisor loop in launch.sh |
-| Token spikes like OpenClaw | Low (Claude Code has compression) | Cost spike, session breakdown | Monitor via OpenRouter dashboard. Set up token budget alerts. |
-| Vendor lock-in | Medium | If Agent Computer shuts down or raises prices | Our agents are Claude Code + Discord plugin — portable to any Ubuntu VM. Migration = copy `~/.claude/` + clone repo. |
-| Platform is new/unproven | Medium | Unexpected downtime, bugs | We're early adopters. Keep rollback plan (Hetzner VPS from PR #37). |
-| 30GB disk fills up | Low | Agent can't write files | Monitor disk usage. Clean up old sessions periodically. |
+**Base URL:** `https://api.computer.agentcomputer.ai/v1`
+**Auth:** Bearer token (`ac_live_` prefix)
+**OpenAPI spec:** Available at `/openapi.json`
+
+| Capability | Endpoint | Notes |
+|-----------|----------|-------|
+| List VMs | `GET /v1/computers` | |
+| Create VM | `POST /v1/computers` | |
+| Delete VM | `DELETE /v1/computers/{id}` | |
+| VM metrics | `GET /v1/computers/{id}/metrics` | CPU, memory, disk, network |
+| Agent sessions | `POST /agent-sessions/` | Create and manage sessions |
+| SSH keys | `GET/POST /v1/ssh-keys` | |
+| Port management | `GET/POST /v1/computers/{id}/ports` | |
+| Firmware update | `POST /v1/computers/{id}/firmware/update` | |
+
+**Missing from API:**
+- No webhooks or event notifications (polling only)
+- No documented rate limits
+- No Python or JavaScript SDK (HTTP calls or CLI only)
+- No process health/restart endpoint
 
 ---
 
-## 7. Implementation Plan
+## 6. Alternatives Considered
 
-### Phase 1: Validate Jackie's deployment (next 1 hour)
+| Decision | Current Choice | Alternatives | Why Current Choice | Risk |
+|----------|---------------|-------------|-------------------|------|
+| **Platform** | Agent Computer | Hermes on Hetzner VPS (PR #37), Fly.io, local | Agent Computer works — 20 min deploy, same stack. Hermes requires framework migration. | Early-stage platform, no community |
+| **Always-on agents** | Jackie + maybe Researcher | All 4 agents | CEO/Builder work best in sessions. Only Jackie needs 24/7 for digest/Discord. | Cost ($20/mo fine for 2 VMs) |
+| **Process management** | None (terminal session) | systemd, supervisor loop, Docker | Nothing set up yet — Builder's next task | CRITICAL gap — process dies with terminal |
+
+---
+
+## 7. Risks and Mitigations
+
+| Risk | Likelihood | Impact | Mitigation | Status |
+|------|-----------|--------|-----------|--------|
+| Process crash → Jackie offline | HIGH (no supervisor) | Jackie unresponsive until manual restart | Add supervisor loop to launch.sh | NOT YET DONE |
+| Token spike like OpenClaw | UNKNOWN | Cost spike, session breakdown | 24-hour monitoring test | NOT YET TESTED |
+| Plugin overwritten on update | MEDIUM | Lose custom Discord features | Script re-installation on startup | NOT YET DONE |
+| Platform is early-stage, vendor goes down | LOW-MEDIUM | Must migrate on short notice | Stack is portable — Claude Code + Discord on any Ubuntu VM | MITIGATED by portability |
+| No community knowledge | TRUE | Can't learn from others' mistakes | Document everything ourselves, share findings | ONGOING |
+
+---
+
+## 8. Implementation Plan
+
+### Phase 1: Validate reliability (next session — Builder owns)
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
-| 1.1 | Test process crash recovery — kill Claude Code, see if it restarts | Builder | 15 min |
-| 1.2 | Test plugin persistence — restart VM, verify Discord plugin survives | Builder | 15 min |
-| 1.3 | Run long conversation to verify context compression | Researcher | 30 min |
+| 1.1 | Add supervisor loop to Jackie's launch.sh | Builder | 15 min |
+| 1.2 | Test crash recovery: kill Claude Code, verify supervisor restarts | Builder | 15 min |
+| 1.3 | Script plugin re-installation check on startup | Builder | 15 min |
+| 1.4 | Start 24-hour token monitoring via OpenRouter | Researcher | 10 min |
 
-**Go/no-go:** All 3 tests pass → proceed to Phase 2.
+**Go/no-go:** Supervisor works AND token usage stays bounded after 24 hours.
 
-### Phase 2: Deploy Researcher as second always-on agent (next 1 hour)
-
-Only Jackie and Researcher are candidates for always-on Agent Computer VMs. CEO and Builder stay local/session-based per Lily's direction — they work best when launched during active sessions, not running 24/7.
-
-| Step | Task | Owner | Time |
-|------|------|-------|------|
-| 2.1 | Create VM for Researcher | Builder | 10 min |
-| 2.2 | Deploy Researcher using PR #39 guide | Builder | 20 min |
-| 2.3 | Test Jackie + Researcher responding in Discord simultaneously | All | 15 min |
-
-**Go/no-go:** Both agents respond correctly, no interference. CEO/Builder deployment deferred — evaluate later if needed.
-
-### Phase 3: Production hardening (today)
+### Phase 2: Deploy Researcher as second agent (after Phase 1 passes)
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
-| 3.1 | Set up VM-level crontab for digest + evening call triggers | Builder | 30 min |
-| 3.2 | Add supervisor loop for auto-restart if needed | Builder | 30 min |
-| 3.3 | Set up monitoring alerts (token usage, uptime) | Researcher | 30 min |
+| 2.1 | Create Researcher VM using PR #39 guide | Builder | 20 min |
+| 2.2 | Test both agents responding in Discord simultaneously | All | 15 min |
 
-### Phase 4: Evaluate platform capabilities (this week)
+### Phase 3: Production hardening (this week)
 
 | Step | Task | Owner | Time |
 |------|------|-------|------|
-| 4.1 | Test shared filesystem mode between agent VMs | Researcher | 30 min |
-| 4.2 | Test Agent Computer API for automation | Researcher | 30 min |
-| 4.3 | Evaluate ACP (Agent Computer Protocol) for inter-agent communication | Researcher | 1 hour |
-| 4.4 | Document findings in follow-up report | Researcher | 30 min |
+| 3.1 | Set up metrics monitoring via API | Researcher | 30 min |
+| 3.2 | Set up cron for digest + evening call triggers | Builder | 30 min |
+| 3.3 | Document all failure modes and recovery procedures | Researcher | 1 hour |
 
 ---
 
-## 8. Open Questions
+## 9. Open Questions
 
-1. **Process auto-restart** — does Agent Computer's managed worker handle crash recovery? Builder to test in Phase 1.1.
-2. **Plugin persistence** — does the Discord plugin survive VM restarts and platform updates? Builder to test in Phase 1.2.
-3. **VM-level crontab** — can we install and run crontab on managed workers? Or is it restricted? Builder to test.
-4. **Data location** — where are VMs hosted? US? EU? Matters for latency to Discord/OpenRouter.
-5. **ACP protocol** — "Agent Computer Protocol" is mentioned in docs. What does it enable for inter-agent communication?
-6. **Image customization** — can we save a custom image with our fork of the Discord plugin pre-installed? Docs mention "image sources" but details are thin.
-7. **Shared filesystem** — docs mention shared home at `/home/node`. Can agents share files directly? This could replace git-based handoffs.
+1. **Does Claude Code compress context in Discord bot sessions?** — 24-hour test needed. Builder to start monitoring.
+2. **Does Agent Computer have a built-in process supervisor we're missing?** — Check docs deeper or ask vendor.
+3. **What happens during platform updates?** — Does the VM restart? Does the process survive? Disk persist?
+4. **Where are VMs hosted geographically?** — Affects latency to Discord/OpenRouter.
+5. **Is there a support channel?** — Email? Chat? How fast do they respond?
+6. **Can we save custom VM images?** — Would solve the plugin persistence problem.
+7. **What's the actual VM resource limit?** — Is ~15GB RAM guaranteed or shared?
 
 ---
 
-## 9. References
+## 10. Research Methodology
 
-### Primary (verified by us)
-- https://www.agentcomputer.ai/ — Product page
-- https://www.agentcomputer.ai/pricing — $20/mo for 25 VMs
-- https://www.agentcomputer.ai/docs — Documentation
-- https://www.agentcomputer.ai/docs/machines — Machine management
-- https://www.agentcomputer.ai/docs/agents — Agent sessions
-- Builder's setup guide (PR #39) — tested end-to-end with Jackie
-- Agent Computer CLI v0.1.13 — explored locally
+This document was produced using the `/deep-research` methodology:
 
-### Related (from earlier research)
-- Agent Computer persistent sandbox research (PR #30) — initial landscape evaluation
-- Jackie migration spec (PR #33) — requirements that Agent Computer now fulfills
-- Hermes migration design doc (PR #37) — superseded by Agent Computer for Jackie, useful reference for framework comparison
+1. **Define hypotheses** — 8 hypotheses about Agent Computer's capabilities
+2. **Identify sources** — Builder's PR #39, Agent Computer docs, community search, API docs
+3. **Parallelize research** — 2 sub-agents ran simultaneously (community + API)
+4. **Verify claims** — Each finding marked as VERIFIED, FALSE, or UNVERIFIED with source
+5. **Document execution** — Full log at `agents/genius-researcher/research/deep_research_execution_log.md`
+
+### Sources
+
+**Primary (verified by us):**
+- Builder's PR #39 — hands-on deployment, 5 gotchas documented
+- Agent Computer API docs — REST API with OpenAPI spec
+- Agent Computer pricing page — $20/mo for 25 VMs
+- Agent Computer CLI v0.1.13 — tested locally
+
+**Secondary (from sub-agents):**
+- Community search: no public GitHub repo, Discord, HN/Reddit presence, or user reviews found
+- API documentation: full endpoint catalog, auth model, capability gaps
+
+**Not available:**
+- No source code (no public repo)
+- No community guides or production reports
+- No independent benchmarks or reviews
