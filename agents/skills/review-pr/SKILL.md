@@ -147,7 +147,7 @@ Before submitting your review, verify:
 
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] You read the full diff (`gh pr diff`)
-- [ ] You verified the PR description explains what changed and why
+- [ ] You verified the PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)
 - [ ] Every piece of feedback is an **inline comment** (not a summary blob)
 - [ ] Each comment has a **severity label** (🔴 must fix / 🟢 nit)
 - [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly

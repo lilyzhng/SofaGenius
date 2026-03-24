@@ -31,7 +31,7 @@ Reviewers: verify these before approving.
 
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] I read the full diff (`gh pr diff`)
-- [ ] PR description explains what changed and why
+- [ ] PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)
 - [ ] Every piece of my feedback is an **inline comment** with severity label (🔴 must fix / 🟢 nit)
 - [ ] I verified external sources myself (tweets, links, claims)
 - [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
