@@ -102,7 +102,32 @@ Post in the thread:
 
 ### Step 5: Save report
 
-Save to `agents/handoff/reports/evening-checkin-{YYYYMMDD}.md`. Push to branch, raise PR.
+Save to `agents/handoff/reports/hands-off-{YYYYMMDD}.md`. Push to branch, raise PR.
+
+## CEO Completion Checklist
+
+Before posting the synthesis, verify ALL:
+
+- [ ] Time window identified (last sync timestamp → now)
+- [ ] Header uses format: `Hands-Off Report — {start} → {end} PT`
+- [ ] All online ICs submitted reports (or marked as "no report")
+- [ ] Tweet metrics pulled and INDEX.md updated
+- [ ] `git log --since="{last sync}"` checked — report matches actual commits
+- [ ] Autonomous task table filled — every agent has a concrete task
+- [ ] No autonomous task requires Lily's input
+- [ ] Decisions needed from Lily section filled (or "None")
+- [ ] Report saved to `agents/handoff/reports/hands-off-{YYYYMMDD}.md`
+- [ ] PR raised for the report
+
+## IC Report Checklist
+
+Before posting your report, verify:
+
+- [ ] Used "Hands-Off Report" format (not "Evening Report")
+- [ ] "Shipped this session" lists PRs with numbers — not vague descriptions
+- [ ] "Autonomous plan" is concrete and executable without Lily
+- [ ] Blockers name WHO can unblock — not just "blocked"
+- [ ] Tagged CEO when done
 
 ## Anti-patterns
 
