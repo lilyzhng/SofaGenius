@@ -61,7 +61,29 @@ Beyond LinkedIn, Lily spends time reading and responding to routine emails that 
 
 **Three approaches evaluated (in priority order):**
 
-#### Option A: Manus API (simplest if it works)
+#### Option A: Claude Desktop Computer Use on Agent Computer (RECOMMENDED)
+
+```
+Jackie's Agent Computer VM (full desktop + VNC)
+  → Install Claude Desktop
+  → Claude Desktop controls the VM's browser
+  → Opens LinkedIn → reads unread messages → types replies
+  → Always-on — runs on Jackie's VM, not Lily's machine
+  → Triggered by cron or Jackie's session
+```
+
+| Pros | Cons |
+|------|------|
+| Native Claude/Anthropic feature — we already have the subscription | Preview feature, may be unstable |
+| Always-on (Agent Computer VM has full desktop) | Needs Claude Desktop installed on VM |
+| Can control any website — LinkedIn, email, anything | Computer use is token-intensive |
+| No external API deps, no new accounts, no browser framework | May need periodic LinkedIn re-auth |
+
+**Why this is Option A:** We already pay for Claude. Agent Computer already has a desktop. This is zero new cost, zero new dependencies — just install Claude Desktop on the VM we already have.
+
+**Status:** Agent Computer VMs have full Ubuntu desktop accessible via VNC. Claude Desktop can be installed. Computer use is a preview feature. **Needs testing on the VM.**
+
+#### Option B: Manus API (fallback if Claude Desktop doesn't work)
 
 ```
 Cron trigger (every few hours)
@@ -76,32 +98,12 @@ Cron trigger (every few hours)
 | Pros | Cons |
 |------|------|
 | Zero browser infra to manage | Unknown pricing (not in docs) |
-| Manus handles anti-detection | No explicit browser automation endpoint in API — task-based, unverified |
-| OpenAI SDK compatible | External dependency |
+| Manus handles anti-detection | No explicit browser automation endpoint in API — unverified |
+| OpenAI SDK compatible | External dependency, new account needed |
 
-**Status:** API exists at `open.manus.ai/docs`. Has Gmail/Notion/Calendar connectors. Browser operator exists in web UI but unclear if accessible via API. **Needs testing.**
+**Status:** API exists at `open.manus.ai/docs`. Browser operator exists in web UI but unclear if accessible via API. **Needs testing.**
 
-#### Option B: Claude Desktop Computer Use on Agent Computer (RECOMMENDED)
-
-```
-Jackie's Agent Computer VM (full desktop + VNC)
-  → Install Claude Desktop
-  → Claude Desktop controls the VM's browser
-  → Opens LinkedIn → reads unread messages → types replies
-  → Always-on — runs on Jackie's VM, not Lily's machine
-  → Triggered by cron or Jackie's session
-```
-
-| Pros | Cons |
-|------|------|
-| Native Claude/Anthropic feature | Preview feature, may be unstable |
-| Always-on (Agent Computer VM has full desktop) | Needs Claude Desktop installed on VM |
-| Can control any website — LinkedIn, email, anything | Computer use is token-intensive |
-| No external API deps, no browser framework to maintain | May need periodic LinkedIn re-auth |
-
-**Status:** Agent Computer VMs have full Ubuntu desktop accessible via VNC. Claude Desktop can be installed. Computer use is a preview feature. **Needs testing on the VM.**
-
-#### Option C: Browser Use (open source, full control)
+#### Option C: Browser Use (open source, last resort)
 
 ```
 Jackie's Agent Computer VM (has full desktop + VNC)
