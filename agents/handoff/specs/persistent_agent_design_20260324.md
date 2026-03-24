@@ -26,6 +26,10 @@ With shared mode, everything in `/home/node/` persists: repos, `.claude/` config
 
 **Important:** "Shared storage only affects **future** machines. Existing machines keep their original mode." — Agent Computer docs. Must recreate to pick up shared mode.
 
+**Root cause of state loss (March 24):** Jackie was created with isolated mode (the account default). `computer claude-login` wiped the entire `/home/node/` overlay including SofaGenius repo, Discord plugin, config, and memories. Switching to shared mode + recreating the VM fixed this permanently.
+
+**Warning:** On isolated VMs, `computer claude-login` wipes `~/.claude/` and the entire ephemeral overlay. Never use isolated mode for agents that need persistent state.
+
 ### 2. Persistent Storage Fallback (for isolated VMs)
 
 On isolated VMs, `/home/node/.local/` is an NFS mount that persists. Store all state there:
@@ -52,16 +56,28 @@ computer agent watch jackie --session <id>
 computer agent status jackie
 ```
 
-**Status:** Returned internal errors on our isolated VM. Needs retesting on a shared-mode VM. If it works, this IS the always-on solution — no custom supervisor needed.
+**Status (March 24):**
+- ❌ Internal errors on isolated VM
+- ✅ Works on shared VM — sessions create and respond to prompts
+- ❌ Does NOT support `--channels` flag — Discord MCP tools don't load in agent sessions
+- ⏳ Emailed Agent Computer support asking how to run `claude --channels` as a persistent session
 
-**Fallback (only if agent sessions don't work after recreation):** File support ticket with Agent Computer. Use tmux-based supervisor as temporary bridge while waiting for resolution.
+**Current workaround:** Start Jackie from web terminal with `bash launch.sh`. The process runs as long as the terminal session is active. Persistence (state/config) is solved via shared EFS; always-on (process lifecycle) is pending Agent Computer's response.
+
+**Startup lag:** Discord plugin takes 30-60 seconds to connect to Discord's gateway after launch. Not a bug — it's the WebSocket connection + guild cache warmup.
 
 ### 4. Discord Plugin Persistence
 
 Our custom Discord plugin fork: https://github.com/lilyzhng/claude-plugins-official
-(4 commits ahead of upstream: create_thread, polls, trustedBots, wildcard groups, resolveMentions)
+(4 commits ahead of Anthropic upstream: create_thread, polls, trustedBots, wildcard groups, resolveMentions)
 
-With shared filesystem, the plugin install at `~/.claude/plugins/` persists across restarts. No re-copying needed.
+**With shared filesystem:**
+- Plugin install at `~/.claude/plugins/` persists across restarts
+- Plugin cache at `~/.claude/plugins/cache/` persists (no re-download)
+- Discord config at `~/.claude/channels/discord/` persists (token + access.json)
+- Custom `server.ts` persists (our fork features survive)
+
+**Plugin auto-update risk:** Claude Code may auto-update the plugin on restart, overwriting our custom `server.ts`. Mitigation: keep a backup at `agents/genius-{name}/server.ts.custom` and re-copy if the plugin version changes. Long-term fix: get our fork features merged upstream.
 
 ## Key Decisions
 
@@ -83,6 +99,26 @@ computer claude-login --machine agent-name
 ```
 
 Each agent = one VM. $20/mo for 25 VMs. Persistent home means clone/install/configure once → persists forever.
+
+**One-time setup checklist (per agent):**
+
+1. `computer create agent-name --ssh-enabled` (shared mode inherits from account)
+2. `computer claude-login --machine agent-name` (Lily does this — browser OAuth)
+3. Clone repo: `git clone https://github.com/lilyzhng/SofaGenius.git`
+4. Set up `.env` with agent's Discord bot token + GitHub PAT
+5. Set up Discord config: `~/.claude/channels/discord/.env` + `access.json`
+6. **Install Discord plugin from inside a Claude session:**
+   ```
+   cd /home/node/SofaGenius/agents/genius-{name}
+   claude
+   # Inside Claude session:
+   /plugin install discord@claude-plugins-official
+   /exit
+   ```
+7. Copy our custom plugin fork's `server.ts` over the installed version (for create_thread, polls, etc.)
+8. Start with launch script: `bash launch.sh`
+
+Steps 1-7 are **one-time only** — everything persists on shared EFS. Step 8 is needed after each VM restart until we get Agent Computer's session management working.
 
 **Current:** 1/25 VMs (Jackie). Can add CEO, Researcher, or specialized agents.
 
