@@ -53,27 +53,82 @@ Beyond LinkedIn, Lily spends time reading and responding to routine emails that 
 
 ## 3. System Architecture
 
-### 3.1 Phase 1: LinkedIn Auto-Reply
+### 3.1 Phase 1: LinkedIn Auto-Reply via Browser Automation
 
-**IMPORTANT: Replying to LinkedIn notification emails does NOT work.** LinkedIn sends from `messages-noreply@linkedin.com` — any reply goes to a noreply address, not to the person who messaged. LinkedIn notifications also don't include the sender's email address.
+**Why email doesn't work:** LinkedIn sends notifications from `messages-noreply@linkedin.com`. Replying to the email goes nowhere — LinkedIn intentionally blocks this to keep users on their platform. The only way to auto-reply on LinkedIn is browser automation.
 
-**Revised Phase 1 approach — Apps Script (simple, proven):**
+**Lily's decision:** Accept the ToS risk. Browser automation it is.
+
+**Three approaches evaluated (in priority order):**
+
+#### Option A: Manus API (simplest if it works)
+
 ```
-LinkedIn user sends message
-  → LinkedIn sends email notification to Lily's Gmail
-  → Apps Script (15-min timer) detects new LinkedIn notification
-  → Labels email as "LinkedIn Message"
-  → (Cannot auto-reply to sender — LinkedIn blocks this)
+Cron trigger (every few hours)
+  → Call Manus API: create task
+      "Log into LinkedIn, check unread messages,
+       reply to each with: [redirect template]"
+  → Manus handles browser automation internally
+  → Returns task result
+  → Jackie logs results on Discord
 ```
 
-**What Phase 1 actually delivers:**
-- Automatic labeling and archiving of LinkedIn notifications (inbox stays clean)
-- Jackie gets notified on Discord: "New LinkedIn message from [name] about [topic]"
-- Lily can batch-respond weekly via LinkedIn directly, or ignore
+| Pros | Cons |
+|------|------|
+| Zero browser infra to manage | Unknown pricing (not in docs) |
+| Manus handles anti-detection | No explicit browser automation endpoint in API — task-based, unverified |
+| OpenAI SDK compatible | External dependency |
 
-**The honest answer:** There is no way to auto-reply to LinkedIn messages without LinkedIn Premium or browser automation (which violates ToS). Phase 1 is inbox management, not auto-reply.
+**Status:** API exists at `open.manus.ai/docs`. Has Gmail/Notion/Calendar connectors. Browser operator exists in web UI but unclear if accessible via API. **Needs testing.**
 
-**Phase 2 (general email agent) is where the real value is** — it handles real emails from real senders where reply-to actually works.
+#### Option B: Claude Desktop Computer Use (most native)
+
+```
+Claude Desktop (preview feature)
+  → Controls Lily's local browser
+  → Opens LinkedIn → reads unread messages → types replies
+  → Runs on Lily's machine (not Agent Computer)
+```
+
+| Pros | Cons |
+|------|------|
+| Native Claude feature — no external deps | Preview feature, may be unstable |
+| Can control any website | Runs on Lily's machine (not always-on) |
+| No API keys or browser setup | Requires Lily's machine to be on |
+
+**Status:** Claude recently released desktop computer control as preview. **Needs testing.**
+
+#### Option C: Browser Use (open source, full control)
+
+```
+Jackie's Agent Computer VM (has full desktop + VNC)
+  → Playwright/Browser Use controls Chrome
+  → Logs into LinkedIn with Lily's session cookies
+  → Reads unread messages → sends template reply
+  → Runs on cron (every few hours)
+```
+
+| Pros | Cons |
+|------|------|
+| Open source, free, full control | More setup work (Playwright, cookies, anti-detection) |
+| Runs on Jackie's VM (always-on) | Session cookies expire — needs periodic re-auth |
+| Agent Computer has full desktop | LinkedIn may detect and restrict account |
+
+**Status:** `browser-use` is a Python framework for AI browser automation. Agent Computer VMs have full desktop + VNC. **Needs testing.**
+
+#### Recommendation
+
+1. **Try Manus API first** — simplest if it works. Test with a single LinkedIn reply task.
+2. **If Manus is too expensive or doesn't support browser tasks via API** → use Browser Use on Jackie's VM.
+3. **Claude Desktop** is interesting but not always-on — better for ad-hoc use than scheduled automation.
+
+#### LinkedIn Reply Template
+
+```
+Thanks for reaching out! I'm most active on X/Twitter —
+DM me @lily_gpupoor for the fastest response.
+Looking forward to connecting!
+```
 
 ### 3.2 Phase 2: Full Email Agent
 
