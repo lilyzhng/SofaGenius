@@ -104,7 +104,7 @@ bash /home/node/SofaGenius/agents/genius-SHORTNAME/launch-ac.sh
 
 ## Launch Script (launch-ac.sh)
 
-Each agent has a `launch-ac.sh` in their agent directory:
+Each agent has a `launch-ac.sh` in their agent directory. Uses `nohup` + `script -qc` pattern validated in PR #50 — survives terminal close and SSH disconnect:
 
 ```bash
 #!/bin/bash
@@ -112,10 +112,13 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 export CLAUDE_CONFIG_DIR="/home/node/.claude-SHORTNAME"
 cd "$SCRIPT_DIR" && set -a && source .env && set +a && \
-  claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
+  nohup script -qc "claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions" /dev/null > discord.log 2>&1 &
+echo "Agent launched (PID: $!). Logs: $SCRIPT_DIR/discord.log"
 ```
 
-Differences from local `launch.sh`: sets `CLAUDE_CONFIG_DIR`, no `caffeinate` (not macOS).
+**Why `nohup` + `script -qc`:** Claude Code needs a PTY — `nohup` alone triggers `--print` mode. `script -qc` provides a pseudo-TTY. Validated by Agent Computer team (Hari) and tested for 16+ hours.
+
+Differences from local `launch.sh`: sets `CLAUDE_CONFIG_DIR`, uses `nohup` + `script` (not `caffeinate`), backgrounds the process.
 
 ## Lily's Role (minimal)
 
@@ -127,7 +130,7 @@ Differences from local `launch.sh`: sets `CLAUDE_CONFIG_DIR`, no `caffeinate` (n
 
 | Risk | Mitigation |
 |------|-----------|
-| Process dies when terminal closes | Pending Agent Computer support on `computer agent sessions` with `--channels`. Workaround: keep web terminal open. |
+| Process dies when terminal closes | Solved: `nohup` + `script -qc` pattern (PR #50). Survives terminal close and SSH disconnect. |
 | Plugin auto-update overwrites custom server.ts | Backup at `/home/node/.claude/plugins/cache/` persists. Re-copy after plugin updates. |
 | Auth expiry | Re-auth on any VM propagates to all via shared `.claude/.credentials.json`. |
 | Git conflicts from concurrent writes | Same as local. Agents pull before pushing, handle merge conflicts. |
