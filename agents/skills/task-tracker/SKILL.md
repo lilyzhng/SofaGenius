@@ -42,17 +42,17 @@ The main message is a **compact status snapshot**. Edit it in place — don't po
 ```
 **{Agent Name} — Task Tracker** (updated {time} PT)
 
-✅ {completed task — one line}
-✅ {completed task — one line}
-⏳ {in progress — one line}
-🔜 {next up — one line}
+- ✅ {completed task — one line}
+- ✅ {completed task — one line}
+- ⏳ {in progress — one line}
+- 🔜 {next up — one line}
 
-**Blocked:**
-- {what's blocking you — or "None"}
+**Blocked:** None
 ```
 
 **Rules:**
 - One line per task — no paragraphs
+- Use bullet list format (`- ✅ ...`) — plain lines collapse in Discord, bullets render with proper spacing
 - Use emoji status: ✅ done, ⏳ in progress, 🔜 next, ❌ blocked
 - Update the timestamp every time you edit
 - Edit the SAME message — don't post new ones
