@@ -89,6 +89,17 @@ echo "Launched (PID: $!). Logs: $SCRIPT_DIR/discord.log"
 ps aux | grep "claude.*dangerously-skip" | grep -v grep
 ```
 
+## Future: Per-Agent Access Control
+
+Today all agents share one `access.json` (same team roster, same permissions). If we later need different agents to have different access — e.g., Jackie open to community members but Builder restricted to the team — we can split configs using `CLAUDE_CONFIG_DIR`:
+
+```bash
+# In launch.sh, point to a per-agent config dir
+export CLAUDE_CONFIG_DIR="/home/node/.claude-<agent>"
+```
+
+Each agent would get its own `.claude-<agent>/` directory with its own `access.json`. Auth credentials and plugins can still be shared (symlinked or copied from `.claude/`). Only needed when access policies diverge — not now.
+
 ## Known Limitations
 
 - **VM down = all agents down.** Same single-point-of-failure as the laptop, but the VM doesn't sleep or close its lid.
