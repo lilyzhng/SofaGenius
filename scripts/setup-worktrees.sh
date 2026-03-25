@@ -19,10 +19,9 @@ for agent in genius-builder genius-ceo genius-researcher genius-jackie; do
   if [ -d "$target" ]; then
     echo "✓ $agent worktree already exists at $target"
   else
-    # Each worktree starts on a detached HEAD at main to avoid branch conflicts
-    # Agents create their own branches from within their worktree
-    git -C "$REPO_ROOT" worktree add --detach "$target"
-    git -C "$target" checkout main 2>/dev/null || git -C "$target" checkout -b "worktree-$agent" origin/main
+    # Detached HEAD at origin/main — agents create feature branches from here.
+    # Can't checkout main directly since it's used by the main repo.
+    git -C "$REPO_ROOT" worktree add --detach "$target" origin/main
     echo "✓ Created worktree for $agent at $target"
   fi
 done

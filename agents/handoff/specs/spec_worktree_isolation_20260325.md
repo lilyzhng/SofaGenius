@@ -25,7 +25,7 @@ Give each agent their own **git worktree** — a separate working directory back
 /home/node/worktrees/genius-jackie/       # Jackie's worktree
 ```
 
-Each worktree is a full checkout of the repo on `main`. Agents create feature branches from within their own worktree.
+Each worktree starts on a detached HEAD at `origin/main`. Agents create feature branches from within their own worktree. Can't check out `main` directly since it's already used by the main repo — this is a git limitation (one branch per worktree).
 
 ## Setup Script
 
@@ -73,8 +73,8 @@ set -a && source /home/node/SofaGenius/agents/genius-builder/.env && set +a
 
 | File | Change |
 |------|--------|
-| `launch.sh` | `cd` into worktree instead of shared repo |
-| `launch-bg.sh` | Same `cd` change + absolute `.env` path |
+| `launch-bg.sh` | `cd` into worktree + absolute `.env` path |
+| `launch.sh` | No change (foreground debugging only, uses shared repo) |
 | `.env` | Stays in original location (not in git) |
 | `CLAUDE.md` | No change (relative paths still work within worktree) |
 
