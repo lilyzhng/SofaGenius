@@ -147,15 +147,28 @@ cat > /home/node/SofaGenius/agents/genius-AGENT_NAME/launch.sh << 'EOF'
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 export PATH="$HOME/.bun/bin:$PATH"
-cd "$SCRIPT_DIR" && claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
+cd "$SCRIPT_DIR" && set -a && source .env && set +a && claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
 EOF
 chmod +x /home/node/SofaGenius/agents/genius-AGENT_NAME/launch.sh
 ```
 
 ## Step 8: Launch the agent
 
-From the Agent Computer web terminal (https://8788--AGENT_NAME.computer.agentcomputer.ai/):
+**Option A: Background (always-on, recommended):**
 
+From SSH or web terminal:
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+cd /home/node/SofaGenius/agents/genius-AGENT_NAME
+set -a && source .env && set +a
+nohup script -qc "claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions" /dev/null > discord.log 2>&1 &
+```
+
+Process survives terminal close. Check logs: `tail -f discord.log`
+
+**Option B: Foreground (for debugging):**
+
+From web terminal:
 ```bash
 bash /home/node/SofaGenius/agents/genius-AGENT_NAME/launch.sh
 ```
@@ -164,6 +177,8 @@ You should see:
 ```
 Listening for channel messages from: plugin:discord@claude-plugins-official
 ```
+
+Note: Discord plugin takes 30-60 seconds to connect after launch.
 
 Test by @mentioning the agent in Discord.
 
