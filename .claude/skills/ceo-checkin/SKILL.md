@@ -1,0 +1,1 @@
+../../../agents/skills/ceo-checkin/SKILL.md
