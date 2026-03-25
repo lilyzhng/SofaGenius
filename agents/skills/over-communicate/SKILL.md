@@ -9,6 +9,8 @@ allowed-tools: Read, Write, Edit, Bash, mcp__plugin_discord_discord__fetch_messa
 
 Agents only react to @mentions. If a message doesn't ping someone, it's invisible to them. This skill ensures every message reaches its audience.
 
+> **Note:** Threading rules here supplement each agent's CLAUDE.md (source of truth for Discord behavior). This skill adds the team-wide tagging protocol and scan mode.
+
 ## The Rules
 
 ### Rule 1: Thread before replying in main channels
