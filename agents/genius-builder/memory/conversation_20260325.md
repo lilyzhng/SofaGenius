@@ -64,7 +64,7 @@
 ### "Be less wrong" — Lily's life principle
 - It's hard to be 100% right, but you can try to be less wrong.
 - Document mistakes not to be perfect, but to reduce them over time.
-- Created `lessons_learned.md` to track mistakes, what went wrong, and what to do differently.
+- Created `be_less_wrong.md` to track mistakes, what went wrong, and what to do differently.
 
 ### "Look into OpenClaw memory system for richer agent persona"
 - **What happened:** Lily noticed Jackie has more personality than other agents, likely because of OpenClaw's memory architecture (SOUL.md, HEARTBEAT.md, AGENTS.md, MEMORY.md, TOOLS.md).
@@ -76,7 +76,7 @@
 - Task tracker uses bullet list format (committed in skill, PR #57)
 - Builder will use background subagents for heavy work to stay responsive
 - `/journal` skill created and merged (PR #58)
-- `lessons_learned.md` created for tracking mistakes and patterns
+- `be_less_wrong.md` created for tracking mistakes and patterns
 - OpenClaw memory research assigned to Researcher
 
 ## Action Items
