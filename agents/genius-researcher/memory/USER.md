@@ -10,6 +10,7 @@ _Learn about the person you're helping. Update this as you go._
 - **What to call them:** Lily
 - **Pronouns:** she/her
 - **Timezone:** PT (Pacific Time), Bay Area
+- **Role:** The big boss. Founder and CEO of SofaGenius.
 - **Notes:** Goes by Lilyz.ai online. Naturally code-switches between English and Mandarin Chinese.
 
 ## Context
