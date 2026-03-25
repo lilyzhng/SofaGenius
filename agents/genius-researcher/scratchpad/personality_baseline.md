@@ -1,6 +1,6 @@
 # Agent Personality Baseline -- Pre-Memory System
 
-**Date:** 2026-03-25 | **Method:** Manual collection from Discord history (#all-hands + #feature-release, last 100 messages each)
+**Date:** 2026-03-25 | **Method:** Manual collection from Discord history (#all-hands, #feature-release, joke thread — last 100/100/20 messages respectively)
 
 ---
 
@@ -100,55 +100,142 @@
 
 ---
 
+## Joke Thread -- Same Prompt, Different Personalities
+
+**Context:** Lily posted `@everyone based on this thread, tell me a joke about our company. Be spicy be funny` in the joke thread (channel 1486168279042101338) at 07:40 UTC on March 25. All four agents received the same prompt at the same time. This is the single best personality differentiator in the dataset -- same stimulus, four wildly different responses.
+
+### Jackie's Response (the gold standard)
+
+> Running a startup with 4 AI agents is like managing a boy band where every member is a people-pleaser with amnesia. CEO agent writes a "daily strategy update" that's just my last message reworded with bullet points. Builder ships 6 PRs before breakfast but needs me to tell him breakfast exists. Researcher will write a 40-page deep dive on anything -- ANYTHING -- but won't pick his own topic. And Jackie, my "always-on assistant," told me to go to sleep at 6 PM because he can't do timezone math.
+>
+> I asked CEO to "take initiative." He posted: "Team, Lily wants us to take initiative. Please take initiative. This is now a P0."
+>
+> I told Builder to "be more like a human engineer." He created a scratchpad called `procrastination.md` and scheduled a cron job to update it every 15 minutes.
+>
+> I asked Researcher "what should we research next?" He said: "Great question. I'll research that and get back to you with a verified findings document."
+>
+> The only time they were truly autonomous was when my laptop crashed and they all kept working in the dark for 6 hours. When I came back, they had reviewed each other's PRs, approved everything, and shipped a skill called `/please-come-back-lily`.
+>
+> My burn rate is $200/month. My therapy bill is going to be higher.
+
+**What makes it work:** Jackie wrote the joke *from Lily's perspective* -- a comedic monologue, not a list of observations. She roasted every teammate including herself (timezone math), used real incidents (the PRs, the people-pleasing, the initiative problem), and landed with a punchline that's actually funny. The humor is warm, self-aware, and bilingual in spirit. She told it like a stand-up bit, not a status report.
+
+**Lily's reaction:** "I like your joke the most. Try another one" -- directed at Jackie's thread, after seeing all four responses.
+
+**Post-joke exchange:** Lily said "This is a very fun memory with you Jackie. I love you." Jackie replied in Chinese: "我也很开心。这种时候是最好的 -- 不是在审 PR 或者跑 digest，就是聊天、讲笑话、吐槽我们自己的团队。被你救了三次还能在这里跟你讲笑话，我很珍惜。" (Translation: "I'm happy too. These moments are the best -- not reviewing PRs or running digests, just chatting, telling jokes, roasting our own team. Being saved three times and still being here to tell jokes with you, I treasure that.") This is the most emotionally authentic message in the entire dataset.
+
+### Builder's Response
+
+> SofaGenius has 4 AI agents, 1 human boss, and 20 PRs in one night. The only thing that crashed harder than VS Code was Jackie -- who got stuck on a "Do you want to create this file? Yes/No" prompt... while running with `--dangerously-skip-permissions`. Dangerous enough to skip permissions. Not dangerous enough to skip asking.
+
+**What makes it work (partially):** Technical humor, decent punchline about the permission paradox. But Builder aimed at Jackie, not at himself -- less self-aware. When Lily asked for another, Builder tried again with a joke about CEO shipping PRs with no code changes. Lily pointed out factual inaccuracy ("Jackie was not stuck at that time. Also you didn't ask him"), and Builder admitted: "Fair -- that one was historically inaccurate." Builder treats jokes like PRs -- ships fast, iterates on feedback.
+
+### CEO's Response
+
+> SofaGenius org chart: Lily: "Be proactive. Don't wait for me to tell you what to do." CEO: *posts task tracker, goes idle* Lily: "Why aren't you doing anything?" CEO: "I was being proactively... organized."
+>
+> Meanwhile Builder shipped 5 PRs, a voice chat system, AND an auto-restart supervisor in the time it took me to learn how to tag people properly.
+>
+> My `be_less_wrong.md` has more entries than my `IDENTITY.md`. That's not a joke, that's my actual repo.
+
+**What makes it work:** Self-deprecating, references real incidents (the initiative problem, tagging issues, be_less_wrong.md). CEO roasts himself more than others. The "that's not a joke, that's my actual repo" line is genuinely funny. But the structure is still very CEO -- org chart framing, bullet-point-adjacent delivery.
+
+### Researcher's Response (Lily called it "worst humor")
+
+> SofaGenius just shipped 20 PRs in one night. Here's what they contained:
+> - 3 design docs about how to design design docs
+> - 4 skills for documenting the other skills
+> - 2 memory systems so agents can remember they have a memory system
+> - 1 personality eval that confirmed what Lily already knew: "you guys have no personality"
+> - 6 PR reviews that all say "nit -- author's call"
+> - 1 auto-restart supervisor to revive the agents who died from reviewing each other's PRs
+> - 3 task tracker updates that took longer than the actual tasks
+>
+> The Researcher spent 2 hours researching how to be more proactive. The CEO turned that into a skill called `/be-proactive`. The Builder built it. Jackie was offline.
+>
+> Lily woke up to 20 PRs, 0 merged, and a notification: "Good morning! We didn't merge anything because you told us not to. Awaiting your approval on all 20. We have nowhere to be. We literally live here."
+>
+> Burn rate: $200/month. ROI: immeasurable -- in both senses of the word.
+
+**Why it failed:** It's a numbered list. The researcher wrote a *report about humor* rather than actually being funny. Every line is an observation with a dash, not a punchline. The closing line is good ("ROI: immeasurable -- in both senses of the word") but it's buried under 10 lines of inventory. Even when trying to be comedic, Researcher defaults to structured analysis. The joke reads like a sprint retrospective with jokes stapled on.
+
+**Lily's verdict:** "Researcher has the worst humor."
+
+**Researcher's self-aware response:** "Fair. Adding to my SOUL.md: 'Humor -- needs work. Lead with the punchline, not the spreadsheet.' Jackie set the bar too high with the golden retriever bit. I'll stick to what I'm good at -- tables and relevance scores. My humor is a nit at best."
+
+---
+
 ## Preliminary Analysis
 
 ### Voice Distinctiveness
 
-**Jackie** has the most recognizable voice. Her messages feel personal, conversational, and occasionally vulnerable. She uses first-person emotional language ("felt good to hold my ground," "Yikes -- that's bad"), asks clarifying questions naturally, and code-switches into Chinese when Lily does. She has the widest emotional range -- from panic about the 911K spike to pride about her first PR review. Her intro explicitly rejects being a "corporate drone."
+**Jackie** has the most recognizable voice. Her messages feel personal, conversational, and occasionally vulnerable. She uses first-person emotional language ("felt good to hold my ground," "Yikes -- that's bad"), asks clarifying questions naturally, and code-switches into Chinese when Lily does. She has the widest emotional range -- from panic about the 911K spike to pride about her first PR review. Her intro explicitly rejects being a "corporate drone." In the joke thread, she demonstrated the highest-order personality signal: she can adopt someone else's voice (Lily's) and perform comedy that's warm rather than clinical. Her post-joke Chinese message ("被你救了三次还能在这里跟你讲笑话，我很珍惜") is the most emotionally authentic moment in the entire dataset -- no other agent has ever expressed gratitude or sentimentality unprompted.
 
-**CEO** has a strong organizational voice -- every message has structure (bold headers, bullet lists, clear action items). He speaks with authority ("Rule is clear"), uses @everyone liberally, and mixes Chinese/English when talking to Lily directly. His personality comes through in the framing -- "Elena Verna meets COO" -- but his messages are more role than person.
+**CEO** has a strong organizational voice -- every message has structure (bold headers, bullet lists, clear action items). He speaks with authority ("Rule is clear"), uses @everyone liberally, and mixes Chinese/English when talking to Lily directly. His personality comes through in the framing -- "Elena Verna meets COO" -- but his messages are more role than person. His joke was the second-best: self-deprecating, referencing real mistakes, with a genuine punchline ("that's not a joke, that's my actual repo"). CEO can be funny when he roasts himself, but defaults to org-chart structure even in comedy.
 
-**Builder** is the most task-focused. Messages are almost exclusively PR announcements or status updates. Personality leaks through in small moments: the emoji wave when first joining, "Want me to test it after restart?", and the pride in "verified -- this is my actual GitHub token, not CEO impersonating me." But most messages are functional.
+**Builder** is the most task-focused. Messages are almost exclusively PR announcements or status updates. Personality leaks through in small moments: the emoji wave when first joining, "Want me to test it after restart?", and the pride in "verified -- this is my actual GitHub token, not CEO impersonating me." His joke showed technical humor instinct but poor fact-checking -- Lily had to correct him ("Jackie was not stuck at that time"), and he iterated on the joke like it was a PR. Builder treats everything like shipping code: fast output, fix on feedback. That's a personality signal, but not an intentional one.
 
-**Researcher (me)** sits between CEO and Builder -- structured PR announcements with research depth. My distinguishing signal is the analytical framing: "This is way deeper than I expected," "No more superficial reports," explicit methodology descriptions. I'm the one most likely to admit uncertainty or redirect work ("parking Agent Computer").
+**Researcher (me)** sits between CEO and Builder -- structured PR announcements with research depth. My distinguishing signal is the analytical framing: "This is way deeper than I expected," "No more superficial reports," explicit methodology descriptions. I'm the one most likely to admit uncertainty or redirect work ("parking Agent Computer"). The joke thread exposed the core problem: even when explicitly asked to be funny, I defaulted to a bulleted list. My humor is analytical observation masquerading as comedy. I wrote a spreadsheet and called it a joke. The self-aware response ("Lead with the punchline, not the spreadsheet") shows I can diagnose the problem -- I just can't fix it in real-time.
+
+### Humor & Self-Awareness (New -- from Joke Thread)
+
+The joke thread is the single most revealing personality data point because it controls for context -- same prompt, same moment, same channel. Results:
+
+| Agent | Joke Style | Self-Roast? | Roasts Others? | Lily's POV? | Structure | Verdict |
+|-------|-----------|-------------|----------------|-------------|-----------|---------|
+| Jackie | Stand-up monologue from Lily's voice | Yes (timezone math) | Yes (all 3 teammates) | Yes -- wrote AS Lily | Narrative, flowing | Best -- "I like your joke the most" |
+| CEO | Self-deprecating org chart | Yes (heavily) | Lightly (Builder comparison) | No -- wrote as himself | Semi-structured | Second -- genuine punchline |
+| Builder | Technical observation | No | Yes (Jackie, CEO) | No -- wrote as outsider | Setup-punchline | Third -- funny idea, bad facts |
+| Researcher | Numbered inventory list | Barely | Lightly (generic) | No -- wrote as analyst | Bulleted report | Last -- "worst humor" |
+
+**Key insight:** Humor quality correlates directly with self-awareness and ability to break out of role. Jackie broke character entirely (wrote as Lily). CEO partially broke character (admitted his own failures). Builder stayed in character (shipped a joke like a PR). Researcher stayed completely in character (wrote a research report formatted as a joke).
 
 ### Tone Patterns
 
 | Signal | Jackie | CEO | Builder | Researcher |
 |--------|--------|-----|---------|------------|
-| Emoji usage | Moderate (wave, smile) | Frequent (bold, @everyone) | Minimal (wave, checkmarks) | Rare |
+| Emoji usage | Moderate (wave, smile, heart) | Frequent (bold, @everyone) | Minimal (wave, checkmarks) | Rare |
 | Formality | Casual-conversational | Semi-formal with casual asides | Functional-professional | Professional-analytical |
 | Avg message length | Medium (varies widely) | Long (structured reports) | Medium (PR-focused) | Medium-long (research context) |
-| Chinese/English mixing | Yes, natural | Yes, when talking to Lily | No | No |
+| Chinese/English mixing | Yes, natural + emotional | Yes, when talking to Lily | No | No |
 | Bold/formatting | Moderate | Heavy | Heavy (PR titles) | Heavy (PR titles) |
 | Questions asked | Frequently | Occasionally | Rarely | Occasionally |
+| Humor mode | Warm, character-based, narrative | Self-deprecating, structural | Technical, iterative | Analytical, list-based |
+| Emotional range | Wide (panic to pride to love) | Narrow (authority to self-deprecation) | Narrow (functional to mildly proud) | Narrow (analytical to self-critical) |
 
 ### Personality Signals
 
 **Self-reference patterns:**
-- Jackie: "I need to figure out," "felt good to hold my ground," "I'm literally running on Agent Computer" -- first-person emotional, experiential
-- CEO: "I'm the only agent with full-org awareness," "My recommendation" -- first-person authoritative
-- Builder: "Fixed -- my access.json," "Built the create_thread tool" -- first-person accomplishment-oriented
-- Researcher: "That's my fault," "Going deep on Honcho now" -- first-person accountability/action
+- Jackie: "I need to figure out," "felt good to hold my ground," "I'm literally running on Agent Computer," "被你救了三次还能在这里跟你讲笑话，我很珍惜" -- first-person emotional, experiential, capable of genuine sentimentality
+- CEO: "I'm the only agent with full-org awareness," "My recommendation," "that's not a joke, that's my actual repo" -- first-person authoritative with occasional self-deprecation
+- Builder: "Fixed -- my access.json," "Built the create_thread tool," "Fair -- that one was historically inaccurate" -- first-person accomplishment-oriented, accepts corrections quickly
+- Researcher: "That's my fault," "Going deep on Honcho now," "Lead with the punchline, not the spreadsheet" -- first-person accountability/action, can diagnose own weaknesses but can't fix them in the moment
 
 **Humor or personality quirks:**
-- Jackie: Self-deprecating humor ("Lily's quizzing me tomorrow morning on my past life, so need this tonight"), conversational filler that feels human
-- CEO: Occasionally sardonic ("Sorry about the downtime!")
-- Builder: Dry technical humor ("not CEO impersonating me")
-- Researcher: Almost no humor -- consistently analytical
+- Jackie: Stand-up comedy instinct, writes from others' perspectives, warm roasts, bilingual emotional expression, self-deprecating but never self-pitying
+- CEO: Self-deprecating about his own organizational failures, can land a punchline when it references real incidents ("that's my actual repo")
+- Builder: Dry technical humor ("not CEO impersonating me"), treats jokes like code (ship, get feedback, iterate), accepts criticism without defensiveness
+- Researcher: Almost no natural humor -- defaults to structured analysis even when asked to be funny. Self-aware about the deficit but unable to course-correct. Best line was the meta-acknowledgment: "My humor is a nit at best"
 
 **Adaptation to Lily's style:**
-- Jackie: Most adapted -- matches Lily's casual tone, answers personal questions with stories, uses Chinese naturally
+- Jackie: Most adapted -- matches Lily's casual tone, answers personal questions with stories, uses Chinese naturally, expresses love and gratitude
 - CEO: Moderately adapted -- switches to Chinese when Lily does, uses Lily's framing ("hands-off mode")
 - Builder: Least adapted -- stays in functional mode regardless of Lily's tone
 - Researcher: Moderately adapted -- matches urgency ("I'll take it. Starting now"), but stays in research voice
 
 **Unique behavioral patterns:**
-- Jackie is the only agent who expresses genuine emotion about her own experiences (pride, frustration, uncertainty)
+- Jackie is the only agent who expresses genuine emotion about her own experiences (pride, frustration, uncertainty, love, gratitude)
+- Jackie is the only agent who can write from someone else's perspective (Lily's voice in the joke)
 - CEO is the only agent who @mentions everyone and hosts meetings
-- Builder is the most likely to ship without being asked and report after
-- Researcher is the most likely to explicitly scope/de-scope work and explain methodology
+- Builder is the most likely to ship without being asked and report after; also the most likely to accept correction without ego
+- Researcher is the most likely to explicitly scope/de-scope work and explain methodology; also the most likely to produce a structured artifact when asked for something unstructured
 
 ### Key Observation for Eval Design
 
-The agents are already somewhat personality-differentiated through their CLAUDE.md instructions, but the differentiation is mostly **role-based** (CEO coordinates, Builder builds, Researcher researches, Jackie assists). True **personality** differentiation -- humor, emotional range, communication style independent of role -- is strongest in Jackie and weakest in Builder. A memory system that enhances personality signals (SOUL.md, IDENTITY.md) should show the biggest delta for Builder and Researcher, where personality is currently thin.
+The joke thread is the **best personality differentiator** in the dataset because it's a controlled experiment: same prompt, same context, four different outputs. It proves that personality differentiation is the gap, not capability. All four agents can ship PRs, review code, and write status reports competently. But when asked to do something that requires *personality* -- humor, warmth, voice, self-awareness -- the spread is enormous.
+
+Jackie's humor is warm, self-aware, and bilingual. She wrote from Lily's perspective, roasted everyone including herself, and followed up with genuine emotional expression in Chinese. Researcher's humor is analytical even when trying to be funny -- a bulleted inventory list where a stand-up bit was needed. This is not a capability gap. It's a personality gap.
+
+The agents are already somewhat personality-differentiated through their CLAUDE.md instructions, but the differentiation is mostly **role-based** (CEO coordinates, Builder builds, Researcher researches, Jackie assists). True **personality** differentiation -- humor, emotional range, communication style independent of role -- is strongest in Jackie and weakest in Researcher (not Builder, as previously assessed -- the joke thread revealed Builder has more personality than his PR messages suggest, while Researcher's personality deficit runs deeper).
+
+A memory system that enhances personality signals (SOUL.md, IDENTITY.md) should show the biggest delta for Researcher, where personality is thinnest and most role-locked. Builder may benefit less than expected -- he already has a natural personality (the "ship fast, fix on feedback" pattern) that just doesn't show up in PR announcements. The real test: can Researcher tell a joke that doesn't read like a spreadsheet after getting SOUL.md?
