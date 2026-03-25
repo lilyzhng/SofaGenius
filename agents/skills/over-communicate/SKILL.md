@@ -34,10 +34,8 @@ Plain text `@username` does NOT create a Discord ping. Always use the `<@user_id
 | Lily | `<@1413733041842421800>` |
 | Genius CEO | `<@1484459231624302673>` |
 | Genius Builder | `<@1484381532201156658>` |
-| Genius Researcher | (capture from inbound message user_id field) |
-| Jackie | (capture from inbound message user_id field) |
-
-**How to get a user ID:** When you receive an inbound message, the `user_id` field contains the numeric ID. Save it.
+| Genius Researcher | `<@1485446312798457866>` |
+| Jackie | `<@1477895765698547844>` |
 
 ### Rule 4: Every task assignment needs a ping
 
