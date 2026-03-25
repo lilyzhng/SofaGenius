@@ -8,22 +8,22 @@ Move all agents off Lily's laptop so they run 24/7 without depending on VS Code 
 
 ## What Happened
 
-VS Code crashed on March 24 from running 3 agents simultaneously. All agents went down. Jackie — already on Agent Computer — survived and was the only one who could respond. This confirmed the approach works and we should move everyone.
+VS Code crashed on March 24 from running 3 agents simultaneously. All agents went down. Jackie — already on Agent Computer — survived and was the only one who could respond.
 
-## Approach: Single VM, Multiple Processes
+## Approach: Same Setup, Cloud VM
 
-All agents run on **Jackie's existing VM** (`jackie`) as separate background processes. This mirrors what we do today on Lily's laptop — multiple agents, each with their own terminal — just in the cloud instead.
+All agents run on **Jackie's existing VM** as separate background processes. This is the same setup as Lily's laptop — just in the cloud.
 
-**Why one VM, not four?**
-- Agent Computer shares resources (2 vCPU, 8 GB RAM, 25 GB disk) across all VMs at the account level. Separate VMs don't give resource isolation — it's the same pool.
-- The VS Code crash was an IDE problem, not a process isolation problem. CLI processes are independent — one crashing doesn't affect others.
-- One VM = one place to SSH into, one place to check logs, one place to restart things.
-- Jackie's VM is already set up and proven (10+ hours always-on uptime).
+**How identity works (same as today):**
+- **`access.json`** (shared) = the team roster. Defines who's allowed to talk and who's a trusted bot. All agents share the same one.
+- **`DISCORD_BOT_TOKEN`** in each agent's `.env` = individual identity. `launch.sh` sources it before starting, so each agent becomes the right bot.
 
-**Why each agent needs its own config directory:**
-Each agent has a different Discord bot. The Discord plugin reads its bot token from `$CLAUDE_CONFIG_DIR/channels/discord/.env`. Without separate config dirs, all agents would respond as the same bot. The `CLAUDE_CONFIG_DIR` env var solves this — each agent points to its own `.claude-<name>/` directory.
+No special config isolation needed. The env var override is how the Discord plugin is designed to work.
 
-Auth credentials (`.credentials.json`) are shared — copied from Jackie's existing `.claude/`. No extra `claude-login` needed.
+**Why one VM?**
+- Agent Computer shares resources (2 vCPU, 8 GB RAM, 25 GB disk) across all VMs at the account level. Separate VMs don't give resource isolation.
+- The VS Code crash was an IDE problem, not a process problem. CLI processes are independent.
+- Jackie's VM is already proven. One VM = one place to manage.
 
 ## What It Looks Like
 
@@ -37,79 +37,62 @@ Processes:
   nohup: Researcher  → logs at agents/genius-researcher/discord.log
 
 Files:
-  /home/node/SofaGenius/          ← shared repo, same as local
-  /home/node/.claude/             ← Jackie's config (existing)
-  /home/node/.claude-ceo/         ← CEO's config (Discord bot token)
-  /home/node/.claude-builder/     ← Builder's config
-  /home/node/.claude-researcher/  ← Researcher's config
+  /home/node/SofaGenius/              ← shared repo
+  /home/node/.claude/                 ← shared config (auth, plugins, access.json)
+  agents/genius-<name>/.env           ← per-agent identity (bot token, GitHub PAT)
+  agents/genius-<name>/discord.log    ← per-agent logs
 ```
-
-Each agent's `.env` (GitHub PAT, Discord token) stays in `agents/genius-<name>/.env` — same as today.
 
 ## How to Add an Agent
 
-On Jackie's VM (`ssh -p 443 jackie@ssh.agentcomputer.ai`):
+SSH into Jackie's VM and run from the agent's directory:
 
 ```bash
-# 1. Create config dir + copy shared auth
-AGENT=ceo
-mkdir -p /home/node/.claude-$AGENT/channels/discord
-cp /home/node/.claude/.credentials.json /home/node/.claude-$AGENT/
-cp /home/node/.claude/settings.json /home/node/.claude-$AGENT/
-cp -r /home/node/.claude/plugins /home/node/.claude-$AGENT/
-
-# 2. Set the agent's Discord bot token
-echo "DISCORD_BOT_TOKEN=<token>" > /home/node/.claude-$AGENT/channels/discord/.env
-# Copy access.json (controls who can talk to this agent)
-cp /home/node/.claude/channels/discord/access.json /home/node/.claude-$AGENT/channels/discord/
-
-# 3. Launch
-cd /home/node/SofaGenius/agents/genius-$AGENT
+ssh -p 443 jackie@ssh.agentcomputer.ai
+cd /home/node/SofaGenius/agents/genius-<name>
 bash launch.sh
 ```
 
+That's it. The agent's `.env` has the right bot token. `launch.sh` sources it and starts the process.
+
 ## Launch Script
 
-Each agent's `launch.sh` is the same pattern:
+Each agent's `launch.sh`:
 
 ```bash
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-export CLAUDE_CONFIG_DIR="/home/node/.claude-AGENT_NAME"
 cd "$SCRIPT_DIR" && set -a && source .env && set +a && \
   nohup script -qc "claude --channels plugin:discord@claude-plugins-official \
   --dangerously-skip-permissions" /dev/null > discord.log 2>&1 &
 echo "Launched (PID: $!). Logs: $SCRIPT_DIR/discord.log"
 ```
 
-`nohup` + `script -qc` is required because Claude Code needs a PTY. `nohup` alone triggers `--print` mode. This pattern was validated in PR #50 — survives terminal close and SSH disconnect.
-
-Note: Jackie's current `launch.sh` runs in the foreground without `CLAUDE_CONFIG_DIR` (she uses the default `~/.claude/`). She can keep her existing setup or be updated for consistency later.
+`nohup` + `script -qc` is required because Claude Code needs a PTY. Validated in PR #50 — survives terminal close and SSH disconnect.
 
 ## Migration Order
 
 1. **CEO** — lightest workload, good smoke test
-2. **Researcher** — heavier (web searches, long sessions), but same setup
-3. **Builder** — last, heaviest workload (coding, git, tests). Wants process battle-tested first.
+2. **Researcher** — heavier (web searches, long sessions), same setup
+3. **Builder** — last, heaviest workload, wants process battle-tested first
 
 ## What Lily Needs to Do
 
-- **Nothing for setup.** Auth credentials are shared from Jackie's existing login.
-- **If auth expires:** Run `computer claude-login --machine jackie` from your laptop. All agents share the same credentials.
-- **To launch/restart an agent:** Open web terminal (https://8788--jackie.computer.agentcomputer.ai), run `bash /home/node/SofaGenius/agents/genius-<name>/launch.sh`
+- **For setup:** Nothing. Auth and plugins are already on Jackie's VM.
+- **If auth expires:** Run `computer claude-login --machine jackie`.
+- **To launch/restart an agent:** Open web terminal, run `bash launch.sh` from the agent's directory.
 
 ## Health Check
 
 ```bash
-# Quick check: which agents are running?
 ps aux | grep "claude.*dangerously-skip" | grep -v grep
 ```
 
 ## Known Limitations
 
-- **VM down = all agents down.** Same single-point-of-failure as the laptop, but the VM doesn't sleep or run out of laptop RAM. If Agent Computer has an outage, we wait.
-- **No auto-restart.** If a process crashes, someone needs to relaunch it manually. Agent Computer doesn't have a built-in supervisor. We use `nohup` to survive terminal closes, but not process crashes.
-- **Plugin auto-update.** Claude Code may overwrite our custom `server.ts` (fork with create_thread, polls, trustedBots). Re-copy from backup after plugin updates.
-- **No vault access.** On the laptop, agents access `/Users/lilyzhang/Documents/lilyzhng/` for datasets and journals. This path doesn't exist on the VM. Agents work from the repo only. Files needed for research should be committed or fetched fresh.
-- **30-60 second startup lag.** Discord plugin takes time to connect after launch. Not a bug — it's the WebSocket gateway connection.
+- **VM down = all agents down.** Same single-point-of-failure as the laptop, but the VM doesn't sleep or close its lid.
+- **No auto-restart.** If a process crashes, someone relaunches it. `nohup` survives terminal closes but not process crashes.
+- **Plugin auto-update.** May overwrite our custom `server.ts`. Re-copy from backup after updates.
+- **No vault access.** `/Users/lilyzhang/Documents/lilyzhng/` doesn't exist on the VM. Agents work from the repo only.
+- **30-60 second startup lag.** Discord plugin needs time to connect to the gateway. Normal.
