@@ -32,7 +32,7 @@ Example:
 5. 25 VMs can run simultaneously without degradation
 ```
 
-Save these in your scratchpad: `agents/genius-researcher/research/scratchpad.md`
+Save these in your scratchpad: `agents/genius-{your-name}/scratchpad/active_tasks.md`
 
 ## Step 2: Identify Sources
 
@@ -73,7 +73,7 @@ For each hypothesis, record:
 
 ## Step 5: Document Execution
 
-Save an execution log at `agents/genius-researcher/research/deep_research_execution_log.md`:
+Save an execution log at `agents/genius-{your-name}/scratchpad/deep_research_execution_log.md`:
 
 - What you searched and when
 - What each sub-agent found
@@ -84,7 +84,7 @@ This log becomes the basis for the final report AND helps improve this skill ove
 
 ## Step 6: Write the Report
 
-Only after Steps 1-5 are complete, write the design doc using the template at `.github/design_doc_template.md`. Structure:
+Only after Steps 1-5 are complete, write the design doc using the template at `.github/design_doc_template.md` (or `.github/design_doc_one_pager_template.md` for simpler topics). Structure:
 
 1. **Abstract** — 2-3 sentences, include the key finding
 2. **Problem Statement** — what we're evaluating and why
