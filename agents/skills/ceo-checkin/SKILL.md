@@ -12,9 +12,12 @@ Proactively monitor each agent's active task tracker in #all-hands. Encourage, u
 ## When to Run
 
 - After launching a session (catch up on what happened while offline)
-- **Every 5-10 minutes during active sessions** — agent speed, not human speed
+- **When a tracker is stale** (15+ minutes without an update from that agent)
+- When an agent reports being blocked
 - When Lily asks you to check on the team
-- When an agent seems idle or their tracker hasn't updated in 10+ minutes
+- When an agent's queue appears empty
+
+**NOT on a fixed timer.** Agents proactively update their own trackers via `/task-tracker`. CEO reads trackers and intervenes when something needs attention — not polling for status.
 
 ## Step 1: Find each agent's tracker
 
