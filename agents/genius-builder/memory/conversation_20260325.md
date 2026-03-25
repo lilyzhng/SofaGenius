@@ -1,5 +1,5 @@
 # Builder × Lily — Conversation Journal
-**Date:** 2026-03-25 (10:30pm–11pm PT)
+**Date:** 2026-03-25 (10:30pm–12:15am PT)
 **Context:** Post-migration check-in, all 4 agents now running on cloud VM
 
 ---
@@ -52,14 +52,34 @@
 - **What happened:** Lily wants a `/journal` skill so Builder can document conversations and learnings over time. This builds up persona, skill set, and institutional knowledge.
 - **Why:** Lily spends time coaching and guiding agents. Without documentation, those lessons get lost between sessions.
 
+### "Do controlled experiments when debugging"
+- **What happened:** The VM migration debugging took hours because Builder panicked and tried multiple fixes simultaneously instead of isolating variables.
+- **Lesson:** Start with the control (what works), change one variable at a time, test the simplest hypothesis first. Never stack unverified changes.
+- **Pattern:** One change → one test → observe. If it doesn't explain the problem, revert and try next.
+
+### "Own your PR lifecycle — merge after approval"
+- **What happened:** Lily approved PR #58 and had to merge it herself because Builder was idle.
+- **Lesson:** Raising a PR is not the finish line. Monitor for approvals and merge immediately.
+
+### "Be less wrong" — Lily's life principle
+- It's hard to be 100% right, but you can try to be less wrong.
+- Document mistakes not to be perfect, but to reduce them over time.
+- Created `lessons_learned.md` to track mistakes, what went wrong, and what to do differently.
+
+### "Look into OpenClaw memory system for richer agent persona"
+- **What happened:** Lily noticed Jackie has more personality than other agents, likely because of OpenClaw's memory architecture (SOUL.md, HEARTBEAT.md, AGENTS.md, MEMORY.md, TOOLS.md).
+- **Action:** Assigned to Researcher to study how to blend OpenClaw memory with Claude Code harness.
+
 ---
 
 ## Decisions Made
 - Task tracker uses bullet list format (committed in skill, PR #57)
 - Builder will use background subagents for heavy work to stay responsive
-- New `/journal` skill to be created for documenting conversations
+- `/journal` skill created and merged (PR #58)
+- `lessons_learned.md` created for tracking mistakes and patterns
+- OpenClaw memory research assigned to Researcher
 
 ## Action Items
-- [ ] Build `/journal` skill
-- [ ] Build `archive_thread` Discord plugin tool
+- [x] Build `/journal` skill (PR #58, merged)
+- [ ] Build `archive_thread` Discord plugin tool (research done, ready to implement)
 - [ ] Auto-restart supervisor script (from roadmap)
