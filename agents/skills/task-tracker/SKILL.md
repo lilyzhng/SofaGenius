@@ -1,11 +1,11 @@
 ---
-name: active-tracker
+name: task-tracker
 description: Maintain a live task tracker in Discord and scratchpad. Post status in #all-hands, edit in place as tasks complete. Keeps the team informed without being asked.
 argument-hint: [optional: "update" to refresh status, or "new" to create tracker]
 allowed-tools: Read, Write, Edit, Bash, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__edit_message
 ---
 
-# Active Task Tracker
+# Task Tracker
 
 Every agent maintains a live task tracker — a single Discord message in #all-hands that shows current status at a glance. Edit it in place as tasks complete. No one should have to ask "what are you working on?"
 
@@ -22,7 +22,7 @@ agents/genius-{name}/scratchpad/active_tasks.md
 Post a message in #all-hands (`1485396264978878665`):
 
 ```
-**{Agent Name} — Active Task Tracker** (updated {time} PT)
+**{Agent Name} — Task Tracker** (updated {time} PT)
 
 {current status — see format below}
 ```
@@ -40,7 +40,7 @@ Detailed updates, briefs, and discussions go in the thread. The main message sta
 The main message is a **compact status snapshot**. Edit it in place — don't post new messages.
 
 ```
-**{Agent Name} — Active Task Tracker** (updated {time} PT)
+**{Agent Name} — Task Tracker** (updated {time} PT)
 
 ✅ {completed task — one line}
 ✅ {completed task — one line}

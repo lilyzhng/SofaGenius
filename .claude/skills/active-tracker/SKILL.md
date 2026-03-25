@@ -1,1 +1,0 @@
-../../../agents/skills/active-tracker/SKILL.md
