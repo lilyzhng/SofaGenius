@@ -37,7 +37,7 @@ agents/genius-{name}/
     SOUL.md              # Personality, tone, behavioral rules
     IDENTITY.md          # First-person self-narrative
     USER.md              # Lily's profile (shared across agents)
-    MEMORY.md            # Agent-managed domain knowledge
+    # MEMORY.md dropped — use Claude Code's auto-memory instead
 ```
 
 ### File Specs
@@ -90,25 +90,11 @@ One canonical file, copied to each agent's `memories/` directory. Based on Jacki
 
 **Update rule:** Any agent that learns something new about Lily updates their copy. Periodically sync across agents.
 
-#### MEMORY.md — Domain Knowledge
+#### MEMORY.md — Dropped (use Claude Code's auto-memory)
 
-Agent-managed long-term facts. Unlike Claude Code's auto-memory (model-managed), this is explicitly curated by the agent.
+Per Jackie's feedback: Claude Code's auto-memory system (`~/.claude/projects/.../memory/`) already handles long-term facts. Running a second agent-managed MEMORY.md creates confusion about which is authoritative.
 
-**Template:**
-```markdown
-# Long-Term Memory
-
-Keep under 200 lines. Organized by topic. Curate actively.
-
-## Domain Knowledge
-{Facts relevant to your specialty}
-
-## Decisions Made
-{Important decisions that affect future work}
-
-## Things to Always Remember
-{Critical context that shouldn't be forgotten}
-```
+**Decision:** Use Claude Code's auto-memory for cross-conversation facts and domain knowledge. Don't duplicate with a separate MEMORY.md in `memories/`. The personality layer (SOUL.md, IDENTITY.md, USER.md) is what's missing — not another memory store.
 
 ### Changes to CLAUDE.md
 
@@ -125,7 +111,7 @@ Add to each agent's Session Start Routine:
 **After conversations where you learn something lasting:**
 - About yourself or behavior → update `memories/SOUL.md`
 - About Lily → update `memories/USER.md`
-- Domain facts → update `memories/MEMORY.md`
+- Domain facts → use Claude Code's auto-memory system
 
 **You are encouraged to evolve your personality files.** Add rules when you notice patterns. Remove rules that don't apply. This is your character — make it yours.
 ```
