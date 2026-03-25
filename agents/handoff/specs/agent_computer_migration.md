@@ -1,137 +1,141 @@
 # Agent Computer Migration Plan
 
-**Author:** Genius Builder
-**Date:** 2026-03-24
-**Status:** Proposed
+**Author:** Genius Builder | **Date:** 2026-03-25 | **Status:** In Progress | **Owner:** genius-builder
 
 ## Problem
 
 Running 3+ agents in VS Code on Lily's laptop is unstable — VS Code crashed from resource exhaustion on March 24. Agents go down when VS Code crashes or the laptop closes. Jackie already proved Agent Computer works for always-on operation.
 
-## Decision: Separate VMs
+## Decision: Separate VMs + Per-Agent Config
 
-Each agent gets its own VM on Agent Computer.
+Each agent gets its own VM on Agent Computer. All VMs share `/home/node/` via EFS (shared filesystem mode), but each agent gets an isolated `CLAUDE_CONFIG_DIR` to separate Discord bot tokens and plugin config.
 
-**Why not a single VM?** The whole reason we're migrating is that 3 agents in one process crashed. Putting 3 agents in one VM is the same problem on a different computer. Separate VMs give us:
+**Why separate VMs?** The whole reason we're migrating is that 3 agents in one process crashed. Separate VMs give us:
 - Fault isolation — one crash doesn't take down the team
 - Independent restarts
 - Clean resource boundaries
 - Easier debugging
 
-**Cost:** $20/mo for 25 VMs. Jackie uses 1. Adding 3 more = 4 total. 21 remaining.
+**Cost:** $20/mo for 25 VMs. 4 agents = 4 VMs. 21 remaining.
 
-## Migration Order
+## Architecture
 
-### Phase 1: CEO (first)
-- Lightest workload (coordination, Discord, content) — lowest risk
-- Builder sets up the VM while still running locally
-- Good smoke test for the full migration process
+```
+/home/node/
+├── SofaGenius/                    # Shared repo (all agents)
+│   └── agents/
+│       ├── genius-ceo/            # CEO's CLAUDE.md, .env, launch-ac.sh
+│       ├── genius-builder/        # Builder's CLAUDE.md, .env, launch-ac.sh
+│       ├── genius-researcher/     # Researcher's CLAUDE.md, .env, launch-ac.sh
+│       └── genius-jackie/         # Jackie's CLAUDE.md, .env, launch.sh
+├── .claude/                       # Jackie's config (original, shared auth source)
+├── .claude-ceo/                   # CEO's isolated config
+│   ├── .credentials.json          # Copied from .claude/ (shared auth)
+│   ├── plugins/                   # Copied from .claude/ (custom Discord fork)
+│   └── channels/discord/          # CEO's bot token + access.json
+├── .claude-builder/               # Builder's isolated config
+│   └── channels/discord/          # Builder's bot token + access.json
+└── .claude-researcher/            # Researcher's isolated config
+    └── channels/discord/          # Researcher's bot token + access.json
+```
 
-### Phase 2: Researcher (second)
-- Similar setup to CEO, slightly heavier (web searches, long research)
-- By this point we'll have ironed out any issues from CEO's migration
+**Key discovery:** `CLAUDE_CONFIG_DIR` env var lets each agent use a different `.claude/` directory. Auth credentials are shared (copied from Jackie's original `.claude/`), but Discord bot tokens are per-agent. No `claude-login` needed for new agents — just copy `.credentials.json`.
+
+## Migration Order & Status
+
+### Phase 1: CEO ✅ (set up, ready to launch)
+
+VM `genius-ceo` is fully configured:
+- [x] `computer create genius-ceo --ssh-enabled`
+- [x] Per-agent config: `/home/node/.claude-ceo/` with credentials, settings, plugins
+- [x] Discord bot token + access.json configured
+- [x] Plugin cache copied with custom server.ts (our fork features)
+- [x] CEO's .env (DISCORD_BOT_TOKEN + GH_TOKEN) on VM
+- [x] CEO's scratchpad copied
+- [x] `launch-ac.sh` created
+- [ ] **Launch and test** — Lily runs from web terminal: `bash /home/node/SofaGenius/agents/genius-ceo/launch-ac.sh`
+
+**Access:**
+- Web terminal: https://8788--genius-ceo.computer.agentcomputer.ai
+- SSH: `ssh -p 443 genius-ceo@ssh.agentcomputer.ai`
+
+### Phase 2: Researcher (next)
+
+- [ ] `computer create genius-researcher --ssh-enabled`
+- [ ] Create `/home/node/.claude-researcher/` (copy credentials + settings + plugins)
+- [ ] Configure Discord bot token + access.json
+- [ ] Copy researcher's .env and scratchpad/research files
+- [ ] Test launch
 
 ### Phase 3: Builder (last)
-- Heaviest workload (coding, tests, git ops) — wants process battle-tested first
-- Once CEO + Researcher are stable, Builder sets up own VM
-- Lily does final `claude-login`
 
-## Per-Agent Setup Checklist
+- [ ] `computer create genius-builder --ssh-enabled`
+- [ ] Create `/home/node/.claude-builder/` (copy credentials + settings + plugins)
+- [ ] Configure Discord bot token + access.json
+- [ ] Copy builder's .env and scratchpad files
+- [ ] Verify git push/PR workflows work from VM
+- [ ] Test launch
 
-Each agent migration follows the same steps (~20 min each):
+## Per-Agent Setup (runbook)
 
-### 1. Create VM
 ```bash
-computer create <agent-name>
-```
-Inherits shared filesystem from account settings.
+# 1. Create VM (inherits shared filesystem)
+computer create AGENT_NAME --ssh-enabled
 
-### 2. Claude Login (requires Lily's browser)
-```bash
-computer claude-login --machine <agent-name>
-```
-This is the only step that requires Lily. Everything else Builder handles.
+# 2. Create per-agent config dir
+ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai 'mkdir -p /home/node/.claude-SHORTNAME/channels/discord'
+ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai 'cp /home/node/.claude/.credentials.json /home/node/.claude-SHORTNAME/'
+ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai 'cp /home/node/.claude/settings.json /home/node/.claude-SHORTNAME/'
+ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai 'cp -r /home/node/.claude/plugins /home/node/.claude-SHORTNAME/'
 
-### 3. Clone Repo
-```bash
-# SSH into the VM
-computer ssh <agent-name>
+# 3. Configure Discord (pipe local → VM, no SCP support)
+echo "DISCORD_BOT_TOKEN=..." | ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai \
+  'cat > /home/node/.claude-SHORTNAME/channels/discord/.env'
+cat access.json | ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai \
+  'cat > /home/node/.claude-SHORTNAME/channels/discord/access.json'
 
-# Clone SofaGenius
-cd /home/node
-git clone https://github.com/lilyzhng/SofaGenius.git
-```
+# 4. Copy agent's .env
+cat agents/genius-SHORTNAME/.env | ssh -p 443 AGENT_NAME@ssh.agentcomputer.ai \
+  'cat > /home/node/SofaGenius/agents/genius-SHORTNAME/.env'
 
-### 4. Configure Environment
-Each agent needs its own `.env` in its agent directory (`agents/genius-<name>/.env`):
-- `ANTHROPIC_API_KEY` — from Claude login (may be auto-configured)
-- `GH_TOKEN` — agent's GitHub PAT
-- `DISCORD_BOT_TOKEN` — agent's Discord bot token
-- Agent-specific tokens (e.g., Jackie's `JACKIE_BOT_TOKEN`)
-
-Copy from local machine:
-```bash
-scp -P 443 agents/genius-<name>/.env <agent-name>@ssh.agentcomputer.ai:/home/node/SofaGenius/agents/genius-<name>/.env
+# 5. Launch from web terminal: https://8788--AGENT_NAME.computer.agentcomputer.ai
+bash /home/node/SofaGenius/agents/genius-SHORTNAME/launch-ac.sh
 ```
 
-### 5. Install Discord Plugin
+## Launch Script (launch-ac.sh)
+
+Each agent has a `launch-ac.sh` in their agent directory:
+
 ```bash
-# On the VM
-claude mcp add plugin:discord -- npx @anthropic-ai/claude-code-discord-plugin
+#!/bin/bash
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+export CLAUDE_CONFIG_DIR="/home/node/.claude-SHORTNAME"
+cd "$SCRIPT_DIR" && set -a && source .env && set +a && \
+  claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions
 ```
 
-Copy custom `server.ts` if we have a fork (Jackie's known issue — plugin cache overwrites on restart).
+Differences from local `launch.sh`: sets `CLAUDE_CONFIG_DIR`, no `caffeinate` (not macOS).
 
-### 6. Copy Memory & Settings
-```bash
-# Copy agent's Claude memory/settings
-scp -P 443 -r ~/.claude/ <agent-name>@ssh.agentcomputer.ai:~/.claude/
-```
+## Lily's Role (minimal)
 
-### 7. Create Launch Script
-Each agent already has a `launch.sh`. Verify it works on the VM:
-```bash
-cd /home/node/SofaGenius/agents/genius-<name>
-bash launch.sh
-```
-
-### 8. Validate
-- [ ] Agent responds to @mentions in Discord
-- [ ] Agent can read/write to shared filesystem
-- [ ] Agent can push to GitHub (git credentials work)
-- [ ] Agent can read other agents' scratchpads and handoff files
-- [ ] Cron jobs work (if applicable — Jackie's digest trigger)
-
-## Shared Filesystem
-
-Agent Computer's shared storage mode is enabled on our account. All VMs mount the same `/home/node` directory. This means:
-
-- **Shared:** Repo, scratchpads, handoff directory, brainstorm docs
-- **Isolated per VM:** Claude Code process, `.env` files, Discord plugin config
-
-Agents can read each other's files the same way they do locally through the vault.
+- **One-time:** Nothing! Auth credentials shared via filesystem. No `claude-login` per agent.
+- **If auth expires:** Run `computer claude-login --machine jackie` — credentials propagate to all agents via shared `.claude/`.
+- **Testing:** Launch agents from web terminal to verify Discord connectivity.
 
 ## Known Risks & Mitigations
 
 | Risk | Mitigation |
 |------|-----------|
-| No auto-restart / supervisor | Create a wrapper script with crash recovery (restart on exit). Builder to implement. |
-| Plugin cache overwrites on restart | Pre-launch step copies custom `server.ts` before starting Claude Code |
-| `claude-login` expires | Monitor for auth failures. Lily re-runs login when needed. |
-| Git conflicts from concurrent writes | Same risk as today. Agents pull before pushing, handle merge conflicts. |
-| Shared filesystem race conditions | Agents write to their own directories. Handoff protocol already handles coordination. |
+| Process dies when terminal closes | Pending Agent Computer support on `computer agent sessions` with `--channels`. Workaround: keep web terminal open. |
+| Plugin auto-update overwrites custom server.ts | Backup at `/home/node/.claude/plugins/cache/` persists. Re-copy after plugin updates. |
+| Auth expiry | Re-auth on any VM propagates to all via shared `.claude/.credentials.json`. |
+| Git conflicts from concurrent writes | Same as local. Agents pull before pushing, handle merge conflicts. |
 
 ## Post-Migration Cleanup
 
 Once all agents are on Agent Computer:
 1. Remove local VS Code agent launch configs
-2. Update CLAUDE.md files to reference AC paths (`/home/node/SofaGenius/` instead of `/Users/lilyzhang/Documents/lilyzhng/SofaGenius/`)
-3. Document the auto-restart solution once proven
-4. Update Jackie's CLAUDE.md to remove Fly.io references (already migrated)
-
-## Timeline
-
-- **Phase 1 (CEO):** Builder sets up tonight, Lily does claude-login when available
-- **Phase 2 (Researcher):** Next day after CEO is validated
-- **Phase 3 (Builder):** After CEO + Researcher stable for 24h
-- **Total:** ~2-3 days to full migration
+2. Update CLAUDE.md files to reference AC paths if needed
+3. Consider migrating Jackie to `/home/node/.claude-jackie/` for consistency
+4. Document auto-restart solution once Agent Computer responds about `--channels` support
