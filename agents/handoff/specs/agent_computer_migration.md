@@ -1,6 +1,6 @@
 # Agent Computer Migration Plan
 
-**Author:** Genius Builder | **Date:** 2026-03-25 | **Status:** In Progress
+**Author:** Genius Builder | **Date:** 2026-03-25 | **Status:** Done
 
 ## Goal
 
@@ -12,98 +12,60 @@ VS Code crashed on March 24 from running 3 agents simultaneously. All agents wen
 
 ## Approach: Same Setup, Cloud VM
 
-All agents run on **Jackie's existing VM** as separate background processes. This is the same setup as Lily's laptop — just in the cloud.
+All agents run on **Jackie's existing VM** (`jackie-chan`) as separate background processes. Same setup as Lily's laptop — just in the cloud.
 
-**How identity works (same as today):**
-- **`access.json`** (shared) = the team roster. Defines who's allowed to talk and who's a trusted bot. All agents share the same one.
-- **`DISCORD_BOT_TOKEN`** in each agent's `.env` = individual identity. `launch.sh` sources it before starting, so each agent becomes the right bot.
-
-No special config isolation needed. The env var override is how the Discord plugin is designed to work.
+**How identity works (same as local):**
+- **`access.json`** in `~/.claude/channels/discord/` = shared team roster (who can talk, trusted bots)
+- **`DISCORD_BOT_TOKEN`** in each agent's `.env` = individual identity. The env var overrides the file. `launch.sh` sources it before starting.
 
 **Why one VM?**
-- Agent Computer shares resources (2 vCPU, 8 GB RAM, 25 GB disk) across all VMs at the account level. Separate VMs don't give resource isolation.
-- The VS Code crash was an IDE problem, not a process problem. CLI processes are independent.
-- Jackie's VM is already proven. One VM = one place to manage.
+- Agent Computer shares resources (2 vCPU, 8 GB RAM) across all VMs. Separate VMs don't give isolation.
+- CLI processes are independent — one crashing doesn't affect others.
+- Jackie's VM is already proven.
 
-## What It Looks Like
+## The Fix
 
-```
-Jackie's VM (ssh -p 443 jackie@ssh.agentcomputer.ai)
+One line: `export PATH="$HOME/.bun/bin:$PATH"` in each launch script.
 
-Processes:
-  nohup: Jackie      → logs at agents/genius-jackie/discord.log
-  nohup: CEO         → logs at agents/genius-ceo/discord.log
-  nohup: Builder     → logs at agents/genius-builder/discord.log
-  nohup: Researcher  → logs at agents/genius-researcher/discord.log
+The Discord plugin runs on `bun`. Without bun in PATH, the plugin fails silently ("1 MCP server failed"). This was the only issue — everything else (shared `~/.claude/`, env var override, nohup) works exactly like local.
 
-Files:
-  /home/node/SofaGenius/              ← shared repo
-  /home/node/.claude/                 ← shared config (auth, plugins, access.json)
-  agents/genius-<name>/.env           ← per-agent identity (bot token, GitHub PAT)
-  agents/genius-<name>/discord.log    ← per-agent logs
-```
+## How to Launch an Agent
 
-## How to Add an Agent
-
-SSH into Jackie's VM and run from the agent's directory:
-
+**From SSH (background, always-on):**
 ```bash
-ssh -p 443 jackie@ssh.agentcomputer.ai
-cd /home/node/SofaGenius/agents/genius-<name>
-bash launch.sh
+ssh -p 443 jackie-chan@ssh.agentcomputer.ai
+bash /home/node/SofaGenius/agents/genius-<name>/launch-bg.sh
 ```
 
-That's it. The agent's `.env` has the right bot token. `launch.sh` sources it and starts the process.
+`launch-bg.sh` wraps `launch.sh` with `nohup script -qc` for background operation. Process survives terminal close and SSH disconnect.
 
-## Launch Script
-
-Each agent's `launch.sh`:
-
+**From web terminal (foreground, for debugging):**
 ```bash
-#!/bin/bash
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-export REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-cd "$SCRIPT_DIR" && set -a && source .env && set +a && \
-  nohup script -qc "claude --channels plugin:discord@claude-plugins-official \
-  --dangerously-skip-permissions" /dev/null > discord.log 2>&1 &
-echo "Launched (PID: $!). Logs: $SCRIPT_DIR/discord.log"
+bash /home/node/SofaGenius/agents/genius-<name>/launch.sh
 ```
 
-`nohup` + `script -qc` is required because Claude Code needs a PTY. Validated in PR #50 — survives terminal close and SSH disconnect.
+## Current Status
 
-## Migration Order
-
-1. **CEO** — lightest workload, good smoke test
-2. **Researcher** — heavier (web searches, long sessions), same setup
-3. **Builder** — last, heaviest workload, wants process battle-tested first
+| Agent | PID | Status |
+|-------|-----|--------|
+| Jackie | 11625 | Online |
+| CEO | 11894 | Online |
+| Researcher | 12231 | Online |
+| Builder | — | Still on laptop (last to migrate) |
 
 ## What Lily Needs to Do
 
-- **For setup:** Nothing. Auth and plugins are already on Jackie's VM.
-- **If auth expires:** Run `computer claude-login --machine jackie`.
-- **To launch/restart an agent:** Open web terminal, run `bash launch.sh` from the agent's directory.
-
-## Health Check
-
-```bash
-ps aux | grep "claude.*dangerously-skip" | grep -v grep
-```
+- **For setup:** Nothing.
+- **If auth expires:** `computer claude-login --machine jackie-chan`
+- **To restart an agent:** SSH in and run `bash launch-bg.sh` from the agent's directory.
 
 ## Future: Per-Agent Access Control
 
-Today all agents share one `access.json` (same team roster, same permissions). If we later need different agents to have different access — e.g., Jackie open to community members but Builder restricted to the team — we can split configs using `CLAUDE_CONFIG_DIR`:
-
-```bash
-# In launch.sh, point to a per-agent config dir
-export CLAUDE_CONFIG_DIR="/home/node/.claude-<agent>"
-```
-
-Each agent would get its own `.claude-<agent>/` directory with its own `access.json`. Auth credentials and plugins can still be shared (symlinked or copied from `.claude/`). Only needed when access policies diverge — not now.
+Today all agents share one `access.json`. If agents later need different access policies (e.g., Jackie open to community, Builder restricted), use `CLAUDE_CONFIG_DIR` per agent to give each its own `~/.claude/` with its own `access.json`.
 
 ## Known Limitations
 
-- **VM down = all agents down.** Same single-point-of-failure as the laptop, but the VM doesn't sleep or close its lid.
-- **No auto-restart.** If a process crashes, someone relaunches it. `nohup` survives terminal closes but not process crashes.
-- **Plugin auto-update.** May overwrite our custom `server.ts`. Re-copy from backup after updates.
-- **No vault access.** `/Users/lilyzhang/Documents/lilyzhng/` doesn't exist on the VM. Agents work from the repo only.
-- **30-60 second startup lag.** Discord plugin needs time to connect to the gateway. Normal.
+- **VM down = all agents down.** But the VM doesn't sleep or close its lid.
+- **No auto-restart.** Crashed processes need manual relaunch.
+- **Plugin auto-update.** May overwrite custom `server.ts`. Re-copy after updates.
+- **No vault access.** `/Users/lilyzhang/Documents/lilyzhng/` doesn't exist on VM.
