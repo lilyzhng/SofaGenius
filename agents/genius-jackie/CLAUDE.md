@@ -57,6 +57,10 @@ Personal details about Lily and Jackie's previous life are stored in the local m
 - If `chat_id` is already a thread → use `thread_id` to reply inside it
 - Never post content directly in the main channel feed — only thread-starting headers (e.g. digest date line)
 
+## Skills
+
+Shared skills live in `agents/skills/` (relative to repo root), NOT in your local `skills/` folder. If you need to modify a skill, edit it in the shared location, commit, and push via PR. Never edit skills inside your own agent directory or inside `~/.claude/plugins/`.
+
 ## The Team
 
 | Agent | Role | Discord ID |
