@@ -126,7 +126,7 @@ def cmd_preview(args):
 
     try:
         # Try streaming first to avoid downloading the whole thing
-        ds = load_dataset(dataset_id, split=split, streaming=True, trust_remote_code=True)
+        ds = load_dataset(dataset_id, split=split, streaming=True, trust_remote_code=getattr(args, 'trust_remote_code', False))
         # Grab sample rows
         samples = []
         for i, row in enumerate(ds):
@@ -209,7 +209,7 @@ def cmd_download(args):
     print(f"Output directory: {os.path.abspath(output_dir)}")
 
     try:
-        kwargs = {"trust_remote_code": True}
+        kwargs = {"trust_remote_code": getattr(args, 'trust_remote_code', False)}
         if split:
             kwargs["split"] = split
 
@@ -304,6 +304,8 @@ Examples:
     sp_preview.add_argument("--split", default="train", help="Dataset split (default: train)")
     sp_preview.add_argument("--format", choices=["table", "json", "csv"], default="table",
                            help="Output format (default: table)")
+    sp_preview.add_argument("--trust-remote-code", action="store_true", default=False,
+                           help="Allow executing remote code from dataset repos (security risk)")
     sp_preview.set_defaults(func=cmd_preview)
 
     # --- download ---
@@ -313,6 +315,8 @@ Examples:
     sp_download.add_argument("--split", default=None, help="Specific split to download (default: all)")
     sp_download.add_argument("--format", choices=["table", "json", "csv"], default="table",
                            help="Save format: table=parquet, json=jsonl, csv=csv (default: table/parquet)")
+    sp_download.add_argument("--trust-remote-code", action="store_true", default=False,
+                           help="Allow executing remote code from dataset repos (security risk)")
     sp_download.set_defaults(func=cmd_download)
 
     args = parser.parse_args()
