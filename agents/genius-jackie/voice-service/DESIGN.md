@@ -43,14 +43,23 @@ Phone ←→ Twilio ←→ Webhook Server ←→ OpenAI Realtime API (GPT-4o)
 The key requirement: Discord Jackie and Voice Jackie share the same memory.
 
 ```
+# Claude Code memory (Discord Jackie reads/writes here)
+~/.claude/projects/<project-hash>/memory/
+├── MEMORY.md                 ← Memory index
+├── user_*.md                 ← User memories
+├── feedback_*.md             ← Feedback memories
+└── project_*.md              ← Project memories
+
+# Jackie's repo directory
 /home/node/SofaGenius/agents/genius-jackie/
-├── .claude/memory/           ← Claude Code's memory system (Discord Jackie writes here)
-│   └── MEMORY.md             ← Memory index
-├── memories/                 ← Conversation logs
-│   └── calls/                ← Voice call summaries (NEW)
+├── CLAUDE.md                 ← Jackie's personality/identity
+├── voice-service/            ← This service
+│   └── call-logs/            ← Voice call summaries (NEW)
 │       └── 2026-03-25.md
-└── voice-service/            ← This service
+└── ...
 ```
+
+> **Note:** Claude Code stores memory at `~/.claude/projects/{project-hash}/memory/`, not inside the repo. The exact `{project-hash}` is derived from the working directory. Voice Jackie discovers this path at startup via `CLAUDE_MEMORY_PATH` env var.
 
 ### Memory Tools (exposed to OpenAI Realtime as function calls)
 
@@ -59,11 +68,11 @@ The key requirement: Discord Jackie and Voice Jackie share the same memory.
 | `load_context` | Read CLAUDE.md (personality) + memory files at call start |
 | `read_memory` | Search memory files by keyword |
 | `save_memory` | Write a new memory entry (same format as Claude Code memories) |
-| `save_call_summary` | Append call summary to `memories/calls/YYYY-MM-DD.md` |
+| `save_call_summary` | Append call summary to `voice-service/call-logs/YYYY-MM-DD.md` |
 
-**Read path:** Voice Jackie reads `.claude/memory/MEMORY.md` to know what Discord Jackie remembers. It also reads any memory files referenced there.
+**Read path:** Voice Jackie reads `~/.claude/projects/{project-hash}/memory/MEMORY.md` to know what Discord Jackie remembers. It also reads any memory files referenced there.
 
-**Write path:** Voice Jackie writes call summaries and new memories in the same format. When Discord Jackie's Claude Code session starts, it picks up these files naturally.
+**Write path:** Voice Jackie writes call summaries to `voice-service/call-logs/`. For shared memories, it writes to Claude Code's memory directory in the same format. When Discord Jackie's Claude Code session starts, it picks up these files naturally.
 
 ## File Structure
 
@@ -101,7 +110,8 @@ PORT=3334
 PUBLIC_URL=https://...  # Set by tunnel or manual config
 
 # Jackie identity
-JACKIE_MEMORY_PATH=/home/node/SofaGenius/agents/genius-jackie
+JACKIE_REPO_PATH=/home/node/SofaGenius/agents/genius-jackie
+CLAUDE_MEMORY_PATH=/home/node/.claude/projects/<project-hash>/memory
 ```
 
 ### System Prompt (loaded from CLAUDE.md)
@@ -121,7 +131,7 @@ Match Lily's mixed Chinese/English style.
 {
   "model": "gpt-4o-realtime-preview",
   "modalities": ["text", "audio"],
-  "voice": "alloy",
+  "voice": "TBD",              // see Open Questions #1
   "input_audio_format": "g711_ulaw",
   "output_audio_format": "g711_ulaw",
   "turn_detection": {
@@ -152,8 +162,9 @@ npm install
 
 # Run (alongside Jackie's Claude Code session)
 node dist/index.js
-# Or with auto-restart:
-# Add to Jackie's launch-bg.sh as a background process
+# With auto-restart (recommended for production):
+# Add to Jackie's launch-bg.sh with a restart loop:
+# while true; do node dist/index.js; sleep 5; done &
 ```
 
 ### Twilio Configuration
