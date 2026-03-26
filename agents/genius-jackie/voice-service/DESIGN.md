@@ -131,7 +131,7 @@ Match Lily's mixed Chinese/English style.
 {
   "model": "gpt-4o-realtime-preview",
   "modalities": ["text", "audio"],
-  "voice": "TBD",              // see Open Questions #1
+  "voice": "alloy",
   "input_audio_format": "g711_ulaw",
   "output_audio_format": "g711_ulaw",
   "turn_detection": {
@@ -189,7 +189,6 @@ POST https://<public-url>/voice/webhook
 
 ## Open Questions
 
-1. **Voice selection** — Which OpenAI voice fits Jackie? Options: alloy, ash, ballad, coral, echo, shimmer, sage, verse. Need to test.
-2. **Tunnel provider** — Is Tailscale already on the VM, or should we use ngrok?
-3. **Call recording** — Should we save audio recordings, or just text summaries?
-4. **Auth** — Should we restrict who can call Jackie? (Caller ID allowlist, or open?)
+1. **Tunnel provider** — Is Tailscale already on the VM, or should we use ngrok?
+2. **Call recording** — Should we save audio recordings, or just text summaries?
+3. **Auth** — Should we restrict who can call Jackie? (Caller ID allowlist, or open?)
