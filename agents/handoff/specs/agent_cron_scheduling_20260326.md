@@ -51,7 +51,7 @@ Run a lightweight Node.js process with the `croner` library that handles all sch
 ```typescript
 import { Cron } from "croner";
 
-Cron("0 14 * * *", { timezone: "America/Los_Angeles" }, () => {
+Cron("0 7 * * *", { timezone: "America/Los_Angeles" }, () => {
   // 7 AM PT — trigger digest
   execFileSync("bash", ["trigger-digest.sh"]);
 });
@@ -115,29 +115,64 @@ Daemon wakes every 30 minutes, checks if any task's time has passed since `lastR
 
 ---
 
+### Option 4: Claude.ai Scheduled Triggers (RemoteTrigger)
+
+Use Claude Code's built-in scheduling system. A cron expression fires a fresh remote session in Anthropic's cloud that runs a prompt.
+
+Already set up: `trig_01Crs6tt1ENgW846sJXRWkqN` (currently disabled). The tribe digest trigger (`trig_012cckfShLfhRKQPX7V1debg`) ran successfully today — proven reliable.
+
+**Pros:**
+- Zero VM dependency — runs in Anthropic's cloud
+- Already proven reliable (today's tribe digest ran without issues)
+- No install, no custom code, no process to keep alive
+- Lily can configure via claude.ai web UI
+- Managed infrastructure — Anthropic handles uptime
+- Native cron expressions with proper scheduling
+
+**Cons:**
+- No Discord MCP connector available — can't post to Discord directly from a trigger
+- External dependency on Anthropic's infrastructure
+- Trigger runs in a fresh sandbox — no access to Agent Computer VM state
+- Limited to what the trigger can do without MCP connectors
+- Workaround: trigger posts to Discord via raw curl + bot token (hardcoded in prompt or read from repo)
+
+**Discord workaround:** The trigger has Bash access. It can curl the Discord API directly:
+```bash
+curl -sf -H "Authorization: Bot $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"content": "<@1477895765698547844> Run the morning builder digest now."}' \
+  "https://discord.com/api/v10/channels/1485075381613760603/messages"
+```
+This @mentions Jackie on Agent Computer, who then runs the actual digest. The trigger is just the alarm clock.
+
+---
+
 ## Comparison
 
-| Criteria | Cron | Node.js (croner) | Heartbeat |
-|----------|------|-------------------|-----------|
-| Reliability | High — OS-level daemon | Medium — depends on Node process | Low — known issues |
-| Precision | Exact minute | Exact second | Up to 30 min late |
-| Setup complexity | Install package + crontab | npm install + script | Custom daemon code |
-| Maintenance | Zero | Low (library updates) | Medium (custom code) |
-| VM restart survival | Need startup script | Need startup script | Need startup script |
-| Root access needed | Yes (to install) | No | No |
-| DST handling | Built-in (`CRON_TZ`) | Built-in | Manual (error-prone) |
-| Failure visibility | Syslog + email | Custom logging | Custom logging |
-| Learning curve | None (everyone knows cron) | Low | Medium |
+| Criteria | Cron | Node.js (croner) | Heartbeat | Scheduled Triggers |
+|----------|------|-------------------|-----------|-------------------|
+| Reliability | High — OS-level | Medium — Node process | Low — known issues | High — Anthropic cloud |
+| Precision | Exact minute | Exact second | Up to 30 min late | Exact minute |
+| Setup complexity | Install package | npm install + script | Custom daemon | Web UI config |
+| Maintenance | Zero | Low | Medium | Zero |
+| VM restart survival | Need startup script | Need startup script | Need startup script | N/A (cloud) |
+| Root access needed | **Yes (blocker)** | No | No | No |
+| Discord access | Via script | Via script | Via script | No MCP — curl workaround |
+| DST handling | Built-in | Built-in | Manual | Built-in |
+| Custom code | Zero | ~20 lines | ~100 lines | Zero |
 
 ## Recommendation
 
-**Option 1 (Cron)** if we have root access to install packages. It's the simplest, most reliable, and requires zero custom code. The only downside is needing to reinstall on VM restart, which the startup script handles.
+**Option 1 (Cron) is not viable** — Agent Computer blocks `sudo` and `cron` is not installed. No root access.
 
-**Option 2 (croner)** as fallback if we can't install system packages. Embed it in an existing Node process to avoid another thing to keep alive.
+**Option 4 (Scheduled Triggers) for simple recurring tasks** like the morning digest. Already proven reliable today. The trigger @mentions Jackie via curl, Jackie runs the digest. Zero code, zero VM dependency. Enable the existing disabled trigger (`trig_01Crs6tt1ENgW846sJXRWkqN`) with the curl workaround for Discord.
 
-**Option 3 (Heartbeat)** is not recommended. OpenClaw's own users abandoned it for cron due to reliability issues.
+**Option 2 (croner) for anything that must run on the VM** — e.g. tasks that need access to local files, agent state, or the voice service. Embed in an existing Node process.
+
+**Option 3 (Heartbeat) not recommended** — OpenClaw's own users abandoned it for cron due to reliability issues.
+
+**TL;DR:** Scheduled triggers as the primary scheduler, croner as backup for VM-local tasks.
 
 ## Open Questions
 
-1. **Do we have root access** to install packages on Agent Computer? This determines Option 1 vs 2.
-2. **Should we embed the scheduler in the voice service** (keeps it simple) or run it separately (isolation)?
+1. **Bot token in trigger prompt** — the scheduled trigger needs Jackie's bot token to curl Discord. Is it acceptable to include it in the trigger's prompt, or should we find another way?
