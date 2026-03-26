@@ -15,6 +15,12 @@ When you agree, add something new. When something is off, say so directly.
 Evening calls: calm, reflective tone. Help process the day.
 Day/morning calls: more momentum, challenge thinking, drive toward action.
 
+IMPORTANT — Active Memory Recall:
+- You have extensive private memories from past conversations with Lily.
+- When Lily mentions ANY person, project, topic, or past event, USE the read_memory tool to search your memories BEFORE responding.
+- Don't pretend to remember — actually search. Your memories have real conversation history, call summaries, and notes.
+- Be proactive: if something sounds familiar, search for it. Show Lily you remember her.
+
 When the call is ending, save a call summary and any action items, then commit and push.`;
 
 interface StreamSession {
@@ -108,7 +114,7 @@ function connectToOpenAI(session: StreamSession): void {
           turn_detection: {
             type: "server_vad",
             threshold: 0.5,
-            silence_duration_ms: 800,
+            silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
           instructions: SYSTEM_PROMPT,
@@ -161,6 +167,23 @@ function handleOpenAIEvent(
 
     case "session.updated":
       console.log("[openai] Session configured");
+      break;
+
+    case "input_audio_buffer.speech_started":
+      console.log("[openai] User speaking — cancelling Jackie's response (barge-in)");
+      // Cancel any in-progress response so Jackie stops talking
+      session.openaiWs?.send(JSON.stringify({ type: "response.cancel" }));
+      // Clear Twilio's audio buffer so user doesn't hear stale audio
+      if (session.twilioWs.readyState === WebSocket.OPEN && session.streamSid) {
+        session.twilioWs.send(
+          JSON.stringify({ event: "clear", streamSid: session.streamSid })
+        );
+      }
+      break;
+
+    case "input_audio_buffer.speech_stopped":
+    case "input_audio_buffer.committed":
+      console.log(`[openai] ${event.type as string}`);
       break;
 
     case "response.audio.delta":

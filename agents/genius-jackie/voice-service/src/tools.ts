@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { config } from "./config.js";
@@ -17,13 +17,13 @@ export const toolDefinitions = [
   {
     type: "function" as const,
     name: "read_memory",
-    description: "Search private memory files by keyword.",
+    description: "Search through all of your private memories — past conversations, call summaries, notes, learnings, and vault. Use this PROACTIVELY whenever Lily mentions a person, topic, project, or past event. Don't wait to be asked — if something might have context in your memory, search for it.",
     parameters: {
       type: "object",
       properties: {
         keyword: {
           type: "string",
-          description: "Keyword to search for in memory files",
+          description: "Keyword to search for (name, topic, project, date, etc.)",
         },
       },
       required: ["keyword"],
@@ -128,15 +128,46 @@ function loadContext(): string {
     parts.push("# Jackie's Personality\n" + readFileSync(claudeMd, "utf-8"));
   }
 
-  // Load private memory context
-  const contextFile = join(memoryDir, "context.md");
-  if (existsSync(contextFile)) {
-    parts.push(
-      "# Personal Context\n" + readFileSync(contextFile, "utf-8")
-    );
+  // Load core memory files from private repo
+  const memoryFiles = [
+    { file: "SOUL.md", label: "Core Behavior Rules" },
+    { file: "IDENTITY.md", label: "Identity" },
+    { file: "USER.md", label: "About Lily" },
+    { file: "MEMORY.md", label: "Long-Term Memory" },
+    { file: "context.md", label: "Personal Context" },
+    { file: "action-items.md", label: "Open Action Items" },
+  ];
+
+  for (const { file, label } of memoryFiles) {
+    const path = join(memoryDir, file);
+    if (existsSync(path)) {
+      const content = readFileSync(path, "utf-8").trim();
+      if (content) parts.push(`# ${label}\n${content}`);
+    }
   }
 
-  // Load recent call logs
+  // Load recent conversation summaries (last 3 call summaries)
+  const convoDir = join(memoryDir, "conversations");
+  if (existsSync(convoDir)) {
+    try {
+      const files = readdirSync(convoDir)
+        .filter((f) => f.includes("call-summary"))
+        .sort()
+        .reverse()
+        .slice(0, 3);
+      if (files.length > 0) {
+        const summaries = files.map((f) => {
+          const content = readFileSync(join(convoDir, f), "utf-8").slice(0, 3000);
+          return `## ${f}\n${content}`;
+        });
+        parts.push("# Recent Call History\n" + summaries.join("\n\n"));
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // Load recent new call logs (from voice service)
   const callsDir = join(memoryDir, "calls");
   if (existsSync(callsDir)) {
     const today = new Date().toISOString().split("T")[0];
@@ -148,14 +179,6 @@ function loadContext(): string {
     }
   }
 
-  // Load action items
-  const actionItems = join(memoryDir, "action-items.md");
-  if (existsSync(actionItems)) {
-    parts.push(
-      "# Open Action Items\n" + readFileSync(actionItems, "utf-8")
-    );
-  }
-
   return parts.length > 0
     ? parts.join("\n\n---\n\n")
     : "No context loaded yet — this is a fresh start.";
@@ -164,18 +187,25 @@ function loadContext(): string {
 function readMemory(keyword: string): string {
   if (!existsSync(memoryDir)) return "No memory directory found.";
 
+  // Search across all subdirectories recursively
   try {
     const result = execFileSync(
       "grep",
-      ["-ril", keyword, memoryDir],
+      ["-ril", "--include=*.md", keyword, memoryDir],
       { encoding: "utf-8", timeout: 10000 }
     ).trim();
 
     if (!result) return `No memories found matching "${keyword}".`;
 
-    const files = result.split("\n").slice(0, 5);
-    const contents = files.map((f) => {
-      const content = readFileSync(f, "utf-8").slice(0, 2000);
+    // Prioritize call summaries and notes, then other files
+    const allFiles = result.split("\n");
+    const prioritized = [
+      ...allFiles.filter((f) => f.includes("call-summary") || f.includes("notes")),
+      ...allFiles.filter((f) => !f.includes("call-summary") && !f.includes("notes")),
+    ].slice(0, 5);
+
+    const contents = prioritized.map((f) => {
+      const content = readFileSync(f, "utf-8").slice(0, 3000);
       return `## ${f.replace(memoryDir + "/", "")}\n${content}`;
     });
 
