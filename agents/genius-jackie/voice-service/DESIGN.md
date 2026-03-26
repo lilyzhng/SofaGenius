@@ -38,36 +38,46 @@ Voice Jackie uses GPT-4o-realtime, Discord Jackie uses Claude. Different models,
 1. Jackie triggers outbound call (e.g., evening reflection at 10:45 PM PT)
 2. Twilio REST API initiates call → same WebSocket flow once answered
 
-## Unified Memory
+## Memory — Two-Repo Approach
 
-The key requirement: Discord Jackie and Voice Jackie share the same memory.
+Personal conversations should stay private. Voice Jackie uses two repos:
+
+| Repo | Visibility | Purpose |
+|------|-----------|---------|
+| `lilyzhng/SofaGenius` | Public | Voice service code, Jackie's CLAUDE.md personality |
+| `lilyzhng/jackie` | Private | Call summaries, action items, personal context |
+
+### Layout on the VM
 
 ```
+/home/node/jackie-memory/              ← clone of lilyzhng/jackie (private)
+├── calls/                             ← Voice call summaries
+│   └── 2026-03-25.md
+├── action-items.md                    ← Tasks from calls for agents to pick up
+└── context.md                         ← Key facts, preferences, ongoing topics
+
 /home/node/SofaGenius/agents/genius-jackie/
-├── CLAUDE.md                 ← Jackie's personality/identity
-├── voice-memory/             ← Shared memory (Voice + Discord Jackie both read/write here)
-│   ├── context.md            ← Key facts, preferences, ongoing topics
-│   └── calls/                ← Voice call summaries
-│       └── 2026-03-25.md
-└── voice-service/            ← This service
+├── CLAUDE.md                          ← Jackie's personality/identity
+├── private-memory -> /home/node/jackie-memory/   ← symlink (read-only for Discord Jackie)
+└── voice-service/                     ← This service (code only, no personal data)
 ```
 
-This folder lives in the repo, so when Discord Jackie creates a worktree it's automatically there. No dependency on Claude Code's internal memory paths.
+**Privacy guarantee:** Personal call content only ever gets pushed to the private `lilyzhng/jackie` repo. The symlink lets Discord Jackie read the memories, but his git context is SofaGenius — commits from Discord Jackie go to the public repo, never touching private content.
 
 ### Memory Tools (exposed to OpenAI Realtime as function calls)
 
 | Tool | Purpose |
 |------|---------|
-| `load_context` | Read CLAUDE.md (personality) + voice-memory files at call start |
-| `read_memory` | Search voice-memory files by keyword |
-| `save_memory` | Write a new entry to `voice-memory/context.md` |
-| `save_call_summary` | Write call summary + action items to `voice-memory/calls/YYYY-MM-DD.md` |
-| `commit_and_push` | Git add, commit, push voice-memory changes so all agents can see them |
-| `create_action_item` | Write a task to `voice-memory/action-items.md` for agents to pick up |
+| `load_context` | Read CLAUDE.md (personality) + private memory files at call start |
+| `read_memory` | Search private memory files by keyword |
+| `save_memory` | Write a new entry to `context.md` in private repo |
+| `save_call_summary` | Write call summary to `calls/YYYY-MM-DD.md` in private repo |
+| `create_action_item` | Append a task to `action-items.md` in private repo |
+| `commit_and_push` | Git add, commit, push to `lilyzhng/jackie` (private) |
 
-**Read path:** Voice Jackie reads `CLAUDE.md` for personality and `voice-memory/` for context and history.
+**Read path:** Voice Jackie reads `CLAUDE.md` from SofaGenius for personality, and `/home/node/jackie-memory/` for personal context and history.
 
-**Write path:** After each call, Voice Jackie saves the summary and action items, then **commits and pushes** to the repo. This ensures Discord Jackie (in a worktree) and all other agents can `git pull` and see the conversation. Same pattern as the original OpenClaw Jackie — commit after every call.
+**Write path:** After each call, Voice Jackie saves the summary and action items to `/home/node/jackie-memory/`, then **commits and pushes to `lilyzhng/jackie`**. Discord Jackie can read these via the symlink. Same pattern as the original OpenClaw Jackie — commit after every call.
 
 ## File Structure
 
@@ -104,8 +114,9 @@ OPENAI_API_KEY=sk-...
 PORT=3334
 PUBLIC_URL=https://...  # Set by tunnel or manual config
 
-# Jackie identity
+# Jackie identity + memory
 JACKIE_DIR=/home/node/SofaGenius/agents/genius-jackie
+JACKIE_MEMORY_DIR=/home/node/jackie-memory
 ```
 
 ### System Prompt (loaded from CLAUDE.md)
@@ -147,13 +158,24 @@ The VM needs a public URL for Twilio webhooks. Options:
 2. **Tailscale Funnel** — if Tailscale is already on the VM, `tailscale funnel 3334`
 3. **Agent Computer port forwarding** — check if the platform supports public ports
 
+### One-Time Setup
+
+```bash
+# 1. Clone private memory repo
+cd /home/node
+git clone https://github.com/lilyzhng/jackie.git jackie-memory
+
+# 2. Symlink so Discord Jackie can read private memories
+ln -s /home/node/jackie-memory /home/node/SofaGenius/agents/genius-jackie/private-memory
+
+# 3. Install voice service
+cd /home/node/SofaGenius/agents/genius-jackie/voice-service
+npm install
+```
+
 ### Running
 
 ```bash
-# One-time setup
-cd /home/node/SofaGenius/agents/genius-jackie/voice-service
-npm install
-
 # Run (alongside Jackie's Claude Code session)
 node dist/index.js
 ```
