@@ -4,6 +4,10 @@ import { createServer } from "node:http";
 import { config } from "./config.js";
 import { handleMediaStream } from "./media-stream.js";
 
+function escapeXml(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
+
 export async function startServer(): Promise<void> {
   const { port, publicUrl } = config.server;
 
@@ -39,7 +43,7 @@ export async function startServer(): Promise<void> {
 <Response>
   <Connect>
     <Stream url="${streamUrl}">
-      <Parameter name="caller" value="${(request.body as Record<string, string>)?.From ?? "unknown"}" />
+      <Parameter name="caller" value="${escapeXml((request.body as Record<string, string>)?.From ?? "unknown")}" />
     </Stream>
   </Connect>
 </Response>`;

@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 import { config } from "./config.js";
 
@@ -165,22 +165,23 @@ function readMemory(keyword: string): string {
   if (!existsSync(memoryDir)) return "No memory directory found.";
 
   try {
-    const result = execSync(
-      `grep -ril "${keyword.replace(/"/g, '\\"')}" "${memoryDir}" 2>/dev/null || true`,
-      { encoding: "utf-8" }
+    const result = execFileSync(
+      "grep",
+      ["-ril", keyword, memoryDir],
+      { encoding: "utf-8", timeout: 10000 }
     ).trim();
 
     if (!result) return `No memories found matching "${keyword}".`;
 
     const files = result.split("\n").slice(0, 5);
     const contents = files.map((f) => {
-      const content = readFileSync(f, "utf-8");
+      const content = readFileSync(f, "utf-8").slice(0, 2000);
       return `## ${f.replace(memoryDir + "/", "")}\n${content}`;
     });
 
     return contents.join("\n\n---\n\n");
   } catch {
-    return `Error searching memories for "${keyword}".`;
+    return `No memories found matching "${keyword}".`;
   }
 }
 
@@ -245,15 +246,15 @@ function createActionItem(item: string, assignee?: string): string {
 }
 
 function commitAndPush(message: string): string {
+  const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
   try {
-    execSync(
-      `cd "${memoryDir}" && git add -A && git commit -m "${message.replace(/"/g, '\\"')}" && git push`,
-      { encoding: "utf-8", timeout: 30000 }
-    );
+    execFileSync("git", ["add", "context.md", "calls/", "action-items.md"], opts);
+    execFileSync("git", ["commit", "-m", message], opts);
+    execFileSync("git", ["push"], opts);
     return "Changes committed and pushed to jackie-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
-    if (err.stderr?.includes("nothing to commit")) {
+    if (err.stderr?.includes("nothing to commit") || err.stderr?.includes("did not match any files")) {
       return "No changes to commit.";
     }
     return `Git error: ${err.message}`;
