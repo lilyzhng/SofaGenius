@@ -28,6 +28,19 @@ export async function startServer(): Promise<void> {
     handleMediaStream(ws);
   });
 
+  // Parse Twilio's application/x-www-form-urlencoded bodies
+  app.addContentTypeParser(
+    "application/x-www-form-urlencoded",
+    function (_request, payload, done) {
+      let body = "";
+      payload.on("data", (chunk: Buffer) => { body += chunk.toString(); });
+      payload.on("end", () => {
+        const parsed = Object.fromEntries(new URLSearchParams(body));
+        done(null, parsed);
+      });
+    }
+  );
+
   // Health check
   app.get("/health", async () => ({ status: "ok", service: "jackie-voice" }));
 
