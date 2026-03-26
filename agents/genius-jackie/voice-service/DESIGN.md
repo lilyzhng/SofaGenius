@@ -154,9 +154,6 @@ npm install
 
 # Run (alongside Jackie's Claude Code session)
 node dist/index.js
-# With auto-restart (recommended for production):
-# Add to Jackie's launch-bg.sh with a restart loop:
-# while true; do node dist/index.js; sleep 5; done &
 ```
 
 ### Twilio Configuration
