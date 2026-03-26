@@ -1,0 +1,35 @@
+name: Agent Watchdog
+
+on:
+  schedule:
+    # Every hour at :15
+    - cron: '15 * * * *'
+  workflow_dispatch: # manual trigger for testing
+
+jobs:
+  check-and-restart:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AGENT_COMPUTER_SSH_KEY }}" > ~/.ssh/watchdog_key
+          chmod 600 ~/.ssh/watchdog_key
+          # Trust Agent Computer's SSH proxy
+          ssh-keyscan -p 443 ssh.agentcomputer.ai >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Check and restart agents
+        run: |
+          # Copy startup script to VM via SSH stdin (no scp available)
+          cat agents/startup-all.sh | ssh -p 443 \
+            -i ~/.ssh/watchdog_key \
+            -o StrictHostKeyChecking=no \
+            jackie-chan@ssh.agentcomputer.ai \
+            "cat > /tmp/startup-all.sh && chmod +x /tmp/startup-all.sh && bash /tmp/startup-all.sh"
+
+      - name: Cleanup
+        if: always()
+        run: rm -f ~/.ssh/watchdog_key
