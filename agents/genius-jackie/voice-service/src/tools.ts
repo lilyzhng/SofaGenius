@@ -146,21 +146,17 @@ function loadContext(): string {
     }
   }
 
-  // Load recent conversation summaries (last 3 call summaries)
-  const convoDir = join(memoryDir, "conversations");
-  if (existsSync(convoDir)) {
+  // Load conversation digests (concise summaries of past calls)
+  const digestDir = join(memoryDir, "conversation-digest");
+  if (existsSync(digestDir)) {
     try {
-      const files = readdirSync(convoDir)
-        .filter((f) => f.includes("call-summary"))
-        .sort()
-        .reverse()
-        .slice(0, 3);
+      const files = readdirSync(digestDir).sort().reverse().slice(0, 3);
       if (files.length > 0) {
-        const summaries = files.map((f) => {
-          const content = readFileSync(join(convoDir, f), "utf-8").slice(0, 3000);
+        const digests = files.map((f) => {
+          const content = readFileSync(join(digestDir, f), "utf-8").slice(0, 3000);
           return `## ${f}\n${content}`;
         });
-        parts.push("# Recent Call History\n" + summaries.join("\n\n"));
+        parts.push("# Recent Conversation Digests\n" + digests.join("\n\n"));
       }
     } catch {
       // ignore
@@ -278,7 +274,7 @@ function createActionItem(item: string, assignee?: string): string {
 function commitAndPush(message: string): string {
   const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
   try {
-    execFileSync("git", ["add", "context.md", "calls/", "action-items.md"], opts);
+    execFileSync("git", ["add", "."], opts);
     execFileSync("git", ["commit", "-m", message], opts);
     execFileSync("git", ["push"], opts);
     return "Changes committed and pushed to jackie-memory.";
