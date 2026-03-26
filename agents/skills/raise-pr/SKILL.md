@@ -2,7 +2,7 @@
 name: raise-pr
 description: Create a pull request following the org's PR workflow — branch, commit, push, create PR, announce in `#feature-release` with correct reviewer tags, and handle bot review comments inline.
 argument-hint: [optional: PR title]
-allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__react
+allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent, mcp__plugin_discord_discord__reply, mcp__plugin_discord_discord__create_thread, mcp__plugin_discord_discord__react, mcp__plugin_discord_discord__archive_thread
 ---
 
 # Raise PR — Full Workflow
@@ -134,7 +134,8 @@ A GitHub Actions workflow sends a Discord notification when Lily approves the PR
 1. Merge the PR: `gh pr merge {PR_NUMBER} --squash`
 2. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
 3. React with 💜 on your original announcement message
-
+4. Archive the #feature-release announcement thread: `archive_thread(thread_id, locked=true)` — keeps the channel clean
+Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all four actions above are completed.
 Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all three actions above are completed.
 
 ## Agent Time
@@ -175,6 +176,7 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] All bot review comments replied to inline
 - [ ] All human review comments replied to inline
 - [ ] After approval: merged, confirmation posted in thread, 💜 reacted **on the original announcement message** (the thread parent in #feature-release, NOT on Jackie's notification)
+- [ ] **Announcement thread archived** (`archive_thread` with `locked=true` — keeps #feature-release clean)
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
 - [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
 
