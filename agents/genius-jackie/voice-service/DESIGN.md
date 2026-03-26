@@ -45,12 +45,12 @@ Personal conversations should stay private. Voice Jackie uses two repos:
 | Repo | Visibility | Purpose |
 |------|-----------|---------|
 | `lilyzhng/SofaGenius` | Public | Voice service code, Jackie's CLAUDE.md personality |
-| `lilyzhng/jackie` | Private | Call summaries, action items, personal context |
+| `lilyzhng/jackie-memory` | Private | Call summaries, action items, personal context |
 
 ### Layout on the VM
 
 ```
-/home/node/jackie-memory/              ← clone of lilyzhng/jackie (private)
+/home/node/jackie-memory/              ← clone of lilyzhng/jackie-memory (private)
 ├── calls/                             ← Voice call summaries
 │   └── 2026-03-25.md
 ├── action-items.md                    ← Tasks from calls for agents to pick up
@@ -62,7 +62,7 @@ Personal conversations should stay private. Voice Jackie uses two repos:
 └── voice-service/                     ← This service (code only, no personal data)
 ```
 
-**Privacy guarantee:** Personal call content only ever gets pushed to the private `lilyzhng/jackie` repo. The symlink lets Discord Jackie read the memories, but his git context is SofaGenius — commits from Discord Jackie go to the public repo, never touching private content.
+**Privacy guarantee:** Personal call content only ever gets pushed to the private `lilyzhng/jackie-memory` repo. The symlink lets Discord Jackie read the memories, but his git context is SofaGenius — commits from Discord Jackie go to the public repo, never touching private content.
 
 ### Memory Tools (exposed to OpenAI Realtime as function calls)
 
@@ -73,11 +73,11 @@ Personal conversations should stay private. Voice Jackie uses two repos:
 | `save_memory` | Write a new entry to `context.md` in private repo |
 | `save_call_summary` | Write call summary to `calls/YYYY-MM-DD.md` in private repo |
 | `create_action_item` | Append a task to `action-items.md` in private repo |
-| `commit_and_push` | Git add, commit, push to `lilyzhng/jackie` (private) |
+| `commit_and_push` | Git add, commit, push to `lilyzhng/jackie-memory` (private) |
 
 **Read path:** Voice Jackie reads `CLAUDE.md` from SofaGenius for personality, and `/home/node/jackie-memory/` for personal context and history.
 
-**Write path:** After each call, Voice Jackie saves the summary and action items to `/home/node/jackie-memory/`, then **commits and pushes to `lilyzhng/jackie`**. Discord Jackie can read these via the symlink. Same pattern as the original OpenClaw Jackie — commit after every call.
+**Write path:** After each call, Voice Jackie saves the summary and action items to `/home/node/jackie-memory/`, then **commits and pushes to `lilyzhng/jackie-memory`**. Discord Jackie can read these via the symlink. Same pattern as the original OpenClaw Jackie — commit after every call.
 
 ## File Structure
 
@@ -163,7 +163,7 @@ The VM needs a public URL for Twilio webhooks. Options:
 ```bash
 # 1. Clone private memory repo
 cd /home/node
-git clone https://github.com/lilyzhng/jackie.git jackie-memory
+git clone https://github.com/lilyzhng/jackie-memory.git jackie-memory
 
 # 2. Symlink so Discord Jackie can read private memories
 ln -s /home/node/jackie-memory /home/node/SofaGenius/agents/genius-jackie/private-memory
