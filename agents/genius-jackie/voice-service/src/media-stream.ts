@@ -133,7 +133,7 @@ function connectToOpenAI(session: StreamSession): void {
           content: [
             {
               type: "input_text",
-              text: "[System: A phone call has started. Use load_context to load your personality and memories, then greet the caller warmly.]",
+              text: "[System: A phone call has started. Use load_context to load your personality and memories, then greet the caller warmly. After greeting, proactively use read_memory to recall what Lily has been working on recently — search for recent topics so you have context. You have extensive conversation history — USE IT.]",
             },
           ],
         },
@@ -249,8 +249,15 @@ function handleOpenAIEvent(
       break;
     }
 
-    case "error":
-      console.error("[openai] Error:", JSON.stringify(event.error));
+    case "error": {
+      const err = event.error as Record<string, unknown> | undefined;
+      // Ignore non-fatal errors (e.g. cancelling when no response is active)
+      if (err?.code === "response_cancel_not_active") {
+        // Expected when barge-in fires but Jackie already finished speaking
+        break;
+      }
+      console.error("[openai] Error:", JSON.stringify(err));
       break;
+    }
   }
 }
