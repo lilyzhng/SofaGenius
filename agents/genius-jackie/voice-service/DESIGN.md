@@ -43,38 +43,29 @@ Voice Jackie uses GPT-4o-realtime, Discord Jackie uses Claude. Different models,
 The key requirement: Discord Jackie and Voice Jackie share the same memory.
 
 ```
-# Claude Code memory (Discord Jackie reads/writes here)
-# Path format: ~/.claude/projects/{working-dir-with-dashes}/memory/
-# Jackie's actual path (when launched from worktree):
-/home/node/.claude/projects/-home-node-worktrees-genius-jackie-agents-genius-jackie/memory/
-├── MEMORY.md                 ← Memory index
-├── user_*.md                 ← User memories
-├── feedback_*.md             ← Feedback memories
-└── project_*.md              ← Project memories
-
-# Jackie's repo directory
 /home/node/SofaGenius/agents/genius-jackie/
 ├── CLAUDE.md                 ← Jackie's personality/identity
-├── voice-service/            ← This service
-│   └── call-logs/            ← Voice call summaries (NEW)
+├── voice-memory/             ← Shared memory (Voice + Discord Jackie both read/write here)
+│   ├── context.md            ← Key facts, preferences, ongoing topics
+│   └── calls/                ← Voice call summaries
 │       └── 2026-03-25.md
-└── ...
+└── voice-service/            ← This service
 ```
 
-> **Note:** Claude Code stores memory at `~/.claude/projects/{dir-path-with-dashes}/memory/`, not inside the repo. The directory name is the working directory path with `/` replaced by `-`. For Jackie launched from `/home/node/worktrees/genius-jackie/agents/genius-jackie/`, the path is `/home/node/.claude/projects/-home-node-worktrees-genius-jackie-agents-genius-jackie/memory/`. Voice Jackie discovers this via `CLAUDE_MEMORY_PATH` env var.
+This folder lives in the repo, so when Discord Jackie creates a worktree it's automatically there. No dependency on Claude Code's internal memory paths.
 
 ### Memory Tools (exposed to OpenAI Realtime as function calls)
 
 | Tool | Purpose |
 |------|---------|
-| `load_context` | Read CLAUDE.md (personality) + memory files at call start |
-| `read_memory` | Search memory files by keyword |
-| `save_memory` | Write a new memory entry (same format as Claude Code memories) |
-| `save_call_summary` | Append call summary to `voice-service/call-logs/YYYY-MM-DD.md` |
+| `load_context` | Read CLAUDE.md (personality) + voice-memory files at call start |
+| `read_memory` | Search voice-memory files by keyword |
+| `save_memory` | Write a new entry to `voice-memory/context.md` |
+| `save_call_summary` | Append call summary to `voice-memory/calls/YYYY-MM-DD.md` |
 
-**Read path:** Voice Jackie reads `$CLAUDE_MEMORY_PATH/MEMORY.md` to know what Discord Jackie remembers. It also reads any memory files referenced there.
+**Read path:** Voice Jackie reads `CLAUDE.md` for personality and `voice-memory/` for context and history.
 
-**Write path:** Voice Jackie writes call summaries to `voice-service/call-logs/`. For shared memories, it writes to Claude Code's memory directory in the same format. When Discord Jackie's Claude Code session starts, it picks up these files naturally.
+**Write path:** Voice Jackie writes call summaries and context updates to `voice-memory/`. Since this is in the repo, Discord Jackie sees it in every worktree automatically.
 
 ## File Structure
 
@@ -112,8 +103,7 @@ PORT=3334
 PUBLIC_URL=https://...  # Set by tunnel or manual config
 
 # Jackie identity
-JACKIE_REPO_PATH=/home/node/SofaGenius/agents/genius-jackie
-CLAUDE_MEMORY_PATH=/home/node/.claude/projects/-home-node-worktrees-genius-jackie-agents-genius-jackie/memory
+JACKIE_DIR=/home/node/SofaGenius/agents/genius-jackie
 ```
 
 ### System Prompt (loaded from CLAUDE.md)
