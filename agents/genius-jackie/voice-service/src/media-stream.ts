@@ -170,15 +170,9 @@ function handleOpenAIEvent(
       break;
 
     case "input_audio_buffer.speech_started":
-      console.log("[openai] User speaking — cancelling Jackie's response (barge-in)");
-      // Cancel any in-progress response so Jackie stops talking
+      console.log("[openai] Speech started (barge-in)");
+      // Cancel any in-progress response for barge-in — matches OpenClaw implementation
       session.openaiWs?.send(JSON.stringify({ type: "response.cancel" }));
-      // Clear Twilio's audio buffer so user doesn't hear stale audio
-      if (session.twilioWs.readyState === WebSocket.OPEN && session.streamSid) {
-        session.twilioWs.send(
-          JSON.stringify({ event: "clear", streamSid: session.streamSid })
-        );
-      }
       break;
 
     case "input_audio_buffer.speech_stopped":
