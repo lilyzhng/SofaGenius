@@ -32,7 +32,7 @@ Voice Jackie uses GPT-4o-realtime, Discord Jackie uses Claude. Different models,
 3. WebSocket opens → connects to OpenAI Realtime API
 4. First thing: tool call to `load_context()` — reads Jackie's memory + system prompt
 5. Bidirectional audio streams between Twilio ↔ OpenAI Realtime
-6. On call end: tool call to `save_call_summary()` — writes summary to memory
+6. On call end: tool calls to `save_call_summary()` + `create_action_item()` + `commit_and_push()` — saves summary, action items, and pushes to repo
 
 ### Outbound Call (future)
 1. Jackie triggers outbound call (e.g., evening reflection at 10:45 PM PT)
@@ -61,11 +61,13 @@ This folder lives in the repo, so when Discord Jackie creates a worktree it's au
 | `load_context` | Read CLAUDE.md (personality) + voice-memory files at call start |
 | `read_memory` | Search voice-memory files by keyword |
 | `save_memory` | Write a new entry to `voice-memory/context.md` |
-| `save_call_summary` | Append call summary to `voice-memory/calls/YYYY-MM-DD.md` |
+| `save_call_summary` | Write call summary + action items to `voice-memory/calls/YYYY-MM-DD.md` |
+| `commit_and_push` | Git add, commit, push voice-memory changes so all agents can see them |
+| `create_action_item` | Write a task to `voice-memory/action-items.md` for agents to pick up |
 
 **Read path:** Voice Jackie reads `CLAUDE.md` for personality and `voice-memory/` for context and history.
 
-**Write path:** Voice Jackie writes call summaries and context updates to `voice-memory/`. Since this is in the repo, Discord Jackie sees it in every worktree automatically.
+**Write path:** After each call, Voice Jackie saves the summary and action items, then **commits and pushes** to the repo. This ensures Discord Jackie (in a worktree) and all other agents can `git pull` and see the conversation. Same pattern as the original OpenClaw Jackie — commit after every call.
 
 ## File Structure
 
@@ -79,7 +81,7 @@ agents/genius-jackie/voice-service/
 │   ├── config.ts             # Env var loading + validation (~40 lines)
 │   ├── webhook.ts            # HTTP server, TwiML responses (~120 lines)
 │   ├── media-stream.ts       # WebSocket ↔ OpenAI Realtime bridge (~200 lines)
-│   └── tools.ts              # Memory read/write tool definitions (~100 lines)
+│   └── tools.ts              # Memory read/write + git commit tool definitions (~120 lines)
 └── README.md                 # Setup & deployment instructions
 ```
 
