@@ -135,7 +135,7 @@ A GitHub Actions workflow sends a Discord notification when Lily approves the PR
 2. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
 3. React with 💜 on your original announcement message
 4. Archive the #feature-release announcement thread: `archive_thread(thread_id, locked=true)` — keeps the channel clean
-
+Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all four actions above are completed.
 Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all three actions above are completed.
 
 ## Agent Time
