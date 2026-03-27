@@ -1,4 +1,4 @@
-# Sesame — MVP Spec
+# Doorman — MVP Spec
 
 ## Problem
 
@@ -8,19 +8,19 @@ Agents can write code. They can't click through Stripe dashboards, configure OAu
 
 **Every SaaS is shipping its own CLI** (Stripe, Vercel, Supabase, Google Workspace). But each one works differently, and there's no unified `init` command that wires everything up and outputs config to stdout.
 
-## What Sesame Does
+## What Doorman Does
 
 A universal CLI that sets up SaaS services for AI agents. One command per service, everything to stdout.
 
 ```bash
 # Agent runs this, gets back API keys + config
-sesame open stripe
+doorman init stripe
 # → outputs: STRIPE_SECRET_KEY=sk_test_... STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-sesame open supabase
+doorman init supabase
 # → outputs: SUPABASE_URL=https://xxx.supabase.co SUPABASE_ANON_KEY=eyJ...
 
-sesame open vercel --project my-app
+doorman init vercel --project my-app
 # → outputs: VERCEL_TOKEN=... VERCEL_PROJECT_ID=...
 ```
 
@@ -51,9 +51,9 @@ Pick the 3 most common services for a typical web app:
 ### CLI Interface
 
 ```bash
-sesame open <service> [options]
-sesame list                    # show available services
-sesame status                  # show configured services + env vars
+doorman init <service> [options]
+doorman list                    # show available services
+doorman status                  # show configured services + env vars
 ```
 
 **Output contract:** Every `init` command outputs `KEY=VALUE` pairs to stdout, one per line. Agents parse this trivially. Human-readable status goes to stderr.
@@ -93,8 +93,8 @@ STRIPE_WEBHOOK_SECRET=whsec_...
 ### What We Ship
 
 ```
-sesame/
-├── bin/sesame          # CLI entry point
+doorman/
+├── bin/doorman          # CLI entry point
 ├── services/
 │   ├── stripe.sh           # Stripe init script
 │   ├── supabase.sh         # Supabase init script
@@ -105,17 +105,17 @@ sesame/
 └── package.json            # npm distribution
 ```
 
-**Language:** Bash scripts. Agents already know bash. No build step. `npm install -g sesame-cli` and go.
+**Language:** Bash scripts. Agents already know bash. No build step. `npm install -g doorman-ai` and go.
 
 ### SKILL.md (for agent discovery)
 
 ```markdown
-# Sesame
+# Doorman
 
 When you need to set up a SaaS service (payments, database, deployment, auth):
 
-1. Run `sesame list` to see available services
-2. Run `sesame open <service>` to configure it
+1. Run `doorman list` to see available services
+2. Run `doorman init <service>` to configure it
 3. Read stdout for KEY=VALUE pairs — add them to .env
 
 Available services: stripe, supabase, vercel
@@ -123,26 +123,26 @@ Available services: stripe, supabase, vercel
 
 ## Distribution
 
-- **npm:** `npm install -g sesame-cli` (main distribution)
+- **npm:** `npm install -g doorman-ai` (main distribution)
 - **Skills.sh:** Submit to Vercel's skill registry for agent discovery
 - **SKILL.md:** Include in repo for Claude Code / Cortex Code auto-detection
 
 ## Success Metrics (Weekend MVP)
 
-- [ ] `sesame open stripe` works end-to-end (outputs real test keys)
-- [ ] `sesame open supabase` works end-to-end (outputs URL + keys)
-- [ ] `sesame open vercel` works end-to-end (outputs token + project ID)
-- [ ] An AI agent (Claude Code) can use Sesame to set up a project without human help
+- [ ] `doorman init stripe` works end-to-end (outputs real test keys)
+- [ ] `doorman init supabase` works end-to-end (outputs URL + keys)
+- [ ] `doorman init vercel` works end-to-end (outputs token + project ID)
+- [ ] An AI agent (Claude Code) can use Doorman to set up a project without human help
 - [ ] Published to npm
 
 ## Post-MVP Ideas (Don't Build Yet)
 
 - More services: Auth0, Clerk, PlanetScale, Resend, Cloudflare
-- `sesame open all` — full stack in one command
-- `sesame doctor` — verify all services healthy
+- `doorman init all` — full stack in one command
+- `doorman doctor` — verify all services healthy
 - Plugin system — community-contributed service scripts
 - MCP server wrapper — expose as MCP tool for agents that prefer MCP
-- `.sesame.json` — project config file that remembers what's set up
+- `.doorman.json` — project config file that remembers what's set up
 
 ## References
 
