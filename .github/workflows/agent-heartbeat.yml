@@ -2,8 +2,8 @@ name: Agent Heartbeat
 
 on:
   schedule:
-    # Every 1 hour at :30 (offset from watchdog at :15)
-    - cron: '30 * * * *'
+    # Every 30 minutes (offset from watchdog at :15)
+    - cron: '*/30 * * * *'
   workflow_dispatch: # manual trigger for testing
 
 jobs:
@@ -12,14 +12,14 @@ jobs:
     steps:
       - name: Post heartbeat in daily thread
         env:
-          BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
+          CEO_BOT_TOKEN: ${{ secrets.CEO_BOT_TOKEN }}
           HEARTBEAT_CHANNEL: "1486967521042108517"
         run: |
           TODAY=$(TZ="America/Los_Angeles" date +"%Y-%m-%d")
           HOUR=$(TZ="America/Los_Angeles" date +"%-I:%M %p PT")
 
           # Check for today's active thread
-          ACTIVE_THREADS=$(curl -sf -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+          ACTIVE_THREADS=$(curl -sf -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
             "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/threads/archived/public?limit=5" 2>/dev/null || echo '{"threads":[]}')
 
           THREAD_ID=$(echo "$ACTIVE_THREADS" | jq -r --arg name "Heartbeat — $TODAY" \
@@ -27,7 +27,7 @@ jobs:
 
           # Also check active (non-archived) threads
           if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
-            GUILD_THREADS=$(curl -sf -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            GUILD_THREADS=$(curl -sf -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               "https://discord.com/api/v10/guilds/1484384941641957460/threads/active" 2>/dev/null || echo '{"threads":[]}')
 
             THREAD_ID=$(echo "$GUILD_THREADS" | jq -r --arg name "Heartbeat — $TODAY" \
@@ -37,13 +37,13 @@ jobs:
           if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
             # Create a starter message, then create today's thread on it
             MSG=$(curl -sf -H "Content-Type: application/json" \
-              -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+              -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               -d "{\"content\": \"📅 Daily heartbeat — ${TODAY}\"}" \
               "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages")
             MSG_ID=$(echo "$MSG" | jq -r '.id')
 
             THREAD=$(curl -sf -H "Content-Type: application/json" \
-              -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+              -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               -d "{\"name\": \"Heartbeat — ${TODAY}\"}" \
               "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages/${MSG_ID}/threads")
             THREAD_ID=$(echo "$THREAD" | jq -r '.id')
@@ -57,6 +57,6 @@ jobs:
 
           # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
             -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Check your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
             "https://discord.com/api/v10/channels/${THREAD_ID}/messages"

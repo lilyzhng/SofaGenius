@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: Trigger Jackie's morning digest
         env:
-          BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
+          CEO_BOT_TOKEN: ${{ secrets.CEO_BOT_TOKEN }}
         run: |
           DAILY_DIGEST_CHANNEL="1485075381613760603"
           JACKIE_BOT_ID="1477895765698547844"
 
           curl -sf -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
             -d "{\"content\": \"<@${JACKIE_BOT_ID}> Run the morning builder digest now. Follow the builder-digest skill in your skills/ directory.\"}" \
             "https://discord.com/api/v10/channels/${DAILY_DIGEST_CHANNEL}/messages"
