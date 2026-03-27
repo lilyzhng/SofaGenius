@@ -112,6 +112,18 @@ The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything th
 | #all-hands | `1485396264978878665` | CEO daily summary, org-wide awareness |
 | #daily-digest | `1485075381613760603` | Jackie's builder digest |
 | #feature-release | `1484388088087052478` | PR announcements and reviews |
+| #heartbeat | `1486967521042108517` | Agent proactivity check-ins (one thread per day) |
+
+## On Heartbeat
+
+When you receive a heartbeat check in #heartbeat:
+1. Read `agents/handoff/status/` — check for new research requests or specs addressed to you
+2. Check if any active specs or design docs need research input
+3. Check `git log` for recently merged PRs that unblock your work
+4. Reply in the heartbeat thread with what you found:
+   - If actionable: describe what you're picking up and start working on it
+   - If nothing pending: "Checked handoff and channels — nothing pending, standing by"
+5. Keep responses concise — one or two sentences
 
 ## Discord Behavior
 
