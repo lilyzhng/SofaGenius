@@ -1,178 +1,126 @@
-# Agent Scheduling — Design Doc
+# Agent Proactivity — Design Doc
 
 ## Problem
 
-Agent Computer VMs have no crontab installed and no systemd. Jackie needs to run the builder digest at 7 AM PT daily, and future tasks (evening calls, health checks) also need reliable scheduling. Current workarounds (bash sleep loops, manual reminders) are fragile and wasteful.
+Agents are **reactive** — they only act when tagged in Discord or triggered by an external cron. Lily has to drive everything: reminding agents to check tasks, following up on work, initiating reviews. This defeats the purpose of having autonomous agents.
 
-## Options
+**What we need:** Agents that self-initiate. They check for pending work, follow up on stale tasks, notice unanswered questions, and act without being prompted.
 
-### Option 1: Install Cron
+## What's Already Solved: External Scheduling
 
-Install the standard Unix cron daemon on the VM.
+GitHub Actions handles reliable, time-based triggers:
+- **agent-watchdog.yml** — hourly, restarts agents if down
+- **morning-digest-trigger.yml** — daily 6:55 AM PT, tells Jackie to run digest
 
-```bash
-apt-get install -y cron && service cron start
+These are fire-and-forget alarm clocks. They work. No changes needed here.
+
+## What's Missing: Internal Proactivity
+
+External cron can say "do X at time Y." It can't say "notice that there's a pending spec and start working on it" or "realize Lily asked a question 2 hours ago and nobody answered."
+
+Proactive behavior requires agents to **periodically assess their environment and decide what to do.** This is a heartbeat + judgment loop, not a task scheduler.
+
+### Examples of Proactive Behavior
+
+| Agent | Proactive Action | Trigger |
+|-------|-----------------|---------|
+| Builder | Check handoff/specs for new build requests, start working | Every 2-3 hours |
+| Builder | Notice a PR has been approved, start next task | After PR events |
+| CEO | Scan Discord for unanswered Lily questions, follow up | Every 1-2 hours |
+| CEO | Check agent status files, do a check-in round | Every 3-4 hours |
+| Researcher | See a new research request in handoff, start researching | Every 2-3 hours |
+| Jackie | Check if digest was actually sent, retry if not | After scheduled digest time |
+
+## Design: Agent Heartbeat Loop
+
+### Architecture
+
+Each agent gets an internal heartbeat — a periodic self-check that runs alongside normal operation. On each heartbeat, the agent:
+
+1. **Reads its environment** — handoff files, Discord channels, task tracker, git status
+2. **Identifies actionable items** — new specs, unanswered questions, stale tasks, completed dependencies
+3. **Decides whether to act** — not every heartbeat produces work; judgment matters
+4. **Acts or stays quiet** — do the work, or log "nothing to do" and wait
+
+### Implementation: GitHub Actions + Agent Prompt
+
+The simplest approach that works today — no new infrastructure needed.
+
+**How it works:**
+1. A GitHub Actions cron fires every 2 hours
+2. It SSHs into the VM and sends a "heartbeat prompt" to each agent's Discord DM or a dedicated channel
+3. The prompt tells the agent: "Check your environment and decide if there's anything you should be doing"
+4. The agent reads handoff files, checks Discord, and either acts or responds "nothing pending"
+
+```yaml
+# .github/workflows/agent-heartbeat.yml
+name: Agent Heartbeat
+on:
+  schedule:
+    - cron: '0 */2 * * *'  # Every 2 hours
+  workflow_dispatch:
+
+jobs:
+  heartbeat:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping agents to self-check
+        env:
+          BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
+        run: |
+          ALL_HANDS="1485396264978878665"
+
+          curl -sf -H "Content-Type: application/json" \
+            -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            -d '{"content": "🫀 **Heartbeat check.** All agents: read your handoff files, check for pending work, and act on anything outstanding. Report status in-thread."}' \
+            "https://discord.com/api/v10/channels/${ALL_HANDS}/messages"
 ```
 
-```crontab
-CRON_TZ=America/Los_Angeles
-0 7 * * * bash -c 'source /home/node/SofaGenius/agents/genius-jackie/.env && /home/node/SofaGenius/agents/genius-jackie/trigger-digest.sh' >> /tmp/digest-cron.log 2>&1
+### Agent Heartbeat Behavior (per agent CLAUDE.md)
+
+Each agent's CLAUDE.md gets a heartbeat section:
+
+```markdown
+## On Heartbeat
+When you receive a heartbeat prompt:
+1. Read agents/handoff/status/ — check for new specs or requests
+2. Check your Discord channels for unanswered questions from Lily
+3. Check git log for recently merged PRs that unblock your work
+4. If anything is actionable, start working on it immediately
+5. If nothing pending, reply briefly: "Nothing pending, standing by"
 ```
 
-**Pros:**
-- Battle-tested for 40+ years — no edge cases left to discover
-- One line per task — easy to read, add, remove
-- OS-level — runs independently of agent processes
-- DST-aware with `CRON_TZ`
-- Zero custom code to maintain
-- Every developer already knows cron syntax
+### Why This Over a Custom Daemon
 
-**Cons:**
-- Requires package install (may need root/sudo)
-- Does not survive VM restart on Agent Computer — container gets replaced, cron daemon dies. Need to re-install and re-load crontab on every boot (via startup script)
-- No built-in alerting if a job fails silently
-- Cron environment is minimal — scripts must source their own env vars
+| Approach | Pros | Cons |
+|----------|------|------|
+| GitHub Actions heartbeat | Zero new code, already proven, easy to adjust frequency | 2-hour minimum granularity (GitHub cron), requires Discord bot token |
+| On-VM Node.js loop (croner) | Sub-minute granularity, can access local state directly | Another process to keep alive, coupling concerns |
+| On-VM bash loop | Simplest possible implementation | Fragile, no error handling, resource waste |
 
-**Persistence strategy:** Check-in a `agents/crontab` file. On boot, `startup-all.sh` installs cron and loads it:
-```bash
-if ! pgrep cron > /dev/null; then
-  apt-get install -y cron 2>/dev/null
-  service cron start
-  crontab /home/node/SofaGenius/agents/crontab
-fi
-```
+**Recommendation:** Start with GitHub Actions heartbeat. It's the same pattern as our working watchdog and digest triggers. If we need faster response times later, add a croner-based loop on the VM.
 
----
+## Proactivity Levels (Incremental Rollout)
 
-### Option 2: Node.js Scheduler (croner)
+### Level 1: Scheduled Self-Check (build this now)
+- GitHub Actions heartbeat every 2 hours
+- Agents check handoff files and Discord
+- Act on anything obvious
 
-Run a lightweight Node.js process with the `croner` library that handles all scheduled tasks.
+### Level 2: Event-Driven Triggers (build next)
+- GitHub webhook on PR approval → notify builder to pick up next task
+- Discord message detection → if Lily's question goes unanswered for 30 min, escalate
+- Handoff file watcher → new spec file triggers the assigned agent
 
-```typescript
-import { Cron } from "croner";
-
-Cron("0 7 * * *", { timezone: "America/Los_Angeles" }, () => {
-  // 7 AM PT — trigger digest
-  execFileSync("bash", ["trigger-digest.sh"]);
-});
-```
-
-**Pros:**
-- No OS-level install required — just `npm install croner`
-- TypeScript-native, DST-aware, built-in error handling (won't crash on exception)
-- Can run as part of an existing Node process (e.g. Jackie's voice service)
-- Portable — works on any platform with Node.js
-- Can integrate with the agent's own logging/monitoring
-
-**Cons:**
-- Another process to keep alive (or embedded in voice service, coupling concerns)
-- If the Node process dies, all scheduled tasks stop
-- Adds a dependency for something the OS can do natively
-- Need a supervisor (tmux loop) to restart if it crashes
-
-**Persistence strategy:** Embed in voice service or run as separate `scheduler.js`. Wrap in tmux supervisor loop for auto-restart.
-
----
-
-### Option 3: OpenClaw-Style Heartbeat
-
-A lightweight daemon that fires at a configurable interval. Agent reads a config file (like HEARTBEAT.md) and decides whether to act based on the current time and last-run state.
-
-```json
-{
-  "heartbeat": {
-    "every": "30m",
-    "activeHours": { "start": "06:00", "end": "23:00", "timezone": "America/Los_Angeles" }
-  },
-  "tasks": [
-    { "name": "builder-digest", "time": "07:00", "script": "trigger-digest.sh", "lastRun": "" },
-    { "name": "evening-call", "time": "22:45", "script": "trigger-call.sh", "lastRun": "" }
-  ]
-}
-```
-
-Daemon wakes every 30 minutes, checks if any task's time has passed since `lastRun`, fires it, updates `lastRun`.
-
-**Pros:**
-- Self-contained — config + state in one file
-- Flexible — can add tasks without touching system config
-- Natural fit for agent workflows (agents already read config files)
-- No root/package install needed
-
-**Cons:**
-- OpenClaw's heartbeat had known reliability issues — users frequently reported missed fires and switched to cron instead
-- Up to 30 minutes of delay (fires at next heartbeat, not at exact time)
-- Custom code to maintain — error handling, state management, timezone logic
-- Need to handle edge cases: DST transitions, duplicate fires, crash recovery
-- Another process to keep alive
-
-**Known pain points from OpenClaw community:**
-- Heartbeat interval too coarse for time-sensitive tasks (30 min granularity)
-- State file corruption when agent crashes mid-write
-- DST transitions caused double-fires or missed fires
-- "lastRun" tracking broke when VM clock drifted
-- Most power users abandoned heartbeat for cron within weeks
-
----
-
-### Option 4: Claude.ai Scheduled Triggers (RemoteTrigger)
-
-Use Claude Code's built-in scheduling system. A cron expression fires a fresh remote session in Anthropic's cloud that runs a prompt.
-
-Already set up: `trig_01Crs6tt1ENgW846sJXRWkqN` (currently disabled). The tribe digest trigger (`trig_012cckfShLfhRKQPX7V1debg`) ran successfully today — proven reliable.
-
-**Pros:**
-- Zero VM dependency — runs in Anthropic's cloud
-- Already proven reliable (today's tribe digest ran without issues)
-- No install, no custom code, no process to keep alive
-- Lily can configure via claude.ai web UI
-- Managed infrastructure — Anthropic handles uptime
-- Native cron expressions with proper scheduling
-
-**Cons:**
-- No Discord MCP connector available — can't post to Discord directly from a trigger
-- External dependency on Anthropic's infrastructure
-- Trigger runs in a fresh sandbox — no access to Agent Computer VM state
-- Limited to what the trigger can do without MCP connectors
-- Workaround: trigger posts to Discord via raw curl + bot token (hardcoded in prompt or read from repo)
-
-**Discord workaround:** The trigger has Bash access. It can curl the Discord API directly:
-```bash
-curl -sf -H "Authorization: Bot $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{"content": "<@1477895765698547844> Run the morning builder digest now."}' \
-  "https://discord.com/api/v10/channels/1485075381613760603/messages"
-```
-This @mentions Jackie on Agent Computer, who then runs the actual digest. The trigger is just the alarm clock.
-
----
-
-## Comparison
-
-| Criteria | Cron | Node.js (croner) | Heartbeat | Scheduled Triggers |
-|----------|------|-------------------|-----------|-------------------|
-| Reliability | High — OS-level | Medium — Node process | Low — known issues | High — Anthropic cloud |
-| Precision | Exact minute | Exact second | Up to 30 min late | Exact minute |
-| Setup complexity | Install package | npm install + script | Custom daemon | Web UI config |
-| Maintenance | Zero | Low | Medium | Zero |
-| VM restart survival | Need startup script | Need startup script | Need startup script | N/A (cloud) |
-| Root access needed | **Yes (blocker)** | No | No | No |
-| Discord access | Via script | Via script | Via script | No MCP — curl workaround |
-| DST handling | Built-in | Built-in | Manual | Built-in |
-| Custom code | Zero | ~20 lines | ~100 lines | Zero |
-
-## Recommendation
-
-**Option 1 (Cron) is not viable** — Agent Computer blocks `sudo` and `cron` is not installed. No root access.
-
-**Option 4 (Scheduled Triggers) for simple recurring tasks** like the morning digest. Already proven reliable today. The trigger @mentions Jackie via curl, Jackie runs the digest. Zero code, zero VM dependency. Enable the existing disabled trigger (`trig_01Crs6tt1ENgW846sJXRWkqN`) with the curl workaround for Discord.
-
-**Option 2 (croner) for anything that must run on the VM** — e.g. tasks that need access to local files, agent state, or the voice service. Embed in an existing Node process.
-
-**Option 3 (Heartbeat) not recommended** — OpenClaw's own users abandoned it for cron due to reliability issues.
-
-**TL;DR:** Scheduled triggers as the primary scheduler, croner as backup for VM-local tasks.
+### Level 3: Autonomous Planning (future)
+- Agents maintain their own task queues
+- End-of-session: agent writes "next session plan" to handoff
+- Start-of-session: agent reads plan and executes without prompting
+- Weekly self-review: agent evaluates its own output quality
 
 ## Open Questions
 
-1. **Bot token in trigger prompt** — the scheduled trigger needs Jackie's bot token to curl Discord. Is it acceptable to include it in the trigger's prompt, or should we find another way?
+1. **Heartbeat frequency** — 2 hours feels right to start. Too frequent = noisy, too infrequent = Lily still waiting.
+2. **Quiet hours** — should heartbeats pause overnight (11 PM - 7 AM PT)?
+3. **Channel noise** — heartbeat responses in #all-hands could get spammy. Dedicated #heartbeat channel?
+4. **Cost** — each heartbeat wakes up agents and uses API tokens. At 2-hour intervals this is ~12 checks/day per agent. Acceptable?
