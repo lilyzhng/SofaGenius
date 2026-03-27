@@ -68,7 +68,27 @@ STRIPE_WEBHOOK_SECRET=whsec_...
 ✓ Stripe test mode configured
 ✓ Webhook endpoint registered at https://...
 ✓ 3 env vars exported
+⚠️ Add .env to .gitignore to avoid committing secrets
 ```
+
+### Auth Reality
+
+**Honest labeling:** First-time setup for most services requires one human step (browser-based OAuth or pasting a token). Subsequent runs are fully automated.
+
+| Service | First Time (human needed) | After That (fully automated) |
+|---------|--------------------------|------------------------------|
+| Stripe | `stripe login` opens browser | Keys read from `~/.config/stripe/` |
+| Supabase | Paste access token or `--token` flag | Token cached in env |
+| Vercel | `vercel login` opens browser | Token cached in `~/.vercel/` |
+
+The value isn't eliminating the one-time login — it's **everything after**: key extraction, webhook setup, env var output, project linking. That's what agents can't do today.
+
+### Security
+
+- **Test-mode keys by default** — never output production keys unless `--live` flag is explicitly passed
+- **`.gitignore` warning** — stderr warns on every init: "⚠️ Add .env to .gitignore"
+- **No key storage** — Sesame reads from existing service configs, doesn't store keys itself
+- **Idempotency** — running `sesame init stripe` twice outputs existing keys + stderr "already configured, use --force to reconfigure"
 
 ### How Each Service Works
 
