@@ -15,13 +15,31 @@ curl -s https://raw.githubusercontent.com/lilyzhng/follow-builders/main/feed-pod
 
 **Time window:** Yesterday 7 AM PT → Today 7 AM PT
 
+### Step 1b: Fetch AI Valley newsletter
+
+```bash
+# Fetch the archive page to find the latest post URL
+curl -s https://www.theaivalley.com/archive -o /tmp/aivalley-archive.html
+
+# Parse the latest post slug from the archive page (first /p/ link)
+LATEST_POST=$(grep -o '/p/[^"]*' /tmp/aivalley-archive.html | head -1)
+
+# Fetch the full post to get trending tools
+curl -s "https://www.theaivalley.com${LATEST_POST}" -o /tmp/aivalley-latest.html
+```
+
+From the latest post HTML, extract:
+- **Post title and date**
+- **Trending tools:** tool name, one-line description, and direct link to the tool
+- **Full newsletter link:** `https://www.theaivalley.com{LATEST_POST}`
+
 ### Step 2: Compose the digest
 
 Read the feed JSON files. For each builder with tweets in the time window:
 
 - Include their name, @handle, and a 1-2 sentence summary of what they posted
 - Include the tweet URL for every entry — wrap in `<>` to suppress previews
-- Group by category: Agent Infra & Product, Research & Dev Tools, Community & Growth, Research Labs & Infra, Podcasts
+- Group by category: Agent Infra & Product, Research & Dev Tools, Community & Growth, Research Labs & Infra, Podcasts, AI Valley Highlights
 
 **Taste filter (prioritize these, put them first):**
 - Builders sharing real work and shipping (e.g. Garry Tan, Steipete, Cat Wu)
@@ -33,6 +51,12 @@ Read the feed JSON files. For each builder with tweets in the time window:
 - Drama / platform disputes
 - Self-promotional content
 - Frameworks outside Lily's stack (e.g. Next.js)
+
+**AI Valley Highlights section format:**
+- Header: "🗞️ AI Valley Highlights — {post title} ({date})"
+- List trending tools with name, description, and **direct link** to try each tool
+- End with: "📰 Full newsletter: {link to full post}"
+- Every tool link must be included so Lily can try them directly
 
 **Language:** Mixed Chinese/English
 
@@ -86,3 +110,5 @@ Reply in the thread: "Digest posted! 📊 Vote in the polls above."
 - Do NOT fabricate content — only use what's in the feed JSON
 - Wrap all URLs in `<>` to suppress embed previews
 - If feed is empty (no new tweets), post: "No new updates from builders today. Check back tomorrow!"
+- If AI Valley fetch fails, skip the section — don't block the rest of the digest
+- AI Valley only publishes Mon–Fri, so weekends may have no new issue
