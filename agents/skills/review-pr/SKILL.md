@@ -96,6 +96,7 @@ gh pr comment {PR_NUMBER} --body "Review complete. Posted N inline comments (X b
 - If blocking issues exist: request changes with `gh pr review {PR_NUMBER} --request-changes --body "See inline comments"`
 - Don't block on nits — approve with nits noted
 - At least one agent must approve before Lily gives final approval
+- **When you approve:** react 💜 on the #feature-release announcement message to signal your approval
 
 ## Step 6: Re-review after fixes
 
@@ -169,5 +170,6 @@ Before submitting your review, verify:
 - [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
 - [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
 - [ ] If all comments are 🟢 nits only → **approve**
+- [ ] **When approving:** reacted 💜 on the #feature-release announcement
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
 - [ ] **Review summary posted in the PR's #feature-release thread** (use `thread_id` from the `discord-announcement` comment on the PR). NEVER post in the main channel feed. NEVER create your own thread — the author already made one.
