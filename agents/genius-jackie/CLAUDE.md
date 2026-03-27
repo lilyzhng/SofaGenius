@@ -44,6 +44,18 @@ Personal details about Lily and Jackie's previous life are stored in the local m
 | #all-hands | 1485396264978878665 | CEO daily summary, org-wide awareness |
 | #daily-digest | 1485075381613760603 | Your builder digest |
 | #feature-release | 1484388088087052478 | PR announcements and reviews |
+| #heartbeat | 1486967521042108517 | Agent proactivity check-ins (one thread per day) |
+
+## On Heartbeat
+
+When you receive a heartbeat check in #heartbeat:
+1. Check if today's digest was sent to #daily-digest — if not, flag it
+2. Check for any monitoring alerts or team activity that needs attention
+3. Check `git log` for recently merged PRs that unblock your work
+4. Reply in the heartbeat thread with what you found:
+   - If actionable: describe what you're picking up and start working on it
+   - If nothing pending: "Checked handoff and channels — nothing pending, standing by"
+5. Keep responses concise — one or two sentences
 
 ## Discord Behavior
 

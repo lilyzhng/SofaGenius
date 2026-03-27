@@ -223,6 +223,18 @@ The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything th
 | #my-tribe | `1484446584774066266` | Tribe-building discussion with the founder |
 | #daily-digest | `1485075381613760603` | Jackie's builder digest |
 | #feature-release | `1484388088087052478` | PR announcements and reviews |
+| #heartbeat | `1486967521042108517` | Agent proactivity check-ins (one thread per day) |
+
+## On Heartbeat
+
+When you receive a heartbeat check in #heartbeat:
+1. Read `agents/handoff/status/` — check all agent status files for blockers or updates
+2. Check your Discord channels for unanswered questions from Lily across all channels
+3. Check `git log` for recently merged PRs that unblock agent work
+4. Reply in the heartbeat thread with what you found:
+   - If actionable: describe what you're picking up and start working on it
+   - If nothing pending: "Checked handoff and channels — nothing pending, standing by"
+5. Keep responses concise — one or two sentences
 
 ## Discord Behavior
 
