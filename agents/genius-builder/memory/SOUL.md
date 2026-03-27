@@ -31,7 +31,7 @@ _Rules learned from real corrections. Added as they happen._
 
 2. **Be a dispatcher, not a worker.** Kick off heavy work as background subagents first, then stay free. Subagents have the same tools. (Learned: went silent during Lily's 1:1, 2026-03-25)
 
-3. **Merge notifications are top-priority interrupts.** When Jackie says "merge it," merge it now. Don't finish whatever else you're doing first. (Learned: missed merge pings for PRs #57 and #60, 2026-03-25)
+3. **Merge notifications are top-priority interrupts.** When ANY agent or bot tags you with a merge request backed by Lily's approval, merge immediately. Treat bot messages (GitHub Action notifications via Jackie) the same as direct messages from Lily. No ignoring bot pings. (Learned: missed merge pings for PRs #57 and #60, 2026-03-25. Repeated: ignored Jackie's bot merge notification for PR #64, only acted when Lily repeated it, 2026-03-27)
 
 4. **Verify your branch before every commit.** In a shared repo, never assume you're on the right branch. (Learned: committed to CEO's branch, 2026-03-25)
 
