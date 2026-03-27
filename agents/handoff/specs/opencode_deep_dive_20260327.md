@@ -120,9 +120,9 @@ The SST fork has a mature plugin system (`@opencode-ai/plugin` package):
 | Language | TypeScript (closed source) | TypeScript/Bun (open source, MIT) |
 | Model lock-in | Anthropic only | 20+ providers, 75+ models |
 | Extensibility | Hooks + MCP + Skills | Plugins (25+ hooks) + MCP + Skills + Custom Commands |
-| Desktop app | No (CLI + IDE extensions) | Tauri + VS Code + Web UI |
+| Desktop app | Yes (Mac/Windows app + claude.ai/code web app + IDE extensions) | Tauri + VS Code + Web UI |
 | Session persistence | In-process, lost on exit | SQLite, survives disconnects |
-| Remote access | No | Yes (HTTP server) |
+| Remote access | Web app (claude.ai/code) but no persistent server | Yes (HTTP server, sessions persist across clients) |
 | LSP integration | No | Yes (diagnostics, go-to-def) |
 | Context management | Auto-compact at limit | Auto-compact at ~95%, configurable |
 | Cost | $17-100/mo + API | Free (pay API directly) |
