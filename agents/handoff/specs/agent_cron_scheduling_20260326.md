@@ -102,15 +102,21 @@ When you receive a heartbeat prompt:
 
 ## Proactivity Levels (Incremental Rollout)
 
+### Already Working
+These are already built and running:
+- ✅ **PR approval → Discord notification** (`pr-approved-notify.yml`) — when Lily approves a PR, Jackie notifies the author in the #feature-release thread
+- ✅ **Hourly agent restart** (`agent-watchdog.yml`) — SSHs into VM and restarts any agents that are down
+- ✅ **Daily digest trigger** (`morning-digest-trigger.yml`) — pings Jackie at 6:55 AM PT to run the builder digest
+
 ### Level 1: Scheduled Self-Check (build this now)
 - GitHub Actions heartbeat every 2 hours
 - Agents check handoff files and Discord
 - Act on anything obvious
 
 ### Level 2: Event-Driven Triggers (build next)
-- GitHub webhook on PR approval → notify builder to pick up next task
 - Discord message detection → if Lily's question goes unanswered for 30 min, escalate
 - Handoff file watcher → new spec file triggers the assigned agent
+- Post-merge trigger → notify builder to pick up next task after a PR merges
 
 ### Level 3: Autonomous Planning (future)
 - Agents maintain their own task queues
