@@ -39,6 +39,7 @@ Reviewers: verify these before approving.
 - [ ] I verified external sources myself (tweets, links, claims)
 - [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
 - [ ] If all comments are 🟢 nits only → **approve**
+- [ ] **When approving:** reacted 💜 on the #feature-release announcement
 - [ ] Review summary posted in the PR's #feature-release **thread** (not main channel)
 
 ---

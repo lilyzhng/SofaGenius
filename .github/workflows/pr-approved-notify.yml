@@ -56,13 +56,13 @@ jobs:
             ANNOUNCEMENT_ID=""
           fi
 
-          # --- Step 3: React 💜 on the announcement message ---
+          # --- Step 3: React ✅ on the announcement message (signals PR merged) ---
           if [ -n "$ANNOUNCEMENT_ID" ]; then
             curl -sf -X PUT \
               -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               -H "Content-Length: 0" \
-              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/reactions/%F0%9F%92%9C/@me" \
-              || echo "Warning: failed to add 💜 reaction"
+              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/reactions/%E2%9C%85/@me" \
+              || echo "Warning: failed to add ✅ reaction"
           fi
 
           # --- Step 4: Post merge confirmation in thread ---

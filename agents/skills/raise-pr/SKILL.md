@@ -129,7 +129,7 @@ gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @re
 
 When Lily approves the PR, a GitHub Actions workflow automatically:
 1. Squash merges the PR and deletes the branch
-2. Reacts 💜 on the #feature-release announcement
+2. Reacts ✅ on the #feature-release announcement (signals merged)
 3. Posts a merge confirmation in the review thread tagging the author
 4. Archives and locks the thread
 
