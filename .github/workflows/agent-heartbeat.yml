@@ -49,8 +49,14 @@ jobs:
             THREAD_ID=$(echo "$THREAD" | jq -r '.id')
           fi
 
+          # Guard: fail visibly if we couldn't get or create a thread
+          if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
+            echo "ERROR: Failed to get or create heartbeat thread for $TODAY"
+            exit 1
+          fi
+
           # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
             -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
-            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Check your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
+            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\nCheck your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
             "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
