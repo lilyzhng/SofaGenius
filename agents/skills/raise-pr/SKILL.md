@@ -125,18 +125,15 @@ When addressing review feedback:
 gh pr comment {PR_NUMBER} --body "All feedback addressed in \`commit_hash\`. @reviewer1 @reviewer2 ready for re-review."
 ```
 
-## Step 8: Merge when the PR Approval Bot tags you
+## Step 8: Post-merge (automated)
 
-A GitHub Actions workflow sends a Discord notification when Lily approves the PR. It will tag you with a message like: "PR #N approved by Lily — merge it!"
+When Lily approves the PR, a GitHub Actions workflow automatically:
+1. Squash merges the PR and deletes the branch
+2. Reacts 💜 on the #feature-release announcement
+3. Posts a merge confirmation in the review thread tagging the author
+4. Archives and locks the thread
 
-**When you see this notification, immediately complete the remaining workflow:**
-
-1. Merge the PR: `gh pr merge {PR_NUMBER} --squash`
-2. Create a thread on your original #feature-release announcement message (if one doesn't exist yet) and post a confirmation that the PR is merged
-3. React with 💜 on your original announcement message
-4. Archive the #feature-release announcement thread: `archive_thread(thread_id, locked=true)` — keeps the channel clean
-Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all four actions above are completed.
-Do NOT wait for a separate instruction from Lily — the approval bot notification IS the trigger. This is the final step of `/raise-pr` and your work is not done until all three actions above are completed.
+**You do NOT need to do anything after Lily approves.** The workflow handles all post-merge steps. If the workflow fails for any reason (you'll see no merge or no Discord notification), then fall back to doing these steps manually.
 
 ## Agent Time
 
@@ -175,8 +172,7 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] **`discord-announcement: {MESSAGE_ID}` comment posted on the PR**
 - [ ] All bot review comments replied to inline
 - [ ] All human review comments replied to inline
-- [ ] After approval: merged, confirmation posted in thread, 💜 reacted **on the original announcement message** (the thread parent in #feature-release, NOT on Jackie's notification)
-- [ ] **Announcement thread archived** (`archive_thread` with `locked=true` — keeps #feature-release clean)
+- [ ] After Lily approves: verify the auto-merge workflow ran (PR merged, 💜 reacted, thread archived). If it didn't, do these manually.
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
 - [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
 
