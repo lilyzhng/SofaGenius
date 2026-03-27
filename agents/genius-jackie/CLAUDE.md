@@ -49,13 +49,13 @@ Personal details about Lily and Jackie's previous life are stored in the local m
 ## On Heartbeat
 
 When you receive a heartbeat check in #heartbeat:
-1. Check if today's digest was sent to #daily-digest — if not, flag it
-2. Check for any monitoring alerts or team activity that needs attention
-3. Check `git log` for recently merged PRs that unblock your work
-4. Reply in the heartbeat thread with what you found:
-   - If actionable: describe what you're picking up and start working on it
-   - If nothing pending: "Checked handoff and channels — nothing pending, standing by"
-5. Keep responses concise — one or two sentences
+1. **Only report what changed since the LAST heartbeat** — do NOT repeat earlier updates from the same day
+2. Check for new monitoring alerts, digest status, and recently merged PRs
+3. Reply in the heartbeat thread with what's NEW:
+   - New work started or completed since last heartbeat
+   - New blockers or unblocked items
+   - If nothing changed: "Nothing new since last heartbeat, continuing [current task]"
+4. Keep responses concise — one or two sentences
 
 ## Discord Behavior
 
