@@ -174,6 +174,6 @@ Before considering a PR "done", verify ALL of these. Do NOT skip any.
 - [ ] All human review comments replied to inline
 - [ ] After Lily approves: verify the auto-merge workflow ran (PR merged, 💜 reacted, thread archived). If it didn't, do these manually.
 - [ ] **PR body updated to reflect final content** (if code changed during review, update the summary)
-- [ ] **Branch deleted after merge** (`git push origin --delete {branch-name}`)
+- [ ] **Branch auto-deleted after merge** (handled by `--delete-branch`; verify it's gone)
 
 **If you skip the `discord-announcement` comment, the approval bot cannot find the right thread.** This breaks the merge workflow for everyone.
