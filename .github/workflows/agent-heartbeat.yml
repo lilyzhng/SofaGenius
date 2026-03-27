@@ -55,8 +55,11 @@ jobs:
             exit 1
           fi
 
+          # Calculate previous heartbeat time (30 min ago)
+          PREV_HOUR=$(TZ="America/Los_Angeles" date -d "30 minutes ago" +"%-I:%M %p PT")
+
           # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
             -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
-            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Check your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
+            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Report ONLY what changed since the last heartbeat (${PREV_HOUR}): new commits, new PRs, new messages, new blockers. If nothing changed since then, say so. Do NOT repeat earlier updates.\"}" \
             "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
