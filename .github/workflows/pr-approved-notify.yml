@@ -36,7 +36,7 @@ jobs:
             MENTION=""
           fi
 
-          # --- Find the discord-announcement message ID ---
+          # --- Find the discord-announcement thread (needed for both success and failure paths) ---
           ANNOUNCEMENT_ID=$(gh api "repos/${{ github.repository }}/issues/${PR_NUM}/comments" \
             --jq '.[] | select(.body | startswith("discord-announcement:")) | .body | ltrimstr("discord-announcement: ") | rtrimstr("\n")' \
             2>/dev/null | tail -1)
@@ -46,63 +46,72 @@ jobs:
             echo "Warning: invalid announcement ID '$ANNOUNCEMENT_ID', ignoring"
             ANNOUNCEMENT_ID=""
           fi
-          echo "Announcement ID: ${ANNOUNCEMENT_ID:-not found}"
+
+          # Helper: post a message in the thread (or fall back to channel)
+          post_discord() {
+            local PAYLOAD="$1"
+            if [ -n "$ANNOUNCEMENT_ID" ]; then
+              RESPONSE=$(curl -s -w "\n%{http_code}" -H "Content-Type: application/json" \
+                -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
+                -d "$PAYLOAD" \
+                "https://discord.com/api/v10/channels/${ANNOUNCEMENT_ID}/messages")
+              HTTP_CODE=$(echo "$RESPONSE" | tail -1)
+              if [ "$HTTP_CODE" != "200" ]; then
+                # Thread doesn't exist yet — create one, then post
+                THREAD=$(curl -sf -H "Content-Type: application/json" \
+                  -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
+                  -d '{"name": "PR Merged", "auto_archive_duration": 1440}' \
+                  "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/threads")
+                THREAD_ID=$(echo "$THREAD" | jq -r '.id')
+                if [ "$THREAD_ID" != "null" ] && [ -n "$THREAD_ID" ]; then
+                  curl -sf -H "Content-Type: application/json" \
+                    -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
+                    -d "$PAYLOAD" \
+                    "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
+                  ANNOUNCEMENT_ID="$THREAD_ID"
+                fi
+              fi
+            else
+              # Fallback: post in the channel if no announcement ID found
+              curl -sf -H "Content-Type: application/json" \
+                -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
+                -d "$PAYLOAD" \
+                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
+            fi
+          }
 
           # --- Step 1: Squash merge the PR ---
           if ! gh pr merge "$PR_NUM" --squash --delete-branch; then
             echo "ERROR: merge failed for PR #${PR_NUM}"
             FAIL_PAYLOAD=$(jq -n --arg mention "$MENTION" --arg num "$PR_NUM" --arg url "$PR_URL" \
               '{content: "⚠️ Auto-merge failed for PR #\($num)! \($mention) please merge manually.\n\($url)"}')
-            # Post failure in thread if available, otherwise main channel
-            if [ -n "$ANNOUNCEMENT_ID" ]; then
-              curl -f -H "Content-Type: application/json" \
-                -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
-                -d "$FAIL_PAYLOAD" \
-                "https://discord.com/api/v10/channels/${ANNOUNCEMENT_ID}/messages" \
-                || curl -f -H "Content-Type: application/json" \
-                  -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
-                  -d "$FAIL_PAYLOAD" \
-                  "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
-            else
-              curl -f -H "Content-Type: application/json" \
-                -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
-                -d "$FAIL_PAYLOAD" \
-                "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
-            fi
+            post_discord "$FAIL_PAYLOAD"
             exit 1
           fi
           echo "Merged PR #${PR_NUM} and deleted branch ${BRANCH}"
 
           # --- Step 2: React ✅ on the announcement message (signals PR merged) ---
           if [ -n "$ANNOUNCEMENT_ID" ]; then
-            echo "Adding ✅ reaction to message ${ANNOUNCEMENT_ID} in channel ${FEATURE_RELEASE_CHANNEL}"
-            REACT_RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X PUT \
+            curl -sf -X PUT \
               -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               -H "Content-Length: 0" \
-              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/reactions/%E2%9C%85/@me")
-            echo "Reaction response: HTTP ${REACT_RESPONSE}"
-            if [ "$REACT_RESPONSE" != "204" ] && [ "$REACT_RESPONSE" != "200" ]; then
-              echo "Warning: ✅ reaction failed with HTTP ${REACT_RESPONSE}"
-            fi
+              "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages/${ANNOUNCEMENT_ID}/reactions/%E2%9C%85/@me" \
+              || echo "Warning: failed to add ✅ reaction"
           fi
 
-          # --- Step 3: Post merge confirmation in MAIN CHANNEL (not thread) ---
+          # --- Step 3: Post merge confirmation in thread ---
           PAYLOAD=$(jq -n \
             --arg mention "$MENTION" \
             --arg title "$PR_TITLE" \
             --arg url "$PR_URL" \
             --arg num "$PR_NUM" \
             '{content: "✅ PR #\($num) merged and branch deleted!\n**\($title)**\n\($url)\n\n\($mention) All post-merge steps handled automatically."}')
+          post_discord "$PAYLOAD"
 
-          curl -f -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
-            -d "$PAYLOAD" \
-            "https://discord.com/api/v10/channels/${FEATURE_RELEASE_CHANNEL}/messages"
-          echo "Posted merge notification in main channel"
-
-          # --- Step 4: Archive and lock the review thread ---
+          # --- Step 4: Archive and lock the thread (delay so notification is visible) ---
+          sleep 30
           if [ -n "$ANNOUNCEMENT_ID" ]; then
-            curl -f -X PATCH \
+            curl -sf -X PATCH \
               -H "Content-Type: application/json" \
               -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
               -d '{"archived": true, "locked": true}' \
