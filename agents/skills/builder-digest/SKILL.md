@@ -30,8 +30,11 @@ curl -s "https://www.theaivalley.com${LATEST_POST}" -o /tmp/aivalley-latest.html
 
 From the latest post HTML, extract:
 - **Post title and date**
-- **Trending tools:** tool name, one-line description, and direct link to the tool
+- **Trending tools:** Each tool has a name, one-line description, and an external link to the tool's website. Extract ALL of these — the direct link to each tool is critical so Lily can try them immediately (not just the newsletter link).
 - **Full newsletter link:** `https://www.theaivalley.com{LATEST_POST}`
+
+Example output format for a tool:
+`**Stitch 2.0** — Turn ideas into production-ready UI in seconds → <https://stitch.google.com>`
 
 ### Step 2: Compose the digest
 
