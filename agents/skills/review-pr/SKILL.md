@@ -9,6 +9,10 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash, Agent
 
 Follow these steps **in order** when reviewing a pull request.
 
+## Step 0: Acknowledge the review request
+
+- **Immediately react 👀 on the #feature-release announcement message** so the author (and Lily) know you've seen it and are starting the review.
+
 ## Step 1: Understand the PR
 
 - Fetch the PR details: `gh pr view {PR_NUMBER}`
@@ -156,6 +160,7 @@ The thread ID = the announcement message ID. One ID for everything.
 
 Before submitting your review, verify:
 
+- [ ] You reacted 👀 on the #feature-release announcement (immediate acknowledgment)
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] You read the full diff (`gh pr diff`)
 - [ ] You verified the PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)

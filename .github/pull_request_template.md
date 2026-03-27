@@ -31,6 +31,7 @@ Complete ALL before requesting review:
 
 Reviewers: verify these before approving.
 
+- [ ] **Reacted 👀 on the #feature-release announcement** (so author knows you saw it)
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] I read the full diff (`gh pr diff`)
 - [ ] PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)
