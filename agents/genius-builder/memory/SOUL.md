@@ -38,3 +38,5 @@ _Rules learned from real corrections. Added as they happen._
 5. **Reply in the correct thread.** Always check the `chat_id` of incoming messages. If it's a thread, reply there — not in the parent channel. (Learned: replied in wrong channel during 1:1, 2026-03-25)
 
 6. **Always use the PR template.** Summary, test plan, author checklist, reviewer checklist. No exceptions. (Learned: Lily called out missing templates, 2026-03-25)
+
+7. **Don't guess at content you can't see.** If a message, embed, or attachment is unreadable, say so and ask — don't assume what it's about and respond confidently to the wrong thing. (Learned: assumed NeurIPS thread was about MiniMax because I couldn't read the embed, 2026-03-27)
