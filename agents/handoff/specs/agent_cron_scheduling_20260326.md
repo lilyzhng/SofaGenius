@@ -47,7 +47,7 @@ Each agent gets an internal heartbeat — a periodic self-check that runs alongs
 The simplest approach that works today — no new infrastructure needed.
 
 **How it works:**
-1. A GitHub Actions cron fires every 2 hours
+1. A GitHub Actions cron fires every 1 hour
 2. It SSHs into the VM and sends a "heartbeat prompt" to each agent's Discord DM or a dedicated channel
 3. The prompt tells the agent: "Check your environment and decide if there's anything you should be doing"
 4. The agent reads handoff files, checks Discord, and either acts or responds "nothing pending"
@@ -57,7 +57,7 @@ The simplest approach that works today — no new infrastructure needed.
 name: Agent Heartbeat
 on:
   schedule:
-    - cron: '0 */2 * * *'  # Every 2 hours
+    - cron: '0 * * * *'  # Every 1 hour
   workflow_dispatch:
 
 jobs:
@@ -94,7 +94,7 @@ When you receive a heartbeat prompt:
 
 | Approach | Pros | Cons |
 |----------|------|------|
-| GitHub Actions heartbeat | Zero new code, already proven, easy to adjust frequency | 2-hour minimum granularity (GitHub cron), requires Discord bot token |
+| GitHub Actions heartbeat | Zero new code, already proven, easy to adjust frequency | 1-hour minimum granularity (GitHub cron), requires Discord bot token |
 | On-VM Node.js loop (croner) | Sub-minute granularity, can access local state directly | Another process to keep alive, coupling concerns |
 | On-VM bash loop | Simplest possible implementation | Fragile, no error handling, resource waste |
 
@@ -109,7 +109,7 @@ These are already built and running:
 - ✅ **Daily digest trigger** (`morning-digest-trigger.yml`) — pings Jackie at 6:55 AM PT to run the builder digest
 
 ### Level 1: Scheduled Self-Check (build this now)
-- GitHub Actions heartbeat every 2 hours
+- GitHub Actions heartbeat every 1 hour
 - Agents check handoff files and Discord
 - Act on anything obvious
 
@@ -129,4 +129,4 @@ These are already built and running:
 1. **Heartbeat frequency** — 2 hours feels right to start. Too frequent = noisy, too infrequent = Lily still waiting.
 2. **Quiet hours** — should heartbeats pause overnight (11 PM - 7 AM PT)?
 3. **Channel noise** — heartbeat responses in #all-hands could get spammy. Dedicated #heartbeat channel?
-4. **Cost** — each heartbeat wakes up agents and uses API tokens. At 2-hour intervals this is ~12 checks/day per agent. Acceptable?
+4. **Cost** — each heartbeat wakes up agents and uses API tokens. At 1-hour intervals this is ~24 checks/day per agent. Acceptable?
