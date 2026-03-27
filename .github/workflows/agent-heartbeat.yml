@@ -2,8 +2,8 @@ name: Agent Heartbeat
 
 on:
   schedule:
-    # Every 30 minutes (offset from watchdog at :15)
-    - cron: '*/30 * * * *'
+    # Every 1 hour at :30 (offset from watchdog at :15)
+    - cron: '30 * * * *'
   workflow_dispatch: # manual trigger for testing
 
 jobs:
@@ -55,8 +55,8 @@ jobs:
             exit 1
           fi
 
-          # Calculate previous heartbeat time (30 min ago)
-          PREV_HOUR=$(TZ="America/Los_Angeles" date -d "30 minutes ago" +"%-I:%M %p PT")
+          # Calculate previous heartbeat time (1 hour ago)
+          PREV_HOUR=$(TZ="America/Los_Angeles" date -d "1 hour ago" +"%-I:%M %p PT")
 
           # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
