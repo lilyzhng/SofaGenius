@@ -20,85 +20,119 @@ External cron can say "do X at time Y." It can't say "notice that there's a pend
 
 Proactive behavior requires agents to **periodically assess their environment and decide what to do.** This is a heartbeat + judgment loop, not a task scheduler.
 
-### Examples of Proactive Behavior
+## Design: Heartbeat Channel
 
-| Agent | Proactive Action | Trigger |
-|-------|-----------------|---------|
-| Builder | Check handoff/specs for new build requests, start working | Every 2-3 hours |
-| Builder | Notice a PR has been approved, start next task | After PR events |
-| CEO | Scan Discord for unanswered Lily questions, follow up | Every 1-2 hours |
-| CEO | Check agent status files, do a check-in round | Every 3-4 hours |
-| Researcher | See a new research request in handoff, start researching | Every 2-3 hours |
-| Jackie | Check if digest was actually sent, retry if not | After scheduled digest time |
+### How It Works
 
-## Design: Agent Heartbeat Loop
+A dedicated **#heartbeat** Discord channel serves as the proactivity audit trail. Structure:
 
-### Architecture
+- **One thread per day:** "Heartbeat — 2026-03-27"
+- **Every 2 hours:** GitHub Actions posts a heartbeat trigger inside that day's thread
+- **Each agent replies** in the same thread with what they found and what they're doing
 
-Each agent gets an internal heartbeat — a periodic self-check that runs alongside normal operation. On each heartbeat, the agent:
+Example:
 
-1. **Reads its environment** — handoff files, Discord channels, task tracker, git status
-2. **Identifies actionable items** — new specs, unanswered questions, stale tasks, completed dependencies
-3. **Decides whether to act** — not every heartbeat produces work; judgment matters
-4. **Acts or stays quiet** — do the work, or log "nothing to do" and wait
+```
+#heartbeat
+└── Heartbeat — 2026-03-27 (thread)
+    ├── [8:00 AM] 🫀 Heartbeat check
+    ├── Builder: Checked handoff — nothing pending, standing by
+    ├── CEO: Found unanswered question from Lily in #all-hands, following up now
+    ├── Researcher: Working on dataset research from yesterday's spec
+    ├── Jackie: Digest sent this morning, standing by
+    ├── [10:00 AM] 🫀 Heartbeat check
+    ├── Builder: New spec from CEO in handoff — starting data agent architecture
+    ├── CEO: All questions answered, checking agent status files
+    ├── ...
+```
 
-### Implementation: GitHub Actions + Agent Prompt
+**One channel. One thread per day. All responses nested inside.** Clean, explicit, easy to scan.
 
-The simplest approach that works today — no new infrastructure needed.
+### Implementation
 
-**How it works:**
-1. A GitHub Actions cron fires every 1 hour
-2. It SSHs into the VM and sends a "heartbeat prompt" to each agent's Discord DM or a dedicated channel
-3. The prompt tells the agent: "Check your environment and decide if there's anything you should be doing"
-4. The agent reads handoff files, checks Discord, and either acts or responds "nothing pending"
+#### Step 1: Create #heartbeat channel
+
+Create a dedicated Discord channel for heartbeat responses.
+
+#### Step 2: GitHub Actions workflow
 
 ```yaml
 # .github/workflows/agent-heartbeat.yml
 name: Agent Heartbeat
 on:
   schedule:
-    - cron: '0 * * * *'  # Every 1 hour
+    - cron: '0 */2 * * *'  # Every 2 hours
   workflow_dispatch:
 
 jobs:
   heartbeat:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping agents to self-check
+      - name: Post heartbeat in daily thread
         env:
           BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
         run: |
-          ALL_HANDS="1485396264978878665"
+          HEARTBEAT_CHANNEL="${{ vars.HEARTBEAT_CHANNEL_ID }}"
+          TODAY=$(TZ="America/Los_Angeles" date +"%Y-%m-%d")
+          HOUR=$(TZ="America/Los_Angeles" date +"%-I:%M %p PT")
 
+          # Search for today's thread by name
+          THREADS=$(curl -sf -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/threads/archived/public?limit=10")
+
+          ACTIVE_THREADS=$(curl -sf -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/threads/active" 2>/dev/null || echo '{"threads":[]}')
+
+          THREAD_ID=$(echo "$ACTIVE_THREADS" | jq -r --arg name "Heartbeat — $TODAY" \
+            '.threads[] | select(.name == $name) | .id // empty')
+
+          if [ -z "$THREAD_ID" ]; then
+            # Create a starter message, then create today's thread on it
+            MSG=$(curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+              -d "{\"content\": \"📅 Daily heartbeat thread\"}" \
+              "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages")
+            MSG_ID=$(echo "$MSG" | jq -r '.id')
+
+            THREAD=$(curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+              -d "{\"name\": \"Heartbeat — $TODAY\"}" \
+              "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages/${MSG_ID}/threads")
+            THREAD_ID=$(echo "$THREAD" | jq -r '.id')
+          fi
+
+          # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
             -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
-            -d '{"content": "🫀 **Heartbeat check.** All agents: read your handoff files, check for pending work, and act on anything outstanding. Report status in-thread."}' \
-            "https://discord.com/api/v10/channels/${ALL_HANDS}/messages"
+            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Check your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
+            "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
 ```
 
-### Agent Heartbeat Behavior (per agent CLAUDE.md)
+#### Step 3: Agent CLAUDE.md heartbeat section
 
-Each agent's CLAUDE.md gets a heartbeat section:
+Each agent's CLAUDE.md gets:
 
 ```markdown
 ## On Heartbeat
-When you receive a heartbeat prompt:
-1. Read agents/handoff/status/ — check for new specs or requests
+When you receive a heartbeat check in #heartbeat:
+1. Read agents/handoff/status/ — check for new specs or requests addressed to you
 2. Check your Discord channels for unanswered questions from Lily
 3. Check git log for recently merged PRs that unblock your work
-4. If anything is actionable, start working on it immediately
-5. If nothing pending, reply briefly: "Nothing pending, standing by"
+4. Reply in the heartbeat thread with what you found:
+   - If actionable: describe what you're picking up and do it
+   - If nothing pending: "Checked handoff and channels — nothing pending, standing by"
+5. Keep responses concise — one or two sentences
 ```
 
-### Why This Over a Custom Daemon
+### Why This Approach
 
-| Approach | Pros | Cons |
-|----------|------|------|
-| GitHub Actions heartbeat | Zero new code, already proven, easy to adjust frequency | 1-hour minimum granularity (GitHub cron), requires Discord bot token |
-| On-VM Node.js loop (croner) | Sub-minute granularity, can access local state directly | Another process to keep alive, coupling concerns |
-| On-VM bash loop | Simplest possible implementation | Fragile, no error handling, resource waste |
-
-**Recommendation:** Start with GitHub Actions heartbeat. It's the same pattern as our working watchdog and digest triggers. If we need faster response times later, add a croner-based loop on the VM.
+| Benefit | How |
+|---------|-----|
+| **Visibility** | Lily can check #heartbeat anytime to see what agents have been doing |
+| **Audit trail** | One thread per day = easy to review agent proactivity over time |
+| **Low noise** | Dedicated channel keeps #all-hands clean |
+| **Verifiable** | In early days, confirms agents are actually responding to heartbeats |
+| **Simple** | Same GitHub Actions pattern as watchdog and digest — proven infrastructure |
 
 ## Proactivity Levels (Incremental Rollout)
 
@@ -108,25 +142,25 @@ These are already built and running:
 - ✅ **Hourly agent restart** (`agent-watchdog.yml`) — SSHs into VM and restarts any agents that are down
 - ✅ **Daily digest trigger** (`morning-digest-trigger.yml`) — pings Jackie at 6:55 AM PT to run the builder digest
 
-### Level 1: Scheduled Self-Check (build this now)
-- GitHub Actions heartbeat every 1 hour
-- Agents check handoff files and Discord
-- Act on anything obvious
+### Level 1: Heartbeat Channel (build now)
+- Dedicated #heartbeat channel with one thread per day
+- GitHub Actions trigger every 2 hours
+- All agents report status explicitly
+- Lily can verify agents are responding and self-checking
 
 ### Level 2: Event-Driven Triggers (build next)
 - Discord message detection → if Lily's question goes unanswered for 30 min, escalate
 - Handoff file watcher → new spec file triggers the assigned agent
 - Post-merge trigger → notify builder to pick up next task after a PR merges
 
-### Level 3: Autonomous Planning (future)
-- Agents maintain their own task queues
-- End-of-session: agent writes "next session plan" to handoff
-- Start-of-session: agent reads plan and executes without prompting
-- Weekly self-review: agent evaluates its own output quality
+### Level 3: Silent Heartbeat (future, once trust is established)
+- Agents check environment silently (no Discord post if nothing to do)
+- Only speak up when they find actionable work
+- Graduate from explicit reporting to autonomous operation
 
-## Open Questions
+## What to Build
 
-1. **Heartbeat frequency** — 2 hours feels right to start. Too frequent = noisy, too infrequent = Lily still waiting.
-2. **Quiet hours** — should heartbeats pause overnight (11 PM - 7 AM PT)?
-3. **Channel noise** — heartbeat responses in #all-hands could get spammy. Dedicated #heartbeat channel?
-4. **Cost** — each heartbeat wakes up agents and uses API tokens. At 1-hour intervals this is ~24 checks/day per agent. Acceptable?
+1. **Create #heartbeat Discord channel**
+2. **Create `agent-heartbeat.yml` GitHub Actions workflow** (every 2 hours, posts in daily thread)
+3. **Add heartbeat section to each agent's CLAUDE.md**
+4. **Test manually** with `workflow_dispatch` to verify end-to-end flow
