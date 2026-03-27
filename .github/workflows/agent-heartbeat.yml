@@ -2,8 +2,8 @@ name: Agent Heartbeat
 
 on:
   schedule:
-    # Every 2 hours at :30 (offset from watchdog at :15)
-    - cron: '30 */2 * * *'
+    # Every 1 hour at :30 (offset from watchdog at :15)
+    - cron: '30 * * * *'
   workflow_dispatch: # manual trigger for testing
 
 jobs:
@@ -58,5 +58,5 @@ jobs:
           # Post heartbeat trigger in today's thread
           curl -sf -H "Content-Type: application/json" \
             -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
-            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\nCheck your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
+            -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Check your environment: handoff files, Discord channels, pending PRs. Report what you're up to or what you found.\"}" \
             "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
