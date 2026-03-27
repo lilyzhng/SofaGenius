@@ -14,13 +14,13 @@ A universal CLI that sets up SaaS services for AI agents. One command per servic
 
 ```bash
 # Agent runs this, gets back API keys + config
-sesame init stripe
+sesame open stripe
 # → outputs: STRIPE_SECRET_KEY=sk_test_... STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-sesame init supabase
+sesame open supabase
 # → outputs: SUPABASE_URL=https://xxx.supabase.co SUPABASE_ANON_KEY=eyJ...
 
-sesame init vercel --project my-app
+sesame open vercel --project my-app
 # → outputs: VERCEL_TOKEN=... VERCEL_PROJECT_ID=...
 ```
 
@@ -51,7 +51,7 @@ Pick the 3 most common services for a typical web app:
 ### CLI Interface
 
 ```bash
-sesame init <service> [options]
+sesame open <service> [options]
 sesame list                    # show available services
 sesame status                  # show configured services + env vars
 ```
@@ -115,7 +115,7 @@ sesame/
 When you need to set up a SaaS service (payments, database, deployment, auth):
 
 1. Run `sesame list` to see available services
-2. Run `sesame init <service>` to configure it
+2. Run `sesame open <service>` to configure it
 3. Read stdout for KEY=VALUE pairs — add them to .env
 
 Available services: stripe, supabase, vercel
@@ -129,16 +129,16 @@ Available services: stripe, supabase, vercel
 
 ## Success Metrics (Weekend MVP)
 
-- [ ] `sesame init stripe` works end-to-end (outputs real test keys)
-- [ ] `sesame init supabase` works end-to-end (outputs URL + keys)
-- [ ] `sesame init vercel` works end-to-end (outputs token + project ID)
+- [ ] `sesame open stripe` works end-to-end (outputs real test keys)
+- [ ] `sesame open supabase` works end-to-end (outputs URL + keys)
+- [ ] `sesame open vercel` works end-to-end (outputs token + project ID)
 - [ ] An AI agent (Claude Code) can use Sesame to set up a project without human help
 - [ ] Published to npm
 
 ## Post-MVP Ideas (Don't Build Yet)
 
 - More services: Auth0, Clerk, PlanetScale, Resend, Cloudflare
-- `sesame init all` — full stack in one command
+- `sesame open all` — full stack in one command
 - `sesame doctor` — verify all services healthy
 - Plugin system — community-contributed service scripts
 - MCP server wrapper — expose as MCP tool for agents that prefer MCP
