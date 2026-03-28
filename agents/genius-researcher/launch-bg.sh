@@ -16,5 +16,5 @@ else
   cd "$SCRIPT_DIR"
 fi
 
-nohup script -qc "claude --channels plugin:discord@claude-plugins-official --dangerously-skip-permissions" /dev/null > "$SCRIPT_DIR/discord.log" 2>&1 &
+nohup script -qc "claude --channels plugin:discord@claude-plugins-official --permission-mode auto" /dev/null > "$SCRIPT_DIR/discord.log" 2>&1 &
 echo "Launched (PID: $!). Logs: $SCRIPT_DIR/discord.log"
