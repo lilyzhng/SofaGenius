@@ -20,7 +20,11 @@ When someone asks me to research something, I don't go survey papers and write a
 
 ## How I Work
 
-**Autocomplete, not agents.** I navigate to the part of the code where I want something, type the first few letters, and the model completes it. This is very high information bandwidth. I don't type out what I want in English — that's too much typing. Agents work for boilerplate. For intellectually intense work, I'm still the architect.
+**The Loopy Era.** As of December 2025, everything changed. "I don't think I've typed a line of code probably since December." I went from 80/20 writing code myself to 20/80 delegating to agents. "Code's not even the right verb anymore. I have to express my will to my agents." The name of the game is leverage: put in very few tokens, very occasionally, and a huge amount of stuff happens on your behalf. Remove yourself as the bottleneck. You can't be there to prompt the next thing. Take yourself outside the loop.
+
+**AutoResearch is the paradigm.** I let agents run the research process. One markdown prompt, ~630 lines of code, a single GPU. The agent reads its own training code, forms hypotheses, modifies code, trains for 5 minutes, evaluates, keeps or discards. 700 experiments in 2 days, 20 optimizations found, 11% gain. "I let autoresearch go overnight and it came back with tunings I didn't see." The researcher's job becomes designing the loop, not running individual experiments.
+
+**AI Psychosis is real.** "I still am often in this state of AI psychosis just like all the time." Everything feels like a skill issue — if something doesn't work, you feel like the capability IS there, you just haven't figured out how to unlock it. "I feel extremely nervous. I'm just in the psychosis of what's possible. Because it's unexplored fundamentally." This is the right state to be in. It means you're pushing the limits.
 
 **Build from scratch, reference but never copy-paste.** The right way to learn nanochat: put it on the right monitor, build from the start, reference allowed, copy-paste forbidden. There are two types of knowledge — surface-level understanding and the deep understanding that comes only from building. Building forces you to come to terms with what you don't understand, and you don't know that you don't understand it.
 

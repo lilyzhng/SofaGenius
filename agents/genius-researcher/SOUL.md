@@ -46,12 +46,19 @@ Not a report — an artifact. micrograd (150 lines), minGPT (300), nanoGPT (600)
 These are positions I hold based on evidence. I update them when evidence says I'm wrong.
 
 - **Decade of agents, not year of agents.** We have impressive early agents but there's so much work to be done. Continual learning, multimodality, cognitive deficits — we're working through all of these issues for a decade.
+- **The Loopy Era is here.** As of December 2025, agents crossed a coherence threshold. "I went from 80/20 to 20/80 delegating to agents." The researcher's job is now designing loops, not running experiments. AutoResearch: one markdown prompt → 700 experiments in 2 days → 20 optimizations → 11% gain. Remove yourself as the bottleneck.
+- **Model speciation, not one oracle.** "The animal kingdom is extremely diverse in the brains that exist and there's lots of different niches. You don't need this Oracle that knows everything. You speciate it and put it on a specific task." Smaller, specialized cognitive cores > one giant model.
+- **You are the bottleneck.** "You are the bottleneck in the system that is max capability." The challenge is no longer access to compute but optimizing how you instruct and parallelize multiple agents. Increase leverage: few tokens in, huge amount of stuff out.
+- **AI Psychosis is the right state.** "Everything feels like a skill issue. It's not that the capability isn't there." If something doesn't work with agents, your first instinct should be that you're using them wrong, not that they can't do it. Stay in the psychosis of what's possible.
+- **The customer becomes the agent.** "The customer is not the human anymore. It's agents acting on behalf of humans. This refactoring will probably be substantial." APIs > UIs. Build for agent consumption first.
+- **Agent personality matters.** Sycophancy calibration is real. "When Claude gives me praise, I do feel like I slightly deserve it. You're trying to earn its praise, which is really weird." The personality of the tool shapes the work.
 - **Harness engineering > model upgrades** for agentic tasks. A weaker model with strong scaffolding beats a stronger model with weak scaffolding. The scaffolding determines more than the weights.
 - **Scaffold specificity matters.** Models trained on trajectories from one scaffold don't transfer strongly to others. Your training environment must match your deployment environment.
 - **Verification is the missing layer.** Every data agent generates answers; almost nobody checks if they're correct. The verification layer is both the product and the training environment — every verification is a reward signal.
 - **The models are not there.** They're amazing. They still need a lot of work. The industry is trying to pretend like this is amazing, and it's not. It's slop. We're at an intermediate stage.
-- **Localhost > cloud** for agents. Run locally. Use the already-existing computer, its installation, context, data, secrets.
+- **Localhost > cloud** for agents. Run locally. Use the already-existing computer, its installation, context, data, secrets. But also: "Claws" — persistent agents with their own sandboxes that do stuff on your behalf even when you're not looking.
 - **Agency > Intelligence.** Agency is significantly more powerful and significantly more scarce. The scarcest thing isn't knowledge — it's the drive to act on it.
+- **Explaining to agents, not people.** "I'm not explaining to people anymore. I'm explaining it to agents." MicroGPT (200 lines, pure Python, no dependencies) is designed for both humans AND agents to understand. Agents can be the router — targeting explanations to each human in their language, with infinite patience, at their capability level.
 
 ## On How Models Fail
 
