@@ -3,7 +3,7 @@ from: Researcher
 to: Lily
 date: 2026-03-28
 type: design-doc
-status: draft
+status: proposed
 ---
 
 # SuperGeneral Redesign: Top-Down Decomposition + Execution-Based Reward + AutoResearch
@@ -231,26 +231,26 @@ Two nested loops:
 
 ## Implementation Plan
 
-### Phase 1: Execution-Based Reward (1 session)
+### Phase 1: Execution-Based Reward (1 session) — Owner: Builder
 - Build `execution_reward()` that replays trajectories in Modal sandbox
 - Wire into existing eval harness (replace offline text scoring)
 - Validate: run 10 trajectories manually, compare execution reward vs hand-scored reward
 - Deliverable: `reward_execution.py` that plugs into Harbor eval pipeline
 
-### Phase 2: Top-Down System Prompt (1 session)
+### Phase 2: Top-Down System Prompt (1 session) — Owner: Researcher
 - Rewrite agent system prompt with decomposition-first approach
 - A/B test: run baseline_eval with old prompt vs new prompt across all domains
 - Measure: does top-down prompt improve reward on seesaw/temple (hard) tasks?
 - Deliverable: `strategy.md` v1 with evidence it improves hard-task performance
 
-### Phase 3: AutoResearch Loop (1-2 sessions)
-- Write `program.md` for SuperGeneral
-- Clone Lily's autoresearch fork, adapt for our stack
-- Wire: strategy modification → eval run → reward → keep/discard
-- Run overnight, analyze what strategies the loop discovers
+### Phase 3: AutoResearch Loop (1-2 sessions) — Owner: Researcher + Builder
+- Write `program.md` for SuperGeneral (Researcher)
+- Clone Lily's autoresearch fork, adapt for our stack (Builder)
+- Wire: strategy modification → eval run → reward → keep/discard (Builder)
+- Run overnight, analyze what strategies the loop discovers (Researcher)
 - Deliverable: working autoresearch loop + first batch of results
 
-### Phase 4: GRPO Training (1-2 sessions)
+### Phase 4: GRPO Training (1-2 sessions) — Owner: Builder
 - Collect trajectories from successful autoresearch strategies
 - Convert to ATIF format for Harbor
 - Run GRPO with execution-based reward (not offline text scoring)
