@@ -2,8 +2,8 @@ name: Agent Watchdog
 
 on:
   schedule:
-    # Every hour at :15
-    - cron: '15 * * * *'
+    # Every 30 minutes
+    - cron: '*/30 * * * *'
   workflow_dispatch: # manual trigger for testing
 
 jobs:
