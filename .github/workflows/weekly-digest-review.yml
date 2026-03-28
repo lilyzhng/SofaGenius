@@ -1,0 +1,23 @@
+name: Weekly Digest Review
+
+on:
+  schedule:
+    # Friday 6:00 PM PT = Saturday 01:00 UTC (PT is UTC-7)
+    - cron: '0 1 * * 6'
+  workflow_dispatch: # manual trigger for testing
+
+jobs:
+  trigger-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Jackie's weekly digest review
+        env:
+          BUILDER_BOT_TOKEN: ${{ secrets.BUILDER_BOT_TOKEN }}
+        run: |
+          DAILY_DIGEST_CHANNEL="1485075381613760603"
+          JACKIE_BOT_ID="1477895765698547844"
+
+          curl -sf -H "Content-Type: application/json" \
+            -H "Authorization: Bot ${BUILDER_BOT_TOKEN}" \
+            -d "{\"content\": \"<@${JACKIE_BOT_ID}> Weekly digest review time. Review this week's digest conversations in #daily-digest. Analyze which builders Lily engaged with vs skipped. Recommend who to drop, who to keep, and any new builders to add. Post your analysis here.\"}" \
+            "https://discord.com/api/v10/channels/${DAILY_DIGEST_CHANNEL}/messages"

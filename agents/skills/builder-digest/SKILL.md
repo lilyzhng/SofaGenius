@@ -2,7 +2,7 @@
 
 **Trigger:** Run this every morning at 7:00 AM PT
 
-**Purpose:** Fetch builder feeds, compile digest, post to Discord #daily-digest with threads and polls
+**Purpose:** Fetch builder feeds, compile digest, post to Discord #daily-digest with threads
 
 ## Workflow
 
@@ -90,18 +90,9 @@ Save the returned thread ID.
 
 Use `reply` with `thread_id` set to the thread ID from step 3b. Post each section as a separate message. Keep each under 2000 chars.
 
-**Step 3d: Post polls in the thread**
-
-One poll per section. Use `create_poll`:
-- `chat_id`: the thread ID from step 3b
-- `question`: `Section Name — 你读了哪些？`
-- `options`: list of `Builder — topic` entries
-- `allow_multiselect`: true
-- `duration_hours`: 24
-
 ### Step 4: Confirm completion
 
-Reply in the thread: "Digest posted! 📊 Vote in the polls above."
+Reply in the thread: "Digest posted!"
 
 ## Discord Channel
 
