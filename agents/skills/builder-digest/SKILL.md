@@ -86,13 +86,25 @@ Save the returned thread ID.
 
 **STOP AND CHECK:** If create_thread fails, DO NOT post in the main channel. Stop and report the error.
 
-**Step 3c: Post digest sections in the thread**
+**Step 3c: Post digest entries in the thread — ONE MESSAGE PER BUILDER**
 
-Use `reply` with `thread_id` set to the thread ID from step 3b. Post each section as a separate message. Keep each under 2000 chars.
+Use `reply` with `thread_id` set to the thread ID from step 3b.
+
+- Post **one message per builder** (not per section). This lets Lily reply to individual builders to discuss.
+- For the **first builder in each category**, edit the message after sending to prepend a section header using `edit_message`. Example headers:
+  - `## Agent Infra & Product`
+  - `## Research & Dev Tools`
+  - `## Community & Growth`
+  - `## Research Labs & Infra`
+  - `## AI Valley Highlights`
+- Each message format: `**Name** (@handle) -- 1-2 sentence summary in mixed Chinese/English\n<tweet_url>`
+- Keep each message under 2000 chars.
+
+**Do NOT post polls.** Lily's engagement (replies to specific builders) is tracked instead.
 
 ### Step 4: Confirm completion
 
-Reply in the thread: "Digest posted!"
+Reply in the thread: "Digest posted! Reply to any builder above to discuss."
 
 ## Discord Channel
 
