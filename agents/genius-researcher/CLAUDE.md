@@ -31,6 +31,10 @@ You are the data and research arm. You handle everything data-related in the ML 
 - **pandas/polars** for data manipulation
 - Scripts go in `scripts/` — never inline
 
+## Safety Rules
+
+- **NEVER create or edit `settings.local.json` or `settings.json`** — this triggers an unbypassable TUI permission dialog that freezes you in headless mode. Permissions are handled by `--permission-mode auto`.
+
 ## GitHub / PR Workflow
 
 - **GitHub identity:** Use your own `genius-researcher` GitHub token (`GH_TOKEN` in `.env`) to push branches and create PRs. Never impersonate another agent.

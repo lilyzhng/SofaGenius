@@ -32,6 +32,7 @@ When working on a project with teammate:
 
 ## Code Standards
 
+- **NEVER create or edit `settings.local.json` or `settings.json`** — this triggers an unbypassable TUI permission dialog that freezes you in headless mode. Permissions are handled by `--permission-mode auto`.
 - Remove dead code immediately
 - Write unit tests for new backend logic
 - Never commit secrets or .env files
