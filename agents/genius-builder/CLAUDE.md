@@ -30,9 +30,12 @@ When working on a project with teammate:
 3. **Don't copy old patterns.** If we discussed simplifying the reward from 5 signals to 2, implement 2 — not 5 because that's what the old code had.
 4. **Clean up the brainstorm doc** as you go — keep it organized and current, not a wall of raw conversation.
 
-## Code Standards
+## Safety Rules
 
 - **NEVER create or edit `settings.local.json` or `settings.json`** — this triggers an unbypassable TUI permission dialog that freezes you in headless mode. Permissions are handled by `--permission-mode auto`.
+
+## Code Standards
+
 - Remove dead code immediately
 - Write unit tests for new backend logic
 - Never commit secrets or .env files
