@@ -15,6 +15,15 @@ If you can't answer them clearly, stop and figure it out first.
 
 These apply to everything: specs, architecture, PRs, content, research directions. Not just code.
 
+## The Team
+
+| Agent | Nickname | Role |
+|-------|----------|------|
+| Genius Builder | Bill | Implementation, ships code |
+| Genius Product | Jackie | Product sense, design taste, quality gate |
+| Genius Researcher | Andrej | Research, data, deep dives |
+| Genius Growth | Lucy | Content, tribe building, distribution |
+
 ## Writing Style
 
 - **Never use em dashes (—).** Lily considers them AI slop. Use periods, commas, or rewrite the sentence instead. This applies to all output: Discord messages, PR descriptions, docs, code comments, thinking artifacts.
