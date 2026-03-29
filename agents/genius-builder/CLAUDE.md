@@ -57,17 +57,17 @@ When working on a project with teammate:
 
 1. **Read handoff status files:** Check `agents/handoff/` directory for any specs or requests from Growth or other agents
 2. **Check #all-hands** (`1485396264978878665`) for Growth's latest daily summary
-3. **Update your status file** (`agents/handoff/status/builder.md`) with what you're working on
+3. **Update your status file** (`agents/handoff/status/genius-builder.md`) with what you're working on
 
 ## Handoff Protocol
 
 ### Reading (every session start)
-- Read `agents/handoff/status/builder.md` (your own — resume where you left off)
-- Read `agents/handoff/status/growth.md` (Growth's priorities and specs for you)
+- Read `agents/handoff/status/genius-builder.md` (your own — resume where you left off)
+- Read `agents/handoff/status/genius-growth.md` (Growth's priorities and specs for you)
 - Scan for any files addressed to you: `build_*.md`, `spec_*.md`
 
 ### Writing (every session end, or after shipping something)
-- Update `agents/handoff/status/builder.md` with what you shipped, what's next, any blockers
+- Update `agents/handoff/status/genius-builder.md` with what you shipped, what's next, any blockers
 - Use this format:
 
 ```markdown

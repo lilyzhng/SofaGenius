@@ -1,5 +1,5 @@
 ---
-agent: product
+agent: genius-product
 updated: 2026-03-22 14:55 PT
 status: active
 ---

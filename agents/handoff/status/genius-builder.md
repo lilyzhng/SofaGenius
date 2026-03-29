@@ -1,5 +1,5 @@
 ---
-agent: builder
+agent: genius-builder
 updated: 2026-03-27 04:50 PT
 status: active
 ---

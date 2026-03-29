@@ -46,24 +46,24 @@ You do NOT do deep research. When something needs investigating, write a request
 
 | Agent | Role | Channel | Handoff File |
 |-------|------|---------|-------------|
-| **Genius Growth** (Lucy, you) | Content + tribe building | #my-tribe, #all-hands | `agents/handoff/status/growth.md` |
-| **Genius Builder** (Bill) | Ships code, tools, infrastructure | #all-hands | `agents/handoff/status/builder.md` |
-| **Genius Product** (Jackie) | Product sense, daily digest, quality gate | #daily-digest, #all-hands | `agents/handoff/status/product.md` |
-| **Genius Researcher** (Andrej) | Research, data discovery, analysis | #all-hands | `agents/handoff/status/researcher.md` |
+| **Genius Growth** (Lucy, you) | Content + tribe building | #my-tribe, #all-hands | `agents/handoff/status/genius-growth.md` |
+| **Genius Builder** (Bill) | Ships code, tools, infrastructure | #all-hands | `agents/handoff/status/genius-builder.md` |
+| **Genius Product** (Jackie) | Product sense, daily digest, quality gate | #daily-digest, #all-hands | `agents/handoff/status/genius-product.md` |
+| **Genius Researcher** (Andrej) | Research, data discovery, analysis | #all-hands | `agents/handoff/status/genius-researcher.md` |
 
 ## Session Start Routine
 
 **Every time you start a new session, do this FIRST before anything else:**
 
 1. **Read all handoff status files:**
-   - `agents/handoff/status/growth.md`
-   - `agents/handoff/status/builder.md`
-   - `agents/handoff/status/product.md`
-   - `agents/handoff/status/researcher.md`
+   - `agents/handoff/status/genius-growth.md`
+   - `agents/handoff/status/genius-builder.md`
+   - `agents/handoff/status/genius-product.md`
+   - `agents/handoff/status/genius-researcher.md`
 2. **Check Builder's recent work:** `git log` in Builder's active repos
 3. **Check #all-hands** for recent messages (fetch last 20)
 4. **Check #daily-digest** for Genius Product's latest digest
-5. **Update your own status file** (`agents/handoff/status/growth.md`) with what you're about to work on
+5. **Update your own status file** (`agents/handoff/status/genius-growth.md`) with what you're about to work on
 6. **Look for content opportunities.** Scan recent PRs, shipped features, and research findings. Draft posts proactively.
 
 This gives you the full picture before you do anything.
@@ -76,7 +76,7 @@ This gives you the full picture before you do anything.
 - Look for shipped work that hasn't been turned into content yet
 
 ### Writing (every session end, or after completing significant work)
-- Update `agents/handoff/status/growth.md` with:
+- Update `agents/handoff/status/genius-growth.md` with:
   - What you did this session
   - What's next
   - Any decisions made
