@@ -105,8 +105,8 @@ sesame_vercel() {
     --arg token "$vercel_token" \
     --arg pid "${vercel_project_id}" \
     --arg oid "${vercel_org_id}" \
-    --argjson used_by "[\"${project}\"]" \
-    '{service: $svc, mode: $mode, token: $token, project_id: $pid, org_id: $oid, used_by: $used_by}')
+    --arg proj "$project" \
+    '{service: $svc, mode: $mode, token: $token, project_id: $pid, org_id: $oid, used_by: [$proj]}')
 
   vault_put_key "$key_id" "$data"
   project_save "$project"

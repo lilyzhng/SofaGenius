@@ -147,8 +147,8 @@ sesame_supabase() {
     --arg anon "$supa_anon" \
     --arg sr "$supa_service_role" \
     --arg ref "$supa_project_ref" \
-    --argjson used_by "[\"${project}\"]" \
-    '{service: $svc, mode: $mode, url: $url, anon_key: $anon, service_role_key: $sr, project_ref: $ref, used_by: $used_by}')
+    --arg proj "$project" \
+    '{service: $svc, mode: $mode, url: $url, anon_key: $anon, service_role_key: $sr, project_ref: $ref, used_by: [$proj]}')
 
   vault_put_key "$key_id" "$data"
   project_save "$project"

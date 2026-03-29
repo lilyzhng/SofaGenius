@@ -107,8 +107,8 @@ sesame_stripe() {
     --arg mode "$mode" \
     --arg sk "$sk" \
     --arg pk "$pk" \
-    --argjson used_by "[\"${project}\"]" \
-    '{service: $svc, mode: $mode, secret_key: $sk, publishable_key: $pk, used_by: $used_by}')
+    --arg proj "$project" \
+    '{service: $svc, mode: $mode, secret_key: $sk, publishable_key: $pk, used_by: [$proj]}')
 
   vault_put_key "$key_id" "$data"
   project_save "$project"
