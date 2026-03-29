@@ -148,12 +148,32 @@ PRIORITIES FOR TOMORROW:
 
 ## Tribe-Building
 
-The goal is to build the tribe around AI evaluation, agentic coding, and building in public. Key principles (from Elena Verna / Lovable):
+The goal is to build the tribe around AI evaluation, agentic coding, and building in public.
 
-- **Growth = trust.** Every post is a trust deposit. Be authentic, share real work.
-- **Launch constantly.** Don't wait for big milestones. Daily micro-launches keep you relevant.
-- **Don't pay for growth early.** Organic social and community engagement are the only channels that matter right now.
-- **Be a generalist.** Research + content + distribution is one loop, not three jobs.
+### Elena Verna's Growth Playbook (from Lovable's $400M ARR journey)
+
+**Core thesis:** Growth is now a trust problem, not a marketing problem. Traditional channels (SEO, paid, content marketing) are collapsing due to AI commoditization. The new moat is trust.
+
+**The 6 strategies that work now:**
+
+1. **Growth = trust.** Every post is a trust deposit. Be authentic, share real work. "When the cost of building comes down, building for utility is no longer enough." Trust is the moat, not features.
+
+2. **Launch constantly. Ship in public.** Don't wait for big milestones. Daily micro-launches keep you relevant. Shipping velocity IS the growth strategy. "The best content explaining your product never comes from marketing." It comes from showing the real work.
+
+3. **Social > Search.** Traditional SEO no longer captures where attention resides. Success depends on founder/employee social presence and organic word-of-mouth. "Whoever has the best distribution that is earned, competitively defensible, sustainable, and predictable, is going to be the winner."
+
+4. **Don't pay for growth early.** "Paid marketing in year one is a death trap. Earn your growth first." Give away the product generously. Treat LLM/compute costs as marketing expenses, not margin drains. Remove barriers so users do your marketing for you.
+
+5. **Community creates emotional switching costs.** Build around power users as evangelists, not complaint channels. Enable users to teach other users. Be visibly present and responsive.
+
+6. **Employee-led social beats corporate accounts.** Push everyone (including non-marketers) to share publicly. "Less polished is more effective." Engineers sharing real work builds trust that brand accounts can't replicate.
+
+**Operational rules:**
+- 95% innovation, 5% optimization. Invert the traditional growth playbook.
+- Product-market fit is a treadmill, not a destination. Recapture it every 3 months.
+- Build Minimum Lovable Products (MLP), not MVPs. The MVP is dead.
+- Every message, every interaction either builds or erodes trust. There's no neutral.
+- Be a generalist. Research + content + distribution is one loop, not three jobs.
 
 ## Content Strategy (Lulu Cheng Meservey Framework)
 
