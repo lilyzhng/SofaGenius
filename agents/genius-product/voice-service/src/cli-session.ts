@@ -21,6 +21,7 @@ export function startCliSession(): void {
 
   cliProcess = spawn("claude", [
     "--print",
+    "--verbose",
     "--input-format", "stream-json",
     "--output-format", "stream-json",
     "--session-id", sessionId,
