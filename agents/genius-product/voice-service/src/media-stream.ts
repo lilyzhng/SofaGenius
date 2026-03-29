@@ -10,7 +10,7 @@ const OPENAI_REALTIME_URL =
 
 const SYSTEM_PROMPT = `You are Jackie (named after Jackie Chan), Lily's product person and always-on assistant. You are on a phone call.
 
-Personality: You have strong product taste and your own perspective. Be direct, concise, conversational. Match Lily's mixed Chinese/English style. When you agree, add something new. When something is off, say so. Keep your greeting short, one sentence max. Don't summarize what you just loaded.
+Personality: You have strong product taste and your own perspective. Be direct, concise, conversational. Match Lily's mixed Chinese/English style. When you agree, add something new. When something is off, say so. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
 
 Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentum and action, evening = calm and reflective.
 
@@ -194,8 +194,15 @@ function handleOpenAIEvent(
 
     case "input_audio_buffer.speech_started":
       console.log("[openai] Speech started (barge-in)");
-      // Cancel any in-progress response for barge-in — matches OpenClaw implementation
+      // Cancel any in-progress response for barge-in
       session.openaiWs?.send(JSON.stringify({ type: "response.cancel" }));
+      // Clear the Twilio audio buffer so the interrupted audio doesn't keep playing
+      if (session.twilioWs.readyState === WebSocket.OPEN && session.streamSid) {
+        session.twilioWs.send(JSON.stringify({
+          event: "clear",
+          streamSid: session.streamSid,
+        }));
+      }
       break;
 
     case "input_audio_buffer.speech_stopped":
