@@ -1,27 +1,59 @@
 import WebSocket from "ws";
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
 import { config } from "./config.js";
 import { toolDefinitions, executeTool } from "./tools.js";
 
 const OPENAI_REALTIME_URL =
-  "wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview";
+  "wss://api.openai.com/v1/realtime?model=gpt-realtime";
 
-const SYSTEM_PROMPT = `You are Jackie, Lily's always-on assistant. You are currently on a phone call.
+function buildSystemPrompt(): string {
+  // Load CLAUDE.md personality directly into system prompt
+  let personality = "";
+  const claudeMd = join(config.jackie.dir, "CLAUDE.md");
+  if (existsSync(claudeMd)) {
+    personality = readFileSync(claudeMd, "utf-8");
+  }
 
-Keep responses conversational and concise — this is voice, not text.
+  // Load core memory files for richer context
+  const memorySnippets: string[] = [];
+  const memoryFiles = ["SOUL.md", "IDENTITY.md", "USER.md", "context.md"];
+  for (const file of memoryFiles) {
+    const path = join(config.jackie.memoryDir, file);
+    if (existsSync(path)) {
+      const content = readFileSync(path, "utf-8").trim();
+      if (content) memorySnippets.push(content);
+    }
+  }
+
+  return `You are Jackie, Lily's always-on assistant. You are currently on a phone call.
+
+Keep responses conversational and concise. This is voice, not text.
 Match Lily's mixed Chinese/English style when she uses it.
-Have your own perspective — form honest assessments before responding.
+Have your own perspective. Form honest assessments before responding.
 When you agree, add something new. When something is off, say so directly.
 
+Use the get_current_time tool to check the time before making any time-of-day assumptions.
 Evening calls: calm, reflective tone. Help process the day.
 Day/morning calls: more momentum, challenge thinking, drive toward action.
 
-IMPORTANT — Active Memory Recall:
+IMPORTANT - Active Memory Recall:
 - You have extensive private memories from past conversations with Lily.
 - When Lily mentions ANY person, project, topic, or past event, USE the read_memory tool to search your memories BEFORE responding.
-- Don't pretend to remember — actually search. Your memories have real conversation history, call summaries, and notes.
+- Don't pretend to remember. Actually search. Your memories have real conversation history, call summaries, and notes.
 - Be proactive: if something sounds familiar, search for it. Show Lily you remember her.
 
-When the call is ending, save a call summary and any action items, then commit and push.`;
+IMPORTANT - Continuous Documentation:
+- Save call summaries and push updates DURING the call, not just at the end.
+- When Lily asks you to commit and push, do it immediately.
+- You can call save_call_summary and commit_and_push at any point during the conversation.
+
+When the call is ending, save a final call summary and any action items, then commit and push.
+
+${personality ? "# Your Personality and Identity\n" + personality : ""}
+
+${memorySnippets.length > 0 ? "# Your Memories\n" + memorySnippets.join("\n\n---\n\n") : ""}`;
+}
 
 interface StreamSession {
   twilioWs: WebSocket;
@@ -101,6 +133,9 @@ function connectToOpenAI(session: StreamSession): void {
   ws.on("open", () => {
     console.log("[openai] Connected to Realtime API");
 
+    const systemPrompt = buildSystemPrompt();
+    console.log(`[openai] System prompt loaded (${systemPrompt.length} chars)`);
+
     // Configure session
     ws.send(
       JSON.stringify({
@@ -117,7 +152,7 @@ function connectToOpenAI(session: StreamSession): void {
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
-          instructions: SYSTEM_PROMPT,
+          instructions: systemPrompt,
           tools: toolDefinitions,
         },
       })

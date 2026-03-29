@@ -97,6 +97,13 @@ export const toolDefinitions = [
       required: ["message"],
     },
   },
+  {
+    type: "function" as const,
+    name: "get_current_time",
+    description:
+      "Get the current time in Pacific Time (PT). Use this to check the time before making any time-of-day assumptions.",
+    parameters: { type: "object", properties: {}, required: [] },
+  },
 ];
 
 /** Execute a tool call and return the result string */
@@ -114,6 +121,8 @@ export function executeTool(name: string, args: Record<string, string>): string 
       return createActionItem(args.item, args.assignee);
     case "commit_and_push":
       return commitAndPush(args.message);
+    case "get_current_time":
+      return getCurrentTime();
     default:
       return `Unknown tool: ${name}`;
   }
@@ -275,14 +284,43 @@ function commitAndPush(message: string): string {
   const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
   try {
     execFileSync("git", ["add", "."], opts);
-    execFileSync("git", ["commit", "-m", message], opts);
+    try {
+      execFileSync("git", ["commit", "-m", message], opts);
+    } catch (e) {
+      const err = e as Error & { stderr?: string };
+      if (err.stderr?.includes("nothing to commit")) {
+        return "No changes to commit.";
+      }
+      throw e;
+    }
+    // Pull with rebase to integrate remote changes before pushing
+    try {
+      execFileSync("git", ["pull", "--rebase"], opts);
+    } catch {
+      // If rebase fails, abort and report
+      try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
+      return "Committed locally but could not rebase with remote. Manual intervention needed.";
+    }
     execFileSync("git", ["push"], opts);
     return "Changes committed and pushed to jackie-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
-    if (err.stderr?.includes("nothing to commit") || err.stderr?.includes("did not match any files")) {
-      return "No changes to commit.";
-    }
     return `Git error: ${err.message}`;
   }
+}
+
+function getCurrentTime(): string {
+  const now = new Date();
+  const pt = now.toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  return `Current time in Pacific Time: ${pt}`;
 }
