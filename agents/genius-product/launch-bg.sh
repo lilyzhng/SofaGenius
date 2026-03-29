@@ -22,7 +22,7 @@ if [ -d "$VOICE_DIR/dist" ]; then
   if ! lsof -i :3334 -sTCP:LISTEN >/dev/null 2>&1; then
     echo "Starting voice service..."
     cd "$VOICE_DIR"
-    set -a && source "$SCRIPT_DIR/.env" && set +a
+    # .env already sourced and exported at top of script
     nohup node dist/index.js > "$SCRIPT_DIR/voice-service.log" 2>&1 &
     echo "Voice service launched (PID: $!). Logs: $SCRIPT_DIR/voice-service.log"
     cd "$WORKTREE" 2>/dev/null || cd "$SCRIPT_DIR"
