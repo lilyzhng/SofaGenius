@@ -173,7 +173,6 @@ Nobody seems to be doing "just shell out to an existing agent CLI." It's almost 
 | Rename `ask_claude` to `use_cli` | More accurate, avoids confusion with Discord Jackie | During Lily's review |
 | Set cwd to `agents/genius-product/` | CLI inherits Jackie's CLAUDE.md and context automatically | Lily's insight |
 | Persistent session per call (not ephemeral) | Lower latency, shared context across tasks | Lily's directive |
-| Haiku as default model, configurable via env var | Most bridge calls are lookups, latency matters more than capability | Andrej + Jackie's review |
 | Reject concurrent use_cli calls | Prevents resolver overwrite race condition | Andrej's review |
 | Fire-and-forget auto-save on call end | Prevents blocking the close handler | Jackie's review |
 | No extra API cost | Claude Code runs under Anthropic subscription on agent computer | Lily's correction |

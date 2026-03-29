@@ -30,7 +30,6 @@ export function startCliSession(): void {
     cwd,
     env: {
       ...process.env,
-      CLAUDE_CODE_ENTRYPOINT: "voice-bridge",
     },
     stdio: ["pipe", "pipe", "pipe"],
   });
