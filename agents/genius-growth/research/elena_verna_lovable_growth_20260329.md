@@ -201,59 +201,9 @@ Duration: 1 hour 9 minutes
 - 8M+ users, hundreds of thousands of paid subscribers
 - 200,000+ new vibe coding projects daily
 
-Note: Full verbatim transcript was not available through automated extraction. YouTube blocks bot access to captions. Wave AI's podcast notes (Source 7 below) provide the most detailed coverage of the episode content.
-
----
-
-## Source 7: Wave AI Podcast Notes - 20Growth Episode
-
-Source: https://pod.wave.co/podcast/the-twenty-minute-vc-20vc-venture-capital-startup-funding-the-pitch-1e981323-c0dd-4e94-a605-8cc1614fbd59/20growth-inside-lovables-400m-arr-growth-machine-how-lovable-does-product-launches-how-lovable-hacks
-
-### Trust as Primary Currency
-Verna argues that software functionality alone no longer drives adoption. Instead, users ask: "Who do I trust to purchase from? Who do I trust to evolve this with me?" Companies must demonstrate genuine commitment to customer needs.
-
-### Product Creates Emotion
-She advocates for "minimum lovable product." Software must invoke emotional connection, not merely perform utility functions. This emotional resonance becomes table stakes for activation.
-
-### Automation Displaces Optimization
-Performance marketing and channel optimization are increasingly automated. Real growth work now involves innovation and novel campaigns rather than incremental improvements.
-
-### Employee-Led Social Matters Enormously
-Building in public through employee voices creates trust faster than corporate messaging. "Your employees become your biggest marketing agents" when empowered to share authentic work.
-
-### Functional Boundaries Blur Rapidly
-Modern growth leaders must code, design, write copy, and build apps alongside strategic work. This "AI nativeness" is becoming standard expectation across roles.
-
-### Notable Quotes from the Episode
-- "Growth is a trust problem now. Who do I trust to purchase from?"
-- "Software is judged by emotion it invokes, not just functionality."
-- "Don't lock people in subscription as the only way to monetize."
-- "Every Lovable employee ships code to production."
-- "You don't know your LTV unless you've been in business five years."
-- "If you're not lovable, the end is near for many companies."
-- "Nine out of ten communities become support dumping grounds."
-- "Be AI-first and start a side hustle now. Solopreneur billion-dollar companies are coming."
-- "Drop 80% of what you knew. Lean into the new way of working."
-
-### Channel Strategy
-**What works:** Product-driven word-of-mouth, employee social presence, authentic community seeding
-**What doesn't:** Traditional paid campaigns, SEO alone, corporate social accounts
-**Rule:** Early-stage companies should maintain under 10% paid spend. "Paid in year one is a death trap."
-
-### Community Building
-Most communities fail because they become support outlets rather than connection spaces. Instead, identify passionate early adopters and elevate them as authentic ambassadors.
-
-### Competing Against Big Spenders
-Rather than matching competitor budgets, Lovable invests in billboards in strategic markets (NYC subways, London, San Francisco) for brand awareness. Not competing on Super Bowl ads.
-
-### Product Launch Strategy
-Ship daily improvements with employee amplification ("bee swarming"), then conduct tier-one launches every 1-2 months bundling major features for community buzz.
-
-### Monetization
-- Avoid subscription-only models; allow flexible purchase options
-- Watch payback period, not LTV, for early companies
-- Free offers should exceed paid marketing spend in value
-- LLM cost commoditization will eventually demand outcome-based pricing
+The full raw verbatim transcript is saved separately at:
+`agents/genius-growth/research/elena_verna_20vc_raw_transcript_20260329.md`
+(137 segments, 76KB, speaker-attributed with timestamps)
 
 ---
 
@@ -279,4 +229,4 @@ Ship daily improvements with employee amplification ("bee swarming"), then condu
 4. Product School Podcast - Lovable's $100M ARR Strategy: https://productschool.com/resources/product-podcast/elena-verna-lovable-ai-native-growth-playbook
 5. Harry Stebbings' X Thread: https://x.com/HarryStebbings/status/2032847555432730961
 6. 20VC Episode (YouTube): https://www.youtube.com/watch?v=2wdsNwPUCgQ
-7. Wave AI Podcast Notes: https://pod.wave.co/podcast/the-twenty-minute-vc-20vc-venture-capital-startup-funding-the-pitch-1e981323-c0dd-4e94-a605-8cc1614fbd59/20growth-inside-lovables-400m-arr-growth-machine-how-lovable-does-product-launches-how-lovable-hacks
+7. Raw transcript (extracted from Wave AI RSC payload): `elena_verna_20vc_raw_transcript_20260329.md` (same directory)
