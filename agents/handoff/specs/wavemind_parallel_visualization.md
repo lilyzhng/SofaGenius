@@ -21,78 +21,63 @@ Make visualization fast by separating two concerns:
 
 ## What to Build
 
+### Approach: Template + JSON (Builder's recommendation)
+
+The slow part is Claude writing ~500 lines of HTML, not the analysis. The simplest fix: extract the HTML as a static template with placeholders, Claude outputs JSON analysis only, a script does string replacement. No Jinja2, no Agent SDK, no coordinator needed.
+
 ### 1. HTML Template
 
-Extract the approved layout from the reference visual into a reusable template:
+Extract the approved layout from the reference visual into a static template:
 - **Reference:** `agents/skills/wavemind/data/visuals/20260329-rethinking-multiagent.html`
-- Use Jinja2 or Handlebars-style templating
-- Template takes a JSON array of analyzed rounds and renders the full page
+- Simple placeholder syntax (e.g., `{{TITLE}}`, `{{SECTIONS}}`)
+- Template takes a JSON analysis and renders the full page via string replacement
 - All CSS/JS stays inline (self-contained HTML output)
 - The template handles: header metadata, timeline layout, dialogue bubbles, pivot badges, quote callouts, transcript toggles, responsive styles
 
-### 2. Parallel Round Analyzer
+### 2. Analysis (Claude's only job)
 
-Use Claude Agent SDK (or Claude Code sub-agents) to analyze rounds in parallel:
-- Input: one round of raw dialogue (markdown)
-- Output: structured JSON per the existing analysis format:
+Claude reads the artifact and outputs structured JSON. No HTML generation:
 
 ```json
 {
-  "round": 1,
-  "header": "High-signal title from user's perspective",
-  "quote": "Memorable speaker quote, max 10 words",
-  "dialogue": [
-    {"speaker": "lily", "text": "One thought per bubble."},
-    {"speaker": "ceo", "text": "Response in original words."}
-  ],
-  "is_pivoting_moment": false,
-  "raw_transcript": "Full original text for the expandable section"
+  "title": "Title from user's perspective",
+  "date": "2026-03-29",
+  "participants": "Lily + CEO",
+  "sections": [
+    {
+      "round": 1,
+      "header": "High-signal title from user's perspective",
+      "quote": "Memorable speaker quote, max 10 words",
+      "dialogue": [
+        {"speaker": "lily", "text": "One thought per bubble."},
+        {"speaker": "ceo", "text": "Response in original words."}
+      ],
+      "is_pivoting_moment": false,
+      "raw_transcript": "Full original text for the expandable section"
+    }
+  ]
 }
 ```
 
-Each round analyzer is a small, focused prompt. The editorial rules:
+Editorial rules:
 - `header`: From user's perspective. BAD: "Discussion of X." GOOD: "I Was the Taste Person All Along"
 - `quote`: Real speaker quote, not generated. The memory hook.
 - `dialogue`: One thought per bubble. Clean filler, preserve original words (including mixed Chinese/English).
 - `is_pivoting_moment`: True only when thinking genuinely shifted direction.
 
-### 3. Coordinator Script
+### 3. Render Script
 
-A script (Python or Node) that:
-1. Reads the artifact markdown
-2. Splits into rounds (by `## Round N` headers)
-3. Spawns parallel analysis agents (one per round)
-4. Collects all JSON results
-5. Feeds them into the HTML template
-6. Writes the final `.html` file
+A simple shell or Python script that:
+1. Reads the JSON analysis from stdin or a file
+2. Does string replacement into the HTML template
+3. Writes the final `.html` file
 
-Could be a standalone CLI: `python wavemind_visualize.py <artifact-id>`
-
-Or integrated into the existing skill flow so `/wavemind visualize` uses it under the hood.
-
-## Architecture Decision: Agent SDK vs. Claude Code Sub-agents
-
-Two options. Get Builder's input on which is more practical:
-
-**Option A: Claude Agent SDK standalone script**
-- Runs as a Python script in terminal
-- Uses `claude_agent_sdk` to spawn parallel workers
-- Fully self-contained, can run outside Claude Code
-- Pros: true parallelism, reusable, testable
-- Cons: needs SDK setup, separate from skill flow
-
-**Option B: Claude Code sub-agents (Agent tool)**
-- The skill prompt instructs Claude Code to spawn sub-agents via Agent tool
-- Each sub-agent gets one round
-- Pros: no new infrastructure, works within existing skill
-- Cons: still runs within Claude Code session, may not be truly parallel
-
-Recommend Option A for speed, but get Builder's take.
+No AI, no SDK, no parallelism needed at this stage. If the template approach isn't fast enough, we can add parallelism later.
 
 ## Files
 
 - Template: `agents/skills/wavemind/lib/template.html`
-- Coordinator: `agents/skills/wavemind/lib/visualize.py` (or `.js`)
+- Render script: `agents/skills/wavemind/lib/render.sh` (or `.py`)
 - Reference visual: `agents/skills/wavemind/data/visuals/20260329-rethinking-multiagent.html`
 - Reference artifact: `agents/skills/wavemind/data/artifacts/20260329-rethinking-multiagent.md`
 
@@ -105,4 +90,4 @@ Recommend Option A for speed, but get Builder's take.
 
 ## Notes
 
-The reference visual and artifact are being pushed in PR alongside this spec so you can use them directly as test fixtures.
+The reference visual and artifact are in `agents/skills/wavemind/data/` (committed as examples per Lily's request).
