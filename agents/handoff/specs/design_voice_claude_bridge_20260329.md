@@ -68,9 +68,10 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 1. GPT Realtime handles normal conversation at low latency (~500ms)
 2. When the user asks something that needs deeper capability, GPT calls `use_cli`
 3. The voice service spawns `claude --print` as a child process with the user's request
-4. Claude Code runs with full access: bash, MCP, skills, files, everything
-5. The result (text) is returned to GPT Realtime
-6. GPT speaks the answer back to the user
+4. The CLI launches from `agents/genius-product/` as its working directory, so it inherits Jackie's CLAUDE.md, skills, and project context automatically
+5. Claude Code runs with full access: bash, MCP, skills, files, everything
+6. The result (text) is returned to GPT Realtime
+7. GPT speaks the answer back to the user
 
 ### Tool Definition
 
@@ -104,7 +105,7 @@ async function useCli(task: string): Promise<string> {
       {
         timeout: 60_000,
         encoding: "utf-8",
-        cwd: "/home/node/SofaGenius",
+        cwd: "/home/node/SofaGenius/agents/genius-product",  // Inherits Jackie's CLAUDE.md + context
         env: {
           ...process.env,
           CLAUDE_CODE_ENTRYPOINT: "voice-bridge",
@@ -182,6 +183,6 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 ## Open Questions
 
-1. **Should `use_cli` have access to Jackie's private memory repo?** Currently the voice service runs in SofaGenius. Claude Code would need `JACKIE_MEMORY_DIR` context to access call history and personal notes.
+1. **~~Should `use_cli` have access to Jackie's private memory repo?~~** Resolved: by setting `cwd` to `agents/genius-product/`, the CLI inherits Jackie's CLAUDE.md which contains memory paths and project context. For private memory access, the CLAUDE.md can reference `JACKIE_MEMORY_DIR`.
 2. **Rate limiting?** Should we limit how many `use_cli` calls per session to prevent cost runaway?
 3. **Which Claude model?** Default to Haiku 4.5 for speed (most bridge calls are lookups/summaries). Configurable via `CLAUDE_BRIDGE_MODEL` env var to swap to Sonnet/Opus without redeploying.
