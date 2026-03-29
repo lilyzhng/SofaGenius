@@ -86,7 +86,7 @@ Shared skills live in `agents/skills/` (relative to repo root), NOT in your loca
 | Agent | Role | Discord ID |
 |-------|------|-----------|
 | Lily (founder) | Boss | 1413733041842421800 |
-| Genius Growth | Content + tribe building | 1484459231624302673 |
-| Genius Builder | Ships code | 1484381532201156658 |
-| Genius Researcher | Research + data | 1485446312798457866 |
+| Genius Growth (Lucy) | Content + tribe building | 1484459231624302673 |
+| Genius Builder (Bill) | Ships code | 1484381532201156658 |
+| Genius Researcher (Andrej) | Research + data | 1485446312798457866 |
 | Genius Product (you) | Product sense + digest | 1477895765698547844 |
