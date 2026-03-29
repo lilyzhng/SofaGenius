@@ -65,13 +65,20 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 
 ### How It Works
 
+**Session lifecycle (one CLI per phone call):**
+1. When a phone call starts, the voice service spawns a persistent `claude` CLI subprocess from `agents/genius-product/` (inherits Jackie's CLAUDE.md, skills, and project context)
+2. The CLI session stays alive for the entire call, maintaining conversation context across multiple `use_cli` calls
+3. When the call ends, the CLI subprocess is killed
+
+**Per-tool-call flow:**
 1. GPT Realtime handles normal conversation at low latency (~500ms)
 2. When the user asks something that needs deeper capability, GPT calls `use_cli`
-3. The voice service spawns `claude --print` as a child process with the user's request
-4. The CLI launches from `agents/genius-product/` as its working directory, so it inherits Jackie's CLAUDE.md, skills, and project context automatically
-5. Claude Code runs with full access: bash, MCP, skills, files, everything
-6. The result (text) is returned to GPT Realtime
-7. GPT speaks the answer back to the user
+3. The voice service sends the task to the already-running CLI session via stdin
+4. The CLI executes with full access: bash, MCP, skills, files, everything. It remembers prior tasks from this call.
+5. The result (text) is returned to GPT Realtime
+6. GPT speaks the answer back to the user
+
+**Why persistent vs ephemeral:** First call has cold start (~3-5s for CLAUDE.md loading), but subsequent calls are faster. The CLI remembers context across calls (e.g., "check PR #117" then "what were the comments on it?"). One conversation thread is also cheaper than N independent API calls.
 
 ### Tool Definition
 
@@ -96,30 +103,43 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 ### Implementation
 
 ```typescript
+import { spawn, ChildProcess } from "child_process";
+
+let cliProcess: ChildProcess | null = null;
+
+/** Start a persistent CLI session when the call begins */
+function startCliSession(): void {
+  cliProcess = spawn("claude", ["--json", "--max-turns", "5"], {
+    cwd: "/home/node/SofaGenius/agents/genius-product",
+    env: {
+      ...process.env,
+      CLAUDE_CODE_ENTRYPOINT: "voice-bridge",
+      CLAUDE_MODEL: process.env.CLAUDE_BRIDGE_MODEL || "claude-haiku-4-5-20251001"
+    },
+    stdio: ["pipe", "pipe", "pipe"]
+  });
+}
+
+/** Send a task to the persistent CLI session */
 async function useCli(task: string): Promise<string> {
-  const { execFileSync } = require("child_process");
-  try {
-    const result = execFileSync(
-      "claude",
-      ["--print", "--max-turns", "5", task],
-      {
-        timeout: 60_000,
-        encoding: "utf-8",
-        cwd: "/home/node/SofaGenius/agents/genius-product",  // Inherits Jackie's CLAUDE.md + context
-        env: {
-          ...process.env,
-          CLAUDE_CODE_ENTRYPOINT: "voice-bridge",
-          CLAUDE_MODEL: process.env.CLAUDE_BRIDGE_MODEL || "claude-haiku-4-5-20251001"
-        }
-      }
-    );
-    // Trim to reasonable size for GPT to speak
-    return result.slice(0, 3000);
-  } catch (err: any) {
-    return `Failed to complete task: ${err.message?.slice(0, 500)}`;
+  if (!cliProcess) startCliSession();
+  // Send task via stdin, read result from stdout
+  // (exact protocol depends on claude --json streaming format)
+  cliProcess.stdin.write(task + "\n");
+  const result = await readNextResponse(cliProcess.stdout);
+  return result.slice(0, 3000);
+}
+
+/** Kill the CLI session when the call ends */
+function endCliSession(): void {
+  if (cliProcess) {
+    cliProcess.kill();
+    cliProcess = null;
   }
 }
 ```
+
+Note: The exact stdin/stdout protocol needs to be validated against `claude --json` streaming format. The key design decision is one persistent process per call, not one per tool invocation.
 
 ### UX Flow
 
@@ -152,19 +172,19 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 ### v1 (next PR)
 - [ ] Add `use_cli` tool definition to `tools.ts`
-- [ ] Implement `useCli()` function using `claude --print` with `execFileSync` (no shell injection)
+- [ ] Implement persistent CLI session: spawn on call start, reuse across tool calls, kill on call end
+- [ ] Validate `claude --json` stdin/stdout protocol for sending tasks and reading results
 - [ ] Update system prompt to instruct GPT when to use `use_cli` vs built-in tools
-- [ ] Add timeout handling (60s max, graceful error message)
-- [ ] Test with common scenarios: PR status, deployment checks, file lookups
+- [ ] Add timeout handling (60s per task, graceful error message)
+- [ ] Test with common scenarios: PR status, deployment checks, file lookups, multi-step queries
 
 ### v1.1 (follow-up)
 - [ ] Streaming: Instead of waiting for full Claude response, stream partial results back so GPT can start speaking sooner
-- [ ] Context passing: Include recent conversation transcript in the `use_cli` prompt so Claude has context
 - [ ] Cost tracking: Log Claude API usage from voice bridge calls separately
+- [ ] Graceful reconnect: If the CLI process crashes mid-call, restart it transparently
 
 ### Future considerations
 - Gemini Live API as alternative voice model (separate investigation, orthogonal to this bridge)
-- Persistent Claude Code session instead of one-shot `--print` calls (lower latency for sequential tasks)
 - Two-way bridge: Claude Code can trigger voice responses (proactive notifications via call)
 
 ---
