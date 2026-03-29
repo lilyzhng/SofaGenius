@@ -113,6 +113,13 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
+    // Auto-save: commit and push any unsaved changes after call ends
+    try {
+      const result = executeTool("commit_and_push", { message: "Auto-save after call ended" });
+      console.log(`[auto-save] ${result}`);
+    } catch (e) {
+      console.error("[auto-save] Failed:", (e as Error).message);
+    }
   });
 
   twilioWs.on("error", (err) => {
