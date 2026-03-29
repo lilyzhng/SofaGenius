@@ -58,7 +58,8 @@ Generate a living memory document from a stored thinking artifact.
    - Progressive disclosure: punchline visible, full transcript behind "Read original" toggle
    - The HTML must be fully self-contained (inline CSS/JS, no external dependencies)
 5. Save to `agents/skills/wavemind/data/visuals/<id>.html`
-6. Report the file path
+6. **Auto-add actionable items as tasks:** For each item in the `actionables.items` array, run `bash agents/skills/wavemind/lib/tasks.sh add "<item>"` to automatically populate the task tracker.
+7. Report the file path and how many tasks were added
 
 ### `/wavemind list`
 Browse all stored thinking artifacts and their visualization status.
