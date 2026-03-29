@@ -78,7 +78,7 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 5. The result (text) is returned to GPT Realtime
 6. GPT speaks the answer back to the user
 
-**Why persistent vs ephemeral:** First call has cold start (~3-5s for CLAUDE.md loading), but subsequent calls are faster. The CLI remembers context across calls (e.g., "check PR #117" then "what were the comments on it?"). One conversation thread is also cheaper than N independent API calls.
+**Why persistent vs ephemeral:** First call has cold start (~3-5s for CLAUDE.md loading), but subsequent calls are faster since the session is already warm. The CLI also remembers context across calls (e.g., "check PR #117" then "what were the comments on it?"), which ephemeral sessions can't do.
 
 ### Tool Definition
 
@@ -193,7 +193,7 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 **Latency perception.** 5-30 second pauses could feel broken. Mitigation: GPT says "checking on that" before calling. The system prompt enforces this.
 
-**Cost stacking.** Each `use_cli` call costs both OpenAI (GPT Realtime) and Anthropic (Claude API) tokens. Mitigation: Built-in tools remain the fast path for common operations. `use_cli` is the fallback, not the default.
+**Cost stacking.** GPT Realtime charges per audio token (OpenAI billing). The Claude Code CLI runs on agent computer under the Anthropic subscription, so no additional per-call API cost. The main cost concern is OpenAI: longer calls with more back-and-forth = more audio tokens. Mitigation: Built-in tools remain the fast path for common operations. `use_cli` is the fallback, not the default.
 
 **Prompt injection via voice.** User's spoken words become a prompt to Claude Code. Mitigation: Claude Code already has safety guardrails. The `--max-turns 5` flag limits runaway execution.
 
