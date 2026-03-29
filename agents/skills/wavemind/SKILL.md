@@ -1,7 +1,7 @@
 ---
 name: wavemind
-description: Turn thinking artifacts (conversation transcripts, brainstorm notes) into beautiful visual thought evolution maps. Capture, visualize, and review your thinking process.
-argument-hint: capture <filepath> | visualize <id> | review
+description: Turn thinking artifacts (conversation transcripts, brainstorm notes) into beautiful visual thought evolution maps. Capture, visualize, and list your thinking process.
+argument-hint: capture [filepath] | visualize <id> | list
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
@@ -11,16 +11,28 @@ Transform thinking artifacts into beautiful visual maps of how your ideas evolve
 
 ## Commands
 
-### `/wavemind capture <filepath>`
-Save a thinking artifact (markdown transcript, conversation log, brainstorm notes) to the local store.
+### `/wavemind capture [filepath]`
+Capture a thinking artifact. Two modes:
 
-**Steps:**
+**Mode 1: Import existing file** (`/wavemind capture <filepath>`)
 1. Read the file at `<filepath>`
 2. Analyze the content to extract: title, round count, word count, source type
 3. Generate a short ID from the date and title (e.g., `20260327-zai-prep`)
-4. Copy the file to `agents/skills/wavemind/data/artifacts/<id>.md`
-5. Update `agents/skills/wavemind/data/index.json` with metadata
-6. Report what was captured
+4. Run `bash agents/skills/wavemind/lib/capture.sh <filepath> "<title>"` to copy and index it
+5. Report what was captured
+
+**Mode 2: Live capture** (`/wavemind capture` or `/wavemind capture "Topic Name"`)
+When no filepath is given, start a live capture session:
+1. Ask the user for a topic name if not provided
+2. Tell the user: "Recording this conversation. Talk naturally. When you're done, say 'done' or 'save'."
+3. Continue the conversation normally, responding as you would to any request
+4. When the user says "done", "save", or "stop recording":
+   - Compile the full conversation from this session into a clean markdown document
+   - Format with speaker labels, section headers for topic shifts, and timestamps
+   - Fix obvious transcription/typing errors but preserve original words
+   - Run `bash agents/skills/wavemind/lib/capture.sh` to save and index it
+   - Report: artifact ID, title, round count, word count, file path
+   - Suggest: "Run `/wavemind visualize <id>` to generate the visual."
 
 ### `/wavemind visualize <artifact-id>`
 Generate a living memory document from a stored thinking artifact.
@@ -43,13 +55,20 @@ Generate a living memory document from a stored thinking artifact.
 5. Save to `agents/skills/wavemind/data/visuals/<id>.html`
 6. Report the file path
 
-### `/wavemind review`
+### `/wavemind list`
 Browse all stored thinking artifacts and their visualization status.
 
 **Steps:**
 1. Read `agents/skills/wavemind/data/index.json`
-2. For each artifact, check if a corresponding visual exists in `data/visuals/`
-3. Display a formatted list with: ID, title, round count, date, visualization status
+2. Display a formatted table:
+
+```
+ID                          | Title                  | Rounds | Date       | Status
+20260327-zai-prep           | ZAI Ambassador Prep    | 11     | 2026-03-27 | visualized
+20260329-design-evolution   | Design Evolution       | 6      | 2026-03-29 | not visualized
+```
+
+3. If no artifacts exist, say "No artifacts captured yet. Run `/wavemind capture` to start."
 
 ## Analysis Format
 
