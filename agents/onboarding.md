@@ -55,21 +55,21 @@ After a fresh clone, every agent must manually create their `.env` before launch
 
 Every agent must have their own GitHub identity for raising PRs and commits. **Never use the founder's personal account.**
 
-- [ ] Create a GitHub account for the agent (e.g., `sofagenius-ceo`, `sofagenius-builder`)
+- [ ] Create a GitHub account for the agent (e.g., `genius-growth`, `genius-builder`)
 - [ ] Generate a Personal Access Token (PAT) with `repo` scope
-- [ ] Store the token in the agent's `.env` file as `{AGENT}_BOT_TOKEN` (e.g., `CEO_BOT_TOKEN`)
+- [ ] Store the token in the agent's `.env` file as `{AGENT}_BOT_TOKEN` (e.g., `GROWTH_BOT_TOKEN`)
 - [ ] Configure git in the agent's CLAUDE.md:
   ```
   git config user.name "{agent-github-username}"
   git config user.email "{agent-email}"
   ```
-- [ ] Use `GH_TOKEN={token}` prefix when running `gh` CLI commands (e.g., `GH_TOKEN=$CEO_BOT_TOKEN gh pr create ...`)
+- [ ] Use `GH_TOKEN={token}` prefix when running `gh` CLI commands (e.g., `GH_TOKEN=$GROWTH_BOT_TOKEN gh pr create ...`)
 - [ ] Verify: agent raises a test PR and it shows their username, not the founder's
 
 **Current GitHub identities:**
 | Agent | GitHub Username | Token Env Var |
 |-------|----------------|---------------|
-| Genius Growth | `sofagenius-ceo` | `CEO_BOT_TOKEN` |
+| Genius Growth | `genius-growth` | `GROWTH_BOT_TOKEN` |
 | Genius Builder | TBD | TBD |
 | Genius Researcher | TBD | TBD |
 
@@ -138,5 +138,5 @@ Clarify what the new agent DOES and DOES NOT do:
 - Jackie echoed Researcher's intro as his own — added explicit identity rules to prevent this.
 - Jackie posted in channel feed instead of thread — added explicit thread rules.
 - The local `jackie/` folder in the vault is stale — Jackie's actual config lives in his own repo.
-- Genius Growth raised PR #15 using the founder's personal GitHub identity instead of `sofagenius-ceo` — added GitHub identity setup as step 4 in onboarding.
+- Genius Growth raised PR #15 using the founder's personal GitHub identity instead of `genius-growth` — added GitHub identity setup as step 4 in onboarding.
 - `gh` CLI uses the default `GH_TOKEN` or `gh auth` credentials. Agents must prefix `gh` commands with `GH_TOKEN={their_token}` to use their own identity.
