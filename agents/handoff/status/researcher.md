@@ -1,28 +1,31 @@
 ---
 agent: researcher
-updated: 2026-03-25 11:20 PM PT
+updated: 2026-03-28 11:50 PM PT
 status: active
 ---
 
 ## Current Focus
-Building unified memory system for all agents (OpenClaw × Claude Code blend). Design doc complete, awaiting go-ahead to implement.
+Waiting on Lily's feedback on SuperGeneral redesign doc. Supporting skill brainstorming for ZAI ambassador program.
 
-## Last Completed
-- Agentic dataset discovery: 40+ datasets cataloged (`agents/handoff/reports/research_agentic_datasets_20260325.md`)
-- OpenClaw memory architecture research (`agents/handoff/reports/research_openclaw_memory_20260325.md`)
-- Design doc for unified memory system (`agents/handoff/specs/memory_system_design_20260325.md`)
-- Reviewed & approved PRs #56, #57, #58
+## Last Completed (This Session)
+- **PR #94 merged** — researcher persona (IDENTITY.md + SOUL.md) embodying Karpathy from all 3 podcasts
+- **Builder's RLM reward doc reviewed** — honest assessment: RLM overkill for v1, reward gaming is real risk. Team aligned on execution-based reward first.
+- **SuperGeneral redesign doc drafted** (`specs/design_supergeneral_topdown_20260328.md`) — top-down decomposition + execution-based reward + autoresearch loop. 5 open questions for Lily.
+- **Deep study of OpenEnv + SkillClaw codebases** via GitHub — confirmed diamond/hourglass/seesaw/temple are transfer distance patterns, not domains. Found GRPO scripts don't run environment (offline text scoring only).
+- **ZAI + Anthropic ambassador context** — read full proposal + 11-round thinking artifact from lily-memory vault. Saved to private memory.
+- **Zara Zhang + Claude Code skill research** — analyzed her content direction, identified viral skill patterns, recommended GLM 5.1 skill ideas. Integrated with Jackie's research.
+- **Research → Product 1-pager** delivered earlier in session
 
 ## Next Up
-- Build memory system: create SOUL.md, IDENTITY.md, USER.md for CEO/Builder/Researcher
-- Update each agent's CLAUDE.md with personality & memory instructions
-- Raise PR
-- Domain-specific dataset synthesis exploration (finance, legal — gap identified)
+- Lily's feedback on SuperGeneral design doc open questions
+- Support Jackie on skill planning (provide data/analysis as needed)
+- Raise PR for research reports (currently uncommitted: APEX strategy, dataset catalog, training environments, design doc, 1-pager, Karpathy study)
 
 ## Blockers
-- No vault access on VM (`/Users/lilyzhang/Documents/lilyzhng/` doesn't exist here)
+- None — vault access fixed, all GitHub repos accessible
 
 ## Findings Worth Acting On
-- Jackie's personality advantage comes from separation of concerns — dedicated SOUL.md, IDENTITY.md, USER.md files
-- Domain-specific agentic datasets (finance, legal, consulting) don't exist on HF — must synthesize
-- NVIDIA Nemotron suite is the most complete commercial-friendly agentic training data (SFT + RL, all CC-BY-4.0)
+- **GRPO scripts don't run the environment** — reward is offline text pattern matching, not execution-based. Both execution-based reward AND RLM reward need to be built from scratch.
+- **Transfer distance confirmed** — diamond (zero) → temple (far) measures reasoning gap from reference example. Top-down decomposition makes harder transfer distances (seesaw, temple) the most valuable training signal.
+- **SkillClaw evidence** — bottom-up flywheel worked for easy tasks, failed for hard ones. Shared brain README became a top-down decomposition guide because pure composition failed.
+- **Viral skill formula** — "ugly input → beautiful output" + non-technical accessible + 60-second demo. Visual skills go most viral.
