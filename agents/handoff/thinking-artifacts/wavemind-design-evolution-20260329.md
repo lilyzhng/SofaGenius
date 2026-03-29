@@ -93,7 +93,7 @@ So the question is — is "cross-round connections" alone valuable enough to jus
 
 ### ◆ PIVOTING MOMENT: "Keep the original words"
 
-**Lily:** To be honest, I'm not too sure. I feel like a better way would be to keep the number one after dumping in the syncing artifacts. You should clean it up and extract a punch line like the original words I have. The punch line can be from me or from the other people I talk with, like the CEO here, right? I think the raw content, the original content, can be more related. Right now it is just too much information. I think we can keep it as simple initially.
+**Lily:** To be honest, I'm not too sure. I feel like a better way would be to keep the number one after dumping in the thinking artifacts. You should clean it up and extract a punch line like the original words I have. The punch line can be from me or from the other people I talk with, like the CEO here, right? I think the raw content, the original content, can be more related. Right now it is just too much information. I think we can keep it as simple initially.
 
 **Jackie:** Got it — so instead of a big analysis page, the value is:
 1. **Clean up** the raw artifact (fix transcription noise, remove filler)
