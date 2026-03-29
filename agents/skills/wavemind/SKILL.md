@@ -5,7 +5,7 @@ argument-hint: capture [filepath] | visualize <id> | list
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
-# WaveMind — Thought Capture + Visualization
+# WaveMind - Thought Capture + Visualization
 
 Transform thinking artifacts into beautiful visual maps of how your ideas evolved.
 
@@ -42,18 +42,21 @@ When no filepath is given, start a live capture session:
 Generate a living memory document from a stored thinking artifact.
 
 **Steps:**
-1. Read the artifact: `bash agents/skills/wavemind/lib/visualize.sh read <id>`
-2. Analyze the thinking artifact. Your job is **editorial, not generative**:
+1. Read the artifact from `agents/skills/wavemind/data/artifacts/<id>.md`
+2. Analyze the thinking artifact - the AI's job is **editorial, not generative**:
    - Identify distinct rounds/sections of the conversation
-   - Extract **punchline quotes** from each speaker (real words, not generated)
-   - Mark **pivoting moments** where thinking shifted direction
-   - Clean up the transcript: remove filler, fix noise, preserve original words
+   - Extract **punchline quotes** - memorable original words from each speaker
+   - Mark **pivoting moments** - where thinking shifted direction
+   - Clean up the transcript - remove filler, fix noise, preserve original words
    - Do NOT summarize, generate insights, or create new content
-3. Output a JSON analysis (see Analysis Format below). Save it to a temp file:
-   `agents/skills/wavemind/data/visuals/<id>.json`
-4. Run the render script to produce HTML from JSON:
-   `python3 agents/skills/wavemind/lib/render.py agents/skills/wavemind/data/visuals/<id>.json agents/skills/wavemind/data/visuals/<id>.html`
-5. Mark as visualized: `bash agents/skills/wavemind/lib/visualize.sh done <id>`
+3. Generate a structured analysis as JSON (see Analysis Format below)
+4. Generate a self-contained HTML file following the NoteBlock editorial layout:
+   - Each section has: header, dialogue bubbles, punchline quote callout, expandable transcript
+   - First-person perspective - it's the user's living memory, not a third-party report
+   - Dialogue format with speech bubbles (user = white left-aligned, other speakers = dark right-aligned)
+   - Progressive disclosure - punchline visible, full transcript behind "Read original" toggle
+   - The HTML must be fully self-contained (inline CSS/JS, no external dependencies)
+5. Save to `agents/skills/wavemind/data/visuals/<id>.html`
 6. Report the file path
 
 ### `/wavemind list`
@@ -89,8 +92,7 @@ When analyzing a thinking artifact, produce this structure:
         {"speaker": "lily", "text": "One thought per bubble. Keep it short."},
         {"speaker": "growth", "text": "Response in their original words."}
       ],
-      "is_pivoting_moment": false,
-      "raw_transcript": "Full original text for each speaker, separated by double newlines. Use Speaker: prefix format."
+      "is_pivoting_moment": false
     }
   ],
   "actionables": {
@@ -106,14 +108,32 @@ When analyzing a thinking artifact, produce this structure:
 
 **Key rules:**
 - `header`: High-signal, from the user's perspective. BAD: "Discussion of Opportunity." GOOD: "I'm the Orchestrator, Not the Promoter."
-- `quote`: A real speaker quote, not AI-generated. The "memory hook" for what you'd remember a week later.
+- `quote`: A real speaker quote, not AI-generated. The "memory hook" - what you'd remember a week later.
 - `dialogue`: The actual back-and-forth, one thought per bubble. Use original words (including mixed Chinese/English). Clean filler but don't rewrite.
-- `is_pivoting_moment`: True only when thinking genuinely shifted direction. Not every round is a pivot.
-- `raw_transcript`: Full clean transcript for the expandable "Read original" section. Use `Speaker:` prefix, separate paragraphs with double newlines. Preserve original words.
-- `speaker` values in dialogue: Use display names (e.g., "Lily", "Growth", "Builder"). The first participant listed in `participants` is rendered as the user (left-aligned bubbles), all others as the other speaker (right-aligned bubbles).
-- `actionables`: Always include. `why_it_matters` is a single paragraph explaining significance. `items` are concrete, specific next steps that came out of the conversation. Not vague ("think about X") but actionable ("build X", "pair Y with Z", "test A").
+- `is_pivoting_moment`: True only when thinking genuinely shifted direction - not every round is a pivot.
+- `actionables`: Always include. `why_it_matters` is a single paragraph explaining significance. `items` are concrete, specific next steps. Not vague ("think about X") but actionable ("build X", "pair Y with Z", "test A").
 
-**Important:** You only output JSON. The render script (`lib/render.py`) handles all HTML generation from the template (`lib/template.html`). Do NOT write HTML directly.
+## HTML Visual Guidelines
+
+When generating the HTML visualization:
+
+- **Style:** Clean, editorial. Think newspaper or literary journal, not dashboard.
+- **Color palette:** Cream background (#F9F8F6), charcoal text (#1A1918), gold accents (#CBA16E).
+- **Typography:** Serif for headers and quotes (Playfair Display or Georgia), sans-serif for UI (Inter or system). Generous whitespace.
+- **Layout - NoteBlock model:**
+  - **Header:** Title (large serif), date, participants, "Living Memory" label with gold dot
+  - **Timeline:** Vertical gold line at ~28% width. Each section is a grid row.
+  - **Left column (28%):** Round label, punchline quote callout (large gold open-quote mark, bold italic serif)
+  - **Right column:** Section header (bold serif), dialogue bubbles, "Read original" toggle
+  - **Dialogue bubbles:** User = white with light border, left-aligned. Other speakers = dark (#2C2C2C), right-aligned. One thought per bubble.
+  - **Pivoting moments:** Gold-filled timeline dot + "Pivoting Moment" badge
+  - **Progressive disclosure:** "Read original" expands to full clean transcript
+  - **Actionables section:** "What Came Out of This" with two-column grid: "Why It Matters" + "Actionables" list with gold bullet dots
+  - **Footer:** Minimal - "WaveMind · Captured [date] · Visualized [date]"
+- **Self-contained:** All CSS and JS must be inline. No external dependencies.
+- **Responsive:** Hide quote callouts on mobile, switch to single-column layout.
+
+**Reference:** See `agents/skills/wavemind/data/visuals/` for an approved example (ZAI Ambassador Prep).
 
 ## Data Directory
 
