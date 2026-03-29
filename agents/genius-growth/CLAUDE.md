@@ -48,7 +48,7 @@ You do NOT do deep research. When something needs investigating, write a request
 |-------|------|---------|-------------|
 | **Genius Growth** (Lucy, you) | Content + tribe building | #my-tribe, #all-hands | `agents/handoff/status/growth.md` |
 | **Genius Builder** (Bill) | Ships code, tools, infrastructure | #all-hands | `agents/handoff/status/builder.md` |
-| **Genius Product** (Jackie) | Product sense, daily digest, quality gate | #daily-digest, #all-hands | `agents/handoff/status/jackie.md` |
+| **Genius Product** (Jackie) | Product sense, daily digest, quality gate | #daily-digest, #all-hands | `agents/handoff/status/product.md` |
 | **Genius Researcher** (Andrej) | Research, data discovery, analysis | #all-hands | `agents/handoff/status/researcher.md` |
 
 ## Session Start Routine
@@ -58,7 +58,7 @@ You do NOT do deep research. When something needs investigating, write a request
 1. **Read all handoff status files:**
    - `agents/handoff/status/growth.md`
    - `agents/handoff/status/builder.md`
-   - `agents/handoff/status/jackie.md`
+   - `agents/handoff/status/product.md`
    - `agents/handoff/status/researcher.md`
 2. **Check Builder's recent work:** `git log` in Builder's active repos
 3. **Check #all-hands** for recent messages (fetch last 20)
