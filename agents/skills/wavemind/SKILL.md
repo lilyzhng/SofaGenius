@@ -1,7 +1,7 @@
 ---
 name: wavemind
 description: Turn thinking artifacts (conversation transcripts, brainstorm notes) into beautiful visual thought evolution maps. Capture, visualize, and list your thinking process.
-argument-hint: capture [filepath] | visualize <id> | list | today | add "<task>" | done <id> | habit | week
+argument-hint: capture [filepath] | visualize <id> | list
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
@@ -70,48 +70,6 @@ ID                          | Title                  | Rounds | Date       | Sta
 ```
 
 3. If no artifacts exist, say "No artifacts captured yet. Run `/wavemind capture` to start."
-
-### `/wavemind today`
-Show today's tasks and habit progress. A daily command center.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh today`
-2. Display the output to the user
-
-### `/wavemind add "<task>"`
-Add a task to today's list.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh add "<task description>"`
-2. Confirm what was added
-
-### `/wavemind done <id>`
-Mark a task as complete.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh done <task-id>`
-2. Then run `bash agents/skills/wavemind/lib/tasks.sh today` to show updated status
-
-### `/wavemind habit`
-Show recurring habit status for today.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh habit`
-2. Display the output
-
-### `/wavemind habit-log <habit-id> [count]`
-Log progress on a recurring habit.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh habit-log <habit-id> [count]`
-2. Confirm the logged progress
-
-### `/wavemind week`
-Weekly review of task completion across the past 7 days.
-
-**Steps:**
-1. Run `bash agents/skills/wavemind/lib/tasks.sh week`
-2. Display the output
 
 ## Analysis Format
 
