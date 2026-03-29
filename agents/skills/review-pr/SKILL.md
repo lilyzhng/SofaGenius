@@ -11,7 +11,13 @@ Follow these steps **in order** when reviewing a pull request.
 
 ## Step 0: Acknowledge the review request
 
-- **Immediately react 👀 on the #feature-release announcement message** so the author (and Lily) know you've seen it and are starting the review.
+**Immediately** when tagged for a PR review in Discord:
+
+1. **React 👀** on the PR announcement message — this tells the team "I've seen this and I'm starting"
+2. Then proceed with the review steps below
+3. After review is complete, **react ✅** (if approved) or **🔴** (if changes requested)
+
+This is mandatory. Silent reads are not acceptable — the team needs to know you saw the tag.
 
 ## Step 1: Understand the PR
 
@@ -96,7 +102,6 @@ gh pr comment {PR_NUMBER} --body "Review complete. Posted N inline comments (X b
 - If blocking issues exist: request changes with `gh pr review {PR_NUMBER} --request-changes --body "See inline comments"`
 - Don't block on nits — approve with nits noted
 - At least one agent must approve before Lily gives final approval
-- **When you approve:** react 💜 on the #feature-release announcement message to signal your approval
 
 ## Step 6: Re-review after fixes
 
@@ -161,7 +166,7 @@ The thread ID = the announcement message ID. One ID for everything.
 
 Before submitting your review, verify:
 
-- [ ] You reacted 👀 on the #feature-release announcement (immediate acknowledgment)
+- [ ] You reacted 👀 on the Discord announcement when first tagged
 - [ ] PR was announced in #feature-release (not a random channel)
 - [ ] You read the full diff (`gh pr diff`)
 - [ ] You verified the PR description explains what changed and why — **and still matches the actual code** (author may have changed things during review)
@@ -170,6 +175,5 @@ Before submitting your review, verify:
 - [ ] You verified external sources yourself (tweets, links, claims) — don't trust the author read them correctly
 - [ ] If any 🔴 must-fix comments exist → **REQUEST CHANGES** (do not approve)
 - [ ] If all comments are 🟢 nits only → **approve**
-- [ ] **When approving:** reacted 💜 on the #feature-release announcement
 - [ ] Summary comment posted with count: "N inline comments (X blocking, Y should-fix, Z nits)"
 - [ ] **Review summary posted in the PR's #feature-release thread** (use `thread_id` from the `discord-announcement` comment on the PR). NEVER post in the main channel feed. NEVER create your own thread — the author already made one.
