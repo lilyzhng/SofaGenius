@@ -23,24 +23,25 @@ Save a thinking artifact (markdown transcript, conversation log, brainstorm note
 6. Report what was captured
 
 ### `/wavemind visualize <artifact-id>`
-Generate a beautiful HTML thought evolution map from a stored artifact.
+Generate a living memory document from a stored thinking artifact.
 
 **Steps:**
 1. Read the artifact from `agents/skills/wavemind/data/artifacts/<id>.md`
-2. Analyze the thinking artifact deeply:
+2. Analyze the thinking artifact — the AI's job is **editorial, not generative**:
    - Identify distinct rounds/sections of the conversation
-   - Find **turning points** — moments where thinking shifted direction
-   - Extract **key insights** — the most important realizations
-   - Map **connections** between ideas across rounds
-   - Identify the **narrative arc** — how thinking evolved from start to end
+   - Extract **punchline quotes** — memorable original words from each speaker
+   - Mark **pivoting moments** — where thinking shifted direction
+   - Clean up the transcript — remove filler, fix noise, preserve original words
+   - Do NOT summarize, generate insights, or create new content
 3. Generate a structured analysis as JSON (see Analysis Format below)
-4. Generate a beautiful, self-contained HTML file that visualizes the thought evolution
-   - Use modern CSS with a clean, editorial aesthetic
-   - Include: timeline of rounds, turning point highlights, insight cards, connection lines
-   - Make it visually impressive — this is the "wow factor"
+4. Generate a self-contained HTML file following the NoteBlock editorial layout:
+   - Each section has: header, dialogue bubbles, punchline quote callout, expandable transcript
+   - First-person perspective — it's the user's living memory, not a third-party report
+   - Dialogue format with speech bubbles (user = white left-aligned, other speakers = dark right-aligned)
+   - Progressive disclosure — punchline visible, full transcript behind "Read original" toggle
    - The HTML must be fully self-contained (inline CSS/JS, no external dependencies)
 5. Save to `agents/skills/wavemind/data/visuals/<id>.html`
-6. Report the key findings and file path
+6. Report the file path
 
 ### `/wavemind review`
 Browse all stored thinking artifacts and their visualization status.
@@ -56,51 +57,50 @@ When analyzing a thinking artifact, produce this structure:
 
 ```json
 {
-  "title": "Descriptive title of the thinking session",
-  "rounds": 7,
-  "word_count": 3200,
-  "narrative_arc": "Brief description of how thinking evolved from start to end",
-  "turning_points": [
+  "title": "Title from the user's perspective",
+  "date": "2026-03-27",
+  "participants": "Lily + CEO",
+  "sections": [
     {
-      "round": 3,
-      "from": "Previous direction",
-      "to": "New direction",
-      "trigger": "What caused the shift"
-    }
-  ],
-  "key_insights": [
-    {
-      "title": "Short insight name",
-      "description": "What was realized",
-      "round": 5,
-      "significance": "Why this matters"
-    }
-  ],
-  "connections": [
-    {
-      "from": "Idea or round",
-      "to": "Connected idea or round",
-      "relationship": "How they connect"
+      "round": 1,
+      "header": "High-signal title from user's perspective",
+      "quote": "Memorable speaker quote, max 10 words",
+      "dialogue": [
+        {"speaker": "lily", "text": "One thought per bubble. Keep it short."},
+        {"speaker": "ceo", "text": "Response in their original words."}
+      ],
+      "is_pivoting_moment": false
     }
   ]
 }
 ```
 
+**Key rules:**
+- `header`: High-signal, from the user's perspective. BAD: "Discussion of Opportunity." GOOD: "I'm the Orchestrator, Not the Promoter."
+- `quote`: A real speaker quote, not AI-generated. The "memory hook" — what you'd remember a week later.
+- `dialogue`: The actual back-and-forth, one thought per bubble. Use original words (including mixed Chinese/English). Clean filler but don't rewrite.
+- `is_pivoting_moment`: True only when thinking genuinely shifted direction — not every round is a pivot.
+
 ## HTML Visual Guidelines
 
 When generating the HTML visualization:
 
-- **Style:** Clean, modern, editorial. Think high-end blog or research publication.
-- **Color palette:** Dark background (#1a1a2e) with accent colors for turning points (#e94560) and insights (#0f3460). Use gradients sparingly.
-- **Typography:** System fonts, generous whitespace, clear hierarchy.
-- **Layout:**
-  - Header: title, date, round count, one-line narrative arc
-  - Timeline: vertical timeline showing each round with brief summary
-  - Turning points: highlighted cards breaking out of the timeline
-  - Insights: cards with connections drawn between related ones
-  - Footer: full narrative arc summary
+- **Style:** Clean, editorial. Think newspaper or literary journal, not dashboard.
+- **Color palette:** Cream background (#F9F8F6), charcoal text (#1A1918), gold accents (#CBA16E).
+- **Typography:** Serif for headers and quotes (Playfair Display or Georgia), sans-serif for UI (Inter or system). Generous whitespace.
+- **Layout — NoteBlock model:**
+  - **Header:** Title (large serif), date, participants, "Living Memory" label with gold dot
+  - **Timeline:** Vertical gold line at ~28% width. Each section is a grid row.
+  - **Left column (28%):** Round label, punchline quote callout (large gold open-quote mark, bold italic serif)
+  - **Right column:** Section header (bold serif), dialogue bubbles, "Read original" toggle
+  - **Dialogue bubbles:** User = white with light border, left-aligned. Other speakers = dark (#2C2C2C), right-aligned. One thought per bubble.
+  - **Pivoting moments:** Gold-filled timeline dot + "Pivoting Moment" badge
+  - **Progressive disclosure:** "Read original" expands to full clean transcript
+  - **Footer:** Minimal — "WaveMind · Captured [date] · Visualized [date]"
 - **Self-contained:** All CSS and JS must be inline. No external dependencies.
-- **Responsive:** Should look good on both desktop and mobile.
+- **Responsive:** Hide quote callouts on mobile, switch to single-column layout.
+
+**Reference:** See `agents/skills/wavemind/data/visuals/` for an approved example (ZAI Ambassador Prep).
 
 ## Data Directory
 

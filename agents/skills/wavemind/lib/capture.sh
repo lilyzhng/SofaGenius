@@ -23,7 +23,10 @@ content=$(cat "$filepath")
 word_count=$(echo "$content" | wc -w | tr -d ' ')
 
 # Count rounds/sections (look for ## headers or numbered rounds)
-rounds=$(echo "$content" | grep -cE '^#{1,3} |^Round |^### Round' || echo "1")
+rounds=$(echo "$content" | grep -cE '^#{1,3} |^Round |^### Round' || true)
+if [ "$rounds" -eq 0 ]; then
+  rounds=1
+fi
 
 # Auto-generate title from filename if not provided
 if [ -z "$title" ]; then
@@ -43,9 +46,9 @@ fi
 # Copy file to artifacts directory
 cp "$filepath" "$ARTIFACTS_DIR/$id.md"
 
-# Parse tags into JSON array
+# Parse tags into JSON array using jq for safe handling
 if [ -n "$tags" ]; then
-  tags_json=$(echo "$tags" | tr ',' '\n' | sed 's/^/"/;s/$/"/' | paste -sd',' | sed 's/^/[/;s/$/]/')
+  tags_json=$(echo "$tags" | tr ',' '\n' | jq -R . | jq -s .)
 else
   tags_json="[]"
 fi
