@@ -1,7 +1,7 @@
 # WaveMind Design Evolution — From Dashboard to Living Memory
 
 **Date:** 2026-03-29
-**Participants:** Lily (founder), Jackie (product/design), Genius Builder (engineering guidance)
+**Participants:** Lily (boss), Jackie (product/design), Genius Builder (engineering guidance)
 **Context:** Designing the HTML visualization output for WaveMind v1 — a Claude Code skill that captures thinking artifacts (conversation transcripts, brainstorm notes) and generates visual thought maps. This conversation IS a thinking artifact about building the thinking artifact tool.
 
 **Arc:** Dark analysis dashboard → "I hate AI summarization" → Study Lily's original WaveMind app → Editorial layout → First-person perspective → Dialogue bubbles → Ship v5
