@@ -1,181 +1,95 @@
-import { spawn, ChildProcess } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { config } from "./config.js";
 import { randomUUID } from "node:crypto";
 
-let cliProcess: ChildProcess | null = null;
-let responseBuffer = "";
-let responseResolve: ((result: string) => void) | null = null;
-let responseTimeout: ReturnType<typeof setTimeout> | null = null;
+let sessionId: string | null = null;
 
-/** Start a persistent CLI session for the duration of a phone call */
+/** Start a CLI session ID for the duration of a phone call.
+ *  The actual CLI process is spawned per-task using --resume to maintain context. */
 export function startCliSession(): void {
-  if (cliProcess) {
-    console.log("[cli-session] Session already running, skipping start");
-    return;
+  sessionId = randomUUID();
+  console.log(`[cli-session] Session initialized (id=${sessionId})`);
+}
+
+/** Send a task to the CLI and wait for the result.
+ *  Each call spawns a short-lived `claude --print` process.
+ *  Context is preserved across calls via --resume <session-id>. */
+export async function useCli(task: string): Promise<string> {
+  if (!sessionId) {
+    startCliSession();
   }
 
-  const sessionId = randomUUID();
   const cwd = config.jackie.dir;
+  const isFirstCall = !usedBefore;
+  usedBefore = true;
 
-  console.log(`[cli-session] Starting persistent CLI session (id=${sessionId}, cwd=${cwd})`);
-
-  cliProcess = spawn("claude", [
+  const args = [
     "--print",
-    "--verbose",
-    "--input-format", "stream-json",
-    "--output-format", "stream-json",
-    "--session-id", sessionId,
+    "--output-format", "json",
     "--dangerously-skip-permissions",
     "--max-turns", "10",
-  ], {
-    cwd,
-    env: {
-      ...process.env,
-    },
-    stdio: ["pipe", "pipe", "pipe"],
-  });
+  ];
 
-  cliProcess.stdout?.on("data", (chunk: Buffer) => {
-    const lines = chunk.toString().split("\n");
-    for (const line of lines) {
-      if (!line.trim()) continue;
-      try {
-        const event = JSON.parse(line);
-        handleCliEvent(event);
-      } catch {
-        // Partial JSON line, accumulate
-      }
-    }
-  });
-
-  cliProcess.stderr?.on("data", (chunk: Buffer) => {
-    console.error(`[cli-session] stderr: ${chunk.toString().trim()}`);
-  });
-
-  cliProcess.on("exit", (code) => {
-    console.log(`[cli-session] Process exited with code ${code}`);
-    cliProcess = null;
-    // If there's a pending response, resolve it with an error
-    if (responseResolve) {
-      responseResolve("CLI session ended unexpectedly. Please try again.");
-      responseResolve = null;
-    }
-  });
-
-  cliProcess.on("error", (err) => {
-    console.error(`[cli-session] Process error: ${err.message}`);
-    cliProcess = null;
-    if (responseResolve) {
-      responseResolve(`CLI session error: ${err.message}`);
-      responseResolve = null;
-    }
-  });
-}
-
-function handleCliEvent(event: Record<string, unknown>): void {
-  // Extract text content from stream events
-  if (event.type === "assistant") {
-    // Final assistant message with complete content
-    const message = event.message as Record<string, unknown> | undefined;
-    const content = message?.content as Array<Record<string, unknown>> | undefined;
-    if (content) {
-      const textParts = content
-        .filter((c) => c.type === "text")
-        .map((c) => c.text as string);
-      if (textParts.length > 0) {
-        responseBuffer = textParts.join("\n");
-      }
-    }
+  // First call uses --session-id, subsequent calls use --resume
+  if (isFirstCall) {
+    args.push("--session-id", sessionId!);
+  } else {
+    args.push("--resume", sessionId!);
   }
 
-  // result event signals the final output
-  if (event.type === "result") {
-    const result = event.result as string | undefined;
-    if (result) {
-      responseBuffer = result;
-    }
-    finishResponse();
-  }
-}
+  args.push(task);
 
-function finishResponse(): void {
-  if (responseResolve) {
-    const result = responseBuffer.trim() || "Task completed (no output).";
-    responseResolve(result.slice(0, 3000));
-    responseResolve = null;
-    responseBuffer = "";
-  }
-  if (responseTimeout) {
-    clearTimeout(responseTimeout);
-    responseTimeout = null;
-  }
-}
+  console.log(`[cli-session] Running task (session=${sessionId}, first=${isFirstCall}): ${task.slice(0, 100)}...`);
 
-/** Send a task to the persistent CLI session and wait for the result.
- *  Rejects concurrent requests: only one use_cli call can be in-flight at a time.
- *  This prevents the race condition where a second call overwrites the first's resolver. */
-export function useCli(task: string): Promise<string> {
-  return new Promise((resolve) => {
-    if (responseResolve) {
-      // Another use_cli call is already in-flight. Reject this one immediately
-      // rather than silently overwriting the previous resolver.
-      resolve("Another CLI task is already running. Please wait for it to finish.");
-      return;
-    }
+  try {
+    const result = execFileSync("claude", args, {
+      encoding: "utf-8",
+      timeout: 60_000,
+      cwd,
+      env: { ...process.env },
+      maxBuffer: 1024 * 1024, // 1MB
+    });
 
-    if (!cliProcess || !cliProcess.stdin?.writable) {
-      // Try to start a new session if none exists
-      startCliSession();
-      if (!cliProcess || !cliProcess.stdin?.writable) {
-        resolve("CLI session is not available. Could not start a new session.");
-        return;
-      }
-    }
-
-    // Set up response handler
-    responseBuffer = "";
-    responseResolve = resolve;
-
-    // Set timeout (60s max per task)
-    responseTimeout = setTimeout(() => {
-      if (responseResolve) {
-        const partial = responseBuffer.trim();
-        responseResolve(
-          partial
-            ? `Task timed out. Partial result: ${partial.slice(0, 2000)}`
-            : "Task timed out with no response."
-        );
-        responseResolve = null;
-        responseBuffer = "";
-      }
-    }, 60_000);
-
-    // Send the task
-    const message = JSON.stringify({ prompt: task }) + "\n";
-    console.log(`[cli-session] Sending task: ${task.slice(0, 100)}...`);
-    cliProcess.stdin.write(message);
-  });
-}
-
-/** Kill the CLI session when the call ends */
-export function endCliSession(): void {
-  if (cliProcess) {
-    console.log("[cli-session] Ending CLI session");
+    // Parse the JSON result
     try {
-      cliProcess.stdin?.end();
-      cliProcess.kill("SIGTERM");
+      const parsed = JSON.parse(result);
+      const text = parsed.result || parsed.text || result;
+      console.log(`[cli-session] Task completed: ${String(text).slice(0, 200)}...`);
+      return String(text).slice(0, 3000);
     } catch {
-      // Process may already be dead
+      // If JSON parsing fails, return raw output
+      console.log(`[cli-session] Task completed (raw): ${result.slice(0, 200)}...`);
+      return result.trim().slice(0, 3000);
     }
-    cliProcess = null;
-    responseBuffer = "";
-    if (responseResolve) {
-      responseResolve("CLI session ended.");
-      responseResolve = null;
+  } catch (err: unknown) {
+    const error = err as Error & { stderr?: string; stdout?: string };
+    const stderr = error.stderr || "";
+    const stdout = error.stdout || "";
+    console.error(`[cli-session] Task failed: ${error.message?.slice(0, 200)}`);
+    if (stderr) console.error(`[cli-session] stderr: ${stderr.slice(0, 500)}`);
+
+    // Try to parse stdout even on error (might have partial result)
+    if (stdout) {
+      try {
+        const parsed = JSON.parse(stdout);
+        if (parsed.result) return String(parsed.result).slice(0, 3000);
+      } catch {
+        // ignore
+      }
+      return stdout.trim().slice(0, 3000);
     }
-    if (responseTimeout) {
-      clearTimeout(responseTimeout);
-      responseTimeout = null;
-    }
+
+    return `CLI task failed: ${error.message?.slice(0, 500)}`;
+  }
+}
+
+let usedBefore = false;
+
+/** End the CLI session when the call ends */
+export function endCliSession(): void {
+  if (sessionId) {
+    console.log(`[cli-session] Session ended (id=${sessionId})`);
+    sessionId = null;
+    usedBefore = false;
   }
 }
