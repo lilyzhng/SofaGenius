@@ -92,7 +92,8 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    // End CLI session
+    // End CLI session (safe to call before auto-save because commit_and_push
+    // uses execFileSync directly, not the CLI session)
     endCliSession();
     // Auto-save: commit and push any unsaved changes after call ends (fire-and-forget)
     setTimeout(() => {

@@ -111,9 +111,18 @@ function finishResponse(): void {
   }
 }
 
-/** Send a task to the persistent CLI session and wait for the result */
+/** Send a task to the persistent CLI session and wait for the result.
+ *  Rejects concurrent requests: only one use_cli call can be in-flight at a time.
+ *  This prevents the race condition where a second call overwrites the first's resolver. */
 export function useCli(task: string): Promise<string> {
   return new Promise((resolve) => {
+    if (responseResolve) {
+      // Another use_cli call is already in-flight. Reject this one immediately
+      // rather than silently overwriting the previous resolver.
+      resolve("Another CLI task is already running. Please wait for it to finish.");
+      return;
+    }
+
     if (!cliProcess || !cliProcess.stdin?.writable) {
       // Try to start a new session if none exists
       startCliSession();
@@ -123,7 +132,7 @@ export function useCli(task: string): Promise<string> {
       }
     }
 
-    // Clear previous state
+    // Set up response handler
     responseBuffer = "";
     responseResolve = resolve;
 
