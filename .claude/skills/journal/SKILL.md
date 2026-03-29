@@ -1,0 +1,1 @@
+../../../agents/skills/journal/SKILL.md

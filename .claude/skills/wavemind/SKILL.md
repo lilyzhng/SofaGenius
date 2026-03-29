@@ -1,0 +1,1 @@
+../../../agents/skills/wavemind/SKILL.md
