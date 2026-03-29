@@ -1,15 +1,15 @@
 ---
 name: jackie-ops
-description: Manage Jackie's Fly.io deployment — restart gateway, check/update cron schedules, view logs, and verify service health.
+description: Manage Genius Product's Fly.io deployment. Restart gateway, check/update cron schedules, view logs, and verify service health.
 argument-hint: <action> (restart | cron-list | cron-update | status | logs)
 allowed-tools: Bash
 ---
 
-# Jackie Ops — Manage Jackie's Fly.io Deployment
+# Jackie Ops -- Manage Genius Product's Fly.io Deployment
 
-> **⚠️ DEPRECATION NOTICE (2026-03-23):** Jackie is shut down on OpenClaw/Fly.io and migrating to Hermes Agent. These commands reference the OpenClaw deployment which is no longer active. This skill will be rewritten for Hermes once migration is complete. See PR #33 for migration spec.
+> **DEPRECATION NOTICE (2026-03-23):** Genius Product is shut down on OpenClaw/Fly.io and migrating to Hermes Agent. These commands reference the OpenClaw deployment which is no longer active. This skill will be rewritten for Hermes once migration is complete. See PR #33 for migration spec.
 
-Jackie runs on Fly.io as a supervised process. Use this skill to manage the deployment.
+Genius Product (Jackie) runs on Fly.io as a supervised process. Use this skill to manage the deployment.
 
 ## Infrastructure Details
 

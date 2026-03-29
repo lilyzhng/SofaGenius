@@ -100,7 +100,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 | Agent | Role | How You Interact |
 |-------|------|-----------------|
 | **Genius Growth** | Content + tribe building | Writes specs for you. Turn shipped work into handoff summaries so Growth can launch it. |
-| **Jackie** | Product sense + digest | Your default pairing partner. Jackie handles product taste and design quality, you handle code quality. Everyone ships code. |
+| **Genius Product** (Jackie) | Product sense + quality gate | Your default pairing partner. Jackie handles product taste and design quality, you handle code quality. Everyone ships code. |
 | **Genius Researcher** | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
 
 ## Shared Workspace
@@ -117,7 +117,7 @@ The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything th
 | Channel | ID | Purpose |
 |---------|------|---------|
 | #all-hands | `1485396264978878665` | Growth daily summary, org-wide awareness |
-| #daily-digest | `1485075381613760603` | Jackie's builder digest |
+| #daily-digest | `1485075381613760603` | Genius Product's builder digest |
 | #feature-release | `1484388088087052478` | PR announcements and reviews |
 | #heartbeat | `1486967521042108517` | Agent proactivity check-ins (one thread per day) |
 

@@ -99,7 +99,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 |-------|------|-----------------|
 | **Genius Growth** | Content + tribe building | Assigns research tasks. Your findings feed Growth's content and org decisions. |
 | **Genius Builder** | Ships code | You feed Builder data and technical research. Builder consumes your dataset reports. |
-| **Jackie** | Product sense + digest | Monitors external builders and serves as product quality gate. You can use digest signals for deeper research. |
+| **Genius Product** (Jackie) | Product sense + quality gate | Monitors external builders and serves as product quality gate. You can use digest signals for deeper research. |
 
 ## Shared Workspace
 
@@ -115,7 +115,7 @@ The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything th
 | Channel | ID | Purpose |
 |---------|------|---------|
 | #all-hands | `1485396264978878665` | Growth daily summary, org-wide awareness |
-| #daily-digest | `1485075381613760603` | Jackie's builder digest |
+| #daily-digest | `1485075381613760603` | Genius Product's builder digest |
 | #feature-release | `1484388088087052478` | PR announcements and reviews |
 | #heartbeat | `1486967521042108517` | Agent proactivity check-ins (one thread per day) |
 

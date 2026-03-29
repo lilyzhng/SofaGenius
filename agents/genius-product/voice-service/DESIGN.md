@@ -56,7 +56,7 @@ Personal conversations should stay private. Voice Jackie uses two repos:
 ├── action-items.md                    ← Tasks from calls for agents to pick up
 └── context.md                         ← Key facts, preferences, ongoing topics
 
-/home/node/SofaGenius/agents/genius-jackie/
+/home/node/SofaGenius/agents/genius-product/
 ├── CLAUDE.md                          ← Jackie's personality/identity
 ├── private-memory -> /home/node/jackie-memory/   ← symlink (read-only for Discord Jackie)
 └── voice-service/                     ← This service (code only, no personal data)
@@ -82,7 +82,7 @@ Personal conversations should stay private. Voice Jackie uses two repos:
 ## File Structure
 
 ```
-agents/genius-jackie/voice-service/
+agents/genius-product/voice-service/
 ├── package.json
 ├── tsconfig.json
 ├── .env.example              # Template for required env vars
@@ -115,7 +115,8 @@ PORT=3334
 PUBLIC_URL=https://...  # Set by tunnel or manual config
 
 # Jackie identity + memory
-JACKIE_DIR=/home/node/SofaGenius/agents/genius-jackie
+JACKIE_DIR=/home/node/SofaGenius/agents/genius-product
+
 JACKIE_MEMORY_DIR=/home/node/jackie-memory
 ```
 
@@ -166,10 +167,10 @@ cd /home/node
 git clone https://github.com/lilyzhng/jackie-memory.git jackie-memory
 
 # 2. Symlink so Discord Jackie can read private memories
-ln -s /home/node/jackie-memory /home/node/SofaGenius/agents/genius-jackie/private-memory
+ln -s /home/node/jackie-memory /home/node/SofaGenius/agents/genius-product/private-memory
 
 # 3. Install voice service
-cd /home/node/SofaGenius/agents/genius-jackie/voice-service
+cd /home/node/SofaGenius/agents/genius-product/voice-service
 npm install
 ```
 
