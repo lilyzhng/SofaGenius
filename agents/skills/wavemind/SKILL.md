@@ -51,7 +51,8 @@ Generate a living memory document from a stored thinking artifact.
    - Do NOT summarize, generate insights, or create new content
 3. Generate a structured analysis as JSON (see Analysis Format below)
 4. Generate a self-contained HTML file following the NoteBlock editorial layout:
-   - Each section has: header, dialogue bubbles, punchline quote callout, expandable transcript
+   - Start with "What Came Out of This" actionables section right after the header (why it matters + action items)
+   - Then the timeline with each section: header, dialogue bubbles, punchline quote callout, expandable transcript
    - First-person perspective. It's the user's living memory, not a third-party report
    - Dialogue format with speech bubbles (user = white left-aligned, other speakers = dark right-aligned)
    - Progressive disclosure: punchline visible, full transcript behind "Read original" toggle
@@ -122,13 +123,13 @@ When generating the HTML visualization:
 - **Typography:** Serif for headers and quotes (Playfair Display or Georgia), sans-serif for UI (Inter or system). Generous whitespace.
 - **Layout (NoteBlock model):**
   - **Header:** Title (large serif), date, participants, "Living Memory" label with gold dot
+  - **Actionables (right after header):** "What Came Out of This" with two-column grid: "Why It Matters" + "Actionables" list with gold bullet dots. This goes at the top so readers get the takeaway first.
   - **Timeline:** Vertical gold line at ~28% width. Each section is a grid row.
   - **Left column (28%):** Round label, punchline quote callout (large gold open-quote mark, bold italic serif)
   - **Right column:** Section header (bold serif), dialogue bubbles, "Read original" toggle
   - **Dialogue bubbles:** User = white with light border, left-aligned. Other speakers = dark (#2C2C2C), right-aligned. One thought per bubble.
   - **Pivoting moments:** Gold-filled timeline dot + "Pivoting Moment" badge
   - **Progressive disclosure:** "Read original" expands to full clean transcript
-  - **Actionables section:** "What Came Out of This" with two-column grid: "Why It Matters" + "Actionables" list with gold bullet dots
   - **Footer:** "WaveMind · Captured [date] · Visualized [date]"
 - **Self-contained:** All CSS and JS must be inline. No external dependencies.
 - **Responsive:** Hide quote callouts on mobile, switch to single-column layout.
