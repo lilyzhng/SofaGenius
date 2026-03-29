@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from 
 import { execFileSync, execSync } from "node:child_process";
 import { join } from "node:path";
 import { config } from "./config.js";
+import { useCli } from "./cli-session.js";
 
 const { dir: jackieDir, memoryDir } = config.jackie;
 const skillsDir = join(memoryDir, "skills");
@@ -191,10 +192,26 @@ export const toolDefinitions = [
       required: ["skill", "command"],
     },
   },
+  {
+    type: "function" as const,
+    name: "use_cli",
+    description:
+      "Run a task using the Claude Code CLI on this machine. It has full access to bash, files, git, MCP servers, and all agent skills. Use this when the user asks for something beyond your built-in tools: checking PRs, running scripts, deployment status, complex research, file operations, or anything you can't do with your other tools. This is slower (5-30s) so tell the user you're looking into it BEFORE calling this tool.",
+    parameters: {
+      type: "object",
+      properties: {
+        task: {
+          type: "string",
+          description: "Natural language description of what to do. Be specific about what information to return.",
+        },
+      },
+      required: ["task"],
+    },
+  },
 ];
 
 /** Execute a tool call and return the result string */
-export function executeTool(name: string, args: Record<string, string>): string {
+export async function executeTool(name: string, args: Record<string, string>): Promise<string> {
   switch (name) {
     case "load_context":
       return loadContext();
@@ -226,6 +243,8 @@ export function executeTool(name: string, args: Record<string, string>): string 
       return runSkillBridge("jackie-gmail", `${args.action} ${args.query ? `--query "${args.query}"` : ""} --count ${args.count ?? 10}`);
     case "run_skill":
       return runSkillBridge(args.skill, args.command);
+    case "use_cli":
+      return useCli(args.task);
     default:
       return `Unknown tool: ${name}`;
   }
