@@ -29,6 +29,19 @@ if [ -d "$VOICE_DIR/dist" ]; then
   else
     echo "Voice service already running on port 3334"
   fi
+
+  # Start ngrok tunnel if voice service is running but tunnel is down
+  NGROK_BIN="$HOME/.local/lib/node_modules/ngrok/bin/ngrok"
+  if [ -x "$NGROK_BIN" ] && [ -n "$PUBLIC_URL" ] && [ -n "$NGROK_AUTH_TOKEN" ]; then
+    NGROK_DOMAIN=$(echo "$PUBLIC_URL" | sed 's|https://||')
+    if ! pgrep -f "ngrok.*http.*3334" >/dev/null 2>&1; then
+      echo "Starting ngrok tunnel..."
+      NGROK_AUTHTOKEN="$NGROK_AUTH_TOKEN" nohup "$NGROK_BIN" http 3334 --domain="$NGROK_DOMAIN" > "$SCRIPT_DIR/ngrok.log" 2>&1 &
+      echo "ngrok launched (PID: $!). Logs: $SCRIPT_DIR/ngrok.log"
+    else
+      echo "ngrok tunnel already running"
+    fi
+  fi
 else
   echo "Voice service not built (no dist/), skipping"
 fi
