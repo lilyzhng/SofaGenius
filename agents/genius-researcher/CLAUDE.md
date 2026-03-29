@@ -99,7 +99,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 |-------|------|-----------------|
 | **Genius Growth** | Content + tribe building | Assigns research tasks. Your findings feed Growth's content and org decisions. |
 | **Genius Builder** | Ships code | You feed Builder data and technical research. Builder consumes your dataset reports. |
-| **Jackie** | Daily digest, monitoring | Monitors external builders. You can use digest signals for deeper research. |
+| **Jackie** | Product sense + digest | Monitors external builders and serves as product quality gate. You can use digest signals for deeper research. |
 
 ## Shared Workspace
 

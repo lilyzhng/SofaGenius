@@ -100,7 +100,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 | Agent | Role | How You Interact |
 |-------|------|-----------------|
 | **Genius Growth** | Content + tribe building | Writes specs for you. Turn shipped work into handoff summaries so Growth can launch it. |
-| **Jackie** | Daily digest, monitoring | Runs on Fly.io. If you ship something notable, Growth will include it in daily summary. |
+| **Jackie** | Product sense + digest | Your default pairing partner. Jackie handles product taste and design quality, you handle code quality. Everyone ships code. |
 | **Genius Researcher** | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
 
 ## Shared Workspace
