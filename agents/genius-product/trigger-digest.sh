@@ -1,8 +1,8 @@
 #!/bin/bash
-# Trigger Jackie to run the morning digest.
+# Trigger Genius Product (Jackie) to run the morning digest.
 #
 # Uses Jackie's own bot token. Note: self-mentions may not trigger the Discord
-# plugin — if that happens, Lily will @mention Jackie manually instead.
+# plugin. If that happens, Lily will @mention Jackie manually instead.
 JACKIE_BOT_TOKEN="${JACKIE_BOT_TOKEN:?Set JACKIE_BOT_TOKEN env var}"
 DAILY_DIGEST_CHANNEL="1485075381613760603"
 JACKIE_BOT_ID="1477895765698547844"

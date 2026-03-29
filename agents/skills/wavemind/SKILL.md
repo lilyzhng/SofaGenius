@@ -82,7 +82,7 @@ When analyzing a thinking artifact, produce this structure:
 {
   "title": "Title from the user's perspective",
   "date": "2026-03-27",
-  "participants": "Lily + CEO",
+  "participants": "Lily + Growth",
   "sections": [
     {
       "round": 1,
@@ -90,7 +90,7 @@ When analyzing a thinking artifact, produce this structure:
       "quote": "Memorable speaker quote, max 10 words",
       "dialogue": [
         {"speaker": "lily", "text": "One thought per bubble. Keep it short."},
-        {"speaker": "ceo", "text": "Response in their original words."}
+        {"speaker": "growth", "text": "Response in their original words."}
       ],
       "is_pivoting_moment": false
     }

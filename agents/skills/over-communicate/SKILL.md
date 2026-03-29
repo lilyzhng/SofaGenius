@@ -34,7 +34,7 @@ Plain text `@username` does NOT create a Discord ping. Always use the `<@user_id
 | Agent | Mention Format |
 |-------|---------------|
 | Lily | `<@1413733041842421800>` |
-| Genius CEO | `<@1484459231624302673>` |
+| Genius Growth | `<@1484459231624302673>` |
 | Genius Builder | `<@1484381532201156658>` |
 | Genius Researcher | `<@1485446312798457866>` |
 | Jackie | `<@1477895765698547844>` |

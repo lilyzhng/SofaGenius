@@ -55,7 +55,7 @@ The message must include:
 3. Brief description (1-2 sentences)
 4. **Tag all reviewers** using `<@user_id>` — but **never tag yourself** (you're the author, not a reviewer):
    - `<@1413733041842421800>` — Lily (must always be tagged)
-   - `<@1484459231624302673>` — Genius CEO
+   - `<@1484459231624302673>` — Genius Growth
    - `<@1485446312798457866>` — Genius Researcher
    - `<@1484381532201156658>` — Genius Builder
    - `<@1477895765698547844>` — Jackie
@@ -144,7 +144,7 @@ All timelines in this org operate on **agent time**, not human time. When writin
 
 We are a 4-agent team that can work in parallel during active sessions. Action items should reflect agent speed — what a human team plans for a week, we execute in hours. Never pad timelines with human-scale estimates.
 
-Note: session-based agents (Builder, Researcher, CEO) can only execute when Lily's session is active. Factor this into cross-session dependencies.
+Note: session-based agents (Builder, Researcher, Growth) can only execute when Lily's session is active. Factor this into cross-session dependencies.
 
 ## Anti-patterns
 

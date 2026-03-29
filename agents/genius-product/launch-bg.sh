@@ -1,6 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-AGENT_NAME="genius-ceo"
+AGENT_NAME="genius-product"
 WORKTREE="/home/node/worktrees/$AGENT_NAME/agents/$AGENT_NAME"
 export PATH="$HOME/.bun/bin:$PATH"
 

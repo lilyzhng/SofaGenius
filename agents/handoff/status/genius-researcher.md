@@ -1,5 +1,5 @@
 ---
-agent: researcher
+agent: genius-researcher
 updated: 2026-03-28 11:50 PM PT
 status: active
 ---

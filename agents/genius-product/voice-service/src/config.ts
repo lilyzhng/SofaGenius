@@ -28,7 +28,7 @@ export const config = {
     publicUrl: process.env.PUBLIC_URL ?? "",
   },
   jackie: {
-    dir: process.env.JACKIE_DIR ?? "/home/node/SofaGenius/agents/genius-jackie",
+    dir: process.env.JACKIE_DIR ?? "/home/node/SofaGenius/agents/genius-product",
     memoryDir:
       process.env.JACKIE_MEMORY_DIR ?? "/home/node/jackie-memory",
   },

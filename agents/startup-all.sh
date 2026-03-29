@@ -4,7 +4,7 @@
 # Usage: bash /home/node/SofaGenius/agents/startup-all.sh
 
 AGENTS_DIR="/home/node/SofaGenius/agents"
-AGENTS=("genius-jackie" "genius-ceo" "genius-researcher" "genius-builder")
+AGENTS=("genius-product" "genius-growth" "genius-researcher" "genius-builder")
 STARTED=0
 ALREADY=0
 

@@ -40,15 +40,15 @@ Each IC posts their report in the thread:
 - Focus on AUTONOMOUS work only — what shipped since the last `/hands-off`
 - "Status vs plan" is key — did you deliver what was handed off?
 - "Ready for Lily" must be actionable — PRs to review, decisions to make, things to approve
-- Tag CEO when done
+- Tag Growth when done
 
 ---
 
-## Part 2: CEO Workflow
+## Part 2: Growth Workflow
 
 ### The Rule
 
-**CEO reports LAST.** Wait for ICs, then synthesize.
+**Growth reports LAST.** Wait for ICs, then synthesize.
 
 ### Step 1: Open the debrief
 
@@ -73,12 +73,12 @@ Wait for online agents. Don't spam offline agents. Proceed after all online agen
 - Check #feature-release for PR announcements since last sync
 - Compare against the `/hands-off` task distribution — did agents deliver?
 
-### Step 4: CEO synthesis
+### Step 4: Growth synthesis
 
 Post in the thread:
 
 ```
-**CEO Debrief Synthesis — {date}**
+**Growth Debrief Synthesis — {date}**
 
 ## Autonomous Progress ({time window: since last /hands-off})
 (What agents shipped during autonomous mode — PRs, research, fixes. Check git log for the time window.)
@@ -108,7 +108,7 @@ Save to `agents/handoff/reports/debrief-{YYYYMMDD}.md`. Push to branch, raise PR
 Before finishing the debrief, verify:
 
 - [ ] All online agents submitted their IC reports
-- [ ] CEO synthesis includes the plan vs reality table
+- [ ] Growth synthesis includes the plan vs reality table
 - [ ] "Ready for Lily" section has actionable items (PRs, decisions)
 - [ ] Time window is accurate (since last /hands-off, not arbitrary "12 hours")
 - [ ] Report saved to `agents/handoff/reports/`

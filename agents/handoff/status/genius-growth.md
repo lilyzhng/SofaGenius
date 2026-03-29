@@ -1,5 +1,5 @@
 ---
-agent: ceo
+agent: genius-growth
 updated: 2026-03-24 22:38 PT
 status: active
 ---

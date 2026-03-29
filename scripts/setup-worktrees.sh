@@ -10,11 +10,11 @@ WORKTREE_BASE="/home/node/worktrees"
 mkdir -p "$WORKTREE_BASE"
 
 # Mark worktree directories as safe for git
-for agent in genius-builder genius-ceo genius-researcher genius-jackie; do
+for agent in genius-builder genius-growth genius-researcher genius-product; do
   git config --global --add safe.directory "$WORKTREE_BASE/$agent"
 done
 
-for agent in genius-builder genius-ceo genius-researcher genius-jackie; do
+for agent in genius-builder genius-growth genius-researcher genius-product; do
   target="$WORKTREE_BASE/$agent"
   if [ -d "$target" ]; then
     echo "✓ $agent worktree already exists at $target"

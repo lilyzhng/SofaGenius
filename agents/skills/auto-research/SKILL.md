@@ -81,7 +81,7 @@ Save to `agents/handoff/reports/research_{topic}_{date}.md`:
 
 - Update task tracker
 - Post summary in relevant Discord thread
-- Tag CEO if findings affect strategy
+- Tag Growth if findings affect strategy
 
 ## Depth Levels
 
@@ -91,7 +91,7 @@ Save to `agents/handoff/reports/research_{topic}_{date}.md`:
 
 ## When to Use
 
-- CEO assigns a research topic
+- Growth assigns a research topic
 - Data discovery for new domains
 - Competitive analysis
 - Technology evaluation
