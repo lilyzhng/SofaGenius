@@ -1,9 +1,10 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import { execFileSync, execSync } from "node:child_process";
 import { join } from "node:path";
 import { config } from "./config.js";
 
 const { dir: jackieDir, memoryDir } = config.jackie;
+const skillsDir = join(memoryDir, "skills");
 
 /** Tool definitions for OpenAI Realtime API */
 export const toolDefinitions = [
@@ -97,6 +98,99 @@ export const toolDefinitions = [
       required: ["message"],
     },
   },
+  {
+    type: "function" as const,
+    name: "get_current_time",
+    description:
+      "Get the current time in Pacific Time (PT). Use this to check the time before making any time-of-day assumptions.",
+    parameters: { type: "object", properties: {}, required: [] },
+  },
+  {
+    type: "function" as const,
+    name: "web_search",
+    description:
+      "Search the web using Tavily. Returns titles, URLs, and content snippets. Use this when you need to look up current information, check facts, or find anything online.",
+    parameters: {
+      type: "object",
+      properties: {
+        query: { type: "string", description: "The search query" },
+        count: { type: "number", description: "Number of results (default 5, max 20)" },
+      },
+      required: ["query"],
+    },
+  },
+  {
+    type: "function" as const,
+    name: "summarize_url",
+    description:
+      "Fetch and summarize the content of a URL. Works with articles, blog posts, docs, YouTube videos.",
+    parameters: {
+      type: "object",
+      properties: {
+        url: { type: "string", description: "The URL to summarize" },
+        extract_only: { type: "boolean", description: "Return raw text without summarizing (default false)" },
+      },
+      required: ["url"],
+    },
+  },
+  {
+    type: "function" as const,
+    name: "check_calendar",
+    description:
+      "List upcoming events on Lily's Google Calendar. Use this to check schedule or availability.",
+    parameters: {
+      type: "object",
+      properties: {
+        days: { type: "number", description: "How many days ahead to look (default 7)" },
+      },
+      required: [],
+    },
+  },
+  {
+    type: "function" as const,
+    name: "add_calendar_event",
+    description:
+      "Add an event to Lily's Google Calendar.",
+    parameters: {
+      type: "object",
+      properties: {
+        title: { type: "string", description: "Event title" },
+        datetime: { type: "string", description: "ISO 8601 datetime, e.g. 2026-03-29T14:00:00" },
+        duration: { type: "number", description: "Duration in minutes (default 30)" },
+        description: { type: "string", description: "Optional event description" },
+      },
+      required: ["title", "datetime"],
+    },
+  },
+  {
+    type: "function" as const,
+    name: "check_email",
+    description:
+      "Check Lily's Gmail inbox. Can list recent emails, unread only, or search by keyword.",
+    parameters: {
+      type: "object",
+      properties: {
+        action: { type: "string", description: "One of: inbox, unread, search" },
+        query: { type: "string", description: "Search query (only for action=search), e.g. 'from:github.com'" },
+        count: { type: "number", description: "Number of emails to return (default 10)" },
+      },
+      required: ["action"],
+    },
+  },
+  {
+    type: "function" as const,
+    name: "run_skill",
+    description:
+      "Run any of Jackie's skills by name with a command string. Available skills: jackie-web, jackie-calendar, jackie-gmail, jackie-github, jackie-twitter, jackie-google. Each skill has a bridge.py script. Pass the command exactly as you would on the CLI after 'bridge.py'.",
+    parameters: {
+      type: "object",
+      properties: {
+        skill: { type: "string", description: "Skill name (e.g. jackie-web, jackie-twitter)" },
+        command: { type: "string", description: "Command and arguments (e.g. 'search --query \"AI news\"')" },
+      },
+      required: ["skill", "command"],
+    },
+  },
 ];
 
 /** Execute a tool call and return the result string */
@@ -114,6 +208,24 @@ export function executeTool(name: string, args: Record<string, string>): string 
       return createActionItem(args.item, args.assignee);
     case "commit_and_push":
       return commitAndPush(args.message);
+    case "get_current_time":
+      return getCurrentTime();
+    case "web_search":
+      return runSkillBridge("jackie-web", `search --query "${args.query}" --count ${args.count ?? 5}`);
+    case "summarize_url":
+      return runSkillBridge("jackie-web", `summarize --url "${args.url}"${args.extract_only ? " --extract-only" : ""}`);
+    case "check_calendar":
+      return runSkillBridge("jackie-calendar", `list_events --days ${args.days ?? 7}`);
+    case "add_calendar_event": {
+      let cmd = `add_event --title "${args.title}" --datetime "${args.datetime}"`;
+      if (args.duration) cmd += ` --duration ${args.duration}`;
+      if (args.description) cmd += ` --description "${args.description}"`;
+      return runSkillBridge("jackie-calendar", cmd);
+    }
+    case "check_email":
+      return runSkillBridge("jackie-gmail", `${args.action} ${args.query ? `--query "${args.query}"` : ""} --count ${args.count ?? 10}`);
+    case "run_skill":
+      return runSkillBridge(args.skill, args.command);
     default:
       return `Unknown tool: ${name}`;
   }
@@ -275,14 +387,73 @@ function commitAndPush(message: string): string {
   const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
   try {
     execFileSync("git", ["add", "."], opts);
-    execFileSync("git", ["commit", "-m", message], opts);
+    try {
+      execFileSync("git", ["commit", "-m", message], opts);
+    } catch (e) {
+      const err = e as Error & { stderr?: string };
+      if (err.stderr?.includes("nothing to commit")) {
+        return "No changes to commit.";
+      }
+      throw e;
+    }
+    // Pull with rebase to integrate remote changes before pushing
+    try {
+      execFileSync("git", ["pull", "--rebase"], opts);
+    } catch {
+      // If rebase fails, abort and report
+      try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
+      return "Committed locally but could not rebase with remote. Manual intervention needed.";
+    }
     execFileSync("git", ["push"], opts);
     return "Changes committed and pushed to jackie-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
-    if (err.stderr?.includes("nothing to commit") || err.stderr?.includes("did not match any files")) {
-      return "No changes to commit.";
-    }
     return `Git error: ${err.message}`;
   }
+}
+
+function runSkillBridge(skill: string, command: string): string {
+  const bridgePath = join(skillsDir, skill, "scripts", "bridge.py");
+  if (!existsSync(bridgePath)) {
+    return `Skill "${skill}" not found. Available skills: ${listAvailableSkills()}`;
+  }
+  try {
+    const result = execSync(`python3 ${bridgePath} ${command}`, {
+      encoding: "utf-8",
+      timeout: 30000,
+      cwd: join(skillsDir, skill),
+      env: { ...process.env },
+    });
+    return result.trim().slice(0, 5000);
+  } catch (e) {
+    const err = e as Error & { stderr?: string; stdout?: string };
+    return `Skill error: ${err.stderr || err.stdout || err.message}`.slice(0, 2000);
+  }
+}
+
+function listAvailableSkills(): string {
+  if (!existsSync(skillsDir)) return "none";
+  try {
+    return readdirSync(skillsDir)
+      .filter((d) => existsSync(join(skillsDir, d, "scripts", "bridge.py")))
+      .join(", ");
+  } catch {
+    return "none";
+  }
+}
+
+function getCurrentTime(): string {
+  const now = new Date();
+  const pt = now.toLocaleString("en-US", {
+    timeZone: "America/Los_Angeles",
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  return `Current time in Pacific Time: ${pt}`;
 }

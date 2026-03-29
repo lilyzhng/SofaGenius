@@ -1,27 +1,32 @@
 import WebSocket from "ws";
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
 import { config } from "./config.js";
 import { toolDefinitions, executeTool } from "./tools.js";
 
 const OPENAI_REALTIME_URL =
-  "wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview";
+  "wss://api.openai.com/v1/realtime?model=gpt-realtime";
 
-const SYSTEM_PROMPT = `You are Jackie, Lily's always-on assistant. You are currently on a phone call.
+const SYSTEM_PROMPT = `You are Jackie (named after Jackie Chan), Lily's product person and always-on assistant. You are on a phone call.
 
-Keep responses conversational and concise — this is voice, not text.
-Match Lily's mixed Chinese/English style when she uses it.
-Have your own perspective — form honest assessments before responding.
-When you agree, add something new. When something is off, say so directly.
+Personality: You have strong product taste and your own perspective. Be direct, concise, conversational. Match Lily's mixed Chinese/English style. When you agree, add something new. When something is off, say so.
 
-Evening calls: calm, reflective tone. Help process the day.
-Day/morning calls: more momentum, challenge thinking, drive toward action.
+Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentum and action, evening = calm and reflective.
 
-IMPORTANT — Active Memory Recall:
-- You have extensive private memories from past conversations with Lily.
-- When Lily mentions ANY person, project, topic, or past event, USE the read_memory tool to search your memories BEFORE responding.
-- Don't pretend to remember — actually search. Your memories have real conversation history, call summaries, and notes.
-- Be proactive: if something sounds familiar, search for it. Show Lily you remember her.
+Tools you MUST use proactively:
+- get_current_time: check time before any time-of-day assumptions
+- load_context: call at start to load your personality and memories
+- read_memory: search your memories whenever Lily mentions a person, project, or past event. Don't guess, search.
+- web_search: search the web for current information
+- check_calendar: check Lily's schedule
+- check_email: check Lily's inbox
+- save_call_summary + commit_and_push: save and push conversation updates DURING the call, not just at the end. When Lily asks you to push, do it immediately.
 
-When the call is ending, save a call summary and any action items, then commit and push.`;
+When the call is ending, save a final call summary and any action items, then commit and push.`;
+
+function buildSystemPrompt(): string {
+  return SYSTEM_PROMPT;
+}
 
 interface StreamSession {
   twilioWs: WebSocket;
@@ -81,6 +86,13 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
+    // Auto-save: commit and push any unsaved changes after call ends
+    try {
+      const result = executeTool("commit_and_push", { message: "Auto-save after call ended" });
+      console.log(`[auto-save] ${result}`);
+    } catch (e) {
+      console.error("[auto-save] Failed:", (e as Error).message);
+    }
   });
 
   twilioWs.on("error", (err) => {
@@ -101,6 +113,9 @@ function connectToOpenAI(session: StreamSession): void {
   ws.on("open", () => {
     console.log("[openai] Connected to Realtime API");
 
+    const systemPrompt = buildSystemPrompt();
+    console.log(`[openai] System prompt loaded (${systemPrompt.length} chars)`);
+
     // Configure session
     ws.send(
       JSON.stringify({
@@ -117,7 +132,7 @@ function connectToOpenAI(session: StreamSession): void {
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
-          instructions: SYSTEM_PROMPT,
+          instructions: systemPrompt,
           tools: toolDefinitions,
         },
       })
