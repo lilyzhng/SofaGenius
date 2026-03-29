@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: Trigger Jackie's weekly digest review
         env:
-          CEO_BOT_TOKEN: ${{ secrets.CEO_BOT_TOKEN }}
+          GROWTH_BOT_TOKEN: ${{ secrets.GROWTH_BOT_TOKEN }}
         run: |
           DAILY_DIGEST_CHANNEL="1485075381613760603"
           JACKIE_BOT_ID="1477895765698547844"
 
           curl -sf -H "Content-Type: application/json" \
-            -H "Authorization: Bot ${CEO_BOT_TOKEN}" \
+            -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
             -d "{\"content\": \"<@${JACKIE_BOT_ID}> Weekly digest review time. Review this week's digest conversations in #daily-digest. Analyze which builders Lily engaged with vs skipped. Recommend who to drop, who to keep, and any new builders to add. Post your analysis here.\"}" \
             "https://discord.com/api/v10/channels/${DAILY_DIGEST_CHANNEL}/messages"
