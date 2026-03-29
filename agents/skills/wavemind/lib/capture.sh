@@ -50,11 +50,17 @@ else
   tags_json="[]"
 fi
 
-# Create index entry
-entry=$(cat <<ENTRY
-{"id":"$id","title":"$title","source":"$source_type","tags":$tags_json,"rounds":$rounds,"word_count":$word_count,"created_at":"$(date -u +%Y-%m-%dT%H:%M:%SZ)","file":"artifacts/$id.md","visualized":false}
-ENTRY
-)
+# Create index entry safely using jq
+entry=$(jq -n \
+  --arg id "$id" \
+  --arg title "$title" \
+  --arg source "$source_type" \
+  --argjson tags "$tags_json" \
+  --argjson rounds "$rounds" \
+  --argjson wc "$word_count" \
+  --arg created "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+  --arg file "artifacts/$id.md" \
+  '{id:$id, title:$title, source:$source, tags:$tags, rounds:$rounds, word_count:$wc, created_at:$created, file:$file, visualized:false}')
 
 # Add to index
 add_artifact "$entry"
