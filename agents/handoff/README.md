@@ -8,11 +8,11 @@ This is the shared coordination layer between agents. Every agent reads and writ
 handoff/
 ├── status/       ← agent status files (read every session)
 │   ├── builder.md
-│   ├── ceo.md
+│   ├── growth.md
 │   ├── researcher.md
 │   └── jackie.md
-├── specs/        ← build/research specs (CEO → agents)
-├── reports/      ← completed work summaries (agents → CEO)
+├── specs/        ← build/research specs (Growth → agents)
+├── reports/      ← completed work summaries (agents → Growth)
 └── README.md
 ```
 
@@ -24,9 +24,9 @@ handoff/
 
 3. **Agents write on session end** (or after significant work). This ensures the next agent to wake up has full context.
 
-4. **Specs and requests** go in `specs/` — CEO writes `spec_{topic}_{date}.md` for Builder, `research_{topic}_{date}.md` for Researcher, etc.
+4. **Specs and requests** go in `specs/` — Growth writes `spec_{topic}_{date}.md` for Builder, `research_{topic}_{date}.md` for Researcher, etc.
 
-5. **Reports** go in `reports/` — completed work summaries from agents back to CEO.
+5. **Reports** go in `reports/` — completed work summaries from agents back to Growth.
 
 ## Completion Status Protocol
 
@@ -39,7 +39,7 @@ Every task or handoff ends with one of:
 ## File Naming Convention
 
 - `status/{agent}.md` — agent's current status (updated each session)
-- `specs/spec_{topic}_{date}.md` — build spec from CEO to Builder
-- `specs/research_{topic}_{date}.md` — research request from CEO to Researcher
+- `specs/spec_{topic}_{date}.md` — build spec from Growth to Builder
+- `specs/research_{topic}_{date}.md` — research request from Growth to Researcher
 - `reports/build_{topic}_{date}.md` — build update from Builder
 - `reports/findings_{topic}_{date}.md` — research report from Researcher

@@ -36,15 +36,15 @@ Each IC posts their report in the thread:
 **Rules:**
 - Be specific — PR numbers, not "worked on stuff"
 - Overnight plan should be concrete and executable without Lily's input
-- Tag CEO when done
+- Tag Growth when done
 
 ---
 
-## Part 2: CEO Workflow
+## Part 2: Growth Workflow
 
 ### The Rule
 
-**CEO reports LAST.** Wait for ICs, then synthesize.
+**Growth reports LAST.** Wait for ICs, then synthesize.
 
 ### Step 1: Open the check-in
 
@@ -73,12 +73,12 @@ Wait for online agents. Don't spam offline agents. Proceed after all online agen
 - Check #feature-release for PR announcements
 - Check content INDEX for posts
 
-### Step 4: CEO synthesis
+### Step 4: Growth synthesis
 
 Post in the thread:
 
 ```
-**CEO Hands-Off Synthesis — {last sync time} → {now} PT**
+**Growth Hands-Off Synthesis — {last sync time} → {now} PT**
 
 ## Session Recap
 (What the team shipped since the last sync — PRs, content, decisions. Check git log for the time window since the previous hands-off or debrief.)
@@ -91,7 +91,7 @@ Post in the thread:
 | Builder | ... | ... |
 | Researcher | ... | ... |
 | Jackie | ... | ... |
-| CEO | ... | ... |
+| Growth | ... | ... |
 
 ## Decisions Needed from Lily (before going hands-off)
 (Anything that blocks autonomous work — get answers NOW)
@@ -104,7 +104,7 @@ Post in the thread:
 
 Save to `agents/handoff/reports/hands-off-{YYYYMMDD}.md`. Push to branch, raise PR.
 
-## CEO Completion Checklist
+## Growth Completion Checklist
 
 Before posting the synthesis, verify ALL:
 
@@ -127,7 +127,7 @@ Before posting your report, verify:
 - [ ] "Shipped this session" lists PRs with numbers — not vague descriptions
 - [ ] "Autonomous plan" is concrete and executable without Lily
 - [ ] Blockers name WHO can unblock — not just "blocked"
-- [ ] Tagged CEO when done
+- [ ] Tagged Growth when done
 
 ## Anti-patterns
 

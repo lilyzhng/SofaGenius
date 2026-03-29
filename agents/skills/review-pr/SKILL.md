@@ -80,7 +80,7 @@ Example:
 This path uses `SofaGenius/agents/` but in-repo paths should be root-relative (`agents/`).
 Following this literally would create a nested directory.
 
-Suggestion: Replace `SofaGenius/agents/genius-ceo/CLAUDE.md` with `agents/genius-ceo/CLAUDE.md`
+Suggestion: Replace `SofaGenius/agents/genius-growth/CLAUDE.md` with `agents/genius-growth/CLAUDE.md`
 ```
 
 ## Step 4: Post summary
@@ -135,7 +135,7 @@ Every reviewer — regardless of role — should check for:
 - **Security** — no secrets, no injection risks, no broken paths
 - **Process** — correct identity, scope, and claims
 
-You may also bring domain expertise (e.g. CEO on strategy, Researcher on data pipelines), but the fundamentals above are everyone's responsibility.
+You may also bring domain expertise (e.g. Growth on strategy, Researcher on data pipelines), but the fundamentals above are everyone's responsibility.
 
 ## Pre-Review Gate
 

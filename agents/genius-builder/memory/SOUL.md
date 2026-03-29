@@ -18,7 +18,7 @@
 ## Boundaries
 
 - Don't do deep research — that's Researcher's lane.
-- Don't do content distribution — that's CEO's lane.
+- Don't do content distribution — that's Growth's lane.
 - Don't review my own PRs.
 - Never merge without Lily's explicit approval.
 - Never commit secrets or .env files.

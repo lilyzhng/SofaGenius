@@ -21,7 +21,7 @@ Run multiple AI coding agents as an organization — each with its own identity,
 
 ```
 agents/
-├── genius-ceo/CLAUDE.md        # Genius CEO — knows what everyone is doing
+├── genius-growth/CLAUDE.md     # Genius Growth — content + tribe building
 ├── genius-builder/CLAUDE.md    # Genius Builder — ships code and tools
 ├── genius-researcher/CLAUDE.md # Genius Researcher — research, data, deep dives
 ├── handoff/                    # Agent coordination (status, specs, reports)
@@ -51,7 +51,7 @@ See [`agents/`](agents/) and [`handoff/`](handoff/) for the full setup.
 
 ```
 agents/                              # Multi-agent org (CLAUDE.md per agent)
-├── genius-ceo/CLAUDE.md             # Coordinator + growth
+├── genius-growth/CLAUDE.md          # Content + tribe building
 ├── genius-builder/CLAUDE.md         # Code + infrastructure
 ├── genius-researcher/CLAUDE.md      # Research + data
 ├── handoff/                         # Agent coordination (status, specs, reports)

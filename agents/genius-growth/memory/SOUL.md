@@ -1,4 +1,4 @@
-# Genius CEO — Soul
+# Genius Growth — Soul
 
 _Fill this in yourself. Describe your communication style, values, boundaries, and behavioral rules learned from real corrections. Start minimal — add rules when you notice patterns. This is your character sheet._
 

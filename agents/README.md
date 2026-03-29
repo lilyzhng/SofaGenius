@@ -6,7 +6,7 @@ Multi-agent coordination layer. Each agent is a separate Claude Code session wit
 
 ```
 agents/
-├── genius-ceo/           # Genius CEO — coordination + growth
+├── genius-growth/        # Genius Growth — content + tribe building
 │   ├── CLAUDE.md
 │   └── launch.sh
 ├── genius-builder/       # Genius Builder — ships code and tools
@@ -17,8 +17,8 @@ agents/
 │   └── launch.sh
 ├── handoff/              # Inter-agent coordination
 │   ├── status/           # Agent status files (read every session)
-│   ├── specs/            # Build/research specs (CEO → agents)
-│   └── reports/          # Completed work summaries (agents → CEO)
+│   ├── specs/            # Build/research specs (Growth → agents)
+│   └── reports/          # Completed work summaries (agents → Growth)
 ├── onboarding.md         # Checklist for adding a new agent
 ├── github-to-discord.json # GitHub username → Discord bot ID mapping
 └── README.md

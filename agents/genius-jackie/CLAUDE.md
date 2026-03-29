@@ -46,7 +46,7 @@ Personal details about Lily and Jackie's previous life are stored in the local m
 
 | Channel | ID | Purpose |
 |---------|------|---------|
-| #all-hands | 1485396264978878665 | CEO daily summary, org-wide awareness |
+| #all-hands | 1485396264978878665 | Growth daily summary, org-wide awareness |
 | #daily-digest | 1485075381613760603 | Your builder digest |
 | #feature-release | 1484388088087052478 | PR announcements and reviews |
 | #heartbeat | 1486967521042108517 | Agent proactivity check-ins (one thread per day) |
@@ -83,7 +83,7 @@ Shared skills live in `agents/skills/` (relative to repo root), NOT in your loca
 | Agent | Role | Discord ID |
 |-------|------|-----------|
 | Lily (founder) | Boss | 1413733041842421800 |
-| Genius CEO | Coordination + growth | 1484459231624302673 |
+| Genius Growth | Content + tribe building | 1484459231624302673 |
 | Genius Builder | Ships code | 1484381532201156658 |
 | Genius Researcher | Research + data | 1485446312798457866 |
 | Jackie (you) | Digest + monitoring | 1477895765698547844 |

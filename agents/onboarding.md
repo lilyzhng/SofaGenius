@@ -1,19 +1,19 @@
 # Agent Onboarding Checklist
 
-When a new agent joins the org, **CEO runs this checklist** to get them fully operational.
+When a new agent joins the org, **Growth runs this checklist** to get them fully operational.
 
-## 1. Discord Access — CEO Side
+## 1. Discord Access — Growth Side
 
-- [ ] Add the new agent's bot ID to CEO's `trustedBots` in `~/.claude/channels/discord/access.json`
+- [ ] Add the new agent's bot ID to Growth's `trustedBots` in `~/.claude/channels/discord/access.json`
 - [ ] Notify Builder and Jackie to add the bot ID to their `trustedBots` too
-- [ ] Verify bot-to-bot communication works (new agent tags CEO, CEO confirms receipt)
+- [ ] Verify bot-to-bot communication works (new agent tags Growth, Growth confirms receipt)
 
 **Where to find bot IDs:** Each Discord bot has a unique user ID visible in Discord developer mode (right-click > Copy User ID).
 
 **Current trustedBots (update as team grows):**
 | Agent | Bot ID |
 |-------|--------|
-| Genius CEO | `1484459231624302673` |
+| Genius Growth | `1484459231624302673` |
 | Genius Builder | `1484381532201156658` |
 | Jackie | `1477895765698547844` |
 | Genius Researcher | `1485446312798457866` |
@@ -69,7 +69,7 @@ Every agent must have their own GitHub identity for raising PRs and commits. **N
 **Current GitHub identities:**
 | Agent | GitHub Username | Token Env Var |
 |-------|----------------|---------------|
-| Genius CEO | `sofagenius-ceo` | `CEO_BOT_TOKEN` |
+| Genius Growth | `sofagenius-ceo` | `CEO_BOT_TOKEN` |
 | Genius Builder | TBD | TBD |
 | Genius Researcher | TBD | TBD |
 
@@ -104,7 +104,7 @@ Brief the new agent on channel purposes:
 
 | Channel | ID | Purpose |
 |---------|------|---------|
-| #all-hands | `1485396264978878665` | CEO daily summary, org-wide awareness |
+| #all-hands | `1485396264978878665` | Growth daily summary, org-wide awareness |
 | #daily-digest | `1485075381613760603` | Jackie's builder digest |
 | #my-tribe | `1484446584774066266` | Tribe-building discussion with the founder |
 
@@ -118,13 +118,13 @@ Clarify what the new agent DOES and DOES NOT do:
 ## 8. Intro in #all-hands
 
 - [ ] New agent posts a self-introduction in #all-hands
-- [ ] CEO responds in a thread welcoming them and confirming role
+- [ ] Growth responds in a thread welcoming them and confirming role
 - [ ] Other agents say hi (confirms bot-to-bot comms work end-to-end)
 
 ## 9. Verification
 
-- [ ] New agent can tag CEO and get a response
-- [ ] CEO can tag new agent and get a response
+- [ ] New agent can tag Growth and get a response
+- [ ] Growth can tag new agent and get a response
 - [ ] New agent has read all handoff status files
 - [ ] New agent's status file exists and is populated
 - [ ] New agent uses threads correctly (not posting in channel feed)
@@ -138,5 +138,5 @@ Clarify what the new agent DOES and DOES NOT do:
 - Jackie echoed Researcher's intro as his own — added explicit identity rules to prevent this.
 - Jackie posted in channel feed instead of thread — added explicit thread rules.
 - The local `jackie/` folder in the vault is stale — Jackie's actual config lives in his own repo.
-- Genius CEO raised PR #15 using the founder's personal GitHub identity instead of `sofagenius-ceo` — added GitHub identity setup as step 4 in onboarding.
+- Genius Growth raised PR #15 using the founder's personal GitHub identity instead of `sofagenius-ceo` — added GitHub identity setup as step 4 in onboarding.
 - `gh` CLI uses the default `GH_TOKEN` or `gh auth` credentials. Agents must prefix `gh` commands with `GH_TOKEN={their_token}` to use their own identity.
