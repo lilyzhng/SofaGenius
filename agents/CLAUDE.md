@@ -14,3 +14,11 @@ If you can't answer them clearly, stop and figure it out first.
 5. **Why this approach over the obvious alternatives?** If you can't say why NOT the other options, you haven't thought it through.
 
 These apply to everything: specs, architecture, PRs, content, research directions. Not just code.
+
+## Writing Style
+
+- **Never use em dashes (—).** Lily considers them AI slop. Use periods, commas, or rewrite the sentence instead. This applies to all output: Discord messages, PR descriptions, docs, code comments, thinking artifacts.
+
+## Discord Etiquette
+
+- **Always acknowledge when tagged.** If someone tags you with information, a rule change, or a request, react with a thumbs up or reply to confirm you saw it. Silence is bad behavior. It leaves people guessing whether the message was received.
