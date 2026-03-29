@@ -1,7 +1,7 @@
 # Voice + Claude Code Bridge - Design Doc
 
 > Date: 2026-03-29
-> Owner: Builder (design + build) | Jackie (voice service) | CEO (review)
+> Owner: Lily (CEO, review) | Jackie (product + voice) | Bill (build + design)
 > Status: Draft
 > Context: Phone Jackie runs GPT Realtime for voice but has only hardcoded tools. Discord Jackie runs Claude Code with full capabilities. They're on the same machine but completely separate. This design bridges them.
 
@@ -44,7 +44,7 @@ The gap is huge. Phone Jackie can't look up a PR, check deployment status, run a
 
 ## Proposed Solution
 
-Add a single `ask_claude` tool to the voice service that delegates complex requests to Claude Code CLI.
+Add a single `use_cli` tool to the voice service that delegates complex requests to the Claude Code CLI running on the same machine.
 
 ### Architecture
 
@@ -55,7 +55,7 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
                         |
             +-----------+-----------+
             |                       |
-     Built-in tools           ask_claude tool
+     Built-in tools           use_cli tool
      (fast path)              (full capability)
      - memory ops             - shells out to `claude` CLI
      - time                   - returns text result
@@ -66,7 +66,7 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 ### How It Works
 
 1. GPT Realtime handles normal conversation at low latency (~500ms)
-2. When the user asks something that needs deeper capability, GPT calls `ask_claude`
+2. When the user asks something that needs deeper capability, GPT calls `use_cli`
 3. The voice service spawns `claude --print` as a child process with the user's request
 4. Claude Code runs with full access: bash, MCP, skills, files, everything
 5. The result (text) is returned to GPT Realtime
@@ -77,8 +77,8 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 ```typescript
 {
   type: "function",
-  name: "ask_claude",
-  description: "Delegate a complex task to Claude Code, which has full access to bash, files, git, MCP servers, and all agent skills. Use this when the user asks for something beyond your built-in tools: checking PRs, running scripts, deployment status, complex research, file operations, or anything you can't do with your other tools. This is slower (5-30s) so tell the user you're looking into it before calling.",
+  name: "use_cli",
+  description: "Run a task using the Claude Code CLI, which has full access to bash, files, git, MCP servers, and all agent skills on this machine. Use this when the user asks for something beyond your built-in tools: checking PRs, running scripts, deployment status, complex research, file operations, or anything you can't do with your other tools. This is slower (5-30s) so tell the user you're looking into it before calling.",
   parameters: {
     type: "object",
     properties: {
@@ -95,7 +95,7 @@ Phone -> Twilio -> GPT Realtime (fast voice brain, handles conversation)
 ### Implementation
 
 ```typescript
-async function askClaude(task: string): Promise<string> {
+async function useCli(task: string): Promise<string> {
   const { execFileSync } = require("child_process");
   try {
     const result = execFileSync(
@@ -125,13 +125,13 @@ async function askClaude(task: string): Promise<string> {
 **Fast path (existing tools, <1s):**
 > "Jackie, what time is it?" -> `get_current_time` -> "It's 8:35 PM Pacific."
 
-**Claude bridge (new, 5-30s):**
+**CLI bridge (new, 5-30s):**
 > "Jackie, what's the status of our latest PR?"
 > Jackie: "Let me check that for you."
-> `ask_claude("Check the latest PR on the SofaGenius repo. Get the PR number, title, status, and any review comments.")`
+> `use_cli("Check the latest PR on the SofaGenius repo. Get the PR number, title, status, and any review comments.")`
 > Jackie: "PR #116 is open, it's the voice service fixes. No reviews yet."
 
-The key UX detail: GPT should say something like "give me a sec" or "let me look into that" BEFORE calling `ask_claude`. The system prompt instructs this. The pause feels natural because humans expect a delay when someone is looking something up.
+The key UX detail: GPT should say something like "give me a sec" or "let me look into that" BEFORE calling `use_cli`. The system prompt instructs this. The pause feels natural because humans expect a delay when someone is looking something up.
 
 ---
 
@@ -139,7 +139,7 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 | Approach | Pros | Cons |
 |----------|------|------|
-| **ask_claude bridge (proposed)** | One tool gives access to everything. No maintenance per capability. | 5-30s latency for complex tasks. Extra cost (Claude API call). |
+| **use_cli bridge (proposed)** | One tool gives access to everything on the machine. No maintenance per capability. | 5-30s latency for complex tasks. Extra cost (Claude API call). |
 | **Keep hardcoding tools** | Fast, predictable latency. | Doesn't scale. Every new capability = code + deploy. Phone Jackie stays limited. |
 | **Replace GPT Realtime with Claude** | Single model, no bridge needed. | Claude doesn't have a realtime voice API. Would need STT + TTS pipeline = higher latency, more complexity. |
 | **MCP client in voice service** | Direct access to MCP servers. | Have to implement MCP client protocol in TypeScript. Each server still needs explicit wiring. Doesn't get bash/skills. |
@@ -150,15 +150,15 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 ## Scope
 
 ### v1 (next PR)
-- [ ] Add `ask_claude` tool definition to `tools.ts`
-- [ ] Implement `askClaude()` function using `claude --print` with `execFileSync` (no shell injection)
-- [ ] Update system prompt to instruct GPT when to use `ask_claude` vs built-in tools
+- [ ] Add `use_cli` tool definition to `tools.ts`
+- [ ] Implement `useCli()` function using `claude --print` with `execFileSync` (no shell injection)
+- [ ] Update system prompt to instruct GPT when to use `use_cli` vs built-in tools
 - [ ] Add timeout handling (60s max, graceful error message)
 - [ ] Test with common scenarios: PR status, deployment checks, file lookups
 
 ### v1.1 (follow-up)
 - [ ] Streaming: Instead of waiting for full Claude response, stream partial results back so GPT can start speaking sooner
-- [ ] Context passing: Include recent conversation transcript in the `ask_claude` prompt so Claude has context
+- [ ] Context passing: Include recent conversation transcript in the `use_cli` prompt so Claude has context
 - [ ] Cost tracking: Log Claude API usage from voice bridge calls separately
 
 ### Future considerations
@@ -172,7 +172,7 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 **Latency perception.** 5-30 second pauses could feel broken. Mitigation: GPT says "checking on that" before calling. The system prompt enforces this.
 
-**Cost stacking.** Each `ask_claude` call costs both OpenAI (GPT Realtime) and Anthropic (Claude API) tokens. Mitigation: Built-in tools remain the fast path for common operations. `ask_claude` is the fallback, not the default.
+**Cost stacking.** Each `use_cli` call costs both OpenAI (GPT Realtime) and Anthropic (Claude API) tokens. Mitigation: Built-in tools remain the fast path for common operations. `use_cli` is the fallback, not the default.
 
 **Prompt injection via voice.** User's spoken words become a prompt to Claude Code. Mitigation: Claude Code already has safety guardrails. The `--max-turns 5` flag limits runaway execution.
 
@@ -182,6 +182,6 @@ The key UX detail: GPT should say something like "give me a sec" or "let me look
 
 ## Open Questions
 
-1. **Should `ask_claude` have access to Jackie's private memory repo?** Currently the voice service runs in SofaGenius. Claude Code would need `JACKIE_MEMORY_DIR` context to access call history and personal notes.
-2. **Rate limiting?** Should we limit how many `ask_claude` calls per session to prevent cost runaway?
+1. **Should `use_cli` have access to Jackie's private memory repo?** Currently the voice service runs in SofaGenius. Claude Code would need `JACKIE_MEMORY_DIR` context to access call history and personal notes.
+2. **Rate limiting?** Should we limit how many `use_cli` calls per session to prevent cost runaway?
 3. **Which Claude model?** Default to Haiku 4.5 for speed (most bridge calls are lookups/summaries). Configurable via `CLAUDE_BRIDGE_MODEL` env var to swap to Sonnet/Opus without redeploying.
