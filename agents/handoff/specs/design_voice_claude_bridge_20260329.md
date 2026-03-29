@@ -107,6 +107,30 @@ When a phone call starts, the voice service spawns a `claude` CLI subprocess. Th
 
 This works because the CLI has `GH_TOKEN` from Jackie's `.env` and write access to `jackie-memory/`.
 
+### Tool Routing
+
+GPT Realtime decides which tool to call based on the tool descriptions in the system prompt. The routing principle is simple: **use built-in tools for speed, fall back to `use_cli` for everything else.**
+
+| User says | Route | Why |
+|-----------|-------|-----|
+| "What time is it?" | `get_current_time` | Exact match, <1s |
+| "Save a note about this idea" | `save_memory` | Exact match, <1s |
+| "Search for latest AI news" | `web_search` | Exact match, <1s |
+| "What's on my calendar?" | `check_calendar` | Exact match, <1s |
+| "Check my email" | `check_email` | Exact match, <1s |
+| "What's the status of PR #117?" | `use_cli` | No built-in PR tool |
+| "Document our call and push to GitHub" | `use_cli` | Multi-step: write file + git commit + push |
+| "Deploy the latest changes" | `use_cli` | No built-in deploy tool |
+| "How many open issues do we have?" | `use_cli` | Needs `gh` CLI |
+| "Read me the last 3 commits" | `use_cli` | Needs `git log` |
+| "Check if the voice service is running" | `use_cli` | Needs `lsof` / process check |
+
+**How this is enforced:** The system prompt tells GPT: "You have fast built-in tools for common tasks. For anything beyond those, use `use_cli`. Before calling `use_cli`, tell Lily you're looking into it so she knows to expect a short pause."
+
+The `use_cli` tool description itself reinforces this: "Use this when the user asks for something beyond your built-in tools: checking PRs, running scripts, deployment status, complex research, file operations, or anything you can't do with your other tools."
+
+**Edge cases:** If a task could go either way (e.g., "search the web for X and summarize it"), GPT may use `web_search` (fast) or `use_cli` (richer summary). This is fine. The built-in tools are a performance optimization, not a hard boundary. If GPT routes something to `use_cli` that could have used a built-in tool, the result is slower but still correct.
+
 ### Tool Definition
 
 ```typescript
