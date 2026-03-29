@@ -24,13 +24,17 @@ Capture a thinking artifact. Two modes:
 **Mode 2: Live capture** (`/wavemind capture` or `/wavemind capture "Topic Name"`)
 When no filepath is given, start a live capture session:
 1. Ask the user for a topic name if not provided
-2. Tell the user: "Recording this conversation. Talk naturally. When you're done, say 'done' or 'save'."
-3. Continue the conversation normally, responding as you would to any request
-4. When the user says "done", "save", or "stop recording":
-   - Compile the full conversation from this session into a clean markdown document
-   - Format with speaker labels, section headers for topic shifts, and timestamps
-   - Fix obvious transcription/typing errors but preserve original words
-   - Run `bash agents/skills/wavemind/lib/capture.sh` to save and index it
+2. Create the artifact file immediately: `agents/skills/wavemind/data/artifacts/<id>.md` with title and metadata header
+3. Tell the user: "Recording this conversation. Talk naturally. When you're done, say 'done' or 'save'."
+4. Continue the conversation normally, responding as you would to any request
+5. **Capture incrementally, not at the end.** After each round (a topic reaches a natural pause, the user moves to a new question, or a decision is made), append that round to the artifact file right away. Each round gets:
+   - A section header: `## Round N: Title`
+   - The raw dialogue with `**Speaker:**` labels
+   - Original words preserved (including mixed languages). Fix obvious typos but do not rewrite or summarize.
+   - This avoids the lossy "reconstruct everything from memory at the end" problem.
+6. When the user says "done", "save", or "stop recording":
+   - Append any remaining conversation not yet written
+   - Run `bash agents/skills/wavemind/lib/capture.sh` to finalize and index it
    - Report: artifact ID, title, round count, word count, file path
    - Suggest: "Run `/wavemind visualize <id>` to generate the visual."
 

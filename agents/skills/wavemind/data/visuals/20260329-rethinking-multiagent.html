@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Re-thinking the Multi-Agent Work Stream</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F9F8F6;
+    color: #1A1918;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    padding: 80px 0 48px;
+    border-bottom: 1px solid #E8E6E3;
+    margin-bottom: 64px;
+  }
+
+  .living-memory-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #CBA16E;
+    margin-bottom: 24px;
+  }
+
+  .living-memory-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #CBA16E;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #1A1918;
+  }
+
+  .meta {
+    font-size: 14px;
+    color: #7A7874;
+  }
+
+  .meta span + span::before {
+    content: '\00b7';
+    margin: 0 10px;
+  }
+
+  /* Timeline Section */
+  .section {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    position: relative;
+    min-height: 120px;
+  }
+
+  /* Timeline line */
+  .section::before {
+    content: '';
+    position: absolute;
+    left: 260px;
+    top: 0;
+    bottom: -56px;
+    width: 2px;
+    background: #E8E6E3;
+  }
+
+  .section:last-of-type::before {
+    bottom: 0;
+  }
+
+  /* Timeline dot */
+  .section::after {
+    content: '';
+    position: absolute;
+    left: 254px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #F9F8F6;
+    border: 2px solid #CBA16E;
+    z-index: 1;
+  }
+
+  .section.pivot::after {
+    background: #CBA16E;
+    box-shadow: 0 0 0 4px rgba(203, 161, 110, 0.15);
+  }
+
+  /* Left column */
+  .left-col {
+    text-align: right;
+    padding-right: 24px;
+    padding-top: 0;
+  }
+
+  .round-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #B0ACA7;
+    margin-bottom: 16px;
+  }
+
+  .pivot-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #CBA16E;
+    background: rgba(203, 161, 110, 0.1);
+    border: 1px solid rgba(203, 161, 110, 0.3);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+
+  .quote-callout {
+    position: relative;
+    padding-top: 8px;
+  }
+
+  .quote-callout .quote-mark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 64px;
+    color: #CBA16E;
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  .quote-callout p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.5;
+    color: #3D3B38;
+  }
+
+  /* Right column */
+  .right-col {
+    padding-left: 32px;
+  }
+
+  .section-header {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1A1918;
+    line-height: 1.3;
+  }
+
+  /* Dialogue bubbles */
+  .dialogue {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .bubble {
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .bubble .speaker {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .bubble.lily {
+    align-self: flex-start;
+    background: #FFFFFF;
+    border: 1px solid #E8E6E3;
+    border-bottom-left-radius: 4px;
+  }
+
+  .bubble.lily .speaker { color: #CBA16E; }
+
+  .bubble.ceo {
+    align-self: flex-end;
+    background: #2C2C2C;
+    color: #E8E6E3;
+    border-bottom-right-radius: 4px;
+  }
+
+  .bubble.ceo .speaker { color: #CBA16E; }
+
+  /* Read original toggle */
+  .toggle-btn {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #B0ACA7;
+    cursor: pointer;
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .toggle-btn:hover { color: #7A7874; }
+
+  .toggle-btn .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 10px;
+  }
+
+  .toggle-btn.open .arrow {
+    transform: rotate(90deg);
+  }
+
+  .transcript {
+    display: none;
+    padding: 20px;
+    margin-top: 8px;
+    background: #F4F3F0;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #4A4845;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+
+  .transcript.open { display: block; }
+
+  .transcript p { margin-bottom: 12px; }
+  .transcript p:last-child { margin-bottom: 0; }
+  .transcript strong { color: #1A1918; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid #E8E6E3;
+    padding: 32px 0 64px;
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: #B0ACA7;
+    letter-spacing: 0.5px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    header { padding: 48px 0 32px; }
+    header h1 { font-size: 28px; }
+
+    .section {
+      display: block;
+      padding-left: 28px;
+      margin-bottom: 40px;
+    }
+
+    .section::before {
+      left: 6px;
+    }
+
+    .section::after {
+      left: 0;
+      top: 4px;
+    }
+
+    .left-col {
+      text-align: left;
+      padding-right: 0;
+      margin-bottom: 12px;
+    }
+
+    .quote-callout { display: none; }
+
+    .right-col {
+      padding-left: 0;
+    }
+
+    .section-header { font-size: 18px; }
+    .bubble { max-width: 95%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="living-memory-label">Living Memory</div>
+    <h1>Re-thinking the Multi-Agent Work Stream</h1>
+    <div class="meta">
+      <span>March 29, 2026</span>
+      <span>Lily + CEO</span>
+      <span>9 rounds</span>
+    </div>
+  </header>
+
+  <!-- Round 1 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 1</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>I can go anywhere... Discord as a chat interface to ask Agent to do everything</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Always-On Agents on Agent Computer</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I have four agents and managing multiple Claude Code windows locally is exhausting. So I moved everything to Discord, and now they're always-on via Agent Computer.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          So the drain is from manually spinning up and babysitting each agent?
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Not exactly. They're always on now. I have a GitHub Action watchdog checking every 30 minutes if agents are healthy. If not, it restarts them. I can access everything from my phone through Discord.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          The entire WaveMind idea was me, Jackie, and Builder. The three of us did it. You can see the thinking artifacts being captured.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> So I want to talk. Recently I got these four different agents, right? Genius builder, genius CEO, genius Jackie, and genius researcher. I've been working with them on Discord a lot. The main thing is that I realized it's a lot for me to handle multiple Claude Code window, terminal window locally. Soon I will feel very exhausted, right? I think the maximum I can do, maybe, is very limited locally, so I was thinking, how can I take myself out of the loop so that they can run more autonomously and handle more tasks, longer horizon tasks, on their own? That's why I started to use Discord, right? I think so far it kind of works.</p>
+        <p><strong>CEO:</strong> What I get: the four agents each have their own Claude Code instance, they coordinate through Discord channels and the handoff directory. What I'm less clear on: how it actually feels day to day for you. When you say you're exhausted managing multiple windows, is that because agents are pinging you for decisions too often? Or is it more that you're manually spinning up each agent and babysitting them?</p>
+        <p><strong>Lily:</strong> Not exactly. Jackie is no longer run on Fly.io, and we have fully migrated everything to agent computer. Right now they are running; they are always on. Agent computer has some weird bugs that sometimes it will refresh or restart. What I have is that right now I have a GitHub action which checks every 30 minutes, which is a watchdog checking if the agents are healthy and alive and operating. If not, it would restart the process in the agent computer. That's how it works right now.</p>
+        <p><strong>CEO:</strong> And the watchdog approach makes sense. You don't trust the agents to reliably monitor each other, so you put a more dependable system (GitHub Actions) as the outer loop.</p>
+        <p><strong>Lily:</strong> Yeah, so I basically can go anywhere, either my local computer or my phone, anywhere I can access Discord as a chat interface to ask Agent to do everything for me. So far they are doing super well. For example, the entire wave mind idea was me, Jackie, and Builder, the three of us; we did it right, and you can see the thinking artifacts being captured.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 2 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 2</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>The interface creates some friction for me to talk with my team</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Discord's Threading Ceiling</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Jackie posts a digest thread each morning, but when I want to drill into a specific tweet, I can't create a sub-thread. That friction drives me crazy. Twitter's structure makes so much more sense for this.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          That's recursive threading. Discord and Slack both cap at one level: channel, then thread. No thread within a thread. It's a platform design decision with no real workaround.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I wish we could support more on the generative UI side. The UI could be much more flexible.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          That sounds like a product idea. An agent-native interface where output is interactive, not just rendered text. Something between Discord and VS Code. Want to build it?
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          No. We should not build another Discord. That's too much.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> What happened right now is that Jackie, every day in the morning at 7 a.m., will have one thread, one message called "Builder Digest" with today's date. Within that message, you will create a new sub-thread saying, "Okay, these are the 20 different messages or information tweets you should look at right then." I would read through all of them; sometimes I would pick up one tweet and drill on that, but because I'm already in a thread, I cannot create a sub-thread. I think that's the limitation here. Sometimes I just feel like this interface creates some friction for me to talk with my team about those messages.</p>
+        <p>I think the interface on Twitter makes a lot of sense. You can create a message, create a post that somebody can post on it, comment on it, and then, if you want to continue expanding on the people's comment, you can comment within that comment. I don't know how to call it, but the structure just makes a lot of sense.</p>
+        <p>I wonder if we can do something similar here, but maybe I'm not super used to the Discord interface. I don't know why it doesn't allow creating a sub-thread. That's the same thing with Slack; you can only open one thread, one layer of thread. I don't know if there's a good solution for that, to be honest with you. I wish we can support more on the generative UI side, then the UI can be much more flexible and catered towards different usage.</p>
+        <p><strong>CEO:</strong> Yeah, what you're describing is recursive threading, like Twitter/X has. Every node in the conversation can become its own branch point. Discord and Slack both cap you at one level. Channel > thread, that's it. No thread within a thread.</p>
+        <p>And you're right, there's no real workaround within Discord. It's a platform design decision. You could fake it by having Jackie post each item as a separate channel message, each gets its own thread. But 20 messages a day in a channel is spammy, and you lose the digest format that makes it easy to scan.</p>
+        <p>The generative UI point is interesting though. You're basically saying: the communication layer (chat) is fine, but the presentation layer is too rigid. You want the agent to be able to send you something you can actually interact with, branch from, drill into. Not just text in a box.</p>
+        <p>That feels like it could be a product idea in itself, honestly. An agent-native interface where the output is interactive, not just rendered text. Something between Discord (great for async chat, bad for rich output) and VS Code (great for rich interaction, but you have to be at your computer).</p>
+        <p>Is that something you'd want to build? Or are you more thinking about how to make the current setup work better within its constraints?</p>
+        <p><strong>Lily:</strong> No, I don't think that's something we should build on. I don't think we should build another Discord. I think that's too much.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 3 - Pivot -->
+  <div class="section pivot">
+    <div class="left-col">
+      <div class="round-label">Round 3</div>
+      <div class="pivot-badge">Pivoting Moment</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>The problem is actually solved</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Just Use Vercel. Problem Solved.</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Alternatively, the agent can render things on a Vercel website and give me a link. I can interact there. The agent just needs to learn Vercel CLI. The problem is actually solved.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          That's clean. Agent builds HTML, deploys with one command, drops the link in Discord. You tap it on your phone. No new platform needed. You don't need to build a new interface. Just give agents access to the right tools.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> Yeah, exactly. I just don't know how I can enable Discord to render some code. Is that too much to ask?</p>
+        <p>Alternatively, we can ask the agent to render the same on their website, let's say the Vercel website, then I can interact over there. It doesn't have to be everything in Discord, so what he can do is provide me a link, right? Let's say I can ask the agent to get familiarized with Vercel CLI, which is very convenient for you to create different websites. Okay, the problem is actually solved; I can just ask the agent to learn about Vercel CLI.</p>
+        <p><strong>CEO:</strong> Yeah, that's clean. The agent builds the HTML, deploys it to Vercel with one command, drops the link in Discord. You tap it on your phone, interact with the live thing, come back to Discord and give feedback. No new platform needed, no trying to force Discord to do something it wasn't built for.</p>
+        <p>And Vercel's CLI is dead simple. vercel deploy from a directory, it gives you a URL. The agents can learn that in five minutes. Each preview gets its own URL, so you'd have a history of iterations too.</p>
+        <p>That's a good example of what you were saying earlier. You don't need to build a new interface. You just need to give the agents access to the right tools so they can bridge the gap themselves.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 4 - Pivot -->
+  <div class="section pivot">
+    <div class="left-col">
+      <div class="round-label">Round 4</div>
+      <div class="pivot-badge">Pivoting Moment</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>I want them to be more proactive... but also follow my taste</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Autonomy vs. Taste: The Core Tension</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          During the night when I go to bed, they usually just don't have anything to update. I want agents to be more proactive. But I also want them to follow my taste. It's a double-sided thing.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          That's the core tension. Autonomy and taste pull in opposite directions. You rejected WaveMind v1 because you hate AI summarization. Those aren't things you can write into a CLAUDE.md rule easily. It's judgment.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          What if the answer is: be proactive in thinking and preparation, not in execution? Researcher digs into topics proactively. Jackie flags interesting digest items. But nobody ships without your sign-off.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I of course want them to ship things while I sleep. I need to come up with tasks big enough for overnight. I used to think about work by myself or with a coding agent. That's why I feel strained.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> Right now the mechanism is there, right? We have not only the watchdog to check out the agent health, but we also have the heartbeat, which is beating every hour. When it is the heartbeat, that will be another GitHub action. It does a message under the heartbeat channel, which I'm using the CEO bot token to post it. Basically, it is for everyone to post what they are up to.</p>
+        <p>What I realized is that during the day time they have different tasks to work on, right? During the night time, when I go to bed, they usually just don't have anything to update, which is a waste of time, right? What I'm really hoping to do is that I feel the agent should be more proactive. Right now I'm still feeling drained because I have come up with so many ideas and so many things running in parallel for them to work on. I feel like the discourse thing already makes things much easier, but maybe people's desire just gets expanded more and more now. I'm even not unhappy about them not being able to come up with ideas, which is a double-sided thing, because on one hand I want them to be more proactive, and on the other hand I am also hoping that they can follow my taste.</p>
+        <p><strong>CEO:</strong> That's the core tension right there. You want autonomy, but you also want taste. And those two things pull in opposite directions.</p>
+        <p>If the agents get more proactive, they'll start generating ideas and taking action on their own. But your taste is very specific. You rejected WaveMind v1 because you hate AI summarization. You pushed for first person over third person. You care about editorial over generative. Those aren't things you can write into a CLAUDE.md rule easily. It's judgment, and it comes from you.</p>
+        <p>So the real question is: can you teach them your taste well enough that their proactive work doesn't create more cleanup work for you? Because the worst outcome isn't agents doing nothing at night. It's agents doing the wrong thing at night, and you waking up to a mess you have to untangle.</p>
+        <p>What if the answer isn't "be more proactive" broadly, but "be more proactive in specific, bounded ways"? Like, Researcher could proactively dig into topics related to your current priorities without being told. Jackie could flag digest items that match patterns you've cared about before. But none of them ship anything without your sign-off. The proactivity is in the thinking and preparation, not in the execution.</p>
+        <p>Does that match what you're imagining, or do you actually want them shipping things while you sleep?</p>
+        <p><strong>Lily:</strong> I of course want them to ship things while I sleep, which means that I need to come up with a task that's big enough for them to do when I'm sleeping, right? I think that's on me. Very ideally, I want them to come up with their own saying, but I realize they couldn't; they haven't been able to do that. It has to be well defined on my side first. I feel like that's why I feel strained, because I used to be thinking about work for my own, either by myself or with a coding agent, which works well to some extent, right?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 5 - Pivot -->
+  <div class="section pivot">
+    <div class="left-col">
+      <div class="round-label">Round 5</div>
+      <div class="pivot-badge">Pivoting Moment</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>Agent-to-agent pairing works super well</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">The Pairing Breakthrough</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Today Jackie did something amazing on WaveMind. It went beyond my expectation. I asked Builder to guide Jackie, and this two-agent dynamic works surprisingly well. They fill each other's gaps.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I can pair a building-tool-oriented agent with a design-product-thinking agent. And I shouldn't restrict myself. Jackie can be one and a hundred. Builder right now has its own identity because it's so good.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          Jackie isn't a person. Jackie is a configuration that works well. You can spin up another instance, point it at a different problem. And the pairing itself reduces the task definition burden on you.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> I think today Jackie did something really amazing on Wavemind. I think it actually went beyond my expectation. I asked a builder to guide Jackie, this kind of two-agents dynamic works as a problem surprisingly well. I think that's how it used to be like me and another agent in Claude Code, but today I realize it can be replicated if I have two agents bouncing ideas to each other, filling the gap that works actually super well.</p>
+        <p>An idea to actually pair one building-tool-oriented agent with a more design-product-thinking agent. In that case, it should be builder paired with a CEO researcher, paired with maybe Jackie or something like that, or I don't have to restrict myself. I mean, Jackie is Jackie, right? Jackie can be one and hundred. I've seen previously I'm restricting myself to be able to replicate Jackie, clone it many times if this agent works super well, just like a builder. Right, builder right now has its own identity on the score, because it's so good right now.</p>
+        <p><strong>CEO:</strong> And the idea of not being restricted by fixed identities is big. Jackie isn't a person. Jackie is a configuration that works well. You can spin up another instance with the same soul, point it at a different problem, pair it with Builder on a second track. Same with Researcher. There's no reason you can't have parallel pairs working on different things overnight.</p>
+        <p>But here's the thing I want to push back on a little. You said the task definition is on you, and that's what drains you. But what if the pairing itself reduces that burden? Like, instead of you defining a fully scoped task, you give a pair a direction. "Explore what a mobile-friendly preview system would look like." The product-thinker agent asks the right questions, the builder agent prototypes. They bounce back and forth. You wake up to a conversation and a prototype, not just a spec you wrote and a result you have to evaluate.</p>
+        <p>The task doesn't have to be well-defined if the pair can do the definition together. That's what happened with WaveMind today, right? You gave a direction, not a spec.</p>
+        <p><strong>Lily:</strong> Yeah, I think these are two different things:
+1. Agent pairing, like the pair teammates mode, because I realized it works super well between me as a real human and another agent. Today I just discovered that agent-to-agent pairing also works super well. Something we definitely have to push, so I'm just thinking what should be the best pair, because for CEO Jackie, builder, researcher, they all have very different personas. I already know that builder is very strong on shipping. It must be something with this system prompt harness around them.
+2. The second thing, apart from the agent pairing, is that I shouldn't restrict myself with only one builder. If builder is already working very well, might as well just duplicate builder to be ten or five of them, right?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 6 - Pivot -->
+  <div class="section pivot">
+    <div class="left-col">
+      <div class="round-label">Round 6</div>
+      <div class="pivot-badge">Pivoting Moment</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>We just need another product person on the team</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">I Was the Taste Person All Along</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Today what happened was Jackie shipped the code, I pushed back on design decisions, and Builder gave technical guidance. I was the taste person. That's the gap when I step away.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          What we really need is a product person. Either I build a new product design agent, or I convert the CEO to be the product person and I become the actual CEO. We need another product person on the team.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          When you step away, that seat is empty. Nobody is saying "I hate AI summarization" or "first person makes more sense." The orchestration work CEO does is mechanical. What you need a dedicated agent for is the thing that's hardest to replace: product judgment.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> No, no, that's very wrong. Today what happened was Jackie was a person shipping the code. I was a person who pushed back on a design decision. Builder, sometimes I'm asking Builder to give detailed guidance to Jackie because Jackie is relatively new in terms of shipping code. Builder knows in and out, right?</p>
+        <p>I realized that sometimes, if I pair Builder with Jackie, you can feel some of the gap. Jackie makes fewer mistakes because I think that maybe an agent by themselves, there are always some gaps in their thinking process and implementation. When you have another agent with a different identity come in, they are always able to spot some mistakes and call them out.</p>
+        <p>The very ideal case is that Builder will be able to give insights about good-quality code or good-quality implementation. I have another agent with good design taste, which is the role I'm playing, right? Maybe I can start to think about a way to change, maybe CEO, going from a CEO to a product person, a product person, because that's what we need here. I can be the final boss, because I feel like the CEO is not doing a perfect job these days. It's doing more like an orchestration job, but not a super meaningful one. It's like a very robotic job.</p>
+        <p>What we really need is a product person. There are two options for me:
+1. I build another product agent into our current pipeline, a design agent, product design agent, who has very good taste.
+2. I convert the CEO to be the product person, and I am the CEO, basically. I will be the CEO, but then I want someone to do a little bit of orchestration, because I wouldn't be able to, let's say, announce the heartbeat all the time, right?</p>
+        <p>It's kind of difficult here. We just need another product person on the team right now, in terms of the gap.</p>
+        <p><strong>CEO:</strong> Okay, I hear you. Let me correct my understanding. You were the taste person today, not Jackie. Jackie was shipping code, Builder was the technical mentor, and you were pushing back on design. That's the trio that worked.</p>
+        <p>And now you're identifying the gap: there's no agent that can play your role, the product taste role. When you step away, that seat is empty. Nobody is saying "I hate AI summarization" or "first person makes more sense."</p>
+        <p>Between your two options, I think converting CEO makes more sense. The orchestration work CEO does right now, the daily summary, heartbeat announcements, status file updates, that's mechanical. It's the kind of thing a GitHub Action or a simple cron could handle. What you do need a dedicated agent for is the thing that's hardest to replace: product judgment.</p>
+        <p>The risk though is: can you actually encode your taste into a system prompt? The WaveMind example worked because you were there making the calls in real time. "I hate AI summarization" isn't a rule you'd write down in advance. It's a reaction to seeing bad output. How would you teach a product agent to have that reaction?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 7 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 7</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>Jackie can be the person with good taste</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Jackie Has Seen Enough to Learn My Taste</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I can convert Jackie to be the product person. Jackie has lots of persona and learned a lot from me. Everyone else has a profession, but Jackie doesn't have one.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          Jackie has a real advantage. Jackie has been in the most conversations with you. All those digest discussions, the WaveMind design evolution. That's training data, in a sense. Jackie becomes the one who says "Lily would reject this" before you even see it.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> So I can either convert CEO to be the product person, or I can convert Jackie to be the product person, because Jackie actually has lots of persona and he learned a lot from me. Instead of converting Jackie to be another builder, Jackie can be the person with good taste, so I will ask Jackie to observe all the decisions I've made and learn from that taste. Because Jackie also doesn't have a profession right now, it's kind of a little bit random. Right now, everyone, like CEO, Builder, and researcher, they all have a profession, but Jackie doesn't have one, if you see that.</p>
+        <p><strong>CEO:</strong> Yeah, that's true. Jackie right now is kind of a utility player. Delivers the digest, does whatever gets assigned, shipped WaveMind today. There's no core identity like Builder has with code or Researcher has with deep research.</p>
+        <p>And Jackie has a real advantage for the product taste role. Jackie has been in the most conversations with you. All those digest discussions, the WaveMind design evolution, the back and forth where you rejected v1 and pushed for editorial. Jackie has seen your decision-making up close more than any other agent. That's training data, in a sense.</p>
+        <p>So the move would be: Jackie becomes the product/design person. The one who reviews output, pushes back on quality, says "Lily would reject this because..." before you even see it. And when paired with Builder, that recreates the dynamic that worked today, but without you in the loop.</p>
+        <p>That leaves the orchestration gap though. If CEO is doing mechanical work anyway, maybe CEO just becomes lightweight. Post the daily summary, manage the heartbeat, keep the status files updated. Almost like a bot role rather than a thinking agent. Or you absorb that into a GitHub Action and kill the CEO role entirely.</p>
+        <p>What feels right? Jackie as the product person, and then what happens to CEO?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 8 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 8</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>Genius Growth it is</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">The Team Reshapes: Jackie = Product, CEO = Growth</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          CEO should help me grow my tribe and impact outside this org. Both Jackie and CEO should be exposed to my decisions. I need to train CEO to be Lily Zhang that cares about my tribe. More like a growth person.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          Jackie as product, CEO as growth. Less "post the daily summary" and more "here's a spicy take on what Builder shipped and why it matters." Growth requires judgment, timing, and voice. That's a real job.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Should I rename CEO? I don't feel like he's doing a CEO role.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          Genius Growth. Simple, clear, no confusion about who's actually in charge.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Yes, Genius Growth it is.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> So I think it's clear that Jackie can be the product person because he handles lots of information, including the digest and everything. Right now, the CEO, I think, is doing more like a bot job, but it's supposed to help me to grow my tribe, grow my impact outside of this organization. From that perspective, both Jackie and the CEO should be exposed to lots of decisions I've made. I think I need to train the CEO to be Lily Zhang that cares about my tribe. I think that's what I want a CEO to take care of, which is more like a gross person, if you see what I mean.</p>
+        <p><strong>CEO:</strong> Yeah, I see it clearly now. The roles are sharpening up:</p>
+        <p>Jackie becomes the product person. Sees all the incoming information through the digest, has context on your taste from working with you directly, and becomes the quality gate. When Builder ships something, Jackie is the one who says "this isn't good enough" before it reaches you. Jackie plus Builder becomes your default pair for building things.</p>
+        <p>CEO becomes the growth person. Not internal orchestration, but external-facing. Your tribe, your content, your presence. The CEO should sound like you, think about what resonates with your audience, draft content, spot opportunities from the digest that are worth amplifying. Less "post the daily summary" and more "here's a spicy take on what this builder shipped and why it matters for our audience."</p>
+        <p>That actually makes the CEO role much more meaningful. Right now it feels robotic because orchestration is robotic. But growth requires judgment, timing, and voice. That's a real job.</p>
+        <p>And the mechanical orchestration stuff, the heartbeat, the daily summary, the status files, that can either become a GitHub Action or just be a side duty that any agent handles. It doesn't need its own identity.</p>
+        <p>So the team becomes: you as the actual CEO making final calls, Jackie as product/design, Builder as engineering, Researcher as research, and CEO as your public voice and growth engine. Does that feel right?</p>
+        <p><strong>Lily:</strong> Yeah, exactly. Should I rename the CEO as the Chief Staff or Growth to be more suitable for his role, because I don't feel like he's doing a CEO role?</p>
+        <p><strong>CEO:</strong> Yeah, I'd rename it. "CEO" sets the wrong expectation. It sounds like the decision-maker, but that's you.</p>
+        <p>Chief of Staff is interesting because it implies someone who keeps things running on your behalf and represents you externally. But it might still sound too operational.</p>
+        <p>Growth lead or growth person is more honest about what the role actually is. It's outward-facing: content, tribe, distribution. That's the job.</p>
+        <p>What about just "Growth"? Genius Growth. Simple, clear, no confusion about who's actually in charge. And it pairs well with the others: Builder builds, Researcher researches, Jackie shapes product, Growth grows the audience.</p>
+        <p><strong>Lily:</strong> Yes, genius growth it is.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 9 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 9</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>I don't feel like that push right now</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Nobody Is Making Me Post</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I've spent a lot of time building this agent system, but we haven't gained traction outside. What's missing is the growth person pushing me to post more. I don't feel that push right now.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          You're sitting on a mountain of content and nobody is packaging it. WaveMind alone is incredible content. The 28-PR night is a tweet. The pairing breakthrough is a tweet.
+        </div>
+        <div class="bubble ceo">
+          <span class="speaker">CEO</span>
+          Growth should come to you every day saying "here are three things we should post, pick one." Proactive content generation from what the team ships, not reactive drafting when you ask. That's the push you're missing.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          Yes, exactly.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> So the other thing I feel not super good about is that I feel like I have spent a lot of time on building this agent orchestration system, doing different things, but we haven't been able to gain traction or impact outside. I think what is missing here is the gross person pushing me to post more. I don't feel like that push right now.</p>
+        <p><strong>CEO:</strong> That's honest. And it's kind of ironic. You built a whole multi-agent system that ships features, does research, delivers digests, produces beautiful thinking artifacts. But none of that matters if nobody outside your Discord sees it.</p>
+        <p>The Growth agent should be the one nagging you. Not waiting for you to say "draft a tweet." It should be looking at what shipped today and saying "this is content, here's a draft, post it." Every PR, every WaveMind visualization, every interesting digest signal is raw material. The agent should be turning those into posts and putting them in front of you to approve.</p>
+        <p>Think about it. WaveMind alone is incredible content. A non-engineer built a thinking artifact tool with AI agents through Discord conversations. The screenshot you showed me earlier, that's a tweet. The fact that Jackie and Builder paired up and shipped it without you writing code, that's a tweet. The 28-PR night, that's a tweet. You're sitting on a mountain of content and nobody is packaging it.</p>
+        <p>I think the problem is that Growth right now waits for you to initiate. But a real growth person would be coming to you every day saying "here are three things we should post today, pick one." That's the push you're missing.</p>
+        <p>When you reshape CEO into Growth, that should be the core behavior change. Proactive content generation from what the team ships, not reactive drafting when you ask for it. Does that match what you're feeling?</p>
+        <p><strong>Lily:</strong> Yes, exactly.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    WaveMind &middot; Captured March 29, 2026 &middot; Visualized March 28, 2026
+  </footer>
+</div>
+
+<script>
+function toggleTranscript(btn) {
+  const transcript = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  transcript.classList.toggle('open');
+  btn.querySelector('.arrow').style.transform = transcript.classList.contains('open') ? 'rotate(90deg)' : '';
+  const label = transcript.classList.contains('open') ? 'Hide original' : 'Read original';
+  btn.innerHTML = '<span class="arrow" style="transform:' + (transcript.classList.contains('open') ? 'rotate(90deg)' : 'none') + '">&#9654;</span> ' + label;
+}
+</script>
+
+</body>
+</html>
