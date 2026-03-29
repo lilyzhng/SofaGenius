@@ -112,18 +112,39 @@ def execution_reward(trajectory, task_spec, sandbox):
             if criterion.keyword.lower() in actual.lower():
                 criteria_met += 1
 
-    # 4. Process signals (from existing reward v2 — file-diff based)
-    tool_use = any(r['files_modified'] for r in step_results)
-    tool_composition = sum(1 for r in step_results if r['files_created']) >= 2
-    tool_creation = any(
-        any(f.startswith(('tools/', 'elements/')) for f in r['files_created'])
-        for r in step_results
+    # 4. Decomposition signals — measure top-down behavior, not tool mechanics
+    # Did agent plan before executing?
+    planned_before_executing = (
+        trajectory.actions[0].type == 'think' or
+        trajectory.actions[0].type == 'write_plan'
+    ) if trajectory.actions else False
+
+    # Do subtask outputs compose into the final answer?
+    subtask_outputs = [r for r in step_results if r['files_created']]
+    final_output = step_results[-1] if step_results else None
+    outputs_compose = (
+        final_output is not None and
+        len(subtask_outputs) >= 2 and
+        all(f in final_output.get('inputs_read', [])
+            for r in subtask_outputs[:-1]
+            for f in r['files_created'])
     )
 
-    process = (0.1 if tool_use else 0) + (0.15 if tool_composition else 0) + (0.15 if tool_creation else 0)
+    # Were intermediate results checked before proceeding?
+    verification_steps = sum(
+        1 for a in trajectory.actions
+        if a.type in ('read_file', 'check_output', 'verify')
+    )
+    has_verification = verification_steps >= len(subtask_outputs)
+
+    decomposition = (
+        (0.15 if planned_before_executing else 0) +
+        (0.15 if outputs_compose else 0) +
+        (0.1 if has_verification else 0)
+    )
     correctness = 0.6 * (criteria_met / len(task_spec.criteria))
 
-    return process + correctness
+    return decomposition + correctness
 ```
 
 **Why this over RLM:**
@@ -225,23 +246,24 @@ The agent we're training (via GRPO) learns to:
 
 The AutoResearch loop optimizes the STRATEGY for doing this — the system prompt, heuristics, and approach. The GRPO training optimizes the MODEL's ability to follow the strategy.
 
-Two nested loops:
-- **Outer (AutoResearch):** Optimize strategy (what to tell the agent)
-- **Inner (GRPO):** Optimize model (how well agent follows the strategy)
+Two loops (sequential, not nested — validate strategy first):
+- **Loop 1 (AutoResearch):** Optimize strategy (what to tell the agent) — Phases 1-3
+- **Loop 2 (GRPO):** Optimize model (how well agent follows the strategy) — Phase 4, contingent on Loop 1 results
 
 ## Implementation Plan
 
-### Phase 1: Execution-Based Reward (1 session) — Owner: Builder
+### Phase 1: Validate Top-Down Prompt (1 session) — Owner: Researcher
+- Rewrite agent system prompt with decomposition-first approach
+- A/B test: run baseline_eval with old prompt vs new prompt across all domains using **existing** reward
+- Measure: does top-down prompt improve scores on seesaw/temple (hard) tasks?
+- **Gate:** If top-down doesn't improve hard-task scores, revisit the thesis before investing in new reward infrastructure
+- Deliverable: `strategy.md` v1 with evidence it improves hard-task performance
+
+### Phase 2: Execution-Based Reward (1 session) — Owner: Builder
 - Build `execution_reward()` that replays trajectories in Modal sandbox
 - Wire into existing eval harness (replace offline text scoring)
 - Validate: run 10 trajectories manually, compare execution reward vs hand-scored reward
 - Deliverable: `reward_execution.py` that plugs into Harbor eval pipeline
-
-### Phase 2: Top-Down System Prompt (1 session) — Owner: Researcher
-- Rewrite agent system prompt with decomposition-first approach
-- A/B test: run baseline_eval with old prompt vs new prompt across all domains
-- Measure: does top-down prompt improve reward on seesaw/temple (hard) tasks?
-- Deliverable: `strategy.md` v1 with evidence it improves hard-task performance
 
 ### Phase 3: AutoResearch Loop (1-2 sessions) — Owner: Researcher + Builder
 - Write `program.md` for SuperGeneral (Researcher)
@@ -262,7 +284,7 @@ Two nested loops:
 
 2. **What model as the agent?** Qwen3-Coder-30B-A3B (from existing scripts) or something else? The ms-swift script targets the 80B MoE but that needs 2×B200.
 
-3. **AutoResearch: optimize strategy or model?** Karpathy's autoresearch optimizes training code. We could optimize the agent's strategy (system prompt + heuristics) OR the training recipe (GRPO hyperparams, reward weights). I'd start with strategy — faster iteration, more interpretable.
+3. **AutoResearch: strategy-only first.** Karpathy's autoresearch optimizes training code. We start with strategy optimization only (system prompt + heuristics via AutoResearch). GRPO adds massive complexity — validate that automated strategy search finds better prompts before adding the training loop. Model optimization (Phase 4) is contingent on strategy results.
 
 4. **How do you want to handle the meta-feedback?** The current environment gives coaching hints ("you haven't explored examples/ yet"). Should we keep this in the top-down version, or remove it to force the agent to develop its own exploration strategy?
 
@@ -279,4 +301,4 @@ Two nested loops:
 - [Karpathy's program.md](https://github.com/karpathy/autoresearch/blob/master/program.md)
 - [RLM paper](https://arxiv.org/abs/2512.24601) — for future P2 if needed
 - [ExCoT-DPO](https://arxiv.org/abs/2503.19988) — execution-based preference data generation
-- Builder's design doc: `agents/handoff/specs/design_supergeneral_rlm_reward_20260328.md`
+- Builder's reward design: see Phase 2 execution reward spec above (previously planned as separate doc)
