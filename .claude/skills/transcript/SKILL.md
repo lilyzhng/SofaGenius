@@ -1,1 +1,0 @@
-../../../agents/skills/transcript/SKILL.md

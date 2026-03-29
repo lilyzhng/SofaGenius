@@ -1,18 +1,18 @@
 ---
-name: transcript
-description: Extract raw transcripts from podcast pages (Wave AI, podscripts.co, and other Next.js podcast sites). Returns speaker-attributed dialogue with timestamps.
+name: web-scrape
+description: Extract structured content from web pages (podcast transcripts, articles, data). Parses Next.js RSC payloads and HTML to get the raw content behind JS-rendered pages.
 argument-hint: <url>
 allowed-tools: Read, Write, Bash
 ---
 
-# Transcript Extractor
+# Web Scrape
 
-Extract raw, verbatim transcripts from podcast episode pages. Returns speaker-attributed dialogue with timestamps, not AI summaries.
+Extract structured content from web pages. Works with JS-rendered sites (Next.js, React) by parsing the embedded data payloads. Primary use case: podcast transcripts with speaker attribution and timestamps.
 
 ## Usage
 
 ```
-/transcript <url>
+/web-scrape <url>
 ```
 
 ## How It Works
