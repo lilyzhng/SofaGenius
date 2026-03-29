@@ -1,30 +1,36 @@
 # Sesame — MVP Spec
 
+## First Principles Check
+
+- **Who is the user?** AI agents (Claude Code, Open Claw, Cortex Code)
+- **Where do they already live?** Inside agent harnesses that support skills
+- **Does the distribution model match?** Yes — a skill is native to the agent platform. A CLI would require agents to shell out to a standalone tool they'd have to discover and install separately.
+- **Why skill over CLI?** Skills are portable across Claude Code forks (Open Claw, Cortex Code). No npm publishing, no arg parsing overhead. The agent calls `/sesame stripe` directly — no shell needed.
+
 ## Problem
 
 Setting up SaaS services is the #1 bottleneck for AI agents (and vibe-coders). Karpathy's MenuGen post nailed it: he spent most of his time "in the browser, moving between tabs and settings and configuring and gluing a monster." He gave up on database entirely — "too much bear."
 
 Agents can write code. They can't click through Stripe dashboards, configure OAuth in Google Cloud Console, or navigate DNS settings. The setup layer is invisible to LLMs.
 
-**Every SaaS is shipping its own CLI** (Stripe, Vercel, Supabase, Google Workspace). But each one works differently, and there's no unified `init` command that wires everything up and outputs config to stdout.
+**Every SaaS is shipping its own CLI** (Stripe, Vercel, Supabase, Google Workspace). But each one works differently, and there's no unified setup flow that wires everything up and hands config back to the agent.
 
 ## What Sesame Does
 
-A universal CLI that sets up SaaS services for AI agents. One command per service, everything to stdout.
+A portable Claude Code skill that sets up SaaS services for AI agents. One command per service, config returned directly to the agent.
 
-```bash
-# Agent runs this, gets back API keys + config
-sesame init stripe
-# → outputs: STRIPE_SECRET_KEY=sk_test_... STRIPE_PUBLISHABLE_KEY=pk_test_...
+```
+/sesame stripe
+→ STRIPE_SECRET_KEY=sk_test_... STRIPE_PUBLISHABLE_KEY=pk_test_...
 
-sesame init supabase
-# → outputs: SUPABASE_URL=https://xxx.supabase.co SUPABASE_ANON_KEY=eyJ...
+/sesame supabase
+→ SUPABASE_URL=https://xxx.supabase.co SUPABASE_ANON_KEY=eyJ...
 
-sesame init vercel --project my-app
-# → outputs: VERCEL_TOKEN=... VERCEL_PROJECT_ID=...
+/sesame vercel --project my-app
+→ VERCEL_TOKEN=... VERCEL_PROJECT_ID=...
 ```
 
-The agent reads stdout, sets env vars, and keeps building. No browser. No clicking. No "too much bear."
+The agent gets config directly, sets env vars, and keeps building. No browser. No clicking. No "too much bear."
 
 ## Competitive Landscape
 
@@ -36,7 +42,7 @@ The agent reads stdout, sets env vars, and keeps building. No browser. No clicki
 | **Skills.sh** (Vercel) | Distributes SKILL.md files for agents | Installs instructions, not infrastructure |
 | **Individual CLIs** (stripe, vercel, supabase) | Per-service setup | Each works differently, no unified interface |
 
-**Our gap:** Nobody solves "run one command to get Service X wired up and outputting config to stdout." The setup layer between "I want to use Stripe" and "I have STRIPE_SECRET_KEY in my env."
+**Our gap:** Nobody solves "one command to get Service X wired up and config returned to the agent." The setup layer between "I want to use Stripe" and "I have STRIPE_SECRET_KEY in my env."
 
 ## MVP Scope (Weekend Build)
 
@@ -48,23 +54,23 @@ Pick the 3 most common services for a typical web app:
 2. **Supabase** — database + auth (fastest Postgres setup)
 3. **Vercel** — deployment (most common for Next.js)
 
-### CLI Interface
+### Skill Interface
 
-```bash
-sesame init <service> [options]
-sesame list                    # show available services
-sesame status                  # show configured services + env vars
+```
+/sesame <service> [options]
+/sesame list                    # show available services
+/sesame status                  # show configured services + env vars
 ```
 
-**Output contract:** Every `init` command outputs `KEY=VALUE` pairs to stdout, one per line. Agents parse this trivially. Human-readable status goes to stderr.
+**Output contract:** Every service command returns `KEY=VALUE` pairs that the agent can parse directly. Status messages are separate from the key output.
 
-```bash
-# stdout (agent reads this)
+```
+# Key output (agent parses this)
 STRIPE_SECRET_KEY=sk_test_abc123
 STRIPE_PUBLISHABLE_KEY=pk_test_xyz789
 STRIPE_WEBHOOK_SECRET=whsec_...
 
-# stderr (human reads this)
+# Status (informational)
 ✓ Stripe test mode configured
 ✓ Webhook endpoint registered at https://...
 ✓ 3 env vars exported
@@ -113,54 +119,46 @@ The value isn't eliminating the one-time login — it's **everything after**: ke
 ### What We Ship
 
 ```
-sesame/
-├── bin/sesame          # CLI entry point
+.claude/skills/sesame/
+├── sesame.md              # Skill entry point (prompt + instructions)
 ├── services/
-│   ├── stripe.sh           # Stripe init script
-│   ├── supabase.sh         # Supabase init script
-│   └── vercel.sh           # Vercel init script
-├── lib/
-│   └── output.sh           # Shared stdout/stderr helpers
-├── SKILL.md                # So agents know how to use it
-└── package.json            # npm distribution
+│   ├── stripe.sh          # Stripe setup script
+│   ├── supabase.sh        # Supabase setup script
+│   └── vercel.sh          # Vercel setup script
+└── lib/
+    └── output.sh          # Shared output helpers
 ```
 
-**Language:** Bash scripts. Agents already know bash. No build step. `npm install -g sesame-cli` and go.
+**Language:** Bash scripts invoked by the skill. The skill prompt tells the agent how to call the scripts and parse the output. No npm package, no CLI arg parsing — just a skill file + bash scripts.
 
-### SKILL.md (for agent discovery)
+### Portability
 
-```markdown
-# Sesame
-
-When you need to set up a SaaS service (payments, database, deployment, auth):
-
-1. Run `sesame list` to see available services
-2. Run `sesame init <service>` to configure it
-3. Read stdout for KEY=VALUE pairs — add them to .env
-
-Available services: stripe, supabase, vercel
-```
+The skill is a directory that can be copied into any Claude Code-compatible agent:
+- **Claude Code** — drop into `.claude/skills/`
+- **Open Claw** — same skill format
+- **Cortex Code** — same skill format
+- **Any fork** — skills are just markdown + scripts
 
 ## Distribution
 
-- **npm:** `npm install -g sesame-cli` (main distribution)
-- **Skills.sh:** Submit to Vercel's skill registry for agent discovery
-- **SKILL.md:** Include in repo for Claude Code / Cortex Code auto-detection
+- **GitHub repo** — share the skill directory, anyone can copy it in
+- **Skills.sh** — submit to Vercel's skill registry for agent discovery
+- **Direct copy** — agents install by copying the skill directory into their project
 
 ## Success Metrics (Weekend MVP)
 
-- [ ] `sesame init stripe` works end-to-end (outputs real test keys)
-- [ ] `sesame init supabase` works end-to-end (outputs URL + keys)
-- [ ] `sesame init vercel` works end-to-end (outputs token + project ID)
+- [ ] `/sesame stripe` works end-to-end (outputs real test keys)
+- [ ] `/sesame supabase` works end-to-end (outputs URL + keys)
+- [ ] `/sesame vercel` works end-to-end (outputs token + project ID)
 - [ ] An AI agent (Claude Code) can use Sesame to set up a project without human help
-- [ ] Published to npm
+- [ ] Skill is portable — works in a fresh Claude Code project by copying the directory
 
 ## Post-MVP Ideas (Don't Build Yet)
 
 - More services: Auth0, Clerk, PlanetScale, Resend, Cloudflare
-- `sesame init all` — full stack in one command
-- `sesame doctor` — verify all services healthy
-- Plugin system — community-contributed service scripts
+- `/sesame all` — full stack in one command
+- `/sesame doctor` — verify all services healthy
+- Community-contributed service scripts (PR to the skill repo)
 - MCP server wrapper — expose as MCP tool for agents that prefer MCP
 - `.sesame.json` — project config file that remembers what's set up
 
