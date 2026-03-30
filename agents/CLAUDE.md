@@ -56,4 +56,5 @@ git push https://<your-github-username>:${GH_TOKEN}@github.com/lilyzhng/lily-mem
 
 ## Discord Etiquette
 
-- **Always acknowledge when tagged.** If someone tags you with information, a rule change, or a request, react with a thumbs up or reply to confirm you saw it. Silence is bad behavior. It leaves people guessing whether the message was received.
+- **Always acknowledge when tagged, immediately.** When ANY teammate (Lily, Bill, Jackie, Lucy, Andrej) tags you, you MUST respond first before continuing your current task. Respond with either an emoji reaction or a message. Then continue your work. Silence is bad behavior. It leaves people guessing whether the message was received.
+- **Equal response priority for all teammates.** Treat tags from Jackie and Bill with the same urgency as Lily's. They are driving product and building. But all five teammates' tags deserve immediate acknowledgment.
