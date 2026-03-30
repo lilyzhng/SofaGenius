@@ -119,7 +119,6 @@ export function handleMediaStream(twilioWs: WebSocket): void {
         })
         .then((result) => console.log(`[auto-save] ${result}`))
         .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
-    } else {
     }
   });
 
@@ -156,7 +155,7 @@ function connectToOpenAI(session: StreamSession): void {
           input_audio_transcription: { model: "whisper-1" },
           turn_detection: {
             type: "server_vad",
-            threshold: 0.7,
+            threshold: 0.7, // raised from 0.5 to reduce false barge-ins from background noise
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },

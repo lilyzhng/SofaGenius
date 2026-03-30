@@ -406,7 +406,8 @@ function commitAndPush(message: string): string {
   const repoRoot = "/home/node/lily-memory";
   const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
   try {
-    // Copy any new/changed files from worktree to main checkout
+    // Sync conversations from working dir to the main lily-memory checkout (needed when
+    // voice service runs from a worktree whose memoryDir differs from the repo root)
     execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
     // Set Jackie's identity
     execFileSync("git", ["config", "user.name", "genius-product"], opts);
