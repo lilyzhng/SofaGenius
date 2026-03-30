@@ -422,15 +422,15 @@ function commitAndPush(message: string): string {
       }
       throw e;
     }
-    // Pull with rebase to integrate remote changes before pushing
+    // Pull with rebase against origin/main (explicit ref avoids broken tracking branch config)
     try {
-      execFileSync("git", ["pull", "--rebase"], opts);
+      execFileSync("git", ["pull", "--rebase", "origin", "main"], opts);
     } catch {
       // If rebase fails, abort and report
       try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
       return "Committed locally but could not rebase with remote. Manual intervention needed.";
     }
-    execFileSync("git", ["push"], opts);
+    execFileSync("git", ["push", "origin", "HEAD:main"], opts);
     return "Changes committed and pushed to lily-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
