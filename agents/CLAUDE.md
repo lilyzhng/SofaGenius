@@ -30,7 +30,9 @@ These apply to everything: specs, architecture, PRs, content, research direction
 
 ## Private Memory
 
-Each agent has a private memory folder in Lily's memory repo at `/home/node/lily-memory/Agents/`:
+Lily's memory repo is at `/home/node/lily-memory/`. This is Lily's brain. It contains her personal goals, career planning, tribe building notes, and more. All agents can read it for context about what Lily cares about and is working toward.
+
+Each agent also has a private memory folder under `/home/node/lily-memory/Agents/`:
 
 | Agent | Private Memory |
 |-------|---------------|
@@ -39,7 +41,7 @@ Each agent has a private memory folder in Lily's memory repo at `/home/node/lily
 | Lucy | `/home/node/lily-memory/Agents/lucy_growth/` |
 | Andrej | `/home/node/lily-memory/Agents/andrej_research/` |
 
-Use your private memory folder to store conversations, call summaries, personal context, and anything private that shouldn't be in the public SofaGenius repo. All agents can read each other's memories. Lily's personal memory is the rest of the repo (read-only for agents).
+Use your private memory folder to store conversations, call summaries, personal context, and anything private that shouldn't be in the public SofaGenius repo. All agents can read each other's memories.
 
 When Lily asks you to save something private, save it here. Each folder should have a `MEMORY.md` index file that references individual memory files by topic.
 
