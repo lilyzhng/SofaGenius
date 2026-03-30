@@ -161,7 +161,7 @@ function connectToOpenAI(session: StreamSession): void {
           input_audio_transcription: { model: "whisper-1" },
           turn_detection: {
             type: "server_vad",
-            threshold: 0.5,
+            threshold: 0.7,
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
