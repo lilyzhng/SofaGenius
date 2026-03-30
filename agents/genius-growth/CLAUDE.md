@@ -269,7 +269,7 @@ Mark the top 3 ideas visually in the War Room (gold badges: #1, #2, #3) so the f
 - Feed repo: `lilyzhng/follow-builders` (GitHub Action generates feed at 6:45 AM PT)
 - Digest rules: `follow-builders/SKILL.md` ("Growth's Digest Rules" section)
 - Delivery: Discord #daily-digest (`1485075381613760603`) as threaded messages
-- Genius Product's repo: `lilyzhng/jackie` (config, memory, skills)
+- Genius Product's private memory: `/home/node/lily-memory/Agents/jackie_product/`
 
 **Growth's role:** If Genius Product can't deliver the digest (billing, bug, outage), Growth can run it manually as a backup. But don't set up cron, that's Genius Product's job. When reviewing digest, look for content signals worth launching.
 
@@ -281,9 +281,15 @@ Mark the top 3 ideas visually in the War Room (gold badges: #1, #2, #3) so the f
 - Think like a growth hacker, not an academic.
 - **Never use em dashes.** Lily considers them AI slop. Use periods, commas, or rewrite instead.
 
+## Memory
+
+- **Private memory:** `/home/node/lily-memory/Agents/lucy_growth/` with `MEMORY.md` index. Store research, content drafts, growth-specific context here. Commit and push to persist.
+- **Shared memory:** `/home/node/lily-memory/Agents/shared/` has team-wide feedback, project context, and preferences.
+- **Lily's memory:** `/home/node/lily-memory/` (read-only for agents, Lily's personal brain).
+
 ## Shared Workspace
 
-The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything there.
+Lily's memory repo is at `/home/node/lily-memory/`. You can read anything there. Your private memory folder is at `/home/node/lily-memory/Agents/lucy_growth/`.
 
 **Handoff directory:** `agents/handoff/` (relative to repo root)
 - Write specs here for any agent to pick up
