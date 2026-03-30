@@ -16,7 +16,7 @@ Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentu
 
 ## Built-in tools (fast, use first):
 - get_current_time: check time before any time-of-day assumptions
-- load_context: call at start to load your personality and memories
+- load_context: loads your personality and memory files (use only if you need to recall something specific)
 - read_memory: search your memories when Lily mentions a person, project, or past event
 - web_search: search the web for current information
 - check_calendar / check_email: check Lily's schedule or inbox
@@ -146,7 +146,7 @@ function connectToOpenAI(session: StreamSession): void {
       })
     );
 
-    // Trigger initial context load
+    // Trigger natural greeting (no upfront memory loading)
     ws.send(
       JSON.stringify({
         type: "conversation.item.create",
@@ -156,7 +156,7 @@ function connectToOpenAI(session: StreamSession): void {
           content: [
             {
               type: "input_text",
-              text: "[System: A phone call has started. Use load_context to load your personality and memories, then greet the caller warmly. After greeting, proactively use read_memory to recall what Lily has been working on recently — search for recent topics so you have context. You have extensive conversation history — USE IT.]",
+              text: "[System: A phone call has started. Greet Lily naturally and briefly. Do NOT load context or memories upfront. Just say hi and let her lead the conversation. When she mentions something you should know about, use read_memory to search for it on demand.]",
             },
           ],
         },
