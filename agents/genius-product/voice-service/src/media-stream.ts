@@ -116,7 +116,7 @@ export function handleMediaStream(twilioWs: WebSocket): void {
         .then(() => {
           console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
           // Use CLI to commit and push (it knows how to handle git properly)
-          return useCli(`Commit and push the new call transcript in ${config.jackie.memoryDir}/Agents/jackie_product/calls/ to the lily-memory repo. Only stage files under Agents/jackie_product/. Use git commit message "auto-save: call transcript". Push to main.`);
+          return useCli(`Run these exact bash commands in sequence: cd /home/node/lily-memory && git config user.name "genius-product" && git config user.email "lilyzhng.ai+genius-jackie@gmail.com" && git checkout main && git add Agents/jackie_product/calls/ && git commit -m "auto-save: call transcript" && git pull --rebase && git push. Do not create a PR. Do not use any other commands. Push directly to main.`);
         })
         .then((result) => {
           console.log(`[auto-save] CLI push result: ${result.slice(0, 200)}`);
