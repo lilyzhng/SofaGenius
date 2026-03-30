@@ -4,9 +4,9 @@
 
 set -euo pipefail
 
-# Vault lives repo-local by default (gitignored). Override with SESAME_DIR env var.
+# Vault lives in ~/.sesame/ by default. Override with SESAME_DIR env var.
 SKILL_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SESAME_DIR="${SESAME_DIR:-${SKILL_DIR}/data}"
+SESAME_DIR="${SESAME_DIR:-${HOME}/.sesame}"
 SESAME_VAULT="${SESAME_DIR}/vault.json"
 SESAME_PROJECTS="${SESAME_DIR}/projects"
 
