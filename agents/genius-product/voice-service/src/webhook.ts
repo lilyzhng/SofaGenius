@@ -64,6 +64,52 @@ export async function startServer(): Promise<void> {
     reply.type("text/xml").send(twiml);
   });
 
+  // Outbound call — Jackie calls Lily (or a specified number)
+  app.post("/voice/call", async (request, reply) => {
+    const body = request.body as Record<string, string> | undefined;
+    const to = body?.to ?? config.twilio.lilyPhoneNumber;
+
+    if (!to) {
+      return reply.status(400).send({ error: "No phone number provided and LILY_PHONE_NUMBER not set" });
+    }
+
+    if (!publicUrl) {
+      return reply.status(500).send({ error: "PUBLIC_URL not set, Twilio cannot reach webhook" });
+    }
+
+    const { accountSid, authToken, phoneNumber } = config.twilio;
+    const twilioUrl = `https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Calls.json`;
+    const authHeader = "Basic " + Buffer.from(`${accountSid}:${authToken}`).toString("base64");
+
+    const params = new URLSearchParams({
+      To: to,
+      From: phoneNumber,
+      Url: `${publicUrl}/voice/webhook`,
+      StatusCallback: `${publicUrl}/voice/status`,
+    });
+
+    console.log(`[outbound] Calling ${to} from ${phoneNumber}`);
+
+    const resp = await fetch(twilioUrl, {
+      method: "POST",
+      headers: {
+        Authorization: authHeader,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: params.toString(),
+    });
+
+    const result = await resp.json();
+
+    if (!resp.ok) {
+      console.error("[outbound] Twilio error:", result);
+      return reply.status(resp.status).send({ error: "Twilio call failed", details: result });
+    }
+
+    console.log(`[outbound] Call initiated — SID: ${(result as Record<string, string>).sid}`);
+    return { ok: true, callSid: (result as Record<string, string>).sid };
+  });
+
   // Twilio status callback (optional, for logging)
   app.post("/voice/status", async (request) => {
     const body = request.body as Record<string, string>;

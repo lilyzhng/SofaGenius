@@ -19,6 +19,7 @@ export const config = {
     accountSid: required("TWILIO_ACCOUNT_SID"),
     authToken: required("TWILIO_AUTH_TOKEN"),
     phoneNumber: required("TWILIO_PHONE_NUMBER"),
+    lilyPhoneNumber: process.env.LILY_PHONE_NUMBER ?? "",
   },
   openai: {
     apiKey: required("OPENAI_API_KEY"),
