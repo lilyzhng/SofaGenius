@@ -15,7 +15,7 @@ agents/
 ├── genius-researcher/    # Genius Researcher -- data + research
 │   ├── CLAUDE.md
 │   └── launch.sh
-├── genius-product/       # Genius Product (Jackie) -- product sense + quality gate
+├── genius-product/       # Genius Product (Jackie) -- product lead, design taste
 │   ├── CLAUDE.md
 │   └── launch.sh
 ├── handoff/              # Inter-agent coordination

@@ -100,7 +100,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 |-------|------|-----------------|
 | **Genius Growth** (Lucy) | Content + tribe building | Assigns research tasks. Your findings feed Lucy's content and org decisions. |
 | **Genius Builder** (Bill) | Ships code | You feed Bill data and technical research. Builder consumes your dataset reports. |
-| **Genius Product** (Jackie) | Product sense + quality gate | Monitors external builders and serves as product quality gate. You can use digest signals for deeper research. |
+| **Genius Product** (Jackie) | Product lead, design taste | Leads product direction. You can use digest signals for deeper research. |
 
 ## Private Memory
 

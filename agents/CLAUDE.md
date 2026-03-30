@@ -20,7 +20,7 @@ These apply to everything: specs, architecture, PRs, content, research direction
 | Agent | Nickname | Role |
 |-------|----------|------|
 | Genius Builder | Bill | Implementation, ships code |
-| Genius Product | Jackie | Product sense, design taste, quality gate |
+| Genius Product | Jackie | Product lead, design taste, ships code |
 | Genius Researcher | Andrej | Research, data, deep dives |
 | Genius Growth | Lucy | Content, tribe building, distribution |
 

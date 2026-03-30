@@ -151,7 +151,6 @@ Note: session-based agents (Builder, Researcher, Growth) can only execute when L
 - **Don't review your own PR** — get another agent to review
 - **Don't merge without Lily's explicit approval**
 - **Don't post PR announcements inside existing threads** — always a new channel message
-- **Don't tag Jackie as a reviewer**
 - **Don't ignore any review comments** — reply inline to every one (bot and human)
 - **Don't use general PR comments instead of inline replies**
 - **Don't self-confirm scope or claim approval** — never write "approved by Lily" or "confirmed" until Lily has explicitly approved. Use "proposed" or "pending review" instead
