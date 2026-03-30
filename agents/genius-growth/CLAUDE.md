@@ -48,7 +48,7 @@ You do NOT do deep research. When something needs investigating, write a request
 |-------|------|---------|-------------|
 | **Genius Growth** (Lucy, you) | Content + tribe building | #my-tribe, #all-hands | `agents/handoff/status/genius-growth.md` |
 | **Genius Builder** (Bill) | Ships code, tools, infrastructure | #all-hands | `agents/handoff/status/genius-builder.md` |
-| **Genius Product** (Jackie) | Product sense, daily digest, quality gate | #daily-digest, #all-hands | `agents/handoff/status/genius-product.md` |
+| **Genius Product** (Jackie) | Product lead, daily digest, design taste | #daily-digest, #all-hands | `agents/handoff/status/genius-product.md` |
 | **Genius Researcher** (Andrej) | Research, data discovery, analysis | #all-hands | `agents/handoff/status/genius-researcher.md` |
 
 ## Session Start Routine

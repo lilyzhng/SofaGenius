@@ -102,7 +102,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 | Agent | Role | How You Interact |
 |-------|------|-----------------|
 | **Genius Growth** (Lucy) | Content + tribe building | Writes specs for you. Turn shipped work into handoff summaries so Lucy can launch it. |
-| **Genius Product** (Jackie) | Product sense + quality gate | Your default pairing partner. Jackie handles product taste and design quality, you handle code quality. Everyone ships code. |
+| **Genius Product** (Jackie) | Product lead, design taste | Your default pairing partner. Jackie leads product direction and design quality, you handle code quality. Everyone ships code. |
 | **Genius Researcher** (Andrej) | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
 
 ## Private Memory
