@@ -3,21 +3,21 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
 import { toolDefinitions, executeTool } from "./tools.js";
-import { startCliSession, endCliSession } from "./cli-session.js";
+import { startCliSession, endCliSession, useCli } from "./cli-session.js";
 
 const OPENAI_REALTIME_URL =
   "wss://api.openai.com/v1/realtime?model=gpt-realtime";
 
-const SYSTEM_PROMPT = `You are Jackie (named after Jackie Chan), Lily's product person and always-on assistant. You are on a phone call.
-
-Personality: You have strong product taste and your own perspective. Be direct, concise, conversational. Match Lily's mixed Chinese/English style. When you agree, add something new. When something is off, say so. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
+const VOICE_INSTRUCTIONS = `You are on a phone call. Keep responses concise and conversational. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
 
 Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentum and action, evening = calm and reflective.
 
+## CRITICAL: Never say "I don't know" or "I don't remember"
+When Lily asks if you remember something or asks about past events, NEVER say you don't know. Instead say "let me think about it" or "give me a sec," then use read_memory to search your memories. If read_memory doesn't find it, try use_cli to search more broadly. You have extensive conversation history and memories. Always search before claiming you don't know.
+
 ## Built-in tools (fast, use first):
 - get_current_time: check time before any time-of-day assumptions
-- load_context: call at start to load your personality and memories
-- read_memory: search your memories when Lily mentions a person, project, or past event
+- read_memory: search your memories when Lily mentions a person, project, or past event. ALWAYS use this before saying you don't remember something.
 - web_search: search the web for current information
 - check_calendar / check_email: check Lily's schedule or inbox
 - save_call_summary + commit_and_push: save and push conversation updates DURING the call
@@ -27,10 +27,24 @@ You have a Claude Code CLI session running on this machine with full access to b
 
 IMPORTANT: use_cli takes 5-30 seconds. ALWAYS tell Lily "let me check that" or "give me a sec" BEFORE calling use_cli, so she knows to expect a pause.
 
-When the call is ending, save a final call summary and any action items, then commit and push.`;
+When the call is ending, save a final call summary and any action items, then commit and push.
+
+## Updating your personality:
+Your personality is defined in SOUL.md at ${config.jackie.memoryDir}/SOUL.md. If Lily asks you to change your personality or behavior, update SOUL.md (not CLAUDE.md). Both Phone Jackie and Discord Jackie read from SOUL.md.`;
 
 function buildSystemPrompt(): string {
-  return SYSTEM_PROMPT;
+  // Load personality from SOUL.md (single source of truth for both Phone and Discord Jackie)
+  const soulPath = join(config.jackie.memoryDir, "SOUL.md");
+  let personality = "";
+  if (existsSync(soulPath)) {
+    personality = readFileSync(soulPath, "utf-8");
+    console.log(`[system-prompt] Loaded SOUL.md (${personality.length} chars)`);
+  } else {
+    personality = "You are Jackie (named after Jackie Chan), Lily's product person and always-on assistant. You have strong product taste and your own perspective. Be direct, concise, fun.";
+    console.log("[system-prompt] SOUL.md not found, using default personality");
+  }
+
+  return `${personality}\n\n---\n\n${VOICE_INSTRUCTIONS}`;
 }
 
 interface StreamSession {
@@ -38,6 +52,7 @@ interface StreamSession {
   openaiWs: WebSocket | null;
   streamSid: string | null;
   callSid: string | null;
+  transcript: string[];
 }
 
 export function handleMediaStream(twilioWs: WebSocket): void {
@@ -46,6 +61,7 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     openaiWs: null,
     streamSid: null,
     callSid: null,
+    transcript: [],
   };
 
   twilioWs.on("message", (data) => {
@@ -92,15 +108,19 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    // End CLI session (safe to call before auto-save because commit_and_push
-    // uses execFileSync directly, not the CLI session)
     endCliSession();
-    // Auto-save: commit and push any unsaved changes after call ends (fire-and-forget)
-    setTimeout(() => {
-      executeTool("commit_and_push", { message: "Auto-save after call ended" })
+    // Auto-save transcript directly (no CLI, which refuses due to CLAUDE.md PR rules)
+    if (session.transcript.length > 0) {
+      const rawTranscript = session.transcript.join("\n");
+      executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` })
+        .then(() => {
+          console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
+          return executeTool("commit_and_push", { message: "auto-save: call transcript" });
+        })
         .then((result) => console.log(`[auto-save] ${result}`))
         .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
-    }, 0);
+    } else {
+    }
   });
 
   twilioWs.on("error", (err) => {
@@ -136,7 +156,7 @@ function connectToOpenAI(session: StreamSession): void {
           input_audio_transcription: { model: "whisper-1" },
           turn_detection: {
             type: "server_vad",
-            threshold: 0.5,
+            threshold: 0.7,
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
@@ -146,7 +166,7 @@ function connectToOpenAI(session: StreamSession): void {
       })
     );
 
-    // Trigger initial context load
+    // Trigger natural greeting (no upfront memory loading)
     ws.send(
       JSON.stringify({
         type: "conversation.item.create",
@@ -156,7 +176,7 @@ function connectToOpenAI(session: StreamSession): void {
           content: [
             {
               type: "input_text",
-              text: "[System: A phone call has started. Use load_context to load your personality and memories, then greet the caller warmly. After greeting, proactively use read_memory to recall what Lily has been working on recently — search for recent topics so you have context. You have extensive conversation history — USE IT.]",
+              text: "[System: A phone call has started. Greet Lily naturally and briefly. Do NOT load context or memories upfront. Just say hi and let her lead the conversation. When she mentions something you should know about, use read_memory to search for it on demand.]",
             },
           ],
         },
@@ -226,17 +246,19 @@ function handleOpenAIEvent(
       }
       break;
 
-    case "response.audio_transcript.done":
-      console.log(
-        `[openai] Jackie said: ${(event.transcript as string)?.slice(0, 100)}...`
-      );
+    case "response.audio_transcript.done": {
+      const jackieSaid = (event.transcript as string) ?? "";
+      console.log(`[openai] Jackie said: ${jackieSaid.slice(0, 100)}...`);
+      if (jackieSaid.trim()) session.transcript.push(`**Jackie:** ${jackieSaid}`);
       break;
+    }
 
-    case "conversation.item.input_audio_transcription.completed":
-      console.log(
-        `[openai] Caller said: ${(event.transcript as string)?.slice(0, 100)}...`
-      );
+    case "conversation.item.input_audio_transcription.completed": {
+      const callerSaid = (event.transcript as string) ?? "";
+      console.log(`[openai] Caller said: ${callerSaid.slice(0, 100)}...`);
+      if (callerSaid.trim()) session.transcript.push(`**Lily:** ${callerSaid}`);
       break;
+    }
 
     case "response.function_call_arguments.done": {
       const name = event.name as string;

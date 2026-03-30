@@ -19,6 +19,7 @@ export const config = {
     accountSid: required("TWILIO_ACCOUNT_SID"),
     authToken: required("TWILIO_AUTH_TOKEN"),
     phoneNumber: required("TWILIO_PHONE_NUMBER"),
+    lilyPhoneNumber: process.env.LILY_PHONE_NUMBER ?? "",
   },
   openai: {
     apiKey: required("OPENAI_API_KEY"),
@@ -26,6 +27,7 @@ export const config = {
   server: {
     port: parseInt(process.env.PORT ?? "3334", 10),
     publicUrl: process.env.PUBLIC_URL ?? "",
+    callApiSecret: process.env.CALL_API_SECRET ?? "",
   },
   jackie: {
     dir: process.env.JACKIE_DIR ?? "/home/node/SofaGenius/agents/genius-product",
