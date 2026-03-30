@@ -404,7 +404,12 @@ function createActionItem(item: string, assignee?: string): string {
 function commitAndPush(message: string): string {
   const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
   try {
-    execFileSync("git", ["add", "."], opts);
+    // Ensure we're on main before committing
+    try {
+      execFileSync("git", ["checkout", "main"], opts);
+    } catch { /* already on main or detached, continue */ }
+    // Only stage Jackie's own files (calls, context, action-items), not the whole repo
+    execFileSync("git", ["add", "Agents/jackie_product/"], opts);
     try {
       execFileSync("git", ["commit", "-m", message], opts);
     } catch (e) {
@@ -423,7 +428,7 @@ function commitAndPush(message: string): string {
       return "Committed locally but could not rebase with remote. Manual intervention needed.";
     }
     execFileSync("git", ["push"], opts);
-    return "Changes committed and pushed to jackie-memory.";
+    return "Changes committed and pushed to lily-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
     return `Git error: ${err.message}`;

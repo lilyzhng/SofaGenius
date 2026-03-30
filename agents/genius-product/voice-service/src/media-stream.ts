@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
 import { toolDefinitions, executeTool } from "./tools.js";
-import { startCliSession, endCliSession } from "./cli-session.js";
+import { startCliSession, endCliSession, useCli } from "./cli-session.js";
 
 const OPENAI_REALTIME_URL =
   "wss://api.openai.com/v1/realtime?model=gpt-realtime";
@@ -108,24 +108,27 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    // End CLI session (safe to call before auto-save because commit_and_push
-    // uses execFileSync directly, not the CLI session)
-    endCliSession();
-    // Auto-save transcript and push after call ends
-    setTimeout(async () => {
-      try {
-        // Save accumulated transcript as call log
-        if (session.transcript.length > 0) {
-          const rawTranscript = session.transcript.join("\n");
-          await executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` });
+    // Auto-save transcript via CLI, then end session
+    if (session.transcript.length > 0) {
+      const rawTranscript = session.transcript.join("\n");
+      // Save transcript to file first (fast, no CLI needed)
+      executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` })
+        .then(() => {
           console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
-        }
-        const result = await executeTool("commit_and_push", { message: "Auto-save call transcript" });
-        console.log(`[auto-save] ${result}`);
-      } catch (e) {
-        console.error("[auto-save] Failed:", (e as Error).message);
-      }
-    }, 0);
+          // Use CLI to commit and push (it knows how to handle git properly)
+          return useCli(`Commit and push the new call transcript in ${config.jackie.memoryDir}/Agents/jackie_product/calls/ to the lily-memory repo. Only stage files under Agents/jackie_product/. Use git commit message "auto-save: call transcript". Push to main.`);
+        })
+        .then((result) => {
+          console.log(`[auto-save] CLI push result: ${result.slice(0, 200)}`);
+          endCliSession();
+        })
+        .catch((e) => {
+          console.error("[auto-save] Failed:", (e as Error).message);
+          endCliSession();
+        });
+    } else {
+      endCliSession();
+    }
   });
 
   twilioWs.on("error", (err) => {
