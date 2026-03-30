@@ -402,13 +402,16 @@ function createActionItem(item: string, assignee?: string): string {
 }
 
 function commitAndPush(message: string): string {
-  const opts = { encoding: "utf-8" as const, cwd: memoryDir, timeout: 30000 };
+  // Use the main lily-memory checkout for git operations (worktrees can't checkout main)
+  const repoRoot = "/home/node/lily-memory";
+  const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
   try {
-    // Ensure we're on main before committing
-    try {
-      execFileSync("git", ["checkout", "main"], opts);
-    } catch { /* already on main or detached, continue */ }
-    // Only stage Jackie's own files (calls, context, action-items), not the whole repo
+    // Copy any new/changed files from worktree to main checkout
+    execFileSync("cp", ["-r", join(memoryDir, "calls"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
+    // Set Jackie's identity
+    execFileSync("git", ["config", "user.name", "genius-product"], opts);
+    execFileSync("git", ["config", "user.email", "lilyzhng.ai+genius-jackie@gmail.com"], opts);
+    // Stage only Jackie's files
     execFileSync("git", ["add", "Agents/jackie_product/"], opts);
     try {
       execFileSync("git", ["commit", "-m", message], opts);
