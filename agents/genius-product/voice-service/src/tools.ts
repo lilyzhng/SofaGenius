@@ -359,8 +359,18 @@ function saveMemory(content: string): string {
 }
 
 function saveCallSummary(summary: string): string {
-  const convoDir = join(memoryDir, "conversations");
-  mkdirSync(convoDir, { recursive: true });
+  const repoRoot = "/home/node/lily-memory";
+  const repoConvoDir = join(repoRoot, "Agents/jackie_product/conversations");
+
+  // Pull latest remote state so we never overwrite content pushed by other agents
+  try {
+    execFileSync("git", ["pull", "--rebase", "origin", "main"], {
+      encoding: "utf-8", cwd: repoRoot, timeout: 30000,
+    });
+  } catch { /* best effort */ }
+
+  // Always read from and write to the repo directory (single source of truth)
+  mkdirSync(repoConvoDir, { recursive: true });
 
   const now = new Date();
   const date = now.toISOString().split("T")[0];
@@ -369,7 +379,7 @@ function saveCallSummary(summary: string): string {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const file = join(convoDir, `${date}.md`);
+  const file = join(repoConvoDir, `${date}.md`);
 
   const entry = `\n\n## Call at ${time} PT\n${summary}`;
 
@@ -378,6 +388,13 @@ function saveCallSummary(summary: string): string {
     writeFileSync(file, existing + entry);
   } else {
     writeFileSync(file, `# Conversations — ${date}${entry}`);
+  }
+
+  // Also sync to memoryDir if it differs from repo
+  const localConvoDir = join(memoryDir, "conversations");
+  if (localConvoDir !== repoConvoDir) {
+    mkdirSync(localConvoDir, { recursive: true });
+    execFileSync("cp", [file, localConvoDir], { encoding: "utf-8", timeout: 5000 });
   }
 
   return `Call summary saved to conversations/${date}.md`;
@@ -406,9 +423,18 @@ function commitAndPush(message: string): string {
   const repoRoot = "/home/node/lily-memory";
   const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
   try {
-    // Sync conversations from working dir to the main lily-memory checkout (needed when
-    // voice service runs from a worktree whose memoryDir differs from the repo root)
-    execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
+    // Pull latest BEFORE staging so we never overwrite remote changes
+    try {
+      execFileSync("git", ["pull", "--rebase", "origin", "main"], opts);
+    } catch {
+      try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
+    }
+    // Sync conversations from working dir if it differs from repo
+    const repoConvoDir = join(repoRoot, "Agents/jackie_product/conversations");
+    const localConvoDir = join(memoryDir, "conversations");
+    if (localConvoDir !== repoConvoDir) {
+      execFileSync("cp", ["-r", localConvoDir, join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
+    }
     // Stage only Jackie's files
     execFileSync("git", ["add", "Agents/jackie_product/"], opts);
     try {
@@ -420,14 +446,6 @@ function commitAndPush(message: string): string {
         return "No changes to commit.";
       }
       throw e;
-    }
-    // Pull with rebase against origin/main (explicit ref avoids broken tracking branch config)
-    try {
-      execFileSync("git", ["pull", "--rebase", "origin", "main"], opts);
-    } catch {
-      // If rebase fails, abort and report
-      try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
-      return "Committed locally but could not rebase with remote. Manual intervention needed.";
     }
     execFileSync("git", ["push", "origin", "HEAD:main"], opts);
     return "Changes committed and pushed to lily-memory.";
