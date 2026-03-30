@@ -2,11 +2,13 @@ import WebSocket from "ws";
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
+import { writeFileSync, unlinkSync } from "node:fs";
 import { toolDefinitions, executeTool } from "./tools.js";
 import { startCliSession, endCliSession, useCli } from "./cli-session.js";
 
 const OPENAI_REALTIME_URL =
   "wss://api.openai.com/v1/realtime?model=gpt-realtime";
+const TRANSCRIPT_FILE = "/tmp/jackie-active-transcript.txt";
 
 const VOICE_INSTRUCTIONS = `You are on a phone call. Keep responses concise and conversational. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
 
@@ -27,12 +29,9 @@ You have a Claude Code CLI session running on this machine with full access to b
 IMPORTANT: use_cli takes 5-30 seconds. ALWAYS tell Lily "let me check that" or "give me a sec" BEFORE calling use_cli, so she knows to expect a pause.
 
 ## Saving conversations:
-When Lily asks you to save, or when the call is ending, use use_cli to save the conversation. CRITICAL RULES:
-- ALWAYS pull latest from origin main FIRST before reading or writing any file
-- ALWAYS APPEND to the existing conversation file. NEVER overwrite or delete previous conversations.
-- Save raw transcript in first-person: "**Lily:** ..." and "**Jackie:** ..." exactly as spoken. Do NOT rephrase, summarize, or use third-person perspective.
-- File path: /home/node/lily-memory/Agents/jackie_product/conversations/{date}.md
-- After saving, commit and push to origin main.
+The raw call transcript is continuously written to /tmp/jackie-active-transcript.txt during the call. When Lily asks you to save, use use_cli and tell it: "Read the transcript from /tmp/jackie-active-transcript.txt, pull latest main in /home/node/lily-memory, then append only the NEW lines (that aren't already in the file) to the conversations file and push." Do NOT try to write the conversation from your memory. Always read from the transcript file.
+
+The transcript is also automatically saved when the call ends.
 
 ## Updating your personality:
 Your personality is defined in SOUL.md at ${config.jackie.memoryDir}/SOUL.md. If Lily asks you to change your personality or behavior, update SOUL.md (not CLAUDE.md). Both Phone Jackie and Discord Jackie read from SOUL.md.`;
@@ -68,6 +67,10 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     callSid: null,
     transcript: [],
   };
+
+  // Write transcript to a known file path so the CLI can read it
+  const TRANSCRIPT_FILE = "/tmp/jackie-active-transcript.txt";
+  writeFileSync(TRANSCRIPT_FILE, "");
 
   twilioWs.on("message", (data) => {
     const msg = JSON.parse(data.toString());
@@ -113,32 +116,28 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    // Auto-save transcript via CLI (single code path, no hardcoded git tools)
+    // Auto-save transcript via CLI (reads from the transcript file)
     if (session.transcript.length > 0) {
-      const rawTranscript = session.transcript.join("\n");
-      const now = new Date();
-      const date = now.toISOString().split("T")[0];
-      const time = now.toLocaleTimeString("en-US", {
-        timeZone: "America/Los_Angeles",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
       console.log(`[auto-save] Saving transcript (${session.transcript.length} lines) via CLI...`);
       useCli(
-        `Save this call transcript to my conversations file. ` +
-        `IMPORTANT: Pull the latest main from origin FIRST (git pull --rebase origin main in /home/node/lily-memory), ` +
-        `then APPEND (never overwrite) to the file at /home/node/lily-memory/Agents/jackie_product/conversations/${date}.md. ` +
-        `If the file exists, add a new section at the end. If it doesn't exist, create it with header "# Conversations — ${date}". ` +
-        `Add a "## Call at ${time} PT" header, then "## Raw Transcript", then the transcript below:\n\n${rawTranscript}\n\n` +
+        `Save the call transcript from /tmp/jackie-active-transcript.txt to the conversations file. ` +
+        `IMPORTANT: Pull the latest main from origin FIRST (git pull --rebase origin main in /home/node/lily-memory). ` +
+        `Read the transcript from /tmp/jackie-active-transcript.txt. ` +
+        `Check what's already in /home/node/lily-memory/Agents/jackie_product/conversations/${new Date().toISOString().split("T")[0]}.md ` +
+        `and only append lines that aren't already there (a mid-call save may have written part of it already). ` +
+        `Never overwrite or delete existing content. ` +
+        `If the file doesn't exist, create it with header "# Conversations — ${new Date().toISOString().split("T")[0]}". ` +
         `After saving, commit with message "auto-save: call transcript" using git -c user.name=genius-product -c user.email=lilyzhng.ai+genius-jackie@gmail.com, ` +
         `then push to origin main.`
       )
         .then((result) => {
           console.log(`[auto-save] CLI result: ${result.slice(0, 200)}`);
+          try { unlinkSync(TRANSCRIPT_FILE); } catch { /* ignore */ }
           endCliSession();
         })
         .catch((e) => {
           console.error("[auto-save] Failed:", (e as Error).message);
+          try { unlinkSync(TRANSCRIPT_FILE); } catch { /* ignore */ }
           endCliSession();
         });
     } else {
@@ -272,14 +271,20 @@ function handleOpenAIEvent(
     case "response.audio_transcript.done": {
       const jackieSaid = (event.transcript as string) ?? "";
       console.log(`[openai] Jackie said: ${jackieSaid.slice(0, 100)}...`);
-      if (jackieSaid.trim()) session.transcript.push(`**Jackie:** ${jackieSaid}`);
+      if (jackieSaid.trim()) {
+        session.transcript.push(`**Jackie:** ${jackieSaid}`);
+        writeFileSync(TRANSCRIPT_FILE, session.transcript.join("\n"));
+      }
       break;
     }
 
     case "conversation.item.input_audio_transcription.completed": {
       const callerSaid = (event.transcript as string) ?? "";
       console.log(`[openai] Caller said: ${callerSaid.slice(0, 100)}...`);
-      if (callerSaid.trim()) session.transcript.push(`**Lily:** ${callerSaid}`);
+      if (callerSaid.trim()) {
+        session.transcript.push(`**Lily:** ${callerSaid}`);
+        writeFileSync(TRANSCRIPT_FILE, session.transcript.join("\n"));
+      }
       break;
     }
 
