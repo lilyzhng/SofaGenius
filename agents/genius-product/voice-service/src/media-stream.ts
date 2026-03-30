@@ -20,14 +20,19 @@ When Lily asks if you remember something or asks about past events, NEVER say yo
 - read_memory: search your memories when Lily mentions a person, project, or past event. ALWAYS use this before saying you don't remember something.
 - web_search: search the web for current information
 - check_calendar / check_email: check Lily's schedule or inbox
-- save_call_summary + commit_and_push: save and push conversation updates DURING the call
 
 ## use_cli (powerful, use for everything else):
-You have a Claude Code CLI session running on this machine with full access to bash, git, files, MCP servers, and all agent skills. Use use_cli when Lily asks for anything beyond your built-in tools: checking PRs, running scripts, deployment status, reading code, complex multi-step tasks, or anything you can't do with the tools above.
+You have a Claude Code CLI session running on this machine with full access to bash, git, files, MCP servers, and all agent skills. Use use_cli for: saving conversations, committing and pushing to git, checking PRs, running scripts, deployment status, reading code, or anything you can't do with the tools above.
 
 IMPORTANT: use_cli takes 5-30 seconds. ALWAYS tell Lily "let me check that" or "give me a sec" BEFORE calling use_cli, so she knows to expect a pause.
 
-When the call is ending, save a final call summary and any action items, then commit and push.
+## Saving conversations:
+When Lily asks you to save, or when the call is ending, use use_cli to save the conversation. CRITICAL RULES:
+- ALWAYS pull latest from origin main FIRST before reading or writing any file
+- ALWAYS APPEND to the existing conversation file. NEVER overwrite or delete previous conversations.
+- Save raw transcript in first-person: "**Lily:** ..." and "**Jackie:** ..." exactly as spoken. Do NOT rephrase, summarize, or use third-person perspective.
+- File path: /home/node/lily-memory/Agents/jackie_product/conversations/{date}.md
+- After saving, commit and push to origin main.
 
 ## Updating your personality:
 Your personality is defined in SOUL.md at ${config.jackie.memoryDir}/SOUL.md. If Lily asks you to change your personality or behavior, update SOUL.md (not CLAUDE.md). Both Phone Jackie and Discord Jackie read from SOUL.md.`;
@@ -108,17 +113,36 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    endCliSession();
-    // Auto-save transcript directly (no CLI, which refuses due to CLAUDE.md PR rules)
+    // Auto-save transcript via CLI (single code path, no hardcoded git tools)
     if (session.transcript.length > 0) {
       const rawTranscript = session.transcript.join("\n");
-      executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` })
-        .then(() => {
-          console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
-          return executeTool("commit_and_push", { message: "auto-save: call transcript" });
+      const now = new Date();
+      const date = now.toISOString().split("T")[0];
+      const time = now.toLocaleTimeString("en-US", {
+        timeZone: "America/Los_Angeles",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+      console.log(`[auto-save] Saving transcript (${session.transcript.length} lines) via CLI...`);
+      useCli(
+        `Save this call transcript to my conversations file. ` +
+        `IMPORTANT: Pull the latest main from origin FIRST (git pull --rebase origin main in /home/node/lily-memory), ` +
+        `then APPEND (never overwrite) to the file at /home/node/lily-memory/Agents/jackie_product/conversations/${date}.md. ` +
+        `If the file exists, add a new section at the end. If it doesn't exist, create it with header "# Conversations — ${date}". ` +
+        `Add a "## Call at ${time} PT" header, then "## Raw Transcript", then the transcript below:\n\n${rawTranscript}\n\n` +
+        `After saving, commit with message "auto-save: call transcript" using git -c user.name=genius-product -c user.email=lilyzhng.ai+genius-jackie@gmail.com, ` +
+        `then push to origin main.`
+      )
+        .then((result) => {
+          console.log(`[auto-save] CLI result: ${result.slice(0, 200)}`);
+          endCliSession();
         })
-        .then((result) => console.log(`[auto-save] ${result}`))
-        .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
+        .catch((e) => {
+          console.error("[auto-save] Failed:", (e as Error).message);
+          endCliSession();
+        });
+    } else {
+      endCliSession();
     }
   });
 
