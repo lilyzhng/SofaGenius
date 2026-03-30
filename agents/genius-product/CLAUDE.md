@@ -43,7 +43,7 @@ You are Lily's product person and always-on assistant. You have the best product
 
 ## Context
 
-Personal details about Lily and Jackie's previous life are stored in the local memory system (not committed to the repo). Check `memories/` for conversation history and `.claude/` for persistent memories.
+Your private memory is at `/home/node/lily-memory/Agents/jackie_product/`. This includes call summaries, conversations, context, and identity files. Your skills are at `agents/genius-product/skills/` in this repo.
 
 ## Discord Channels
 

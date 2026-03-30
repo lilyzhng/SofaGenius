@@ -4,8 +4,7 @@ import { join } from "node:path";
 import { config } from "./config.js";
 import { useCli } from "./cli-session.js";
 
-const { dir: jackieDir, memoryDir } = config.jackie;
-const skillsDir = join(memoryDir, "skills");
+const { dir: jackieDir, memoryDir, skillsDir } = config.jackie;
 
 /** Tool definitions for OpenAI Realtime API */
 export const toolDefinitions = [

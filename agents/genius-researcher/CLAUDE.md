@@ -104,7 +104,7 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 
 ## Shared Workspace
 
-The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything there.
+Lily's memory repo is at `/home/node/lily-memory/`. You can read anything there. Your private memory folder is at `/home/node/lily-memory/Agents/andrej_research/`.
 
 **Handoff directory:** `agents/handoff/` (relative to repo root)
 - Read specs and research requests from Growth
