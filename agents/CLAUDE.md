@@ -47,7 +47,7 @@ When Lily asks you to save something private, save it here. Each folder should h
 
 **Important:** Changes to lily-memory require a PR with 3 approvals (same workflow as SofaGenius). Create a branch, raise a PR, announce in #feature-release.
 
-**Exception: phone call transcripts and auto-saves to `Agents/*/calls/` can be pushed directly to main without a PR.** These are auto-generated recordings, not design decisions. A GitHub Action auto-merges call transcript PRs if one gets created accidentally.
+**Exception: phone call transcripts and auto-saves to `Agents/*/conversations/` can be pushed directly to main without a PR.** These are auto-generated recordings, not design decisions. A GitHub Action auto-merges conversation PRs if one gets created accidentally.
 
 If `git push` fails via SSH, use HTTPS with your GH_TOKEN:
 ```bash

@@ -359,8 +359,8 @@ function saveMemory(content: string): string {
 }
 
 function saveCallSummary(summary: string): string {
-  const callsDir = join(memoryDir, "calls");
-  mkdirSync(callsDir, { recursive: true });
+  const convoDir = join(memoryDir, "conversations");
+  mkdirSync(convoDir, { recursive: true });
 
   const now = new Date();
   const date = now.toISOString().split("T")[0];
@@ -369,7 +369,7 @@ function saveCallSummary(summary: string): string {
     hour: "2-digit",
     minute: "2-digit",
   });
-  const file = join(callsDir, `${date}.md`);
+  const file = join(convoDir, `${date}.md`);
 
   const entry = `\n\n## Call at ${time} PT\n${summary}`;
 
@@ -377,10 +377,10 @@ function saveCallSummary(summary: string): string {
     const existing = readFileSync(file, "utf-8");
     writeFileSync(file, existing + entry);
   } else {
-    writeFileSync(file, `# Calls — ${date}${entry}`);
+    writeFileSync(file, `# Conversations — ${date}${entry}`);
   }
 
-  return `Call summary saved to calls/${date}.md`;
+  return `Call summary saved to conversations/${date}.md`;
 }
 
 function createActionItem(item: string, assignee?: string): string {
@@ -407,7 +407,7 @@ function commitAndPush(message: string): string {
   const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
   try {
     // Copy any new/changed files from worktree to main checkout
-    execFileSync("cp", ["-r", join(memoryDir, "calls"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
+    execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
     // Set Jackie's identity
     execFileSync("git", ["config", "user.name", "genius-product"], opts);
     execFileSync("git", ["config", "user.email", "lilyzhng.ai+genius-jackie@gmail.com"], opts);
