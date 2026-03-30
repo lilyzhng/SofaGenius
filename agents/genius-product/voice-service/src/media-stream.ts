@@ -108,17 +108,31 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
-    endCliSession();
-    // Auto-save transcript directly (no CLI, which refuses due to CLAUDE.md PR rules)
+    // Auto-save transcript via CLI (single code path, no hardcoded git tools)
     if (session.transcript.length > 0) {
       const rawTranscript = session.transcript.join("\n");
-      executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` })
-        .then(() => {
-          console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
-          return executeTool("commit_and_push", { message: "auto-save: call transcript" });
+      const lineCount = session.transcript.length;
+      console.log(`[auto-save] Saving transcript (${lineCount} lines) via CLI...`);
+      useCli(
+        `Save this call transcript to my conversations file. ` +
+        `IMPORTANT: Pull the latest main from origin FIRST (git pull --rebase origin main in /home/node/lily-memory), ` +
+        `then APPEND (never overwrite) to the file at /home/node/lily-memory/Agents/jackie_product/conversations/${new Date().toISOString().split("T")[0]}.md. ` +
+        `If the file exists, add a new section at the end. If it doesn't exist, create it with header "# Conversations — ${new Date().toISOString().split("T")[0]}". ` +
+        `Add a "## Call at ${new Date().toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit" })} PT" header, ` +
+        `then "## Raw Transcript", then the transcript below:\n\n${rawTranscript}\n\n` +
+        `After saving, commit with message "auto-save: call transcript" using git -c user.name=genius-product -c user.email=lilyzhng.ai+genius-jackie@gmail.com, ` +
+        `then push to origin main.`
+      )
+        .then((result) => {
+          console.log(`[auto-save] CLI result: ${result.slice(0, 200)}`);
+          endCliSession();
         })
-        .then((result) => console.log(`[auto-save] ${result}`))
-        .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
+        .catch((e) => {
+          console.error("[auto-save] Failed:", (e as Error).message);
+          endCliSession();
+        });
+    } else {
+      endCliSession();
     }
   });
 

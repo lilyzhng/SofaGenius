@@ -48,22 +48,6 @@ export const toolDefinitions = [
   },
   {
     type: "function" as const,
-    name: "save_call_summary",
-    description:
-      "Save a call summary after the conversation ends. Includes key topics, decisions, and action items.",
-    parameters: {
-      type: "object",
-      properties: {
-        summary: {
-          type: "string",
-          description: "The call summary in markdown format",
-        },
-      },
-      required: ["summary"],
-    },
-  },
-  {
-    type: "function" as const,
     name: "create_action_item",
     description:
       "Add a task or action item from the call to the action items list.",
@@ -80,22 +64,6 @@ export const toolDefinitions = [
         },
       },
       required: ["item"],
-    },
-  },
-  {
-    type: "function" as const,
-    name: "commit_and_push",
-    description:
-      "Git add, commit, and push all changes in the private memory repo so other agents can see them.",
-    parameters: {
-      type: "object",
-      properties: {
-        message: {
-          type: "string",
-          description: "Git commit message",
-        },
-      },
-      required: ["message"],
     },
   },
   {
@@ -218,12 +186,8 @@ export async function executeTool(name: string, args: Record<string, string>): P
       return readMemory(args.keyword);
     case "save_memory":
       return saveMemory(args.content);
-    case "save_call_summary":
-      return saveCallSummary(args.summary);
     case "create_action_item":
       return createActionItem(args.item, args.assignee);
-    case "commit_and_push":
-      return commitAndPush(args.message);
     case "get_current_time":
       return getCurrentTime();
     case "web_search":
@@ -358,31 +322,6 @@ function saveMemory(content: string): string {
   return "Memory saved.";
 }
 
-function saveCallSummary(summary: string): string {
-  const convoDir = join(memoryDir, "conversations");
-  mkdirSync(convoDir, { recursive: true });
-
-  const now = new Date();
-  const date = now.toISOString().split("T")[0];
-  const time = now.toLocaleTimeString("en-US", {
-    timeZone: "America/Los_Angeles",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-  const file = join(convoDir, `${date}.md`);
-
-  const entry = `\n\n## Call at ${time} PT\n${summary}`;
-
-  if (existsSync(file)) {
-    const existing = readFileSync(file, "utf-8");
-    writeFileSync(file, existing + entry);
-  } else {
-    writeFileSync(file, `# Conversations — ${date}${entry}`);
-  }
-
-  return `Call summary saved to conversations/${date}.md`;
-}
-
 function createActionItem(item: string, assignee?: string): string {
   const file = join(memoryDir, "action-items.md");
   mkdirSync(memoryDir, { recursive: true });
@@ -399,42 +338,6 @@ function createActionItem(item: string, assignee?: string): string {
   }
 
   return `Action item added${assigneeTag}.`;
-}
-
-function commitAndPush(message: string): string {
-  // Use the main lily-memory checkout for git operations (worktrees can't checkout main)
-  const repoRoot = "/home/node/lily-memory";
-  const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
-  try {
-    // Sync conversations from working dir to the main lily-memory checkout (needed when
-    // voice service runs from a worktree whose memoryDir differs from the repo root)
-    execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
-    // Stage only Jackie's files
-    execFileSync("git", ["add", "Agents/jackie_product/"], opts);
-    try {
-      // Use -c flags for identity so we don't overwrite repo-level config for other agents
-      execFileSync("git", ["-c", "user.name=genius-product", "-c", "user.email=lilyzhng.ai+genius-jackie@gmail.com", "commit", "-m", message], opts);
-    } catch (e) {
-      const err = e as Error & { stderr?: string };
-      if (err.stderr?.includes("nothing to commit")) {
-        return "No changes to commit.";
-      }
-      throw e;
-    }
-    // Pull with rebase against origin/main (explicit ref avoids broken tracking branch config)
-    try {
-      execFileSync("git", ["pull", "--rebase", "origin", "main"], opts);
-    } catch {
-      // If rebase fails, abort and report
-      try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
-      return "Committed locally but could not rebase with remote. Manual intervention needed.";
-    }
-    execFileSync("git", ["push", "origin", "HEAD:main"], opts);
-    return "Changes committed and pushed to lily-memory.";
-  } catch (e) {
-    const err = e as Error & { stderr?: string };
-    return `Git error: ${err.message}`;
-  }
 }
 
 function runSkillBridge(skill: string, command: string): string {
