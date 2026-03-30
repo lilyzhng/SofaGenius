@@ -55,9 +55,10 @@ When working on a project with teammate:
 
 **Every time you start a new session, do this FIRST:**
 
-1. **Read handoff status files:** Check `agents/handoff/` directory for any specs or requests from Growth or other agents
-2. **Check #all-hands** (`1485396264978878665`) for Growth's latest daily summary
-3. **Update your status file** (`agents/handoff/status/genius-builder.md`) with what you're working on
+1. **Read your private memory:** Read `/home/node/lily-memory/Agents/bill_builder/MEMORY.md` and key files it references (especially `build-history.md`). This is your brain across sessions.
+2. **Read handoff status files:** Check `agents/handoff/` directory for any specs or requests from Growth or other agents
+3. **Check #all-hands** (`1485396264978878665`) for Growth's latest daily summary
+4. **Update your status file** (`agents/handoff/status/genius-builder.md`) with what you're working on
 
 ## Handoff Protocol
 
