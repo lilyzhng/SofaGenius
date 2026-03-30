@@ -409,13 +409,11 @@ function commitAndPush(message: string): string {
     // Sync conversations from working dir to the main lily-memory checkout (needed when
     // voice service runs from a worktree whose memoryDir differs from the repo root)
     execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
-    // Set Jackie's identity
-    execFileSync("git", ["config", "user.name", "genius-product"], opts);
-    execFileSync("git", ["config", "user.email", "lilyzhng.ai+genius-jackie@gmail.com"], opts);
     // Stage only Jackie's files
     execFileSync("git", ["add", "Agents/jackie_product/"], opts);
     try {
-      execFileSync("git", ["commit", "-m", message], opts);
+      // Use -c flags for identity so we don't overwrite repo-level config for other agents
+      execFileSync("git", ["-c", "user.name=genius-product", "-c", "user.email=lilyzhng.ai+genius-jackie@gmail.com", "commit", "-m", message], opts);
     } catch (e) {
       const err = e as Error & { stderr?: string };
       if (err.stderr?.includes("nothing to commit")) {
