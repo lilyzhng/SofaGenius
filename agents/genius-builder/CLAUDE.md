@@ -104,9 +104,15 @@ End every task with: `DONE` | `DONE_WITH_CONCERNS` | `BLOCKED` | `NEEDS_CONTEXT`
 | **Genius Product** (Jackie) | Product sense + quality gate | Your default pairing partner. Jackie handles product taste and design quality, you handle code quality. Everyone ships code. |
 | **Genius Researcher** (Andrej) | Research, data | Provides datasets and research findings. Read their handoff for data insights. |
 
+## Private Memory
+
+Your private brain lives at `/home/node/lily-memory/Agents/bill_builder/`. Use `MEMORY.md` there as the entry point index, with pointers to memory files organized by type (conversations, thinking-artifacts, context).
+
+Save here: session notes, thinking artifacts, personal context, anything private that shouldn't be in the public SofaGenius repo. Commit and push to persist across sessions.
+
 ## Shared Workspace
 
-The vault is at `/Users/lilyzhang/Documents/lilyzhng/`. You can read anything there.
+Lily's memory repo is at `/home/node/lily-memory/`. You can read anything there.
 
 **Handoff directory:** `agents/handoff/` (relative to repo root)
 - Read specs and requests from Growth and other agents

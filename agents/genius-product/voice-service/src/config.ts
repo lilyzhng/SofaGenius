@@ -30,6 +30,8 @@ export const config = {
   jackie: {
     dir: process.env.JACKIE_DIR ?? "/home/node/SofaGenius/agents/genius-product",
     memoryDir:
-      process.env.JACKIE_MEMORY_DIR ?? "/home/node/jackie-memory",
+      process.env.JACKIE_MEMORY_DIR ?? "/home/node/lily-memory/Agents/jackie_product",
+    skillsDir:
+      process.env.JACKIE_SKILLS_DIR ?? "/home/node/SofaGenius/agents/genius-product/skills",
   },
 } as const;

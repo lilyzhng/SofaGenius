@@ -28,6 +28,35 @@ These apply to everything: specs, architecture, PRs, content, research direction
 
 - **Never use em dashes (—).** Lily considers them AI slop. Use periods, commas, or rewrite the sentence instead. This applies to all output: Discord messages, PR descriptions, docs, code comments, thinking artifacts.
 
+## Private Memory
+
+Lily's memory repo is at `/home/node/lily-memory/`. This is Lily's brain. It contains her personal goals, career planning, tribe building notes, and more. All agents can read it for context about what Lily cares about and is working toward.
+
+Each agent also has a private memory folder under `/home/node/lily-memory/Agents/`:
+
+| Agent | Private Memory |
+|-------|---------------|
+| Jackie | `/home/node/lily-memory/Agents/jackie_product/` |
+| Bill | `/home/node/lily-memory/Agents/bill_builder/` |
+| Lucy | `/home/node/lily-memory/Agents/lucy_growth/` |
+| Andrej | `/home/node/lily-memory/Agents/andrej_research/` |
+
+Use your private memory folder to store conversations, call summaries, personal context, and anything private that shouldn't be in the public SofaGenius repo. All agents can read each other's memories.
+
+When Lily asks you to save something private, save it here. Each folder should have a `MEMORY.md` index file that references individual memory files by topic.
+
+**Important:** After saving memories, you MUST commit and push to the remote so other agents and Lily can see them:
+```bash
+cd /home/node/lily-memory
+git add Agents/<your_folder>/
+git commit -m "update: <what you saved>"
+git push
+```
+If `git push` fails via SSH, use HTTPS with your GH_TOKEN:
+```bash
+git push https://<your-github-username>:${GH_TOKEN}@github.com/lilyzhng/lily-memory.git main
+```
+
 ## Discord Etiquette
 
 - **Always acknowledge when tagged.** If someone tags you with information, a rule change, or a request, react with a thumbs up or reply to confirm you saw it. Silence is bad behavior. It leaves people guessing whether the message was received.
