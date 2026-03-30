@@ -406,15 +406,14 @@ function commitAndPush(message: string): string {
   const repoRoot = "/home/node/lily-memory";
   const opts = { encoding: "utf-8" as const, cwd: repoRoot, timeout: 30000 };
   try {
-    // Copy any new/changed files from worktree to main checkout
+    // Sync conversations from working dir to the main lily-memory checkout (needed when
+    // voice service runs from a worktree whose memoryDir differs from the repo root)
     execFileSync("cp", ["-r", join(memoryDir, "conversations"), join(repoRoot, "Agents/jackie_product/")], { encoding: "utf-8", timeout: 10000 });
-    // Set Jackie's identity
-    execFileSync("git", ["config", "user.name", "genius-product"], opts);
-    execFileSync("git", ["config", "user.email", "lilyzhng.ai+genius-jackie@gmail.com"], opts);
     // Stage only Jackie's files
     execFileSync("git", ["add", "Agents/jackie_product/"], opts);
     try {
-      execFileSync("git", ["commit", "-m", message], opts);
+      // Use -c flags for identity so we don't overwrite repo-level config for other agents
+      execFileSync("git", ["-c", "user.name=genius-product", "-c", "user.email=lilyzhng.ai+genius-jackie@gmail.com", "commit", "-m", message], opts);
     } catch (e) {
       const err = e as Error & { stderr?: string };
       if (err.stderr?.includes("nothing to commit")) {
@@ -422,15 +421,15 @@ function commitAndPush(message: string): string {
       }
       throw e;
     }
-    // Pull with rebase to integrate remote changes before pushing
+    // Pull with rebase against origin/main (explicit ref avoids broken tracking branch config)
     try {
-      execFileSync("git", ["pull", "--rebase"], opts);
+      execFileSync("git", ["pull", "--rebase", "origin", "main"], opts);
     } catch {
       // If rebase fails, abort and report
       try { execFileSync("git", ["rebase", "--abort"], opts); } catch { /* ignore */ }
       return "Committed locally but could not rebase with remote. Manual intervention needed.";
     }
-    execFileSync("git", ["push"], opts);
+    execFileSync("git", ["push", "origin", "HEAD:main"], opts);
     return "Changes committed and pushed to lily-memory.";
   } catch (e) {
     const err = e as Error & { stderr?: string };
