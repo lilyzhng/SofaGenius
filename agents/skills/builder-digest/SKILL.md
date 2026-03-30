@@ -17,24 +17,24 @@ curl -s https://raw.githubusercontent.com/lilyzhng/follow-builders/main/feed-pod
 
 ### Step 1b: Fetch AI Valley newsletter
 
-```bash
-# Fetch the archive page to find the latest post URL
-curl -s https://www.theaivalley.com/archive -o /tmp/aivalley-archive.html
+**IMPORTANT:** theaivalley.com has Cloudflare bot protection. `curl` will NOT work (returns a challenge page). You MUST use the `WebFetch` tool instead.
 
-# Parse the latest post slug from the archive page (first /p/ link)
-LATEST_POST=$(grep -o '/p/[^"]*' /tmp/aivalley-archive.html | head -1)
+**Step 1b-i:** Fetch the archive page to find the latest post:
+- Use the `WebFetch` tool with URL `https://www.theaivalley.com/archive`
+- Prompt: "List the latest newsletter post titles with their URL slugs (e.g. /p/post-slug) and dates."
+- Take the first (most recent) post slug.
 
-# Fetch the full post to get trending tools
-curl -s "https://www.theaivalley.com${LATEST_POST}" -o /tmp/aivalley-latest.html
-```
+**Step 1b-ii:** Fetch the latest post to extract tools:
+- Use the `WebFetch` tool with URL `https://www.theaivalley.com{LATEST_POST_SLUG}`
+- Prompt: "Extract the trending AI tools mentioned. For each tool, give: tool name, one-line description, and the direct URL to the tool's website (not the newsletter link)."
 
-From the latest post HTML, extract:
+From the results, compile:
 - **Post title and date**
-- **Trending tools:** Each tool has a name, one-line description, and an external link to the tool's website. Extract ALL of these — the direct link to each tool is critical so Lily can try them immediately (not just the newsletter link).
-- **Full newsletter link:** `https://www.theaivalley.com{LATEST_POST}`
+- **Trending tools:** Each tool with name, description, and direct link to try it
+- **Full newsletter link:** `https://www.theaivalley.com{LATEST_POST_SLUG}`
 
 Example output format for a tool:
-`**Stitch 2.0** — Turn ideas into production-ready UI in seconds → <https://stitch.google.com>`
+`**Stitch 2.0** - Turn ideas into production-ready UI in seconds -> <https://stitch.google.com>`
 
 ### Step 2: Compose the digest
 

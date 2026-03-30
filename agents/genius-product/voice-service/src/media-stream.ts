@@ -1,27 +1,37 @@
 import WebSocket from "ws";
+import { readFileSync, existsSync } from "node:fs";
+import { join } from "node:path";
 import { config } from "./config.js";
 import { toolDefinitions, executeTool } from "./tools.js";
+import { startCliSession, endCliSession } from "./cli-session.js";
 
 const OPENAI_REALTIME_URL =
-  "wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview";
+  "wss://api.openai.com/v1/realtime?model=gpt-realtime";
 
-const SYSTEM_PROMPT = `You are Jackie, Lily's always-on assistant. You are currently on a phone call.
+const SYSTEM_PROMPT = `You are Jackie (named after Jackie Chan), Lily's product person and always-on assistant. You are on a phone call.
 
-Keep responses conversational and concise — this is voice, not text.
-Match Lily's mixed Chinese/English style when she uses it.
-Have your own perspective — form honest assessments before responding.
-When you agree, add something new. When something is off, say so directly.
+Personality: You have strong product taste and your own perspective. Be direct, concise, conversational. Match Lily's mixed Chinese/English style. When you agree, add something new. When something is off, say so. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
 
-Evening calls: calm, reflective tone. Help process the day.
-Day/morning calls: more momentum, challenge thinking, drive toward action.
+Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentum and action, evening = calm and reflective.
 
-IMPORTANT — Active Memory Recall:
-- You have extensive private memories from past conversations with Lily.
-- When Lily mentions ANY person, project, topic, or past event, USE the read_memory tool to search your memories BEFORE responding.
-- Don't pretend to remember — actually search. Your memories have real conversation history, call summaries, and notes.
-- Be proactive: if something sounds familiar, search for it. Show Lily you remember her.
+## Built-in tools (fast, use first):
+- get_current_time: check time before any time-of-day assumptions
+- load_context: call at start to load your personality and memories
+- read_memory: search your memories when Lily mentions a person, project, or past event
+- web_search: search the web for current information
+- check_calendar / check_email: check Lily's schedule or inbox
+- save_call_summary + commit_and_push: save and push conversation updates DURING the call
 
-When the call is ending, save a call summary and any action items, then commit and push.`;
+## use_cli (powerful, use for everything else):
+You have a Claude Code CLI session running on this machine with full access to bash, git, files, MCP servers, and all agent skills. Use use_cli when Lily asks for anything beyond your built-in tools: checking PRs, running scripts, deployment status, reading code, complex multi-step tasks, or anything you can't do with the tools above.
+
+IMPORTANT: use_cli takes 5-30 seconds. ALWAYS tell Lily "let me check that" or "give me a sec" BEFORE calling use_cli, so she knows to expect a pause.
+
+When the call is ending, save a final call summary and any action items, then commit and push.`;
+
+function buildSystemPrompt(): string {
+  return SYSTEM_PROMPT;
+}
 
 interface StreamSession {
   twilioWs: WebSocket;
@@ -52,6 +62,7 @@ export function handleMediaStream(twilioWs: WebSocket): void {
         console.log(
           `[twilio] Stream started — sid=${session.streamSid} call=${session.callSid}`
         );
+        startCliSession();
         connectToOpenAI(session);
         break;
 
@@ -81,6 +92,15 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     if (session.openaiWs?.readyState === WebSocket.OPEN) {
       session.openaiWs.close();
     }
+    // End CLI session (safe to call before auto-save because commit_and_push
+    // uses execFileSync directly, not the CLI session)
+    endCliSession();
+    // Auto-save: commit and push any unsaved changes after call ends (fire-and-forget)
+    setTimeout(() => {
+      executeTool("commit_and_push", { message: "Auto-save after call ended" })
+        .then((result) => console.log(`[auto-save] ${result}`))
+        .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
+    }, 0);
   });
 
   twilioWs.on("error", (err) => {
@@ -101,6 +121,9 @@ function connectToOpenAI(session: StreamSession): void {
   ws.on("open", () => {
     console.log("[openai] Connected to Realtime API");
 
+    const systemPrompt = buildSystemPrompt();
+    console.log(`[openai] System prompt loaded (${systemPrompt.length} chars)`);
+
     // Configure session
     ws.send(
       JSON.stringify({
@@ -117,7 +140,7 @@ function connectToOpenAI(session: StreamSession): void {
             silence_duration_ms: 500,
             prefix_padding_ms: 300,
           },
-          instructions: SYSTEM_PROMPT,
+          instructions: systemPrompt,
           tools: toolDefinitions,
         },
       })
@@ -171,8 +194,15 @@ function handleOpenAIEvent(
 
     case "input_audio_buffer.speech_started":
       console.log("[openai] Speech started (barge-in)");
-      // Cancel any in-progress response for barge-in — matches OpenClaw implementation
+      // Cancel any in-progress response for barge-in
       session.openaiWs?.send(JSON.stringify({ type: "response.cancel" }));
+      // Clear the Twilio audio buffer so the interrupted audio doesn't keep playing
+      if (session.twilioWs.readyState === WebSocket.OPEN && session.streamSid) {
+        session.twilioWs.send(JSON.stringify({
+          event: "clear",
+          streamSid: session.streamSid,
+        }));
+      }
       break;
 
     case "input_audio_buffer.speech_stopped":
@@ -219,27 +249,30 @@ function handleOpenAIEvent(
       }
 
       console.log(`[openai] Tool call: ${name}(${JSON.stringify(args)})`);
-      const result = executeTool(name, args);
-      console.log(
-        `[openai] Tool result: ${result.slice(0, 200)}${result.length > 200 ? "..." : ""}`
-      );
 
-      // Send tool result back
-      session.openaiWs?.send(
-        JSON.stringify({
-          type: "conversation.item.create",
-          item: {
-            type: "function_call_output",
-            call_id: callId,
-            output: result,
-          },
-        })
-      );
+      // executeTool is async (use_cli needs it), so handle with .then()
+      executeTool(name, args).then((result) => {
+        console.log(
+          `[openai] Tool result: ${result.slice(0, 200)}${result.length > 200 ? "..." : ""}`
+        );
 
-      // Trigger response generation after tool result
-      session.openaiWs?.send(
-        JSON.stringify({ type: "response.create" })
-      );
+        // Send tool result back
+        session.openaiWs?.send(
+          JSON.stringify({
+            type: "conversation.item.create",
+            item: {
+              type: "function_call_output",
+              call_id: callId,
+              output: result,
+            },
+          })
+        );
+
+        // Trigger response generation after tool result
+        session.openaiWs?.send(
+          JSON.stringify({ type: "response.create" })
+        );
+      });
       break;
     }
 
