@@ -66,6 +66,15 @@ export async function startServer(): Promise<void> {
 
   // Outbound call — Jackie calls Lily (or a specified number)
   app.post("/voice/call", async (request, reply) => {
+    // Auth check: require bearer token to prevent unauthorized calls
+    const bearerToken = request.headers.authorization;
+    if (!config.server.callApiSecret) {
+      return reply.status(500).send({ error: "CALL_API_SECRET not configured" });
+    }
+    if (bearerToken !== `Bearer ${config.server.callApiSecret}`) {
+      return reply.status(401).send({ error: "Unauthorized" });
+    }
+
     const body = request.body as Record<string, string> | undefined;
     const to = body?.to ?? config.twilio.lilyPhoneNumber;
 

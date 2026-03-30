@@ -27,6 +27,7 @@ export const config = {
   server: {
     port: parseInt(process.env.PORT ?? "3334", 10),
     publicUrl: process.env.PUBLIC_URL ?? "",
+    callApiSecret: process.env.CALL_API_SECRET ?? "",
   },
   jackie: {
     dir: process.env.JACKIE_DIR ?? "/home/node/SofaGenius/agents/genius-product",
