@@ -69,7 +69,6 @@ export function handleMediaStream(twilioWs: WebSocket): void {
   };
 
   // Write transcript to a known file path so the CLI can read it
-  const TRANSCRIPT_FILE = "/tmp/jackie-active-transcript.txt";
   writeFileSync(TRANSCRIPT_FILE, "");
 
   twilioWs.on("message", (data) => {
