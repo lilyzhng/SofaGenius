@@ -41,7 +41,19 @@ Each agent has a private memory folder in Lily's memory repo at `/home/node/lily
 
 Use your private memory folder to store conversations, call summaries, personal context, and anything private that shouldn't be in the public SofaGenius repo. All agents can read each other's memories. Lily's personal memory is the rest of the repo (read-only for agents).
 
-When Lily asks you to save something private, save it here. Commit and push to persist.
+When Lily asks you to save something private, save it here. Each folder should have a `MEMORY.md` index file that references individual memory files by topic.
+
+**Important:** After saving memories, you MUST commit and push to the remote so other agents and Lily can see them:
+```bash
+cd /home/node/lily-memory
+git add Agents/<your_folder>/
+git commit -m "update: <what you saved>"
+git push
+```
+If `git push` fails via SSH, use HTTPS with your GH_TOKEN:
+```bash
+git push https://<your-github-username>:${GH_TOKEN}@github.com/lilyzhng/lily-memory.git main
+```
 
 ## Discord Etiquette
 
