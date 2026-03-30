@@ -52,6 +52,7 @@ interface StreamSession {
   openaiWs: WebSocket | null;
   streamSid: string | null;
   callSid: string | null;
+  transcript: string[];
 }
 
 export function handleMediaStream(twilioWs: WebSocket): void {
@@ -60,6 +61,7 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     openaiWs: null,
     streamSid: null,
     callSid: null,
+    transcript: [],
   };
 
   twilioWs.on("message", (data) => {
@@ -109,11 +111,20 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     // End CLI session (safe to call before auto-save because commit_and_push
     // uses execFileSync directly, not the CLI session)
     endCliSession();
-    // Auto-save: commit and push any unsaved changes after call ends (fire-and-forget)
-    setTimeout(() => {
-      executeTool("commit_and_push", { message: "Auto-save after call ended" })
-        .then((result) => console.log(`[auto-save] ${result}`))
-        .catch((e) => console.error("[auto-save] Failed:", (e as Error).message));
+    // Auto-save transcript and push after call ends
+    setTimeout(async () => {
+      try {
+        // Save accumulated transcript as call log
+        if (session.transcript.length > 0) {
+          const rawTranscript = session.transcript.join("\n");
+          await executeTool("save_call_summary", { summary: `## Raw Transcript\n\n${rawTranscript}` });
+          console.log(`[auto-save] Saved transcript (${session.transcript.length} lines)`);
+        }
+        const result = await executeTool("commit_and_push", { message: "Auto-save call transcript" });
+        console.log(`[auto-save] ${result}`);
+      } catch (e) {
+        console.error("[auto-save] Failed:", (e as Error).message);
+      }
     }, 0);
   });
 
@@ -240,17 +251,19 @@ function handleOpenAIEvent(
       }
       break;
 
-    case "response.audio_transcript.done":
-      console.log(
-        `[openai] Jackie said: ${(event.transcript as string)?.slice(0, 100)}...`
-      );
+    case "response.audio_transcript.done": {
+      const jackieSaid = (event.transcript as string) ?? "";
+      console.log(`[openai] Jackie said: ${jackieSaid.slice(0, 100)}...`);
+      if (jackieSaid.trim()) session.transcript.push(`**Jackie:** ${jackieSaid}`);
       break;
+    }
 
-    case "conversation.item.input_audio_transcription.completed":
-      console.log(
-        `[openai] Caller said: ${(event.transcript as string)?.slice(0, 100)}...`
-      );
+    case "conversation.item.input_audio_transcription.completed": {
+      const callerSaid = (event.transcript as string) ?? "";
+      console.log(`[openai] Caller said: ${callerSaid.slice(0, 100)}...`);
+      if (callerSaid.trim()) session.transcript.push(`**Lily:** ${callerSaid}`);
       break;
+    }
 
     case "response.function_call_arguments.done": {
       const name = event.name as string;
