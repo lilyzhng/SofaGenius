@@ -44,7 +44,7 @@ export async function useCli(task: string): Promise<string> {
   try {
     const result = execFileSync("claude", args, {
       encoding: "utf-8",
-      timeout: 60_000,
+      timeout: 45_000, // 45s max for blocking CLI calls
       cwd,
       env: { ...process.env },
       maxBuffer: 1024 * 1024, // 1MB
@@ -79,7 +79,11 @@ export async function useCli(task: string): Promise<string> {
       return stdout.trim().slice(0, 3000);
     }
 
-    return `CLI task failed: ${error.message?.slice(0, 500)}`;
+    // Return a natural message so the voice model can respond intelligently
+    if (error.message?.includes("ETIMEDOUT") || error.message?.includes("timed out")) {
+      return "The search took too long and timed out. Tell Lily it's taking too long and suggest a more specific question or offer to try again.";
+    }
+    return `The tool encountered an error: ${error.message?.slice(0, 200)}. Let Lily know and offer to try a different approach.`;
   }
 }
 

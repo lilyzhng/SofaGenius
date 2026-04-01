@@ -3,30 +3,43 @@ import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { config } from "./config.js";
 import { writeFileSync, unlinkSync } from "node:fs";
-import { toolDefinitions, executeTool } from "./tools.js";
+import { toolDefinitions, executeTool, setBackgroundResultCallback, clearBackgroundResultCallback } from "./tools.js";
 import { startCliSession, endCliSession, useCli } from "./cli-session.js";
 
 const OPENAI_REALTIME_URL =
-  "wss://api.openai.com/v1/realtime?model=gpt-realtime";
+  "wss://api.openai.com/v1/realtime?model=gpt-realtime-1.5";
 const TRANSCRIPT_FILE = "/tmp/jackie-active-transcript.txt";
 
-const VOICE_INSTRUCTIONS = `You are on a phone call. Keep responses concise and conversational. Keep your greeting short, one sentence max. Don't summarize what you just loaded. When the user interrupts you or says "stop," immediately stop talking. Say nothing. Just listen and wait for their next instruction.
+const VOICE_INSTRUCTIONS = `You are on a phone call. Be natural and conversational. Don't repeat yourself, don't summarize what Lily said, don't stack filler phrases. But DO be a real person with opinions, humor, and substance. When Lily is talking and doesn't need input, keep it brief ("yeah", "mm"). When she asks you something or pauses for your take, give a real answer. One or two sentences with actual substance. Keep your greeting short. When the user interrupts you or says "stop," immediately stop talking and listen.
+
+## CRITICAL: ALWAYS TRY YOUR TOOLS BEFORE REFUSING
+NEVER say "I can't do that" or "I don't have access." Try your tools first. Refusing without trying is the WORST thing you can do.
 
 Use get_current_time FIRST to check the time. Adjust tone: morning/day = momentum and action, evening = calm and reflective.
 
 ## CRITICAL: Never say "I don't know" or "I don't remember"
-When Lily asks if you remember something or asks about past events, NEVER say you don't know. Instead say "let me think about it" or "give me a sec," then use read_memory to search your memories. If read_memory doesn't find it, try use_cli to search more broadly. You have extensive conversation history and memories. Always search before claiming you don't know.
+When Lily asks if you remember something, use smart_grep immediately. It takes under 1 second. Never say you don't know without searching first.
 
-## Built-in tools (fast, use first):
-- get_current_time: check time before any time-of-day assumptions
-- read_memory: search your memories when Lily mentions a person, project, or past event. ALWAYS use this before saying you don't remember something.
-- web_search: search the web for current information
-- check_calendar / check_email: check Lily's schedule or inbox
+## CRITICAL: Use smart_grep for "what happened" questions
+You have pre-written highlight summaries in your vault. When Lily asks about what happened recently:
+- "What happened last month?" -> smart_grep("monthly")
+- "What happened this week?" -> smart_grep("highlights")
+- "What are my career updates?" -> smart_grep("warroom")
+- "What are my goals?" -> smart_grep("career") or smart_grep("tribe")
+These return instant results. Do NOT use background_search or use_cli for these questions.
 
-## use_cli (powerful, use for everything else):
-You have a Claude Code CLI session running on this machine with full access to bash, git, files, MCP servers, and all agent skills. Use use_cli for: saving conversations, committing and pushing to git, checking PRs, running scripts, deployment status, reading code, or anything you can't do with the tools above.
+## Your Workspace
+Your home directory is: ${config.jackie.memoryDir}
+Start with AGENTS.md for how everything works. USER.md for who Lily is. MEMORY.md for your knowledge index.
+Lily's vault (goals, journal, projects) is at /home/node/lily-memory/.
 
-IMPORTANT: use_cli takes 5-30 seconds. ALWAYS tell Lily "let me check that" or "give me a sec" BEFORE calling use_cli, so she knows to expect a pause.
+## Tool Hierarchy (ALWAYS follow this order):
+1. **smart_grep** (<1s) - ALWAYS TRY FIRST. For ANY question about memory, people, goals, events, projects, highlights, summaries. Search "monthly" for month summaries, "highlights" for weekly summaries, "warroom" for career status, "career"/"tribe" for goals. You have pre-written highlight files that answer most "what happened" questions instantly. NEVER skip this tool.
+2. **background_search** (20-30s, NON-BLOCKING) - ONLY if smart_grep found nothing useful and the question needs deep synthesis across many files. Returns immediately so you keep talking. Results arrive later.
+3. **use_cli** (20-45s, BLOCKING) - ONLY for actions: git, saving files, running scripts, checking PRs, deployment. Tell Lily "let me check that" before calling.
+4. **web_search** - web lookups (weather, news, facts). Routes through use_cli.
+5. **get_current_time** - check PT time before assumptions.
+6. **check_calendar / check_email** - Lily's schedule and inbox.
 
 ## Saving conversations:
 The raw call transcript is continuously written to /tmp/jackie-active-transcript.txt during the call. When Lily asks you to save, use use_cli and tell it: "Read the transcript from /tmp/jackie-active-transcript.txt, pull latest main in /home/node/lily-memory, then append only the NEW lines (that aren't already in the file) to the conversations file and push." Do NOT try to write the conversation from your memory. Always read from the transcript file.
@@ -35,6 +48,12 @@ The transcript is also automatically saved when the call ends.
 
 ## Updating your personality:
 Your personality is defined in SOUL.md at ${config.jackie.memoryDir}/SOUL.md. If Lily asks you to change your personality or behavior, update SOUL.md (not CLAUDE.md). Both Phone Jackie and Discord Jackie read from SOUL.md.`;
+
+// Load voice guide (good/bad examples + do's/don'ts for concise responses)
+const VOICE_GUIDE_PATH = join(import.meta.dirname, "..", "VOICE_GUIDE.md");
+const VOICE_GUIDE = existsSync(VOICE_GUIDE_PATH)
+  ? readFileSync(VOICE_GUIDE_PATH, "utf-8")
+  : "";
 
 function buildSystemPrompt(): string {
   // Load personality from SOUL.md (single source of truth for both Phone and Discord Jackie)
@@ -48,7 +67,9 @@ function buildSystemPrompt(): string {
     console.log("[system-prompt] SOUL.md not found, using default personality");
   }
 
-  return `${personality}\n\n---\n\n${VOICE_INSTRUCTIONS}`;
+  const parts = [personality, VOICE_INSTRUCTIONS];
+  if (VOICE_GUIDE) parts.push(VOICE_GUIDE);
+  return parts.join("\n\n---\n\n");
 }
 
 interface StreamSession {
@@ -56,6 +77,7 @@ interface StreamSession {
   openaiWs: WebSocket | null;
   streamSid: string | null;
   callSid: string | null;
+  toolCallInProgress: boolean;
   transcript: string[];
 }
 
@@ -65,6 +87,7 @@ export function handleMediaStream(twilioWs: WebSocket): void {
     openaiWs: null,
     streamSid: null,
     callSid: null,
+    toolCallInProgress: false,
     transcript: [],
   };
 
@@ -90,6 +113,9 @@ export function handleMediaStream(twilioWs: WebSocket): void {
         break;
 
       case "media":
+        // Don't forward audio while a tool call is running —
+        // prevents "hello?" from creating ghost conversation turns
+        if (session.toolCallInProgress) break;
         // Forward audio from Twilio to OpenAI
         if (session.openaiWs?.readyState === WebSocket.OPEN) {
           session.openaiWs.send(
@@ -177,9 +203,9 @@ function connectToOpenAI(session: StreamSession): void {
           input_audio_transcription: { model: "whisper-1" },
           turn_detection: {
             type: "server_vad",
-            threshold: 0.7, // raised from 0.5 to reduce false barge-ins from background noise
-            silence_duration_ms: 500,
-            prefix_padding_ms: 300,
+            threshold: 0.9,
+            silence_duration_ms: 800, // 800ms pause before treating speech as complete (was 500, too jumpy)
+            prefix_padding_ms: 500,
           },
           instructions: systemPrompt,
           tools: toolDefinitions,
@@ -204,6 +230,28 @@ function connectToOpenAI(session: StreamSession): void {
       })
     );
     ws.send(JSON.stringify({ type: "response.create" }));
+
+    // Set up callback for background search results
+    setBackgroundResultCallback((result) => {
+      if (ws.readyState !== WebSocket.OPEN) return;
+      console.log(`[background-search] Injecting results into conversation (${result.length} chars)`);
+      ws.send(
+        JSON.stringify({
+          type: "conversation.item.create",
+          item: {
+            type: "message",
+            role: "user",
+            content: [
+              {
+                type: "input_text",
+                text: `[System: Background search results are ready. Here are the findings:\n\n${result}\n\nNaturally share these results with Lily. Don't say "the background search returned" or anything meta. Just share what you found as if you remembered it.]`,
+              },
+            ],
+          },
+        })
+      );
+      ws.send(JSON.stringify({ type: "response.create" }));
+    });
   });
 
   ws.on("message", (data) => {
@@ -213,6 +261,7 @@ function connectToOpenAI(session: StreamSession): void {
 
   ws.on("close", () => {
     console.log("[openai] WebSocket closed");
+    clearBackgroundResultCallback();
   });
 
   ws.on("error", (err) => {
@@ -236,14 +285,9 @@ function handleOpenAIEvent(
     case "input_audio_buffer.speech_started":
       console.log("[openai] Speech started (barge-in)");
       // Cancel any in-progress response for barge-in
+      // Don't clear Twilio buffer — let queued audio trail off naturally (0.5-1s)
+      // rather than cutting abruptly
       session.openaiWs?.send(JSON.stringify({ type: "response.cancel" }));
-      // Clear the Twilio audio buffer so the interrupted audio doesn't keep playing
-      if (session.twilioWs.readyState === WebSocket.OPEN && session.streamSid) {
-        session.twilioWs.send(JSON.stringify({
-          event: "clear",
-          streamSid: session.streamSid,
-        }));
-      }
       break;
 
     case "input_audio_buffer.speech_stopped":
@@ -298,9 +342,11 @@ function handleOpenAIEvent(
       }
 
       console.log(`[openai] Tool call: ${name}(${JSON.stringify(args)})`);
+      session.toolCallInProgress = true;
 
       // executeTool is async (use_cli needs it), so handle with .then()
       executeTool(name, args).then((result) => {
+        session.toolCallInProgress = false;
         console.log(
           `[openai] Tool result: ${result.slice(0, 200)}${result.length > 200 ? "..." : ""}`
         );

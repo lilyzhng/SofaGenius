@@ -1,10 +1,21 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
-import { execFileSync, execSync } from "node:child_process";
+import { execFileSync, execSync, execFile } from "node:child_process";
 import { join } from "node:path";
 import { config } from "./config.js";
 import { useCli } from "./cli-session.js";
 
 const { dir: jackieDir, memoryDir, skillsDir } = config.jackie;
+
+// Callback for injecting background search results into the voice session
+let _onBackgroundResult: ((result: string) => void) | null = null;
+
+export function setBackgroundResultCallback(cb: (result: string) => void): void {
+  _onBackgroundResult = cb;
+}
+
+export function clearBackgroundResultCallback(): void {
+  _onBackgroundResult = null;
+}
 
 /** Tool definitions for OpenAI Realtime API */
 export const toolDefinitions = [
@@ -17,8 +28,8 @@ export const toolDefinitions = [
   },
   {
     type: "function" as const,
-    name: "read_memory",
-    description: "Search through all of your private memories — past conversations, call summaries, notes, learnings, and vault. Use this PROACTIVELY whenever Lily mentions a person, topic, project, or past event. Don't wait to be asked — if something might have context in your memory, search for it.",
+    name: "smart_grep",
+    description: "FASTEST search tool (<1 second). ALWAYS try this FIRST before any other tool. Smart two-pass grep across Lily's entire vault: searches filenames first, then structured files, then full content. Use for: people, projects, goals, events, past conversations, highlights, summaries. For 'what happened last month' search 'monthly'. For 'what happened this week' search 'highlights'. For career questions search 'career' or 'warroom'. This tool finds pre-written summaries instantly. Only fall back to background_search if smart_grep returns nothing useful.",
     parameters: {
       type: "object",
       properties: {
@@ -161,9 +172,25 @@ export const toolDefinitions = [
   },
   {
     type: "function" as const,
+    name: "background_search",
+    description:
+      "SLOW but DEEP search (20-30s, non-blocking). Spawns parallel sub-agents that read and synthesize multiple files. Returns immediately so you can keep talking to Lily while it works. Results get injected into the conversation when ready. Use this ONLY for broad synthesis questions like 'summarize the past month' or 'what are all my active projects'. For simple lookups (people, goals, events), use smart_grep instead (it's 20x faster).",
+    parameters: {
+      type: "object",
+      properties: {
+        queries: {
+          type: "string",
+          description: "Comma-separated list of search queries to run in parallel. E.g. 'career highlights March 2026, tribe building progress, shipped projects'",
+        },
+      },
+      required: ["queries"],
+    },
+  },
+  {
+    type: "function" as const,
     name: "use_cli",
     description:
-      "Run a task using the Claude Code CLI on this machine. It has full access to bash, files, git, MCP servers, and all agent skills. Use this when the user asks for something beyond your built-in tools: checking PRs, running scripts, deployment status, complex research, file operations, or anything you can't do with your other tools. This is slower (5-30s) so tell the user you're looking into it BEFORE calling this tool.",
+      "SLOWEST tool (20-45s, BLOCKING). Full Claude Code CLI with bash, git, files, MCP servers. Use ONLY for actions that need writing/executing: saving files, git operations, checking PRs, running scripts, deployment. For memory lookups use smart_grep. For broad research use background_search. Always tell Lily 'let me check that' BEFORE calling this.",
     parameters: {
       type: "object",
       properties: {
@@ -182,7 +209,7 @@ export async function executeTool(name: string, args: Record<string, string>): P
   switch (name) {
     case "load_context":
       return loadContext();
-    case "read_memory":
+    case "smart_grep":
       return readMemory(args.keyword);
     case "save_memory":
       return saveMemory(args.content);
@@ -191,7 +218,7 @@ export async function executeTool(name: string, args: Record<string, string>): P
     case "get_current_time":
       return getCurrentTime();
     case "web_search":
-      return runSkillBridge("jackie-web", `search --query "${args.query}" --count ${args.count ?? 5}`);
+      return useCli(`Search the web for: ${args.query}. Return a concise summary of the top results.`);
     case "summarize_url":
       return runSkillBridge("jackie-web", `summarize --url "${args.url}"${args.extract_only ? " --extract-only" : ""}`);
     case "check_calendar":
@@ -206,6 +233,8 @@ export async function executeTool(name: string, args: Record<string, string>): P
       return runSkillBridge("jackie-gmail", `${args.action} ${args.query ? `--query "${args.query}"` : ""} --count ${args.count ?? 10}`);
     case "run_skill":
       return runSkillBridge(args.skill, args.command);
+    case "background_search":
+      return backgroundSearch(args.queries);
     case "use_cli":
       return useCli(args.task);
     default:
@@ -274,32 +303,74 @@ function loadContext(): string {
     : "No context loaded yet — this is a fresh start.";
 }
 
+const VAULT_DIR = "/home/node/lily-memory";
+
 function readMemory(keyword: string): string {
-  if (!existsSync(memoryDir)) return "No memory directory found.";
+  if (!existsSync(VAULT_DIR)) return "No memory directory found.";
 
-  // Search across all subdirectories recursively
+  const results: string[] = [];
+  const seen = new Set<string>();
+
+  function addFile(f: string, maxChars = 3000) {
+    if (seen.has(f) || !existsSync(f)) return;
+    seen.add(f);
+    const content = readFileSync(f, "utf-8").slice(0, maxChars);
+    results.push(`## ${f.replace(VAULT_DIR + "/", "")}\n${content}`);
+  }
+
   try {
-    const result = execFileSync(
-      "grep",
-      ["-ril", "--include=*.md", keyword, memoryDir],
-      { encoding: "utf-8", timeout: 10000 }
-    ).trim();
+    // Pass 1: Search filenames (instant, highest relevance)
+    try {
+      const fileNameHits = execFileSync(
+        "find", [VAULT_DIR, "-name", "*.md", "-ipath", `*${keyword}*`],
+        { encoding: "utf-8", timeout: 2000 }
+      ).trim();
+      if (fileNameHits) {
+        for (const f of fileNameHits.split("\n").slice(0, 3)) addFile(f);
+      }
+    } catch { /* no filename matches */ }
 
-    if (!result) return `No memories found matching "${keyword}".`;
+    // Pass 2: Search headings in structured files (INDEX, USER, MEMORY, IDENTITY)
+    try {
+      const headingHits = execFileSync(
+        "grep", ["-ril", "--include=USER.md", "--include=INDEX.md",
+        "--include=MEMORY.md", "--include=IDENTITY.md", "--include=AGENTS.md",
+        "--include=warroom.md", "--include=*monthly*.md", "--include=*highlights*.md",
+        keyword, VAULT_DIR],
+        { encoding: "utf-8", timeout: 2000 }
+      ).trim();
+      if (headingHits) {
+        for (const f of headingHits.split("\n").slice(0, 3)) addFile(f);
+      }
+    } catch { /* no heading matches */ }
 
-    // Prioritize call summaries and notes, then other files
-    const allFiles = result.split("\n");
-    const prioritized = [
-      ...allFiles.filter((f) => f.includes("call-summary") || f.includes("notes")),
-      ...allFiles.filter((f) => !f.includes("call-summary") && !f.includes("notes")),
-    ].slice(0, 5);
+    // Pass 3: Full content search only if we have fewer than 3 results
+    if (results.length < 3) {
+      try {
+        const contentHits = execFileSync(
+          "grep", ["-ril", "--include=*.md", keyword, VAULT_DIR],
+          { encoding: "utf-8", timeout: 5000 }
+        ).trim();
+        if (contentHits) {
+          // Score and rank: structured files first, recent files next, conversations last
+          const allFiles = contentHits.split("\n");
+          const scored = allFiles.map((f) => {
+            let score = 0;
+            if (/USER|INDEX|MEMORY|IDENTITY|warroom|monthly/i.test(f)) score += 10;
+            if (/highlights|action_items|strategy/i.test(f)) score += 7;
+            if (/call-summary|notes|digest/i.test(f)) score += 3;
+            if (/conversations\/\d{4}/.test(f)) score += 1;
+            return { file: f, score };
+          });
+          scored.sort((a, b) => b.score - a.score);
+          for (const { file } of scored.slice(0, 5)) addFile(file);
+        }
+      } catch { /* no content matches */ }
+    }
 
-    const contents = prioritized.map((f) => {
-      const content = readFileSync(f, "utf-8").slice(0, 3000);
-      return `## ${f.replace(memoryDir + "/", "")}\n${content}`;
-    });
-
-    return contents.join("\n\n---\n\n");
+    // Extract relevant snippets: for each result, find the section with the keyword
+    if (results.length === 0) return `No memories found matching "${keyword}".`;
+    return results.slice(0, 5).join("\n\n---\n\n");
   } catch {
     return `No memories found matching "${keyword}".`;
   }
@@ -323,7 +394,7 @@ function saveMemory(content: string): string {
 }
 
 function createActionItem(item: string, assignee?: string): string {
-  const file = join(memoryDir, "action-items.md");
+  const file = join(memoryDir, "ACTION_ITEMS.md");
   mkdirSync(memoryDir, { recursive: true });
 
   const date = new Date().toISOString().split("T")[0];
@@ -384,4 +455,79 @@ function getCurrentTime(): string {
     hour12: true,
   });
   return `Current time in Pacific Time: ${pt}`;
+}
+
+function backgroundSearch(queriesStr: string): string {
+  const queries = queriesStr.split(",").map((q) => q.trim()).filter(Boolean);
+  if (queries.length === 0) return "No search queries provided.";
+
+  console.log(`[background-search] Starting ${queries.length} parallel searches`);
+
+  // Spawn parallel CLI processes for each query
+  const promises = queries.map((query) => {
+    return new Promise<string>((resolve) => {
+      const args = [
+        "--print",
+        "--output-format", "json",
+        "--dangerously-skip-permissions",
+        "--max-turns", "10",
+        "--model", "sonnet",
+        `Search in /home/node/lily-memory for: ${query}. Read relevant files and return a concise summary. Focus on facts, dates, and specifics.`,
+      ];
+
+      const child = execFile("claude", args, {
+        encoding: "utf-8",
+        timeout: 45_000, // background searches can take longer since Jackie keeps talking
+        cwd: jackieDir,
+        env: { ...process.env },
+        maxBuffer: 1024 * 1024,
+      }, (err, stdout, stderr) => {
+        if (err) {
+          const e = err as Error & { code?: string | number; killed?: boolean };
+          console.log(`[background-search] Query "${query}" failed: code=${e.code} killed=${e.killed} msg=${e.message?.slice(0, 200)}`);
+          console.log(`[background-search] stderr: ${stderr?.slice(0, 200)}`);
+          console.log(`[background-search] stdout: ${stdout?.slice(0, 300)}`);
+          // If there's stdout even on error, try to use it
+          if (stdout) {
+            try {
+              const parsed = JSON.parse(stdout);
+              if (parsed.result) {
+                console.log(`[background-search] Recovered result from error stdout`);
+                resolve(`[${query}]: ${String(parsed.result).slice(0, 2000)}`);
+                return;
+              }
+            } catch {
+              // stdout might not be JSON, use raw
+              resolve(`[${query}]: ${stdout.trim().slice(0, 2000)}`);
+              return;
+            }
+          }
+          resolve(`[${query}]: search timed out or failed`);
+          return;
+        }
+        try {
+          const parsed = JSON.parse(stdout);
+          const text = String(parsed.result || parsed.text || stdout).slice(0, 2000);
+          console.log(`[background-search] Query "${query}" completed: ${text.slice(0, 100)}...`);
+          resolve(`[${query}]: ${text}`);
+        } catch {
+          resolve(`[${query}]: ${stdout.trim().slice(0, 2000)}`);
+        }
+      });
+      // Close stdin so claude doesn't wait for piped input
+      child.stdin?.end();
+    });
+  });
+
+  // When all searches complete, inject results into conversation
+  Promise.all(promises).then((results) => {
+    const combined = results.join("\n\n---\n\n");
+    console.log(`[background-search] All ${queries.length} searches complete, injecting results`);
+    if (_onBackgroundResult) {
+      _onBackgroundResult(combined);
+    }
+  });
+
+  // Return immediately so Jackie can keep talking
+  return `Started ${queries.length} background searches. Results will arrive shortly. Keep talking to Lily naturally while waiting.`;
 }
