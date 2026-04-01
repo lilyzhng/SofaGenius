@@ -18,13 +18,13 @@ Capture a thinking artifact. Two modes:
 1. Read the file at `<filepath>`
 2. Analyze the content to extract: title, round count, word count, source type
 3. Generate a short ID from the date and title (e.g., `20260327-zai-prep`)
-4. Run `bash agents/skills/wavemind/lib/capture.sh <filepath> "<title>"` to copy and index it
+4. Run `bash lib/capture.sh <filepath> "<title>"` to copy and index it
 5. Report what was captured
 
 **Mode 2: Live capture** (`/wavemind capture` or `/wavemind capture "Topic Name"`)
 When no filepath is given, start a live capture session:
 1. Ask the user for a topic name if not provided
-2. Create the artifact file immediately: `agents/skills/wavemind/data/artifacts/<id>.md` with title and metadata header
+2. Create the artifact file immediately: `data/artifacts/<id>.md` with title and metadata header
 3. Tell the user: "Recording this conversation. Talk naturally. When you're done, say 'done' or 'save'."
 4. Continue the conversation normally, responding as you would to any request
 5. **Capture incrementally, not at the end.** After each round (a topic reaches a natural pause, the user moves to a new question, or a decision is made), append that round to the artifact file right away. Each round gets:
@@ -32,9 +32,10 @@ When no filepath is given, start a live capture session:
    - The raw dialogue with `**Speaker:**` labels
    - Original words preserved (including mixed languages). Fix obvious typos but do not rewrite or summarize.
    - This avoids the lossy "reconstruct everything from memory at the end" problem.
+   - **Images:** When the user shares a screenshot or image during the conversation, save it to `data/artifacts/` with a descriptive filename (e.g., `milli-cafe-session.png`). Embed it in the artifact markdown using `![description](filename.png)`. Place the image reference in the dialogue at the point it was shared, under the speaker who shared it.
 6. When the user says "done", "save", or "stop recording":
    - Append any remaining conversation not yet written
-   - Run `bash agents/skills/wavemind/lib/capture.sh` to finalize and index it
+   - Run `bash lib/capture.sh` to finalize and index it
    - Report: artifact ID, title, round count, word count, file path
    - Suggest: "Run `/wavemind visualize <id>` to generate the visual."
 
@@ -42,7 +43,7 @@ When no filepath is given, start a live capture session:
 Generate a living memory document from a stored thinking artifact.
 
 **Steps:**
-1. Read the artifact from `agents/skills/wavemind/data/artifacts/<id>.md`
+1. Read the artifact from `data/artifacts/<id>.md`
 2. Analyze the thinking artifact. Your job is **editorial, not generative**:
    - Identify distinct rounds/sections of the conversation
    - Extract **punchline quotes** (memorable original words from each speaker)
@@ -57,14 +58,14 @@ Generate a living memory document from a stored thinking artifact.
    - Dialogue format with speech bubbles (user = white left-aligned, other speakers = dark right-aligned)
    - Progressive disclosure: punchline visible, full transcript behind "Read original" toggle
    - The HTML must be fully self-contained (inline CSS/JS, no external dependencies)
-5. Save to `agents/skills/wavemind/data/visuals/<id>.html`
+5. Save to `data/visuals/<id>.html`
 6. Report the file path
 
 ### `/wavemind list`
 Browse all stored thinking artifacts and their visualization status.
 
 **Steps:**
-1. Read `agents/skills/wavemind/data/index.json`
+1. Read `data/index.json`
 2. Display a formatted table:
 
 ```
@@ -74,6 +75,30 @@ ID                          | Title                  | Rounds | Date       | Sta
 ```
 
 3. If no artifacts exist, say "No artifacts captured yet. Run `/wavemind capture` to start."
+
+### `/wavemind action items`
+Show today's action items, or the most recent action items if none exist for today.
+
+**Steps:**
+1. Check today's date (YYYY-MM-DD format)
+2. Look for `data/artifacts/YYYYMMDD-action-items.md` for today
+3. If not found, find the most recent `*-action-items.md` in `data/artifacts/`
+4. Display the action items with checkboxes
+5. If the user wants to:
+   - **Check off items:** Update the file, changing `- [ ]` to `- [x]`
+   - **Add new items:** Append to the appropriate section
+   - **Create today's items:** If showing yesterday's, ask if they want to carry over incomplete items to a new file for today
+6. After any changes, save the file immediately
+
+### `/wavemind capture action items`
+Extract action items from the current or most recent journal/conversation and save them.
+
+**Steps:**
+1. Check today's date
+2. Read the most recent journal entry (check `data/artifacts/` for today's captures, or the journal directory)
+3. Extract all actionable items from the conversation
+4. Create `data/artifacts/YYYYMMDD-action-items.md` with items grouped by category
+5. Display the action items
 
 ## Analysis Format
 
@@ -91,6 +116,7 @@ When analyzing a thinking artifact, produce this structure:
       "quote": "Memorable speaker quote, max 10 words",
       "dialogue": [
         {"speaker": "lily", "text": "One thought per bubble. Keep it short."},
+        {"speaker": "lily", "text": "", "image": "screenshot.png", "image_alt": "Terminal color comparison"},
         {"speaker": "growth", "text": "Response in their original words."}
       ],
       "is_pivoting_moment": false
@@ -110,7 +136,7 @@ When analyzing a thinking artifact, produce this structure:
 **Key rules:**
 - `header`: High-signal, from the user's perspective. BAD: "Discussion of Opportunity." GOOD: "I'm the Orchestrator, Not the Promoter."
 - `quote`: A real speaker quote, not AI-generated. The "memory hook," what you'd remember a week later.
-- `dialogue`: The actual back-and-forth, one thought per bubble. Use original words (including mixed Chinese/English). Clean filler but don't rewrite.
+- `dialogue`: The actual back-and-forth, one thought per bubble. Use original words (including mixed Chinese/English). Clean filler but don't rewrite. Entries with an `image` field render as an `<img>` tag inside the bubble instead of (or alongside) text.
 - `is_pivoting_moment`: True only when thinking genuinely shifted direction. Not every round is a pivot.
 - `actionables`: Always include. `why_it_matters` is a single paragraph explaining significance. `items` are concrete, specific next steps. Not vague ("think about X") but actionable ("build X", "pair Y with Z", "test A").
 
@@ -128,24 +154,25 @@ When generating the HTML visualization:
   - **Left column (28%):** Round label, punchline quote callout (large gold open-quote mark, bold italic serif)
   - **Right column:** Section header (bold serif), dialogue bubbles, "Read original" toggle
   - **Dialogue bubbles:** User = white with light border, left-aligned. Other speakers = dark (#2C2C2C), right-aligned. One thought per bubble.
+  - **Images in bubbles:** When a dialogue entry has an image, render it as `<img src="../artifacts/filename.png">` inside the bubble. Style with `max-width: 100%; border-radius: 8px; margin-top: 8px; cursor: pointer`. Add a lightbox overlay so clicking the image shows it fullscreen with an Escape-to-close handler. Use direct file paths (same approach as frontend-slides), not base64 embedding.
   - **Pivoting moments:** Gold-filled timeline dot + "Pivoting Moment" badge
   - **Progressive disclosure:** "Read original" expands to full clean transcript
   - **Footer:** "WaveMind · Captured [date] · Visualized [date]"
-- **Self-contained:** All CSS and JS must be inline. No external dependencies.
+- **Self-contained:** All CSS and JS must be inline. No external dependencies (except images, which are referenced by relative path).
 - **Responsive:** Hide quote callouts on mobile, switch to single-column layout.
 
-**Reference:** See `agents/skills/wavemind/data/visuals/` for an approved example (ZAI Ambassador Prep).
+**Reference:** See `data/visuals/glm-benchmark.html` for an approved example (GLM Aesthetic Benchmark).
 
 ## Data Directory
 
-All runtime data lives in `agents/skills/wavemind/data/` (gitignored):
+Runtime data lives in `data/`. New artifacts and visuals are gitignored, but seeded examples are checked in for reference.
 
 ```
 data/
-├── .gitignore       # Keeps runtime data out of repo
-├── index.json       # Artifact registry
-├── artifacts/       # Raw markdown files
-└── visuals/         # Generated HTML files
+├── .gitignore       # Ignores runtime data, keeps seeded examples
+├── index.json       # Artifact registry (created at runtime)
+├── artifacts/       # Raw markdown files (glm-benchmark.md seeded)
+└── visuals/         # Generated HTML files (glm-benchmark.html seeded)
 ```
 
 ## Index Format
