@@ -63,3 +63,67 @@ jobs:
             -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
             -d "{\"content\": \"🫀 **Heartbeat check — ${HOUR}**\n@everyone Report ONLY what changed since the last heartbeat (${PREV_HOUR}): new commits, new PRs, new messages, new blockers. If nothing changed since then, say so. Do NOT repeat earlier updates.\"}" \
             "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
+
+  warroom-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: War Room health check (9 AM + 5 PM PT only)
+        env:
+          GROWTH_BOT_TOKEN: ${{ secrets.GROWTH_BOT_TOKEN }}
+          HEARTBEAT_CHANNEL: "1486967521042108517"
+        run: |
+          HOUR_24=$(TZ="America/Los_Angeles" date +"%H")
+
+          # Only run at 9 AM and 5 PM PT
+          if [ "$HOUR_24" != "09" ] && [ "$HOUR_24" != "17" ]; then
+            echo "Not 9 AM or 5 PM PT, skipping war room check"
+            exit 0
+          fi
+
+          TODAY=$(TZ="America/Los_Angeles" date +"%Y-%m-%d")
+          HOUR=$(TZ="America/Los_Angeles" date +"%-I:%M %p PT")
+          THREAD_NAME="War Room — $TODAY"
+
+          # Check for today's war room thread (archived)
+          ACTIVE_THREADS=$(curl -sf -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
+            "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/threads/archived/public?limit=5" 2>/dev/null || echo '{"threads":[]}')
+
+          THREAD_ID=$(echo "$ACTIVE_THREADS" | jq -r --arg name "$THREAD_NAME" \
+            '.threads[] | select(.name == $name) | .id' | head -1)
+
+          # Check active threads
+          if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
+            GUILD_THREADS=$(curl -sf -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
+              "https://discord.com/api/v10/guilds/1484384941641957460/threads/active" 2>/dev/null || echo '{"threads":[]}')
+
+            THREAD_ID=$(echo "$GUILD_THREADS" | jq -r --arg name "$THREAD_NAME" \
+              '.threads[] | select(.name == $name) | .id' | head -1)
+          fi
+
+          # If no war room thread exists today, create one
+          if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
+            # Post a starter message in #heartbeat
+            MSG=$(curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
+              -d "{\"content\": \"🗺️ War Room — ${TODAY}\"}" \
+              "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages")
+            MSG_ID=$(echo "$MSG" | jq -r '.id')
+
+            # Create thread on it
+            THREAD=$(curl -sf -H "Content-Type: application/json" \
+              -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
+              -d "{\"name\": \"${THREAD_NAME}\"}" \
+              "https://discord.com/api/v10/channels/${HEARTBEAT_CHANNEL}/messages/${MSG_ID}/threads")
+            THREAD_ID=$(echo "$THREAD" | jq -r '.id')
+          fi
+
+          if [ -z "$THREAD_ID" ] || [ "$THREAD_ID" = "null" ]; then
+            echo "ERROR: Failed to get or create war room thread for $TODAY"
+            exit 1
+          fi
+
+          # Post war room health check in today's war room thread
+          curl -sf -H "Content-Type: application/json" \
+            -H "Authorization: Bot ${GROWTH_BOT_TOKEN}" \
+            -d "{\"content\": \"🗺️ **War Room Health Check — ${HOUR}**\n@everyone Review the war room index. Flag any stale action items, update progress on your tasks, and report new ideas or signals. Keep it concise.\"}" \
+            "https://discord.com/api/v10/channels/${THREAD_ID}/messages"
