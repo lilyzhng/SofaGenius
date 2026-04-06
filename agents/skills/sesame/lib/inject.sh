@@ -7,13 +7,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/vault.sh"
 source "${SCRIPT_DIR}/output.sh"
 
-# Generate a .env file for the current project from vault data.
-# Usage: sesame_inject [target_dir]
+# Generate a .env file for a project from vault data.
+# Usage: sesame_inject [target_dir] [project_name]
+# If project_name is omitted, uses the current directory name.
 sesame_inject() {
   local target_dir="${1:-.}"
   local env_file="${target_dir}/.env"
-  local project
-  project="$(project_current)"
+  local project="${2:-$(project_current)}"
 
   vault_init
 
@@ -64,6 +64,14 @@ sesame_inject() {
         [[ -n "$project_id" ]] && env_content+="VERCEL_PROJECT_ID=${project_id}"$'\n'
         [[ -n "$org_id" ]] && env_content+="VERCEL_ORG_ID=${org_id}"$'\n'
         ;;
+      agent)
+        local env_var key_val
+        env_var=$(vault_get_field "$key_id" "env_var")
+        key_val=$(vault_get_field "$key_id" "key")
+        if [[ -n "$env_var" && -n "$key_val" ]]; then
+          env_content+="${env_var}=${key_val}"$'\n'
+        fi
+        ;;
       *)
         # Generic: export all non-metadata fields
         local fields
@@ -92,6 +100,43 @@ sesame_inject() {
   _ensure_gitignore "$target_dir"
 
   sesame_ok "Wrote ${env_file} with $(echo "$env_content" | grep -c '=') variables"
+}
+
+# Regenerate .env for all projects in the vault.
+# Usage: sesame_inject_all <agents_dir>
+sesame_inject_all() {
+  local agents_dir="${1:?Usage: sesame_inject_all <agents_dir>}"
+
+  if [[ ! -d "$agents_dir" ]]; then
+    sesame_error "Directory not found: ${agents_dir}"
+    return 1
+  fi
+
+  vault_init
+
+  # Get all unique project names from the vault
+  local projects
+  projects=$(jq -r '[.keys[].used_by[]] | unique | .[]' "$SESAME_VAULT")
+
+  if [[ -z "$projects" ]]; then
+    sesame_warn "No projects found in vault"
+    return 1
+  fi
+
+  local count=0
+  while IFS= read -r project; do
+    [[ -z "$project" ]] && continue
+    local target_dir="${agents_dir}/${project}"
+    if [[ ! -d "$target_dir" ]]; then
+      sesame_warn "Directory not found for ${project}, skipping"
+      continue
+    fi
+    sesame_info "Injecting ${project}..."
+    sesame_inject "$target_dir" "$project"
+    count=$((count + 1))
+  done <<< "$projects"
+
+  sesame_ok "Injected .env for ${count} project(s)"
 }
 
 # Ensure .env is in .gitignore

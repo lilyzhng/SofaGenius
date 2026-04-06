@@ -42,11 +42,33 @@ source agents/skills/sesame/lib/vault.sh
 vault_show
 ```
 
-### `/sesame inject` — Generate .env from vault
+### `/sesame inject [project]` — Generate .env from vault
 ```bash
 source agents/skills/sesame/lib/inject.sh
-sesame_inject
+sesame_inject [target_dir] [project_name]
 ```
+If project name is omitted, uses the current directory name.
+
+### `/sesame inject --all <agents_dir>` — Regenerate .env for all projects
+```bash
+source agents/skills/sesame/lib/inject.sh
+sesame_inject_all <agents_dir>
+```
+Finds all projects in the vault and regenerates their `.env` files. Useful after directory renames or to recover from lost `.env` files.
+
+### `/sesame import <env_file> <project>` — Import existing .env into vault
+```bash
+source agents/skills/sesame/lib/import.sh
+sesame_import <env_file> <project_name> [service_type]
+```
+Reads an existing `.env` file and stores each key/value pair in the vault under the given project name. Skips keys that already exist. Service type defaults to "agent".
+
+### `/sesame import --all <agents_dir>` — Import all agent .env files
+```bash
+source agents/skills/sesame/lib/import.sh
+sesame_import_all <agents_dir>
+```
+Scans `<agents_dir>/genius-*/` for `.env` files and imports each one.
 
 ### `/sesame new-project <name>` — Start a new project with key reuse
 1. Show all existing keys in vault grouped by service
@@ -69,10 +91,6 @@ sesame_inject
 ```
 agents/skills/sesame/
 ├── SKILL.md              # This file (skill entry point)
-├── data/                 # Vault data (gitignored, runtime-only)
-│   ├── .gitignore
-│   ├── vault.json        # Master key registry
-│   └── projects/         # Per-project key mappings
 ├── services/
 │   ├── stripe.sh         # Stripe provisioner
 │   ├── supabase.sh       # Supabase provisioner
@@ -80,7 +98,12 @@ agents/skills/sesame/
 └── lib/
     ├── vault.sh          # Vault read/write operations
     ├── inject.sh         # .env generation from vault
+    ├── import.sh         # .env import into vault
     └── output.sh         # Shared output helpers
+
+~/.sesame/                # Vault data (outside repo, persists across projects)
+├── vault.json            # Master key registry
+└── projects/             # Per-project key mappings
 ```
 
 ## Error Handling
