@@ -1,3 +1,0 @@
-# Vault contains secrets — never commit
-*
-!.gitignore
