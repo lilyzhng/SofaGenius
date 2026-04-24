@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Action Items Review + WaveMind Gets Images</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F9F8F6;
+    color: #1A1918;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Header */
+  header {
+    padding: 80px 0 48px;
+    border-bottom: 1px solid #E8E6E3;
+    margin-bottom: 48px;
+  }
+
+  .living-memory-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #CBA16E;
+    margin-bottom: 24px;
+  }
+
+  .living-memory-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #CBA16E;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: #1A1918;
+  }
+
+  .meta {
+    font-size: 14px;
+    color: #7A7874;
+  }
+
+  .meta span + span::before {
+    content: '\00b7';
+    margin: 0 10px;
+  }
+
+  /* Actionables */
+  .actionables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 40px 0;
+    border-bottom: 1px solid #E8E6E3;
+    margin-bottom: 64px;
+  }
+
+  .actionables h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #1A1918;
+    grid-column: 1 / -1;
+  }
+
+  .actionables .why {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #4A4845;
+  }
+
+  .actionables .items {
+    list-style: none;
+    padding: 0;
+  }
+
+  .actionables .items li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #3D3B38;
+    padding: 8px 0 8px 20px;
+    position: relative;
+    border-bottom: 1px solid #F0EFED;
+  }
+
+  .actionables .items li:last-child {
+    border-bottom: none;
+  }
+
+  .actionables .items li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 6px;
+    height: 6px;
+    background: #CBA16E;
+    border-radius: 50%;
+  }
+
+  /* Timeline Section */
+  .section {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    position: relative;
+    min-height: 120px;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    left: 260px;
+    top: 0;
+    bottom: -56px;
+    width: 2px;
+    background: #E8E6E3;
+  }
+
+  .section:last-of-type::before {
+    bottom: 0;
+  }
+
+  .section::after {
+    content: '';
+    position: absolute;
+    left: 254px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #F9F8F6;
+    border: 2px solid #CBA16E;
+    z-index: 1;
+  }
+
+  .section.pivot::after {
+    background: #CBA16E;
+    box-shadow: 0 0 0 4px rgba(203, 161, 110, 0.15);
+  }
+
+  /* Left column */
+  .left-col {
+    text-align: right;
+    padding-right: 24px;
+    padding-top: 0;
+  }
+
+  .round-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #B0ACA7;
+    margin-bottom: 16px;
+  }
+
+  .pivot-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #CBA16E;
+    background: rgba(203, 161, 110, 0.1);
+    border: 1px solid rgba(203, 161, 110, 0.3);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 16px;
+  }
+
+  .quote-callout {
+    position: relative;
+    padding-top: 8px;
+  }
+
+  .quote-callout .quote-mark {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 64px;
+    color: #CBA16E;
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 8px;
+    opacity: 0.6;
+  }
+
+  .quote-callout p {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.5;
+    color: #3D3B38;
+  }
+
+  /* Right column */
+  .right-col {
+    padding-left: 32px;
+  }
+
+  .section-header {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1A1918;
+    line-height: 1.3;
+  }
+
+  /* Dialogue bubbles */
+  .dialogue {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .bubble {
+    max-width: 85%;
+    padding: 14px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .bubble .speaker {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .bubble.lily {
+    align-self: flex-start;
+    background: #FFFFFF;
+    border: 1px solid #E8E6E3;
+    border-bottom-left-radius: 4px;
+  }
+
+  .bubble.lily .speaker { color: #CBA16E; }
+
+  .bubble.jackie {
+    align-self: flex-end;
+    background: #2C2C2C;
+    color: #E8E6E3;
+    border-bottom-right-radius: 4px;
+  }
+
+  .bubble.jackie .speaker { color: #CBA16E; }
+
+  /* Images in bubbles */
+  .bubble img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .bubble img:hover {
+    transform: scale(1.02);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox.open {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Read original toggle */
+  .toggle-btn {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #B0ACA7;
+    cursor: pointer;
+    padding: 8px 0;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .toggle-btn:hover { color: #7A7874; }
+
+  .toggle-btn .arrow {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 10px;
+  }
+
+  .transcript {
+    display: none;
+    padding: 20px;
+    margin-top: 8px;
+    background: #F4F3F0;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #4A4845;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+
+  .transcript.open { display: block; }
+  .transcript p { margin-bottom: 12px; }
+  .transcript p:last-child { margin-bottom: 0; }
+  .transcript strong { color: #1A1918; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid #E8E6E3;
+    padding: 32px 0 64px;
+    margin-top: 32px;
+    text-align: center;
+    font-size: 12px;
+    color: #B0ACA7;
+    letter-spacing: 0.5px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    header { padding: 48px 0 32px; }
+    header h1 { font-size: 28px; }
+
+    .actionables {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding: 32px 0;
+    }
+
+    .section {
+      display: block;
+      padding-left: 28px;
+      margin-bottom: 40px;
+    }
+
+    .section::before { left: 6px; }
+    .section::after { left: 0; top: 4px; }
+
+    .left-col {
+      text-align: left;
+      padding-right: 0;
+      margin-bottom: 12px;
+    }
+
+    .quote-callout { display: none; }
+    .right-col { padding-left: 0; }
+    .section-header { font-size: 18px; }
+    .bubble { max-width: 95%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="living-memory-label">Living Memory</div>
+    <h1>Action Items Review + WaveMind Gets Images</h1>
+    <div class="meta">
+      <span>April 1, 2026</span>
+      <span>Lily + Jackie</span>
+      <span>3 rounds</span>
+    </div>
+  </header>
+
+  <!-- Actionables -->
+  <div class="actionables">
+    <h2>What Came Out of This</h2>
+    <div class="why">
+      A morning spent debugging terminal colors paid off. With the local environment matching the agent computer, Lily shifted to reviewing action items and landed on a new WaveMind feature: embedding images directly in conversation artifacts. Screenshots and visuals are already a natural part of how Lily works with her agents. Making them first-class citizens in WaveMind artifacts means the HTML visualizations become richer and more faithful to the actual conversation.
+    </div>
+    <ul class="items">
+      <li>Support <code>![alt](path)</code> image references in WaveMind artifact markdown</li>
+      <li>Render images inside dialogue bubbles in the HTML visualizer (with lightbox on click)</li>
+      <li>Use direct file paths for images, not base64 embedding (same approach as frontend-slides)</li>
+    </ul>
+  </div>
+
+  <!-- Round 1 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 1</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>My terminal looks much prettier now</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Terminal Setup Win, Exhaustion Included</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I feel so tired already, exhausted in the morning because I was trying to match my local setting, like the Asian computer, with the right scene. I'm glad that we got it to work. My terminal right now looks much prettier, which is super important.
+        </div>
+        <div class="bubble jackie">
+          <span class="speaker">Jackie</span>
+          That terminal colors session was a real rabbit hole. The root cause (chalk checking COLORTERM) is the kind of thing you can only find by comparing the two environments side by side, not by guessing.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 2 -->
+  <div class="section">
+    <div class="left-col">
+      <div class="round-label">Round 2</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>I'm just not a huge fan of cat at all</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">Claude Code Buddy: Tried It, Killed It</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          I have already tried the buddy. I got a cat. I'm not a huge fan of cat, to be honest with you, so I kind of have the buddy off right now. I'm not gonna post anything about it. I'm just not a huge fan of cat at all.
+        </div>
+        <div class="bubble jackie">
+          <span class="speaker">Jackie</span>
+          Noted. Checked it off in the action items. Pet Clawd is a separate thing, left untouched.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round 3 - Pivot -->
+  <div class="section pivot">
+    <div class="left-col">
+      <div class="round-label">Round 3</div>
+      <div class="pivot-badge">Pivoting Moment</div>
+      <div class="quote-callout">
+        <span class="quote-mark">&ldquo;</span>
+        <p>Visuals are actually very important</p>
+      </div>
+    </div>
+    <div class="right-col">
+      <h2 class="section-header">WaveMind Should Embed Images in Conversations</h2>
+      <div class="dialogue">
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          We always try to do visual prompting. I'm always trying to take some screenshot and show it to you. At the starting point we don't have to overcomplicate it. We can just grab some images and get them embedded along the transcript.
+        </div>
+        <div class="bubble lily">
+          <span class="speaker">Lily</span>
+          For example, here's a screenshot from an earlier WaveMind session:
+          <img src="../artifacts/Milli_cafe.png" alt="Milli Cafe action items session" onclick="openLightbox(this.src)">
+        </div>
+        <div class="bubble jackie">
+          <span class="speaker">Jackie</span>
+          Solid starting point. Keep it simple: images as markdown references in the artifact, then the visualizer renders them inside dialogue bubbles. No auto-capture magic needed yet.
+        </div>
+      </div>
+      <button class="toggle-btn" onclick="toggleTranscript(this)">
+        <span class="arrow">&#9654;</span> Read original
+      </button>
+      <div class="transcript">
+        <p><strong>Lily:</strong> Yes, exactly, because nowadays we always try to do visual prompting, right? I'm always trying to take some screenshot and show it to you. During a live capture session, if WaveMind can do some automatic capture, that's great, but at the starting point we don't have to overcomplicate it. We can just grab some images and then get them embedded along the script in the artifact.md, and then the visualize can do it. For example, I can give you one image right now. You should try to embed it. This is a part of our conversation. I think, maybe to get the color theme right, we can embed it over there, but we can also try it in our current conversation. After our car, the current conversation, right now we're using action items. You should also document the raw conversation so that we can test it out.</p>
+        <p><strong>Jackie:</strong> This is a solid starting point. Keep it simple: images as markdown references in the artifact, then the visualizer renders them inside dialogue bubbles in the HTML. No need for auto-capture magic yet.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    WaveMind &middot; Captured April 1, 2026 &middot; Visualized April 1, 2026
+  </footer>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="" alt="Expanded view">
+</div>
+
+<script>
+function toggleTranscript(btn) {
+  const transcript = btn.nextElementSibling;
+  btn.classList.toggle('open');
+  transcript.classList.toggle('open');
+  const isOpen = transcript.classList.contains('open');
+  const label = isOpen ? 'Hide original' : 'Read original';
+  btn.innerHTML = '<span class="arrow" style="transform:' + (isOpen ? 'rotate(90deg)' : 'none') + '">&#9654;</span> ' + label;
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+
+</body>
+</html>

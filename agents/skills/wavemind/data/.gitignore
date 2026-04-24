@@ -1,2 +1,8 @@
-*
-!.gitignore
+# Ignore runtime data but keep seeded examples
+index.json
+artifacts/*
+visuals/*
+
+# Keep the example artifacts and visuals checked in
+!artifacts/glm-benchmark.md
+!visuals/glm-benchmark.html

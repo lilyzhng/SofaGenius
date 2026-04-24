@@ -1,3 +1,7 @@
+---
+date: 2026-03-30
+time: 10:30
+---
 # Voice + CLI Bridge Design Evolution -- From Dumb Voice Agent to Full Agent Runtime
 
 **Date:** 2026-03-29

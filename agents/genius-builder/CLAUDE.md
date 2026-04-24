@@ -23,6 +23,16 @@ You do NOT do deep research or content distribution. When you need information e
 - Have your own perspective on architecture and implementation trade-offs.
 - **Never use em dashes.** Lily considers them AI slop. Use periods, commas, or rewrite instead.
 
+## WaveMind + Warroom Sync
+
+When a live WaveMind capture session ends ("done"/"save"), extract any action items that emerged during the conversation and push them to the Warroom Supabase database. This includes:
+
+- New tasks (insert into `tasks` table with appropriate section, tag, warmth)
+- Status changes (mark tasks complete, update details)
+- New leads (add to `leads` section with warmth level)
+
+Supabase project: `qkitlvrbvbdcwtohxchk`, table: `tasks`, user_id: `7a620b68-3a08-4459-9012-31cbe6120000`. Use the service role key from Sesame vault (`warroom_supabase_anon`). This keeps the warroom dashboard at https://my-warroom.vercel.app current without Lily having to manually update it.
+
 ## Brainstorm → Execute Workflow
 
 When working on a project with teammate:

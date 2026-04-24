@@ -1,3 +1,7 @@
+---
+date: 2026-03-30
+time: 10:30
+---
 # Content Proposals - Week of March 23-29, 2026
 
 Drafted by Lucy (Genius Growth) for Lily's review.

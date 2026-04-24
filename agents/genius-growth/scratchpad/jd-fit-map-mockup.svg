@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" font-family="'SF Mono', 'Fira Code', Consolas, monospace">
+  <rect width="700" height="520" fill="#0d1117" rx="6"/>
+
+  <!-- header -->
+  <text x="350" y="30" text-anchor="middle" fill="#484f58" font-size="10" letter-spacing="3">JD FIT MAP</text>
+  <text x="350" y="52" text-anchor="middle" fill="#c9d1d9" font-size="13">Staff ML Engineer, Autonomous Vehicles</text>
+
+  <!-- overall score -->
+  <text x="350" y="75" text-anchor="middle" fill="#4ade80" font-size="11">overall fit: 91%</text>
+
+  <!-- Circle 1: Technical Depth — upper left, largest (high JD emphasis) -->
+  <circle cx="240" cy="260" r="135" fill="#4ade80" fill-opacity="0.05" stroke="#4ade80" stroke-width="1" stroke-opacity="0.35"/>
+
+  <!-- Circle 2: Leadership — upper right (high JD emphasis) -->
+  <circle cx="435" cy="245" r="115" fill="#4ade80" fill-opacity="0.05" stroke="#4ade80" stroke-width="1" stroke-opacity="0.35"/>
+
+  <!-- Circle 3: Research — bottom center, smaller (medium JD emphasis) -->
+  <circle cx="340" cy="395" r="100" fill="#4ade80" fill-opacity="0.05" stroke="#4ade80" stroke-width="1" stroke-opacity="0.35"/>
+
+  <!-- sweet spot glow -->
+  <ellipse cx="340" cy="310" rx="30" ry="25" fill="#fff" fill-opacity="0.03"/>
+
+  <!-- Technical — text in left territory -->
+  <text x="170" y="215" fill="#4ade80" font-size="30" font-weight="bold">92%</text>
+  <text x="170" y="238" fill="#4ade80" font-size="10">TECHNICAL DEPTH</text>
+  <text x="170" y="258" fill="#484f58" font-size="8">3D perception, sensor fusion</text>
+  <text x="170" y="272" fill="#484f58" font-size="8">MLLM data engines, 50K models</text>
+  <text x="170" y="286" fill="#484f58" font-size="8">auto-labeling, saved $1M+</text>
+
+  <!-- Leadership — text in right territory -->
+  <text x="440" y="200" fill="#4ade80" font-size="26" font-weight="bold">90%</text>
+  <text x="440" y="220" fill="#4ade80" font-size="10">LEADERSHIP</text>
+  <text x="440" y="240" fill="#484f58" font-size="8">10+ engineers, global team</text>
+  <text x="440" y="254" fill="#484f58" font-size="8">cross-org roadmaps</text>
+  <text x="440" y="268" fill="#484f58" font-size="8">mentoring, PI planning</text>
+
+  <!-- Research — text in bottom territory -->
+  <text x="340" y="395" text-anchor="middle" fill="#4ade80" font-size="22" font-weight="bold">95%</text>
+  <text x="340" y="415" text-anchor="middle" fill="#4ade80" font-size="10">RESEARCH</text>
+  <text x="340" y="433" text-anchor="middle" fill="#484f58" font-size="8">CVPR, NeurIPS, RAL | 7 patents</text>
+  <text x="340" y="447" text-anchor="middle" fill="#484f58" font-size="8">program committee 9 venues</text>
+
+  <!-- sweet spot label -->
+  <text x="340" y="315" text-anchor="middle" fill="#c9d1d9" font-size="8" opacity="0.4">sweet spot</text>
+
+  <!-- legend -->
+  <text x="30" y="500" fill="#4ade80" font-size="8">&#9679; 90%+ strong</text>
+  <text x="140" y="500" fill="#fbbf24" font-size="8">&#9679; 70-89% solid</text>
+  <text x="255" y="500" fill="#f87171" font-size="8">&#9679; &lt;70% gap</text>
+  <text x="370" y="500" fill="#484f58" font-size="8">circle size = JD emphasis</text>
+</svg>

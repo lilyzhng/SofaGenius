@@ -1,3 +1,7 @@
+---
+date: 2026-03-30
+time: 10:30
+---
 # 20Growth: Inside Lovable's $400M ARR Growth Machine - Raw Transcript
 
 **Guest:** Elena Verna, Head of Growth, Lovable

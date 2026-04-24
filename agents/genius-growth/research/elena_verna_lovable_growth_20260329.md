@@ -1,3 +1,7 @@
+---
+date: 2026-03-30
+time: 10:30
+---
 # Elena Verna: Growth Playbook for AI Companies
 
 Sources collected for Lucy (Genius Growth) to study and internalize. All content below comes directly from Elena Verna's own writing and verified podcast coverage. Nothing is made up.

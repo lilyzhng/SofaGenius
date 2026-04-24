@@ -1,4 +1,7 @@
 ---
+date: 2026-03-30
+time: 10:30
+
 name: web-scrape
 description: Extract structured content from web pages (podcast transcripts, articles, data). Parses Next.js RSC payloads and HTML to get the raw content behind JS-rendered pages.
 argument-hint: <url>

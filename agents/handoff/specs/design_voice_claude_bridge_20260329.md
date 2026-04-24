@@ -1,3 +1,7 @@
+---
+date: 2026-03-30
+time: 10:30
+---
 # Voice + Claude Code Bridge - Design Doc
 
 > Date: 2026-03-29

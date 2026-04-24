@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # WaveMind local JSON store — CRUD operations for artifacts
-# Data lives in agents/skills/wavemind/data/ (gitignored)
+# Data lives in data/ (gitignored)
 # Requires: jq
 
 set -euo pipefail

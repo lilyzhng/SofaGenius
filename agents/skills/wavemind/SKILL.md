@@ -24,7 +24,22 @@ Capture a thinking artifact. Two modes:
 **Mode 2: Live capture** (`/wavemind capture` or `/wavemind capture "Topic Name"`)
 When no filepath is given, start a live capture session:
 1. Ask the user for a topic name if not provided
-2. Create the artifact file immediately: `data/artifacts/<id>.md` with title and metadata header
+2. Create the artifact file immediately: `data/artifacts/<id>.md` with this structure:
+   ```markdown
+   # Topic Name - YYYY-MM-DD
+
+   **Participants:** Lily + Jackie
+   **Topic:** Brief description
+
+   ## Actionables
+   <!-- Updated as action items emerge from conversation -->
+
+   ---
+
+   ## Round 1: Title
+   **Lily:** ...
+   **Jackie:** ...
+   ```
 3. Tell the user: "Recording this conversation. Talk naturally. When you're done, say 'done' or 'save'."
 4. Continue the conversation normally, responding as you would to any request
 5. **Capture incrementally, not at the end.** After each round (a topic reaches a natural pause, the user moves to a new question, or a decision is made), append that round to the artifact file right away. Each round gets:
@@ -33,8 +48,10 @@ When no filepath is given, start a live capture session:
    - Original words preserved (including mixed languages). Fix obvious typos but do not rewrite or summarize.
    - This avoids the lossy "reconstruct everything from memory at the end" problem.
    - **Images:** When the user shares a screenshot or image during the conversation, save it to `data/artifacts/` with a descriptive filename (e.g., `milli-cafe-session.png`). Embed it in the artifact markdown using `![description](filename.png)`. Place the image reference in the dialogue at the point it was shared, under the speaker who shared it.
+   - **Actionables:** When action items emerge from the conversation (decisions made, tasks identified, next steps agreed), update the `## Actionables` section at the top of the file. Use `- [ ]` checkboxes. Group by category if natural. Actionables are a living section that grows as the conversation progresses, not something reconstructed at the end.
 6. When the user says "done", "save", or "stop recording":
    - Append any remaining conversation not yet written
+   - Do a final pass on the Actionables section to make sure all action items from the conversation are captured
    - Run `bash lib/capture.sh` to finalize and index it
    - Report: artifact ID, title, round count, word count, file path
    - Suggest: "Run `/wavemind visualize <id>` to generate the visual."
@@ -77,28 +94,18 @@ ID                          | Title                  | Rounds | Date       | Sta
 3. If no artifacts exist, say "No artifacts captured yet. Run `/wavemind capture` to start."
 
 ### `/wavemind action items`
-Show today's action items, or the most recent action items if none exist for today.
+Show actionables from today's artifacts, or the most recent artifact if none exist for today.
 
 **Steps:**
-1. Check today's date (YYYY-MM-DD format)
-2. Look for `data/artifacts/YYYYMMDD-action-items.md` for today
-3. If not found, find the most recent `*-action-items.md` in `data/artifacts/`
-4. Display the action items with checkboxes
-5. If the user wants to:
-   - **Check off items:** Update the file, changing `- [ ]` to `- [x]`
-   - **Add new items:** Append to the appropriate section
-   - **Create today's items:** If showing yesterday's, ask if they want to carry over incomplete items to a new file for today
-6. After any changes, save the file immediately
-
-### `/wavemind capture action items`
-Extract action items from the current or most recent journal/conversation and save them.
-
-**Steps:**
-1. Check today's date
-2. Read the most recent journal entry (check `data/artifacts/` for today's captures, or the journal directory)
-3. Extract all actionable items from the conversation
-4. Create `data/artifacts/YYYYMMDD-action-items.md` with items grouped by category
-5. Display the action items
+1. Check today's date (YYYYMMDD format)
+2. Look for today's artifacts in `data/artifacts/` matching `YYYYMMDD-*.md`
+3. If found, read the `## Actionables` section from each artifact. If multiple artifacts exist for today, combine their actionables
+4. If no artifacts for today, find the most recent artifact that has actionables
+5. Display the action items with checkboxes
+6. If the user wants to:
+   - **Check off items:** Update the `## Actionables` section in the source artifact file, changing `- [ ]` to `- [x]`
+   - **Add new items:** Append to the `## Actionables` section in the most recent artifact
+7. After any changes, save the file immediately
 
 ## Analysis Format
 
@@ -117,6 +124,7 @@ When analyzing a thinking artifact, produce this structure:
       "dialogue": [
         {"speaker": "lily", "text": "One thought per bubble. Keep it short."},
         {"speaker": "lily", "text": "", "image": "screenshot.png", "image_alt": "Terminal color comparison"},
+        {"speaker": "lily", "text": "Here's what it looked like after the fix:", "image": "after-fix.png", "image_alt": "Terminal after color fix"},
         {"speaker": "growth", "text": "Response in their original words."}
       ],
       "is_pivoting_moment": false
